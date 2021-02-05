@@ -1,0 +1,144 @@
+// Global component styles
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+a {
+  &:focus {
+    outline: none;
+  }
+}
+
+// Main page wrapper
+#wrapper {
+  display: flex;
+  #content-wrapper {
+    background-color: $gray-100;
+    width: 100%;
+    overflow-x: hidden;
+    #content {
+      flex: 1 0 auto;
+    }
+  }
+}
+
+// Set container padding to match gutter width instead of default 15px
+.container,
+.container-fluid {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+
+// Scroll to top button
+.scroll-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  text-align: center;
+  color: $white;
+  background: fade-out($gray-800, .5);
+  line-height: 46px;
+  &:focus,
+  &:hover {
+    color: white;
+  }
+  &:hover {
+    background: $gray-800;
+  }
+  i {
+    font-weight: 800;
+  }
+}
+
+
+//Detail slide content
+.detail_side {
+    height: 100%;
+    position: fixed;
+    width:0;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #58585891;
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    //width: 100%;
+    .side_close_btn{
+        width: 16rem !important;
+        font-size: 3rem;
+        text-align: center;
+        .closebtn{
+            color: #ffffff;
+            padding: 0 0.5rem;
+            border-radius: 50%;
+        }
+    }
+
+    .side_detail_content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: #f3f3f3;
+        padding: 1rem;
+        padding: 1rem;
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .side_detail_navbar{
+
+            h2.title{
+                font-size: 2rem;
+            }
+        }
+
+        .nav-pills{
+            a.nav-link{
+                color:$black;
+                font-weight: bold;
+            }
+            .nav-link.active, .nav-link:hover{
+                color:$primary;
+                background: transparent;
+                border: none;
+            }
+        }
+
+        .side_detail_tabs{
+            .profile_picture {
+                text-align: center;
+                img{
+                    max-width: 200px;
+                }
+            }
+            .content-info{
+                p{
+                    span,label{
+                        display: block;
+                        width: 100%;
+                    }
+                    span{
+                        color: black;
+                    }
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+    }
+}
+@media screen and (max-height: 450px) {
+    /*.detail_side {
+        padding-top: 15px;
+        a {font-size: 18px;}
+    }*/
+}
