@@ -19,5 +19,5 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 });*/
 
 Route::get('/', function () {
-    return view('layouts.application');
+    return view('pages.home');
 });
