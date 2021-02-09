@@ -24,9 +24,7 @@
         <script>
             // Add active class to the current button (highlight it)
             let header = document.getElementById("main-menu");
-            console.log(header);
             let btns = header.getElementsByClassName("nav-link");
-            console.log(btns);
             for (let i = 0; i < btns.length; i++) {
                 btns[i].addEventListener("click", function() {
                     let current = document.getElementsByClassName("active");
