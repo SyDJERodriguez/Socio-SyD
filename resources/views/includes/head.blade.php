@@ -15,7 +15,7 @@
         z-index: 99;
     }
 
-    div.top-bar {
+    .top-bar {
         position: -webkit-sticky;
         position: sticky;
         top: 0;
