@@ -1,6 +1,6 @@
 <a href="#" class="whatsapp"><img src="{{asset('img/1x/wht.png')}}" alt=""></a>
 
-<div class="container-fluid top-bar">
+<div class="container-fluid">
     <!--header-->
     <div class="row header ml-0">
         <div class="col-lg-3 p-2 pl-4">
@@ -12,14 +12,14 @@
                     <div class="col-sm-5 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <a href="#" class="primary-color pr-3"><b>¿No tienes una cuenta?</b></a>
+                            <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
                             <a href="#" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <a href="#" class="primary-color"><b>¿Olvidaste tu contraseña?</b></a>
+                            <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4"><b>¿Olvidaste tu contraseña?</b></a>
                         </div>
                     </div>
 
@@ -45,35 +45,37 @@
             </div>
         </div>
     </div>
-    <!--menu-->
-    <nav class="navbar navbar-expand-lg navbar blue-dark ">
-        <a class="navbar-brand" href="#">
-            <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto" id="main-menu">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section4">BENEFICIOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section5">TESTIMONALIALES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+
 </div>
+
+<!--menu-->
+<nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+    <a class="navbar-brand" href="#">
+        <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto" id="main-menu">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section4">BENEFICIOS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section5">TESTIMONALIALES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
