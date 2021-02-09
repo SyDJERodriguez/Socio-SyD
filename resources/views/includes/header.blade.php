@@ -23,9 +23,16 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-2 my-1">
+                    <!--<div class="col-sm-2 my-1">
                         <button type="submit" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px">INICIAR SESIÓN</button>
                         <a href="#" class="disabl">Iniciar sesión</a>
+                    </div> -->
+                    
+                    <div class="col-sm-2 my-1">
+                        <button type="submit" class="btn btn px-2" 
+                        style="background-color: #143153;color:white; width: 200px"
+                        data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</button>
+                        <a href="#" class="disabl">Cerrar sesión</a>
                     </div>
                 </div>
             </form>

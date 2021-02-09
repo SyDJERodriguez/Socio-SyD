@@ -332,4 +332,34 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal LOGOUT-->
+    <div class="modal fade" id="modalLogOut" tabindex="-1" role="dialog" aria-labelledby="modalLogOut" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0" style="background:transparent">
+                <div class="modal-header" style="height: 35px;">
+                  <button type="button" class="close" style="margin: 0rem 0rem -1rem auto;padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body blue-dark">
+                    <div>
+                        <div>  
+                            <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS SALIR?</b></h5>  
+                        </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-lg-9 py-2 text-center">
+                        <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
+                      <div class="col-lg-3 py2 text-center">
+                          <input type="button" class="text-white btn btn bg-primary btn-sm my-2" value="si" style="padding-left: 40px;padding-right: 40px;"><br>
+                          <input type="button" class="btn btn-light btn-sm" value="No" style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+        
+                      </div>
+                  </div>
+                </div>
+             
+              </div>
+        </div>
+    </div>
 @stop
