@@ -39,27 +39,31 @@
     </section>
 
     <section id="section2">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-3 bar pt-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
-                <div class="col-lg-6 p-4"> <h2 class="primary-color text-center"><strong>CÓMO FUNCIONA SOCIO SYD®</strong></h2></div>
-                <div class="col-lg-3 bar p-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
+        <div class="p-5">
+            <<div class="row">
+                <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
+                <div class="col-lg-6 py-3"> <h1 class="primary-color text-center"><strong>CÓMO FUNCIONA SOCIO SyD®</strong></h1></div>
+                <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
             </div>
-            <div class="row">
+            <div class="row primary-color">
                 <div class="col-lg-4 mx-auto text-center img1">
                     <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" alt="">
-                    <h5 class="text-center pt-5"><strong>REGÍSTRATE</strong></h5>
-                    <h6>Hazlo desde<br>cualquier dispositivo.</h6>
+                    <h2 class="text-center pt-3"><strong>REGÍSTRATE</strong></h2>
+                    <h5 style="font-weight: 400;">Hazlo desde<br>
+                        cualquier dispositivo.</h5>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img2">
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt="">
-                    <h5 class="text-center pt-3"><strong>COMPRA</strong></h5>
-                    <h6>Haz una compra mínima<br>de $200 pesos al mes.</h6>
+                    <h2 class="text-center pt-3"><strong>COMPRA</strong></h2>
+                    <h5 style="font-weight: 400;">Haz una compra mínima<br>
+                        de <b>$200</b> pesos al mes.</h5>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
                     <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}" alt="">
-                    <h5 class="text-center pt-4"><strong>OBTÉN BENEFICIOS</strong></h5>
-                    <h6>Obtén tu seguro de accidentes<br>y más beneficios.</h6>
+                    <h2 class="text-center pt-3"><strong>OBTÉN BENEFICIOS</strong></h2>
+                    <h5 style="font-weight: 400;">
+                        Obtén tu seguro de accidentes<br>
+                        y más beneficios.</h5>
                 </div>
             </div>
         </div>
@@ -76,13 +80,12 @@
     </section>
 
     <section id="section3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 bar pt-5"><div class="bg-primary bar " style="height: 2px; width: 240px;"></div></div>
-                <div class="col-lg-6 p-4"> <h2 class="primary-color text-center"><strong>TIPO DE CUENTA</strong></h2></div>
-                <div class="col-lg-3 bar p-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
+            <div class="row m-0">
+                <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
+                <div class="col-lg-6 p-3"> <h1 class="primary-color text-center"><strong>TIPO DE CUENTA</strong></h1></div>
+                <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
             </div>
-        </div>
+
         <div class="container-fluid ">
             <div class="row background m-0">
 
@@ -131,12 +134,10 @@
     </section>
 
     <section id="section4">
-        <div class="container">
-            <div class="row my-3">
-                <div class="col-lg-3 bar pt-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
-                <div class="col-lg-6 p-4"> <h2 class="primary-color text-center"><strong>BENEFICIOS</strong></h2></div>
-                <div class="col-lg-3 bar p-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
-            </div>
+        <div class="row my-3 mx-0">
+            <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
+            <div class="col-lg-6 col-xs-6 p-3"> <h1 class="primary-color text-center"><strong>BENEFICIOS</strong></h1></div>
+            <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
         </div>
         <div class="container-fluid">
             <div class="row blue-dark py-5 m-0">
@@ -160,12 +161,10 @@
 
 
     <section id="section5">
-        <div class="container">
-            <div class="row my-3">
-                <div class="col-lg-3 bar pt-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
-                <div class="col-lg-6 p-4"> <h2 class="primary-color text-center"><strong>TESTIMONIALES</strong></h2></div>
-                <div class="col-lg-3 bar p-5"><div class="bg-primary bar" style="height: 2px; width: 240px;"></div></div>
-            </div>
+        <div class="row my-3 mx-0">
+            <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
+            <div class="col-lg-6 p-3"> <h1 class="primary-color text-center"><strong>TESTIMONIALES</strong></h1></div>
+            <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
         </div>
 
         <div class="container-fluid">
@@ -222,10 +221,13 @@
         <div class="container-fluid py-5">
             <div class="jumbotron text-center mx-auto">
                 <div class="row text-center">
-                    <div class="col-lg-3 bar pt-3"><div class="bg-white bar " style="height: 2px; width: 240px;"></div></div>
-                    <div class="col-lg-6 "> <h3 class="text-white text-center"><strong>COMPRA EN LÍNEA
-                            </strong></h3></div>
-                    <div class="col-lg-3 bar p-3"><div class="bg-white bar" style="height: 2px; width: 240px;"></div></div>
+                    <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
+                    <div class="col-lg-4 ">
+                        <h1 class="text-white text-center"><strong>COMPRA EN LÍNEA
+                            </strong></h1>
+                        <br/>
+                    </div>
+                    <div class="col-lg-4 p-4"><div class="bg-white" style="height: 1px;"></div></div>
                 </div>
 
                 <h5 class=" text-white text-center py-4"><strong>OBTÉN LOS PRODUCTOS QUE NECESITAS <br>EN UN SÓLO CLIC</strong></h5>
