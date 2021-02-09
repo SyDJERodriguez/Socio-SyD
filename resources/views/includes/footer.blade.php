@@ -27,7 +27,9 @@
 
                 <p>Compra en línea </p>
                 <hr class="bg-primary">
-                <p>Contacto</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
+                    <b>Contacto</b>
+                </a>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white text-right pr-0">
