@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <style>
     .whatsapp{
-        top: 400px;
+        top: 500px;
         right: -12px;
         position: fixed;
         z-index: 99;
@@ -26,3 +26,5 @@
         scroll-behavior: smooth;
     }
 </style>
+
+
