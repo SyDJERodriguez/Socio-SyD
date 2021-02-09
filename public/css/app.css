@@ -91,7 +91,7 @@ html{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-  
+
     height: 90px;
     width: 100%;
 }
@@ -120,21 +120,21 @@ display: none;
 .img1{
     background-image: url(../img/1.png);
     background-repeat: no-repeat;
-    background-position: left;
-    background-size: 40%;
+    background-position: 14%;
+    background-size: contain;
 }
 
 .img2{
     background-image: url(../img/2.png);
     background-repeat: no-repeat;
-    background-position: left;
-    background-size: 40%;
+    background-position: 14%;
+    background-size: contain;
 }
 .img3{
     background-image: url(../img/3.png);
     background-repeat: no-repeat;
-    background-position: left;
-    background-size: 40%;
+    background-position: 14%;
+    background-size: contain;
 }
 .jumbotron{
     background-image: url(../img/SLD.png);
@@ -148,13 +148,13 @@ display: none;
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
-    
+
 }
 .bg-primary{
     background-color: #00A5E6!important;
 }
 .hgt{
-    height: 400px; 
+    height: 400px;
 }
 /*mobile*/
 @media only screen and (max-width: 600px) {
@@ -169,7 +169,7 @@ display: none;
     display: none;
 }
 .hgt{
-    height: 200px; 
+    height: 200px;
 }
 .line1{
     display: none;
@@ -285,4 +285,11 @@ display: none;
 .arousel-caption{
     padding-left: 20px ;
     padding-right: 20px ;
+}
+
+.modal .btn{
+    background-color: #00A1E3;
+    color: white;
+    padding: 5px 25px;
+
 }
