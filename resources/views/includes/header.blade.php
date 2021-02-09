@@ -19,7 +19,7 @@
                     <div class="col-sm-5 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <a href="#" class="primary-color"><b>¿Olvidaste tu contraseña?</b></a>
+                            <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4"><b>¿Olvidaste tu contraseña?</b></a>
                         </div>
                     </div>
 

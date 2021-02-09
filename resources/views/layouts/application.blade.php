@@ -32,6 +32,8 @@
                     this.className += " active";
                 });
             }
+
+            $('#element').toast('show');
         </script>
     </body>
 </html>

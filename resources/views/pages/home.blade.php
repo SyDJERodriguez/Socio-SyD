@@ -235,4 +235,42 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Forgot My Password-->
+    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal4" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-flex flex-row-reverse">
+                    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-uppercase">OLVIDÉ MI CONTRASEÑA</h5>
+                    <img src="{{asset('img/line.png')}}" alt="line">
+                    <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
+                    <br>
+
+                    <form action="#">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input class="form-control-sm form-control" type="text"
+                                           placeholder="CORREO ELECTRÓNICO">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <button type="submit" class="btn btn-info">ENVIAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
