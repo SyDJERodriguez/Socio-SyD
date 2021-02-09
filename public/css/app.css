@@ -11,6 +11,11 @@ nav {
     border-bottom: 2px solid lightgray;
 }
 
+nav a:hover,
+nav a.active{
+    color: #00A5E6!important;
+}
+
 #navbarNav ul li {
     padding: 0 30px;
 }
