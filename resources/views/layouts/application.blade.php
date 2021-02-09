@@ -21,5 +21,19 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!--    bootstrap js    -->
         <script src="{{asset('js/bootstrap.js')}}" crossorigin="anonymous"></script>
+        <script>
+            // Add active class to the current button (highlight it)
+            let header = document.getElementById("main-menu");
+            console.log(header);
+            let btns = header.getElementsByClassName("nav-link");
+            console.log(btns);
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    let current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
+            }
+        </script>
     </body>
 </html>
