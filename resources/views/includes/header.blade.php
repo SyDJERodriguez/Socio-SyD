@@ -71,7 +71,7 @@
                 <a class="nav-link" href="#section4">BENEFICIOS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section5">TESTIMONALIALES</a>
+                <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
