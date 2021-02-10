@@ -17,11 +17,11 @@
             </div>
             <form>
                 <div class="row">
+                    <div class="col-lg-6 py-4">
+                        <input type="text" class="form-control" placeholder="Número de cliente">
+                    </div>
                     <div class="col-lg-6 py-4"> 
                       <input type="text" class="form-control" placeholder="Nombre">
-                    </div>
-                    <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Número de cliente">
                     </div>
                     <div class="col-lg-6 py-4">
                       <input type="text" class="form-control" placeholder="Primer apellido">
