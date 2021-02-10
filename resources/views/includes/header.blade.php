@@ -13,7 +13,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modal2" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
@@ -79,3 +79,142 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal tipo de cliente-->
+<div class="modal fade " id="modal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <div class="container ">
+                  <div class="row mt-4 mx-2">
+                      <div class="col-10">
+                          <span class="md2-heading">TIPO DE CLIENTE</span>
+                      </div>
+                      <div class="col-2">
+                          <i class="fa fa-caret-down md2-icon"></i>
+                      </div>
+                  </div>
+                  <div class="row md2-row2 mx-1">
+                      <span  data-dismiss="modal" data-toggle="modal" data-target="#modal3" class="pl-3" style="cursor: pointer;">DUEÑO DE NEGOCIO</span>
+                  </div>
+                  <div class="row md2-row3 mx-4">
+                      <span  class="font-weight-bold">MECÁNICO INDEPENDIENTE</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Modal formulario dueño de negocio-->
+  <div class="modal fade rounded-0" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg rounded-0" role="document">
+        <div class="modal-content rounded-0">
+          <div class="modal-header border-0 rounded-0" style="background-color: #143153;;">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <div class="modal-header d-flex flex-row-reverse">
+              <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+          </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-7 pt-2 pb-5">
+                    <h2>Registro Dueño de negocio</h2>
+                    <div class="line1" style="height: 2px;width: 380px;background-color: black;"></div>
+                    <div class="line1 float-right " style="height: 2px;width: 60px;background-color: black;  transform: rotate(33deg);;margin-top: 14.3px;"></div>
+                </div>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="col-lg-6 py-4"> 
+                      <input type="text" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-lg-6 py-4">
+                      <input type="text" class="form-control" placeholder="Número de cliente">
+                    </div>
+                    <div class="col-lg-6 py-4">
+                      <input type="text" class="form-control" placeholder="Primer apellido">
+                    </div>
+                    <div class="col-lg-6 py-4">
+                      <input type="text" class="form-control" placeholder="Segundo apellido">
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="col-lg-6 py-2"> 
+                      <input type="text" class="form-control" placeholder="Razón social">
+                    </div>
+                    <div class="col-lg-6">
+                      <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
+                      <div class="row">
+                        <div class="col-lg-4 py-2">
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                <option selected>DÍA</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                        <div class="col-lg-4 py-2">
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
+                                <option selected>MES</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                        <div class="col-lg-4 py-2">
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
+                                <option selected>AÑO</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 py-3"> 
+                      <input type="text" class="form-control" placeholder="no. telefónico 10 dig">
+                    </div>
+                    <div class="col-lg-6 py-3">
+                      <input type="email" class="form-control" placeholder="correo electrónico">
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-lg-6 py-3"> 
+                        <select class="form-control">
+                            <option>R.F.C.</option>
+                          </select>
+                         </div>
+                    <div class="col-lg-6 py-3">
+                      <input type="text" class="form-control" placeholder="contraseña">
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-lg-6 py-3"> 
+                        <select class="form-control">
+                            <option>Refaccionaria</option>
+                            <option>Mayorista</option>
+                            <option>Taller</option>
+                            <option>Otro</option>
+                          </select>
+                         </div>
+                    <div class="col-lg-6 py-3">
+                      <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
+                    </div>
+                  </div>
+            </form>
+          </div>
+          <div class="modal-footer border-top-0">
+            <div class="form-check form-check-inline text-right">
+                <label class="form-check-label pr-2" for="inlineCheckbox1"  style="color: grey;font-size: 12px;"><strong>ACEPTAR</strong><br>
+                  AVISO DE PRIVACIDAD
+                  <br>
+                  TÉRMINOS Y CONDICIONES</label>
+                <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1">
+              </div>
+              <button type="button" class="btn btn" style="background-color: #00A1E3;color: white;">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
