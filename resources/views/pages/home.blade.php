@@ -248,7 +248,6 @@
                     <img src="{{asset('img/line.png')}}" alt="line">
                     <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                     <br>
-
                     <form action="#">
                         <div class="form-group">
                             <div class="row">
@@ -273,4 +272,5 @@
             </div>
         </div>
     </div>
+
 @stop

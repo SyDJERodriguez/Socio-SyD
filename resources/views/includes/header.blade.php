@@ -13,7 +13,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modal2" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
@@ -79,3 +79,34 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal tipo de cliente-->
+<div class="modal fade " id="modal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+       aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <div class="container ">
+                  <div class="row mt-4 mx-2">
+                      <div class="col-10">
+                          <span class="md2-heading">TIPO DE CLIENTE</span>
+                      </div>
+                      <div class="col-2">
+                          <i class="fa fa-caret-down md2-icon"></i>
+                      </div>
+                  </div>
+                  <div class="row md2-row2 mx-1">
+                      <span  data-dismiss="modal" data-toggle="modal" data-target="#modal3" class="pl-3" style="cursor: pointer;">DUEÑO DE NEGOCIO</span>
+                  </div>
+                  <div class="row md2-row3 mx-4">
+                      <span data-dismiss="modal" data-toggle="modal" data-target="#modal5" class="font-weight-bold"  style="cursor: pointer;">MECÁNICO INDEPENDIENTE</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Modal formulario dueño de negocio-->
+  @include('includes.formularioDueño')
+ 
+  <!-- Modal formulario Mecanico-->
+  @include('includes.formularioMecanico')
+  
