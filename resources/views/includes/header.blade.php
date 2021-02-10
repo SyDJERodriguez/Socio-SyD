@@ -28,10 +28,10 @@
                         <a href="#" class="disabl">Iniciar sesión</a>
                     </div>
                     
-                    <!--<div class="col-sm-2 my-1">
+                    <!-- <div class="col-sm-2 my-1">
                         <button type="submit" class="btn btn px-2" 
                         style="background-color: #143153;color:white; width: 200px"
-                        data-toggle="modal" data-target="#modalSuccess">Registro exitoso</button>
+                        data-toggle="modal" data-target="#modalTypeClient">Registro exitoso</button>
                         <a href="#" class="disabl">Cerrar sesión</a>
                     </div>-->
                 </div>
@@ -78,6 +78,30 @@
                   </div>
                 </div>
               </div>
+        </div>
+    </div>
+
+    <!-- Modal TYPE CLIENT-->
+    <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="container ">
+                    <div class="row mt-4 mx-2">
+                        <div class="col-10">
+                            <span class="md2-heading">TIPO DE CLIENTE</span>
+                        </div>
+                        <div class="col-2">
+                            <i class="fa fa-caret-down md2-icon"></i>
+                        </div>
+                    </div>
+                    <div class="row md2-row2 mx-1">
+                        <span class="pl-3">DUEÑO DE NEGOCIO</span>
+                    </div>
+                    <div class="row md2-row3 mx-4">
+                        <span class="font-weight-bold">MECÁNICO INDEPENDIENTE</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
