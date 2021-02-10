@@ -362,4 +362,29 @@
               </div>
         </div>
     </div>
+
+    <!-- Modal SUCCESS-->
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div class="modal-header" style="height: 20px;">
+                  <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body " style="background-color: #143153;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">  
+                          <img src="{{'img/icon_check.png'}}">
+                            <h5 class="text-white">REGISTRO EXITOSO</h5>  
+                            <p class="text-white">¡BIENVENIDO! EDUARDO MARTÍNEZ POZOS<br>
+                              No. de Cliente 000000
+                            </p>
+                            <input type="button" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" value="ENTRAR">
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
 @stop
