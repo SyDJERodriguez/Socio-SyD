@@ -193,6 +193,7 @@
                   <div class="row ">
                     <div class="col-lg-6 py-3"> 
                         <select class="form-control">
+                            <option>TIPO DE NEGOCIO</option>
                             <option>Refaccionaria</option>
                             <option>Mayorista</option>
                             <option>Taller</option>
