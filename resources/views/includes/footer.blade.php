@@ -10,7 +10,9 @@
             </div>
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Consulta </h4>
-                <p>Aviso de privacidad </p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
+                  Aviso de Privacidad
+                </a>
                 <hr class="bg-primary">
                 <p>Términos y condiciones</p>
                 <hr class="bg-primary">
@@ -106,4 +108,7 @@
 
       <!-- MODAL PREGUNTAS-->
       @extends('includes.preguntas')
+
+      <!-- MODAL AVISO -->
+      @extends('includes.aviso')
 </footer>
