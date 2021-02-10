@@ -83,7 +83,7 @@
 
     <!-- Modal TYPE CLIENT-->
     <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="container ">
                     <div class="row mt-4 mx-2">
@@ -94,11 +94,18 @@
                             <i class="fa fa-caret-down md2-icon"></i>
                         </div>
                     </div>
-                    <div class="row md2-row2 mx-1">
-                        <span class="pl-3">DUEÑO DE NEGOCIO</span>
-                    </div>
-                    <div class="row md2-row3 mx-4">
-                        <span class="font-weight-bold">MECÁNICO INDEPENDIENTE</span>
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info">DUEÑO DE NEGOCIO</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info">MECÁNICO INDEPENDIENTE</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
