@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Modal TYPE CLIENT-->
+    <!-- Modal CLIENT TYPE-->
     <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
