@@ -14,7 +14,9 @@
                 <hr class="bg-primary">
                 <p>Términos y condiciones</p>
                 <hr class="bg-primary">
-                <p>Preguntas frecuentes</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
+                  Preguntas Frecuentes
+                </a>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
@@ -101,4 +103,7 @@
           </div>
         </div>
       </div>
+
+      <!-- MODAL PREGUNTAS-->
+      @extends('includes.preguntas')
 </footer>
