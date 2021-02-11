@@ -18,66 +18,66 @@
             <form>
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente">
-                    </div>
-                    <div class="col-lg-6 py-4"> 
-                      <input type="text" class="form-control" placeholder="Nombre">
+                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_mec">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Primer apellido">
+                        <input type="text" class="form-control" placeholder="Nombre" id="nameMec">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Segundo apellido">
+                        <input type="text" class="form-control" placeholder="Primer apellido" id="lastNameMec">
+                    </div>
+                    <div class="col-lg-6 py-4">
+                        <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNameMec">
                     </div>
                 </div>
-                  <div class="row">
-                    <div class="col-lg-6 py-2"> 
-                      <input type="text" class="form-control" placeholder="Telefono">
+                <div class="row">
+                    <div class="col-lg-6 py-2">
+                        <input type="text" class="form-control" placeholder="Telefono" id="mobileMec">
                     </div>
                     <div class="col-lg-6">
-                      <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
-                      <div class="row">
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                <option selected>DÍA</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
+                        <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
+                        <div class="row">
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>DÍA</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
+                                    <option selected>MES</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
+                                    <option selected>AÑO</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
-                                <option selected>MES</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </div>
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
-                                <option selected>AÑO</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </div>
-                      </div>
                     </div>
-                    
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6 py-3"> 
-                    <input type="email" class="form-control" placeholder="correo electrónico">
-                    </div>
-                  </div>
-                  <div class="row ">
+
+                </div>
+                <div class="row">
                     <div class="col-lg-6 py-3">
-                      <input type="text" class="form-control" placeholder="contraseña">
+                        <input type="email" class="form-control" placeholder="correo electrónico" id="emailMec">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-6 py-3">
+                        <input type="text" class="form-control" placeholder="contraseña">
                     </div>
                     <div class="col-lg-6 py-3">
-                      <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
+                        <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
                     </div>
-                  </div>
+                </div>
             </form>
           </div>
           <div class="modal-footer border-top-0">
