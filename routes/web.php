@@ -15,6 +15,6 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    return view('pages.beneficiario');
+    return view('pages.home');
 });
 Route::get('customer/information','CustomerController@verify_client_number')->name('customer.information');

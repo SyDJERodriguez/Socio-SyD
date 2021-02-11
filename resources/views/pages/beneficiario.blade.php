@@ -82,56 +82,88 @@
                     </div>
 
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="NOMBRE">
+                        <input type="text" class="form-control" name="name"  placeholder="NOMBRE" 
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="APELLIDOS">
+                        <input type="text" class="form-control" name="lastname" placeholder="APELLIDOS"
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="PARENTESCO">
+                        <input type="text" class="form-control" name="parent" placeholder="PARENTESCO"
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="PORCENTAJE DESTINADO">
+                        <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">%</div>
+                          </div>
+                        <input type="text" class="form-control" name="percent" placeholder="PORCENTAJE DESTINADO"
+                        pattern="[0-9].{1,2}"
+                        required maxlength="3">
+                        </div>
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="No. TELEFÓNICO 10 DÍGITOS">
+                        <input type="text" class="form-control" name="phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                        pattern="[0-9]{10}"
+                        required  maxlength="10">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="button" class="btn btn float-right text-white px-5"
+                        <input type="submit" class="btn btn float-right text-white px-5"
                             style="background-color: #009CE0;" value="Confirmar">
                     </div>
+                </form>
+                <form action="">
+                    <div class="row" style="padding: 10px;border-radius: 8px;">
                     <div class="col-lg-12">
                         <h6>BENEFICIARIO 2</h6>
                     </div>
+
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="NOMBRE">
+                        <input type="text" class="form-control" name="name"  placeholder="NOMBRE" 
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="APELLIDOS">
+                        <input type="text" class="form-control" name="lastname" placeholder="APELLIDOS"
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="PARENTESO">
+                        <input type="text" class="form-control" name="parent" placeholder="PARENTESCO"
+                        pattern="[A-Za-z].{2,}"
+                        required maxlength="30">
                     </div>
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="PORCENTAJE DESTINADO">
-                    </div>
-                    <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="No. TELEFÓNICO 10 DÍGITOS">
-                        <div class="col-lg-6 py-2">
-                            <input type="button" class="btn btn float-right text-white px-5"
-                                style="background-color: #009CE0;" value="Confirmar">
+                        <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">%</div>
+                          </div>
+                        <input type="text" class="form-control" name="percent" placeholder="PORCENTAJE DESTINADO"
+                        pattern="[0-9].{1,2}"
+                        required maxlength="3">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 py-2 float-right">
-                            <button class="btn btn float-right text-white" style="background-color: #009CE0;">eliminar
-                                mi cuenta</button>
-                        </div>
+                    <div class="col-lg-6 py-2">
+                        <input type="text" class="form-control" name="phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                        pattern="[0-9]{10}"
+                        required  maxlength="10">
                     </div>
+                    <div class="col-lg-6 py-2">
+                        <input type="submit" class="btn btn float-right text-white px-5"
+                            style="background-color: #009CE0;" value="Confirmar">
+                    </div>
+                </div>
             </form>
+            <div style="padding-left: 10px">
+                <input type="submit" class="btn btn float-right text-white px-5"
+                style="background-color: #f33f3f;" value="ELIMINAR MI CUENTA">
+            </div>
         </div>
     </div>
 </div>
-    <br />
 
     @stop
