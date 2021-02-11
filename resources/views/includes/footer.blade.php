@@ -3,9 +3,9 @@
         <div class="row m-0">
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Contáctanos</h4>
-                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i> 800 SyD (793) 101</p>
+                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i> <a href="tel:8007931010" class="primary-color" style="color:white">800 SyD 1010</a></p>
                 <hr class="bg-primary">
-                <p><i class="fas fa-envelope"></i> sociosyd@syd.com </p>
+                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
