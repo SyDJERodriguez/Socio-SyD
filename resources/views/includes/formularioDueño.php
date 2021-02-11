@@ -34,36 +34,10 @@
                     <div class="col-lg-6 py-2">
                         <input type="text" class="form-control" placeholder="Razón social" id="companyPro">
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 py-2">
                         <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
-                        <div class="row">
-                            <div class="col-lg-4 py-2">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                    <option selected>DÍA</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 py-2">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
-                                    <option selected>MES</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 py-2">
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
-                                    <option selected>AÑO</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input class="form-control" type="date" id="start" name="trip-start" value="<?php echo date('Y-m-d');?>">
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3">
