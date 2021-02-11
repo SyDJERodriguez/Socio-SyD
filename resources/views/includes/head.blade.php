@@ -7,24 +7,3 @@
 <!--    app css   -->
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<style>
-    .whatsapp{
-        top: 500px;
-        right: -12px;
-        position: fixed;
-        z-index: 99;
-    }
-
-    .top-bar {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
-
-
