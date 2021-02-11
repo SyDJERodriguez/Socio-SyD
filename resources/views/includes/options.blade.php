@@ -29,6 +29,7 @@
     </div>
 </div>
 </div>
+<!-- PROGRESS ARROW
 <div class="container-fluid">
     <div class="d-flex justify-content-center mt-1">
         <div class="arrow-steps clearfix">
@@ -51,4 +52,4 @@
     </div>
 </div>
 
-<h6 class="text-center">PROGRESO DE REGISTRO</h6>
+<h6 class="text-center">PROGRESO DE REGISTRO</h6> -->
