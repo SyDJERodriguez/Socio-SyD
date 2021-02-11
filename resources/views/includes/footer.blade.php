@@ -10,11 +10,15 @@
             </div>
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Consulta </h4>
-                <p>Aviso de privacidad </p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
+                  Aviso de Privacidad
+                </a>
                 <hr class="bg-primary">
                 <p>Términos y condiciones</p>
                 <hr class="bg-primary">
-                <p>Preguntas frecuentes</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
+                  Preguntas Frecuentes
+                </a>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
@@ -27,7 +31,9 @@
 
                 <p>Compra en línea </p>
                 <hr class="bg-primary">
-                <p>Contacto</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
+                    Contacto
+                </a>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white text-right pr-0">
@@ -35,4 +41,74 @@
             </div>
         </div>
     </div>
+
+     <!-- Modal Contact-->
+     <div class="modal fade rounded-0" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="modalContacto" aria-hidden="true">
+        <div class="modal-dialog modal-xl rounded-0" role="document">
+          <div class="modal-content rounded-0">
+            <div class="modal-header border-0 rounded-0" style="background-color: #143153; margin-left: -1px; margin-right: 1px;">
+              <h5 class="modal-title" id="exampleModalLabel"></h5>
+              <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                  <div class="row" style="margin-right: 0 !important;">
+                      <div class="col-lg-3 my-4 specialpart">
+                          <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
+                          <p>
+                              <span>TELÉFONO:</span><br>
+                                <a href="tel:800 SYD (723) 1010">800 SYD (723) 1010</a>
+                              <hr>
+                              <span>CORREO:</span><br>
+                                <a href="mailto:SOCIOSYD@SYD.COM">SOCIOSYD@SYD.COM</a>
+                              <br>
+                              <hr>
+                          </p>
+                      </div>
+                      <div class="col-lg-9 p-0 my-4" style="border: 1px solid rgba(128, 128, 128, 0.719);">
+                          <div class="text-center" style="background-color: #143153;padding: 20px;"><img src="{{'img/logo.png'}}" alt="logo"></div>
+                          <br/>
+                          <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
+                          <form>
+                              <div class="form-row" style="padding: 0px  40px 40px 40px;">
+                                <div class="col-lg-6 py-2">
+                                  <input type="text" class="form-control" placeholder="NOMBRE">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                  <input type="text" class="form-control" placeholder="APELLIDOS">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                  <input type="text" class="form-control" placeholder="CORREO ELECTRÓNICO">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                  <input type="text" class="form-control" placeholder="No. TELEFÓNICO 10 DÍGITOS">
+                                </div>
+                                <div class="col-lg-12 py-2">
+                                    <textarea class="form-control" name="Comentario:" placeholder="COMENTARIO:" id="" cols="103" rows="8"></textarea>
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                  <input type="button" class="btn btn text-white float-right" style="background-color: #00A1E3;" value="Enviar">
+                                </div>
+                              </div>
+                            </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            <a href="#" class="whatsapp"><img src="{{'img/whts.png'}}" alt="whats"></a>
+  
+  
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL PREGUNTAS-->
+      @extends('includes.preguntas')
+
+      <!-- MODAL AVISO -->
+      @extends('includes.aviso')
 </footer>
