@@ -13,7 +13,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGÍSTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
@@ -137,9 +137,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>
-            <!--<li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
-            </li>-->
+            </li>
         </ul>
     </div>
 </nav>
