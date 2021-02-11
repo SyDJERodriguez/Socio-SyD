@@ -622,7 +622,7 @@
         </div>
         <a href="#" class="whatsapp"><img src="{{'img/1x/wht.png'}}" alt=""></a>
 
-<div class="modal-footer" style="background-color: #143153;height: 30px;">
+<div class="modal-footer" style="background-color: #143153;height: 30px; border-radius: 0;">
 
 </div>
       </div>
