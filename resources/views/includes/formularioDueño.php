@@ -18,85 +18,85 @@
             <form>
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente">
-                    </div>
-                    <div class="col-lg-6 py-4"> 
-                      <input type="text" class="form-control" placeholder="Nombre">
+                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_pro">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Primer apellido">
+                        <input type="text" class="form-control" placeholder="Nombre" id="namePro">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Segundo apellido">
+                        <input type="text" class="form-control" placeholder="Primer apellido" id="lastNamePro">
+                    </div>
+                    <div class="col-lg-6 py-4">
+                        <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNamePro">
                     </div>
                 </div>
-                  <div class="row">
-                    <div class="col-lg-6 py-2"> 
-                      <input type="text" class="form-control" placeholder="Razón social">
+                <div class="row">
+                    <div class="col-lg-6 py-2">
+                        <input type="text" class="form-control" placeholder="Razón social" id="companyPro">
                     </div>
                     <div class="col-lg-6">
-                      <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
-                      <div class="row">
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                <option selected>DÍA</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
+                        <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
+                        <div class="row">
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>DÍA</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
+                                    <option selected>MES</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 py-2">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
+                                    <option selected>AÑO</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2">
-                                <option selected>MES</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </div>
-                        <div class="col-lg-4 py-2">
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3">
-                                <option selected>AÑO</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </div>
-                      </div>
                     </div>
-                    
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6 py-3"> 
-                      <input type="text" class="form-control" placeholder="no. telefónico 10 dig">
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 py-3">
+                        <input type="text" class="form-control" placeholder="no. telefónico 10 dig" id="mobilePro">
                     </div>
                     <div class="col-lg-6 py-3">
-                      <input type="email" class="form-control" placeholder="correo electrónico">
+                        <input type="email" class="form-control" placeholder="correo electrónico" id="emailPro">
                     </div>
-                  </div>
-                  <div class="row ">
-                    <div class="col-lg-6 py-3"> 
+                </div>
+                <div class="row ">
+                    <div class="col-lg-6 py-3">
                         <select class="form-control">
                             <option>R.F.C.</option>
-                          </select>
-                         </div>
-                    <div class="col-lg-6 py-3">
-                      <input type="text" class="form-control" placeholder="contraseña">
+                        </select>
                     </div>
-                  </div>
-                  <div class="row ">
-                    <div class="col-lg-6 py-3"> 
+                    <div class="col-lg-6 py-3">
+                        <input type="text" class="form-control" placeholder="contraseña">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-6 py-3">
                         <select class="form-control">
                             <option>TIPO DE NEGOCIO</option>
                             <option>Refaccionaria</option>
                             <option>Mayorista</option>
                             <option>Taller</option>
                             <option>Otro</option>
-                          </select>
-                         </div>
-                    <div class="col-lg-6 py-3">
-                      <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
+                        </select>
                     </div>
-                  </div>
+                    <div class="col-lg-6 py-3">
+                        <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
+                    </div>
+                </div>
             </form>
           </div>
           <div class="modal-footer border-top-0">
