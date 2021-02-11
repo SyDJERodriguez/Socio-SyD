@@ -248,7 +248,6 @@
                     <img src="{{asset('img/line.png')}}" alt="line">
                     <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                     <br>
-
                     <form action="#">
                         <div class="form-group">
                             <div class="row">
@@ -286,9 +285,9 @@
                 </div>
                 <div class="modal-body " style="background-color: #143153;">
                     <div class="row">
-                        <div class="col-lg-12 text-center">  
+                        <div class="col-lg-12 text-center">
                           <img src="{{'img/icon_check.png'}}">
-                            <h5 class="text-white">REGISTRO EXITOSO</h5>  
+                            <h5 class="text-white">REGISTRO EXITOSO</h5>
                             <p class="text-white">¡BIENVENIDO! EDUARDO MARTÍNEZ POZOS<br>
                               No. de Cliente 000000
                             </p>
