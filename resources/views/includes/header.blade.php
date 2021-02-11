@@ -13,7 +13,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
@@ -27,6 +27,13 @@
                         <button type="submit" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px">INICIAR SESIÓN</button>
                         <a href="#" class="disabl">Iniciar sesión</a>
                     </div>
+
+                    <!-- <div class="col-sm-2 my-1">
+                        <button type="submit" class="btn btn px-2"
+                        style="background-color: #143153;color:white; width: 200px"
+                        data-toggle="modal" data-target="#modalTypeClient">Registro exitoso</button>
+                        <a href="#" class="disabl">Cerrar sesión</a>
+                    </div>-->
                 </div>
             </form>
         </div>
@@ -41,6 +48,63 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal LOGOUT-->
+    <div class="modal fade" id="modalLogOut" tabindex="-1" role="dialog" aria-labelledby="modalLogOut" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0" style="background:transparent">
+                <div class="modal-header" style="height: 35px;">
+                  <button type="button" class="close" style="margin: 0rem 0rem -1rem auto;padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body blue-dark">
+                    <div>
+                        <div>
+                            <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS SALIR?</b></h5>
+                        </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-lg-9 py-2 text-center">
+                        <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
+                      <div class="col-lg-3 py2 text-center">
+                          <input type="button" class="text-white btn btn bg-primary btn-sm my-2" value="si" style="padding-left: 40px;padding-right: 40px;"><br>
+                          <input type="button" class="btn btn-light btn-sm" value="No" style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <!-- Modal CLIENT TYPE-->
+    <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="container ">
+                    <div class="row mt-4 mx-2">
+                        <div class="col-10">
+                            <span class="md2-heading" style="color: #143153;"><b>TIPO DE CLIENTE</b></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3" style="width: 270px">DUEÑO DE NEGOCIO</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5" style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,3 +143,9 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal formulario dueño de negocio-->
+@include('includes.formularioDueño')
+
+<!-- Modal formulario Mecanico-->
+@include('includes.formularioMecanico')
