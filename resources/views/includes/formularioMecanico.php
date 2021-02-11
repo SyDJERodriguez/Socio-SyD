@@ -18,21 +18,21 @@
             <form>
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente">
+                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_mec">
                     </div>
                     <div class="col-lg-6 py-4"> 
-                      <input type="text" class="form-control" placeholder="Nombre">
+                      <input type="text" class="form-control" placeholder="Nombre" id="nameMec">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Primer apellido">
+                      <input type="text" class="form-control" placeholder="Primer apellido" id="lastNameMec">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Segundo apellido">
+                      <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNameMec">
                     </div>
                 </div>
                   <div class="row">
                     <div class="col-lg-6 py-2"> 
-                      <input type="text" class="form-control" placeholder="Telefono">
+                      <input type="text" class="form-control" placeholder="Telefono" id="mobileMec">
                     </div>
                     <div class="col-lg-6">
                       <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
@@ -67,7 +67,7 @@
                   </div>
                   <div class="row">
                     <div class="col-lg-6 py-3"> 
-                    <input type="email" class="form-control" placeholder="correo electrónico">
+                    <input type="email" class="form-control" placeholder="correo electrónico" id="emailMec">
                     </div>
                   </div>
                   <div class="row ">

@@ -18,21 +18,21 @@
             <form>
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente">
+                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_pro">
                     </div>
                     <div class="col-lg-6 py-4"> 
-                      <input type="text" class="form-control" placeholder="Nombre">
+                      <input type="text" class="form-control" placeholder="Nombre" id="namePro">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Primer apellido">
+                      <input type="text" class="form-control" placeholder="Primer apellido" id="lastNamePro">
                     </div>
                     <div class="col-lg-6 py-4">
-                      <input type="text" class="form-control" placeholder="Segundo apellido">
+                      <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNamePro">
                     </div>
                 </div>
                   <div class="row">
                     <div class="col-lg-6 py-2"> 
-                      <input type="text" class="form-control" placeholder="Razón social">
+                      <input type="text" class="form-control" placeholder="Razón social" id="companyPro">
                     </div>
                     <div class="col-lg-6">
                       <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
@@ -67,10 +67,10 @@
                   </div>
                   <div class="row">
                     <div class="col-lg-6 py-3"> 
-                      <input type="text" class="form-control" placeholder="no. telefónico 10 dig">
+                      <input type="text" class="form-control" placeholder="no. telefónico 10 dig" id="mobilePro">
                     </div>
                     <div class="col-lg-6 py-3">
-                      <input type="email" class="form-control" placeholder="correo electrónico">
+                      <input type="email" class="form-control" placeholder="correo electrónico" id="emailPro">
                     </div>
                   </div>
                   <div class="row ">
