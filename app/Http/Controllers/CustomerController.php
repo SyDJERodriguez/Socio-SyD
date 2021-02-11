@@ -28,7 +28,7 @@ use GuzzleHttp\Client;
 class CustomerController extends Controller
 {
     /*Here check if the client client number exist in the DB
-    if exist, return the information to put in the inputs*/
+    if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
