@@ -16,5 +16,8 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 
 Route::get('/', function () {
     return view('pages.home');
-});
-Route::get('customer/information','CustomerController@verify_client_number')->name('customer.information');
+})->name('home');
+
+//Register's URLs
+Route::get('/customer/information','CustomerController@verify_client_number')->name('customer.information');
+Route::put('/customer/update', 'CustomerController@update')->name('customer.update');
