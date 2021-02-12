@@ -36,6 +36,47 @@ class CustomerController extends Controller
         return response($data);
     }
 
+    //Update data in customers table and insert new data en customer_session table
+    public function update(Request $request){
+        $request          = $request->input();
+
+        //For customer_session table
+        $client_number    = '00'.$request['client_number'];
+        $password         = Hash::make($request['password']);
+
+        //Update data in customers table
+        $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+            'name'             => $request['name'],
+            'last_name'        => $request['last_name'],
+            'second_last_name' => $request['second_last_name'],
+            'email'            => $request['email'], //This is for customers_session table too
+            'mobile_number'    => $request['mobile'],
+            'company'          => isset($request['company']) ? $request['company'] : '',
+            'birthday'         => $request['birthday'],
+            'rfc'              => isset($request['rfc']) ? $request['rfc'] : ''
+        ]);
+
+        $save_register = DB::table('customers_session')->insert([
+            'client_number' => $client_number,
+            'client_type'   =>$request['client_type'],
+            'email'         => $request['email'],
+            'password'      =>$password
+        ]);
+
+        $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
+
+        if ($update_customer === 1 && $save_register === true){
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }elseif ($update_customer === 0 && $save_register === true){
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }
+        else{
+            return response()->json(['success'=>'false', 'update'=>$update_customer, 'save'=>$save_register]);
+        }
+
+
+    }
+
     public function update_stage_two(Customer $customer, Request $request){
 	    $request = $request->all();
 	    if($request['client_type'] === 'otro')
