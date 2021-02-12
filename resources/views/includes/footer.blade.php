@@ -46,7 +46,7 @@
      <div class="modal fade rounded-0" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="modalContacto" aria-hidden="true">
         <div class="modal-dialog modal-xl rounded-0" role="document">
           <div class="modal-content rounded-0">
-            <div class="modal-header border-0 rounded-0" style="background-color: #143153;;">
+            <div class="modal-header border-0 rounded-0" style="background-color: #143153; margin-left: -1px; margin-right: 1px;">
               <h5 class="modal-title" id="exampleModalLabel"></h5>
               <div class="modal-header d-flex flex-row-reverse">
                 <span class="times" data-dismiss="modal" aria-label="Close">X</span>
@@ -54,7 +54,7 @@
             </div>
             <div class="modal-body">
               <div class="container-fluid">
-                  <div class="row">
+                  <div class="row" style="margin-right: 0 !important;">
                       <div class="col-lg-3 my-4 specialpart">
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>

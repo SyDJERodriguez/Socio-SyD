@@ -92,7 +92,7 @@
   
        
         </div>
-        <div class="modal-footer" style="background-color: #143153;height: 30px;">
+        <div class="modal-footer" style="background-color: #143153;height: 30px; border-radius: 0;">
 
         </div>
       </div>

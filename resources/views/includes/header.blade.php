@@ -128,22 +128,20 @@
                 <div class="container ">
                     <div class="row mt-4 mx-2">
                         <div class="col-10">
-                            <span class="md2-heading">TIPO DE CLIENTE</span>
-                        </div>
-                        <div class="col-2">
-                            <i class="fa fa-caret-down md2-icon"></i>
+                            <span class="md2-heading" style="color: #143153;"><b>TIPO DE CLIENTE</b></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info">DUEÑO DE NEGOCIO</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3" style="width: 270px">DUEÑO DE NEGOCIO</button>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info">MECÁNICO INDEPENDIENTE</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5" style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
                             </div>
                         </div>
                     </div>
@@ -178,7 +176,7 @@
                 <a class="nav-link" href="#section4">BENEFICIOS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section5">TESTIMONALIALES</a>
+                <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
@@ -186,3 +184,9 @@
         </ul>
     </div>
 </nav>
+
+<!-- Modal formulario dueño de negocio-->
+@include('includes.formularioDueño')
+
+<!-- Modal formulario Mecanico-->
+@include('includes.formularioMecanico')
