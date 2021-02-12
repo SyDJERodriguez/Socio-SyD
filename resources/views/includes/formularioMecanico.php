@@ -17,22 +17,22 @@
             </div>
             <form>
                 <div class="row">
-                    <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_mec">
+                <div class="col-lg-6 py-4">
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_mec">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Nombre" id="nameMec">
+                        <input type="text" class="form-control" placeholder="NOMBRE" id="nameMec">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Primer apellido" id="lastNameMec">
+                        <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNameMec">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNameMec">
+                        <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" id="secondLastNameMec">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="Telefono" id="mobileMec">
+                        <input type="text" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobileMec">
                     </div>
                     <div class="col-lg-6 py-2">
                         <label for="" class="labelgre">FECHA DE NACIMIENTO</label>
@@ -41,15 +41,15 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3">
-                        <input type="email" class="form-control" placeholder="correo electrónico" id="emailMec">
+                        <input type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec">
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="contraseña">
+                        <input type="text" class="form-control" placeholder="CONTRASEÑA">
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="CONFIRMAR contraseña">
+                        <input type="text" class="form-control" placeholder="CONFIRMAR CONTRASEÑA">
                     </div>
                 </div>
             </form>
