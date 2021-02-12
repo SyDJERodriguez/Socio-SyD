@@ -21,3 +21,4 @@ Route::get('/', function () {
 //Register's URLs
 Route::get('/customer/information','CustomerController@verify_client_number')->name('customer.information');
 Route::put('/customer/update', 'CustomerController@update')->name('customer.update');
+Route::post('/customer/login', 'CustomerController@login')->name('customer.login');
