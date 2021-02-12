@@ -7,17 +7,18 @@
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
         </div>
         <div class="col-lg-7 pl-6 pt-1">
-            <form id="login-form">
+            <form id="login-form" method="POST" action="{{ route('customer.login') }}">
+                @csrf
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 my-1">
-                        <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
+                        <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO" name="email">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGÍSTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
-                        <input type="text" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA">
+                        <input type="text" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA" name="password">
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4"><b>¿Olvidaste tu contraseña?</b></a>
                         </div>
