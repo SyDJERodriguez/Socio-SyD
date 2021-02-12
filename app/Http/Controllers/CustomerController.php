@@ -24,9 +24,13 @@ use Str;
 use Validator;
 use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class CustomerController extends Controller
 {
+    use AuthenticatesUsers;
+    protected $redirectTo = '/';
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
@@ -56,7 +60,7 @@ class CustomerController extends Controller
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : ''
         ]);
 
-        $save_register = DB::table('customers_session')->insert([
+        $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
             'client_type'   =>$request['client_type'],
             'email'         => $request['email'],
@@ -76,6 +80,30 @@ class CustomerController extends Controller
 
 
     }
+
+    public function login(Request $request){
+        /*Validando
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ],[
+            'password.min' => 'El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.'
+        ]);*/
+
+        //Login
+        if(Auth::guard('customers')->attempt([
+            'email'    => $request->email,
+            'password' => $request->password
+        ], $request->remember)){
+            dd(Auth::check());
+            //return redirect()->route('home');
+
+        }else{
+            return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
+        }
+    }
+
+
 
     public function update_stage_two(Customer $customer, Request $request){
 	    $request = $request->all();
@@ -155,5 +183,10 @@ class CustomerController extends Controller
         }catch(\Exception $e){
             return ['status' => 0 , 'msg'  => $e->getMessage()];
         }
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

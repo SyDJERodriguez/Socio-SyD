@@ -53,6 +53,10 @@ return [
             'driver' => 'session',
             'provider' => 'branches',
         ],
+        'customers' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
     ],
 
     /*
@@ -84,6 +88,10 @@ return [
         'branches' => [
             'driver' => 'eloquent',
             'model' => App\UsersBranch::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\CustomersSession::class,
         ],
 
         // 'users' => [
