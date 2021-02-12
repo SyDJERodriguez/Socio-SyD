@@ -2,7 +2,7 @@
 @section('content')
 
 <!--BUTTONS AND PROGRESS ARROW-->
-@extends('includes.options')
+@include('includes.options')
 
 <div class="barra">
     <div class="row">
