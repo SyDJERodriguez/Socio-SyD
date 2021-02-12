@@ -14,7 +14,9 @@
                   Aviso de Privacidad
                 </a>
                 <hr class="bg-primary">
-                <p>Términos y condiciones</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalTerminos" style="color:white">
+                  Términos y condiciones
+                </a>
                 <hr class="bg-primary">
                 <a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
                   Preguntas Frecuentes
@@ -111,4 +113,7 @@
 
       <!-- MODAL AVISO -->
       @extends('includes.aviso')
+
+      <!-- MODAL TERMINOS -->
+      @extends('includes.terms')
 </footer>
