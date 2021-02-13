@@ -1,7 +1,7 @@
 @extends('layouts.application')
 @section('content')
 <!--BUTTONS AND PROGRESS ARROW-->
-@include('includes.options')
+@include('includes.options', ['active' => 3])
 <div class="container-fluid pr-5 pl-5" style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div class="row">

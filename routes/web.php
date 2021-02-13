@@ -27,6 +27,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
+        Route::get('/documents/', 'CustomerController@my_documents')->name('myDocuments');
         Route::post('/logout', 'CustomerController@logout')->name('logout');
     });
 });
