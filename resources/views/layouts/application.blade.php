@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('includes.head')
     </head>
@@ -121,7 +121,6 @@
                 });
 
                 //Mechanic's form
-
                 $("#mechanicForm").bind("submit",function(){
                     // We capture send button
                     let btnSend = $("#btnSend");
