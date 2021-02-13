@@ -410,3 +410,7 @@ display: none;
     font-size: 14px;
     color: grey;
 }
+
+.optionsAccount > div > .active {
+    background-color: #009CE0;
+}

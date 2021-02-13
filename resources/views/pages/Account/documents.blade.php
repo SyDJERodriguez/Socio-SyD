@@ -1,15 +1,15 @@
 @extends('layouts.application')
 @section('content')
 <!--BUTTONS AND PROGRESS ARROW-->
-@include('includes.options')
-<div class="container-fluid">
+@include('includes.options', ['active' => 4])
+<div class="container-fluid" style="padding-left: 3rem !important; padding-right: 3rem !important;">
     <div class="row">
         <div class="col-lg-12">
-            <hr style="background-color: #009CE0;">
+            <hr>
         </div>
         <div class="col-lg-3">
             <h6> Hola EDUARDO Martínez Pozos</h6>
-            <h6> No. de Cliente <span style="color: #009CE0;">000000</span></h6>
+            <h6> No. de Cliente <span style="color: #009CE0;">{{substr(Auth::user()->client_number, 2)}}</span></h6>
             <br/>
             <br/>
             <div>
