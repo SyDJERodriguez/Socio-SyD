@@ -9,10 +9,10 @@ class CustomersSession extends Authenticatable
 {
     use Notifiable;
 
-    protected $guard = 'customers_session';
+    protected $guard = 'customer';
 
     protected $fillable = [
-        'client_number', 'email', 'password',
+        'id','email', 'password'
     ];
 
     protected $hidden = [

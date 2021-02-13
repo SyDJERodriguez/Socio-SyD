@@ -53,7 +53,7 @@ return [
             'driver' => 'session',
             'provider' => 'branches',
         ],
-        'customers' => [
+        'customer' => [
             'driver' => 'session',
             'provider' => 'customers',
         ],
@@ -128,6 +128,11 @@ return [
         ],
         'branches' => [
             'provider' => 'branches',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
         ],
