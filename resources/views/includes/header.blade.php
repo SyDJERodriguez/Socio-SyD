@@ -156,9 +156,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>
-            <!--<li class="nav-item">
-                <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
-            </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?<i class="far fa-shopping-cart"></i></a>
+            </li>
         </ul>
     </div>
 </nav>
