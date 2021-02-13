@@ -56,7 +56,7 @@
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt="">
                     <h2 class="text-center pt-3"><strong>COMPRA</strong></h2>
                     <h5 style="font-weight: 400;">Haz una compra mínima<br>
-                        de <b>$200</b> pesos al mes.</h5>
+                        de <b>$200</b> pesos al mes <br> en cualquier sucursal <br> DAR Refaccionaria.</h5>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
                     <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}" alt="">
