@@ -302,7 +302,9 @@ display: none;
       cursor: pointer;
   }
 
-  input[type='text'], select {
+  input[type='text'],
+  input[type='password'],
+  select {
       border-radius: 3px;
       border: .5px solid #eee;
 

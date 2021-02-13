@@ -18,7 +18,20 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-//Register's URLs
-Route::get('/customer/information','CustomerController@verify_client_number')->name('customer.information');
-Route::put('/customer/update', 'CustomerController@update')->name('customer.update');
-Route::post('/customer/login', 'CustomerController@login')->name('customer.login');
+Route::prefix('customer')->name('customer.')->group(function(){
+    //Register's URLs
+    Route::get('/information','CustomerController@verify_client_number')->name('information');
+    Route::put('/update', 'CustomerController@update')->name('update');
+    Route::post('/login', 'CustomerController@login')->name('login');
+
+//Account URLs
+    Route::group(['middleware' => ['auth:customer']], function() {
+        Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
+        Route::post('/logout', 'CustomerController@logout')->name('logout');
+    });
+});
+
+
+
+
+

@@ -9,9 +9,9 @@
           </div>
           <div class="modal-body">
             <div class="row">
-                <div class="col-lg-7 pt-2 pb-5">
-                    <h2>Registro Dueño de negocio</h2>
-                    <div class="line1" style="height: 2px;width: 380px;background-color: black;"></div>
+                <div class="col-lg-8 pt-2 pb-5">
+                    <h2>REGISTRO DUEÑO DE NEGOCIO</h2>
+                    <div class="line1" style="height: 2px;width: 447px;background-color: black;"></div>
                     <div class="line1 float-right " style="height: 2px;width: 60px;background-color: black;  transform: rotate(33deg);;margin-top: 14.3px;"></div>
                 </div>
             </div>
@@ -20,21 +20,21 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Número de cliente" id="client_number_pro" name="client_number">
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Nombre" id="namePro" name="name">
+                        <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Primer apellido" id="lastNamePro" name="last_name">
+                        <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="Segundo apellido" id="secondLastNamePro" name="second_last_name">
+                        <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="Razón social" id="companyPro" name="company">
+                        <input type="text" class="form-control" placeholder="RAZON SOCIAL" id="companyPro" name="company">
                     </div>
                     <div class="col-lg-6 py-2">
                         <label for="birthday" class="labelgre">FECHA DE NACIMIENTO</label>
@@ -43,10 +43,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="no. telefónico 10 dig" id="mobilePro" name="mobile">
+                        <input type="text" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" name="mobile">
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="email" class="form-control" placeholder="correo electrónico" id="emailPro" name="email">
+                        <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email">
                     </div>
                 </div>
                 <div class="row ">
@@ -54,7 +54,7 @@
                         <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="contraseña" name="password">
+                        <input type="text" class="form-control" placeholder="CONTRASEÑA" name="password">
                     </div>
                 </div>
                 <div class="row ">
@@ -68,7 +68,7 @@
                         </select>
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="CONFIRMAR contraseña" id="confirmPassword">
+                        <input type="text" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword">
                     </div>
 
                     <input type="hidden" id="confirmPassword" name="client_type" value="1">

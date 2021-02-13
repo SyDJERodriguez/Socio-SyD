@@ -19,6 +19,9 @@ class Authenticate extends Middleware
              if(Route::is('branches.*')){
                  return route('branches.login');
              }
+             if(Route::is('customer.*')){
+                 return route('home');
+             }
 			 //return route('login'); //add redirect to guest
 			// return route('admin.login');
 		 }

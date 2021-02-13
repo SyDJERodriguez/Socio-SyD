@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt-1 font-weight-bold" style="font-size: 14px;">
+<!--<div class="container-fluid mt-1 font-weight-bold" style="font-size: 14px;">
     <div class="row">
         <div class="col-lg-3 text-right pl-5">
             <span>REGISTRO DE BENEFICIARIOS
@@ -27,7 +27,7 @@
         <div class="col-lg-3 text-center pr-5"> <span>SUBIR DOCUMENTOS</span></div>
         <div class="col-lg-3 text-left pl-5"> <span>FIRMA ELECTRÓNICA</span></div>
     </div>
-</div>
+</div>-->
 </div>
 <!-- PROGRESS ARROW
 <div class="container-fluid">

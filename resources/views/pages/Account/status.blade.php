@@ -2,12 +2,12 @@
 @section('content')
 <!--BUTTONS AND PROGRESS ARROW-->
 @include('includes.options')
-<div class="container-fluid pr-5 pl-5">
+<div class="container-fluid pr-5 pl-5" style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div class="row">
       <div class="col-lg-4 pl-5">
          <h4>Hola EDUARDO Martínez Pozos<br>
-            No. de Cliente <span style="color:#009ce0">000000</span>
+            No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
          </h4>
          <hr>
       </div>
@@ -15,21 +15,21 @@
       </div>
       <div class="col-lg-12 pl-5">
          <h4>Detalle de la cuenta</h4>
-         <div class="row">
-            <div class="col-lg-3"><span>Saldo actual:</span></div>
-            <div class="col-lg-3"><span>$2,500.00</span></div>
-            <div class="col-lg-6"><span>Fecha de último movimiento:	</span><span>16 / AGO / 2020</span></div>
-            <div class="col-lg-3"><span>Compras:</span></div>
-            <div class="col-lg-3"><span>$1,800.00</span></div>
-            <div class="col-lg-6"></div>
-            <div class="col-lg-6">
-               <h4 style="color: #143153;"><strong>Movimientos</strong></h4>
-            </div>
-            <div class="col-lg-6"><span class="float-right"><strong style="color: #143153;"><i class="fas fa-caret-right"></i>exportar</strong></span>
-               <span class="float-right px-4" style="color: #143153;"><strong><i class="fas fa-caret-right"></i>Imprimir</strong></span>
-            </div>
-         </div>
-      </div>
+          <!--<div class="row">
+             <div class="col-lg-3"><span>Saldo actual:</span></div>
+             <div class="col-lg-3"><span>$2,500.00</span></div>
+             <div class="col-lg-6"><span>Fecha de último movimiento:	</span><span>16 / AGO / 2020</span></div>
+             <div class="col-lg-3"><span>Compras:</span></div>
+             <div class="col-lg-3"><span>$1,800.00</span></div>
+             <div class="col-lg-6"></div>
+             <div class="col-lg-6">
+                <h4 style="color: #143153;"><strong>Movimientos</strong></h4>
+             </div>
+             <div class="col-lg-6"><span class="float-right"><strong style="color: #143153;"><i class="fas fa-caret-right"></i>exportar</strong></span>
+                <span class="float-right px-4" style="color: #143153;"><strong><i class="fas fa-caret-right"></i>Imprimir</strong></span>
+             </div>
+          </div>-->
+       </div>
    </div>
    <div class="container-fluid py-4" style="overflow-y: scroll">
       <div class="row" >
