@@ -62,7 +62,8 @@ class CustomerController extends Controller
                 'mobile_number'    => $request['mobile'],
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : ''
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+                'work'             => isset($request['work']) ? $request['work'] : ''
             ]);
         }
 
@@ -77,7 +78,8 @@ class CustomerController extends Controller
                 'mobile_number'    => $request['mobile'],
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : ''
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+                'work'             => isset($request['work']) ? $request['work'] : ''
             ]);
         }
 
