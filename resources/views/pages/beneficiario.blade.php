@@ -157,11 +157,11 @@
                             style="background-color: #009CE0;" value="Confirmar">
                     </div>
                 </div>
-            </form>
-            <div style="padding-left: 10px">
-                <input type="submit" class="btn btn float-right text-white px-5"
-                style="background-color: #f33f3f;" value="ELIMINAR MI CUENTA">
-            </div>
+            </form>  
+        </div>
+        <div class="col-lg-12 py-2">
+            <input type="submit" class="btn btn float-right text-white px-5"
+            style="background-color: #f33f3f;" value="ELIMINAR MI CUENTA">
         </div>
     </div>
 </div>
