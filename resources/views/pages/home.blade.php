@@ -235,7 +235,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Modal Forgot My Password-->
     <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal4" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
