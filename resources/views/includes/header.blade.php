@@ -39,15 +39,12 @@
                         <div class="col-sm-5 my-1"></div>
                     </div>
                     <div class="col-sm-2 my-3">
-                        <a href="#" class="btn btn px-2" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"
+                        <a href="#" class="btn btn px-2"
                            style="background-color: #143153;color:white; width: 200px"
                            data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
                     </div>
 
-                    <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+
                 </div>
 
             @endguest
@@ -90,8 +87,12 @@
                       <div class="col-lg-9 py-2 text-center">
                         <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                       <div class="col-lg-3 py2 text-center">
-                          <input type="button" class="text-white btn btn bg-primary btn-sm my-2" value="SI" style="padding-left: 40px;padding-right: 40px;"><br>
+                          <a href="#" class="text-white btn btn bg-primary btn-sm my-2" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="padding-left: 40px;padding-right: 40px;">SI</a><br>
                           <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal" style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+                          <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
                       </div>
                   </div>
                 </div>
