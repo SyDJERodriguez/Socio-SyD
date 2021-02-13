@@ -20,46 +20,46 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number">
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number" required pattern="[01234567889]{8}">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name">
+                        <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name" required pattern="^[a-zA-Z]+\s+(\s*[a-zA-Z]*)*[a-zA-Z]+$">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name">
+                        <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name" required>
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name">
+                        <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-2">
-                        <input type="text" class="form-control" placeholder="RAZON SOCIAL" id="companyPro" name="company">
+                        <input type="text" class="form-control" placeholder="RAZON SOCIAL" id="companyPro" name="company" required>
                     </div>
                     <div class="col-lg-6 py-2">
                         <label for="birthday" class="labelgre">FECHA DE NACIMIENTO</label>
-                        <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>">
+                        <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" name="mobile">
+                        <input type="tel" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" name="mobile" required pattern="[01234567889]{10}">
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email">
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
-                    </div>
-                    <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="CONTRASEÑA" name="password">
+                        <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 py-3">
-                        <select class="form-control">
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
+                    </div>
+                    <div class="col-lg-6 py-3">
+                        <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" required>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-6 py-3">
+                        <select class="form-control" name="work" required>
                             <option>TIPO DE NEGOCIO</option>
                             <option>Refaccionaria</option>
                             <option>Mayorista</option>
@@ -68,7 +68,7 @@
                         </select>
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="text" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword">
+                        <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                     </div>
 
                     <input type="hidden" id="confirmPassword" name="client_type" value="1">
@@ -79,7 +79,7 @@
                             AVISO DE PRIVACIDAD
                             <br>
                             TÉRMINOS Y CONDICIONES</label>
-                        <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
                     <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
                 </div>
