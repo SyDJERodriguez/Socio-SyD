@@ -414,3 +414,27 @@ display: none;
 .optionsAccount > div > .active {
     background-color: #009CE0;
 }
+
+
+/********* Account ********/
+
+.btn:hover {
+    color: white !important;
+    text-decoration: none;
+}
+
+/*Sidebar*/
+.active_sb {
+    color: #143153 !important;
+    font-weight: bold;
+}
+
+.benefits_sb a {
+    text-decoration: none;
+    color:#212529;
+}
+
+.benefits_sb a:hover {
+    text-decoration: none;
+    color:#009CE0;
+}
