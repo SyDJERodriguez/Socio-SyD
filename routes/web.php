@@ -15,7 +15,7 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.beneficiaryAssistance');
 })->name('home');
 
 Route::prefix('customer')->name('customer.')->group(function(){
