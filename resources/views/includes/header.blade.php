@@ -7,6 +7,11 @@
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
         </div>
         <div class="col-lg-7 pl-6 pt-1">
+            @if(session()->has('error'))
+                <p style="color: red;margin-bottom: 0;text-align: center;">
+                    {{ session()->get('error') }}
+                </p>
+            @endif
             @guest
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
