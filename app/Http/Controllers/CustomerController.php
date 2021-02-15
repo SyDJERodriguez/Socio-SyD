@@ -153,7 +153,10 @@ class CustomerController extends Controller
     }
 
     public function account_status(){
-        return view('pages.Account.status');
+        //dd(Auth::user()->client_number);
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.status', compact('data'));
+        //return redirect()->route('customer.myAccount');
     }
 
     public function my_documents() {
