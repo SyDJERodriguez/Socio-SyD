@@ -5,15 +5,15 @@
 <div class="container-fluid pr-5 pl-5" style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div class="row">
-      <div class="col-lg-4 pl-5">
-         <h4>Hola EDUARDO Martínez Pozos<br>
+      <div class="col-lg-4 pl-5" style="padding-left: 15px !important;">
+         <h4>Hola {{$data->name.''.$data->lastname.' '.$data->second_last_name}}<br>
             No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
          </h4>
          <hr>
       </div>
       <div class="col-lg-8">
       </div>
-      <div class="col-lg-12 pl-5">
+      <div class="col-lg-12 pl-5" style="padding-left: 15px !important;">
          <h4>Detalle de la cuenta</h4>
           <!--<div class="row">
              <div class="col-lg-3"><span>Saldo actual:</span></div>
