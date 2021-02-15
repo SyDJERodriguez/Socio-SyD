@@ -146,6 +146,13 @@ class CustomerController extends Controller
         return view('pages.Account.documents');
     }
 
+    public function register_beneficiary () {
+        return view('pages.Account.beneficiary');
+    }
+
+    public function benefits_signature () {
+        return view('pages.Account.signature');
+    }
 
 
     public function update_stage_two(Customer $customer, Request $request){
