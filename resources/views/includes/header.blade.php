@@ -7,6 +7,11 @@
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
         </div>
         <div class="col-lg-7 pl-6 pt-1">
+            @if(session()->has('error'))
+                <p style="color: red;margin-bottom: 0;text-align: center;">
+                    {{ session()->get('error') }}
+                </p>
+            @endif
             @guest
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
@@ -140,9 +145,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto" id="main-menu">
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
@@ -152,11 +157,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section4">BENEFICIOS</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
-            </li>
+            </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?<i class="far fa-shopping-cart"></i></a>
+                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
         </ul>
     </div>

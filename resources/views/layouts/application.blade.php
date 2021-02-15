@@ -107,6 +107,12 @@
                                 $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                                 $('#clientNumber').text('No. de Cliente '+data['client_number']);
                                 $('#modalSuccess').modal('show');
+                            }else if (data['success']==='false' && data['verify_email']==='false') {
+                                document.getElementById("form_alert").innerHTML='El email ya se encuentra registrado. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_password']==='false') {
+                                document.getElementById("form_alert").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
                             }else if (data['success']==='false'){
                                 $('#modal3').modal('hide');
                                 $('#modalError').modal('show');
@@ -139,6 +145,12 @@
                                 $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                                 $('#clientNumber').text('No. de Cliente '+data['client_number']);
                                 $('#modalSuccess').modal('show');
+                            }else if (data['success']==='false' && data['verify_email']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra registrado. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_password']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
                             }else if (data['success']==='false'){
                                 $('#modal5').modal('hide');
                                 $('#modalError').modal('show');
