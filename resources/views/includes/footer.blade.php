@@ -14,7 +14,9 @@
                   Aviso de Privacidad
                 </a>
                 <hr class="bg-primary">
-                <p>Términos y condiciones</p>
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalTerminos" style="color:white">
+                  Términos y condiciones
+                </a>
                 <hr class="bg-primary">
                 <a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
                   Preguntas Frecuentes
@@ -24,12 +26,12 @@
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Síguenos en redes sociales </h4>
                 <h6 style="display: flex; justify-content: center;">
-                    <a href="#" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
-                    <a href="#"  class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
+                    <a href="https://www.facebook.com/DAR.Refaccionarias/" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
+                    <a href="​https://www.instagram.com/dar.refaccionarias/?igshid=nxvvirkqynwe" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
+                    <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
-                <p>Compra en línea </p>
+                <a href="https://www.refaccionarias-dar.com/" style="color:white">¿Dónde comprar?</a>
                 <hr class="bg-primary">
                 <a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto
@@ -111,4 +113,7 @@
 
       <!-- MODAL AVISO -->
       @extends('includes.aviso')
+
+      <!-- MODAL TERMINOS -->
+      @extends('includes.terms')
 </footer>

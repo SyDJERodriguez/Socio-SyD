@@ -24,9 +24,13 @@ use Str;
 use Validator;
 use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class CustomerController extends Controller
 {
+    use AuthenticatesUsers;
+    //protected $redirectTo = '/customer/account/';
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
@@ -35,6 +39,114 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $client_number)->first();
         return response($data);
     }
+
+    //Update data in customers table and insert new data en customer_session table
+    public function update(Request $request){
+        $request          = $request->input();
+
+        //For customer_session table
+        $client_number    = '00'.$request['client_number'];
+        $password         = Hash::make($request['password']);
+
+        //Check if the client number is already in the DB
+        $data = Customer::where('client_number', $client_number)->first();
+
+        $update_customer ='';
+        if($data !== null) {
+            //Update data in customers table
+            $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile'],
+                'company'          => isset($request['company']) ? $request['company'] : '',
+                'birthday'         => $request['birthday'],
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+                'work'             => isset($request['work']) ? $request['work'] : ''
+            ]);
+        }
+
+        if ($data == null) {
+            //Insert data in customers table
+            $update_customer = DB::table('customers')->insert([
+                'client_number'    => $client_number,
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile'],
+                'company'          => isset($request['company']) ? $request['company'] : '',
+                'birthday'         => $request['birthday'],
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+                'work'             => isset($request['work']) ? $request['work'] : ''
+            ]);
+        }
+
+
+        $save_register = DB::table('customers_sessions')->insert([
+            'client_number' => $client_number,
+            'client_type'   => $request['client_type'],
+            'email'         => $request['email'],
+            'password'      => $password
+        ]);
+
+        $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
+
+        if ($update_customer === 1 && $save_register === true){
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }elseif ($update_customer === true && $save_register === true){
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }elseif ($update_customer === 0 && $save_register === true){
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }
+        else{
+            return response()->json(['success'=>'false', 'update'=>$update_customer, 'save'=>$save_register]);
+        }
+
+
+    }
+
+    public function login(Request $request){
+        //Validando
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ],[
+            'password.min' => 'El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.'
+        ]);
+
+        //Login
+        if(Auth::guard('customer')->attempt([
+            'email'    => $request->email,
+            'password' => $request->password
+        ])){
+            //dd(Auth::check());
+            return redirect()->route('customer.myAccount');
+
+        }else{
+            return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    public function account_status(){
+        return view('pages.Account.status');
+    }
+
+    public function my_documents() {
+        return view('pages.Account.documents');
+    }
+
+
 
     public function update_stage_two(Customer $customer, Request $request){
 	    $request = $request->all();
@@ -114,5 +226,10 @@ class CustomerController extends Controller
         }catch(\Exception $e){
             return ['status' => 0 , 'msg'  => $e->getMessage()];
         }
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

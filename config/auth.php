@@ -53,6 +53,10 @@ return [
             'driver' => 'session',
             'provider' => 'branches',
         ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
     ],
 
     /*
@@ -84,6 +88,10 @@ return [
         'branches' => [
             'driver' => 'eloquent',
             'model' => App\UsersBranch::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\CustomersSession::class,
         ],
 
         // 'users' => [
@@ -120,6 +128,11 @@ return [
         ],
         'branches' => [
             'provider' => 'branches',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

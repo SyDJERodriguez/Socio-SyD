@@ -40,7 +40,7 @@
 
     <section id="section2">
         <div class="p-5">
-            <<div class="row">
+            <div class="row">
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
                 <div class="col-lg-6 py-3"> <h1 class="primary-color text-center"><strong>CÓMO FUNCIONA SOCIO SyD®</strong></h1></div>
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
@@ -56,7 +56,7 @@
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt="">
                     <h2 class="text-center pt-3"><strong>COMPRA</strong></h2>
                     <h5 style="font-weight: 400;">Haz una compra mínima<br>
-                        de <b>$200</b> pesos al mes.</h5>
+                        de <b>$200</b> pesos al mes <br> en cualquier sucursal <br> DAR Refaccionaria.</h5>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
                     <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}" alt="">
@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="my-4 mb-5">
-                            <button class="btn btn blue-dark text-white ">REGISTRARME</button>
+                            <button class="btn btn blue-dark text-white " data-toggle="modal" data-target="#modal3">REGISTRARME</button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                             </p>
                         </div>
                         <div class="my-4 mb-5">
-                            <button class="btn btn blue-dark text-white ">REGISTRARME</button>
+                            <button class="btn btn blue-dark text-white " data-toggle="modal" data-target="#modal5">REGISTRARME</button>
                         </div>
                     </div>
                 </div>
@@ -235,67 +235,5 @@
             </div>
         </div>
     </section>
-
-    <!-- Modal Forgot My Password-->
-    <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal4" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header d-flex flex-row-reverse">
-                    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
-                </div>
-                <div class="modal-body">
-                    <h5 class="text-uppercase">OLVIDÉ MI CONTRASEÑA</h5>
-                    <img src="{{asset('img/line.png')}}" alt="line">
-                    <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
-                    <br>
-                    <form action="#">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-6">
-                                    <input class="form-control-sm form-control" type="text"
-                                           placeholder="CORREO ELECTRÓNICO">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <br>
-                            <div class="row">
-                                <div class="col-12 text-right">
-                                    <button type="submit" class="btn btn-info">ENVIAR</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal SUCCESS-->
-    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content border-0 rounded-0">
-                <div class="modal-header" style="height: 20px;">
-                  <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="text-white">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body " style="background-color: #143153;">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                          <img src="{{'img/icon_check.png'}}">
-                            <h5 class="text-white">REGISTRO EXITOSO</h5>
-                            <p class="text-white">¡BIENVENIDO! EDUARDO MARTÍNEZ POZOS<br>
-                              No. de Cliente 000000
-                            </p>
-                            <input type="button" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" value="ENTRAR">
-                        </div>
-                    </div>
-                </div>
-              </div>
-        </div>
-    </div>
+    @include('includes.modals')
 @stop

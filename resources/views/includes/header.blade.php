@@ -7,57 +7,71 @@
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
         </div>
         <div class="col-lg-7 pl-6 pt-1">
-            <form id="login-form">
+            @guest
+            <form id="login-form" method="POST" action="{{ route('customer.login') }}">
+                @csrf
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 my-1">
-                        <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO">
+                        <input type="text" class="form-control border-input" id="inlineFormInputName" placeholder="CORREO" name="email" required>
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <p class="primary-color pr-3" style="margin-bottom: 0"><b>¿No tienes una cuenta?</b></p>
-                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGISTRATE!</a>
+                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0" style="background-color: #143153;color:white;font-size: 12px; width: 90px;">¡REGÍSTRATE!</a>
                         </div>
                     </div>
                     <div class="col-sm-5 my-1">
-                        <input type="text" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA">
+                        <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername" placeholder="CONTRASEÑA" name="password" required>
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4"><b>¿Olvidaste tu contraseña?</b></a>
                         </div>
                     </div>
-
                     <div class="col-sm-2 my-1">
-                        <button type="submit" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px">INICIAR SESIÓN</button>
+                        <button type="submit" id="login-button" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px">INICIAR SESIÓN</button>
                         <a href="#" class="disabl">Iniciar sesión</a>
                     </div>
-
-                    <!-- <div class="col-sm-2 my-1">
-                        <button type="submit" class="btn btn px-2"
-                        style="background-color: #143153;color:white; width: 200px"
-                        data-toggle="modal" data-target="#modalTypeClient">Registro exitoso</button>
-                        <a href="#" class="disabl">Cerrar sesión</a>
-                    </div>-->
                 </div>
+
             </form>
+            @else
+                <div style="display: flex; justify-content: flex-end;">
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-5 my-1"></div>
+                        <div class="col-sm-5 my-1"></div>
+                    </div>
+                    <div class="col-sm-2 my-3">
+                        <a href="#" class="btn btn px-2"
+                           style="background-color: #143153;color:white; width: 200px"
+                           data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
+                    </div>
+
+
+                </div>
+
+            @endguest
         </div>
-        <div class="col-lg-2 notification" style="padding-left: 160px;padding-top: 25px;">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i class="far fa-bell" style="color: white; font-size: 28px;"> </i>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
+        @if(!empty(Auth::user()))
+            <div class="col-lg-2 notification" style="padding-left: 160px;padding-top: 25px;">
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i class="far fa-bell" style="color: white; font-size: 28px;"> </i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
     </div>
 
     <!-- Modal LOGOUT-->
     <div class="modal fade" id="modalLogOut" tabindex="-1" role="dialog" aria-labelledby="modalLogOut" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
             <div class="modal-content border-0 rounded-0" style="background:transparent">
-                <div class="modal-header" style="height: 35px;">
+                <div class="modal-header" style="height: 35px; background-color: #fff !important;">
                   <button type="button" class="close" style="margin: 0rem 0rem -1rem auto;padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
                   </button>
@@ -72,8 +86,12 @@
                       <div class="col-lg-9 py-2 text-center">
                         <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                       <div class="col-lg-3 py2 text-center">
-                          <input type="button" class="text-white btn btn bg-primary btn-sm my-2" value="si" style="padding-left: 40px;padding-right: 40px;"><br>
-                          <input type="button" class="btn btn-light btn-sm" value="No" style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+                          <a href="#" class="text-white btn btn bg-primary btn-sm my-2" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="padding-left: 40px;padding-right: 40px;">SI</a><br>
+                          <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal" style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+                          <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
                       </div>
                   </div>
                 </div>
@@ -137,9 +155,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>
-            <!--<li class="nav-item">
-                <a class="nav-link" href="#section6">COMPRA EN LÍNEA<i class="far fa-shopping-cart"></i></a>
-            </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?<i class="far fa-shopping-cart"></i></a>
+            </li>
         </ul>
     </div>
 </nav>
