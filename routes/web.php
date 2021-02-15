@@ -31,4 +31,3 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::post('/logout', 'CustomerController@logout')->name('logout');
     });
 });
-Route::get('customer/information','CustomerController@verify_client_number')->name('customer.information');
