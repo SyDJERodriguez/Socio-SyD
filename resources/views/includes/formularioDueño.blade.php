@@ -15,6 +15,10 @@
                     <div class="line1 float-right " style="height: 2px;width: 60px;background-color: black;  transform: rotate(33deg);;margin-top: 14.3px;"></div>
                 </div>
             </div>
+
+              <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+
             <form id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
@@ -23,7 +27,7 @@
                         <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number" required pattern="[01234567889]{8}">
                     </div>
                     <div class="col-lg-6 py-4">
-                        <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name" required pattern="^[a-zA-Z]+\s+(\s*[a-zA-Z]*)*[a-zA-Z]+$">
+                        <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name" required>
                     </div>
                     <div class="col-lg-6 py-4">
                         <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name" required>
@@ -54,7 +58,7 @@
                         <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" required>
+                        <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                     </div>
                 </div>
                 <div class="row ">
@@ -68,7 +72,7 @@
                         </select>
                     </div>
                     <div class="col-lg-6 py-3">
-                        <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
+                        <input type="password" class="form-control" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                     </div>
 
                     <input type="hidden" id="confirmPassword" name="client_type" value="1">
