@@ -3,9 +3,9 @@
         <div class="row m-0">
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Contáctanos</h4>
-                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i> 800 SyD (793) 101</p>
+                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i><a href="tel:8007931010" class="primary-color" style="color:white; padding-left: 5px;">800 SyD 1010</a></p>
                 <hr class="bg-primary">
-                <p><i class="fas fa-envelope"></i> sociosyd@syd.com </p>
+                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
@@ -26,12 +26,12 @@
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Síguenos en redes sociales </h4>
                 <h6 style="display: flex; justify-content: center;">
-                    <a href="#" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
-                    <a href="#"  class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
+                    <a href="https://www.facebook.com/DAR.Refaccionarias/" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
+                    <a href="​https://www.instagram.com/dar.refaccionarias/?igshid=nxvvirkqynwe" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
+                    <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
-                <p>Compra en línea </p>
+                <a href="https://www.refaccionarias-dar.com/" style="color:white">¿Dónde comprar?</a>
                 <hr class="bg-primary">
                 <a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto

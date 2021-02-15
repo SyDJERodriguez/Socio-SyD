@@ -1,6 +1,24 @@
 
 /* header style */
 
+.whatsapp{
+    top: 500px;
+    right: -12px;
+    position: fixed;
+    z-index: 99;
+}
+
+.top-bar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 #login-form input::-webkit-input-placeholder {
     text-align: center;
 }
@@ -82,6 +100,97 @@ nav a.active{
 .navbar-nav{
 
 }*/
+
+/* botones*/
+.boton{
+    background-color: #143153;
+    color:white; 
+    text-transform:uppercase;
+    font-size: 16px;
+    width: 250px;
+}
+/* Breadcrups CSS */
+
+.arrow-steps .step {
+	font-size: 14px;
+	text-align: center;
+	color: white;
+	cursor: default;
+	margin: 0 3px;
+	padding: 10px 10px 10px 30px;
+	min-width: 300px;
+	float: left;
+	position: relative;
+	background-color: #009CE0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	transition: background-color 0.2s ease;
+}
+
+.arrow-steps .step:after,
+.arrow-steps .step:before {
+	content: " ";
+	position: absolute;
+	top: 0;
+	right: -17px;
+	width: 0;
+	height: 0;
+	border-top: 22.5px solid transparent;
+	border-bottom: 17px solid transparent;
+	border-left: 17px solid #009CE0;
+	z-index: 2;
+	transition: border-color 0.2s ease;
+	
+}
+
+.arrow-steps .step:before {
+	right: auto;
+	left: 0;
+	border-left: 17px solid #fff;
+	z-index: 0;
+	
+}
+
+/* .arrow-steps .step:first-child:before {
+	border: none;
+} */
+
+.arrow-steps .step:first-child {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.arrow-steps .step span {
+	position: relative;
+}
+
+.arrow-steps .step span:before {
+	opacity: 0;
+	content: "✔";
+	position: absolute;
+	top: -2px;
+	left: -20px;
+}
+
+.arrow-steps .step.done span:before {
+	opacity: 1;
+	-webkit-transition: opacity 0.3s ease 0.5s;
+	-moz-transition: opacity 0.3s ease 0.5s;
+	-ms-transition: opacity 0.3s ease 0.5s;
+	transition: opacity 0.3s ease 0.5s;
+}
+
+.arrow-steps .step.current {
+	color: #fff;
+	background-color: #143153;
+}
+
+.arrow-steps .step.current:after {
+	border-left: 17px solid #143153;
+}
+/* end fancy progress bar */
 
 html{
     font-family: 'Akzidenz-Grotesk,';
@@ -193,7 +302,9 @@ display: none;
       cursor: pointer;
   }
 
-  input[type='text'], select {
+  input[type='text'],
+  input[type='password'],
+  select {
       border-radius: 3px;
       border: .5px solid #eee;
 
@@ -281,7 +392,6 @@ display: none;
     padding-right: 0!important;
 }
 
-
 .arousel-caption{
     padding-left: 20px ;
     padding-right: 20px ;
@@ -292,4 +402,15 @@ display: none;
     color: white;
     padding: 5px 25px;
 
+}
+
+.labelgre {
+    position: absolute;
+    top: -15px;
+    font-size: 14px;
+    color: grey;
+}
+
+.optionsAccount > div > .active {
+    background-color: #009CE0;
 }
