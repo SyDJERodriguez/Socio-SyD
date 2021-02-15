@@ -145,9 +145,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto" id="main-menu">
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
@@ -157,11 +157,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section4">BENEFICIOS</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
-            </li>
+            </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?<i class="far fa-shopping-cart"></i></a>
+                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
         </ul>
     </div>

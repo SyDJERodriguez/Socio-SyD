@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\CustomersSession;
 use App\CustomerCollector;
 use App\Branch;
 use App\CustomerCollectorDetail;
@@ -45,8 +46,21 @@ class CustomerController extends Controller
         $request          = $request->input();
 
         //For customer_session table
-        $client_number    = '00'.$request['client_number'];
-        $password         = Hash::make($request['password']);
+        $client_number = '00'.$request['client_number'];
+        $passwordVerify = $request['password'];
+        $passwordConfirm = $request['confirmPassword'];
+
+        if ($passwordVerify !== $passwordConfirm){
+            return response()->json(['success'=>'false', 'verify_password'=>'false']);
+        }
+
+        $password      = Hash::make($request['password']);
+
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+
+        if ($verify_email !== null) {
+            return response()->json(['success'=>'false', 'verify_email'=>'false']);
+        }
 
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
