@@ -2,7 +2,6 @@
 
 <div class="container-fluid">
     <!--header-->
-
     <div class="row header ml-0">
         <div class="col-lg-3 p-2 pl-4">
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
