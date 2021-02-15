@@ -1,7 +1,7 @@
 <div class="container-fluid mt-3 pr-5 pl-5">
     <div class="row inside_nav someimpor optionsAccount">
         <div class="col-lg-2 py-2 border-right border-primary offset-lg-1">
-            <a href="#" class="btn btn-lg btn-block boton <?php if($active === 1 ){echo 'active';}?>" >Beneficios obtenidos</a>
+            <a href="{{route('customer.register.beneficiary')}}" class="btn btn-lg btn-block boton <?php if($active === 1 ){echo 'active';}?>" >Beneficios obtenidos</a>
         </div>
         <div class="col-lg-2 py-2 border-right border-primary">
             <a href="#" class="btn btn-lg btn-block boton <?php if($active === 2 ){echo 'active';}?>">agrEgar dependientes</a>
