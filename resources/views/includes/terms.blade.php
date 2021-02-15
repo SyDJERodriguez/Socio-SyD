@@ -1,5 +1,5 @@
 <!-- Modal TERMS -->
-<div class="modal fade" id="modalTerminos" tabindex="-1" role="dialog" aria-labelledby="modalTerminos" aria-hidden="true">
+<div class="modal fade" id="modalTerms" tabindex="-1" role="dialog" aria-labelledby="modalTerms" aria-hidden="true">
     <div class="modal-dialog modal-xl  " role="document">
         <div class="modal-content  mb-0 pb-0">
             <div class="modal-header d-flex flex-row-reverse">
@@ -83,7 +83,7 @@
             </div>
             <div class="container-fluid">
                 <div class="row pt-2 position-relative"
-                    style="font-size: 14px;background-color: #599adc;color: white;margin-left: 0.50px; margin-right: 0.20px">
+                    style="font-size: 14px;background-color: #00A5E6;color: white;margin-left: 0.50px; margin-right: 0.20px">
 
                     <div class="col-12 text-center mb-2">Notas</div>
                     <div class="col-md-6">
