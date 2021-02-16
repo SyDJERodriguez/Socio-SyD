@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ClientNumber;
 use App\Customer;
 use App\CustomersSession;
 use App\CustomerCollector;
@@ -38,6 +39,10 @@ class CustomerController extends Controller
     public function verify_client_number(Request $request){
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
+        $verify_client_number = DB::table('client_numbers')->where('client_number',$client_number)->first();
+        if ($verify_client_number == null) {
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        }
         $data = Customer::where('client_number', $client_number)->first();
         return response($data);
     }

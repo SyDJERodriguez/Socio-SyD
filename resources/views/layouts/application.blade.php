@@ -48,6 +48,10 @@
                             data: {'client_number': client_number_pro},
                             success: function (data) {
                                 console.log(data);
+                                if (data['success']==='false' && data['verify_client_number']==='false') {
+                                    document.getElementById("form_alert").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                    document.getElementById("form_alert").removeAttribute("hidden");
+                                }
                                 $('input[id=namePro]').val(data['name']);
                                 $('input[id=lastNamePro]').val(data['last_name']);
                                 $('input[id=secondLastNamePro]').val(data['second_last_name']);
@@ -74,6 +78,10 @@
                             data: {'client_number': client_number_mec},
                             success: function (data) {
                                 console.log(data);
+                                if (data['success']==='false' && data['verify_client_number']==='false') {
+                                    document.getElementById("form_alert_mec").innerHTML='El número de cliente no se enceuntra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                    document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                }
                                 $('input[id=nameMec]').val(data['name']);
                                 $('input[id=lastNameMec]').val(data['last_name']);
                                 $('input[id=secondLastNameMec]').val(data['second_last_name']);
