@@ -160,7 +160,7 @@
     </section>
 
 
-    <section id="section5">
+    <!--<section id="section5">
         <div class="row my-3 mx-0">
             <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
             <div class="col-lg-6 p-3"> <h1 class="primary-color text-center"><strong>TESTIMONIALES</strong></h1></div>
@@ -215,7 +215,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <section id="section6">
         <div class="container-fluid py-5">
@@ -223,8 +223,7 @@
                 <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
                     <div class="col-lg-4 ">
-                        <h1 class="text-white text-center"><strong>COMPRA EN LÍNEA
-                            </strong></h1>
+                        <h1 class="text-white text-center"><strong>¿DÓNDE COMPRAR?</strong></h1>
                         <br/>
                     </div>
                     <div class="col-lg-4 p-4"><div class="bg-white" style="height: 1px;"></div></div>
