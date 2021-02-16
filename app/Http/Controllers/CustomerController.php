@@ -15,6 +15,7 @@ use App\Helpers\Utils;
 use App\LogRegisters;
 use App\VueTables\EloquentVueTables;
 use DB;
+use Carbon\Carbon;
 use function GuzzleHttp\Psr7\get_message_body_summary;
 use Hash;
 use http\Message;
@@ -155,8 +156,24 @@ class CustomerController extends Controller
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.status', compact('data'));
+        $tr = $this->get_trans($data['client_number']);
+        //dd($customer_trans);
+        return view('pages.Account.status', compact('data', 'tr'));
         //return redirect()->route('customer.myAccount');
+    }
+
+    public function get_trans($client_number){
+        $now = Carbon::now();
+        $last_month = $now->month-1;
+        //dd($now->month-1);
+        $customer_trans = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->whereMonth('transaction_date','=',$last_month)
+            ->get();
+        return $customer_trans;
     }
 
     public function my_documents() {

@@ -22,6 +22,17 @@ class CustomerController extends Controller
         return view('Branches.Customers.credits');
     }
 
+    public function get_trans($data){
+       $client_number = $date['client_number'];
+       $last_month = $now->month-1;
+       //dd($now->month-1);
+       $customer_trans = DB::table('transactions')
+           ->where('client_number', $client_number)
+           ->whereMonth('transaction_date','=',$last_month)
+           ->get();
+        return $customer_trans;
+    }
+
     public function verify_customer(Request $request){
         $request = $request->input();
         $validator = $this->validator($request);

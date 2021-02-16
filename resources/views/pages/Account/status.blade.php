@@ -6,7 +6,7 @@
    <hr>
    <div class="row">
       <div class="col-lg-4 pl-5" style="padding-left: 15px !important;">
-         <h4>Hola {{$data->name.''.$data->lastname.' '.$data->second_last_name}}<br>
+         <h4>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
             No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
          </h4>
          <hr>
@@ -37,63 +37,27 @@
             <table class="table">
                <thead>
                   <tr>
-                     <th scope="col">Pieza</th>
-                     <th scope="col">familia</th>
-                     <th scope="col">SKU</th>
+                     <!-- <th scope="col">Pieza</th> -->
+                     <th scope="col">Familia</th>
+                     <th scope="col">Oficina de Venta</th>
+                     <!-- <th scope="col">SKU</th> -->
                      <th scope="col">Monto</th>
-                     <th scope="col">cantidad</th>
+                     <th scope="col">Método de pago</th>
+                     <th scope="col">Cantidad</th>
                      <th scope="col">Fecha</th>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <th>Terminal Inferior</th>
-                     <td>Terminales</td>
-                     <td>00000</td>
-                     <td>$385.00</td>
-                     <td>4</td>
-                     <td>30 Jul 2020</td>
-                  </tr>
-                  <tr>
-                     <th>Terminal Inferior</th>
-                     <td>Terminales</td>
-                     <td>00000</td>
-                     <td>$385.00</td>
-                     <td>4</td>
-                     <td>30 Jul 2020</td>
-                  </tr>
-                  <tr>
-                     <th>Terminal Inferior</th>
-                     <td>Terminales</td>
-                     <td>00000</td>
-                     <td>$385.00</td>
-                     <td>4</td>
-                     <td>30 Jul 2020</td>
-                  </tr>
-                  <tr>
-                     <th>Terminal Inferior</th>
-                     <td>Terminales</td>
-                     <td>00000</td>
-                     <td>$385.00</td>
-                     <td>4</td>
-                     <td>30 Jul 2020</td>
-                  </tr>
-                  <tr>
-                     <th>Terminal Inferior</th>
-                     <td>Terminales</td>
-                     <td>00000</td>
-                     <td>$385.00</td>
-                     <td>4</td>
-                     <td>30 Jul 2020</td>
-                  </tr>
-                  <tr>
-                     <th></th>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                  </tr>
+                  @foreach ($tr as $trans)
+                     <tr>
+                        <th>{{ $trans->material_type }}</th>
+                        <td>{{ $trans->sale_office }}</td>
+                        <td>{{ $trans->amount }}</td>
+                        <td>{{ $trans->payment_method }}</td>
+                        <td>{{ $trans->quantity }}</td>
+                        <td>{{ $trans->transaction_date }}</td>
+                     </tr>
+                  @endforeach
                </tbody>
             </table>
          </div>
