@@ -1,4 +1,5 @@
-<!-- Modal --><div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="modal8" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="modal8" aria-hidden="true">
 <div class="modal-dialog modal-xl  " role="document">
         <div class="modal-content  mb-0 pb-0">
             <div class="modal-header d-flex flex-row-reverse">
