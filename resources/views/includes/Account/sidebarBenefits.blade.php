@@ -1,9 +1,9 @@
 <div class="col-lg-12">
-    <hr style="background-color: #009CE0; height:2px; margin-left: 10px;margin-right: 10px ">
+    <hr style="height:2px; margin-left: 10px;margin-right: 10px ">
 </div>
 <div class="col-lg-3 benefits_sb" style="margin-left: 10px">
     <h6 style="font-size: 18px">Hola EDUARDO Martínez Pozos</h6>
-    <p style="font-size: 18px">No. de Cliente <span style="color: #009CE0;"> 000000</span></p>
+    <p style="font-size: 18px">No. de Cliente <span style="color: #009CE0;"> {{Auth::user()->client_number}}</span></p>
     <br>
     <button class="btn btn-lg text-white" style="background-color: #143153;font-size: 18px;width: 100%;"
             type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
@@ -13,7 +13,7 @@
     <p></p>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body border-0">
-            <a href="#" class="<?php if($active === 1 ){echo 'active_sb';}?>"><span>- Coberturas principales del seguro</span></a>
+            <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>"><span>- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>"><span> - Registro de beneficiarios</span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
@@ -28,7 +28,7 @@
     <p></p>
     <div class="collapse show" id="collapseExample2">
         <div class="card card-body border-0">
-            <span>- Tipo de asistencia</span>
+            <a href="{{route('customer.benefits.assistance')}}" class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia</span></a>
 
         </div>
     </div>

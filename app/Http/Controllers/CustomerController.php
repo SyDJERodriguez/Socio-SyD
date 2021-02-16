@@ -167,10 +167,21 @@ class CustomerController extends Controller
         return view('pages.Account.beneficiary');
     }
 
+    public function benefits () {
+        return view('pages.Account.benefitSafe');
+    }
+
     public function benefits_signature () {
         return view('pages.Account.signature');
     }
 
+    public function benefits_assistance () {
+        return view('pages.Account.assistance');
+    }
+
+    public function beneficiaries () {
+        return view('pages.Account.beneficiaries');
+    }
 
     public function update_stage_two(Customer $customer, Request $request){
 	    $request = $request->all();

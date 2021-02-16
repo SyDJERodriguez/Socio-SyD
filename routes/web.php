@@ -2,7 +2,7 @@
 
 /*Route::get('/testing', [\App\Http\Controllers\CustomerController::class,'getCustommersJSON'])->name('get_customers_json');
 Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::class,'getCustommerJSON'])->name('get_customer_json');*/
-   //return view('ClientArea.Home.index');});
+//return view('ClientArea.Home.index');});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,12 +26,24 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
+
+        //My Account
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
+
+        //My Documents
         Route::get('/documents/', 'CustomerController@my_documents')->name('myDocuments');
 
         //Benefits
+        Route::get('benefits/', 'CustomerController@benefits')->name('benefits');
         Route::get('/benefits/beneficiary/', 'CustomerController@register_beneficiary')->name('register.beneficiary');
         Route::get('benefits/signature/', 'CustomerController@benefits_signature')->name('benefits.signature');
+        Route::get('benefits/assistance/', 'CustomerController@benefits_assistance')->name('benefits.assistance');
+
+        //Beneficiaries
+        Route::get('/beneficiaries/', 'CustomerController@beneficiaries')->name('beneficiaries');
+
+
+        //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
     });
 });
