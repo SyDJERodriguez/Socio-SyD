@@ -1,13 +1,13 @@
 @extends('layouts.application')
 @section('content')
-@include('includes.options', ['active' => 4])
-<div class="container-fluid pr-5 pl-5 " >
-    <h5 class="mt-3 text-center">PROGRESO DE REGISTRO</h5>
+@include('includes.options', ['active' => 2])
+<div class="container-fluid pr-5 pl-5 " style="padding-left: 3rem !important;
+    padding-right: 3rem !important;">
     <hr>
     <div class="row">
         <div class="col-4 pl-5">
             <h4>Hola EDUARDO Martínez Pozos<br>
-                No. de Cliente <span style="color:#009ce0">000000</span></h4>
+                No. de Cliente <span style="color:#009ce0">{{Auth::user()->client_number}}</span></h4>
             <hr>
 
 
@@ -79,17 +79,13 @@
 
         <div class="row">
             <div class="col-3 mx-auto">
-                <button class="btn btn-block text-white btn-alta" style="background-color: #143153;" >DAR DE ALTA</button>
+                <button class="btn btn-block text-white btn-alta" style="background-color: #143153;" data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-12 text-right">
-            <button class="btn text-white" style="background-color: #009CE0;">ELIMINAR MI CUENTA</button>
-
-        </div>
-    </div>
+    @include('includes.Account.deleteButton')
+    @include('includes.signUpEmployee')
 
 
     <br><br><br><br>
