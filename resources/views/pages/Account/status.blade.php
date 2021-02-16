@@ -76,9 +76,35 @@
 <script>
    $('#tableTrans').DataTable({
       dom: 'Bfrtip',
+      info: false,
       searching:false,
+      language: {
+         paginate: {
+            previous: "Anterior",
+            next: "Siguiente"
+         }
+      },
       buttons: [
-            'excel', 'print'
+         {
+            extend: 'excel',
+            text: 'Excel',
+            className: 'excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        },
+        {
+            extend: 'print',
+            text: 'Imprimir',
+            className: 'print',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
         ]
    });
 </script>
