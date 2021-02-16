@@ -121,6 +121,14 @@
                             }else if (data['success']==='false' && data['verify_password']==='false') {
                                 document.getElementById("form_alert").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                                 document.getElementById("form_alert").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                                document.getElementById("form_alert").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                            }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                                document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
                             }else if (data['success']==='false'){
                                 $('#modal3').modal('hide');
                                 $('#modalError').modal('show');
@@ -159,6 +167,14 @@
                             }else if (data['success']==='false' && data['verify_password']==='false') {
                                 document.getElementById("form_alert_mec").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                                 document.getElementById("form_alert_mec").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                            }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                             }else if (data['success']==='false'){
                                 $('#modal5').modal('hide');
                                 $('#modalError').modal('show');
