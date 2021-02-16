@@ -15,7 +15,7 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    return view('pages.beneficiaryAssistance');
+    return view('pages.home');
 })->name('home');
 
 Route::prefix('customer')->name('customer.')->group(function(){
@@ -28,10 +28,11 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::group(['middleware' => ['auth:customer']], function() {
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
         Route::get('/documents/', 'CustomerController@my_documents')->name('myDocuments');
-
-        //Benefits
-        Route::get('/benefits/beneficiary/', 'CustomerController@register_beneficiary')->name('register.beneficiary');
-        Route::get('benefits/signature/', 'CustomerController@benefits_signature')->name('benefits.signature');
         Route::post('/logout', 'CustomerController@logout')->name('logout');
     });
 });
+
+
+
+
+

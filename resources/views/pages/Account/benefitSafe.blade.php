@@ -10,7 +10,7 @@
               <h6 class="text-center">PROGRESO DE REGISTRO</h6>
               <hr style="background-color: #009CE0;">
           </div>
-   <div class="col-lg-3 pl-5">
+   <div class="col-lg-3 pl-4">
      <h6>Hola EDUARDO Martínez Pozos</h6>
      <p>No. de Cliente <span style="color: #009CE0;"> 000000</span></p>
      <br>
@@ -61,41 +61,32 @@
  <div class="col-lg-9 pb-5 pr-5 pl-5">
 
 <div class="row">
-  <div class="col-6  p-4">
-    <h4 style="color: #143153;">CON TU MONTO MÍNIMO DE COMPRA,</h4>
-    <h4 style="color: #143153;"><strong>OBTIENES BENEFICIOS ESPECIALES.</strong></h4>
+  <div class="col-5  text-center p-4">
+    <img class="py-2" src="{{asset('img/iconno-1.png')}}" style="width:150px; height:150px;">
   </div>
-  <div class="col-6 p-0">
+  <div class="col-7 p-0">
       <img  src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
   </div>
 </div>
   <form>
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-    
         <div class="col-lg-4 text-center py-3">
-            <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA </strong></h6>
+            <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8" class="py-2"   style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" ><br> <strong class="py-3"> PERDIDA ORGANICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
         </div>
         <div class="col-lg-4 py-3 text-center">
-            <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
+            <h6 style="color: #143153;"> <img data-toggle="modal" data-target="#modal8" class="py-2"  style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}"><br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no  <br> puedes realizar tu trabajo. </div> </strong></h6>
         </div>
         <div class="col-lg-4 py-3 text-center">
-            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE</strong></h6>
+            <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8" class="py-2"  style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}"> <br><strong class="py-3"> MUERTE ACCIDENTAL   <br> <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div> </strong></h6>
         </div>
-        <div class="col-lg-3 text-center py-3">
-            <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+        <div class="col-lg-4 text-center py-3">
+            <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8"class="py-2"  style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}"><br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MEDICOS  <br>  <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
             </strong></h6>
         </div>
-        <div class="col-lg-3 py-3 text-center">
-            <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2"> VIDEO CONSULTA <br>
-                POR COVID 19 </strong></h6>
+        <div class="col-lg-4 py-3 text-center">
         </div>
-        <div class="col-lg-3 py-3 text-center">
-            <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
-                FUNERARIA 
-                </strong></h6>
-        </div>
-        <div class="col-lg-3 py-3 text-center">
-            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+        <div class="col-lg-4 py-3 text-center">
+            <h6 style="color: #143153;"><img  data-toggle="modal" data-target="#modal8"class="py-2"  style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br><strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,  <br> nosotros te ayudamos.  </div> </strong></h6>
         </div>
     </div>
     <div class="row">
@@ -107,6 +98,7 @@
  </div>
     </div>
 </div>
+@include('includes.termsAndConditions')
 
 
 @stop

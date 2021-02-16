@@ -6,7 +6,7 @@
             </div>
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase"> TÉRMINOS Y CONDICIONES - SEGURO DE ACCIDENTES PERSONALES</h5>
-                <img src="assets/img/line2.png" alt="line" width="80%">
+                <img  src="{{asset('img/line2.png')}}"  alt="line" width="80%">
                 <h5>OPERADO POR: CHUBB</h5>
                 <br>
                 <div class="container">
