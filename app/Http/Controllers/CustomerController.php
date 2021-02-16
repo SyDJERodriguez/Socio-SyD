@@ -15,7 +15,6 @@ use App\Helpers\Utils;
 use App\LogRegisters;
 use App\VueTables\EloquentVueTables;
 use DB;
-use Carbon\Carbon;
 use function GuzzleHttp\Psr7\get_message_body_summary;
 use Hash;
 use http\Message;
@@ -163,15 +162,11 @@ class CustomerController extends Controller
     }
 
     public function get_trans($client_number){
-        $now = Carbon::now();
-        $last_month = $now->month-1;
-        //dd($now->month-1);
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$last_month)
             ->get();
         return $customer_trans;
     }

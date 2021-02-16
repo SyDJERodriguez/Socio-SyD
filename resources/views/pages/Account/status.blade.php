@@ -52,7 +52,7 @@
                      <tr>
                         <th>{{ $trans->material_type }}</th>
                         <td>{{ $trans->sale_office }}</td>
-                        <td>{{ $trans->amount }}</td>
+                        <td>${{ $trans->amount }}</td>
                         <td>{{ $trans->payment_method }}</td>
                         <td>{{ $trans->quantity }}</td>
                         <td>{{ $trans->transaction_date }}</td>
