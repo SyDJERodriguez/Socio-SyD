@@ -83,7 +83,7 @@
                al 800 SYD (793) 1010
             </p>
          </span>
-         <button class="btn float-right text-white" style="background-color: #009CE0;">ELIMINAR MI CUENTA</button>
+          @include('includes.Account.deleteButton')
       </div>
    </div>
    <br><br><br><br>
