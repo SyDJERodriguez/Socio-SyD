@@ -18,11 +18,14 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::post('/contact_us','CustomerController@contact_us');
+
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
+    
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
@@ -45,5 +48,6 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
+        
     });
 });

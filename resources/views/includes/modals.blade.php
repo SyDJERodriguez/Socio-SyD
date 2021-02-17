@@ -137,3 +137,26 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal CONTACTO FORMULARIO-->
+<div class="modal fade" id="contactModalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+                
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{'img/icon_check.png'}}">
+                        <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
+                        <p class="text-white">EN UN MOMENTO NOS PONDREMOS EN CONTACTO CON USTED</p>
+                        <p class="text-white" id="clientNumber"></p>
+                        <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
