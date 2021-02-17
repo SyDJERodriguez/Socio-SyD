@@ -18,11 +18,17 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::post('/contact_us','CustomerController@contact_us');
+Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
+Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
+Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
+
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
+
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
@@ -45,5 +51,6 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
+        
     });
 });
