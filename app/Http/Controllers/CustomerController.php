@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ClientNumber;
 use App\Customer;
 use App\CustomersSession;
 use App\CustomerCollector;
@@ -17,6 +18,7 @@ use App\VueTables\EloquentVueTables;
 use DB;
 use function GuzzleHttp\Psr7\get_message_body_summary;
 use Hash;
+use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
@@ -37,6 +39,10 @@ class CustomerController extends Controller
     public function verify_client_number(Request $request){
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
+        $verify_client_number = DB::table('client_numbers')->where('client_number',$client_number)->first();
+        if ($verify_client_number == null) {
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        }
         $data = Customer::where('client_number', $client_number)->first();
         return response($data);
     }
@@ -56,11 +62,30 @@ class CustomerController extends Controller
 
         $password      = Hash::make($request['password']);
 
+        //Check if the email already has an account
+
         $verify_email = CustomersSession::where('email', $request['email'])->first();
 
         if ($verify_email !== null) {
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = Customer::where('mobile_number', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_email_number = Customer::where('email', $request['email'])->first();
+        if (!empty($verify_email_number)){
+            if ($verify_email_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
+            }
+        }
+
 
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
@@ -155,8 +180,20 @@ class CustomerController extends Controller
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.status', compact('data'));
+        $tr = $this->get_trans($data['client_number']);
+        //dd($customer_trans);
+        return view('pages.Account.status', compact('data', 'tr'));
         //return redirect()->route('customer.myAccount');
+    }
+
+    public function get_trans($client_number){
+        $customer_trans = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->get();
+        return $customer_trans;
     }
 
     public function my_documents() {
