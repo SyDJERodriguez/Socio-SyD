@@ -266,11 +266,15 @@ class CustomerController extends Controller
 
     public function contact_us(Request $request){
         $data = $request->all();
-        \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
-            $m->from('noreply@quaxar.info',"Club Dar");
-            $m->to('gtzjafet@gmail.com', 'Jafet Gtz')->subject('Nuevo Registro de Club Dar');
-        });
-        return response()->json(['success'=>'submitted successfully','status' =>200]);
+        try {
+            \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to('gtzjafet@gmail.com', 'Jafet Gtz')->subject('Nuevo Registro de Club Dar');
+            });
+            return response()->json(['success'=>'submitted successfully','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'submitted successfully','status' =>401]);
+        }
      }
 
     protected function guard()
