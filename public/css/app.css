@@ -417,6 +417,33 @@ display: none;
 
 
 /********* Account ********/
+.page-item.active .page-link {
+    background-color: #009CE0 !important;
+    border: 1px solid lightgrey;
+}
+.dt-button.excel {
+    background-color: #143153;
+    border-radius: 6px;
+    border: 0px;
+    color:white; 
+    text-transform:uppercase;
+    font-size: 18px;
+    width: 120px;
+    float: right;
+    margin: 0px 2px 2px 0px;
+}
+
+.dt-button.print {
+    background-color: #7d807d;
+    border-radius: 6px;
+    border: 0px;
+    color:white; 
+    text-transform:uppercase;
+    font-size: 18px;
+    width: 120px;
+    float: right;
+    margin: 0px 2px 2px 0px;
+}
 
 .btn:hover {
     color: white !important;

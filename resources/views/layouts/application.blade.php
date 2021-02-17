@@ -48,6 +48,10 @@
                             data: {'client_number': client_number_pro},
                             success: function (data) {
                                 console.log(data);
+                                if (data['success']==='false' && data['verify_client_number']==='false') {
+                                    document.getElementById("form_alert").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                    document.getElementById("form_alert").removeAttribute("hidden");
+                                }
                                 $('input[id=namePro]').val(data['name']);
                                 $('input[id=lastNamePro]').val(data['last_name']);
                                 $('input[id=secondLastNamePro]').val(data['second_last_name']);
@@ -74,6 +78,10 @@
                             data: {'client_number': client_number_mec},
                             success: function (data) {
                                 console.log(data);
+                                if (data['success']==='false' && data['verify_client_number']==='false') {
+                                    document.getElementById("form_alert_mec").innerHTML='El número de cliente no se enceuntra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                    document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                }
                                 $('input[id=nameMec]').val(data['name']);
                                 $('input[id=lastNameMec]').val(data['last_name']);
                                 $('input[id=secondLastNameMec]').val(data['second_last_name']);
@@ -113,6 +121,14 @@
                             }else if (data['success']==='false' && data['verify_password']==='false') {
                                 document.getElementById("form_alert").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                                 document.getElementById("form_alert").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                                document.getElementById("form_alert").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                            }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                                document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
                             }else if (data['success']==='false'){
                                 $('#modal3').modal('hide');
                                 $('#modalError').modal('show');
@@ -151,6 +167,14 @@
                             }else if (data['success']==='false' && data['verify_password']==='false') {
                                 document.getElementById("form_alert_mec").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                                 document.getElementById("form_alert_mec").removeAttribute("hidden");
+                            }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                            }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                                document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                                document.getElementById("form_alert_mec").removeAttribute("hidden");
+                                setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                             }else if (data['success']==='false'){
                                 $('#modal5').modal('hide');
                                 $('#modalError').modal('show');
