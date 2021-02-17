@@ -230,7 +230,7 @@
                 </div>
 
                 <h5 class=" text-white text-center py-4"><strong>OBTÉN LOS PRODUCTOS QUE NECESITAS <br>EN UN SÓLO CLIC</strong></h5>
-                <a class="btn btn-primary text-center" href="#" role="button">COMPRA AHORA</a>
+                <a class="btn btn-primary text-center" href="https://www.refaccionarias-dar.com/" role="button">COMPRA AHORA</a>
             </div>
         </div>
     </section>
