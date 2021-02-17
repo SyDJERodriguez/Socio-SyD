@@ -163,7 +163,49 @@
                     // Nos permite cancelar el envio del formulario
                     return false;
                 });
+
+                
             });
+
+        async function sendContact() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            const validate_form = document.forms['form-contact-us'].reportValidity();
+            if (validate_form) {
+                console.log('enviar formulario');
+                let config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json, text-plain, */*",
+                        "X-Requested-With": "XMLHttpRequest",
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        name: document.getElementById('contact-name').value,
+                        last_name: document.getElementById('contact-lastname').value,
+                        email: document.getElementById('contact-email').value,
+                        comment: document.getElementById('contact-comment').value
+                    })
+                }
+                try {
+                    const response = await fetch('/contact_us', config)
+                    const data = await response.json();
+                    if (data.status === 200) {
+                        $('#modalContacto').modal('hide');
+                        $('#contactModalSuccess').modal('show')
+                    } else {
+
+                    }
+                } catch (error) {
+
+                }
+            }
+
+        }
+              
+                
+
+                
         </script>
     </body>
 </html>
