@@ -150,10 +150,10 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{'img/icon_check.png'}}">
-                        <h5 class="text-white">Correo enviado exitosamente</h5>
-                        <p class="text-white" id="clientName"></p>
+                        <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
+                        <p class="text-white">EN UN MOMENTO NOS PONDREMOS EN CONTACTO CON USTED</p>
                         <p class="text-white" id="clientNumber"></p>
-                        <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >Aceptar</a>
+                        <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
             </div>
