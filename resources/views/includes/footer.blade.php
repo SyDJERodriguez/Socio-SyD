@@ -61,10 +61,10 @@
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>
                               <span>TELÉFONO:</span><br>
-                                <a href="tel:800 SYD (723) 1010">800 SYD (723) 1010</a>
+                                <a href="tel:8007931010">800 723 1010</a>
                               <hr>
                               <span>CORREO:</span><br>
-                                <a href="mailto:SOCIOSYD@SYD.COM">SOCIOSYD@SYD.COM</a>
+                                <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
                               <br>
                               <hr>
                           </p>

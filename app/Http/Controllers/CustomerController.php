@@ -72,19 +72,19 @@ class CustomerController extends Controller
 
         //Verify is the email has not a relation with other client number
         $verify_mobile_number = Customer::where('mobile_number', $request['mobile'])->first();
-        if(!empty($verify_mobile_number)){
+        /*if(!empty($verify_mobile_number)){
             if ($verify_mobile_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
             }
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
-        $verify_email_number = Customer::where('email', $request['email'])->first();
+        /*$verify_email_number = Customer::where('email', $request['email'])->first();
         if (!empty($verify_email_number)){
             if ($verify_email_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
             }
-        }
+        }*/
 
 
         //Check if the client number is already in the DB
@@ -175,6 +175,39 @@ class CustomerController extends Controller
         $request->session()->invalidate();
 
         return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    public function send_restore_password(Request $request) {
+        $request = $request->input();
+        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
+        $data = Customer::where('client_number', $data_session->client_number)->first();
+        try {
+            \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Restablecer Contraseña Plataforma SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
+
+    public function edit_password($client_number) {
+        return view('pages.restorePassword', compact('client_number'));
+    }
+
+    public function update_password(Request $request) {
+
+        $request = $request->input();
+        $password      = Hash::make($request['password']);
+        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
+            'password' => $password,
+        ]);
+
+        if ($update_customer === 1){
+            return response()->json(['success'=>'true','status' =>200]);
+        }
+        return response()->json(['success'=>'false','status' =>401]);
     }
 
     public function account_status(){
