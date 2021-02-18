@@ -101,9 +101,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-            <a href="#" class="whatsapp"><img src="{{'img/whts.png'}}" alt="whats"></a>
-          </div>
         </div>
       </div>
 
