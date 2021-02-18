@@ -19,7 +19,9 @@
                         <img src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
                     </div>
                 </div>
-                <form>
+                <form id="beneficiaryForm1" method="POST" action="{{route('customer.addBeneficiary')}}">
+                    @method('PUT')
+                    @csrf
                     <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
                         <div class="col-lg-12">
                             <h6>BENEFICIARIO 1</h6>

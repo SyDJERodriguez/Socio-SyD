@@ -48,6 +48,11 @@ class CustomerController extends Controller
         return response($data);
     }
 
+    //update date in beneficiaries table 
+    public function addBeneficiary(Request $request){
+        
+    }
+    
     //Update data in customers table and insert new data en customer_session table
     public function update(Request $request){
         $request          = $request->input();
