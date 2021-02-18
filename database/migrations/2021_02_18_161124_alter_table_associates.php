@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBdayAndMobileToAssociates extends Migration
+class AlterTableAssociates extends Migration
 {
     /**
      * Run the migrations.
@@ -16,6 +16,7 @@ class AddBdayAndMobileToAssociates extends Migration
         Schema::table('associates', function (Blueprint $table) {
             $table->date('birthday')->nullable();
             $table->string('mobile_number',25)->nullable();
+            $table->string('email',100)->nullable();
         });
     }
 

@@ -89,11 +89,11 @@ class CustomerController extends Controller
             ]);
         }
 
-        //get the associate_id
+        /*get the associate_id YA NO SE OCUPA ESTA FUNCITON
         $associate_id = 0;
         if($update_associates <= 1 || $update_associates === true){
             $associate_id = $this->getAssociateId($last_name, $number);
-        }
+        } */
 
 
         if ($update_associates === 1){
