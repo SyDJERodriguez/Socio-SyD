@@ -17,13 +17,26 @@
             <div class="col-10 mx-auto " >
                 <h4>Detalle de empleados</h4>
                 <table class="table table-bordered ">
-                    <tr class="p-0 m-0 font-weight-bold">
-                        <td>Nombre <i class="fa fa-caret-right"></i></td>
-                        <td>Correo electrónico</td>
-                        <td>Teléfono</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <thead>
+                        <tr class="p-0 m-0 font-weight-bold">
+                            <td>Nombre</td>
+                            <td>Correo electrónico</td>
+                            <td>Teléfono</td>
+                            <td>Editar</td>
+                            <td>Elimar</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($associates as $as)
+                        <tr class="p-0 m-0">
+                            <td>{{$as->name}} {{$as->last_name}} {{$as->second_last_name}}</td>
+                            <td>{{$as->email}}</td>
+                            <td>{{$as->mobile_number}}</td>
+                            <td><i class="fa fa-pencil text-info"></i></td>
+                            <td><i class="fa fa-trash"></i></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
 
@@ -39,8 +52,8 @@
         <div class="row">
             <div class="col-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta" 
-                style="background-color: #143153;" data-toggle="modal" 
-                data-target="#modalSignUpEmployee">DAR DE ALTA</button>
+                style="background-color: #143153;" 
+                data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
         </div>
     </div>

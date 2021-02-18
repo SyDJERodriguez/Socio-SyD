@@ -306,8 +306,13 @@ class CustomerController extends Controller
         return view('pages.Account.assistance');
     }
 
+    //load data from associates
     public function employees () {
-        return view('pages.Account.employees');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $associates = DB::table('associates')
+                    ->where('client_number','=',$data['client_number'])
+                    ->get();
+        return view('pages.Account.employees', compact('associates'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){
