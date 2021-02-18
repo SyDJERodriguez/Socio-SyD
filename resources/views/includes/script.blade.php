@@ -80,10 +80,7 @@
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-                beforeSend: function(){
-                    btnSend.val("Enviando");
-                    btnSend.attr("disabled","disabled");
-                },
+
                 success: function(data){
                     console.log(data);
                     if(data['success']==='true'){
@@ -126,10 +123,7 @@
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-                beforeSend: function(){
-                    btnSend.val("Enviando");
-                    btnSend.attr("disabled","disabled");
-                },
+
                 success: function(data){
                     console.log(data);
                     if(data['success']==='true'){
