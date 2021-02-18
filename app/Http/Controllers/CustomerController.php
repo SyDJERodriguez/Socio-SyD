@@ -63,6 +63,8 @@ class CustomerController extends Controller
         
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
+
+        //explode the FullName input
         $full_last_name = explode(" ", $request['fullName'], 3);
         $name = $full_last_name[0];
         $last_name = $full_last_name[1];
@@ -85,6 +87,8 @@ class CustomerController extends Controller
                 'active_association'=> 1,
                 'number'            => $number,
                 'birthday'          => $request['bday'],
+                'created_at'        => date('Y-m-d H:i:s'),
+                'mobile_number'     => $request['mobile_number'],
                 'email'             => $request['email']
             ]);
         }
