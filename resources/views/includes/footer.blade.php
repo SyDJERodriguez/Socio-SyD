@@ -14,7 +14,7 @@
                   Aviso de Privacidad
                 </a>
                 <hr class="bg-primary">
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalTerminos" style="color:white">
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modal8" style="color:white">
                   Términos y condiciones
                 </a>
                 <hr class="bg-primary">
@@ -103,6 +103,8 @@
               </div>
         </div>
       </div>
+        </div>
+     </div>
 
       <!-- MODAL PREGUNTAS-->
       @extends('includes.preguntas')
@@ -112,4 +114,7 @@
 
       <!-- MODAL TERMINOS -->
       @extends('includes.terms')
+
+        <!-- MODAL GENERAL TERMS -->
+    @extends('includes.generalTerms')
 </footer>
