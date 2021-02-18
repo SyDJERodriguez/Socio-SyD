@@ -22,6 +22,8 @@
                 <form id="beneficiaryForm1" method="POST" action="{{route('customer.addBeneficiary')}}">
                     @method('PUT')
                     @csrf
+                    <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
+                    <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
                     <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
                         <div class="col-lg-12">
                             <h6>BENEFICIARIO 1</h6>
@@ -33,12 +35,12 @@
                             required maxlength="30">
                         </div>
                         <div class="col-lg-6 py-2">
-                            <input type="text" class="form-control" name="lastname" placeholder="APELLIDOS"
+                            <input type="text" class="form-control" name="last_name" placeholder="APELLIDOS"
                             pattern="[A-Za-z].{2,}"
                             required maxlength="30">
                         </div>
                         <div class="col-lg-6 py-2">
-                            <input type="text" class="form-control" name="parent" placeholder="PARENTESCO"
+                            <input type="text" class="form-control" name="relationship" placeholder="PARENTESCO"
                             pattern="[A-Za-z].{2,}"
                             required maxlength="30">
                         </div>
@@ -53,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 py-2">
-                            <input type="text" class="form-control" name="phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                            <input type="text" class="form-control" name="mobile_number" placeholder="No. TELEFÓNICO 10 DÍGITOS"
                             pattern="[0-9]{10}"
                             required  maxlength="10">
                         </div>
