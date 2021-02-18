@@ -23,7 +23,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
-    Route::put('/addBeneficiary', 'CustomerController@addBeneficiary')->name('addBeneficiary');
+    //Route::put('/addBeneficiary', 'CustomerController@addBeneficiary')->name('addBeneficiary');
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
@@ -41,7 +41,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('benefits/assistance/', 'CustomerController@benefits_assistance')->name('benefits.assistance');
 
         //Beneficiaries
-        Route::get('/beneficiaries/', 'CustomerController@beneficiaries')->name('beneficiaries');
+        Route::get('/employees/', 'CustomerController@employees')->name('employees');
 
 
         //Logout

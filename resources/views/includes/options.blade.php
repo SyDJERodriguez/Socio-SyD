@@ -5,7 +5,7 @@
         </div>
         @if(Auth::user()->client_type === "1" )
             <div class="col-lg-2 py-2 border-right border-primary">
-                <a href="{{route('customer.beneficiaries')}}" class="btn btn-lg btn-block boton <?php if($active === 2 ){echo 'active';}?>">agrEgar dependientes</a>
+                <a href="{{route('customer.employees')}}" class="btn btn-lg btn-block boton <?php if($active === 2 ){echo 'active';}?>">agrEgar dependientes</a>
             </div>
         @endif
         <div class="col-lg-2 py-2 border-right border-primary">

@@ -312,8 +312,8 @@ class CustomerController extends Controller
         return view('pages.Account.assistance');
     }
 
-    public function beneficiaries () {
-        return view('pages.Account.beneficiaries');
+    public function employees () {
+        return view('pages.Account.employees');
     }
 
     public function update_stage_two(Customer $customer, Request $request){

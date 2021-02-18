@@ -19,7 +19,7 @@
                         <img src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
                     </div>
                 </div>
-                <form id="beneficiaryForm1" method="POST" action="{{route('customer.addBeneficiary')}}">
+                <form id="beneficiaryForm1" method="POST" action="">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
