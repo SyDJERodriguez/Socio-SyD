@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-2">
+                    <div class="col-lg-6 py-2" id="mobile">
                         <input type="text" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobileMec" name="mobile" required pattern="[01234567889]{10}">
                     </div>
                     <div class="col-lg-6 py-2">

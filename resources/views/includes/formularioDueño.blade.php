@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-2">
+                    <div class="col-lg-6 py-2" id="company">
                         <input type="text" class="form-control" placeholder="RAZON SOCIAL" id="companyPro" name="company" required>
                     </div>
                     <div class="col-lg-6 py-2">

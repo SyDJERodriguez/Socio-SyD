@@ -268,8 +268,26 @@ display: none;
 /*mobile*/
 @media only screen and (max-width: 600px) {
  .header{
-     display: none;
+     /*display: none;*/
+     margin-bottom: 30%;
+     background: none;
  }
+    #main-logo{
+        display: none;
+    }
+
+    #buttonLogin {
+        display: flex;
+        justify-content: center;
+    }
+
+    #company {
+        padding-bottom: 35px !important;
+    }
+
+    #mobile {
+        padding-bottom: 35px !important;
+    }
  .logo-menu{
      display: block;
  }
