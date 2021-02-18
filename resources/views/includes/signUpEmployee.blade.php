@@ -10,7 +10,11 @@
                 <img src="{{asset('img/line.png')}}" alt="line">
                 <br>
                 <br>
-                <form action="">
+                <form method="POST" action="{{route('customer.addAssociate')}}">
+                    @method("PUT")
+                    @csrf
+                    <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
+                    <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -23,7 +27,7 @@
                             </div>
                             <div class="col-6">
                                 <input class="form-control-sm form-control" type="text"
-                                        name="phone"
+                                        name="mobile_number"
                                         placeholder="NO. TELEFÓNICO 10 DIG"
                                         pattern="[0-9]{10}"
                                         required  maxlength="10">
@@ -39,9 +43,11 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="email"
-                                       placeholder="CORREO ELECTRÓNICO"
-                                       required>
+                                <input class="form-control-sm form-control" 
+                                        type="email"
+                                        name="email"
+                                        placeholder="CORREO ELECTRÓNICO"
+                                        required>
 
                             </div>
                             <div class="col-6">

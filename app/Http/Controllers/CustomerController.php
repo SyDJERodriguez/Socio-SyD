@@ -49,7 +49,7 @@ class CustomerController extends Controller
     }
 
     //update data in beneficiaries table 
-    public function addBeneficiary(Request $request){
+    public function addAssociate(Request $request){
         $request       = $request->input();
         $client_number = $request['client_number'];
 
@@ -63,9 +63,10 @@ class CustomerController extends Controller
         
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
-        $full_last_name = explode(" ", $request['last_name'], 2);
-        $last_name = $full_last_name[0];
-        $second_last_name = $full_last_name[1];
+        $full_last_name = explode(" ", $request['fullName'], 3);
+        $name = $full_last_name[0];
+        $last_name = $full_last_name[1];
+        $second_last_name = $full_last_name[2];
 
         //calculated number in associates table
         $number = $this->getNumber($request['customer_id']);
@@ -76,12 +77,15 @@ class CustomerController extends Controller
             //insert data in associates table
             $update_associates = DB::table('associates')->insert([
                 'customer_id'       => $request['customer_id'],
-                'client_number'     => $client_number, //aqui va el id del associate table
-                'name'              => $request['name'],
+                'client_number'     => $client_number, 
+                'name'              => $name,
                 'last_name'         => $last_name,
                 'second_last_name'  => $second_last_name,
-                'role'              => isset($request['role']) ? $request['role'] : '',
-                'number'            => $number
+                'role'              => isset($request['role']) ? $request['role'] : "",
+                'active_association'=> 1,
+                'number'            => $number,
+                'birthday'          => $request['bday'],
+                'email'             => $request['email']
             ]);
         }
 
@@ -91,31 +95,16 @@ class CustomerController extends Controller
             $associate_id = $this->getAssociateId($last_name, $number);
         }
 
-        //insert data in beneficiaries table
-        $update_beneficiary ='';
-        if($update_associates <= 1 || $update_associates === true) {
-            //insert data in beneficiary table
-            $update_beneficiary = DB::table('beneficiaries')->insert([
-                'customer_id'      => $request['customer_id'],
-                'associate_id'     => $associate_id, //aqui va el id del associate table
-                'name'             => $request['name'],
-                'last_name'        => $last_name,
-                'second_last_name' => $second_last_name,
-                'mobile_number'    => $request['mobile_number'],
-                'percent'          => $request['percent'],
-                'relationship'     => $request['relationship']
-            ]);
-        }
 
-        if ($update_beneficiary === 1 && $update_associates === 1){
-            return response()->json(['success'=>'true', 'update'=>$update_beneficiary,'client_number'=>$request['client_number']]);
-        }elseif ($update_beneficiary === true && $update_associates === true){
-            return response()->json(['success'=>'true', 'update'=>$update_beneficiary, 'client_number'=>$request['client_number']]);
-        }elseif ($update_beneficiary === 0 && $update_associates === 0){
-            return response()->json(['success'=>'true', 'update'=>$update_beneficiary, 'client_number'=>$request['client_number']]);
+        if ($update_associates === 1){
+            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+        }elseif ($update_associates === true){
+            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
+        }elseif ($update_associates === 0){
+            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
         }
         else{
-            return response()->json(['success'=>'false', 'update'=>$update_beneficiary]);
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
     }
 
@@ -132,7 +121,7 @@ class CustomerController extends Controller
         return $number;
     }
 
-    //function to get associate_id
+    /*function to get associate_id NO SE IMPLEMENTARÁ
     public function getAssociateId($last_name, $number){
         $match = ['last_name' => $last_name, 'number' => $number];
         $query = DB::table('associates')
@@ -140,6 +129,7 @@ class CustomerController extends Controller
         ->get();
         return $query[0]->id;
     }
+    */
 
     //Update data in customers table and insert new data en customer_session table
     public function update(Request $request){
