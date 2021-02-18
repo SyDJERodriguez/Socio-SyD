@@ -218,8 +218,6 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
-
-
     });
 
     async function sendContact() {
@@ -259,6 +257,53 @@
     }
 
 
+    //ADD MORE INPUTS TO THE FORM
 
+    $('#btnAddBeneficiary').click(function() {
 
+        console.log('llamando la función');
+        let elements = document.getElementsByClassName("inputsBeneficiary");
+        let count = 0;
+        for (let i = 0; i<=elements.length; i++){
+            count++;
+        }
+        let  fields = '<div class="col-lg-12">\n' +
+            '                                <h6>BENEFICIARIO '+ count+'</h6>\n' +
+            '                            </div><div class="row inputsBeneficiary" id="inputsBeneficiary">\n' +
+            '                                <div class="col-lg-12 py-2">\n' +
+            '                                    <input type="text" class="form-control" name="name[]"  placeholder="NOMBRE"\n' +
+            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           required maxlength="30">\n' +
+            '                                </div>\n' +
+            '                                <div class="col-lg-6 py-2">\n' +
+            '                                    <input type="text" class="form-control" name="lastname[]" placeholder="APELLIDOS"\n' +
+            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           required maxlength="30">\n' +
+            '                                </div>\n' +
+            '                                <div class="col-lg-6 py-2">\n' +
+            '                                    <input type="text" class="form-control" name="parent[]" placeholder="PARENTESCO"\n' +
+            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           required maxlength="30">\n' +
+            '                                </div>\n' +
+            '                                <div class="col-lg-6 py-2">\n' +
+            '                                    <div class="input-group mb-2">\n' +
+            '                                        <div class="input-group-prepend">\n' +
+            '                                            <div class="input-group-text">%</div>\n' +
+            '                                        </div>\n' +
+            '                                        <input type="text" class="form-control" name="percent[]" placeholder="PORCENTAJE DESTINADO"\n' +
+            '                                               pattern="[0-9].{1,2}"\n' +
+            '                                               required maxlength="3">\n' +
+            '                                    </div>\n' +
+            '                                </div>\n' +
+            '                                <div class="col-lg-6 py-2">\n' +
+            '                                    <input type="text" class="form-control" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"\n' +
+            '                                           pattern="[0-9]{10}"\n' +
+            '                                           required  maxlength="10">\n' +
+            '                                </div>\n' +
+            '                            </div>';
+        let padre = document.getElementById("beneficiaryParent");
+         console.log(padre);
+
+        $('#beneficiaryParent').append(fields);
+    });
 </script>
