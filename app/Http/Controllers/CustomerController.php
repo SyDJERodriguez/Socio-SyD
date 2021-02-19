@@ -39,9 +39,9 @@ class CustomerController extends Controller
     public function verify_client_number(Request $request){
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
-        $verify_client_number = DB::table('client_numbers')->where('client_number',$client_number)->first();
-        if ($verify_client_number == null) {
-            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        $verify_beneficiaries = DB::table('client_numbers')->where('client_number',$client_number)->first();
+        if ($verify_beneficiaries == null) {
+            return response()->json(['success'=>'false', 'beneficiaries'=>'true']);
         }
         $data = Customer::where('client_number', $client_number)->first();
         return response($data);
@@ -230,27 +230,39 @@ class CustomerController extends Controller
     }
 
     public function my_documents() {
-        return view('pages.Account.documents');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.documents', compact('data'));
     }
 
     public function register_beneficiary () {
-        return view('pages.Account.beneficiary');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+
+        $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
+        if($beneficiaries !== null){
+            $beneficiary = 'true';
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
+        }
+        return view('pages.Account.beneficiary', compact('data'));
     }
 
     public function benefits () {
-        return view('pages.Account.benefitSafe');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.benefitSafe', compact('data'));
     }
 
     public function benefits_signature () {
-        return view('pages.Account.signature');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.signature', compact('data'));
     }
 
     public function benefits_assistance () {
-        return view('pages.Account.assistance');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.assistance', compact('data'));
     }
 
     public function beneficiaries () {
-        return view('pages.Account.beneficiaries');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.beneficiaries', compact('data'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){
