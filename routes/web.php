@@ -44,6 +44,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/benefits/beneficiary/', 'CustomerController@register_beneficiary')->name('register.beneficiary');
         Route::get('benefits/signature/', 'CustomerController@benefits_signature')->name('benefits.signature');
         Route::get('benefits/assistance/', 'CustomerController@benefits_assistance')->name('benefits.assistance');
+        Route::post('benefits/add/beneficiaries', 'BeneficiaryController@add_beneficiaries')->name('benefits.add.beneficiary');
 
         //Beneficiaries
         Route::get('/beneficiaries/', 'CustomerController@beneficiaries')->name('beneficiaries');
