@@ -266,17 +266,25 @@
         let count = 0;
         for (let i = 0; i<=elements.length; i++){
             count++;
+            if (count === 2){
+                $('#btnAddBeneficiary').attr('disabled', 'disabled')
+            }
         }
         let  fields = '<div class="col-lg-12">\n' +
             '                                <h6>BENEFICIARIO '+ count+'</h6>\n' +
             '                            </div><div class="row inputsBeneficiary" id="inputsBeneficiary">\n' +
-            '                                <div class="col-lg-12 py-2">\n' +
+            '                                <div class="col-lg-6 py-2">\n' +
             '                                    <input type="text" class="form-control" name="name[]"  placeholder="NOMBRE"\n' +
             '                                           pattern="[A-Za-z].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
             '                                <div class="col-lg-6 py-2">\n' +
-            '                                    <input type="text" class="form-control" name="lastname[]" placeholder="APELLIDOS"\n' +
+            '                                    <input type="text" class="form-control" name="lastname[]" placeholder="PRIMER APELLIDO"\n' +
+            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           required maxlength="30">\n' +
+            '                                </div>\n' +
+                '                            <div class="col-lg-6 py-2">\n' +
+            '                                    <input type="text" class="form-control" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"\n' +
             '                                           pattern="[A-Za-z].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
