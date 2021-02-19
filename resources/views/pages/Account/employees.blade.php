@@ -6,7 +6,7 @@
     <hr>
     <div class="row">
         <div class="col-4 pl-5">
-            <h4>Hola EDUARDO Martínez Pozos<br>
+            <h4>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
                 No. de Cliente <span style="color:#009ce0">{{Auth::user()->client_number}}</span></h4>
             <hr>
         </div>

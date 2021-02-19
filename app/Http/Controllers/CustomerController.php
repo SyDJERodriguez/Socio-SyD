@@ -64,12 +64,6 @@ class CustomerController extends Controller
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
-        //explode the FullName input
-        $full_last_name = explode(" ", $request['fullName'], 3);
-        $name = $full_last_name[0];
-        $last_name = $full_last_name[1];
-        $second_last_name = $full_last_name[2];
-
         //calculated number in associates table
         $number = $this->getNumber($request['customer_id']);
 
@@ -80,9 +74,9 @@ class CustomerController extends Controller
             $update_associates = DB::table('associates')->insert([
                 'customer_id'       => $request['customer_id'],
                 'client_number'     => $client_number, 
-                'name'              => $name,
-                'last_name'         => $last_name,
-                'second_last_name'  => $second_last_name,
+                'name'              => $request['name'],
+                'last_name'         => $request['last_name'],
+                'second_last_name'  => $request['second_last_name'],
                 'role'              => isset($request['role']) ? $request['role'] : "",
                 'active_association'=> 1,
                 'number'            => $number,
@@ -93,11 +87,6 @@ class CustomerController extends Controller
             ]);
         }
 
-        /*get the associate_id YA NO SE OCUPA ESTA FUNCITON
-        $associate_id = 0;
-        if($update_associates <= 1 || $update_associates === true){
-            $associate_id = $this->getAssociateId($last_name, $number);
-        } */
 
 
         if ($update_associates === 1){
@@ -124,16 +113,6 @@ class CustomerController extends Controller
         }
         return $number;
     }
-
-    /*function to get associate_id NO SE IMPLEMENTARÁ
-    public function getAssociateId($last_name, $number){
-        $match = ['last_name' => $last_name, 'number' => $number];
-        $query = DB::table('associates')
-        ->where($match)
-        ->get();
-        return $query[0]->id;
-    }
-    */
 
     //Update data in customers table and insert new data en customer_session table
     public function update(Request $request){
@@ -312,7 +291,7 @@ class CustomerController extends Controller
         $associates = DB::table('associates')
                     ->where('client_number','=',$data['client_number'])
                     ->get();
-        return view('pages.Account.employees', compact('associates'));
+        return view('pages.Account.employees', compact('data','associates'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){

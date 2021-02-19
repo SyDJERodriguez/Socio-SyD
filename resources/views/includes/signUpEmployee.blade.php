@@ -19,11 +19,30 @@
                         <div class="row">
                             <div class="col-6">
                                 <input class="form-control-sm form-control" type="text"
-                                        name="fullName"       
-                                        placeholder="NOMBRE COMPLETO"
-                                        pattern="[A-Za-z].{7,}"
+                                        name="name"       
+                                        placeholder="NOMBRE(S)"
+                                        pattern="[A-Za-z].{3,}"
                                         required maxlength="30">
 
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control-sm form-control" type="text"
+                                        name="last_name"       
+                                        placeholder="APELLIDO PATERNO"
+                                        pattern="[A-Za-z].{3,}"
+                                        required maxlength="30">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input class="form-control-sm form-control" type="text"
+                                        name="second_last_name"
+                                        placeholder="APELLIDO MATERNO"
+                                        pattern="[A-Za-z].{3,}"
+                                        required  maxlength="30">
                             </div>
                             <div class="col-6">
                                 <input class="form-control-sm form-control" type="text"
@@ -33,15 +52,11 @@
                                         required  maxlength="10">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-6"></div>
                             <div class="col-6">
                                 <label class="text-muted sml p-0 m-0">FECHA DE NACIMIENTO</label><br>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-6">
                                 <input class="form-control-sm form-control" 
                                         type="email"
