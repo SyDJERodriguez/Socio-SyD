@@ -50,7 +50,7 @@
                             <div class="col-6">
                                 <input class="form-control-sm form-control" type="text"
                                         name="mobile_number"
-                                        value="{{$employee->mobile_number}}"
+                                        value="{{(int)$employee->mobile_number}}"
                                         pattern="[0-9]{10}"
                                         required  maxlength="10">
                             </div>

@@ -30,7 +30,6 @@ use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -87,14 +86,10 @@ class CustomerController extends Controller
             ]);
         }
 
-        if ($update_associates === 1){
-            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === true){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === 0){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }
-        else{
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
     }
@@ -128,14 +123,10 @@ class CustomerController extends Controller
             'email'             => $request['email']
         ]);
 
-        if ($update_associates === 1){
-            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === true){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === 0){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }
-        else{
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
 

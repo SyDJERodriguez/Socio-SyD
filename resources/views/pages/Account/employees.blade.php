@@ -42,7 +42,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-dark btn-sm btn-block" href="#" role="button">
+                                <a class="btn btn-outline-dark btn-sm btn-block" style="border: 0px" href="#" role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
