@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <!--header-->
     <div class="row header ml-0">
-        <div class="col-lg-3 p-2 pl-4">
+        <div class="col-lg-3 p-2 pl-4" id="main-logo">
             <img src="{{asset('img/logo.png')}}" width="250px" alt="">
         </div>
         <div class="col-lg-7 pl-6 pt-1">
@@ -29,9 +29,8 @@
                             <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4"><b>¿Olvidaste tu contraseña?</b></a>
                         </div>
                     </div>
-                    <div class="col-sm-2 my-1">
+                    <div class="col-sm-2 my-1" id="buttonLogin">
                         <button type="submit" id="login-button" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px">INICIAR SESIÓN</button>
-                        <a href="#" class="disabl">Iniciar sesión</a>
                     </div>
                 </div>
 

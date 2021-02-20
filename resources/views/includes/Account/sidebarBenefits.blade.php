@@ -2,7 +2,7 @@
     <hr style="height:2px; margin-left: 10px;margin-right: 10px ">
 </div>
 <div class="col-lg-3 benefits_sb" style="margin-left: 10px">
-    <h6 style="font-size: 18px">Hola EDUARDO Martínez Pozos</h6>
+    <h6 style="font-size: 18px">Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}</h6>
     <p style="font-size: 18px">No. de Cliente <span style="color: #009CE0;"> {{Auth::user()->client_number}}</span></p>
     <br>
     <button class="btn btn-lg text-white" style="background-color: #143153;font-size: 18px;width: 100%;"

@@ -10,12 +10,12 @@
                 <img src="{{asset('img/line.png')}}" alt="line">
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
-                <form action="#">
+                <form action="{{route('send.restore.password')}}" method="GET" id="sendRestorePassword">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
-                                       placeholder="CORREO ELECTRÓNICO">
+                                <input class="form-control-sm form-control" type="text" name="email"
+                                       placeholder="CORREO ELECTRÓNICO" required>
 
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <br>
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-info">ENVIAR</button>
+                                <button type="submit" class="btn btn-info" id="sendEmailRestore">ENVIAR</button>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{'img/icon_check.png'}}">
+                        <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">REGISTRO EXITOSO</h5>
                         <p class="text-white" id="clientName"></p>
                         <p class="text-white" id="clientNumber"></p>
@@ -71,7 +71,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{'img/icon_check.png'}}">
+                        <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
                         <p class="text-white">¡HA OCURRIDO UN ERROR, POR FAVOR INTENTE DE NUEVO!</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
@@ -94,7 +94,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{'img/icon_check.png'}}">
+                        <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR EN EL SERVIDOR</h5>
                         <p class="text-white">¡HA OCURRIDO UN ERROR EN EL SERVIDOR, POR FAVOR INTENTE MÁS TARDE!</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
@@ -133,6 +133,73 @@
                                 amet, consectetuer<br> adipiscing elit, sed diam </span><span class="float-right"><i
                                 style="color: #00A5E6;" class="far fa-check"></i></span></li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal CONTACTO FORMULARIO-->
+<div class="modal fade" id="contactModalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+                
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
+                        <p class="text-white">EN UN MOMENTO NOS PONDREMOS EN CONTACTO CON USTED</p>
+                        <p class="text-white" id="clientNumber"></p>
+                        <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal RESTORE PASSWORD-->
+<div class="modal fade" id="restorePasswordSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
+                        <p class="text-white">POR FAVOR INGRESE A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <p class="text-white" id="clientNumber"></p>
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal SEND EMAIL RESTORE PASSWORD-->
+<div class="modal fade" id="sendRestoreEmail" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CONTRASEÑA!</h5>
+                        <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA.</p>
+                        <p class="text-white"></p>
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

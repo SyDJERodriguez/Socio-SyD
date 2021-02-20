@@ -48,7 +48,7 @@ class CustomerController extends Controller
         return response($data);
     }
 
-    //update data in beneficiaries table 
+    //update data in beneficiaries table
     public function addEmployee(Request $request){
         $request       = $request->input();
         $client_number = $request['client_number'];
@@ -60,7 +60,7 @@ class CustomerController extends Controller
                 return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
             }
         }
-        
+
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
@@ -73,7 +73,7 @@ class CustomerController extends Controller
             //insert data in associates table
             $update_associates = DB::table('associates')->insert([
                 'customer_id'       => $request['customer_id'],
-                'client_number'     => $client_number, 
+                'client_number'     => $client_number,
                 'name'              => $request['name'],
                 'last_name'         => $request['last_name'],
                 'second_last_name'  => $request['second_last_name'],
@@ -116,7 +116,7 @@ class CustomerController extends Controller
         //update data in associates table
         $update_associates = DB::table('associates')->where('number', '=', $request['number'])->update([
             'customer_id'       => $request['customer_id'],
-            'client_number'     => $client_number, 
+            'client_number'     => $client_number,
             'name'              => $request['name'],
             'last_name'         => $request['last_name'],
             'second_last_name'  => $request['second_last_name'],
@@ -179,19 +179,19 @@ class CustomerController extends Controller
 
         //Verify is the email has not a relation with other client number
         $verify_mobile_number = Customer::where('mobile_number', $request['mobile'])->first();
-        if(!empty($verify_mobile_number)){
+        /*if(!empty($verify_mobile_number)){
             if ($verify_mobile_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
             }
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
-        $verify_email_number = Customer::where('email', $request['email'])->first();
+        /*$verify_email_number = Customer::where('email', $request['email'])->first();
         if (!empty($verify_email_number)){
             if ($verify_email_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
             }
-        }
+        }*/
 
 
         //Check if the client number is already in the DB
@@ -284,6 +284,39 @@ class CustomerController extends Controller
         return $this->loggedOut($request) ?: redirect('/');
     }
 
+    public function send_restore_password(Request $request) {
+        $request = $request->input();
+        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
+        $data = Customer::where('client_number', $data_session->client_number)->first();
+        try {
+            \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Restablecer Contraseña Plataforma SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
+
+    public function edit_password($client_number) {
+        return view('pages.restorePassword', compact('client_number'));
+    }
+
+    public function update_password(Request $request) {
+
+        $request = $request->input();
+        $password      = Hash::make($request['password']);
+        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
+            'password' => $password,
+        ]);
+
+        if ($update_customer === 1){
+            return response()->json(['success'=>'true','status' =>200]);
+        }
+        return response()->json(['success'=>'false','status' =>401]);
+    }
+
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
@@ -306,25 +339,39 @@ class CustomerController extends Controller
     }
 
     public function my_documents() {
-        return view('pages.Account.documents');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.documents', compact('data'));
     }
 
     public function register_beneficiary () {
-        return view('pages.Account.beneficiary');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+
+        $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
+        if($beneficiaries !== null){
+            $beneficiary = 'true';
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
+        }
+        return view('pages.Account.beneficiary', compact('data'));
     }
 
     public function benefits () {
-        return view('pages.Account.benefitSafe');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.benefitSafe', compact('data'));
     }
 
     public function benefits_signature () {
-        return view('pages.Account.signature');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.signature', compact('data'));
     }
 
     public function benefits_assistance () {
-        return view('pages.Account.assistance');
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.assistance', compact('data'));
     }
 
+    public function beneficiaries () {
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        return view('pages.Account.beneficiaries', compact('data'));
     //load data from associates
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
@@ -421,6 +468,20 @@ class CustomerController extends Controller
             return ['status' => 0 , 'msg'  => $e->getMessage()];
         }
     }
+
+
+    public function contact_us(Request $request){
+        $data = $request->all();
+        try {
+            \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to('gtzjafet@gmail.com', 'Jafet Gtz')->subject('Nuevo Registro de Club Dar');
+            });
+            return response()->json(['success'=>'submitted successfully','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'submitted successfully','status' =>401]);
+        }
+     }
 
     protected function guard()
     {

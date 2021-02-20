@@ -18,12 +18,18 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::post('/contact_us','CustomerController@contact_us');
+Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
+Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
+Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
+
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
+
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
@@ -39,6 +45,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/benefits/beneficiary/', 'CustomerController@register_beneficiary')->name('register.beneficiary');
         Route::get('benefits/signature/', 'CustomerController@benefits_signature')->name('benefits.signature');
         Route::get('benefits/assistance/', 'CustomerController@benefits_assistance')->name('benefits.assistance');
+        Route::post('benefits/add/beneficiaries', 'BeneficiaryController@add_beneficiaries')->name('benefits.add.beneficiary');
 
         //Beneficiaries
         Route::get('/employees/', 'CustomerController@employees')->name('employees');
@@ -47,5 +54,6 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
+        
     });
 });

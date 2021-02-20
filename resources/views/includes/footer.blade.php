@@ -14,7 +14,7 @@
                   Aviso de Privacidad
                 </a>
                 <hr class="bg-primary">
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalTerminos" style="color:white">
+                <a href="#" class="primary-color" data-toggle="modal" data-target="#modal8" style="color:white">
                   Términos y condiciones
                 </a>
                 <hr class="bg-primary">
@@ -61,10 +61,10 @@
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>
                               <span>TELÉFONO:</span><br>
-                                <a href="tel:800 SYD (723) 1010">800 SYD (723) 1010</a>
+                                <a href="tel:8007931010">800 723 1010</a>
                               <hr>
                               <span>CORREO:</span><br>
-                                <a href="mailto:SOCIOSYD@SYD.COM">SOCIOSYD@SYD.COM</a>
+                                <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
                               <br>
                               <hr>
                           </p>
@@ -73,40 +73,38 @@
                           <div class="text-center" style="background-color: #143153;padding: 20px;"><img src="{{'img/logo.png'}}" alt="logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
-                          <form>
+                          <form method="POST" action="/contact_us" id="form-contact-us">
+                          {{ csrf_field() }}
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control" placeholder="NOMBRE">
+                                  <input type="text" class="form-control" id="contact-name" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control" placeholder="APELLIDOS">
+                                  <input type="text" class="form-control"  id="contact-lastname" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control" placeholder="CORREO ELECTRÓNICO">
+                                  <input type="text" class="form-control"  id="contact-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="'example: correo@dominio.com'" placeholder="CORREO ELECTRÓNICO" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control" placeholder="No. TELEFÓNICO 10 DÍGITOS">
+                                  <input type="text" class="form-control"  id="contact-phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"  minlength="10"  title="Ten digits code" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
-                                    <textarea class="form-control" name="Comentario:" placeholder="COMENTARIO:" id="" cols="103" rows="8"></textarea>
+                                    <textarea class="form-control" name="Comentario:"  id="contact-comment" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="button" class="btn btn text-white float-right" style="background-color: #00A1E3;" value="Enviar">
+                                  <input id="contact_us_button" onClick="sendContact()" type="button" class="btn btn text-white float-right" style="background-color: #00A1E3;" value="Enviar">
                                 </div>
                               </div>
                             </form>
                       </div>
                   </div>
               </div>
-          </div>
-            <a href="#" class="whatsapp"><img src="{{'img/whts.png'}}" alt="whats"></a>
-  
-  
-          </div>
         </div>
       </div>
+        </div>
+     </div>
 
       <!-- MODAL PREGUNTAS-->
       @extends('includes.preguntas')
@@ -116,4 +114,7 @@
 
       <!-- MODAL TERMINOS -->
       @extends('includes.terms')
+
+        <!-- MODAL GENERAL TERMS -->
+    @extends('includes.generalTerms')
 </footer>
