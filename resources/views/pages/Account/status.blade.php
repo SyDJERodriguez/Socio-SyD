@@ -2,9 +2,7 @@
 @section('content')
 <!--BUTTONS AND PROGRESS ARROW-->
 @include('includes.options', ['active' => 3])
-@section('css')
-   
-@endsection
+
 <div style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div>
