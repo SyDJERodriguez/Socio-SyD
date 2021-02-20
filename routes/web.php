@@ -42,7 +42,8 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Beneficiaries
         Route::get('/employees/', 'CustomerController@employees')->name('employees');
-
+        Route::get('/employees/{emp}', 'CustomerController@editEmployees');
+        Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');

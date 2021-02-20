@@ -87,7 +87,46 @@ class CustomerController extends Controller
             ]);
         }
 
+        if ($update_associates === 1){
+            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+        }elseif ($update_associates === true){
+            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
+        }elseif ($update_associates === 0){
+            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
+        }
+        else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+    }
 
+    public function updateEmployee(Request $request){
+        $request       = $request->input();
+        $client_number = $request['client_number'];
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = Customer::where('mobile_number', $request['mobile_number'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //update data in associates table
+        $update_associates ='';
+        //update data in associates table
+        $update_associates = DB::table('associates')->where('number', '=', $request['number'])->update([
+            'customer_id'       => $request['customer_id'],
+            'client_number'     => $client_number, 
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'role'              => isset($request['role']) ? $request['role'] : "",
+            'active_association'=> 1,
+            'birthday'          => $request['bday'],
+            'updated_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile_number'],
+            'email'             => $request['email']
+        ]);
 
         if ($update_associates === 1){
             return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
@@ -99,6 +138,7 @@ class CustomerController extends Controller
         else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
+
     }
 
     //function to calculated number of associate
@@ -292,6 +332,14 @@ class CustomerController extends Controller
                     ->where('client_number','=',$data['client_number'])
                     ->get();
         return view('pages.Account.employees', compact('data','associates'));
+    }
+
+    public function editEmployees($user){
+        $query = DB::table('associates')
+                    ->where('number','=',$user)
+                    ->get();
+        $employee = $query[0];
+        return view('pages.Account.editEmployees', compact('employee','user'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){

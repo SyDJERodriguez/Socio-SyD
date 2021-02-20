@@ -24,7 +24,7 @@
                             <td>Correo electrónico</td>
                             <td>Teléfono</td>
                             <td>Editar</td>
-                            <td>Elimar</td>
+                            <td>Eliminar</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,8 +33,19 @@
                             <td>{{$as->name}} {{$as->last_name}} {{$as->second_last_name}}</td>
                             <td>{{$as->email}}</td>
                             <td>{{$as->mobile_number}}</td>
-                            <td><a href="#"><i class="fa fa-pencil text-info"></i></a> </td>
-                            <td><i class="fa fa-trash"></i></td>
+                            <td>
+                                <a class="btn btn-outline-light btn-sm btn-block" 
+                                    href="{{ action('CustomerController@editEmployees',['user' => $as->number]) }}"
+                                    id="edit-item" 
+                                    role="button">
+                                    <i class="fa fa-pencil text-info"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-dark btn-sm btn-block" href="#" role="button">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -54,7 +65,6 @@
     <br>
     @include('includes.Account.deleteButton')
     @include('includes.signUpEmployee')
-
 
     <br><br><br><br>
 </div>
