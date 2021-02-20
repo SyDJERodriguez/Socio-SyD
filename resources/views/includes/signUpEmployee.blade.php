@@ -10,7 +10,7 @@
                 <img src="{{asset('img/line.png')}}" alt="line">
                 <br>
                 <br>
-                <form method="POST" action="{{route('customer.addAssociate')}}">
+                <form method="POST" action="{{route('customer.addEmployee')}}">
                     @method("PUT")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">

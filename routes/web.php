@@ -23,7 +23,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
-    Route::put('/addAssociate', 'CustomerController@addAssociate')->name('addAssociate');
+    Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {

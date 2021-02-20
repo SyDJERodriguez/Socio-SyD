@@ -49,7 +49,7 @@ class CustomerController extends Controller
     }
 
     //update data in beneficiaries table 
-    public function addAssociate(Request $request){
+    public function addEmployee(Request $request){
         $request       = $request->input();
         $client_number = $request['client_number'];
 
@@ -149,7 +149,7 @@ class CustomerController extends Controller
         if( $number < 6 ){ //limit under 5
             ++$number;
         }else{
-            $number; //LIMIT REACHED
+            ++$number; //LIMIT REACHED
         }
         return $number;
     }
