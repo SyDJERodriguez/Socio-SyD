@@ -369,9 +369,11 @@ class CustomerController extends Controller
         return view('pages.Account.assistance', compact('data'));
     }
 
-    public function beneficiaries () {
+    public function beneficiaries ()
+    {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         return view('pages.Account.beneficiaries', compact('data'));
+    }
     //load data from associates
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
