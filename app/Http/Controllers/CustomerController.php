@@ -132,6 +132,26 @@ class CustomerController extends Controller
 
     }
 
+    public function deleteEmployee($employee){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        //update the employee with client number 00000000 and number = 0
+        $update_associates ='';
+        $update_associates = DB::table('associates')
+                ->where('number','=',$employee)
+                ->where('client_number','=',$data['client_number'])
+                ->update([
+                    'client_number'     => "0000000000",
+                    'number'            => 0
+                ]);
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+    }
+
     //function to calculated number of associate
     public function getNumber($customer_id){
         $number = DB::table('associates')
@@ -374,12 +394,14 @@ class CustomerController extends Controller
         return view('pages.Account.employees', compact('data','associates'));
     }
 
-    public function editEmployees($user){
+    public function editEmployee($user){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $query = DB::table('associates')
+                    ->where('client_number','=',$data['client_number'])
                     ->where('number','=',$user)
                     ->get();
         $employee = $query[0];
-        return view('pages.Account.editEmployees', compact('employee','user'));
+        return view('pages.Account.editEmployee', compact('employee','user'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){

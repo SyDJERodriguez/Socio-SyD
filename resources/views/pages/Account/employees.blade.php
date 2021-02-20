@@ -35,14 +35,17 @@
                             <td>{{$as->mobile_number}}</td>
                             <td>
                                 <a class="btn btn-outline-light btn-sm btn-block" 
-                                    href="{{ action('CustomerController@editEmployees',['user' => $as->number]) }}"
+                                    href="{{ action('CustomerController@editEmployee',['user' => $as->number]) }}"
                                     id="edit-item" 
                                     role="button">
                                     <i class="fa fa-pencil text-info"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-dark btn-sm btn-block" style="border: 0px" href="#" role="button">
+                                <a class="btn btn-outline-dark btn-sm btn-block" 
+                                        style="border: 0px" 
+                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->number]) }}" 
+                                        role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -101,7 +104,10 @@
                  }
              }
          }
-         ]
+        ],
+        language: {
+            emptyTable: "No hay registros para mostrar"
+        }
     });
  </script>
 @stop
