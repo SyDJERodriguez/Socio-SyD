@@ -448,7 +448,75 @@ class CustomerController extends Controller
 
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.assistance', compact('data'));
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        //dd(Auth::user()->client_type);
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>0 && $total_amount<=2500) {
+                $level = 1;
+                //dd($level);
+            }
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 2;
+                //dd($level);
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 3;
+                //dd($level);
+            }
+            if ($total_amount>7000 && $total_amount<=9500) {
+                $level = 4;
+                //dd($level);
+            }
+
+            if ($total_amount>9500) {
+                $level = 5;
+                //dd($level);
+            }
+            //dd($level);
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>0 && $total_amount<=200) {
+                $level = 1;
+                //dd($level);
+            }
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 2;
+                //dd($level);
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 3;
+                //dd($level);
+            }
+            if ($total_amount>1300 && $total_amount<=1700) {
+                $level = 4;
+                //dd($level);
+            }
+            if ($total_amount>1700 && $total_amount<=2500) {
+                $level = 5;
+                //dd($level);
+            }
+
+            if ($total_amount>2500) {
+                $level = 6;
+                //dd($level);
+            }
+            // dd($level);
+        }
+        return view('pages.Account.assistance', compact('data', 'level'));
     }
 
     public function beneficiaries ()
