@@ -103,7 +103,10 @@
                 }
             }
         }
-        ]
+        ],
+        language: {
+            emptyTable: "No hay registros para mostrar"
+        }
    });
 </script>
 
