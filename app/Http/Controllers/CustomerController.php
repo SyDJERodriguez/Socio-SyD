@@ -16,6 +16,7 @@ use App\Helpers\Utils;
 use App\LogRegisters;
 use App\VueTables\EloquentVueTables;
 use DB;
+use Carbon\Carbon;
 use function GuzzleHttp\Psr7\get_message_body_summary;
 use Hash;
 use http\Env\Response;
@@ -29,7 +30,6 @@ use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -39,12 +39,130 @@ class CustomerController extends Controller
     public function verify_client_number(Request $request){
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
-        $verify_beneficiaries = DB::table('client_numbers')->where('client_number',$client_number)->first();
-        if ($verify_beneficiaries == null) {
-            return response()->json(['success'=>'false', 'beneficiaries'=>'true']);
+        $verify_client_number = DB::table('client_numbers')->where('client_number',$client_number)->first();
+        if ($verify_client_number == null) {
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
         }
         $data = Customer::where('client_number', $client_number)->first();
         return response($data);
+    }
+
+    //update data in beneficiaries table
+    public function addEmployee(Request $request){
+        $request       = $request->input();
+        $client_number = $request['client_number'];
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = Customer::where('mobile_number', $request['mobile_number'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //Check if the client number is already in the DB
+        $data = Customer::where('client_number', $client_number)->first();
+
+        //calculated number in associates table
+        $number = $this->getNumber($request['customer_id']);
+
+        //insert data in associates table
+        $update_associates ='';
+        if($data !== null) {
+            //insert data in associates table
+            $update_associates = DB::table('associates')->insert([
+                'customer_id'       => $request['customer_id'],
+                'client_number'     => $client_number,
+                'name'              => $request['name'],
+                'last_name'         => $request['last_name'],
+                'second_last_name'  => $request['second_last_name'],
+                'role'              => isset($request['role']) ? $request['role'] : "",
+                'active_association'=> 1,
+                'number'            => $number,
+                'birthday'          => $request['bday'],
+                'created_at'        => date('Y-m-d H:i:s'),
+                'mobile_number'     => $request['mobile_number'],
+                'email'             => $request['email']
+            ]);
+        }
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+    }
+
+    public function updateEmployee(Request $request){
+        $request       = $request->input();
+        $client_number = $request['client_number'];
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = Customer::where('mobile_number', $request['mobile_number'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //update data in associates table
+        $update_associates ='';
+        //update data in associates table
+        $update_associates = DB::table('associates')->where('number', '=', $request['number'])->update([
+            'customer_id'       => $request['customer_id'],
+            'client_number'     => $client_number,
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'role'              => isset($request['role']) ? $request['role'] : "",
+            'active_association'=> 1,
+            'birthday'          => $request['bday'],
+            'updated_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile_number'],
+            'email'             => $request['email']
+        ]);
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+
+    }
+
+    public function deleteEmployee($employee){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        //update the employee with client number 00000000 and number = 0
+        $update_associates ='';
+        $update_associates = DB::table('associates')
+                ->where('number','=',$employee)
+                ->where('client_number','=',$data['client_number'])
+                ->update([
+                    'client_number'     => "0000000000",
+                    'number'            => 0
+                ]);
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+    }
+
+    //function to calculated number of associate
+    public function getNumber($customer_id){
+        $number = DB::table('associates')
+        ->where('customer_id','=', $customer_id)
+        ->count();
+        if( $number < 6 ){ //limit under 5
+            ++$number;
+        }else{
+            ++$number; //LIMIT REACHED
+        }
+        return $number;
     }
 
     //Update data in customers table and insert new data en customer_session table
@@ -220,11 +338,13 @@ class CustomerController extends Controller
     }
 
     public function get_trans($client_number){
+        $now = Carbon::now();
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
+            ->whereMonth('transaction_date','=',$now)
             ->get();
         return $customer_trans;
     }
@@ -260,9 +380,28 @@ class CustomerController extends Controller
         return view('pages.Account.assistance', compact('data'));
     }
 
-    public function beneficiaries () {
+    public function beneficiaries ()
+    {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         return view('pages.Account.beneficiaries', compact('data'));
+    }
+    //load data from associates
+    public function employees () {
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $associates = DB::table('associates')
+                    ->where('client_number','=',$data['client_number'])
+                    ->get();
+        return view('pages.Account.employees', compact('data','associates'));
+    }
+
+    public function editEmployee($user){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $query = DB::table('associates')
+                    ->where('client_number','=',$data['client_number'])
+                    ->where('number','=',$user)
+                    ->get();
+        $employee = $query[0];
+        return view('pages.Account.editEmployee', compact('employee','user'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){

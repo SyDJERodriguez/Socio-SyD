@@ -28,6 +28,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
+    Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
 
 
 //Account URLs
@@ -47,8 +48,10 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::post('benefits/add/beneficiaries', 'BeneficiaryController@add_beneficiaries')->name('benefits.add.beneficiary');
 
         //Beneficiaries
-        Route::get('/beneficiaries/', 'CustomerController@beneficiaries')->name('beneficiaries');
-
+        Route::get('/employees/', 'CustomerController@employees')->name('employees');
+        Route::get('/employees/{emp}', 'CustomerController@editEmployee');
+        Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
+        Route::get('/employees/{emp}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
