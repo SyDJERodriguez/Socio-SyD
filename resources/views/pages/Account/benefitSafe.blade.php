@@ -18,8 +18,9 @@
               <img  src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
           </div>
         </div>
-        <form>
-            <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+       <!-- <form>-->
+          <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+          @if((Auth::user()->client_type==="1" && $level>1) || (Auth::user()->client_type==="2" && $level>0))
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8" class="py-2"   style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" ><br> <strong class="py-3"> PERDIDA ORGANICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
                 </div>
@@ -38,8 +39,18 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img  data-toggle="modal" data-target="#modal8"class="py-2"  style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br><strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,  <br> nosotros te ayudamos.  </div> </strong></h6>
                 </div>
-            </div>
-        </form>
+          @else
+                  <div class="modal-body " style="background-color: #143153;">
+                      <div class="row">
+                          <div class="col-lg-12 text-center">
+                              <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
+                              <p class="text-white"></p>
+                          </div>
+                      </div>
+                  </div>
+          @endif
+          </div>
+       <!-- </form>-->
           @include('includes.Account.deleteButton')
       </div>
   </div>
