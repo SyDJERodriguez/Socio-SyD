@@ -141,7 +141,8 @@ class CustomerController extends Controller
                 ->where('client_number','=',$data['client_number'])
                 ->update([
                     'client_number'     => "0000000000",
-                    'number'            => 0
+                    'number'            => 0,
+                    'active_association'=> 0
                 ]);
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
