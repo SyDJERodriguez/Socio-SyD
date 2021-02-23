@@ -141,7 +141,6 @@ class CustomerController extends Controller
                 ->where('number','=',$employee)
                 ->where('client_number','=',$data['client_number'])
                 ->update([
-                    'client_number'     => "0000000000",
                     'number'            => 0,
                     'active_association'=> 0
                 ]);
@@ -388,7 +387,7 @@ class CustomerController extends Controller
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $associates = DB::table('associates')
-                    ->where('client_number','=',$data['client_number'])
+                    ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
                     ->get();
         //Calculated the limit of employee
         $validated = $this->employeeLimit();
