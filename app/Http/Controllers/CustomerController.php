@@ -364,6 +364,32 @@ class CustomerController extends Controller
         return view('pages.Account.signature', compact('data'));
     }
 
+    public function efirm(Request $request){
+        //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
+        $SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
+        
+        //validated with recatpcha
+        if($request['googleResponseToken']){ //if token exist
+            $googleToken = $request['googleResponseToken'];
+
+            $response = file_get_contents(
+                "https://www.google.com/recaptcha/api/siteverify?secret=". $SECRET_KEY."&response={$googleToken}"
+            );
+            $response = json_decode($response);
+            $response = (array)$response;
+            //return response()->json($response);
+
+            if($response['success']){
+                if($response['score'] && $response['score'] > 0.5){
+                    //save the efirm and redirect to home
+                    return redirect()->route('customer.benefits');
+                }else{
+                    return "eres un robot";
+                }
+            }
+        }
+    }
+
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         return view('pages.Account.assistance', compact('data'));
