@@ -64,7 +64,8 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $client_number)->first();
 
         //calculated number in associates table
-        $number = $this->getNumber($request['customer_id']);
+        $number = $this->getNumberAssociate($request['customer_id']);
+        ++$number; //plus one bc 0 don't exists
 
         //insert data in associates table
         $update_associates ='';
@@ -140,8 +141,8 @@ class CustomerController extends Controller
                 ->where('number','=',$employee)
                 ->where('client_number','=',$data['client_number'])
                 ->update([
-                    'client_number'     => "0000000000",
-                    'number'            => 0
+                    'number'            => 0,
+                    'active_association'=> 0
                 ]);
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
@@ -153,15 +154,11 @@ class CustomerController extends Controller
     }
 
     //function to calculated number of associate
-    public function getNumber($customer_id){
+    public function getNumberAssociate($customer_id){
         $number = DB::table('associates')
         ->where('customer_id','=', $customer_id)
+        ->where('active_association','=',1)
         ->count();
-        if( $number < 6 ){ //limit under 5
-            ++$number;
-        }else{
-            ++$number; //LIMIT REACHED
-        }
         return $number;
     }
 
@@ -524,13 +521,49 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         return view('pages.Account.beneficiaries', compact('data'));
     }
-    //load data from associates
+
+    //load data from associates AQUI
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $associates = DB::table('associates')
-                    ->where('client_number','=',$data['client_number'])
+                    ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
                     ->get();
-        return view('pages.Account.employees', compact('data','associates'));
+        //Calculated the limit of employee
+        $validated = $this->employeeLimit();
+              
+        return view('pages.Account.employees', compact('data','associates','validated'));
+    }
+
+    public function employeeLimit(){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $now = Carbon::now();
+        //get sum of amount column
+        $query = DB::table('transactions')
+            ->where('client_number','=', $data['client_number'])
+            ->whereMonth('transaction_date','=',$now)
+            ->sum('amount');
+
+        //round the number with only 2 decimals        
+        $limit = (float)number_format($query,2,'.','');
+        $validated = false; //var for button validated
+
+        //get number of employees registrados
+        $numberEmployees = $this->getNumberAssociate($data['id']);
+
+        //calculated the limit of employees
+        if( $limit > 2500.01 && $limit < 4500.01 && $numberEmployees < 5 ){ //bronce
+            $validated = true;
+        }else if($limit > 4500.01 && $limit < 7000.01 && $numberEmployees < 5){ //plata
+            $validated = true;
+        }else if($limit > 7000.01 && $limit < 9500.01 && $numberEmployees < 10){ //oro
+            $validated = true;
+        }else if($limit > 9500.01 && $numberEmployees < 10) {
+            $validated = true;
+        }else {
+            $validated = false;
+        }
+
+        return $validated;
     }
 
     public function editEmployee($user){

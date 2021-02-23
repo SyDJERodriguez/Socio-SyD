@@ -56,10 +56,12 @@
             </div>
         </div>
         <br>
-
         <div class="row">
             <div class="col-3 mx-auto">
-                <button class="btn btn-block text-white btn-alta" 
+                <button class="btn btn-block text-white btn-alta"     
+                @if ($validated == 0)
+                disabled
+                @endif
                 style="background-color: #143153;" 
                 data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
