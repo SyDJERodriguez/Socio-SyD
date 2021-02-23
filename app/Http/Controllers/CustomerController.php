@@ -576,6 +576,19 @@ class CustomerController extends Controller
         return view('pages.Account.editEmployee', compact('employee','user'));
     }
 
+    //Function to test upload the insurance policy
+
+    public function upload_s3(){
+        $file = asset('img/1x/wht.png');
+        $upload = \Storage::cloud()->put('polizas/wht.png', $file, 'public');
+
+        if($upload){
+            return 'success';
+        }
+
+        return 'failed';
+    }
+
     public function update_stage_two(Customer $customer, Request $request){
 	    $request = $request->all();
 	    if($request['client_type'] === 'otro')
