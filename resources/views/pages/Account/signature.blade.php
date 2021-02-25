@@ -22,12 +22,12 @@
                 @if ($imgData)
                 <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
                     <div class="col-lg-6 py-1">
-                        <img src="{{$imgData->imgData}}" 
+                        <img src="{{$imgData->imgData}}"
+                        id="signCustomer" 
                         alt="signatureCustomer" 
                         width="320" 
                         height="140"
-                        style="display: block;
-                            margin-left: 60%"
+                        style="display: block;margin-left: 60%;"
                         >
                     </div>
                 </div>
@@ -80,6 +80,7 @@
 </div>
 
 <script>
+    
     document.getElementById("confirmar")
     .addEventListener("click", imgData);//click limpiar button to call imgData function
 
