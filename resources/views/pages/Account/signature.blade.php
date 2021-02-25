@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-lg-6 py-1">
                             <canvas id="efirm"></canvas>
-                            <input type="hidden" id="imgData" name="imgData">
+                            <input type="hidden" id="imgData" name="imgData" required>
                         </div>
                         <br>
                         <div class="col-lg-4 py-5 offset-md-3">
@@ -48,7 +48,9 @@
                         </div>
                         <div class="col-lg-6 offset-md-1">
                             <input type="submit" class="btn btn float-right text-white px-5"
-                                style="background-color: #009CE0;" value="Confirmar">
+                                style="background-color: #009CE0;" 
+                                id="confirmar"
+                                value="Confirmar">
                         </div>
                         <div>
                             <input type="hidden" name="googleResponseToken" id="googleResponseToken">
@@ -63,7 +65,7 @@
 </div>
 
 <script>
-    document.getElementById("limpiar")
+    document.getElementById("confirmar")
     .addEventListener("click", imgData);//click limpiar button to call imgData function
 
     function imgData() {//set format of canvas to pass in post as base64

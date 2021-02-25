@@ -381,11 +381,51 @@ class CustomerController extends Controller
 
             if($response['success']){
                 if($response['score'] && $response['score'] > 0.5){
-                    //save the efirm and redirect to home
-                    return redirect()->route('customer.benefits');
-                }else{
-                    return "eres un robot";
+                    //save the efirm into db
+                    $user = Customer::where('client_number', Auth::user()->client_number)->first();
+                    $data = DB::table('signatures')
+                                ->where('client_number','=',$user['client_number'])
+                                ->get();
+            
+                    $data = json_decode($data);
+                    $data = (array)$data;
+                    
+                    //if dont exists, insert
+                    $updateCustomer= '';
+                    $idSign ='';
+                    if (is_array($data) == true) { //check if an array
+                        if(empty($data) === false){
+                            $idSign = DB::table('signatures')
+                                        ->where('client_number','=',$user['client_number'])
+                                        ->update([
+                                            'imgData'    => $request['imgData'],
+                                            'updated_at' => date('Y-m-d H:i:s')
+                                        ]);
+                        }
+
+                        if(empty($data) === true){
+                            $idSign = DB::table('signatures')->insertGetId([
+                                'client_number'   => $user['client_number'],
+                                'created_at'      => date('Y-m-d H:i:s'),
+                                'imgData'         => $request['imgData'] 
+                            ]);
+                
+                            //then update customer table,signature id
+                            $updateCustomer = DB::table('customers_sessions')
+                                                ->where('client_number', '=', $user['client_number'])
+                                                ->update([
+                                                    'signature_id' => $idSign
+                                                ]);
+                        }
+                    }
+                    
+                    
+            
+                    if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
+                        return redirect()->route('customer.benefits');
+                    }
                 }
+                //else u r a robot
             }
         }
     }
