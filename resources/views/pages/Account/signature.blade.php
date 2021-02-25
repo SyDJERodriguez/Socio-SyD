@@ -52,9 +52,9 @@
                                 id="confirmar"
                                 value="Confirmar">
                         </div>
-                        <div>
+                        <!-- <div>
                             <input type="hidden" name="googleResponseToken" id="googleResponseToken">
-                        </div>
+                        </div> -->
                     </div>
                 </form>
                 @include('includes.Account.deleteButton')
@@ -73,13 +73,13 @@
         $("#imgData").val(canvas.toDataURL());
     }
 
-    grecaptcha.ready(function () { //call captcha api and get the token
+    /*grecaptcha.ready(function () { //call captcha api and get the token
         grecaptcha.execute('6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5', { //SITE KEY
             action: 'homepage'
         }).then(function (token) {
             $('#googleResponseToken').val(token);
         });
-    });
+    });*/
 
     var canvas = document.getElementById("efirm");
     var ctx = canvas.getContext("2d");

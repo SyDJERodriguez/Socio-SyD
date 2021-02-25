@@ -365,14 +365,15 @@ class CustomerController extends Controller
     }
 
     public function efirm(Request $request){
+        //QUITAR CAPTCHA COMMENTAR
         //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
-        $SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
+        //$SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
         
         //validated with recatpcha
-        if($request['googleResponseToken']){ //if token exist
-            $googleToken = $request['googleResponseToken'];
+        //if($request['googleResponseToken']){ //if token exist
+            //$googleToken = $request['googleResponseToken'];
 
-            $response = file_get_contents(
+            /*$response = file_get_contents(
                 "https://www.google.com/recaptcha/api/siteverify?secret=". $SECRET_KEY."&response={$googleToken}"
             );
             $response = json_decode($response);
@@ -380,7 +381,7 @@ class CustomerController extends Controller
             //return response()->json($response);
 
             if($response['success']){
-                if($response['score'] && $response['score'] > 0.5){
+                if($response['score'] && $response['score'] > 0.5){*/
                     //save the efirm into db
                     $user = Customer::where('client_number', Auth::user()->client_number)->first();
                     $data = DB::table('signatures')
@@ -424,10 +425,10 @@ class CustomerController extends Controller
                     if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
                         return redirect()->route('customer.benefits');
                     }
-                }
+                //}
                 //else u r a robot
-            }
-        }
+            //}
+        //}
     }
 
     public function benefits_assistance () {
