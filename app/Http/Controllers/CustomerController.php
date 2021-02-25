@@ -361,11 +361,21 @@ class CustomerController extends Controller
 
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.signature', compact('data'));
+        $query = DB::table('signatures')
+                ->where('client_number','=',$data['client_number'])
+                ->get();
+        
+        $query = json_decode($query);
+        $query = (array)$query;
+        $imgData = '';
+        if(empty($query) === false){
+            $imgData = $query[0];
+        }
+        
+        return view('pages.Account.signature', compact('data', 'imgData'));
     }
 
     public function efirm(Request $request){
-        //QUITAR CAPTCHA COMMENTAR
         //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
         //$SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
         
@@ -374,7 +384,7 @@ class CustomerController extends Controller
             //$googleToken = $request['googleResponseToken'];
 
             /*$response = file_get_contents(
-                "https://www.google.com/recaptcha/api/siteverify?secret=". $SECRET_KEY."&response={$googleToken}"
+                "https: //www. google.com/recaptcha/api/siteverify?secret=". $SECRET_KEY."&response={$googleToken}"
             );
             $response = json_decode($response);
             $response = (array)$response;
@@ -420,8 +430,6 @@ class CustomerController extends Controller
                         }
                     }
                     
-                    
-            
                     if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
                         return redirect()->route('customer.benefits');
                     }
