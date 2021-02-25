@@ -652,6 +652,10 @@ class CustomerController extends Controller
         }
      }
 
+     public function generatePDF() {
+
+     }
+
     protected function guard()
     {
         return Auth::guard();
