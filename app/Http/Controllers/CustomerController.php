@@ -440,7 +440,82 @@ class CustomerController extends Controller
 
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.signature', compact('data'));
+        $query = DB::table('signatures')
+                ->where('client_number','=',$data['client_number'])
+                ->get();
+        
+        $query = json_decode($query);
+        $query = (array)$query;
+        $imgData = '';
+        if(empty($query) === false){
+            $imgData = $query[0];
+        }
+        
+        return view('pages.Account.signature', compact('data', 'imgData'));
+    }
+
+    public function efirm(Request $request){
+        //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
+        //$SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
+        
+        //validated with recatpcha
+        //if($request['googleResponseToken']){ //if token exist
+            //$googleToken = $request['googleResponseToken'];
+
+            /*$response = file_get_contents(
+                "https: //www. google.com/recaptcha/api/siteverify?secret=". $SECRET_KEY."&response={$googleToken}"
+            );
+            $response = json_decode($response);
+            $response = (array)$response;
+            //return response()->json($response);
+
+            if($response['success']){
+                if($response['score'] && $response['score'] > 0.5){*/
+                    //save the efirm into db
+                    $user = Customer::where('client_number', Auth::user()->client_number)->first();
+                    $data = DB::table('signatures')
+                                ->where('client_number','=',$user['client_number'])
+                                ->get();
+            
+                    $data = json_decode($data);
+                    $data = (array)$data;
+                    
+                    //if dont exists, insert
+                    $updateCustomer= '';
+                    $idSign ='';
+                    if (is_array($data) == true) { //check if an array
+                        if(empty($data) === false){
+                            $idSign = DB::table('signatures')
+                                        ->where('client_number','=',$user['client_number'])
+                                        ->update([
+                                            'imgData'    => $request['imgData'],
+                                            'updated_at' => date('Y-m-d H:i:s')
+                                        ]);
+                        }
+
+                        if(empty($data) === true){
+                            $idSign = DB::table('signatures')->insertGetId([
+                                'client_number'   => $user['client_number'],
+                                'created_at'      => date('Y-m-d H:i:s'),
+                                'imgData'         => $request['imgData'] 
+                            ]);
+                
+                            //then update customer table,signature id
+                            $updateCustomer = DB::table('customers_sessions')
+                                                ->where('client_number', '=', $user['client_number'])
+                                                ->update([
+                                                    'signature_id' => $idSign
+                                                ]);
+                        }
+                    }
+                    
+                    if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
+                        return redirect()->route('customer.benefits');
+                    }
+                //}
+                //else u r a robot
+            //}
+        //}
     }
 
     public function benefits_assistance () {
