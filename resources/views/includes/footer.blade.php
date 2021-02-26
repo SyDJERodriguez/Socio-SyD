@@ -27,7 +27,7 @@
                 <h4 class="text-white pb-3">Síguenos en redes sociales </h4>
                 <h6 style="display: flex; justify-content: center;">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
-                    <a href="​https://www.instagram.com/dar.refaccionarias/?igshid=nxvvirkqynwe" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
+                    <a href="https://www.instagram.com/dar.refaccionarias/" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
