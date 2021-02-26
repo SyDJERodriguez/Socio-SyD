@@ -30,6 +30,7 @@ use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use PDF;
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -728,7 +729,18 @@ class CustomerController extends Controller
      }
 
      public function generatePDF() {
+        $customer = DB::table('customers')
+            ->where('client_number', '=', Auth::user()->client_number)
+            ->first();
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
 
+        $signature = DB::table('signatures')
+                ->where('client_number', '=', Auth::user()->client_number)
+                ->first();
+        return PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature])->stream('test.pdf');
+        //return $pdf->download('test.pdf');
      }
 
     protected function guard()

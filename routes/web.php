@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::get('/pdf', function (){
+/*Route::get('/pdf', function (){
     return view('layouts.Policies.safePolicy');
-});
+});*/
 
 Route::post('/contact_us','CustomerController@contact_us');
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
@@ -28,6 +28,7 @@ Route::get('password/edit/{client_number}', 'CustomerController@edit_password')-
 Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
 
 Route::get('/upload_s3','CustomerController@upload_s3');
+
 
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
@@ -59,6 +60,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/{emp}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
         Route::get('/employees/{emp}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
+        Route::get('/pdf','CustomerController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');

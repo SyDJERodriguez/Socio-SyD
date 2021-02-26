@@ -32,17 +32,21 @@
             }
             .header{
                 width: 100%;
-                align-content: center;
                 display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 10%;
             }
 
             .logo-chubb{
-                width: 25%;
+                width: 100%;
+                vertical-align: center;
                 padding: 20px 10px;
             }
             .logo-aba{
-                width: 25%;
-                padding: 20px 10px;
+                width: 100%;
+                vertical-align: center;
+                padding: 5px 10px;
             }
 
             .contenedor {
@@ -70,7 +74,7 @@
             <div class="logo-chubb" align="left">
                 <img src="{{asset('img/chubb.png')}}" width="130px" alt="CHUBB">
             </div>
-            <div class="header-chubb">
+            <div class="header-chubb" style="width: 100%;" align="center">
                 <p class="text">Chubb Seguros México, S.A.<br>
                     Paseo de la Reforma 250 Torre Niza<br>
                     Piso 15 Col. Juárez, Del.<br>
@@ -92,7 +96,7 @@
                     <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
                 </td>
                 <td colspan="2">
-                    <p class="text" align="left" style="padding: 2px 5px; margin: 0px"><strong>Vigencia:</strong> Del &nbsp 12:00 horas al &nbsp 12:00 horas</p>
+                    <p class="text" align="left" style="padding: 2px 5px; margin: 0px"><strong>Vigencia:</strong> Del hola 12:00 horas al &nbsp 12:00 horas</p>
                 </td>
             </tr>
             <tr>
@@ -237,29 +241,32 @@
                     <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Irrevocable (Sí/No)</strong></p>
                 </td>
             </tr>
+            @foreach($beneficiary as $b)
             <tr>
-                <td width="50%" height="100">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"></p>
+                <td width="50%">
+                    <p class="text" style="padding: 2px 5px; margin: 0px">{{$b->name.' '.$b->last_name.' '.$b->second_last_name}}</p>
                 </td>
-                <td width="15%" height="100">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"></p>
+                <td width="15%">
+                    <p class="text" style="padding: 2px 5px; margin: 0px">{{$b->relationship}}</p>
                 </td>
-                <td width="15%" height="100">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"></p>
+                <td width="15%">
+                    <p class="text" style="padding: 2px 5px; margin: 0px">{{$b->percent}} %</p>
                 </td>
-                <td width="20%" height="100">
+                <td width="20%">
                     <p class="text" style="padding: 2px 5px; margin: 0px"></p>
                 </td>
             </tr>
+                @endforeach
         </table>
 
         <div class="page-break"></div>
 
         <div class="header">
-            <div class="logo-chubb" align="left" style="width: 50%;">
+            <div class="logo-chubb" align="left">
                 <img src="{{asset('img/chubb.png')}}" width="130px" alt="CHUBB">
             </div>
-            <div class="logo-aba" align="right" style="width: 50%">
+            <div style="width: 530px;" align="center"></div>
+            <div class="logo-aba" align="right" >
                 <img src="{{asset('img/aba.png')}}" width="130px" alt="ABA">
             </div>
         </div>
@@ -315,15 +322,17 @@
 
         </div>
         <div class="contenedor">
-            <div class="fecha" align="left">
-                <p class="text">__________________________________________________</p>
-                <p class="text" align="center">Lugar y fecha</p>
-            </div>
-            <div class="firma" align="right">
+            <div class="fecha" align="left" style="width: 100%">
                 <p class="text">_______________________________________</p>
-                <p class="text" align="center">Firma del solicitante</p>
+                <p class="text" style=" padding: 0 80px;">Lugar y fecha</p>
             </div>
-        </div><br><br><br>
+            <div style="width: 700px;"></div>
+            <div class="firma" align="right" style="width: 100%">
+                <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;" >
+                <p class="text">_______________________________________</p>
+                <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
+            </div>
+        </div>
 
         <table frame="void" rules="cols" width="100%" align="center" cellpadding="0" cellspacing="0">
             <tr>
