@@ -1,4 +1,8 @@
-<a href="#" class="whatsapp"><img src="{{asset('img/1x/wht.png')}}" alt=""></a>
+<a 
+    href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD."
+    class="whatsapp">
+    <img src="{{asset('img/1x/wht.png')}}" alt="">
+</a>
 
 <div class="container-fluid">
     <!--header-->
