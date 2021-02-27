@@ -3,7 +3,7 @@
         <div class="row m-0">
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Contáctanos</h4>
-                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i><a href="tel:8007931010" class="primary-color" style="color:white; padding-left: 5px;">800 SyD 1010</a></p>
+                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i><a href="tel:8007931010" class="primary-color" style="color:white; padding-left: 5px;">800SyD (793) 1010</a></p>
                 <hr class="bg-primary">
                 <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
@@ -61,7 +61,7 @@
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>
                               <span>TELÉFONO:</span><br>
-                                <a href="tel:8007931010">800 723 1010</a>
+                                <a href="tel:8007931010">800SyD (793) 1010</a>
                               <hr>
                               <span>CORREO:</span><br>
                                 <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
@@ -86,7 +86,7 @@
                                   <input type="text" class="form-control"  id="contact-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="'example: correo@dominio.com'" placeholder="CORREO ELECTRÓNICO" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control"  id="contact-phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"  minlength="10"  title="Ten digits code" required>
+                                  <input type="text" class="form-control"  id="contact-phone" placeholder="No. TELEFÓNICO 10 DÍGITOS"  maxlength="10"  title="Ten digits code" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
                                     <textarea class="form-control" name="Comentario:"  id="contact-comment" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
