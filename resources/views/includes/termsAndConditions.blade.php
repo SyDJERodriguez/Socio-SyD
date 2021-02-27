@@ -253,6 +253,13 @@
                     <br>
 
                     </div>
+
+                    <div style="width: 99%;padding: 8px;">
+                        <button class="btn btn-lg btn-block" data-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+                      
                 <div style="background: #143153" class="row p-3">
 
                 </div>

@@ -92,6 +92,13 @@
   
        
         </div>
+
+        <div style="width: 99%;padding: 8px;">
+          <button class="btn btn-lg btn-block" data-dismiss="modal">
+            Cerrar
+          </button>
+        </div>
+
         <div class="modal-footer" style="background-color: #143153;height: 30px; border-radius: 0;">
 
         </div>
