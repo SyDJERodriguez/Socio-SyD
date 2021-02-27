@@ -57,7 +57,9 @@
                         
                         <div class="col-lg-4 offset-md-1 py-4">
                             <input type="submit" class="btn btn float-right text-white px-5"
-                                style="background-color: #009CE0;" id="confirmar" value="Confirmar">
+                                style="background-color: #009CE0;" 
+                                id="confirmar"
+                                value="FIRMAR">
                         </div>
                         <!-- <div>
                             <input type="hidden" name="googleResponseToken" id="googleResponseToken">
