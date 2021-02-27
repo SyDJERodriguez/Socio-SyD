@@ -20,7 +20,7 @@
             <div class="row" style="font-size: 16px;">
                 <div class="col-lg-12">
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">1.	¿Cómo me afilio?</h5>
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">1.	¿Cómo me afilio?</h5>
                       <ol type="a">
                         <li><p>Solamente tienes que hacer clic en el botón de <b>“Registro”</b> dentro de este sitio web, llenar los datos requeridos y confirmar tu medio de 
                           <br>contacto (número celular obligatorio y/o correo electrónico).
@@ -28,26 +28,28 @@
                       </ol>
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">2.	¿Cómo consigo mi número de cliente?</h5>
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">2.	¿Cómo consigo mi número de cliente?</h5>
                       <ol type="a">
                         <li>Solicítalo a tu vendedor en la sucursal de tu preferencia.</li>
                         <li>Compra en cualquiera de  nuestras tiendas de DAR® Refaccionarias, a través de nuestros canales digitales 
-                          (www.syd.com.mx	– www.refaccionariasdar.com.mx) o llamando al número <b>800 DAR 1010</b> y solicita que te asignen 
+                          (
+                          <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>) 
+                            o llamando al número <b>800SyD (793) 1010</b> y solicita que te asignen 
                           tu número de cliente.
                         </li>
                       </ol>
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">3.	Ya tengo número de cliente, pero no lo recuerdo ¿cómo puedo solicitarlo?</h5>
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">3.	Ya tengo número de cliente, pero no lo recuerdo ¿cómo puedo solicitarlo?</h5>
                       <ol type="a">
-                        <li>Solicítalo en la sucursal de tu preferencia o llama al número <b>800 DAR 1010</b> y solicítalo con tus datos.</li>
+                        <li>Solicítalo en la sucursal de tu preferencia o llama al número <b>800SyD (793) 1010</b> y solicítalo con tus datos.</li>
                         <li>En nuestro sitio web, solicítalo a través de la opción “recordar mi número de cliente” ingresando tu correo electrónico o teléfono de
                               <br>contacto registrado. </li>
                       </ol>
                   </section>
 
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">4.	¿Dónde puedo modificar mis datos de contacto? </h5>
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">4.	¿Dónde puedo modificar mis datos de contacto? </h5>
                       <ol type="a">
                         <li>
                           <p>
@@ -59,7 +61,7 @@
                   </section>
 
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">5.	¿Debo tener RFC para ser parte del plan de lealtad?</h5>
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">5.	¿Debo tener RFC para ser parte del plan de lealtad?</h5>
                       <ol type="a">
                         <li>
                           <p>
@@ -70,19 +72,22 @@
                      
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">6.	¿Quiénes pueden recibir los beneficios del plan de lealtad?
+                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">6.	¿Quiénes pueden recibir los beneficios del plan de lealtad?
                       </h5>
                       <ol type="a">
                         <li>
                           <p>
                             Cualquier persona o empresa que compre productos de la marca SyD® en alguna de nuestras tiendas de DAR® Refaccionarias, a través 
-                            <br>	de nuestros canales digitales (www.syd.com.mx – www.refaccionariasdar.com.mx) o llamando al número <b>800 DAR 1010</b>.
+                            <br>	de nuestros canales digitales (
+                              <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>) 
+                                  o llamando al 
+                              número: <b>800SyD (793) 1010</b>.
                           </p>
                         </li>
                       </ol>
                   </section>
                   <section>
-                    <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">7.	¿Cómo se registran mis compras dentro del programa?
+                    <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">7.	¿Cómo se registran mis compras dentro del programa?
                     </h5>
                     <ol type="a">
                       <li>
@@ -94,7 +99,7 @@
                     </ol>
                 </section>
                 <section>
-                  <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">8.	¿Qué necesito para afiliarme?
+                  <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">8.	¿Qué necesito para afiliarme?
                   </h5>
                   <ol type="a">
                     <li>
@@ -107,7 +112,7 @@
                   
               </section>
               <section>
-                <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">9.	¿Qué beneficios obtengo dentro del programa de lealtad?</h5>
+                <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">9.	¿Qué beneficios obtengo dentro del programa de lealtad?</h5>
                 <ol type="a">
                   <li>
                     <p>
@@ -120,7 +125,7 @@
                 </ol>
             </section>
             <section>
-              <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">10.	¿Cómo alcanzo los beneficios del programa de lealtad?
+              <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">10.	¿Cómo alcanzo los beneficios del programa de lealtad?
               </h5>
               <ol type="a">
                 <li>
@@ -133,11 +138,14 @@
           <section>
             <h5 ><strong> CUENTAS INDIVIDUALES </strong></h5>
             <div class="row">
-              <div class="col-lg-11">
+              <div class="col-lg-12">
                 <table class="table table-borderless text-center" style="font-size: 14px;">
                   <thead>
                     <tr>
-                      <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white;border-radius: 10px;">Rango de Compra Mensual</span></th>
+                      <th scope="col"> <span class="px-4" 
+                        style="margin-left:-55px;background-color: #143153;width: 100px;padding: 10px;color: white;border-radius: 10px;">
+                        Rango de Compra Mensual</span>
+                      </th>
                       <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Nivel</span></th>
                       <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Seguro</span></th>
                       <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Asistencia</span></th>
@@ -146,14 +154,14 @@
                   </thead>
                   <tbody class="">
                     <tr>
-                      <th scope="row" class="text-left pl-5" ><span style="padding-left:80px;"> De $0 a $200.00</span> </th>
-                      <td></td>
+                      <th scope="row" class="text-left" ><span style="padding-left:30px;"> De $0 a $200.00</span> </th>
+                      <td>X</td>
                       <td>X</td>
                       <td>X</td>
                       <td>X</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left pl-5" ><span style="padding-left:80px;"> De $200.02 a $500.00 </span>
+                      <th scope="row" class="text-left " ><span style="padding-left:30px;"> De $200.02 a $500.00 </span>
                       </th>
                       <td>Básico</td>
                       <td><i class="far fa-check"></i></td>
@@ -161,7 +169,7 @@
                       <td>X</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;">  De $500.01 a $1,300.00 </span>
+                      <th scope="row" class="text-left " > <span style="padding-left:30px;">  De $500.01 a $1,300.00 </span>
                       </th>
                       <td>Bronce
                       </td>
@@ -171,7 +179,7 @@
                       <td>X</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;"> De $1,300.01 a $1,700.00 </span> 
+                      <th scope="row" class="text-left " > <span style="padding-left:30px;"> De $1,300.01 a $1,700.00 </span> 
                       </th>
                       <td>Plata</td>
                       <td><i class="far fa-check"></i></td>
@@ -179,7 +187,7 @@
                       <td>X</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;">De $1,700.01 a $2,500.00 </span>
+                      <th scope="row" class="text-left " > <span style="padding-left:30px;">De $1,700.01 a $2,500.00 </span>
                       </th>
                       <td>Oro</td>
                       <td><i class="far fa-check"></i></td>
@@ -187,7 +195,7 @@
                       <td>6%</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;"> Más de $2,500.00</span> </th>
+                      <th scope="row" class="text-left " > <span style="padding-left:30px;"> Más de $2,500.00</span> </th>
                       <td>Platino</td>
                       <td><i class="far fa-check"></i></td>
                       <td>Oro</td>
@@ -210,7 +218,7 @@
                     <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Seguro</span></th>
                     <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Asistencia</span></th>
                     <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">CashBack</span></th>
-                    <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Numero máximo de colaboradores a afiliar</span></th>
+                    <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">No. de colaboradores a afiliar</span></th>
 
                   </tr>
                 </thead>
@@ -272,7 +280,7 @@
         </div>
       </section>
       <section>
-        <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">11.	¿Cuál es la vigencia de mis beneficios?
+        <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">11.	¿Cuál es la vigencia de mis beneficios?
 
         </h5>
         <ol type="a">
@@ -285,20 +293,20 @@
         </ol>
     </section>
     <section>
-      <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">12.	¿Cómo funciona el plan de lealtad?
+      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">12.	¿Cómo funciona el plan de lealtad?
       </h5>
       <ol type="a">
         <li>
           <p>
-            Regístrate en nuestro sitio web, compra productos SyD® en cualquiera de nuestros canales oficiales de venta, acumula <br>	
-            automáticamente y haz uso de tus beneficios en el momento en que lo necesites.  
+            Regístrate en nuestro sitio web, compra productos SyD® en cualquiera de nuestros canales oficiales de venta, acumula 
+            automáticamente y haz uso <br> de tus beneficios en el momento en que lo necesites.  
           </p>
         </li>
       </ol>
       
   </section>
   <section>
-    <h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">13.	¿Cómo puedo obtener ayuda para el registro?      </h5>
+    <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">13.	¿Cómo puedo obtener ayuda para el registro?      </h5>
     <ol type="a">
       <li>
           Si tienes algún problema o duda a la hora de tu registro, 
@@ -312,33 +320,36 @@
     
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">14.	¿Qué productos participan dentro del programa? 
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">14.	¿Qué productos participan dentro del programa? 
 </h5>
 <ol type="a">
   <li>
     <p>
       Participan todos los productos que adquieras a través de nuestras tiendas de DAR® Refaccionarias, 
-      nuestros canales digitales <br>	(www.syd.com.mx – www.refaccionariasdar.com.mx) o llamando al número 800 DAR 1010.
+      nuestros canales digitales <br>	(
+        <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
+        o llamando al número: <b>800SyD (793) 1010</b>.
     </p>
   </li>
 </ol>
 </section>
 
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">15.	¿Dónde puedo comprar mis productos SyD®?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">15.	¿Dónde puedo comprar mis productos SyD®?
 </h5>
 <ol type="a">
   <li>
     <p>
       Sólo participan los productos SyD® comprados a través de nuestros canales oficiales de venta. (nuestras tiendas de DAR® 
-      <br> Refaccionarias, a través de nuestros canales digitales (www.syd.com.mx – www.refaccionariasdar.com.mx) o llamando al 
-      <br>número 800 DAR 1010.)
+      <br> Refaccionarias, a través de nuestros canales digitales (
+        <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
+        o llamando al número: <b>800SyD (793) 1010</b>.
     </p>
   </li>
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">16.	¿Qué tipos de cuentas existen?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">16.	¿Qué tipos de cuentas existen?
 </h5>
 <ol type="a">
   <li>
@@ -349,7 +360,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">17.	¿Qué niveles existen dentro del programa?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">17.	¿Qué niveles existen dentro del programa?
 </h5>
 <ol type="a">
   <li>
@@ -362,11 +373,14 @@
 <section>
 <h5 ><strong> CUENTAS INDIVIDUALES </strong></h5>
 <div class="row">
-  <div class="col-lg-11">
+  <div class="col-lg-12">
     <table class="table table-borderless text-center" style="font-size: 14px;">
       <thead>
         <tr>
-          <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white;border-radius: 10px;">Rango de Compra Mensual</span></th>
+          <th scope="col"> <span class="px-4" 
+              style="margin-left:-55px;background-color: #143153;width: 100px;padding: 10px;color: white;border-radius: 10px;">
+              Rango de Compra Mensual</span>
+            </th>
           <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Nivel</span></th>
           <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Seguro</span></th>
           <th scope="col"> <span class="px-4" style="background-color: #143153;width: 100px;padding: 10px;color: white; border-radius: 10px;">Asistencia</span></th>
@@ -375,14 +389,14 @@
       </thead>
       <tbody class="">
         <tr>
-          <th scope="row" class="text-left pl-5" ><span style="padding-left:80px;"> De $0 a $200.00</span> </th>
-          <td></td>
+          <th scope="row" class="text-left" ><span style="padding-left:30px;"> De $0 a $200.00</span> </th>
+          <td>X</td>
           <td>X</td>
           <td>X</td>
           <td>X</td>
         </tr>
         <tr>
-          <th scope="row" class="text-left pl-5" ><span style="padding-left:80px;"> De $200.02 a $500.00 </span>
+          <th scope="row" class="text-left " ><span style="padding-left:30px;"> De $200.02 a $500.00 </span>
           </th>
           <td>Básico</td>
           <td><i class="far fa-check"></i></td>
@@ -390,7 +404,7 @@
           <td>X</td>
         </tr>
         <tr>
-          <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;">  De $500.01 a $1,300.00 </span>
+          <th scope="row" class="text-left " > <span style="padding-left:30px;">  De $500.01 a $1,300.00 </span>
           </th>
           <td>Bronce
           </td>
@@ -400,7 +414,7 @@
           <td>X</td>
         </tr>
         <tr>
-          <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;"> De $1,300.01 a $1,700.00 </span> 
+          <th scope="row" class="text-left " > <span style="padding-left:30px;"> De $1,300.01 a $1,700.00 </span> 
           </th>
           <td>Plata</td>
           <td><i class="far fa-check"></i></td>
@@ -408,7 +422,7 @@
           <td>X</td>
         </tr>
         <tr>
-          <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;">De $1,700.01 a $2,500.00 </span>
+          <th scope="row" class="text-left " > <span style="padding-left:30px;">De $1,700.01 a $2,500.00 </span>
           </th>
           <td>Oro</td>
           <td><i class="far fa-check"></i></td>
@@ -416,7 +430,7 @@
           <td>6%</td>
         </tr>
         <tr>
-          <th scope="row" class="text-left pl-5" > <span style="padding-left:80px;"> Más de $2,500.00</span> </th>
+          <th scope="row" class="text-left " > <span style="padding-left:30px;"> Más de $2,500.00</span> </th>
           <td>Platino</td>
           <td><i class="far fa-check"></i></td>
           <td>Oro</td>
@@ -502,7 +516,7 @@
 </section>
 
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">18.	¿Cómo puedo registrar a mis beneficiarios?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">18.	¿Cómo puedo registrar a mis beneficiarios?
 </h5>
 <ol type="a">
   <li>
@@ -513,7 +527,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">19.	¿Qué documentos necesito para afiliarme?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">19.	¿Qué documentos necesito para afiliarme?
 </h5>
 <ol type="a">
   <li>
@@ -525,7 +539,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">20.	¿Cómo tengo acceso a mi póliza de seguro en caso de requerirla? </h5>
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">20.	¿Cómo tengo acceso a mi póliza de seguro en caso de requerirla? </h5>
 <ol type="a">
   <li>
     <p>
@@ -535,7 +549,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">21.	¿Cómo agendo una consulta médica por teléfono?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">21.	¿Cómo agendo una consulta médica por teléfono?
 </h5>
 <ol type="a">
   <li>
@@ -546,7 +560,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">22.	¿Cómo solicito una ambulancia? 
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">22.	¿Cómo solicito una ambulancia? 
 </h5>
 <ol type="a">
   <li>
@@ -558,7 +572,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">23.	¿Cómo solicito el apoyo de asistencia funeraria? </h5>
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">23.	¿Cómo solicito el apoyo de asistencia funeraria? </h5>
 <ol type="a">
   <li>
     <p>
@@ -569,7 +583,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">24.	¿En qué casos no aplica el seguro de accidentes personales?</h5>
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">24.	¿En qué casos no aplica el seguro de accidentes personales?</h5>
 <ol type="a">
   <li>
       El seguro de accidentes personales no aplica en los casos en que el asegurado estuviera involucrado en la participación de algún delito. 
@@ -580,7 +594,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">25.	¿Cómo doy de alta a mis empleados dentro del programa?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">25.	¿Cómo doy de alta a mis empleados dentro del programa?
 </h5>
 <ol type="a">
   <li>
@@ -592,7 +606,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">26.	¿Cómo doy de baja a un trabajador dentro de mi cuenta?
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">26.	¿Cómo doy de baja a un trabajador dentro de mi cuenta?
 </h5>
 <ol type="a">
   <li>
@@ -604,7 +618,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 90%;padding: 8px;">27.	¿Cómo actualizo mi información si cambié de trabajo? 
+<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">27.	¿Cómo actualizo mi información si cambié de trabajo? 
 </h5>
 <ol type="a">
   <li>
@@ -615,6 +629,11 @@
 </ol>
 
 </section>
+<div style="width: 99%;padding: 8px;">
+  <button class="btn btn-lg btn-block" data-dismiss="modal">
+    Cerrar
+  </button>
+</div>
                 </div>
             </div>
   

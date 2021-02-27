@@ -69,15 +69,6 @@
                         </tr>
                     </table>
                     <br>
-                    <ul>
-                        <li> <span style="min-width: 23%;display: inline-block;"><b> Modelo de comercialización:
-                                </b></span>Inclusión Automática</li>
-                        <li><span style="min-width: 23%;display: inline-block;"><b>Beneficiarios:</b></span> Titular
-                        </li>
-                        <li><span style="min-width: 23%;display: inline-block;"><b>Cobertura:</b></span> Mensual</li>
-                        <li><span style="min-width: 23%;display: inline-block;"><b>Forma de pago:</b></span> Mensual
-                        </li>
-                    </ul>
 
                 </div>
             </div>
@@ -86,18 +77,6 @@
                     style="font-size: 14px;background-color: #00A5E6;color: white;margin-left: 0.50px; margin-right: 0.20px">
 
                     <div class="col-12 text-center mb-2">Notas</div>
-                    <div class="col-md-6">
-                        <ul class="square_list">
-                            <li>Vigencia de la cotización, 30 días. Territorio Nacional.</li>
-
-                            <li>Si hay algún cambio en los servicios, modelo de comercialización o
-                                número de usuarios, el precio del producto puede ajustarse.</li>
-
-                            <li>Aplican términos y condiciones generales. </li>
-
-                            <li>Cotización aplicable a inclusión automática. </li>
-                        </ul>
-                    </div>
                     <div class="col-md-6">
                         <ul class="square_list">
                             <li> Capacitación se cotiza por separado, no incluye materiales de
