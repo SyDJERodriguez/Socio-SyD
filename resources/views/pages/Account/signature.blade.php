@@ -30,7 +30,7 @@
                 <form method="POST" action="{{route('customer.efirm')}}">
                     @method('POST')
                     @csrf
-                    <div class="row"
+                    <div class="row" id="contentCanvas"
                         style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;margin-right: -20%;">
                         <div class="py-1 ">
                             <h6 style="text-align: right">DIBUJE SU FIRMA:</h6>
@@ -38,7 +38,7 @@
                                 <p class="btn btn-outline-dark btn-sm text-dark" id="limpiar">Limpiar</p>
                             </div>
                         </div>
-                        <div class="py-1 offset-md-1">
+                        <div class="py-1 offset-md-3">
                             <canvas id="efirm"></canvas>
                             <input type="hidden" id="imgData" name="imgData" required>
                         </div>
@@ -94,7 +94,7 @@
 
     var canvas = document.getElementById("efirm");
     var ctx = canvas.getContext("2d");
-    var cw = canvas.width = 225,
+    var cw = canvas.width = 350,
         cx = cw / 2;
     var ch = canvas.height = 190,
         cy = ch / 2;

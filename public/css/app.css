@@ -301,6 +301,13 @@ display: none;
 .line1{
     display: none;
 }
+#efirm{
+    width: 225px !important;
+}
+
+#contentCanvas{
+    margin-right: -30% !important;
+}
   }
 
 
@@ -490,3 +497,4 @@ canvas {
     text-decoration: none;
     color:#009CE0;
 }
+
