@@ -23,8 +23,6 @@ Route::get('/send_restore_password', 'CustomerController@send_restore_password')
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
 Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
 
-Route::get('/upload_s3','CustomerController@upload_s3');
-
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
@@ -55,6 +53,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/{emp}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
         Route::get('/employees/{emp}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
+        Route::get('/pdf','CustomerController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
