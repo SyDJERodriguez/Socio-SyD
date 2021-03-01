@@ -20,46 +20,42 @@
                     </div>
                 </div>
                 @if ($imgData)
-                <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-                    <div class="col-lg-6 py-1">
-                        <img src="{{$imgData->imgData}}"
-                        id="signCustomer" 
-                        alt="signatureCustomer" 
-                        width="320" 
-                        height="140"
-                        style="display: block;margin-left: 60%;"
-                        >
+                <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;margin-right: -20%;">
+                    <div class="col-lg-6 py-1 offset-md-4">
+                        <img src="{{$imgData->imgData}}" id="signCustomer" alt="signatureCustomer" width="225"
+                            height="190" style="display: block;">
                     </div>
                 </div>
                 @else
                 <form method="POST" action="{{route('customer.efirm')}}">
                     @method('POST')
                     @csrf
-                    <div class="row"
-                        style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-                        <div class="col-lg-6 py-1">
+                    <div class="row" id="contentCanvas"
+                        style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;margin-right: -20%;">
+                        <div class="py-1 ">
                             <h6 style="text-align: right">DIBUJE SU FIRMA:</h6>
-                            <div class="col-lg-6 offset-md-10" style="margin-top:32%">
+                            <div class="py-5 offset-md-10" >
                                 <p class="btn btn-outline-dark btn-sm text-dark" id="limpiar">Limpiar</p>
                             </div>
                         </div>
-                        <div class="col-lg-6 py-1">
+                        <div class="py-1 offset-md-3">
                             <canvas id="efirm"></canvas>
                             <input type="hidden" id="imgData" name="imgData" required>
                         </div>
                         <br>
-                        <div class="col-lg-4 py-5 offset-md-3">
-                            <label for="terms" style="text-align:right">
-                                <h6>ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD</h6>
-                            </label>
-                        </div>
-                        <div class="col-lg-1 py-5">
-                            <div class="form-check">
+                        <div class="row">
+                            <div class="col-7 py-1 offset-2">
+                                <label for="terms">
+                                    <h6>ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD</h6>
+                                </label>
+                            </div>
+                            <div class="col-1 py-1">
                                 <input class="form-check-input" type="checkbox" value="" id="terms"
                                     style="height: 18px;width: 18px;" required>
                             </div>
                         </div>
-                        <div class="col-lg-6 offset-md-1">
+                        
+                        <div class="col-lg-4 offset-md-1 py-4">
                             <input type="submit" class="btn btn float-right text-white px-5"
                                 style="background-color: #009CE0;" 
                                 id="confirmar"
@@ -71,7 +67,7 @@
                     </div>
                 </form>
                 @endif
-                
+
                 @include('includes.Account.deleteButton')
             </div>
         </div>
@@ -80,11 +76,10 @@
 </div>
 
 <script>
-    
     document.getElementById("confirmar")
-    .addEventListener("click", imgData);//click limpiar button to call imgData function
+        .addEventListener("click", imgData); //click limpiar button to call imgData function
 
-    function imgData() {//set format of canvas to pass in post as base64
+    function imgData() { //set format of canvas to pass in post as base64
         var canvas = document.getElementById("efirm");
         $("#imgData").val(canvas.toDataURL());
     }
@@ -99,9 +94,9 @@
 
     var canvas = document.getElementById("efirm");
     var ctx = canvas.getContext("2d");
-    var cw = canvas.width = 400,
+    var cw = canvas.width = 350,
         cx = cw / 2;
-    var ch = canvas.height = 200,
+    var ch = canvas.height = 190,
         cy = ch / 2;
 
     var dibujar = false;
@@ -110,7 +105,7 @@
     var puntos = [];
     ctx.lineJoin = "round";
 
-    limpiar.addEventListener('click', function (evt) {//clear the canvas
+    limpiar.addEventListener('click', function (evt) { //clear the canvas
         dibujar = false;
         ctx.clearRect(0, 0, cw, ch);
         Trazados.length = 0;
@@ -118,7 +113,7 @@
     }, false);
 
 
-    canvas.addEventListener('mousedown', function (evt) {//start paint
+    canvas.addEventListener('mousedown', function (evt) { //start paint
         dibujar = true;
         puntos.length = 0;
         ctx.beginPath();
@@ -133,7 +128,7 @@
         redibujarTrazados();
     }, false);
 
-    canvas.addEventListener("mousemove", function (evt) {//paint
+    canvas.addEventListener("mousemove", function (evt) { //paint
         if (dibujar) {
             var m = oMousePos(canvas, evt);
             puntos.push(m);
@@ -176,7 +171,7 @@
     }
 
 
-    function redibujarTrazados() {//repaint 
+    function redibujarTrazados() { //repaint 
         dibujar = false;
         ctx.clearRect(0, 0, cw, ch);
         reducirArray(factorDeAlisamiento, puntos);
@@ -191,6 +186,55 @@
             y: Math.round(evt.clientY - ClientRect.top)
         }
     }
+
+    // Set up touch events for mobile, etc
+    canvas.addEventListener("touchstart", function (e) {
+        mousePos = getTouchPos(canvas, e);
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+    canvas.addEventListener("touchend", function (e) {
+        var mouseEvent = new MouseEvent("mouseup", {});
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+    canvas.addEventListener("touchmove", function (e) {
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    // Get the position of a touch relative to the canvas
+    function getTouchPos(canvasDom, touchEvent) {
+        var rect = canvasDom.getBoundingClientRect();
+        return {
+            x: touchEvent.touches[0].clientX - rect.left,
+            y: touchEvent.touches[0].clientY - rect.top
+        };
+    }
+
+    // Prevent scrolling when touching the canvas
+    canvas.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+    }, false);
+    canvas.addEventListener("touchend", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+    }, false);
+    canvas.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+    }, false);
 
 </script>
 
