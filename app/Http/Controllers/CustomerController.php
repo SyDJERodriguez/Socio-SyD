@@ -372,6 +372,7 @@ class CustomerController extends Controller
             $beneficiary = 'true';
             return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
         }
+
         return view('pages.Account.beneficiary', compact('data'));
     }
 
@@ -712,28 +713,7 @@ class CustomerController extends Controller
         }
      }
 
-     //Function to generate PDF and upload AWS's S3
-     public function generatePDF() {
-        $id = Auth::user()->id;
-        $customer = DB::table('customers')
-            ->where('client_number', '=', Auth::user()->client_number)
-            ->first();
-        $beneficiaries = DB::table('beneficiaries')
-            ->where('customer_id', '=', $customer->id)
-            ->get();
 
-        $signature = DB::table('signatures')
-                ->where('client_number', '=', Auth::user()->client_number)
-                ->first();
-        $pdf = PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature]);
-        $pdf->save($customer->id.'.pdf');
-        $upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
-         if($upload){
-             return 'success';
-         }
-
-         return 'failed';
-     }
 
     protected function guard()
     {
