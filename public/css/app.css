@@ -498,3 +498,6 @@ canvas {
     color:#009CE0;
 }
 
+#assistanceCall:hover {
+    color: #143153 !important;
+}

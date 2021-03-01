@@ -30,7 +30,6 @@ use Yajra\DataTables\DataTables;
 use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -65,7 +64,8 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $client_number)->first();
 
         //calculated number in associates table
-        $number = $this->getNumber($request['customer_id']);
+        $number = $this->getNumberAssociate($request['customer_id']);
+        ++$number; //plus one bc 0 don't exists
 
         //insert data in associates table
         $update_associates ='';
@@ -87,14 +87,10 @@ class CustomerController extends Controller
             ]);
         }
 
-        if ($update_associates === 1){
-            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === true){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === 0){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }
-        else{
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
     }
@@ -128,29 +124,41 @@ class CustomerController extends Controller
             'email'             => $request['email']
         ]);
 
-        if ($update_associates === 1){
-            return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === true){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }elseif ($update_associates === 0){
-            return response()->json(['success'=>'true', 'update'=>$update_associates, 'client_number'=>$request['client_number']]);
-        }
-        else{
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
 
     }
 
+    public function deleteEmployee($employee){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        //update the employee with client number 00000000 and number = 0
+        $update_associates ='';
+        $update_associates = DB::table('associates')
+                ->where('number','=',$employee)
+                ->where('client_number','=',$data['client_number'])
+                ->update([
+                    'number'            => 0,
+                    'active_association'=> 0
+                ]);
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            return redirect()->route('customer.employees');
+        }else{
+            return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+    }
+
     //function to calculated number of associate
-    public function getNumber($customer_id){
+    public function getNumberAssociate($customer_id){
         $number = DB::table('associates')
         ->where('customer_id','=', $customer_id)
+        ->where('active_association','=',1)
         ->count();
-        if( $number < 6 ){ //limit under 5
-            ++$number;
-        }else{
-            ++$number; //LIMIT REACHED
-        }
         return $number;
     }
 
@@ -356,7 +364,78 @@ class CustomerController extends Controller
 
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.benefitSafe', compact('data'));
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        //dd(Auth::user()->client_type);
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>0 && $total_amount<=2500) {
+                $level = 1;
+                //dd($level);
+            }
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 2;
+                //dd($level);
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 3;
+                //dd($level);
+            }
+            if ($total_amount>7000 && $total_amount<=9500) {
+                $level = 4;
+                //dd($level);
+            }
+
+            if ($total_amount>9500) {
+                $level = 5;
+                //dd($level);
+            }
+            //dd($level);
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>0 && $total_amount<=200) {
+                $level = 1;
+                //dd($level);
+            }
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 2;
+                //dd($level);
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 3;
+                //dd($level);
+            }
+            if ($total_amount>1300 && $total_amount<=1700) {
+                $level = 4;
+                //dd($level);
+            }
+            if ($total_amount>1700 && $total_amount<=2500) {
+                $level = 5;
+                //dd($level);
+            }
+
+            if ($total_amount>2500) {
+                $level = 6;
+                //dd($level);
+            }
+           // dd($level);
+        }
+
+
+        return view('pages.Account.benefitSafe', compact('data', 'level'));
     }
 
     public function benefits_signature () {
@@ -441,7 +520,44 @@ class CustomerController extends Controller
 
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.assistance', compact('data'));
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        //dd(Auth::user()->client_type);
+        $level = '';
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>4500 && $total_amount<=9500) {
+                $level = 'plata';
+                //dd($level);
+            }
+            if ($total_amount>9500) {
+                $level = 'oro';
+                //dd($level);
+            }
+            //dd($level);
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 'pata';
+                //dd($level);
+            }
+            if ($total_amount>1300) {
+                $level = 'oro';
+                //dd($level);
+            }
+        }
+        return view('pages.Account.assistance', compact('data', 'level'));
     }
 
     public function beneficiaries ()
@@ -449,21 +565,72 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         return view('pages.Account.beneficiaries', compact('data'));
     }
-    //load data from associates
+
+    //load data from associates AQUI
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $associates = DB::table('associates')
-                    ->where('client_number','=',$data['client_number'])
+                    ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
                     ->get();
-        return view('pages.Account.employees', compact('data','associates'));
+        //Calculated the limit of employee
+        $validated = $this->employeeLimit();
+              
+        return view('pages.Account.employees', compact('data','associates','validated'));
     }
 
-    public function editEmployees($user){
+    public function employeeLimit(){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $now = Carbon::now();
+        //get sum of amount column
+        $query = DB::table('transactions')
+            ->where('client_number','=', $data['client_number'])
+            ->whereMonth('transaction_date','=',$now)
+            ->sum('amount');
+
+        //round the number with only 2 decimals        
+        $limit = (float)number_format($query,2,'.','');
+        $validated = false; //var for button validated
+
+        //get number of employees registrados
+        $numberEmployees = $this->getNumberAssociate($data['id']);
+
+        //calculated the limit of employees
+        if( $limit > 2500.01 && $limit < 4500.01 && $numberEmployees < 5 ){ //bronce
+            $validated = true;
+        }else if($limit > 4500.01 && $limit < 7000.01 && $numberEmployees < 5){ //plata
+            $validated = true;
+        }else if($limit > 7000.01 && $limit < 9500.01 && $numberEmployees < 10){ //oro
+            $validated = true;
+        }else if($limit > 9500.01 && $numberEmployees < 10) {
+            $validated = true;
+        }else {
+            $validated = false;
+        }
+
+        return $validated;
+    }
+
+    public function editEmployee($user){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $query = DB::table('associates')
+                    ->where('client_number','=',$data['client_number'])
                     ->where('number','=',$user)
                     ->get();
         $employee = $query[0];
-        return view('pages.Account.editEmployees', compact('employee','user'));
+        return view('pages.Account.editEmployee', compact('employee','user'));
+    }
+
+    //Function to test upload the insurance policy
+
+    public function upload_s3(){
+        $file = asset('img/1x/wht.png');
+        $upload = \Storage::cloud()->put('polizas/wht.png', $file, 'public');
+
+        if($upload){
+            return 'success';
+        }
+
+        return 'failed';
     }
 
     public function update_stage_two(Customer $customer, Request $request){

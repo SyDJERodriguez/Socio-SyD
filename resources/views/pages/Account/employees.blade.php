@@ -35,14 +35,17 @@
                             <td>{{$as->mobile_number}}</td>
                             <td>
                                 <a class="btn btn-outline-light btn-sm btn-block" 
-                                    href="{{ action('CustomerController@editEmployees',['user' => $as->number]) }}"
+                                    href="{{ action('CustomerController@editEmployee',['user' => $as->number]) }}"
                                     id="edit-item" 
                                     role="button">
                                     <i class="fa fa-pencil text-info"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-dark btn-sm btn-block" href="#" role="button">
+                                <a class="btn btn-outline-dark btn-sm btn-block" 
+                                        style="border: 0px" 
+                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->number]) }}" 
+                                        role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -53,10 +56,12 @@
             </div>
         </div>
         <br>
-
         <div class="row">
             <div class="col-3 mx-auto">
-                <button class="btn btn-block text-white btn-alta" 
+                <button class="btn btn-block text-white btn-alta"     
+                @if ($validated == 0)
+                disabled
+                @endif
                 style="background-color: #143153;" 
                 data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
@@ -101,7 +106,10 @@
                  }
              }
          }
-         ]
+        ],
+        language: {
+            emptyTable: "No hay registros para mostrar"
+        }
     });
  </script>
 @stop

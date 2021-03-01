@@ -19,7 +19,11 @@
             <span>- Subir documentos</span>-->
             <a href="{{route('customer.benefits.signature')}}" class="<?php if($active === 3 ){echo 'active_sb';}?>"><span>- Firma electrónica</span></a>
         </div>
+        <a href="tel:8000874598" class="btn"
+                style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
+                UN ACCIDENTE</b> </a>
     </div>
+    <br>
     <button class="btn btn-lg text-white px-5" style="background-color: #143153;font-size: 20px;width: 100%;"
             type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false"
             aria-controls="collapseExample">
@@ -32,14 +36,14 @@
 
         </div>
     </div>
-    <span style="color: grey;font-size: 20px;"><strong>
+    <a href="tel:5511052682" style="color: grey;font-size: 20px;"><strong>
                     SOLICITAR ASISTENCIA
 
                     <i class="fas fa-phone-alt" style="font-size: 30px;vertical-align: top;"></i></strong>
                 <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
                 <br />
-            </span>
-    <button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
+            </a>
+    <!--<button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
             data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
             aria-controls="collapseExample">
         <b> RED DE DESCUENTOS<i class="fas fa-caret-down pl-2"></i></b>
@@ -51,9 +55,7 @@
 
         </div>
 
-    </div>
-    <button class="btn"
-            style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"><b>TUVE
-            UN ACCIDENTE</b> </button>
+    </div>-->
+
 
 </div>
