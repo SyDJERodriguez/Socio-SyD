@@ -8,7 +8,7 @@
             <hr>
         </div>
         <div class="col-lg-2">
-            <h6> Hola EDUARDO Martínez Pozos</h6>
+            <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}</h6>
             <h6> No. de Cliente <span style="color: #009CE0;">{{substr(Auth::user()->client_number, 2)}}</span></h6>
             <br/>
             <br/>
@@ -27,7 +27,7 @@
                   </div>-->
                   <div class="col-lg-12 py-3 text-center">
                     <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                      <a href="{{route('customer.pdf')}}" class="btn btn py-2  text-white " style="background-color: #143153;">Certificado de la póliza   </a>               </div>
+                      <a href="{{$link}}" target="_blank" class="btn btn py-2  text-white " style="background-color: #143153;">CERTIFICADO DE PÓLIZA</a>               </div>
                   <!--<div class="col-lg-6 py-3 text-center">
                     <img src="{{asset('img/Asset10.png')}}" class="py-2"><br>
                     <input type="button" class="btn btn py-2  text-white " style="background-color: #143153;padding-left: 80px;padding-right: 80px;" value="INE">  </div>

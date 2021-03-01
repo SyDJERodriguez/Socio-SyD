@@ -35,6 +35,7 @@ class CustomerController extends Controller
 {
     use AuthenticatesUsers;
     //protected $redirectTo = '/customer/account/';
+
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
@@ -96,6 +97,7 @@ class CustomerController extends Controller
         }
     }
 
+    //Update employees
     public function updateEmployee(Request $request){
         $request       = $request->input();
         $client_number = $request['client_number'];
@@ -134,6 +136,7 @@ class CustomerController extends Controller
 
     }
 
+    //Deactivate employees
     public function deleteEmployee($employee){
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         //update the employee with client number 00000000 and number = 0
@@ -262,6 +265,7 @@ class CustomerController extends Controller
 
     }
 
+    //Login function
     public function login(Request $request){
         //Validando
         $this->validate($request, [
@@ -276,7 +280,6 @@ class CustomerController extends Controller
             'email'    => $request->email,
             'password' => $request->password
         ])){
-            //dd(Auth::check());
             return redirect()->route('customer.myAccount');
 
         }else{
@@ -284,6 +287,7 @@ class CustomerController extends Controller
         }
     }
 
+    //Logout function
     public function logout(Request $request)
     {
         $this->guard()->logout();
@@ -293,6 +297,7 @@ class CustomerController extends Controller
         return $this->loggedOut($request) ?: redirect('/');
     }
 
+    //Send email to restore password
     public function send_restore_password(Request $request) {
         $request = $request->input();
         $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
@@ -308,10 +313,12 @@ class CustomerController extends Controller
         }
     }
 
+    //Show form to update password
     public function edit_password($client_number) {
         return view('pages.restorePassword', compact('client_number'));
     }
 
+    //Update password
     public function update_password(Request $request) {
 
         $request = $request->input();
@@ -326,6 +333,7 @@ class CustomerController extends Controller
         return response()->json(['success'=>'false','status' =>401]);
     }
 
+    //Go to My account
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
@@ -335,6 +343,7 @@ class CustomerController extends Controller
         //return redirect()->route('customer.myAccount');
     }
 
+    //Get transactions
     public function get_trans($client_number){
         $now = Carbon::now();
         $customer_trans = DB::table('transactions')
@@ -347,11 +356,14 @@ class CustomerController extends Controller
         return $customer_trans;
     }
 
+    //Go to My documments section
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.documents', compact('data'));
+        $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
+        return view('pages.Account.documents', compact('data','link'));
     }
 
+    //Go to register beneficiary
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
 
@@ -363,6 +375,7 @@ class CustomerController extends Controller
         return view('pages.Account.beneficiary', compact('data'));
     }
 
+    //Go to benefits of Safe
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
 
@@ -379,66 +392,51 @@ class CustomerController extends Controller
             strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
         }
 
-        //dd(Auth::user()->client_type);
         $level = 0;
         if (Auth::user()->client_type === "1"){
             if ($total_amount>0 && $total_amount<=2500) {
                 $level = 1;
-                //dd($level);
             }
             if ($total_amount>2500 && $total_amount<=4500) {
                 $level = 2;
-                //dd($level);
             }
             if ($total_amount>4500 && $total_amount<=7000) {
                 $level = 3;
-                //dd($level);
             }
             if ($total_amount>7000 && $total_amount<=9500) {
                 $level = 4;
-                //dd($level);
             }
 
             if ($total_amount>9500) {
                 $level = 5;
-                //dd($level);
             }
-            //dd($level);
         }
 
         if (Auth::user()->client_type === "2"){
             if ($total_amount>0 && $total_amount<=200) {
                 $level = 1;
-                //dd($level);
             }
             if ($total_amount>200 && $total_amount<=500) {
                 $level = 2;
-                //dd($level);
             }
             if ($total_amount>500 && $total_amount<=1300) {
                 $level = 3;
-                //dd($level);
             }
             if ($total_amount>1300 && $total_amount<=1700) {
                 $level = 4;
-                //dd($level);
             }
             if ($total_amount>1700 && $total_amount<=2500) {
                 $level = 5;
-                //dd($level);
             }
 
             if ($total_amount>2500) {
                 $level = 6;
-                //dd($level);
             }
-           // dd($level);
         }
-
-
         return view('pages.Account.benefitSafe', compact('data', 'level'));
     }
 
+    //Go to signature section in benefits
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $query = DB::table('signatures')
@@ -455,6 +453,7 @@ class CustomerController extends Controller
         return view('pages.Account.signature', compact('data', 'imgData'));
     }
 
+    //Create signature
     public function efirm(Request $request){
         //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
         //$SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
@@ -519,6 +518,7 @@ class CustomerController extends Controller
         //}
     }
 
+    //Go to benefits of assistance
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $now = Carbon::now();
@@ -534,33 +534,28 @@ class CustomerController extends Controller
             strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
         }
 
-        //dd(Auth::user()->client_type);
         $level = '';
         if (Auth::user()->client_type === "1"){
             if ($total_amount>4500 && $total_amount<=9500) {
                 $level = 'plata';
-                //dd($level);
             }
             if ($total_amount>9500) {
                 $level = 'oro';
-                //dd($level);
             }
-            //dd($level);
         }
 
         if (Auth::user()->client_type === "2"){
             if ($total_amount>500 && $total_amount<=1300) {
                 $level = 'pata';
-                //dd($level);
             }
             if ($total_amount>1300) {
                 $level = 'oro';
-                //dd($level);
             }
         }
         return view('pages.Account.assistance', compact('data', 'level'));
     }
 
+    //Go to beneficiares section
     public function beneficiaries ()
     {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
@@ -579,6 +574,7 @@ class CustomerController extends Controller
         return view('pages.Account.employees', compact('data','associates','validated'));
     }
 
+    //Function to generate limit for add employees according the rules
     public function employeeLimit(){
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $now = Carbon::now();
@@ -611,6 +607,7 @@ class CustomerController extends Controller
         return $validated;
     }
 
+    //Edit Employees
     public function editEmployee($user){
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $query = DB::table('associates')
@@ -619,19 +616,6 @@ class CustomerController extends Controller
                     ->get();
         $employee = $query[0];
         return view('pages.Account.editEmployee', compact('employee','user'));
-    }
-
-    //Function to test upload the insurance policy
-
-    public function upload_s3(){
-        $file = asset('img/1x/wht.png');
-        $upload = \Storage::cloud()->put('polizas/wht.png', $file, 'public');
-
-        if($upload){
-            return 'success';
-        }
-
-        return 'failed';
     }
 
     public function update_stage_two(Customer $customer, Request $request){
@@ -714,7 +698,7 @@ class CustomerController extends Controller
         }
     }
 
-
+    //Contact form
     public function contact_us(Request $request){
         $data = $request->all();
         try {
@@ -728,7 +712,9 @@ class CustomerController extends Controller
         }
      }
 
+     //Function to generate PDF and upload AWS's S3
      public function generatePDF() {
+        $id = Auth::user()->id;
         $customer = DB::table('customers')
             ->where('client_number', '=', Auth::user()->client_number)
             ->first();
@@ -739,8 +725,14 @@ class CustomerController extends Controller
         $signature = DB::table('signatures')
                 ->where('client_number', '=', Auth::user()->client_number)
                 ->first();
-        return PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature])->stream('test.pdf');
-        //return $pdf->download('test.pdf');
+        $pdf = PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature]);
+        $pdf->save($customer->id.'.pdf');
+        $upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
+         if($upload){
+             return 'success';
+         }
+
+         return 'failed';
      }
 
     protected function guard()

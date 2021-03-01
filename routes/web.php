@@ -18,17 +18,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-/*Route::get('/pdf', function (){
-    return view('layouts.Policies.safePolicy');
-});*/
-
 Route::post('/contact_us','CustomerController@contact_us');
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
 Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
-
-Route::get('/upload_s3','CustomerController@upload_s3');
-
 
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
