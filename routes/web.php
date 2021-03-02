@@ -57,6 +57,9 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
+
+        //Deactivate
+        Route::put('/delete', 'CustomerController@deactivate')->name('deactivate');
         
     });
 });
