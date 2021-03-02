@@ -172,16 +172,20 @@
             </div>
         </div>
         @endif
-
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLogin"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-user" style="color: white; font-size: 18px;"></i>
+            </button>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
     </form>
    
-  
-    <div class="collapse navbar-collapse" id="navbarNav">
-
+    {{-- navbar login --}}
+    <div class="collapse navbar-collapse" id="navbarLogin">
         <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
             @if(session()->has('error'))
             <p style="color: red;margin-bottom: 0;text-align: center;">
@@ -223,7 +227,6 @@
                     </div>
                     
                 </div>
-                <br>
             </form>
             @else
             <div >
@@ -235,6 +238,10 @@
             </div>
             @endguest
         </div>
+    </div>
+  
+    {{-- navbar collapse --}}
+    <div class="collapse navbar-collapse" id="navbarNav">
 
       <ul class="navbar-nav mx-auto" id="main-menu">
         <!--<li class="nav-item">
