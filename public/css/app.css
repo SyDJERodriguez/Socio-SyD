@@ -38,6 +38,16 @@ nav a.active{
     padding: 0 30px;
 }
 
+.carousel{
+    height: 400px;
+}
+
+@media(max-width:490.5px){
+    .carousel{
+        height: 290px;
+    }
+}
+
 @media (min-width: 1400px) {
     .header{
         height: 110px !important;
