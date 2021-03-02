@@ -151,7 +151,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
-                        <p class="text-white">EN UN MOMENTO NOS PONDREMOS EN CONTACTO CON USTED</p>
+                        <p class="text-white">NOS PONDREMOS EN CONTACTO A LA BREVEDAD.</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
