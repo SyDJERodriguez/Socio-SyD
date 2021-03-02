@@ -6,20 +6,20 @@
 <div style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div>
-      <div style="padding-left: 15px !important;">
-         <h4>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+      <div style="padding-left: 10px !important;">
+         <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
             No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
-         </h4>
+         </h6>
          <hr>
       </div>
       <div>
       </div>
-      <div style="padding-left: 15px !important;">
-         <h4>Detalle de la cuenta</h4>
+      <div style="padding-left: 10px !important;">
+         <h5>Detalle de la cuenta</h5>
          </div>
    </div>
    <div>
-      <div style="margin-left: 15px;">
+      <div style="margin-left: 10px;">
          <div>
             <table class="table table-striped table-bordered" id="tableTrans" style="width:100%">
                <thead>
