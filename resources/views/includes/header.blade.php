@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <!--header-->
     <div class="row ml-0 header" id="header">
-        <div class="col-lg-3 p-3 pl-4" id="main-logo" >
+        <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
                 <img src="{{asset('img/logo.png')}}" width="250px" alt="">
             </div>
@@ -21,33 +21,35 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-sm-5 my-1">
+                    <div class="col-sm-4 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
-                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <p class="primary-color pr-3" style="margin-bottom: 0">
-                                <b>¿No tienes una cuenta?</b>
-                            </p>
-                            <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0"
-                                style="background-color: #143153;color:white;font-size: 12px; width: 90px;">
-                                ¡REGÍSTRATE!
-                            </a>
-                        </div>
+                        
                     </div>
-                    <div class="col-sm-5 my-1">
+                    <div class="col-sm-3 my-1">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
-                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4">
-                                <b>¿Olvidaste tu contraseña?</b>
-                            </a>
-                        </div>
+                        
                     </div>
                     <div class="col-sm-2" id="buttonLogin">
                         <button type="submit" id="login-button" class="btn btn"
-                            style="background-color: #143153;color:white; width: 200px">
+                            style="background-color: #143153;color:white; width: 150px">
                             INICIAR SESIÓN
                         </button>
+                    </div>
+                    <div class="col-sm-5 " style="display: flex; justify-content: center; align-items: flex-end;font-size:12px">
+                        <p class="primary-color pr-3" style="margin-bottom: 0">
+                            <b id="lblNoAccount">¿No tienes una cuenta?</b>
+                        </p>
+                        <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0"
+                            style="background-color: #143153;color:white;font-size: 12px; width: 80px;">
+                            ¡REGÍSTRATE!
+                        </a>
+                    </div>
+                    <div class="col-sm-5" style="display: flex; justify-content: center; align-items: flex-end;">
+                        <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4">
+                            <b>¿Olvidaste tu contraseña?</b>
+                        </a>
                     </div>
                 </div>
 

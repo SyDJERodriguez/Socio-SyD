@@ -56,6 +56,12 @@ nav a.active{
     }
 }
 
+@media(max-width:1003.5px){
+    #lblNoAccount{
+        font-size: 11px;
+    }
+}
+
 #formLogin2{
     visibility: hidden;
     display: none;
