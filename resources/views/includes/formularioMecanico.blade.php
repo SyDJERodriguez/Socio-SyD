@@ -68,10 +68,17 @@
                 <input type="hidden" id="confirmPassword" name="client_type" value="2">
                 <div class="modal-footer border-top-0">
                     <div class="form-check form-check-inline text-right">
-                        <label class="form-check-label pr-2" for="inlineCheckbox1"  style="color: grey;font-size: 12px;"><strong>ACEPTAR</strong><br>
-                            AVISO DE PRIVACIDAD
+                            <label class="form-check-label pr-2" for="inlineCheckbox1"  
+                                style="color: grey;font-size: 12px;">
+                                <strong>ACEPTAR</strong>
+                            
                             <br>
-                            <a href="#" data-toggle="modal" data-target="#modal8">TÉRMINOS Y CONDICIONES</a></label>
+                            <a href="#" data-toggle="modal" data-target="#modalAviso">
+                                AVISO DE PRIVACIDAD</a>
+                            <br>
+                            <a href="#" data-toggle="modal" data-target="#modal8">
+                                TÉRMINOS Y CONDICIONES</a>
+                            </label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
                     <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
