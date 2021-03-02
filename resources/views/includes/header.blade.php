@@ -1,6 +1,9 @@
 <a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD." target="_blank"
     class="whatsapp">
-    <img src="{{asset('img/1x/wht.png')}}" alt="">
+    <img src="{{asset('img/whatsIcon.png')}}" alt="">
+</a>
+<a href="#main-logo" class="whatsapp" style="padding-top:5%;">
+    <img src="{{asset('img/goUp.png')}}">
 </a>
 
 <div class="container-fluid">
