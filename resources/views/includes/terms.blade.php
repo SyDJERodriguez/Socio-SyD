@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row pt-2 position-relative"
+                <!--<div class="row pt-2 position-relative"
                     style="font-size: 14px;background-color: #00A5E6;color: white;margin-left: 0.50px; margin-right: 0.20px">
 
                     <div class="col-12 text-center mb-2">Notas</div>
@@ -88,7 +88,7 @@
                             <li> La asistencia funeraria. No aplica por COVID 19.</li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
                 <div style="background: #143153" class="p-3">
                 </div>
             </div>
