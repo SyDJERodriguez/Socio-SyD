@@ -59,6 +59,12 @@ nav a.active{
     }
 }
 
+@media(max-width: 1337.5px){
+    .noDown{
+        font-size: 10px;
+    }
+}
+
 @media(max-width: 991px){
     .formLogin{
        visibility: hidden;
