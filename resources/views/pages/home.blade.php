@@ -222,7 +222,8 @@
 
     <section id="section6">
         <div class="container-fluid py-5">
-            <div class="jumbotron text-center mx-auto">
+            <a href="https://www.refaccionarias-dar.com/" target="_blank">
+                <div class="jumbotron text-center mx-auto">
                <!-- <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
                     <div class="col-lg-4 ">
@@ -234,7 +235,8 @@
 
                 <h5 class=" text-white text-center py-4"><strong>OBTÉN LOS PRODUCTOS QUE NECESITAS <br>EN UN SÓLO CLIC</strong></h5>
                 <a class="btn btn-primary text-center" href="https://www.refaccionarias-dar.com/" role="button">COMPRA AHORA</a>-->
-            </div>
+                </div>
+            </a>
         </div>
     </section>
     @include('includes.modals')

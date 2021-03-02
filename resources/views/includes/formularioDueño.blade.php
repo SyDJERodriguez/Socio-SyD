@@ -91,7 +91,8 @@
                 <div class="modal-footer border-top-0">
                     <div class="form-check form-check-inline text-right">
                         <label class="form-check-label pr-2" for="inlineCheckbox1"  style="color: grey;font-size: 12px;"><strong>ACEPTAR</strong><br>
-                            AVISO DE PRIVACIDAD
+                            <a href="#" data-toggle="modal" data-target="#modalAviso">
+                                AVISO DE PRIVACIDAD</a>
                             <br>
                             <a href="#" data-toggle="modal" data-target="#modal8">TÉRMINOS Y CONDICIONES</a></label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
