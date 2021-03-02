@@ -89,6 +89,10 @@ nav a.active{
         visibility: visible;
         display:unset;
     }
+    .bell2{
+        visibility: hidden;
+        display: none;
+    }
 }
 
 
@@ -330,9 +334,9 @@ display: none;
     #mobile {
         padding-bottom: 35px !important;
     }
- .logo-menu{
+    .logo-menu{
      display: block;
- }
+    }
 
  .bar{
     display: none;

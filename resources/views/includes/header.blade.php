@@ -70,25 +70,7 @@
 
             @endguest
         </div>
-        @if(!empty(Auth::user()))
-        <div class="col-lg-2 notification" style="padding-left: 160px;padding-top: 25px;">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i
-                        class="far fa-bell" style="color: white; font-size: 28px;"> </i>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </div>
-        </div>
-        @endif
-
+        
     </div>
 
     <!-- Modal LOGOUT-->
@@ -168,11 +150,29 @@
     <a class="navbar-brand" href="#">
         <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-    </button>
 
+    <form class="form-inline my-lg-0">
+        @if(!empty(Auth::user()))
+        <div class="navbar-toggler ">
+            <div class="btn-group dropleft">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                        1
+                    </span>
+                    <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
+                </button>
+            </div>
+        </div>
+        @endif
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+    </form>
+   
+  
     <div class="collapse navbar-collapse" id="navbarNav">
 
         <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
@@ -219,22 +219,18 @@
                 <br>
             </form>
             @else
-            <div style="display: flex; justify-content: flex-end;">
-                <div class="form-row align-items-center">
-                    <div class="col-sm-5 my-1"></div>
-                    <div class="col-sm-5 my-1"></div>
-                </div>
-                <div class="col-sm-2 my-3">
-                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px"
+            <div >
+                <div class="col-lg-12 my-2">
+                    <a href="#" class="btn btn-sm btn-block" 
+                    style="background-color: #3cb3e7;color:white"
                         data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
                 </div>
             </div>
-    
             @endguest
         </div>
 
-        <ul class="navbar-nav mx-auto" id="main-menu">
-            <!--<li class="nav-item">
+      <ul class="navbar-nav mx-auto" id="main-menu">
+        <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
@@ -252,9 +248,36 @@
             <li class="nav-item">
                 <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
-        </ul>
+      </ul>
+
+      @if(!empty(Auth::user()))
+        <div class="bell2">
+            <div class="btn-group dropleft">
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i
+                        class="far fa-bell" style="color: white; font-size: 22px;"> </i>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </div>
-</nav>
+  </nav>
+{{--   
+<nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        
+    </div>
+</nav> --}}
 
 <!-- Modal formulario dueño de negocio-->
 @include('includes.formularioDueño')
