@@ -59,7 +59,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::post('/logout', 'CustomerController@logout')->name('logout');
 
         //Deactivate
-        Route::put('/delete', 'CustomerController@deactivate')->name('deactivate');
+        Route::put('/delete', 'CustomerController@deactivate_account')->name('deactivate');
         
     });
 });

@@ -290,6 +290,7 @@ class CustomerController extends Controller
     //Logout function
     public function logout(Request $request)
     {
+        dd($request);
         $this->guard()->logout();
 
         $request->session()->invalidate();
@@ -331,6 +332,21 @@ class CustomerController extends Controller
             return response()->json(['success'=>'true','status' =>200]);
         }
         return response()->json(['success'=>'false','status' =>401]);
+    }
+
+    //Deactivate account
+    public function deactivate_account(Request $request){
+        $updated = DB::table('customers_sessions')
+            ->where('id', '=', Auth::user()->id)
+            ->update(['active'=> 0]);
+
+        if (!$updated){
+            return view('pages.Account.status');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     //Go to My account
