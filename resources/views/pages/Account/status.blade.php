@@ -76,6 +76,7 @@
       dom: 'Bfrtip',
       info: false,
       searching:false,
+      scrollX:true,
       language: {
          paginate: {
             previous: "Anterior",
