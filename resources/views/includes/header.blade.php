@@ -271,13 +271,6 @@
 
     </div>
   </nav>
-{{--   
-<nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-        
-    </div>
-</nav> --}}
 
 <!-- Modal formulario dueño de negocio-->
 @include('includes.formularioDueño')

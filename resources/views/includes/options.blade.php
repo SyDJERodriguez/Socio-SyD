@@ -1,22 +1,46 @@
+
 <div class="container-fluid mt-3 pr-5 pl-5">
-    <div class="row inside_nav someimpor optionsAccount" style="display: flex; justify-content: center; width: 100%;">
-        <div class="col-lg-2 py-2 border-right border-primary offset-lg-1">
-            <a href="{{route('customer.benefits')}}" class="btn btn-lg btn-block boton <?php if($active === 1 ){echo 'active';}?>" >Beneficios obtenidos</a>
+    <div class="row inside_nav someimpor optionsAccount" 
+    style="display: flex; justify-content: center; width: 100%;">
+      <div class="col-md-2 py-1 border-primary separadorBut">
+        <a href="{{route('customer.benefits')}}"
+            class="btn btn-md boton 
+            <?php if($active === 1 ){echo 'active';}?>">
+            Beneficios obtenidos
+        </a>
+      </div>
+      @if(Auth::user()->client_type === "1" )
+        <div class="col-md-2 py-1 border-primary separadorBut">
+            <a href="{{route('customer.employees')}}"
+                class="btn btn-md boton 
+                <?php if($active === 2 ){echo 'active';}?>">
+                Agregar dependientes
+            </a>
         </div>
-        @if(Auth::user()->client_type === "1" )
-            <div class="col-lg-2 py-2 border-right border-primary">
-                <a href="{{route('customer.employees')}}" class="btn btn-lg btn-block boton <?php if($active === 2 ){echo 'active';}?>">agrEgar dependientes</a>
-            </div>
         @endif
-        <div class="col-lg-2 py-2 border-right border-primary">
-            <a href="{{route('customer.myAccount')}}" class="btn btn-lg btn-block boton <?php if($active === 3 ){echo 'active';}?>">estado de cuenta</a>
+        <div class="col-md-2 py-1 border-primary separadorBut">
+            <a href="{{route('customer.myAccount')}}"
+                class="btn btn-md boton 
+                <?php if($active === 3 ){echo 'active';}?>">
+                Estado de cuenta
+            </a>
         </div>
-        <div class="col-lg-2 py-2">
-            <a href="{{route('customer.myDocuments')}}" class="btn btn-lg btn-block boton <?php if($active === 4 ){echo 'active';}?>">mis documentos</a>
+        <div class="col-md-2 py-1 separadorBut">
+            <a href="{{route('customer.myDocuments')}}"
+                class="btn btn-md boton 
+                <?php if($active === 4 ){echo 'active';}?>">
+                Mis documentos
+            </a>
         </div>
         <!--<div class="col-lg-2 py-2">
             <a href="#" class="btn btn-lg btn-block boton <?php if($active === 5 ){echo 'active';}?>">referir amigos</a>
         </div>-->
+    </div>
+  </div>
+
+<div class="container-fluid mt-3 pr-5 pl-5">
+    <div class="row inside_nav someimpor optionsAccount" 
+    style="display: flex; justify-content: center; width: 100%;">
     </div>
 </div>
 <!--<div class="container-fluid mt-1 font-weight-bold" style="font-size: 14px;">
