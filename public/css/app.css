@@ -49,6 +49,32 @@ nav a.active{
     }
 }
 
+@media(max-width: 991px){
+    .formLogin{
+       visibility: hidden;
+       display: none;
+    }
+}
+
+#formLogin2{
+    visibility: hidden;
+    display: none;
+}
+
+@media(max-width:600px){
+    #header{
+        margin-bottom: 0%;
+        height: 0;
+    }
+}
+
+@media(max-width: 991.50px){
+    #formLogin2{
+        visibility: visible;
+        display:unset;
+    }
+}
+
 
 /*font*/
 @font-face {

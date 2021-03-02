@@ -5,13 +5,13 @@
 
 <div class="container-fluid">
     <!--header-->
-    <div class="row header ml-0">
-        <div class="col-lg-2 p-8 pl-4 " id="main-logo" >
+    <div class="row ml-0 header" id="header">
+        <div class="col-lg-3 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" style="background-color: #143153" width="250px" alt="">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt="">
             </div>
         </div>
-        <div class="col-lg-6 pl-6 pt-1">
+        <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
             <p style="color: red;margin-bottom: 0;text-align: center;">
                 {{ session()->get('error') }}
@@ -21,7 +21,7 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-sm-4 my-1">
+                    <div class="col-sm-5 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
@@ -34,7 +34,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-4 my-1">
+                    <div class="col-sm-5 my-1">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
@@ -170,7 +170,67 @@
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
+            @if(session()->has('error'))
+            <p style="color: red;margin-bottom: 0;text-align: center;">
+                {{ session()->get('error') }}
+            </p>
+            @endif
+            @guest
+            <form id="login-form" method="POST" action="{{ route('customer.login') }}">
+                @csrf
+                <div class="form-row align-items-center">
+                    <div class="col-sm-12 my-1">
+                        <input type="text" class="form-control border-input" id="inlineFormInputName"
+                            placeholder="CORREO" name="email" required>
+                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
+                            <p class="text-white pr-3" style="margin-bottom: 0">
+                                <b>¿No tienes una cuenta?</b>
+                            </p>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
+                                style="color:white;font-size: 14px;">
+                                ¡REGÍSTRATE!
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 my-1">
+                        <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
+                            placeholder="CONTRASEÑA" name="password" required>
+                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
+                            <a href="#" class="text-white" data-toggle="modal" data-target="#modal4">
+                                <b>¿Olvidaste tu contraseña?</b>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" id="buttonLogin">
+                        <button type="submit" class="btn btn-sm btn-block" 
+                        style="background-color: #3cb3e7;color:white">
+                            INICIAR SESIÓN
+                        </button>
+                       
+                    </div>
+                    
+                </div>
+                <br>
+            </form>
+            @else
+            <div style="display: flex; justify-content: flex-end;">
+                <div class="form-row align-items-center">
+                    <div class="col-sm-5 my-1"></div>
+                    <div class="col-sm-5 my-1"></div>
+                </div>
+                <div class="col-sm-2 my-3">
+                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px"
+                        data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
+                </div>
+            </div>
+    
+            @endguest
+        </div>
+
         <ul class="navbar-nav mx-auto" id="main-menu">
             <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
