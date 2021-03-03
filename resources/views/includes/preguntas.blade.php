@@ -34,7 +34,7 @@
                         <li>Compra en cualquiera de  nuestras tiendas de DAR® Refaccionarias, a través de nuestros canales digitales 
                           (
                           <a href="https://www.syd.com.mx/" target="_blank">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com" target="_blank">https://www.refaccionarias-dar.com</a>)
-                            o llamando al número <b>800SyD (793) 1010</b> y solicita que te asignen 
+                            o llamando al número <b>800 SYD (793) 1010</b> y solicita que te asignen 
                           tu número de cliente.
                         </li>
                       </ol>
@@ -42,7 +42,7 @@
                   <section>
                       <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">3.	Ya tengo número de cliente, pero no lo recuerdo ¿cómo puedo solicitarlo?</h5>
                       <ol type="a">
-                        <li>Solicítalo en la sucursal de tu preferencia o llama al número <b>800SyD (793) 1010</b> y solicítalo con tus datos.</li>
+                        <li>Solicítalo en la sucursal de tu preferencia o llama al número <b>800 SYD (793) 1010</b> y solicítalo con tus datos.</li>
                         <li>En nuestro sitio web, solicítalo a través de la opción “recordar mi número de cliente” ingresando tu correo electrónico o teléfono de
                               <br>contacto registrado. </li>
                       </ol>
@@ -81,7 +81,7 @@
                             <br>	de nuestros canales digitales (
                               <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>) 
                                   o llamando al 
-                              número: <b>800SyD (793) 1010</b>.
+                              número: <b>800 SYD (793) 1010</b>.
                           </p>
                         </li>
                       </ol>
@@ -328,7 +328,7 @@
       Participan todos los productos que adquieras a través de nuestras tiendas de DAR® Refaccionarias, 
       nuestros canales digitales <br>	(
         <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
-        o llamando al número: <b>800SyD (793) 1010</b>.
+        o llamando al número: <b>800 SYD (793) 1010</b>.
     </p>
   </li>
 </ol>
@@ -343,7 +343,7 @@
       Sólo participan los productos SyD® comprados a través de nuestros canales oficiales de venta. (nuestras tiendas de DAR® 
       <br> Refaccionarias, a través de nuestros canales digitales (
         <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
-        o llamando al número: <b>800SyD (793) 1010</b>.
+        o llamando al número: <b>800 SYD (793) 1010</b>.
     </p>
   </li>
 </ol>

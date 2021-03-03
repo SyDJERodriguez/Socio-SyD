@@ -8,10 +8,12 @@
             <hr>
         </div>
         <div class="col-lg-2">
-            <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}</h6>
-            <h6> No. de Cliente <span style="color: #009CE0;">{{substr(Auth::user()->client_number, 2)}}</span></h6>
-            <br/>
-            <br/>
+          <div style="padding-left: 0px !important;">
+            <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+               No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
+            </h6>
+            <hr>
+         </div>
             <div>
               <img src="{{asset('img/mandoc.png')}}"  style="width: 90%;border-radius: 10px; margin-bottom: 50px" alt="">
             </div>

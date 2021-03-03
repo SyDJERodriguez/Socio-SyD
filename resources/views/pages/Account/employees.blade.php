@@ -6,17 +6,18 @@
     padding-right: 3rem !important;">
     <hr>
     <div >
-        <div style="padding-left: 15px !important;">
-            <h4>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-                No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span></h4>
+        <div style="padding-left: 10px !important;">
+            <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+               No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
+            </h6>
             <hr>
-        </div>
+         </div>
     </div>
 
     <div>
         <div>
-            <div style="margin-left: 15px !important;">
-                <h4>Detalle de empleados</h4>
+            <div style="margin-left: 10px !important;">
+                <h5>Detalle de empleados</h5>
                 <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
                     <thead>
                         <tr>
@@ -57,7 +58,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-3 mx-auto">
+            <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"     
                 @if ($validated == 0)
                 disabled
@@ -79,6 +80,7 @@
        dom: 'Bfrtip',
        info: false,
        searching:false,
+       scrollX:true,
        language: {
           paginate: {
              previous: "Anterior",
