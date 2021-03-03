@@ -59,13 +59,17 @@
    <br>
    <div class="row">
       <div class="col-12 ">
-         <span class="float-left pl-2">
+          <div class="col-md-6">
+              <span class="float-left pl-2">
             <h4 style="color: #143153;"><strong>ACLARACIONES</strong></h4>
             <p>•	Para aclaraciones llámanos <br>
                al 800 SYD (793) 1010
             </p>
          </span>
+          </div>
+          <div class="col-md-12">
           @include('includes.Account.deleteButton')
+          </div>
       </div>
    </div>
    <br><br><br><br>

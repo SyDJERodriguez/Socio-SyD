@@ -2,11 +2,11 @@
     class="whatsapp">
     <img src="{{asset('img/whatsIcon.png')}}" alt="">
 </a>
-<a href="#main-logo" class="whatsapp" style="padding-top:5%;">
+<a href="#oneSection" class="upButton">
     <img src="{{asset('img/goUp.png')}}">
 </a>
 
-<div class="container-fluid">
+<div class="container-fluid" id="oneSection">
     <!--header-->
     <div class="row ml-0 header" id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
@@ -48,7 +48,7 @@
                         <div class="row ">
                             <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
                                 <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
-                                    <b>¿Olvidaste tu contraseña?</b>
+                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
                                 </a>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
 </div>
 
 <!--menu-->
-<nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+<nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection">
     <a class="navbar-brand" href="#">
         <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
     </a>
@@ -246,7 +246,7 @@
     {{-- navbar collapse --}}
     <div class="collapse navbar-collapse" id="navbarNav">
 
-      <ul class="navbar-nav mx-auto" id="main-menu">
+      <ul class="navbar-nav" id="main-menu">
         <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->

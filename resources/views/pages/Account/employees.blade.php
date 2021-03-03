@@ -58,7 +58,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-3 mx-auto">
+            <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"     
                 @if ($validated == 0)
                 disabled
