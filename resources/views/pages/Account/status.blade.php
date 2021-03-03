@@ -6,20 +6,20 @@
 <div style="padding-left: 3rem !important; padding-right: 3rem !important;">
    <hr>
    <div>
-      <div style="padding-left: 15px !important;">
-         <h4>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+      <div style="padding-left: 10px !important;">
+         <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
             No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span>
-         </h4>
+         </h6>
          <hr>
       </div>
       <div>
       </div>
-      <div style="padding-left: 15px !important;">
-         <h4>Detalle de la cuenta</h4>
+      <div style="padding-left: 10px !important;">
+         <h5>Detalle de la cuenta</h5>
          </div>
    </div>
    <div>
-      <div style="margin-left: 15px;">
+      <div style="margin-left: 10px;">
          <div>
             <table class="table table-striped table-bordered" id="tableTrans" style="width:100%">
                <thead>
@@ -59,13 +59,17 @@
    <br>
    <div class="row">
       <div class="col-12 ">
-         <span class="float-left pl-2">
+          <div class="col-md-6">
+              <span class="float-left pl-2">
             <h4 style="color: #143153;"><strong>ACLARACIONES</strong></h4>
             <p>•	Para aclaraciones llámanos <br>
                al 800 SYD (793) 1010
             </p>
          </span>
+          </div>
+          <div class="col-md-12">
           @include('includes.Account.deleteButton')
+          </div>
       </div>
    </div>
    <br><br><br><br>
@@ -76,6 +80,7 @@
       dom: 'Bfrtip',
       info: false,
       searching:false,
+      scrollX:true,
       language: {
          paginate: {
             previous: "Anterior",
