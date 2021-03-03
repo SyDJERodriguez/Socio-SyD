@@ -8,6 +8,13 @@
     z-index: 99;
 }
 
+.upButton{
+    top: 580px;
+    right: -12px;
+    position: fixed;
+    z-index: 99;
+}
+
 .top-bar {
     position: -webkit-sticky;
     position: sticky;
@@ -56,6 +63,15 @@ nav a.active{
     .notification{
         padding-left: 200px !important;
         padding-top: 35px !important;
+    }
+}
+
+@media(max-width: 1337.5px){
+    .noDown{
+        font-size: 10px;
+    }
+    .separadorBut{
+        width: 80%;
     }
 }
 
@@ -170,16 +186,15 @@ nav a.active{
     background-color: #143153;
     color:white; 
     text-transform:uppercase;
-    font-size: 16px;
-    width: 220px;
+    font-size: 17px;
+    width: 100%;
     
 }
 
 @media(max-width: 767.5px){
     .separadorBut .boton{
-        width: 100%;
-        margin: 0px 0px 0px 12px;
-        height: 40px;
+        width: 110%;
+        margin: 0px 0px 0px 0px;
     }
 }
 /* Breadcrups CSS */
@@ -363,6 +378,12 @@ display: none;
     }
     .logo-menu{
      display: block;
+    }
+
+    #signCustomer {
+        margin-left: 0 !important;
+        width: 100%;
+        height: 100%;
     }
 
  .bar{

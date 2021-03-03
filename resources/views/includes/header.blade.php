@@ -1,9 +1,12 @@
 <a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD." target="_blank"
     class="whatsapp">
-    <img src="{{asset('img/1x/wht.png')}}" alt="">
+    <img src="{{asset('img/whatsIcon.png')}}" alt="">
+</a>
+<a href="#oneSection" class="upButton">
+    <img src="{{asset('img/goUp.png')}}">
 </a>
 
-<div class="container-fluid">
+<div class="container-fluid" id="oneSection">
     <!--header-->
     <div class="row ml-0 header" id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
@@ -21,15 +24,34 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-sm-4 my-1">
+                    <div class="col-lg-6 my-2">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
-                        
+                            <div class="row">
+                                <div class="col-sm-7 ">
+                                    <p class="primary-color" style="margin-bottom: 0; font-size:12px;text-align:center;padding-top:5px">
+                                        <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn-sm p-0 adios"
+                                    style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
+                                    ¡REGÍSTRATE!
+                                    </a>
+                                </div>
+                            </div>
+                            
                     </div>
-                    <div class="col-sm-3 my-1">
+                    <div class="col-lg-4 my-2">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
-                        
+                        <div class="row ">
+                            <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
+                                <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
+                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-2" id="buttonLogin">
                         <button type="submit" id="login-button" class="btn btn"
@@ -37,20 +59,8 @@
                             INICIAR SESIÓN
                         </button>
                     </div>
-                    <div class="col-sm-5 " style="display: flex; justify-content: center; align-items: flex-end;font-size:12px">
-                        <p class="primary-color pr-3" style="margin-bottom: 0">
-                            <b id="lblNoAccount">¿No tienes una cuenta?</b>
-                        </p>
-                        <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn p-0"
-                            style="background-color: #143153;color:white;font-size: 12px; width: 80px;">
-                            ¡REGÍSTRATE!
-                        </a>
-                    </div>
-                    <div class="col-sm-5" style="display: flex; justify-content: center; align-items: flex-end;">
-                        <a href="#" class="primary-color" data-toggle="modal" data-target="#modal4">
-                            <b>¿Olvidaste tu contraseña?</b>
-                        </a>
-                    </div>
+                   
+                    
                 </div>
 
             </form>
@@ -146,7 +156,7 @@
 </div>
 
 <!--menu-->
-<nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+<nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection">
     <a class="navbar-brand" href="#">
         <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
     </a>
@@ -165,16 +175,20 @@
             </div>
         </div>
         @endif
-
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLogin"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-user" style="color: white; font-size: 18px;"></i>
+            </button>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
     </form>
    
-  
-    <div class="collapse navbar-collapse" id="navbarNav">
-
+    {{-- navbar login --}}
+    <div class="collapse navbar-collapse" id="navbarLogin">
         <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
             @if(session()->has('error'))
             <p style="color: red;margin-bottom: 0;text-align: center;">
@@ -216,7 +230,6 @@
                     </div>
                     
                 </div>
-                <br>
             </form>
             @else
             <div >
@@ -228,8 +241,12 @@
             </div>
             @endguest
         </div>
+    </div>
+  
+    {{-- navbar collapse --}}
+    <div class="collapse navbar-collapse" id="navbarNav">
 
-      <ul class="navbar-nav mx-auto" id="main-menu">
+      <ul class="navbar-nav" id="main-menu">
         <!--<li class="nav-item">
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
