@@ -29,7 +29,7 @@
                   </div>-->
                   <div class="col-lg-12 py-3 text-center">
                     <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                    <input type="button" class="btn btn py-2  text-white " style="background-color: #143153;" value="Certificado de la póliza">                  </div>
+                      <a href="{{$link}}" target="_blank" class="btn btn py-2  text-white " style="background-color: #143153;">CERTIFICADO DE PÓLIZA</a>               </div>
                   <!--<div class="col-lg-6 py-3 text-center">
                     <img src="{{asset('img/Asset10.png')}}" class="py-2"><br>
                     <input type="button" class="btn btn py-2  text-white " style="background-color: #143153;padding-left: 80px;padding-right: 80px;" value="INE">  </div>

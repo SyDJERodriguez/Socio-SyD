@@ -51,8 +51,12 @@ class BeneficiaryController extends Controller
                         }
                     }
                 }
-                $success = 'Los beneficiarios han sido agregados correctamente.';
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+
+                $generatePDF = $this->generatePDF();
+                if ($generatePDF === 'success') {
+                    $success = 'Los beneficiarios han sido agregados correctamente.';
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+                }
 
             }catch(\Exception $e){
                 $error = $e;
@@ -78,11 +82,36 @@ class BeneficiaryController extends Controller
                         'customer_id'      => $data['id']
                     ]);
 
-            $success = 'El beneficiario ha sido agregado correctamente.';
-            $beneficiary = 'true';
-            return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+            $generatePDF = $this->generatePDF();
 
-
+            if ($generatePDF === 'success'){
+                $success = 'El beneficiario ha sido agregado correctamente.';
+                $beneficiary = 'true';
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+            }
         }
+    }
+
+    //Function to generate PDF and upload AWS's S3
+    public function generatePDF() {
+        $id = Auth::user()->id;
+        $customer = DB::table('customers')
+            ->where('client_number', '=', Auth::user()->client_number)
+            ->first();
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('client_number', '=', Auth::user()->client_number)
+            ->first();
+        $pdf = PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature]);
+        $pdf->save($customer->id.'.pdf');
+        $upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
+        if($upload){
+            return 'success';
+        }
+
+        return 'failed';
     }
 }
