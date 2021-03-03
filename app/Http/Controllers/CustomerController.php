@@ -267,6 +267,15 @@ class CustomerController extends Controller
 
     //Login function
     public function login(Request $request){
+        $is_activate = DB::table('customers_sessions')
+            ->select('active')
+            ->where('email', '=', $request->email)
+            ->first();
+
+        if ($is_activate->active === 0){
+            return back()->with('deactivate','');
+        }
+
         //Validando
         $this->validate($request, [
             'email' => 'required|email',
@@ -291,9 +300,7 @@ class CustomerController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
         return $this->loggedOut($request) ?: redirect('/');
     }
 
@@ -325,6 +332,58 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
+        ]);
+
+        if ($update_customer === 1){
+            return response()->json(['success'=>'true','status' =>200]);
+        }
+        return response()->json(['success'=>'false','status' =>401]);
+    }
+
+    //Deactivate account
+    public function deactivate_account(Request $request){
+        $updated = DB::table('customers_sessions')
+            ->where('id', '=', Auth::user()->id)
+            ->update(['active'=> 0]);
+
+        if (!$updated){
+            return view('pages.Account.status');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    //Send email to activate account
+    public function send_activate_account(Request $request) {
+        $request = $request->input();
+        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
+        $data = Customer::where('client_number', $data_session->client_number)->first();
+        try {
+            \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Activar cuenta Plataforma SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
+
+    //Show form to change password to activate account
+    public function edit_account($client_number) {
+        return view('pages.activateAccount', compact('client_number'));
+    }
+
+    //Update account to activate
+    public function update_account(Request $request) {
+
+        $request = $request->input();
+        $password      = Hash::make($request['password']);
+        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
+            'password' => $password,
+            'active'   => 1
         ]);
 
         if ($update_customer === 1){

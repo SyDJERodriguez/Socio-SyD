@@ -19,9 +19,17 @@ Route::get('/', function () {
 })->name('home');
 
 Route::post('/contact_us','CustomerController@contact_us');
+
+//Password functions
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
 Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
+
+//Account functions
+Route::get('/send_activate_account', 'CustomerController@send_activate_account')->name('send.activate.account');
+Route::get('account/activate/{client_number}', 'CustomerController@edit_account')->name('edit.account');
+Route::put('account/update/password', 'CustomerController@update_account')->name('update.account');
+
 
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
@@ -57,6 +65,9 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
+
+        //Deactivate
+        Route::put('/delete', 'CustomerController@deactivate_account')->name('deactivate');
         
     });
 });
