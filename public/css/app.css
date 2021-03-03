@@ -48,6 +48,21 @@ nav a.active{
 .carousel{
     height: 400px;
 }
+.line1 > img{
+    width: 480px;
+    height: 25px;
+}
+
+.barTitle{
+    background-color: #143153;
+    width: 100%;
+    padding: 8px;
+}
+
+li{
+    text-align: justify;
+    width: 99%;
+}
 
 @media(max-width:490.5px){
     .carousel{
@@ -126,6 +141,17 @@ nav a.active{
     .bell2{
         visibility: hidden;
         display: none;
+    }
+    .line1 > img{
+        width: 320px;
+        height: 25px;
+    }
+}
+
+
+@media(max-width: 1199.5px){
+    .line1{
+        width: 380px;
     }
 }
 
@@ -353,6 +379,7 @@ display: none;
 .hgt{
     height: 400px;
 }
+
 /*mobile*/
 @media only screen and (max-width: 600px) {
  .header{
@@ -392,9 +419,9 @@ display: none;
 .hgt{
     height: 200px;
 }
-.line1{
-    display: none;
-}
+
+
+
 #efirm{
     width: 225px !important;
 }

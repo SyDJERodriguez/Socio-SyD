@@ -11,24 +11,27 @@
           <div class="row">
               <div class="col-lg-7 pt-2 pb-5">
                   <h2>PREGUNTAS FRECUENTES</h2>
-                  <div class="line1" style="height: 2px;width: 580px;background-color: black;"></div>
-                  <div class="line1 float-right " style="height: 2px;width: 60px;background-color: black;  transform: rotate(33deg);margin-top: 14.3px;"></div>
-
+                    <div class="line1" >
+                      <img src="{{asset('img/line2.png')}}" alt="">
+                    </div>
               </div>
 
           </div>
             <div class="row" style="font-size: 16px;">
                 <div class="col-lg-12">
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">1.	¿Cómo me afilio?</h5>
+                      <h5 class="text-white barTitle">1.	¿Cómo me afilio?</h5>
                       <ol type="a">
-                        <li><p>Solamente tienes que hacer clic en el botón de <b>“Registro”</b> dentro de este sitio web, llenar los datos requeridos y confirmar tu medio de 
-                          <br>contacto (número celular obligatorio y/o correo electrónico).
-                        </p></li>
+                        <li >
+                          <p>Solamente tienes que hacer clic en el botón de <b>“Registro”</b> dentro de este sitio web, llenar los
+                             datos requerido y confirmar tu medio de 
+                            contacto (número celular obligatorio y/o correo electrónico).
+                        </p>
+                      </li>
                       </ol>
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">2.	¿Cómo consigo mi número de cliente?</h5>
+                      <h5 class="text-white barTitle">2.	¿Cómo consigo mi número de cliente?</h5>
                       <ol type="a">
                         <li>Solicítalo a tu vendedor en la sucursal de tu preferencia.</li>
                         <li>Compra en cualquiera de  nuestras tiendas de DAR® Refaccionarias, a través de nuestros canales digitales 
@@ -40,16 +43,16 @@
                       </ol>
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">3.	Ya tengo número de cliente, pero no lo recuerdo ¿cómo puedo solicitarlo?</h5>
+                      <h5 class="text-white barTitle">3.	Ya tengo número de cliente, pero no lo recuerdo ¿cómo puedo solicitarlo?</h5>
                       <ol type="a">
                         <li>Solicítalo en la sucursal de tu preferencia o llama al número <b>800 SYD (793) 1010</b> y solicítalo con tus datos.</li>
                         <li>En nuestro sitio web, solicítalo a través de la opción “recordar mi número de cliente” ingresando tu correo electrónico o teléfono de
-                              <br>contacto registrado. </li>
+                            contacto registrado. </li>
                       </ol>
                   </section>
 
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">4.	¿Dónde puedo modificar mis datos de contacto? </h5>
+                      <h5 class="text-white barTitle">4.	¿Dónde puedo modificar mis datos de contacto? </h5>
                       <ol type="a">
                         <li>
                           <p>
@@ -61,7 +64,7 @@
                   </section>
 
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">5.	¿Debo tener RFC para ser parte del plan de lealtad?</h5>
+                      <h5 class="text-white barTitle">5.	¿Debo tener RFC para ser parte del plan de lealtad?</h5>
                       <ol type="a">
                         <li>
                           <p>
@@ -72,13 +75,13 @@
                      
                   </section>
                   <section>
-                      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">6.	¿Quiénes pueden recibir los beneficios del plan de lealtad?
+                      <h5 class="text-white barTitle">6.	¿Quiénes pueden recibir los beneficios del plan de lealtad?
                       </h5>
                       <ol type="a">
                         <li>
                           <p>
                             Cualquier persona o empresa que compre productos de la marca SyD® en alguna de nuestras tiendas de DAR® Refaccionarias, a través 
-                            <br>	de nuestros canales digitales (
+                            de nuestros canales digitales (
                               <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>) 
                                   o llamando al 
                               número: <b>800 SYD (793) 1010</b>.
@@ -87,50 +90,50 @@
                       </ol>
                   </section>
                   <section>
-                    <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">7.	¿Cómo se registran mis compras dentro del programa?
+                    <h5 class="text-white barTitle">7.	¿Cómo se registran mis compras dentro del programa?
                     </h5>
                     <ol type="a">
                       <li>
                         <p>
                           Una vez llevado a cabo tu registro, tus compras se registrarán automáticamente dentro del programa. 
-                          Por ello, es indispensable que <br>	proporciones tu número de cliente. 
+                          Por ello, es indispensable que proporciones tu número de cliente. 
                         </p>
                       </li>
                     </ol>
                 </section>
                 <section>
-                  <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">8.	¿Qué necesito para afiliarme?
+                  <h5 class="text-white barTitle">8.	¿Qué necesito para afiliarme?
                   </h5>
                   <ol type="a">
                     <li>
                       <p>
                         Tener un medio de contacto confirmado (teléfono celular obligatorio y/o correo electrónico), comprar productos SyD® 
-                        a través de <br> los	canales autorizados del programa y tener un número de cliente DAR®.
+                        a través de los	canales autorizados del programa y tener un número de cliente DAR®.
                       </p>
                     </li>
                   </ol>
                   
               </section>
               <section>
-                <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">9.	¿Qué beneficios obtengo dentro del programa de lealtad?</h5>
+                <h5 class="text-white barTitle">9.	¿Qué beneficios obtengo dentro del programa de lealtad?</h5>
                 <ol type="a">
                   <li>
                     <p>
-                      Dependiendo de tu nivel de compra mensual, puedes acceder al beneficio de seguro de accidentes personales, orientación médica <br>	telefónica emocional y nutricional, 
-                      video consulta por Covid-19, ambulancia terrestre por emergencia, asistencia funeraria coordinada<br>	 por
+                      Dependiendo de tu nivel de compra mensual, puedes acceder al beneficio de seguro de accidentes personales, orientación médica telefónica emocional y nutricional, 
+                      video consulta por Covid-19, ambulancia terrestre por emergencia, asistencia funeraria coordinada por
                       nosotros, envío de grúa por avería de automóvil y descuentos en tu compra. ** Los servicios son otorgados por terceros y deberán 
-                      <br>sujetarse a los términos y condiciones del presente plan.  
+                      sujetarse a los términos y condiciones del presente plan.  
                     </p>
                   </li>
                 </ol>
             </section>
             <section>
-              <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">10.	¿Cómo alcanzo los beneficios del programa de lealtad?
+              <h5 class="text-white barTitle">10.	¿Cómo alcanzo los beneficios del programa de lealtad?
               </h5>
               <ol type="a">
                 <li>
                   <p>
-                    Compra el monto mínimo mensual requerido de productos en nuestros canales oficiales de venta y obtendrás los beneficios <br>	automáticamente de acuerdo con las siguientes tablas:
+                    Compra el monto mínimo mensual requerido de productos en nuestros canales oficiales de venta y obtendrás los beneficios	automáticamente de acuerdo con las siguientes tablas:
                   </p>
                 </li>
               </ol>
@@ -280,37 +283,38 @@
         </div>
       </section>
       <section>
-        <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">11.	¿Cuál es la vigencia de mis beneficios?
+        <h5 class="text-white barTitle">11.	¿Cuál es la vigencia de mis beneficios?
 
         </h5>
         <ol type="a">
           <li>
             <p>
               Cada uno de los beneficios alcanzados, tienen una vigencia de 1 mes. Para volver a obtener tus beneficios, debes mantener 
-              tu monto de <br>compra mensual. 
+              tu monto de compra mensual. 
             </p>
           </li>
         </ol>
     </section>
     <section>
-      <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">12.	¿Cómo funciona el plan de lealtad?
+      <h5 class="text-white barTitle">12.	¿Cómo funciona el plan de lealtad?
       </h5>
       <ol type="a">
         <li>
           <p>
             Regístrate en nuestro sitio web, compra productos SyD® en cualquiera de nuestros canales oficiales de venta, acumula 
-            automáticamente y haz uso <br> de tus beneficios en el momento en que lo necesites.  
+            automáticamente y haz uso de tus beneficios en el momento en que lo necesites.  
           </p>
         </li>
       </ol>
       
   </section>
   <section>
-    <h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">13.	¿Cómo puedo obtener ayuda para el registro?      </h5>
+    <h5 class="text-white barTitle">13.	¿Cómo puedo obtener ayuda para el registro?      </h5>
     <ol type="a">
       <li>
           Si tienes algún problema o duda a la hora de tu registro, 
-          puedes contactarnos a través de nuestro chat de Whatsapp disponible en el <br>	sitio web o llamando al número 800 SYD/DAR 1010. <br>
+          puedes contactarnos a través de nuestro chat de Whatsapp disponible en el sitio web o llamando al número 
+          800 SYD/DAR 1010.
       </li>
       <li>
           Contacta a tu vendedor.
@@ -320,13 +324,13 @@
     
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">14.	¿Qué productos participan dentro del programa? 
+<h5 class="text-white barTitle">14.	¿Qué productos participan dentro del programa? 
 </h5>
 <ol type="a">
   <li>
     <p>
       Participan todos los productos que adquieras a través de nuestras tiendas de DAR® Refaccionarias, 
-      nuestros canales digitales <br>	(
+      nuestros canales digitales (
         <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
         o llamando al número: <b>800 SYD (793) 1010</b>.
     </p>
@@ -335,13 +339,13 @@
 </section>
 
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">15.	¿Dónde puedo comprar mis productos SyD®?
+<h5 class="text-white barTitle">15.	¿Dónde puedo comprar mis productos SyD®?
 </h5>
 <ol type="a">
   <li>
     <p>
       Sólo participan los productos SyD® comprados a través de nuestros canales oficiales de venta. (nuestras tiendas de DAR® 
-      <br> Refaccionarias, a través de nuestros canales digitales (
+       Refaccionarias, a través de nuestros canales digitales (
         <a href="www.syd.com.mx">www.syd.com.mx</a> – <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a> ) 
         o llamando al número: <b>800 SYD (793) 1010</b>.
     </p>
@@ -349,7 +353,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">16.	¿Qué tipos de cuentas existen?
+<h5 class="text-white barTitle">16.	¿Qué tipos de cuentas existen?
 </h5>
 <ol type="a">
   <li>
@@ -360,7 +364,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">17.	¿Qué niveles existen dentro del programa?
+<h5 class="text-white barTitle">17.	¿Qué niveles existen dentro del programa?
 </h5>
 <ol type="a">
   <li>
@@ -516,7 +520,7 @@
 </section>
 
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">18.	¿Cómo puedo registrar a mis beneficiarios?
+<h5 class="text-white barTitle">18.	¿Cómo puedo registrar a mis beneficiarios?
 </h5>
 <ol type="a">
   <li>
@@ -527,19 +531,19 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">19.	¿Qué documentos necesito para afiliarme?
+<h5 class="text-white barTitle">19.	¿Qué documentos necesito para afiliarme?
 </h5>
 <ol type="a">
   <li>
     <p>
       Para afiliarte al programa no necesitas ningún documento, pero deberás llenar un estudio socioeconómico, tu credencial de 
-      elector <br>	(escaneado o en foto) y tu comprobante de domicilio para activar los beneficios a los que tengas acceso. 
+      elector (escaneado o en foto) y tu comprobante de domicilio para activar los beneficios a los que tengas acceso. 
     </p>
   </li>
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">20.	¿Cómo tengo acceso a mi póliza de seguro en caso de requerirla? </h5>
+<h5 class="text-white barTitle">20.	¿Cómo tengo acceso a mi póliza de seguro en caso de requerirla? </h5>
 <ol type="a">
   <li>
     <p>
@@ -549,7 +553,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">21.	¿Cómo agendo una consulta médica por teléfono?
+<h5 class="text-white barTitle">21.	¿Cómo agendo una consulta médica por teléfono?
 </h5>
 <ol type="a">
   <li>
@@ -560,7 +564,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">22.	¿Cómo solicito una ambulancia? 
+<h5 class="text-white barTitle">22.	¿Cómo solicito una ambulancia? 
 </h5>
 <ol type="a">
   <li>
@@ -572,7 +576,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">23.	¿Cómo solicito el apoyo de asistencia funeraria? </h5>
+<h5 class="text-white barTitle">23.	¿Cómo solicito el apoyo de asistencia funeraria? </h5>
 <ol type="a">
   <li>
     <p>
@@ -583,7 +587,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">24.	¿En qué casos no aplica el seguro de accidentes personales?</h5>
+<h5 class="text-white barTitle">24.	¿En qué casos no aplica el seguro de accidentes personales?</h5>
 <ol type="a">
   <li>
       El seguro de accidentes personales no aplica en los casos en que el asegurado estuviera involucrado en la participación de algún delito. 
@@ -594,7 +598,7 @@
 </ol>
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">25.	¿Cómo doy de alta a mis empleados dentro del programa?
+<h5 class="text-white barTitle">25.	¿Cómo doy de alta a mis empleados dentro del programa?
 </h5>
 <ol type="a">
   <li>
@@ -606,7 +610,7 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">26.	¿Cómo doy de baja a un trabajador dentro de mi cuenta?
+<h5 class="text-white barTitle">26.	¿Cómo doy de baja a un trabajador dentro de mi cuenta?
 </h5>
 <ol type="a">
   <li>
@@ -618,12 +622,13 @@
 
 </section>
 <section>
-<h5 class="text-white" style="background-color: #143153;width: 99%;padding: 8px;">27.	¿Cómo actualizo mi información si cambié de trabajo? 
+<h5 class="text-white barTitle">27.	¿Cómo actualizo mi información si cambié de trabajo? 
 </h5>
 <ol type="a">
   <li>
     <p>
-      Dentro de la sección de <b>“Mi Cuenta” </b>podrás solicitar convertir tu cuenta dependiente de negocio a una cuenta individual, en caso de <br>	que así lo desees. 
+      Dentro de la sección de <b>“Mi Cuenta” </b>podrás solicitar convertir tu cuenta dependiente de negocio a una cuenta individual, 
+      en caso de que así lo desees. 
     </p>
   </li>
 </ol>
