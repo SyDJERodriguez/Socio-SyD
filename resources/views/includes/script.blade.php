@@ -212,6 +212,62 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
+
+        //Restore Account
+        $("#sendRestoreAccount").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#sendRestorePassword");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+                beforeSend: function(){
+                    btnSend.val("Enviando");
+                    btnSend.attr("disabled","disabled");
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#sendRestoreAccountSuccess').modal('show');
+                    }else if (data['success']==='false'){
+                        $('#modal3').modal('hide');
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //Active Account
+        $("#restoreAccount").bind("submit",function(){
+            let btnSend = $("#sendNewPass");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+                beforeSend: function(){
+                    btnSend.val("Enviando");
+                    btnSend.attr("disabled","disabled");
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#restoreAccountSuccess').modal('show');
+                    }else if (data['success']==='false'){
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
     });
 
     async function sendContact() {
