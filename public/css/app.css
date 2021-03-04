@@ -64,13 +64,23 @@ li{
     width: 99%;
 }
 
+.img-fluid{
+    display: block;
+    margin: 0 auto;
+}
+
 @media(max-width:490.5px){
     .carousel{
         height: 290px;
     }
 }
+@media(max-width:1600px){
+    .jumbotron{
+        height: 300px;
+    }
+}
 
-@media (min-width: 1400px) {
+@media (max-width: 1400px) {
     .header{
         height: 110px !important;
     }
@@ -79,6 +89,10 @@ li{
         padding-left: 200px !important;
         padding-top: 35px !important;
     }
+    .jumbotron{
+        height: 250px;
+    }
+    
 }
 
 @media(max-width: 1337.5px){
@@ -111,6 +125,9 @@ li{
     #lblNoAccount{
         font-size: 11px;
     }
+    .jumbotron{
+        height: 170px;
+    }
 }
 
 #formLogin2{
@@ -131,6 +148,10 @@ li{
     .separadorBut{
         margin: 0px;
     }
+    
+    div.jumbotron{
+        height: 80px;
+    }
 }
 
 @media(max-width: 991.50px){
@@ -145,6 +166,9 @@ li{
     .line1 > img{
         width: 320px;
         height: 25px;
+    }
+    .jumbotron{
+        height: 120px;
     }
 }
 
@@ -364,7 +388,7 @@ display: none;
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
-    height: 300px;
+   
 }
 .background{
     background-image: url(../img/background.png);

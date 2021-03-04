@@ -70,7 +70,8 @@
                           </p>
                       </div>
                       <div class="col-lg-9 p-0 my-4" style="border: 1px solid rgba(128, 128, 128, 0.719);">
-                          <div class="text-center" style="background-color: #143153;padding: 20px;"><img src="{{'img/logo.png'}}" alt="logo"></div>
+                          <div class="text-center" style="background-color: #143153;padding: 20px;">
+                            <img src="{{'img/logo.png'}}" alt="logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
                           <form method="POST" action="/contact_us" id="form-contact-us">
