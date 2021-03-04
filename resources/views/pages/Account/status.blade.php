@@ -147,7 +147,7 @@
 
            // Update footer
            $( api.column( 5 ).footer() ).html(
-               '$'+pageTotal
+               '$'+total
            );
        }
    });
