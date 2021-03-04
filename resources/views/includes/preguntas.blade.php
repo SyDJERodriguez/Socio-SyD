@@ -19,7 +19,7 @@
                     </div>
 
                 </div>
-                <div class="row" style="font-size: 16px;">
+                <div class="row">
                     <div class="col-lg-12">
                         <section>
                             <h5 class="text-white barTitle">1. ¿Cómo me afilio?</h5>
