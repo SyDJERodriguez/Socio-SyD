@@ -251,19 +251,19 @@
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
+                <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
+                <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section4">BENEFICIOS</a>
+                <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
+                <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
       </ul>
 

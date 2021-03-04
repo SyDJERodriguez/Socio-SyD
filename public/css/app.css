@@ -143,7 +143,6 @@ li{
     .boton{
         width: 100%;
         margin-left: 13px;
-        
     }
     .separadorBut{
         margin: 0px;
@@ -407,7 +406,8 @@ display: none;
 /*mobile*/
 @media only screen and (max-width: 600px) {
  .header{
-     /*display: none;*/
+     /* desaparece el header para que no quede el espacio en blanco al ser movil... */
+     display: none;
      margin-bottom: 30%;
      background: none;
  }
