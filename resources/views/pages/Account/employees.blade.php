@@ -54,6 +54,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="col-lg-12 text-justify text-primary leyenda">
+                    <p style="font-size:10px">
+                       <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
+                    </p>
+                 </div>
             </div>
         </div>
         <br>

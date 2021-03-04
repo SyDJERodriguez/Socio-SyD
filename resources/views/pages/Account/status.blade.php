@@ -47,12 +47,17 @@
                   @endforeach
                </tbody>
             </table>
+            <div class="col-lg-12 text-justify text-primary leyenda">
+               <p style="font-size:10px">
+                  <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
+               </p>
+            </div>
          </div>
       </div>
       <br>
       <div class="row">
          <div class="col-4 mx-auto">
-            <button class="btn btn-block text-white btn-alta" >DAR DE ALTA</button>
+            <button class="btn btn-block text-white btn-alta" style="display: none" >DAR DE ALTA</button>
          </div>
       </div>
    </div>

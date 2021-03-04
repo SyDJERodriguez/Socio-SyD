@@ -69,6 +69,10 @@ li{
     margin: 0 auto;
 }
 
+.leyenda{
+    visibility:hidden;
+}
+
 @media(max-width:490.5px){
     .carousel{
         height: 290px;
@@ -118,6 +122,9 @@ li{
 
     .separadorBut{
         margin: 0px 0px 0px 12px;
+    }
+    .leyenda{
+        visibility:visible;
     }
 }
 
