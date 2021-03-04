@@ -1,125 +1,3 @@
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    /* Zebra striping */
-    tr:nth-of-type(odd) {
-        background: #f3f3f3
-    }
-
-    th {
-        background: #143153;
-        color: white;
-        font-weight: bold;
-    }
-
-    td,
-    th {
-        padding: 6px;
-        border: 1px solid #ccc;
-        text-align: left;
-    }
-
-    @media only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px) {
-
-        /* Force table to not be like tables anymore */
-        table,
-        thead,
-        tbody,
-        th,
-        td,
-        tr {
-            display: block;
-        }
-
-        /* Hide table headers (but not display: none;, for accessibility) */
-        thead tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-
-        tr {
-            border: 1px solid #ccc;
-        }
-
-        td {
-            /* Behave  like a "row" */
-            border: none;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 50%;
-        }
-
-        td:before {
-            /* Now like a table header */
-            position: absolute;
-            /* Top/left values mimic padding */
-            top: 6px;
-            left: 6px;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-            font-weight: bold;
-            color: #143153;
-            text-align: right
-        }
-
-        /*
-	Label the data for the first TABLE
-	*/
-        td.firstTB:nth-of-type(1):before {
-            content: "Compra Mensual";
-        }
-
-        td.firstTB:nth-of-type(2):before {
-            content: "Nivel";
-        }
-
-        td.firstTB:nth-of-type(3):before {
-            content: "Seguro";
-        }
-
-        td.firstTB:nth-of-type(4):before {
-            content: "Asistencia";
-        }
-
-        td.firstTB:nth-of-type(5):before {
-            content: "Descuento";
-        }
-
-        /*
-	Label the data for the second TABLE
-	*/
-        td.secondTB:nth-of-type(1):before {
-            content: "Compra Mensual";
-        }
-
-        td.secondTB:nth-of-type(2):before {
-            content: "Nivel";
-        }
-
-        td.secondTB:nth-of-type(3):before {
-            content: "Seguro";
-        }
-
-        td.secondTB:nth-of-type(4):before {
-            content: "Asistencia";
-        }
-
-        td.secondTB:nth-of-type(5):before {
-            content: "CashBack";
-        }
-
-        td.secondTB:nth-of-type(6):before {
-            content: "No.Colaboradores";
-        }
-    }
-
-</style>
 
 <div class="modal fade rounded-0" id="modalPreguntas" tabindex="-1" role="dialog" aria-labelledby="modalPreguntas"
     aria-hidden="true">
@@ -287,58 +165,58 @@
                             <div class="row">
                                 <div class="col-lg-12">
 
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th> Rango de Compra Mensual</th>
-                                                <th> Nivel</th>
-                                                <th> Seguro</th>
-                                                <th> Asistencia</th>
-                                                <th> Descuento</th>
+                                    <table class="question">
+                                        <thead class="question">
+                                            <tr class="question">
+                                                <th class="question"> Rango de Compra Mensual</th>
+                                                <th class="question"> Nivel</th>
+                                                <th class="question"> Seguro</th>
+                                                <th class="question"> Asistencia</th>
+                                                <th class="question"> Descuento</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="firstTB"><b> De $0 a $200.00</b> </td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
+                                        <tbody class="question">
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $0 a $200.00</b> </td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> De $200.02 a $500.00 </b></td>
-                                                <td class="firstTB">Básico</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $200.02 a $500.00 </b></td>
+                                                <td class="question firstTB">Básico</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b>De $500.01 a $1,300.00</b> </td>
-                                                <td class="firstTB">Bronce</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Plata</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b>De $500.01 a $1,300.00</b> </td>
+                                                <td class="question firstTB">Bronce</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Plata</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> De $1,300.01 a $1,700.00 </b></td>
-                                                <td class="firstTB">Plata</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $1,300.01 a $1,700.00 </b></td>
+                                                <td class="question firstTB">Plata</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Oro</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b>De $1,700.01 a $2,500.00</b></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">6%</td>
+                                            <tr class="question">
+                                                <td class=" question firstTB"><b>De $1,700.01 a $2,500.00</b></td>
+                                                <td class=" question firstTB">Oro</td>
+                                                <td class=" question firstTB"><i class="far fa-check"></i></td>
+                                                <td class=" question firstTB">Oro</td>
+                                                <td class=" question firstTB">6%</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> Más de $2,500.00 </b></td>
-                                                <td class="firstTB">Platino</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">9%</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> Más de $2,500.00 </b></td>
+                                                <td class="question firstTB">Platino</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Oro</td>
+                                                <td class="question firstTB">9%</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -352,59 +230,59 @@
                             <h5><strong> CUENTAS NEGOCIOS </strong></h5>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Rango de Compra Mensual</th>
-                                                <th>Nivel</th>
-                                                <th>Seguro</th>
-                                                <th>Asistencia</th>
-                                                <th>CashBack</th>
-                                                <th>No. de colaboradores a afiliar</th>
+                                    <table class="question">
+                                        <thead class="question">
+                                            <tr class="question">
+                                                <th class="question">Rango de Compra Mensual</th>
+                                                <th class="question">Nivel</th>
+                                                <th class="question">Seguro</th>
+                                                <th class="question">Asistencia</th>
+                                                <th class="question">CashBack</th>
+                                                <th class="question">No. de colaboradores a afiliar</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="secondTB"><b>De $0 a $2,500.00</b></td>
-                                                <td class="secondTB">Básico </td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
+                                        <tbody class="question">
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $0 a $2,500.00</b></td>
+                                                <td class="question secondTB">Básico </td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
 
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $2,500.01 a $4,500.00 </b></td>
-                                                <td class="secondTB">Bronce</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">4</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $2,500.01 a $4,500.00 </b></td>
+                                                <td class="question secondTB">Bronce</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">4</td>
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $4,500.01 a $7,000.00</b></td>
-                                                <td class="secondTB">Plata</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Plata</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">4</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $4,500.01 a $7,000.00</b></td>
+                                                <td class="question secondTB">Plata</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Plata</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">4</td>
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $7,000.01 a $9,500.00</b></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">8</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $7,000.01 a $9,500.00</b></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">8</td>
 
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>Más de $9,500.00</b></td>
-                                                <td class="secondTB">Platino</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">8</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>Más de $9,500.00</b></td>
+                                                <td class="question secondTB">Platino</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">8</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -519,58 +397,58 @@
                             <h5><strong> CUENTAS INDIVIDUALES </strong></h5>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th> Rango de Compra Mensual</th>
-                                                <th> Nivel</th>
-                                                <th> Seguro</th>
-                                                <th> Asistencia</th>
-                                                <th> Descuento</th>
+                                    <table class="question">
+                                        <thead class="question">
+                                            <tr class="question">
+                                                <th class="question"> Rango de Compra Mensual</th>
+                                                <th class="question"> Nivel</th>
+                                                <th class="question"> Seguro</th>
+                                                <th class="question"> Asistencia</th>
+                                                <th class="question"> Descuento</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="firstTB"><b> De $0 a $200.00</b> </td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
+                                        <tbody class="question">
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $0 a $200.00</b> </td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> De $200.02 a $500.00 </b></td>
-                                                <td class="firstTB">Básico</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">X</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $200.02 a $500.00 </b></td>
+                                                <td class="question firstTB">Básico</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">X</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b>De $500.01 a $1,300.00</b> </td>
-                                                <td class="firstTB">Bronce</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Plata</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b>De $500.01 a $1,300.00</b> </td>
+                                                <td class="question firstTB">Bronce</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Plata</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> De $1,300.01 a $1,700.00 </b></td>
-                                                <td class="firstTB">Plata</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">X</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> De $1,300.01 a $1,700.00 </b></td>
+                                                <td class="question firstTB">Plata</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Oro</td>
+                                                <td class="question firstTB">X</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b>De $1,700.01 a $2,500.00</b></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">6%</td>
+                                            <tr class="question">
+                                                <td class=" question firstTB"><b>De $1,700.01 a $2,500.00</b></td>
+                                                <td class=" question firstTB">Oro</td>
+                                                <td class=" question firstTB"><i class="far fa-check"></i></td>
+                                                <td class=" question firstTB">Oro</td>
+                                                <td class=" question firstTB">6%</td>
                                             </tr>
-                                            <tr>
-                                                <td class="firstTB"><b> Más de $2,500.00 </b></td>
-                                                <td class="firstTB">Platino</td>
-                                                <td class="firstTB"><i class="far fa-check"></i></td>
-                                                <td class="firstTB">Oro</td>
-                                                <td class="firstTB">9%</td>
+                                            <tr class="question">
+                                                <td class="question firstTB"><b> Más de $2,500.00 </b></td>
+                                                <td class="question firstTB">Platino</td>
+                                                <td class="question firstTB"><i class="far fa-check"></i></td>
+                                                <td class="question firstTB">Oro</td>
+                                                <td class="question firstTB">9%</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -584,59 +462,59 @@
                             <h5><strong> CUENTAS NEGOCIOS </strong></h5>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Rango de Compra Mensual</th>
-                                                <th>Nivel</th>
-                                                <th>Seguro</th>
-                                                <th>Asistencia</th>
-                                                <th>CashBack</th>
-                                                <th>No. de colaboradores a afiliar</th>
+                                    <table class="question">
+                                        <thead class="question">
+                                            <tr class="question">
+                                                <th class="question">Rango de Compra Mensual</th>
+                                                <th class="question">Nivel</th>
+                                                <th class="question">Seguro</th>
+                                                <th class="question">Asistencia</th>
+                                                <th class="question">CashBack</th>
+                                                <th class="question">No. de colaboradores a afiliar</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="secondTB"><b>De $0 a $2,500.00</b></td>
-                                                <td class="secondTB">Básico </td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">X</td>
+                                        <tbody class="question">
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $0 a $2,500.00</b></td>
+                                                <td class="question secondTB">Básico </td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">X</td>
 
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $2,500.01 a $4,500.00 </b></td>
-                                                <td class="secondTB">Bronce</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">X</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">4</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $2,500.01 a $4,500.00 </b></td>
+                                                <td class="question secondTB">Bronce</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">X</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">4</td>
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $4,500.01 a $7,000.00</b></td>
-                                                <td class="secondTB">Plata</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Plata</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">4</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $4,500.01 a $7,000.00</b></td>
+                                                <td class="question secondTB">Plata</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Plata</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">4</td>
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>De $7,000.01 a $9,500.00</b></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">8</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>De $7,000.01 a $9,500.00</b></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">8</td>
 
                                             </tr>
-                                            <tr>
-                                                <td class="secondTB"><b>Más de $9,500.00</b></td>
-                                                <td class="secondTB">Platino</td>
-                                                <td class="secondTB"><i class="far fa-check"></i></td>
-                                                <td class="secondTB">Oro</td>
-                                                <td class="secondTB">9%</td>
-                                                <td class="secondTB">8</td>
+                                            <tr class="question">
+                                                <td class="question secondTB"><b>Más de $9,500.00</b></td>
+                                                <td class="question secondTB">Platino</td>
+                                                <td class="question secondTB"><i class="far fa-check"></i></td>
+                                                <td class="question secondTB">Oro</td>
+                                                <td class="question secondTB">9%</td>
+                                                <td class="question secondTB">8</td>
                                             </tr>
                                         </tbody>
                                     </table>

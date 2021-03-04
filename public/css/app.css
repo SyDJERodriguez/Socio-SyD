@@ -622,3 +622,124 @@ canvas {
 #assistanceCall:hover {
     color: #143153 !important;
 }
+
+/* RESPONSIVE TABLE PREGUNTAS FRECUENTES */
+table.question {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Zebra striping */
+tr.question:nth-of-type(odd) {
+    background: #f3f3f3
+}
+
+th.question {
+    background: #143153;
+    color: white;
+    font-weight: bold;
+}
+
+td.question,
+th.question {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 991px) {
+
+    /* Force table to not be like tables anymore */
+    table.question,
+    thead.question,
+    tbody.question,
+    th.question,
+    td.question,
+    tr.question {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead.question tr.question {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr.question {
+        border: 1px solid #ccc;
+    }
+
+    td.question {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td.question:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #143153;
+        text-align: right
+    }
+
+    /*
+Label the data for the first TABLE
+*/
+    td.firstTB:nth-of-type(1):before {
+        content: "Compra Mensual";
+    }
+
+    td.firstTB:nth-of-type(2):before {
+        content: "Nivel";
+    }
+
+    td.firstTB:nth-of-type(3):before {
+        content: "Seguro";
+    }
+
+    td.firstTB:nth-of-type(4):before {
+        content: "Asistencia";
+    }
+
+    td.firstTB:nth-of-type(5):before {
+        content: "Descuento";
+    }
+
+    /*
+Label the data for the second TABLE
+*/
+    td.secondTB:nth-of-type(1):before {
+        content: "Compra Mensual";
+    }
+
+    td.secondTB:nth-of-type(2):before {
+        content: "Nivel";
+    }
+
+    td.secondTB:nth-of-type(3):before {
+        content: "Seguro";
+    }
+
+    td.secondTB:nth-of-type(4):before {
+        content: "Asistencia";
+    }
+
+    td.secondTB:nth-of-type(5):before {
+        content: "CashBack";
+    }
+
+    td.secondTB:nth-of-type(6):before {
+        content: "No.Colaboradores";
+    }
+}
