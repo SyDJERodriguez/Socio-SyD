@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use Auth;
 use DB;
+use PDF;
 
 class BeneficiaryController extends Controller
 {
