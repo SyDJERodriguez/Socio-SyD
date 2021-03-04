@@ -8,7 +8,7 @@
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase"> TÉRMINOS Y CONDICIONES</h5>
                 <img src="{{asset('img/line2.png')}}" alt="line" width="80%">
-                <p>
+                <p class="text-justify">
                     Suspensión y Dirección, S.A. de C.V. (“SyD”) es una sociedad mercantil mexicana constituida mediante escritura pública 7,545 del 24 de septiembre de 1990 otorgada ante la Lic. Ana de Jesús Jiménez Montañez, Notaria Pública número 146 del entonces D.F., actualmente Ciudad de México, y tiene su domicilio en la Calle San Luis Potosí, No. 33, Colonia Progreso Tizapán, Alcaldía Álvaro Obregón, Ciudad de México, C.P. 01080. SyD es la titular de la marca SyD®, con la cual se comercializan nuestros productos.<br><br>
 
                     Cuando usted ingresa y utiliza los sitios web syd.com.mx y/o refaccionarias-dar.com (la “Plataforma”), usted (el “Usuario”) reconoce y expresa por medios electrónicos, que acepta los términos y condiciones que abajo se describen, de acuerdo con el artículo 1803 del Código Civil Federal.<br><br>
@@ -33,14 +33,14 @@
 
                 <hr>
                 <h5>SOBRE EL PROGRAMA</h5>
-                <p>Todos los clientes de SyD que deseen formar parte del programa de lealtad “Socio SyD” (en adelante “el programa de lealtad”) podrán hacerlo visitando el sitio web (<a style="text-decoration: none;" href="https://www.sociosyd.com" target="_blank">https://www.sociosyd.com</a>) y registrando la información que se solicita en la opción “Registrarse”.  Es importante que el cliente ingrese información fidedigna al registrarse, ya que SyD utilizará su número telefónico y correo electrónico como medios de comunicación para informarle sobre cuestiones relativas al programa de lealtad.<br><br>
+                <p class="text-justify">Todos los clientes de SyD que deseen formar parte del programa de lealtad “Socio SyD” (en adelante “el programa de lealtad”) podrán hacerlo visitando el sitio web (<a style="text-decoration: none;" href="https://www.sociosyd.com" target="_blank">https://www.sociosyd.com</a>) y registrando la información que se solicita en la opción “Registrarse”.  Es importante que el cliente ingrese información fidedigna al registrarse, ya que SyD utilizará su número telefónico y correo electrónico como medios de comunicación para informarle sobre cuestiones relativas al programa de lealtad.<br><br>
 
                     SyD no hace distinción alguna de clientes que puedan registrarse en el programa de lealtad en base a la edad, sexo, etnia, posición económica, trabajo, religión, preferencia sexual o ningún otro atributo que pueda ser discriminatorio para los clientes. SyD es una empresa comprometida con la sociedad y los principios de no discriminación de personas.
 
                 </p>
                 <hr>
                 <h5>TIPO DE REGISTROS</h5>
-                <p>Para poder registrarse dentro del programa el usuario deberá definir si es un cliente corporativo o cliente individual.<br><br>
+                <p class="text-justify">Para poder registrarse dentro del programa el usuario deberá definir si es un cliente corporativo o cliente individual.<br><br>
                     <strong>Cliente Corporativo:</strong> Son clientes establecidos que recibirán como beneficio la posibilidad de asignar como beneficiarios del seguro de 1 y hasta 10 colaboradores por numero de cliente  de 1 u hasta 10 de sus colaboradores, siempre y cuando se den de alta como dependientes dentro del programa y completen los datos del formulario.<br><br>
 
                     <strong>Cliente Individual:</strong> Se tratá de un registro individual de compras cuyos beneficios serán entregados únicamente al titular de la cuenta siempre y cuando complete la información requerida en los formularios.
@@ -48,14 +48,14 @@
 
                 <hr>
                 <h5>NIVELES</h5>
-                <p>Los clientes de SyD que formen parte del programa de lealtad, estarán divididos en 3 niveles de obtención de beneficios. El primer nivel se alcanzará al comprar productos de la marca SyD por un total de $200 en el mes en curso, el segundo nivel se alcanzará al comprar productos de la marca SyD por un total de $500 en el mes en curso y el tercer nivel se alcanzará al comprar productos de la marca SyD por un total de $1,700 en el mes en curso.<br><br>
+                <p class="text-justify">Los clientes de SyD que formen parte del programa de lealtad, estarán divididos en 3 niveles de obtención de beneficios. El primer nivel se alcanzará al comprar productos de la marca SyD por un total de $200 en el mes en curso, el segundo nivel se alcanzará al comprar productos de la marca SyD por un total de $500 en el mes en curso y el tercer nivel se alcanzará al comprar productos de la marca SyD por un total de $1,700 en el mes en curso.<br><br>
 
                     Al iniciar un nuevo mes, todas las compras anteriores quedan descartadas y se considerarán únicamente las nuevas compras que se hagan durante el mes en curso. Esto significa que, al inicio de cada mes, todos los clientes del programa de lealtad empiezan sin ningún nivel alcanzado hasta que alcancen el mínimo de compra requerido para cada nivel.
                 </p>
 
                 <hr>
                 <h5>ACUMULACIÓN</h5>
-                <p>Cada $1 de compra de productos SyD dentro de las refaccionarias DAR o la tienda en línea de SyD, equivaldrá a $1 dentro del programa de lealtad. Esto quiere decir que, para efectos del programa de lealtad, se considerará un monto de compra para cada cliente igual al monto de compra de productos SyD que dicho cliente haya obtenido durante el mes en curso. El monto de compra de productos SyD de un cliente en alguno de los canales mencionados, se verá reflejado en el siguiente día hábil dentro del programa de lealtad.<br><br>
+                <p class="text-justify">Cada $1 de compra de productos SyD dentro de las refaccionarias DAR o la tienda en línea de SyD, equivaldrá a $1 dentro del programa de lealtad. Esto quiere decir que, para efectos del programa de lealtad, se considerará un monto de compra para cada cliente igual al monto de compra de productos SyD que dicho cliente haya obtenido durante el mes en curso. El monto de compra de productos SyD de un cliente en alguno de los canales mencionados, se verá reflejado en el siguiente día hábil dentro del programa de lealtad.<br><br>
 
                     El monto de compra durante un mes para cada cliente no es acumulable para otro mes diferente. Todas las compras que haga un cliente durante un mismo mes servirán para que pueda alcanzar cierto nivel dentro del programa durante ese mes.<br><br>
 
@@ -64,18 +64,18 @@
 
                 <hr>
                 <h5>VIGENCIA</h5>
-                <p>El monto acumulado dentro del programa de lealtad por cada cliente expirará al inicio del mes natural siguiente. Una vez vencidos estos montos no podrán reactivarse dentro del programa en ninguna circunstancia.
+                <p class="text-justify">El monto acumulado dentro del programa de lealtad por cada cliente expirará al inicio del mes natural siguiente. Una vez vencidos estos montos no podrán reactivarse dentro del programa en ninguna circunstancia.
                 </p>
 
                 <hr>
                 <h5>CANCELACIÓN</h5>
-                <p>Como se ha mencionado, todas las compras hechas por un cliente del programa de lealtad expirarán al finalizar cada mes. En caso de que algún cliente del programa de lealtad no haga ninguna compra de productos SyD en un periodo de 3 meses, y por lo tanto no haya acumulado ningún monto dentro del programa de lealtad durante ese periodo, será dado de baja del programa por inactividad.<br><br>
+                <p class="text-justify">Como se ha mencionado, todas las compras hechas por un cliente del programa de lealtad expirarán al finalizar cada mes. En caso de que algún cliente del programa de lealtad no haga ninguna compra de productos SyD en un periodo de 3 meses, y por lo tanto no haya acumulado ningún monto dentro del programa de lealtad durante ese periodo, será dado de baja del programa por inactividad.<br><br>
                     En caso de ser dado de baja por inactividad, el cliente podrá volver a incorporarse al programa de lealtad si así lo desea, mediante una solicitud realizada en el sitio web del programa de lealtad (<a style="text-decoration: none;" href="https://www.sociosyd.com" target="_blank">https://www.sociosyd.com</a>)
                 </p>
 
                 <hr>
                 <h5>BENEFICIO DE SEGURO DE ACCIDENTES PERSONALES</h5>
-                <p>Los clientes del programa de lealtad Socio SyD, podrán acceder a diferentes beneficios al alcanzar cada uno de los niveles definidos por los montos de compra mensual en productos SyD. Habrá dos tipos de clientes registrados dentro del programa de lealtad: Clientes individuales y Clientes Corporativos.<br><br>
+                <p class="text-justify">Los clientes del programa de lealtad Socio SyD, podrán acceder a diferentes beneficios al alcanzar cada uno de los niveles definidos por los montos de compra mensual en productos SyD. Habrá dos tipos de clientes registrados dentro del programa de lealtad: Clientes individuales y Clientes Corporativos.<br><br>
 
                     Los clientes individuales tendrán acceso a cada uno de estos beneficios al alcanzar el monto de compra mensual requerido, mientras que los clientes corporativos tendrán la oportunidad de registrar a beneficiarios dentro de su cuenta, a quienes podrá transferirles los beneficios alcanzados por el monto de compra mensual requerido en productos SyD.<br><br>
 
@@ -85,7 +85,7 @@
 
                 <hr>
                 <h5>BENEFICIO DE ASISTENCIAS PERSONALES</h5>
-                <p>Al alcanzar el mínimo de compra mensual requerido para llegar al segundo nivel, el cliente tendrá acceso a un beneficio de asistencia médica telefónica, ambulancia terrestre por emergencia o asistencia funeraria por accidente. Este beneficio se suma al beneficio del seguro de accidentes personales obtenido al llegar al nivel uno.<br><br>
+                <p class="text-justify">Al alcanzar el mínimo de compra mensual requerido para llegar al segundo nivel, el cliente tendrá acceso a un beneficio de asistencia médica telefónica, ambulancia terrestre por emergencia o asistencia funeraria por accidente. Este beneficio se suma al beneficio del seguro de accidentes personales obtenido al llegar al nivel uno.<br><br>>
 
                     Más detalles sobre la cobertura de los beneficios de asistencia, los límites de cada evento, el monto de cobertura de la asistencia funeraria y el número al cuál comunicarse en caso de algún evento de cobertura, pueden ser consultados dentro del sitio web del programa de lealtad, en la sección correspondiente al beneficio de asistencias personales. Al igual que en el caso del seguro de accidentes personales, el beneficio de asistencias personales puede aplicar para el cliente individual o para los beneficiarios que designe el cliente corporativo.
 
@@ -93,7 +93,7 @@
 
                 <hr>
                 <h5>BENEFICIO DE CRÉDITO</h5>
-                <p>Algunos clientes corporativos del programa de lealtad podrán ser seleccionados para que les sea otorgado un crédito que podrán utilizar para adquirir productos SyD dentro de cualquier refaccionaria DAR o dentro del sitio web online de SyD. Los clientes para quienes aplique el ofrecimiento del crédito, así como el monto del crédito, quedan a decisión del equipo de SyD en base al comportamiento de compra que muestre cada cliente corporativo desde su ingreso al programa de lealtad.<br><br>
+                <p class="text-justify">Algunos clientes corporativos del programa de lealtad podrán ser seleccionados para que les sea otorgado un crédito que podrán utilizar para adquirir productos SyD dentro de cualquier refaccionaria DAR o dentro del sitio web online de SyD. Los clientes para quienes aplique el ofrecimiento del crédito, así como el monto del crédito, quedan a decisión del equipo de SyD en base al comportamiento de compra que muestre cada cliente corporativo desde su ingreso al programa de lealtad.<br><br>
 
                     Más información sobre los requisitos para aplicar al crédito y cómo acceder al mismo, podrán ser consultados dentro del sitio web del programa de lealtad, en la sección correspondiente a créditos.<br><br>
 
@@ -103,7 +103,8 @@
 
                 <hr>
                 <h5>GENERALIDADES</h5>
-                <p>Suspensión y Dirección invita a todos los clientes del programa a mantener permanentemente actualizados sus datos y los datos de sus beneficiarios en el caso de los clientes corporativos a través de los canales establecidos para tales fines, siguiendo las directrices que tiene definidas para el manejo y protección de la información y datos personales, de acuerdo con la normatividad vigente. Por ello, los clientes del programa podrán en cualquier momento, y de manera voluntaria, efectuar una actualización, modificación o corrección de sus datos o solicitud de eliminación de estos dentro del sitio web del programa de lealtad.<br><br>
+                <p class="text-justify">Suspensión y Dirección invita a todos los clientes del programa a mantener permanentemente actualizados sus datos y los datos de sus beneficiarios en el caso de los clientes corporativos a través de los canales establecidos para tales fines, siguiendo las directrices que tiene definidas para el manejo y protección de la información y datos personales, de acuerdo con la normatividad vigente. 
+                    Por ello, los clientes del programa podrán en cualquier momento, y de manera voluntaria, efectuar una actualización, modificación o corrección de sus datos o solicitud de eliminación de estos dentro del sitio web del programa de lealtad.<br><br>
 
                     Además de la obtención de los beneficios definidos en estos términos y condiciones por cada nivel alcanzado, Suspensión y Dirección podrá ofrecer a los clientes del programa beneficios consistentes en Experiencias o campañas especiales de acumulación que se comunicarán oportunamente.<br><br>
 
@@ -115,7 +116,7 @@
 
                 <hr>
                 <h5>MODIFICACIONES</h5>
-                <p>Suspensión y Dirección se reserva el derecho de cambiar las reglas del programa de lealtad y los términos y condiciones descritos en el presente documento, en la forma en que sea conveniente para la empresa.
+                <p class="text-justify">Suspensión y Dirección se reserva el derecho de cambiar las reglas del programa de lealtad y los términos y condiciones descritos en el presente documento, en la forma en que sea conveniente para la empresa.
                 </p>
 
             </div>
