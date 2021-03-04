@@ -51,6 +51,7 @@
                         <h5 class="text-white">REGISTRO EXITOSO</h5>
                         <p class="text-white" id="clientName"></p>
                         <p class="text-white" id="clientNumber"></p>
+                        <p class="text-white" id="clientMessage"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ENTRAR</a>
                     </div>
                 </div>

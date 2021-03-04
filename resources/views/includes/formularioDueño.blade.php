@@ -52,34 +52,31 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-6 py-3">
+                        <select class="form-control" name="gender" required>
+                            <option>GÉNERO</option>
+                            <option value="F">FEMENINO</option>
+                            <option value="M">MASCULINO</option>
+                        </select>
+                    </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <input type="tel" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" name="mobile" required pattern="[01234567889]{10}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+                </div>
+                <div class="row ">
                     <div class="col-lg-6 py-3" style="display: flex">
                         <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+                    <div class="col-lg-6 py-3" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
+                    </div>
                 </div>
                 <div class="row ">
-                    <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                         <p style="color: red; margin: 0;">*</p>
-                    </div>
-                </div>
-                <div class="row ">
-                    <div class="col-lg-6 py-3">
-                        <select class="form-control" name="work" required>
-                            <option>TIPO DE NEGOCIO</option>
-                            <option>Refaccionaria</option>
-                            <option>Mayorista</option>
-                            <option>Taller</option>
-                            <option>Otro</option>
-                        </select>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <input type="password" class="form-control" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
@@ -87,6 +84,19 @@
                     </div>
 
                     <input type="hidden" id="confirmPassword" name="client_type" value="1">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 py-3">
+                        <select class="form-control" name="work" required>
+                            <option>TIPO DE NEGOCIO</option>
+                            <option value="1">TALLER GENERAL</option>
+                            <option value="2">TALLER SUSPENSIONISTA</option>
+                            <option value="3">MECANICO INDEPENDIENTE</option>
+                            <option value="4">REFACCIONARIA</option>
+                            <option value="5">MAYORISTA</option>
+                            <option value="6">OTRO</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer border-top-0">
                     <div class="form-check form-check-inline text-right">

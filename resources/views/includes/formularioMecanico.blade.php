@@ -50,6 +50,13 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-6 py-3">
+                        <select class="form-control" name="gender" required>
+                            <option>GÉNERO</option>
+                            <option value="F">FEMENINO</option>
+                            <option value="M">MASCULINO</option>
+                        </select>
+                    </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <input type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
                         <p style="color: red; margin: 0;">*</p>
