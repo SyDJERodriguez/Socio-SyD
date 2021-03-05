@@ -342,11 +342,11 @@ html{
 }
 .header{
     background-image: url(../img/header.png);
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     background-position: center;
     background-size: cover;
 
-    height: 90px;
+    height: 110px;
     width: 100%;
 }
 
@@ -413,13 +413,13 @@ display: none;
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
- .header{
+    .header{
      /* desaparece el header para que no quede el espacio en blanco al ser movil... */
      display: none;
      margin-bottom: 30%;
      background: none;
- }
-    #main-logo{
+    }
+    #main-logo, #backHeader{
         display: none;
     }
 
