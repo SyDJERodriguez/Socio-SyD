@@ -1,4 +1,9 @@
 
+/*resolve Boostrap bold problem */
+p, .noClas, ol{
+    font-weight: normal;
+}
+
 /* header style */
 
 .whatsapp{
