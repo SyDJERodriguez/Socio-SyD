@@ -25,6 +25,12 @@
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
                     </p>
                 @endif
+
+                @if(session()->has('register'))
+                    <p style="color: red;margin-bottom: 0;text-align: center;">
+                        El email no se encuentra registrado dentro de nuestra plataforma.
+                    </p>
+                @endif
             @guest
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf

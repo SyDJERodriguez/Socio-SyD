@@ -273,7 +273,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $client_number)->first();
         try {
             \Mail::send('emails.welcome',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->from('noreply@syd.com.mx',"SOCIO SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -301,6 +301,15 @@ class CustomerController extends Controller
 
     //Login function
     public function login(Request $request){
+        $is_register = $is_activate = DB::table('customers_sessions')
+            ->select('email')
+            ->where('email', '=', $request->email)
+            ->first();
+
+        if ($is_register === null){
+            return back()->with('register','');
+        }
+
         $is_activate = DB::table('customers_sessions')
             ->select('active')
             ->where('email', '=', $request->email)
@@ -453,7 +462,8 @@ class CustomerController extends Controller
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
-        return view('pages.Account.documents', compact('data','link'));
+        $exist = \Storage::exists('polizas/'.Auth::user()->id.'.pdf');
+        return view('pages.Account.documents', compact('data','link', 'exist'));
     }
 
     //Go to register beneficiary

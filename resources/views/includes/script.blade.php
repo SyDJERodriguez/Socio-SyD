@@ -131,6 +131,7 @@
                         $('#modal5').modal('hide');
                         $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                         $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                        $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
                     }else if (data['success']==='false' && data['verify_email']==='false') {
                         document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra registrado. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
