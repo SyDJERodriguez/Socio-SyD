@@ -99,6 +99,47 @@ nav a.active{
     }
     
 }
+@media(max-width:1499.5px){
+    a.boton{
+        height: 70px;
+    }
+}
+@media(max-width:960px){
+    a.boton{
+        font-size: 13.5px;
+    }
+}
+@media(max-width:767.5px){
+    a.boton{
+        height: 40px;
+        font-size: 14px;
+    }
+    div.separadorBut{
+        margin-top: 1px ;
+        margin-bottom: 1px;
+    }
+}
+@media(max-width:847.5px){
+    a.boton{
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+}
+/* @media(max-width:1292.5px){
+    a.boton{
+        
+    }
+}
+@media(max-width:1168.5px){
+    a.boton{
+        
+    }
+}
+@media(max-width:1096.5px){
+    a.boton{
+        
+    }
+} */
 
 @media(max-width: 1337.5px){
     .noDown{
@@ -109,7 +150,7 @@ nav a.active{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     .formLogin{
        visibility: hidden;
        display: none;
