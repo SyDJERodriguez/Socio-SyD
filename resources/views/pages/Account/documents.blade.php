@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-lg-10 py-5">
-            @if(!$exist)
+            @if($exist === false)
                 <div class="modal-body " style="background-color: #143153;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
