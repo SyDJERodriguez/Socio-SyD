@@ -55,7 +55,7 @@
                     success: function (data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
-                            document.getElementById("form_alert_mec").innerHTML='El número de cliente no se enceuntra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_mec").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
                         }
                         $('input[id=nameMec]').val(data['name']);
@@ -87,6 +87,7 @@
                         $('#modal3').modal('hide');
                         $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                         $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                        $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
                     }else if (data['success']==='false' && data['verify_email']==='false') {
                         document.getElementById("form_alert").innerHTML='El email ya se encuentra registrado. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
@@ -201,6 +202,62 @@
                     console.log(data);
                     if(data['success']==='true'){
                         $('#restorePasswordSuccess').modal('show');
+                    }else if (data['success']==='false'){
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //Restore Account
+        $("#sendRestoreAccount").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#sendRestorePassword");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+                beforeSend: function(){
+                    btnSend.val("Enviando");
+                    btnSend.attr("disabled","disabled");
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#sendRestoreAccountSuccess').modal('show');
+                    }else if (data['success']==='false'){
+                        $('#modal3').modal('hide');
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //Active Account
+        $("#restoreAccount").bind("submit",function(){
+            let btnSend = $("#sendNewPass");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+                beforeSend: function(){
+                    btnSend.val("Enviando");
+                    btnSend.attr("disabled","disabled");
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#restoreAccountSuccess').modal('show');
                     }else if (data['success']==='false'){
                         $('#modalError').modal('show');
                     }

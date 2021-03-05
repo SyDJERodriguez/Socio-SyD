@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    @include('includes.head')
+</head>
+<body>
+<!-- Header - Navbar Start -->
+<div class="container-fluid">
+    <!--header-->
+    <div class="row header ml-0">
+        <div class="col-lg-3 p-2 pl-4">
+            <img src="{{asset('img/logo.png')}}" width="250px" alt="">
+        </div>
+        <div class="col-lg-7 pl-6 pt-1">
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+        <a class="navbar-brand" href="#">
+            <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto" id="main-menu" style="height: 40px">
+            </ul>
+        </div>
+    </nav>
+    <!-- Header - Navbar End -->
+
+    <!-- Content Start -->
+    <div class="container-fluid" style="display: flex; justify-content: center; padding: 100px 0;">
+        <div class="card border-secondary mb-3" style="max-width: 40rem; ">
+            <div class="card-header" style="background-color: #143153; color: #ffffff;">ACTIVAR CUENTA</div>
+            <div class="card-body text-secondary">
+                <form id="restoreAccount" method="POST" action="{{route('update.account')}}">
+                    @method('PUT')
+                    @csrf
+                    <div class="row ">
+                        <div class="col-lg-12 py-3" style="width: 400px !important;">
+                            <label for="password">NUEVA CONTRASEÑA:</label>
+                            <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                            <input type="hidden" value="{{$client_number}}" name="client_number">
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0">
+                        <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="sendNewPass" value="ACTIVAR CUENTA">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content End -->
+
+<!-- Footer Start -->
+@include('includes.footer')
+@include('includes.modals')
+<!-- Footer End -->
+<!--    jquery cdn      -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--    bootstrap js    -->
+<script src="{{asset('js/bootstrap.js')}}" crossorigin="anonymous"></script>
+@include('includes.script')
+</body>
+</html>

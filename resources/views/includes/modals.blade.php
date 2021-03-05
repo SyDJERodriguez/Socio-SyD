@@ -51,6 +51,7 @@
                         <h5 class="text-white">REGISTRO EXITOSO</h5>
                         <p class="text-white" id="clientName"></p>
                         <p class="text-white" id="clientNumber"></p>
+                        <p class="text-white" id="clientMessage"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ENTRAR</a>
                     </div>
                 </div>
@@ -198,6 +199,86 @@
                         <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA.</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal ACTIVATE ACCOUNT-->
+<div class="modal fade" id="modalActivate" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-uppercase">ACTIVAR MI CUENTA</h5>
+                <img src="{{asset('img/line.png')}}" alt="line">
+                <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
+                <br>
+                <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input class="form-control-sm form-control" type="text" name="email"
+                                       placeholder="CORREO ELECTRÓNICO" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="submit" class="btn btn-info" id="sendEmailRestore">ENVIAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal SEND EMAIL RESTORE ACCOUNT-->
+<div class="modal fade" id="sendRestoreAccountSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CUENTA!</h5>
+                        <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA.</p>
+                        <p class="text-white"></p>
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal RESTORE ACCOUNT SUCCESS-->
+<div class="modal fade" id="restoreAccountSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
+                        <p class="text-white">YA PUEDE INGRESAR A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <p class="text-white" id="clientNumber"></p>
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
             </div>

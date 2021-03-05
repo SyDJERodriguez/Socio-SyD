@@ -189,23 +189,6 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
-        //Verify is the email has not a relation with other client number
-        $verify_mobile_number = Customer::where('mobile_number', $request['mobile'])->first();
-        /*if(!empty($verify_mobile_number)){
-            if ($verify_mobile_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
-            }
-        }*/
-
-        //Verify is the email has not a relation with other client number
-        /*$verify_email_number = Customer::where('email', $request['email'])->first();
-        if (!empty($verify_email_number)){
-            if ($verify_email_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
-            }
-        }*/
-
-
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
@@ -221,7 +204,8 @@ class CustomerController extends Controller
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
-                'work'             => isset($request['work']) ? $request['work'] : ''
+                'work'             => isset($request['work']) ? $request['work'] : '',
+                'gender'           => isset($request['gender']) ? $request['gender'] : ''
             ]);
         }
 
@@ -237,36 +221,95 @@ class CustomerController extends Controller
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
-                'work'             => isset($request['work']) ? $request['work'] : ''
+                'work'             => isset($request['work']) ? $request['work'] : '',
+                'gender'           => isset($request['gender']) ? $request['gender'] : ''
             ]);
         }
 
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
+        if (!empty($verify_email_number)){
+            if ($verify_email_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
+            }
+        }
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
             'client_type'   => $request['client_type'],
             'email'         => $request['email'],
+            'mobile'        => $request['mobile'],
+            'active'        => 0,
             'password'      => $password
         ]);
 
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
         if ($update_customer === 1 && $save_register === true){
+            $this->send_welcome_email($client_number);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === true && $save_register === true){
+            $this->send_welcome_email($client_number);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === 0 && $save_register === true){
+            $this->send_welcome_email($client_number);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }
         else{
             return response()->json(['success'=>'false', 'update'=>$update_customer, 'save'=>$save_register]);
         }
+    }
 
+    //Send welcome email
+    public function send_welcome_email($client_number) {
+        $data = Customer::where('client_number', $client_number)->first();
+        try {
+            \Mail::send('emails.welcome',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
 
+    //Verify account
+    public function verify_account($client_number = null) {
+        $data = CustomersSession::where('client_number', $client_number)->first();
+        if ($data->active === 1){
+            $activated = true;
+            return view('pages.activationPage', compact('activated'));
+        }
+        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
+            'active'   => 1
+        ]);
+
+        if ($update_customer){
+            $activated = false;
+            return view('pages.activationPage', compact('activated'));
+        }
     }
 
     //Login function
     public function login(Request $request){
+        $is_activate = DB::table('customers_sessions')
+            ->select('active')
+            ->where('email', '=', $request->email)
+            ->first();
+
+        if ($is_activate->active === 0){
+            return back()->with('deactivate','');
+        }
+
         //Validando
         $this->validate($request, [
             'email' => 'required|email',
@@ -291,9 +334,7 @@ class CustomerController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
         return $this->loggedOut($request) ?: redirect('/');
     }
 
@@ -325,6 +366,58 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
+        ]);
+
+        if ($update_customer === 1){
+            return response()->json(['success'=>'true','status' =>200]);
+        }
+        return response()->json(['success'=>'false','status' =>401]);
+    }
+
+    //Deactivate account
+    public function deactivate_account(Request $request){
+        $updated = DB::table('customers_sessions')
+            ->where('id', '=', Auth::user()->id)
+            ->update(['active'=> 0]);
+
+        if (!$updated){
+            return view('pages.Account.status');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    //Send email to activate account
+    public function send_activate_account(Request $request) {
+        $request = $request->input();
+        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
+        $data = Customer::where('client_number', $data_session->client_number)->first();
+        try {
+            \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Activar cuenta Plataforma SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
+
+    //Show form to change password to activate account
+    public function edit_account($client_number) {
+        return view('pages.activateAccount', compact('client_number'));
+    }
+
+    //Update account to activate
+    public function update_account(Request $request) {
+
+        $request = $request->input();
+        $password      = Hash::make($request['password']);
+        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
+            'password' => $password,
+            'active'   => 1
         ]);
 
         if ($update_customer === 1){
@@ -712,8 +805,6 @@ class CustomerController extends Controller
             return response()->json(['success'=>'submitted successfully','status' =>401]);
         }
      }
-
-
 
     protected function guard()
     {
