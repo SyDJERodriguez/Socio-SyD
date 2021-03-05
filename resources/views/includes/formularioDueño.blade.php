@@ -64,7 +64,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" readonly required>
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">

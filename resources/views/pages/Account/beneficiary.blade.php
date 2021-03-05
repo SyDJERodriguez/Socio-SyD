@@ -20,7 +20,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+                    <div class="row" 
+                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
                         @if(isset($error))
                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
                                 <strong>{{$error}}</strong>
