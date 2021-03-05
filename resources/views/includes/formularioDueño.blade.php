@@ -113,7 +113,12 @@
 
         var CURP = [];
         CURP[0] = $("#lastNamePro").val().charAt(0).toUpperCase();
-        CURP[1] = $("#lastNamePro").val().slice(1).replace(/\a\e\i\o\u/gi, "").charAt(0).toUpperCase();
+        for (let i = 1; i < $("#lastNamePro").val().length; i++) {
+            if($("#lastNamePro").val().charAt(i).match(/[aeiou]/gi)){
+                CURP[1] = $("#lastNamePro").val().charAt(i).toUpperCase();
+                break;    
+            }
+        }
         CURP[2] = $("#secondLastNamePro").val().charAt(0).toUpperCase();
         CURP[3] = $("#namePro").val().charAt(0).toUpperCase();
         CURP[4] = fecha[0].slice(2);//year
