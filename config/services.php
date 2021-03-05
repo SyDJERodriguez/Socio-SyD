@@ -15,7 +15,7 @@ return [
     */
 
     'mailgun' => [
-        'domain' =>'quaxar.info',
+        'domain' =>'elhangar.com.mx',
         'secret' => 'key-0a4c0fb92374b3c3c8a16f00d1956bae',
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
