@@ -355,6 +355,9 @@ display: none;
 }
 /*mobile*/
 @media only screen and (max-width: 600px) {
+    #noticePrivacy{
+        margin: 0 !important;
+    }
  .header{
      /*display: none;*/
      margin-bottom: 30%;
@@ -595,3 +598,15 @@ canvas {
 #assistanceCall:hover {
     color: #143153 !important;
 }
+
+#noticePrivacy{
+    margin: 0 105px;
+}
+
+@media only screen and (min-width: 1600px) {
+    #noticePrivacy{
+        margin: 0 221px !important;
+    }
+}
+
+
