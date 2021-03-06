@@ -593,15 +593,17 @@ class CustomerController extends Controller
         $numberEmployees = $this->getNumberAssociate($data['id']);
 
         //calculated the limit of employees
-        if( $limit > 2500.01 && $limit < 4500.01 && $numberEmployees < 5 ){ //bronce
+        if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
             $validated = true;
-        }else if($limit > 4500.01 && $limit < 7000.01 && $numberEmployees < 5){ //plata
+        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
-        }else if($limit > 7000.01 && $limit < 9500.01 && $numberEmployees < 10){ //oro
+        }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
-        }else if($limit > 9500.01 && $numberEmployees < 10) {
+        }
+        /*else if($limit > 9500.01 && $numberEmployees < 10) {
             $validated = true;
-        }else {
+        }*/
+        else {
             $validated = false;
         }
 
