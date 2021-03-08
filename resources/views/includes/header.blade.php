@@ -8,15 +8,21 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div class="row ml-0 header" id="header">
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" width="340px" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt="">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
             </div>
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;">
+            <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                 {{ session()->get('error') }}
             </p>
             @endif

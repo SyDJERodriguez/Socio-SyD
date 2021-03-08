@@ -1,4 +1,9 @@
 
+/*resolve Boostrap bold problem */
+p, .noClas, ol{
+    font-weight: normal;
+}
+
 /* header style */
 
 .whatsapp{
@@ -94,6 +99,47 @@ nav a.active{
     }
     
 }
+@media(max-width:1499.5px){
+    a.boton{
+        height: 70px;
+    }
+}
+@media(max-width:960px){
+    a.boton{
+        font-size: 13.5px;
+    }
+}
+@media(max-width:767.5px){
+    a.boton{
+        height: 40px;
+        font-size: 14px;
+    }
+    div.separadorBut{
+        margin-top: 1px ;
+        margin-bottom: 1px;
+    }
+}
+@media(max-width:847.5px){
+    a.boton{
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+}
+/* @media(max-width:1292.5px){
+    a.boton{
+        
+    }
+}
+@media(max-width:1168.5px){
+    a.boton{
+        
+    }
+}
+@media(max-width:1096.5px){
+    a.boton{
+        
+    }
+} */
 
 @media(max-width: 1337.5px){
     .noDown{
@@ -104,7 +150,7 @@ nav a.active{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     .formLogin{
        visibility: hidden;
        display: none;
@@ -337,11 +383,11 @@ html{
 }
 .header{
     background-image: url(../img/header.png);
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     background-position: center;
     background-size: cover;
 
-    height: 90px;
+    height: 110px;
     width: 100%;
 }
 
@@ -408,13 +454,13 @@ display: none;
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
- .header{
+    .header{
      /* desaparece el header para que no quede el espacio en blanco al ser movil... */
      display: none;
      margin-bottom: 30%;
      background: none;
- }
-    #main-logo{
+    }
+    #main-logo, #backHeader{
         display: none;
     }
 
