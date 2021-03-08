@@ -15,6 +15,7 @@ use App\Helpers\Twilio\TwilioService;
 use App\Helpers\Utils;
 use App\LogRegisters;
 use App\VueTables\EloquentVueTables;
+use Barryvdh\Reflection\DocBlock\Tag\AuthorTag;
 use DB;
 use Carbon\Carbon;
 use function GuzzleHttp\Psr7\get_message_body_summary;
@@ -470,13 +471,56 @@ class CustomerController extends Controller
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
 
+        $signature = DB::table('customers_sessions')
+            ->select('signature_id')
+            ->where('id', '=', Auth::user()->id)
+            ->first();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 1;
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 2;
+            }
+            if ($total_amount>7000) {
+                $level = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 1;
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 2;
+            }
+            if ($total_amount>1300) {
+                $level = 3;
+            }
+        }
+
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
             return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
         }
 
-        return view('pages.Account.beneficiary', compact('data'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level'));
     }
 
     //Go to benefits of Safe
@@ -498,43 +542,26 @@ class CustomerController extends Controller
 
         $level = 0;
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>0 && $total_amount<=2500) {
+            if ($total_amount>2500 && $total_amount<=4500) {
                 $level = 1;
             }
-            if ($total_amount>2500 && $total_amount<=4500) {
+            if ($total_amount>4500 && $total_amount<=7000) {
                 $level = 2;
             }
-            if ($total_amount>4500 && $total_amount<=7000) {
+            if ($total_amount>7000) {
                 $level = 3;
-            }
-            if ($total_amount>7000 && $total_amount<=9500) {
-                $level = 4;
-            }
-
-            if ($total_amount>9500) {
-                $level = 5;
             }
         }
 
         if (Auth::user()->client_type === "2"){
-            if ($total_amount>0 && $total_amount<=200) {
+            if ($total_amount>200 && $total_amount<=500) {
                 $level = 1;
             }
-            if ($total_amount>200 && $total_amount<=500) {
+            if ($total_amount>500 && $total_amount<=1300) {
                 $level = 2;
             }
-            if ($total_amount>500 && $total_amount<=1300) {
+            if ($total_amount>1300) {
                 $level = 3;
-            }
-            if ($total_amount>1300 && $total_amount<=1700) {
-                $level = 4;
-            }
-            if ($total_amount>1700 && $total_amount<=2500) {
-                $level = 5;
-            }
-
-            if ($total_amount>2500) {
-                $level = 6;
             }
         }
         return view('pages.Account.benefitSafe', compact('data', 'level'));
@@ -640,10 +667,10 @@ class CustomerController extends Controller
 
         $level = '';
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>4500 && $total_amount<=9500) {
+            if ($total_amount>4500 && $total_amount<=7000) {
                 $level = 'plata';
             }
-            if ($total_amount>9500) {
+            if ($total_amount>7000) {
                 $level = 'oro';
             }
         }
