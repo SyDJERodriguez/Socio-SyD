@@ -462,7 +462,7 @@ class CustomerController extends Controller
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
-        $exist = \Storage::exists('polizas/'.Auth::user()->id.'.pdf');
+        $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         return view('pages.Account.documents', compact('data','link', 'exist'));
     }
 
