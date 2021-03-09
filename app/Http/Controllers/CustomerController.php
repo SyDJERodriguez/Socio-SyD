@@ -520,6 +520,8 @@ class CustomerController extends Controller
             return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
         }
 
+        $signature = $signature->signature_id;
+
         return view('pages.Account.beneficiary', compact('data', 'signature', 'level'));
     }
 

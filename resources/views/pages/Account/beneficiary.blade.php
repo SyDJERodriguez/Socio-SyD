@@ -53,7 +53,7 @@
                         <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
-                                    <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO! {{$level}}</h5>
+                                    <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
                                     <p class="text-white"></p>
                                 </div>
                             </div>
