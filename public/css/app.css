@@ -225,6 +225,11 @@ nav a.active{
     .jumbotron{
         height: 120px;
     }
+    #footerLogo{
+        width: 40% !important;
+        display: flex;
+        margin: 0 auto;
+    }
 }
 
 
