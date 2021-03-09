@@ -451,6 +451,21 @@ display: none;
 .hgt{
     height: 400px;
 }
+@media (max-width:1600px){
+    #backHeader img{
+        width: 400px;
+    }
+}
+@media (max-width:1200px){
+    #backHeader img{
+        width: 380px;
+    }
+}
+@media (max-width:1099px){
+    #backHeader img{
+        width: 340px;
+    }
+}
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
