@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::get('/privacy', function(){
+    return view('pages.noticePrivacy');
+})->name('noticePrivacy');
+
 Route::post('/contact_us','CustomerController@contact_us');
 
 //Password functions
