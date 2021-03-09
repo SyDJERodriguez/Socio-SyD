@@ -7,6 +7,7 @@ use App\Customer;
 use Auth;
 use DB;
 use PDF;
+use Carbon\Carbon;
 
 class BeneficiaryController extends Controller
 {
@@ -19,6 +20,50 @@ class BeneficiaryController extends Controller
         $count = 0;
         $total_percent = 0;
 
+        $signature = DB::table('customers_sessions')
+            ->select('signature_id')
+            ->where('id', '=', Auth::user()->id)
+            ->first();
+        $signature = $signature->signature_id;
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 1;
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 2;
+            }
+            if ($total_amount>7000) {
+                $level = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 1;
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 2;
+            }
+            if ($total_amount>1300) {
+                $level = 3;
+            }
+        }
+
         foreach ($request['percent'] as $percent){
             $count++;
             //Sum the all percent
@@ -30,7 +75,8 @@ class BeneficiaryController extends Controller
             if ($total_percent !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request'));
+
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
                 //dd($total_percent);
             }
 
@@ -56,7 +102,7 @@ class BeneficiaryController extends Controller
                 $generatePDF = $this->generatePDF();
                 if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
                 }
 
             }catch(\Exception $e){
@@ -68,7 +114,7 @@ class BeneficiaryController extends Controller
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
             }
 
 
@@ -88,7 +134,7 @@ class BeneficiaryController extends Controller
             if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiary = 'true';
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary'));
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
             }
         }
     }
