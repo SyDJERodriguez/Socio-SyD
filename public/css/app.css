@@ -98,7 +98,7 @@ nav a.active{
     .jumbotron{
         height: 250px;
     }
-    
+
 }
 @media(max-width:960px){
     a.boton{
@@ -127,17 +127,17 @@ nav a.active{
 }
 /* @media(max-width:1292.5px){
     a.boton{
-        
+
     }
 }
 @media(max-width:1168.5px){
     a.boton{
-        
+
     }
 }
 @media(max-width:1096.5px){
     a.boton{
-        
+
     }
 } */
 
@@ -168,7 +168,7 @@ nav a.active{
 
 @media(max-width: 702px){
 
-    
+
     .leyenda{
         visibility:visible;
     }
@@ -200,7 +200,7 @@ nav a.active{
     .separadorBut{
         margin: 0px;
     }
-    
+
     div.jumbotron{
         background-image: url(../img/SLD2R.jpg);
         height: 170px;
@@ -443,7 +443,7 @@ display: none;
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
-   
+
 }
 .background{
     background-image: url(../img/background.png);
@@ -479,6 +479,11 @@ display: none;
     .header{
      /* desaparece el header para que no quede el espacio en blanco al ser movil... */
      display: none;
+    #noticePrivacy{
+        margin: 0 !important;
+    }
+ .header{
+     /*display: none;*/
      margin-bottom: 30%;
      background: none;
     }
@@ -851,3 +856,15 @@ Label the data for the second TABLE
 #footerLogo{
     width: 100%;
 }
+
+#noticePrivacy{
+    margin: 0 105px;
+}
+
+@media only screen and (min-width: 1600px) {
+    #noticePrivacy{
+        margin: 0 221px !important;
+    }
+}
+
+
