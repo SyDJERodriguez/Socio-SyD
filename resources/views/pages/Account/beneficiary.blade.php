@@ -20,7 +20,8 @@
                     </div>
                 </div>
                 <div>
-                    <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+                    <div class="row" 
+                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
                         @if(isset($error))
                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
                                 <strong>{{$error}}</strong>
@@ -38,6 +39,25 @@
                                     </div>
                                 </div>
                             </div>
+                    @elseif($signature == null)
+                        <div class="modal-body " style="background-color: #143153;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h5 class="text-white">¡POR FAVOR AGREGA TU FIRMA PARA PODER AGREGAR TUS BENEFICIARIOS!</h5>
+                                    <p class="text-white"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    @elseif($level <= 0)
+                        <div class="modal-body " style="background-color: #143153;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
+                                    <p class="text-white"></p>
+                                </div>
+                            </div>
+                        </div>
                     @else
 
                             <!--<div class="col-lg-12">
