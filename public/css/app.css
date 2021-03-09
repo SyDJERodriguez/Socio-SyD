@@ -51,7 +51,8 @@ nav a.active{
 }
 
 .carousel{
-    height: 400px;
+    width: 100%;
+    height: auto;
 }
 .line1 > img{
     width: 480px;
@@ -79,11 +80,6 @@ nav a.active{
     display:flex;justify-content:center;align-items:center;
 }
 
-@media(max-width:490.5px){
-    .carousel{
-        height: 290px;
-    }
-}
 @media(max-width:1600px){
     .jumbotron{
         height: 300px;
@@ -106,10 +102,10 @@ nav a.active{
 }
 @media(max-width:960px){
     a.boton{
-        font-size: 13.5px;
+        font-size: 13px;
     }
 }
-@media(max-width:767.5px){
+@media(max-width:767px){
     a.boton{
         height: 40px;
         font-size: 9px;
@@ -120,10 +116,10 @@ nav a.active{
     }
 
     .separadorBut .boton{
-        margin: 0px 0px 0px 0px;
+        margin: 0;
     }
 }
-@media(max-width:847.5px){
+@media(max-width:847px){
     a.boton{
         padding-right: 1px;
         padding-left: 1px;
@@ -145,26 +141,32 @@ nav a.active{
     }
 } */
 
-@media(max-width: 1337.5px){
+@media(max-width: 1337px){
     .noDown{
         font-size: 10px;
     }
 }
 
-@media(max-width:1160.5px){
+@media(max-width:1160px){
     a.boton{
         font-size: 13px;
     }
 }
 
-@media(max-width: 991.5px){
-    .formLogin{
+@media(max-width: 991px){
+    .formLogin,
+    #header,
+    #backHeader{
        visibility: hidden;
        display: none;
     }
+
+    .logo-menu{
+        display: block !important;
+    }
 }
 
-@media(max-width: 702.5px){
+@media(max-width: 702px){
 
     
     .leyenda{
@@ -172,7 +174,7 @@ nav a.active{
     }
 }
 
-@media(max-width:1003.5px){
+@media(max-width:1003px){
     #lblNoAccount{
         font-size: 11px;
     }
@@ -188,7 +190,7 @@ nav a.active{
 
 @media(max-width:600px){
     #header{
-        margin-bottom: 0%;
+        margin-bottom: 0;
         height: 0;
     }
     .boton{
@@ -200,11 +202,14 @@ nav a.active{
     }
     
     div.jumbotron{
-        height: 80px;
+        background-image: url(../img/SLD2R.jpg);
+        height: 170px;
+        margin-bottom: 0;
+        border-radius: 0;
     }
 }
 
-@media(max-width: 991.50px){
+@media(max-width: 991px){
     #formLogin2{
         visibility: visible;
         display:unset;
@@ -223,7 +228,7 @@ nav a.active{
 }
 
 
-@media(max-width: 1199.5px){
+@media(max-width: 1199px){
     .line1{
         width: 380px;
     }
@@ -487,9 +492,6 @@ display: none;
 
     #mobile {
         padding-bottom: 35px !important;
-    }
-    .logo-menu{
-     display: block;
     }
 
     #signCustomer {
@@ -840,4 +842,7 @@ Label the data for the second TABLE
     td.thirdTB:nth-of-type(4):before{
         content: "PROGRAMA SALUD+";
     }
+}
+#footerLogo{
+    width: 100%;
 }

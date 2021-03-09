@@ -46,7 +46,7 @@
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white text-right pr-0">
-                <img src="{{asset('img/logo_2.png')}}" alt="">
+                <img src="{{asset('img/logo_2.png')}}" alt="" id="footerLogo">
             </div>
         </div>
     </div>
