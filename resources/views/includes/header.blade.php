@@ -9,7 +9,7 @@
 <div class="container-fluid" id="oneSection">
     <!--header-->
     <div id="backHeader">
-        <img src="{{asset('img/headerBack.png')}}" width="340px" alt="" 
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
         style="position: absolute;z-index:1; height: 110px;">
     </div>
     <div class="row ml-0 header " id="header">
