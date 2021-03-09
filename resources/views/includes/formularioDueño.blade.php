@@ -11,8 +11,9 @@
             <div class="row">
                 <div class="col-lg-8 pt-2 pb-5">
                     <h2>REGISTRO DUEÑO DE NEGOCIO</h2>
-                    <div class="line1" style="height: 2px;width: 447px;background-color: black;"></div>
-                    <div class="line1 float-right " style="height: 2px;width: 60px;background-color: black;  transform: rotate(33deg);;margin-top: 14.3px;"></div>
+                    <div class="line1">
+                        <img src="{{asset('img/line2.png')}}" alt="">
+                    </div>
                 </div>
             </div>
 
@@ -23,19 +24,19 @@
                 @method('PUT')
                 @csrf
                 <div class="row">
-                    <div class="col-lg-6 py-4" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number" required pattern="[01234567889]{8}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-4" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="NOMBRE" id="namePro" name="name" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-4" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-4" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -46,7 +47,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <label for="birthday" class="labelgre">FECHA DE NACIMIENTO</label>
+                        <label for="birthday" class="py-1 labelgre">FECHA DE NACIMIENTO</label>
                         <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -115,3 +116,26 @@
         </div>
       </div>
     </div>
+<script>
+    document.getElementById('rfc').addEventListener('focus',function() {
+        var rfc = document.getElementById('rfc');
+        var fecha = $('#birthday').val().split('-');
+
+        var CURP = [];
+        CURP[0] = $("#lastNamePro").val().charAt(0).toUpperCase();
+        for (let i = 1; i < $("#lastNamePro").val().length; i++) {
+            if($("#lastNamePro").val().charAt(i).match(/[aeiou]/gi)){
+                CURP[1] = $("#lastNamePro").val().charAt(i).toUpperCase();
+                break;    
+            }
+        }
+        CURP[2] = $("#secondLastNamePro").val().charAt(0).toUpperCase();
+        CURP[3] = $("#namePro").val().charAt(0).toUpperCase();
+        CURP[4] = fecha[0].slice(2);//year
+        CURP[5] = fecha[1];//mont
+        CURP[6] = fecha[2];//day
+
+        $('#rfc').val(CURP.join("").toString());
+        
+    })
+</script>

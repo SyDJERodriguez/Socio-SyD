@@ -21,11 +21,11 @@
                 <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
                     <thead>
                         <tr>
-                            <td>Nombre</td>
-                            <td>Correo electrónico</td>
-                            <td>Teléfono</td>
-                            <td>Editar</td>
-                            <td>Eliminar</td>
+                            <td><b>Nombre </b></td>
+                            <td><b>Correo electrónico</b></td>
+                            <td><b>Teléfono </b></td>
+                            <td><b>Editar </b></td>
+                            <td><b>Eliminar </b></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +54,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="col-lg-12 text-justify text-primary leyenda">
+                    <p style="font-size:10px">
+                       <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
+                    </p>
+                 </div>
             </div>
         </div>
         <br>

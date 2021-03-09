@@ -7,7 +7,9 @@
             </div>
             <div class="modal-body">
                 <h5 class="text-uppercase" id="title">ALTA EMPLEADO</h5>
-                <img src="{{asset('img/line.png')}}" alt="line">
+                <div class="line1">
+                    <img src="{{asset('img/line2.png')}}" alt="">
+                </div>
                 <br>
                 <br>
                 <form method="POST" action="{{route('customer.addEmployee')}}">
