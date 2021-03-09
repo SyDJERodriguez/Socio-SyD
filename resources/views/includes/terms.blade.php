@@ -9,64 +9,68 @@
                 <h5 class="text-uppercase">
                     TÉRMINOS Y CONDICIONES - SERVICIOS DE ASISTENCIA
                 </h5>
-                <img src="{{asset('img/line.png')}}" alt="line" width="70%">
+                <div class="line1">
+                    <img src="{{asset('img/line2.png')}}" alt="">
+                </div>
                 <h5>Operado por: Telasist</h5>
                 <br>
-                <div class="container">
-                    <table class="table table-bordered" style="font-size: 12px">
-                        <tr class="heading-blue">
-                            <td>ASISTENCIA</td>
-                            <td>SUBSERVICIO</td>
-                            <td>PROGRAMA SALUD</td>
-                            <td>PROGRAMA SALUD PLUS</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="5">Médica</td>
-                            <td>Orientación médica telefónica</td>
-                            <td>Sin límite de evento</td>
-                            <td>Sin límite de evento</td>
-                        </tr>
-                        <tr>
-                            <td>Orientación emocional telefónica</td>
-                            <td>Sin límite de evento</td>
-                            <td>Sin límite de evento</td>
-                        </tr>
-                        <tr>
-                            <td>Orientación nutricional telefónica</td>
-                            <td>Sin límite de evento</td>
-                            <td>Sin límite de evento</td>
-                        </tr>
-                        <tr>
-                            <td>Video consulta por COVID19</td>
-                            <td>1 evento</td>
-                            <td>1 evento</td>
-                        </tr>
-                        <tr>
-                            <td>Ambulancia terrestre por emergencia</td>
-                            <td>2 eventos</td>
-                            <td>1 evento</td>
-                        </tr>
-                        <tr>
-                            <td>Especializado</td>
-                            <td>Asistencia funeraria por accidente, este servicio debe ser coordinado desde un inicio
-                                por TM-ASSISTANCE. No aplica reembolsos. Hasta 70 (setenta) años.</td>
-                            <td>1 evento hasta $10,000</td>
-                            <td>1 evento hasta $15,000</td>
-                        </tr>
-                        <tr>
-                            <td>usuarios</td>
-                            <td>$4,000</td>
-                            <td>Costo unitario mensual
-                                $10.00 más IVA</td>
-                            <td>Costo unitario mensual
-                                $15.00 más IVA</td>
-                        </tr>
-                        <tr>
-                            <td>VIAL</td>
-                            <td>Envío de grúa por avería</td>
-                            <td>N/A</td>
-                            <td>1 evento hasta $800</td>
-                        </tr>
+                <div>
+                    <table class="question" style="font-size: 12px">
+                        <thead class="question">
+                            <tr class="question">
+                                <th class="question">ASISTENCIA</th>
+                                <th class="question">SUBSERVICIO</th>
+                                <th class="question">PROGRAMA SALUD</th>
+                                <th class="question">PROGRAMA SALUD PLUS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="question">
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Médica</td>
+                                <td class="question thirdTB noClas">Orientación médica telefónica</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Orientación emocional telefónica</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Orientación nutricional telefónica</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Video consulta por COVID19</td>
+                                <td class="question thirdTB noClas">1 evento</td>
+                                <td class="question thirdTB noClas">1 evento</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Ambulancia terrestre por emergencia</td>
+                                <td class="question thirdTB noClas">2 eventos</td>
+                                <td class="question thirdTB noClas">1 evento</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">Especializado</td>
+                                <td class="question thirdTB noClas">Asistencia funeraria por accidente, este servicio debe ser coordinado desde un inicio 
+                                    por TM-ASSISTANCE. No aplica reembolsos. Hasta 70 (setenta) años.</td>
+                                <td class="question thirdTB noClas">1 evento hasta $10,000</td>
+                                <td class="question thirdTB noClas">1 evento hasta $15,000</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">usuarios</td>
+                                <td class="question thirdTB noClas">$4,000</td>
+                                <td class="question thirdTB noClas">Costo unitario mensual $10.00 más IVA</td>
+                                <td class="question thirdTB noClas">Costo unitario mensual $15.00 más IVA</td>
+                            </tr>
+                            <tr class="question">
+                                <td class="question thirdTB noClas">VIAL</td>
+                                <td class="question thirdTB noClas">Envío de grúa por avería</td>
+                                <td class="question thirdTB noClas">N/A</td>
+                                <td class="question thirdTB noClas">1 evento hasta $800</td>
+                            </tr>
+                        </tbody>
                     </table>
                     <br>
 
