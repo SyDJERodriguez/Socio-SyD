@@ -8,15 +8,21 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div class="row ml-0 header" id="header">
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt="">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
             </div>
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;">
+            <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                 {{ session()->get('error') }}
             </p>
             @endif
@@ -262,19 +268,19 @@
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
+                <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
+                <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section4">BENEFICIOS</a>
+                <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
+                <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
       </ul>
 

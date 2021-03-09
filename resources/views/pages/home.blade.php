@@ -72,11 +72,14 @@
         </div>
         <div class="container-fluid pb-5">
             <div class="row m-0">
-                <div class="col-lg-4 py-2"><img src="{{asset('img/slider2.png')}}" class="img-fluid" alt="Responsive image">
+                <div class="col-lg-4 py-2" >
+                    <img src="{{asset('img/slider2.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
-                <div class="col-lg-4 py-2"><img src="{{asset('img/slider1.png')}}" class="img-fluid" alt="Responsive image">
+                <div class="col-lg-4 py-2">
+                    <img src="{{asset('img/slider1.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
-                <div class="col-lg-4 py-2"><img src="{{asset('img/slider3.png')}}" class="img-fluid" alt="Responsive image">
+                <div class="col-lg-4 py-2">
+                    <img src="{{asset('img/slider3.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
             </div>
         </div>
@@ -223,7 +226,9 @@
     <section id="section6">
         <div class="container-fluid py-5">
             <a href="https://www.refaccionarias-dar.com/" target="_blank">
-                <div class="jumbotron text-center mx-auto">
+                
+                <div class="jumbotron">
+               
                <!-- <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
                     <div class="col-lg-4 ">
