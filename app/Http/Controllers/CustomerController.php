@@ -679,7 +679,7 @@ class CustomerController extends Controller
 
         if (Auth::user()->client_type === "2"){
             if ($total_amount>500 && $total_amount<=1300) {
-                $level = 'pata';
+                $level = 'plata';
             }
             if ($total_amount>1300) {
                 $level = 'oro';
