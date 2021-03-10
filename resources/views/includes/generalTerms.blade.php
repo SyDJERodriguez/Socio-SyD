@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="modal8" aria-hidden="true">
+<div class="modal fade" id="modalGeneralTerms" tabindex="-1" role="dialog" aria-labelledby="modalGeneralTerms" aria-hidden="true">
     <div class="modal-dialog modal-xl  " role="document">
         <div class="modal-content  mb-0 pb-0">
             <div class="modal-header d-flex flex-row-reverse">
@@ -7,7 +7,9 @@
             </div>
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase"> TÉRMINOS Y CONDICIONES</h5>
-                <img src="{{asset('img/line2.png')}}" alt="line" width="80%">
+                <div class="line1">
+                    <img src="{{asset('img/line2.png')}}" alt="">
+                </div>
                 <p class="text-justify">
                     Suspensión y Dirección, S.A. de C.V. (“SyD”) es una sociedad mercantil mexicana constituida mediante escritura pública 7,545 del 24 de septiembre de 1990 otorgada ante la Lic. Ana de Jesús Jiménez Montañez, Notaria Pública número 146 del entonces D.F., actualmente Ciudad de México, y tiene su domicilio en la Calle San Luis Potosí, No. 33, Colonia Progreso Tizapán, Alcaldía Álvaro Obregón, Ciudad de México, C.P. 01080. SyD es la titular de la marca SyD®, con la cual se comercializan nuestros productos.<br><br>
 
