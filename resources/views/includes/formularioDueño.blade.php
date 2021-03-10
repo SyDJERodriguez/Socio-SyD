@@ -25,7 +25,8 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" name="client_number" required pattern="[01234567889]{8}">
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
+                        name="client_number" maxlength="8" required pattern="[0-9]{8}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
@@ -61,7 +62,8 @@
                         </select>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="tel" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" name="mobile" required pattern="[01234567889]{10}">
+                        <input type="tel" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
+                        name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
