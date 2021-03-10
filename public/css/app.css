@@ -494,8 +494,9 @@ html{
     background-size: auto;
 
 }
-.bg-primary{
+div hr.bg-primary{
     background-color: #00A5E6!important;
+    height: 1px;
 }
 .hgt{
     height: 400px;
@@ -565,9 +566,6 @@ html{
         width: 225px !important;
     }
 
-    #contentCanvas{
-        margin-right: -30% !important;
-    }
 }
 
 

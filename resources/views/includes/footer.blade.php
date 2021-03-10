@@ -12,7 +12,8 @@
                     800 SYD (793) 1010</a>
                 </p>
                 <hr class="bg-primary">
-                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">sociosyd@syd.com </a></p>
+                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">
+                  sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
@@ -24,7 +25,7 @@
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalGeneralTerms" style="color:white">
                   Términos y condiciones
                 </a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary" >
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
                   Preguntas Frecuentes
                 </a></p>
