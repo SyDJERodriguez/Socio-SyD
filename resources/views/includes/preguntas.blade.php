@@ -677,7 +677,7 @@
 
 
             </div>
-            <a href="#" class="whatsapp"><img src="{{'img/1x/wht.png'}}" alt=""></a>
+            <a href="#" class="whatsapp"><img src="{{asset('img/1x/wht.png')}}" alt=""></a>
 
             <div class="modal-footer" style="background-color: #143153;height: 30px; border-radius: 0;">
 

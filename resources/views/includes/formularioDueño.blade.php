@@ -107,7 +107,7 @@
                             <a href="#" data-toggle="modal" data-target="#modalAviso">
                                 AVISO DE PRIVACIDAD</a>
                             <br>
-                            <a href="#" data-toggle="modal" data-target="#modal8">TÉRMINOS Y CONDICIONES</a></label>
+                            <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">TÉRMINOS Y CONDICIONES</a></label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
                     <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
