@@ -73,7 +73,7 @@
                           <div class="text-center" style="background-color: #143153;padding: 20px;"><img src="{{'img/logo.png'}}" alt="logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
-                          <form method="POST" action="/contact_us" id="form-contact-us">
+                          <form method="POST" action="{{action('CustomerController@contact_us')}}" id="form-contact-us">
                           {{ csrf_field() }}
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
@@ -94,7 +94,8 @@
                                 <div class="col-lg-6 py-2">
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input id="contact_us_button" onClick="sendContact()" type="button" class="btn btn text-white float-right" style="background-color: #00A1E3;" value="Enviar">
+                                  <button type="submit" id="contact_us_button" class="btn btn text-white float-right" 
+                                  style="background-color: #00A1E3;" value="Enviar">Enviar</button>
                                 </div>
                               </div>
                             </form>

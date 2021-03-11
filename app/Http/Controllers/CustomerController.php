@@ -804,11 +804,15 @@ class CustomerController extends Controller
 
     //Contact form
     public function contact_us(Request $request){
+        $SYD_EMAILS = "equezada@syd.com.mx,
+                     nebratt@syd.com.mx,
+                     Ecommerce@syd.com.mx";
+        $to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
             \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@quaxar.info',"Club Dar");
-                $m->to('gtzjafet@gmail.com', 'Jafet Gtz')->subject('Nuevo Registro de Club Dar');
+                $m->to($to, 'SYD')->subject('Nuevo Registro de Club Dar');
             });
             return response()->json(['success'=>'submitted successfully','status' =>200]);
         } catch (\Throwable $th) {
