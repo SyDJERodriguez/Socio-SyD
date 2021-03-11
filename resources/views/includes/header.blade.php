@@ -27,13 +27,13 @@
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -41,7 +41,7 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-lg-6 my-2">
+                    <div class="col-lg-6 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
