@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl rounded-0" role="document">
         <div class="modal-content rounded-0">
             <div class="modal-header border-0 rounded-0" style="background-color: #143153;;">
-                <h5 class="modal-title" id="modalAviso"></h5>
+                <h5 class="modal-title" id="modalAvisoTitle"></h5>
                 <div class="modal-header d-flex flex-row-reverse">
                     <span class="times" data-dismiss="modal" aria-label="Close">X</span>
                 </div>
