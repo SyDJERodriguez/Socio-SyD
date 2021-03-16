@@ -79,7 +79,12 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-12 text-right">
+                            <div class="col-9 text-right">
+                                <p style="font-size:12px" class="primary-color">
+                                    *Es posible que el correo llegué a la bandeja de correo no deseado.
+                                </p>
+                            </div>
+                            <div class="col-3">
                                 <button type="submit" class="btn btn-info">ACEPTAR</button>
                             </div>
                         </div>

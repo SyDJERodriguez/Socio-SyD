@@ -8,90 +8,18 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div class="row ml-0 header" id="header">
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt="">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
             </div>
         </div>
-        <div class="col-lg-7 pl-6 pt-1 formLogin" >
-            @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
-                {{ session()->get('error') }}
-            </p>
-            @endif
-                @if(session()->has('deactivate'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
-                        Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
-                    </p>
-                @endif
-
-                @if(session()->has('register'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
-                        El email no se encuentra registrado dentro de nuestra plataforma.
-                    </p>
-                @endif
-            @guest
-            <form id="login-form" method="POST" action="{{ route('customer.login') }}">
-                @csrf
-                <div class="form-row align-items-center">
-                    <div class="col-lg-6 my-2">
-                        <input type="text" class="form-control border-input" id="inlineFormInputName"
-                            placeholder="CORREO" name="email" required>
-                            <div class="row">
-                                <div class="col-sm-7 ">
-                                    <p class="primary-color" style="margin-bottom: 0; font-size:12px;text-align:center;padding-top:5px">
-                                        <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
-                                    </p>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn-sm p-0 adios"
-                                    style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
-                                    ¡REGÍSTRATE!
-                                    </a>
-                                </div>
-                            </div>
-                            
-                    </div>
-                    <div class="col-lg-4 my-2">
-                        <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
-                            placeholder="CONTRASEÑA" name="password" required>
-                        <div class="row ">
-                            <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
-                                <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
-                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2" id="buttonLogin">
-                        <button type="submit" id="login-button" class="btn btn"
-                            style="background-color: #143153;color:white; width: 150px">
-                            INICIAR SESIÓN
-                        </button>
-                    </div>
-                   
-                    
-                </div>
-
-            </form>
-            @else
-            <div style="display: flex; justify-content: flex-end;">
-                <div class="form-row align-items-center">
-                    <div class="col-sm-5 my-1"></div>
-                    <div class="col-sm-5 my-1"></div>
-                </div>
-                <div class="col-sm-2 my-3">
-                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px"
-                        data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
-                </div>
-
-
-            </div>
-
-            @endguest
-        </div>
-        
     </div>
 
     <!-- Modal LOGOUT-->

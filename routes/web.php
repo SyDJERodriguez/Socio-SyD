@@ -34,6 +34,7 @@ Route::get('/send_activate_account', 'CustomerController@send_activate_account')
 Route::get('account/activate/{client_number}', 'CustomerController@edit_account')->name('edit.account');
 Route::put('account/update/password', 'CustomerController@update_account')->name('update.account');
 Route::get('account/verify/{client_number}', 'CustomerController@verify_account')->name('verify.account');
+Route::get('account/verify/{client_number}/{mobile_number}', 'CustomerController@verify_associate')->name('verify.associate');
 
 
 Route::prefix('customer')->name('customer.')->group(function(){

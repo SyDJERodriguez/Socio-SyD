@@ -82,7 +82,7 @@ class CustomerController extends Controller
                 'last_name'         => $request['last_name'],
                 'second_last_name'  => $request['second_last_name'],
                 'role'              => isset($request['role']) ? $request['role'] : "",
-                'active_association'=> 1,
+                'active_association'=> 0,
                 'number'            => $number,
                 'birthday'          => $request['bday'],
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -92,6 +92,7 @@ class CustomerController extends Controller
         }
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            $this->invitation($request);
             //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
             return redirect()->route('customer.employees');
         }else{
@@ -296,6 +297,24 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer){
+            $activated = false;
+            return view('pages.activationPage', compact('activated'));
+        }
+    }
+
+    //cerify associate
+    public function verify_associate($client_number = null, $mobile_number = null){
+        $query = DB::table('associates')
+                    ->where('client_number','=', $client_number)
+                    ->where('mobile_number','=',$mobile_number)
+                        ->update([
+                            'active_association' => 1
+                        ]);
+        if($query === 1 || $query === true){
+            $activated = true;
+            return view('pages.activationPage', compact('activated'));
+        }
+        if($query){
             $activated = false;
             return view('pages.activationPage', compact('activated'));
         }
@@ -815,16 +834,23 @@ class CustomerController extends Controller
             Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
                 $m->to($SYD_EMAILS)->subject('Nuevo Registro de Club Dar');
             });
-            //Mail::to('luis.24_aguirre@outlook.com')->queue( new contactMail($data));
-            /* \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
-                $m->to($to, 'SYD')->subject('Nuevo Registro de Club Dar');
-            });*/
             return redirect()->route('home');
         } catch (\Throwable $th) {
             return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
         }
-     }
+    }
+
+    //invitation email associate
+    public function invitation($data){
+        $email = $data['email'];
+        try {
+            Mail::send('emails.invitation',['data'=>$data], function($m) use ($email){
+                $m->to($email)->subject("Invitación a Socio SYD");
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
     protected function guard()
     {
