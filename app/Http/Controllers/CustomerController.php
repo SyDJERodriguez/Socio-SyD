@@ -14,6 +14,7 @@ use App\Helpers\CustomersService;
 use App\Helpers\Twilio\TwilioService;
 use App\Helpers\Utils;
 use App\LogRegisters;
+use App\Mail\contactMail;
 use App\VueTables\EloquentVueTables;
 use DB;
 use Carbon\Carbon;
@@ -22,6 +23,7 @@ use Hash;
 use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Str;
@@ -804,19 +806,23 @@ class CustomerController extends Controller
 
     //Contact form
     public function contact_us(Request $request){
-        $SYD_EMAILS = "equezada@syd.com.mx,
-                     nebratt@syd.com.mx,
-                     Ecommerce@syd.com.mx";
-        $to = explode(',',$SYD_EMAILS);
+        $SYD_EMAILS = ["equezada@syd.com.mx",
+                     "nebratt@syd.com.mx",
+                     "Ecommerce@syd.com.mx"];
+        //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
-            \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
+            Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Club Dar');
+            });
+            //Mail::to('luis.24_aguirre@outlook.com')->queue( new contactMail($data));
+            /* \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@quaxar.info',"Club Dar");
                 $m->to($to, 'SYD')->subject('Nuevo Registro de Club Dar');
-            });
-            return response()->json(['success'=>'submitted successfully','status' =>200]);
+            });*/
+            return redirect()->route('home');
         } catch (\Throwable $th) {
-            return response()->json(['success'=>'submitted successfully','status' =>401]);
+            return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
         }
      }
 
