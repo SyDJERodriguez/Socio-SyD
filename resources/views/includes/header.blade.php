@@ -8,7 +8,6 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <!--header-->
     <div id="backHeader">
         <img src="{{asset('img/headerBack.png')}}" alt="" 
         style="position: absolute;z-index:1; height: 110px;">
