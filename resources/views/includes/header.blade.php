@@ -27,13 +27,13 @@
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -41,7 +41,7 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-lg-6 my-2">
+                    <div class="col-lg-6 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
@@ -94,7 +94,10 @@
 
 
             </div>
+
+            @endguest
         </div>
+        
     </div>
 
     <!-- Modal LOGOUT-->
@@ -265,19 +268,19 @@
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
+                <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
+                <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section4">BENEFICIOS</a>
+                <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
+                <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
       </ul>
 
