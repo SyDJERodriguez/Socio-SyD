@@ -14,6 +14,7 @@ use App\Helpers\CustomersService;
 use App\Helpers\Twilio\TwilioService;
 use App\Helpers\Utils;
 use App\LogRegisters;
+use App\Mail\contactMail;
 use App\VueTables\EloquentVueTables;
 use Barryvdh\Reflection\DocBlock\Tag\AuthorTag;
 use DB;
@@ -23,6 +24,7 @@ use Hash;
 use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Str;
@@ -91,6 +93,7 @@ class CustomerController extends Controller
         }
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            $this->invitation($request);
             //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
             return redirect()->route('customer.employees');
         }else{
@@ -295,6 +298,24 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer){
+            $activated = false;
+            return view('pages.activationPage', compact('activated'));
+        }
+    }
+
+    //cerify associate
+    public function verify_associate($client_number = null, $mobile_number = null){
+        $query = DB::table('associates')
+                    ->where('client_number','=', $client_number)
+                    ->where('mobile_number','=',$mobile_number)
+                        ->update([
+                            'active_association' => 1
+                        ]);
+        if($query === 1 || $query === true){
+            $activated = true;
+            return view('pages.activationPage', compact('activated'));
+        }
+        if($query){
             $activated = false;
             return view('pages.activationPage', compact('activated'));
         }
@@ -835,17 +856,32 @@ class CustomerController extends Controller
 
     //Contact form
     public function contact_us(Request $request){
+        $SYD_EMAILS = ["equezada@syd.com.mx",
+                     "nebratt@syd.com.mx",
+                     "Ecommerce@syd.com.mx"];
+        //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
-            \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
-                $m->to('gtzjafet@gmail.com', 'Jafet Gtz')->subject('Nuevo Registro de Club Dar');
+            Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Club Dar');
             });
-            return response()->json(['success'=>'submitted successfully','status' =>200]);
+            return redirect()->route('home');
         } catch (\Throwable $th) {
-            return response()->json(['success'=>'submitted successfully','status' =>401]);
+            return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
         }
-     }
+    }
+
+    //invitation email associate
+    public function invitation($data){
+        $email = $data['email'];
+        try {
+            Mail::send('emails.invitation',['data'=>$data], function($m) use ($email){
+                $m->to($email)->subject("Invitación a Socio SYD");
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
     protected function guard()
     {
