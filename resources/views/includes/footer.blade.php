@@ -3,24 +3,32 @@
         <div class="row m-0">
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Contáctanos</h4>
-                <p>Ciudad de México <br><i class="fas fa-phone-alt"></i><a href="tel:8007931010" class="primary-color" style="color:white; padding-left: 5px;">800 SYD (793) 1010</a></p>
+                <p>
+                  Ciudad de México 
+                  <br>
+                    <i class="fas fa-phone-alt"></i>
+                      <a href="tel:8007931010" class="primary-color" 
+                    style="color:white; padding-left: 5px;">
+                    800 SYD (793) 1010</a>
+                </p>
                 <hr class="bg-primary">
-                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">sociosyd@syd.com </a></p>
+                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">
+                  sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Consulta </h4>
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
+                <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
                   Aviso de Privacidad
-                </a>
+                </a></p>
                 <hr class="bg-primary">
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modal8" style="color:white">
+                <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalGeneralTerms" style="color:white">
                   Términos y condiciones
-                </a>
-                <hr class="bg-primary">
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
+                </a></p>
+                <hr class="bg-primary" >
+                <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
                   Preguntas Frecuentes
-                </a>
+                </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white">
@@ -31,15 +39,15 @@
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
-                <a href="https://www.refaccionarias-dar.com/" target="_blank" style="color:white">¿Dónde comprar?</a>
+                <p><a href="https://www.refaccionarias-dar.com/" target="_blank" style="color:white">¿Dónde comprar?</a></p>
                 <hr class="bg-primary">
-                <a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
+                <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto
-                </a>
+                </a></p>
                 <hr class="bg-primary">
             </div>
             <div class="col-lg-3 text-white text-right pr-0">
-                <img src="{{asset('img/logo_2.png')}}" alt="">
+                <img src="{{asset('img/logo_2.png')}}" alt="" id="footerLogo">
             </div>
         </div>
     </div>
@@ -70,7 +78,8 @@
                           </p>
                       </div>
                       <div class="col-lg-9 p-0 my-4" style="border: 1px solid rgba(128, 128, 128, 0.719);">
-                          <div class="text-center" style="background-color: #143153;padding: 20px;"><img src="{{'img/logo.png'}}" alt="logo"></div>
+                          <div class="text-center" style="background-color: #143153;padding: 20px;">
+                            <img src="{{asset('img/logo.png')}}" alt="logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
                           <form method="POST" action="{{action('CustomerController@contact_us')}}" id="form-contact-us">

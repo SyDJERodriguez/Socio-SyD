@@ -31,7 +31,7 @@
                     @method('POST')
                     @csrf
                     <div class="row" id="contentCanvas"
-                        style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;margin-right: -20%;">
+                        style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 10px;border-radius: 8px">
                         <div class="py-1 ">
                             <h6 style="text-align: right">DIBUJE SU FIRMA:</h6>
                             <div class="py-5 offset-md-10" >
@@ -55,8 +55,8 @@
                             </div>
                         </div>
                         
-                        <div class="col-lg-4 offset-md-1 py-4">
-                            <input type="submit" class="btn btn float-right text-white px-5"
+                        <div class="col-lg-12 py-4">
+                            <input type="submit" class="btn btn text-white px-5 btn-block"
                                 style="background-color: #009CE0;" 
                                 id="confirmar"
                                 value="FIRMAR">
