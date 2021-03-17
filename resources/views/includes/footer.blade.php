@@ -82,28 +82,34 @@
                             <img src="{{asset('img/logo.png')}}" alt="logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
-                          <form method="POST" action="/contact_us" id="form-contact-us">
+                          <form method="POST" action="{{action('CustomerController@contact_us')}}" id="form-contact-us">
                           {{ csrf_field() }}
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control" id="contact-name" pattern="[A-Za-z].{3,}" placeholder="NOMBRE" required >
+                                  <input type="text" class="form-control" id="contact-name" name="name"
+                                  pattern="[A-Za-z].{3,}" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control"  id="contact-lastname" pattern="[A-Za-z].{3,}" placeholder="APELLIDOS" required>
+                                  <input type="text" class="form-control"  id="contact-lastname" name="lastName"
+                                  pattern="[A-Za-z].{3,}" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control"  id="contact-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="'example: correo@dominio.com'" placeholder="CORREO ELECTRÓNICO" required>
+                                  <input type="text" class="form-control"  id="contact-email" name="email"
+                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="'example: correo@dominio.com'" placeholder="CORREO ELECTRÓNICO" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="text" class="form-control"  id="contact-phone" placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10"  title="Ten digits code" required>
+                                  <input type="text" class="form-control"  id="contact-phone" name="mobile"
+                                  placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10" title="Ten digits code" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
-                                    <textarea class="form-control" name="Comentario:"  id="contact-comment" pattern="[A-Za-z0-9].{15,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
+                                    <textarea class="form-control" name="comment"  id="contact-comment" 
+                                    pattern="[A-Za-z0-9].{15,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input id="contact_us_button" onClick="sendContact()" type="button" class="btn btn text-white float-right" style="background-color: #00A1E3;" value="Enviar">
+                                  <button type="submit" id="contact_us_button" class="btn btn text-white float-right" 
+                                  style="background-color: #00A1E3;" value="Enviar">Enviar</button>
                                 </div>
                               </div>
                             </form>
