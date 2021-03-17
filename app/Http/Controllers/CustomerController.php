@@ -83,7 +83,7 @@ class CustomerController extends Controller
                 'last_name'         => $request['last_name'],
                 'second_last_name'  => $request['second_last_name'],
                 'role'              => isset($request['role']) ? $request['role'] : "",
-                'active_association'=> 0,
+                'active_association'=> 1,
                 'number'            => $number,
                 'birthday'          => $request['bday'],
                 'created_at'        => date('Y-m-d H:i:s'),

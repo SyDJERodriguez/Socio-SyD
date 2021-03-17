@@ -10,9 +10,9 @@
     <p>¡Bienvenido! {{$data['name'].' '.$data['last_name'].' '.$data['second_last_name']}}</p>
 
     <p>Has sido registrado en la plataforma de Socio SYD como asociado.</p>
-    <p>Has clic en este
+    <!--<p>Has clic en este
         <a href="{{url('account/verify/'.$data['client_number'].'/'.$data['mobile_number'])}}">enlace</a> 
         para ir a la pagina oficial.
-    </p>
+    </p>-->
 </body>
 </html>
