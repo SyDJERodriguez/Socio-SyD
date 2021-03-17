@@ -82,7 +82,6 @@ nav a.active{
 
 @media(max-width:2201px){
     .jumbotron{
-        width: 2200px;
         height: 340px;
     }
 }
@@ -97,7 +96,6 @@ nav a.active{
 @media(max-width:1601px){
     .jumbotron{
         height: 300px;
-        width: 1600px;
     }
 }
 
@@ -147,7 +145,6 @@ nav a.active{
     }
     .jumbotron{
         height: 240px;
-        width: 1337px;
     }
 }
 
@@ -174,14 +171,12 @@ nav a.active{
     }
     div .jumbotron{
         height: 200px;
-        width: 990px;
     }
 }
 
-@media(max-width: 855px){
+@media(max-width: 856px){
     div .jumbotron{
         height: 180px;
-        width: 855px;
     }
     
     .leyenda{
@@ -192,7 +187,6 @@ nav a.active{
 @media(max-width:755px){
     div .jumbotron{
         height: 130px;
-        width: 754px;
     }
 
     .leyenda{
@@ -228,7 +222,6 @@ nav a.active{
     }
 
     div.jumbotron{
-        width: 599px;
         height: 140px;
     }
 }
@@ -242,14 +235,18 @@ nav a.active{
 
 @media(max-width:481px){
     div.jumbotron{
-        width: 480px;
         height: 100px;
+    }
+}
+
+@media(max-width:404px){
+    div.jumbotron{
+        width: auto;
     }
 }
 
 @media(max-width:376px){
     div.jumbotron{
-        width: 375px;
         height: 80px;
     }
 }
@@ -485,7 +482,7 @@ html{
     background-repeat: no-repeat;
     background-position: left center;
     background-size: cover;
-
+    width: 100%;
 }
 .background{
     background-image: url(../img/background.png);
@@ -849,10 +846,6 @@ Label the data for the first TABLE
         content: "Asistencia";
     }
 
-    td.firstTB:nth-of-type(5):before {
-        content: "Descuento";
-    }
-
     /*
 Label the data for the second TABLE
 */
@@ -873,12 +866,9 @@ Label the data for the second TABLE
     }
 
     td.secondTB:nth-of-type(5):before {
-        content: "CashBack";
-    }
-
-    td.secondTB:nth-of-type(6):before {
         content: "No.Colaboradores";
     }
+
     /* label of third table, terms and conditions */
     td.thirdTB:nth-of-type(1):before{
         content: "ASISTENCIA";
