@@ -13,7 +13,7 @@
 
             <div class="modal-body">
                 @if (Auth::user())
-                        @if ((int)Auth::user()->client_type == 1)
+                    @if ((int)Auth::user()->client_type == 1)
                         <ul class="list-group list-group-flush">
                             @if ($total < 2500.01)
                                 <li class="list-group-item">
@@ -76,7 +76,54 @@
                             @endif
                             
                         </ul>
-                    @else
+                    @else 
+                    {{-- notifications individual account --}}
+                        <ul class="list-group list-group-flush">
+                            @if ($total < 200.01)
+                                <li class="list-group-item">
+                                    <span class="float-right">
+                                        <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
+                                        <p class="float-left" style="font-size: 14px;width:95%">
+                                        Aun no alcanzas el nivel minimo de lealtead.</p>
+                                </li>
+                            @else
+                                <li class="list-group-item">
+                                    <span class="float-right">
+                                        <i style="color: #00A5E6;" class="fas fa-circle"></i></span>
+                                        <p class="float-left" style="font-size: 14px;width:95%">
+                                        Tu nivel de lealtead actual es: 
+                                            @if ($total > 200.02 && $total <= 500)
+                                                Bronce
+                                            @elseif($total > 500.01 && $total <= 1300)
+                                                Plata
+                                            @elseif($total > 1300)
+                                                Oro
+                                            @endif
+                                        </p>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="float-right">
+                                        <i style="color: #00A5E6;" class="far fa-check"></i></span>
+                                        <p class="float-left" style="font-size: 14px;width:95%">
+                                        ¡Ya tienes derecho a tu seguro de accidentes personales!</p>
+                                </li>
+                                @if ($total > 500)
+                                <li class="list-group-item">
+                                    <span class="float-right">
+                                        <i style="color: #00A5E6;" class="far fa-check"></i></span>
+                                        <p class="float-left" style="font-size: 14px;width:95%">
+                                        Ya eres acreedor al nivel de asistencia 
+                                           @if ($total > 500.01 && $total <= 1300)
+                                                Plata
+                                           @elseif($total > 1300)
+                                                Oro
+                                           @endif  
+                                        </p>
+                                </li>
+                                @endif
+                            
+                            @endif
+                        </ul>
 
                     @endif
                 @endif
