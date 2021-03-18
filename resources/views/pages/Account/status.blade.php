@@ -41,8 +41,8 @@
                         <td> {{ $trans->sale_office }}</td>
                         <td> {{ $trans->payment_method }}</td>
                         <td> {{ $trans->quantity }}</td>
-                        <td> {{ $trans->transaction_date }}</td>
-                         <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                        <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
+                        <td>${{ number_format($trans->amount,2,'.',',') }}</td>
                      </tr>
                   @endforeach
                </tbody>
