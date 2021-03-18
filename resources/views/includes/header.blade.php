@@ -298,19 +298,6 @@
 
     </div>
   </nav>
-  
-  <script>
-        document.getElementById("bell1")
-                .addEventListener("click", checkTotal);
-
-        function checkTotal() {
-            
-            // value of selected option
-            
-            alert("holts");
-            // To pass this value in php you can do AJAX stuff here    
-        }
-    </script>
 
 <!-- Modal formulario dueño de negocio-->
 @include('includes.formularioDueño')
