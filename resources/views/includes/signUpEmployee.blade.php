@@ -23,7 +23,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="name"   
                                         placeholder="NOMBRE(S)"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -31,7 +31,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -43,7 +43,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">

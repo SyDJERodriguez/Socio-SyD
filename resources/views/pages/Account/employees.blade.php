@@ -18,6 +18,13 @@
         <div>
             <div style="margin-left: 10px !important;">
                 <h5>Detalle de empleados</h5>
+                @if (\Session::has('exist'))
+                 <div class="col-lg-12 text-justify text-primary">
+                    <p style="font-size:11px;color:red;text-align:center">
+                       El correo o número de teléfono ya se ha registrado previamente.
+                    </p>
+                 </div>
+                 @endif
                 <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
                     <thead>
                         <tr>
@@ -59,6 +66,7 @@
                        <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
                     </p>
                  </div>
+                 
             </div>
         </div>
         <br>

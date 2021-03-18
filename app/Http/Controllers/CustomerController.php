@@ -68,6 +68,17 @@ class CustomerController extends Controller
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
+        $query = DB::table('associates')
+                    ->where('mobile_number','=',$request['mobile_number'])
+                    ->orWhere('email','=',$request['email'])
+                    ->get();
+        $query = json_decode($query);
+        $query = (array)$query;//convert to array
+
+        if (is_array($query) == true && empty($query) === false){ //check if response exist
+            return redirect()->back()->with('exist', 'the email/mobile number already in db');   
+        }
+
         //calculated number in associates table
         $number = $this->getNumberAssociate($request['customer_id']);
         ++$number; //plus one bc 0 don't exists
