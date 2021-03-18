@@ -44,6 +44,9 @@
                         <td> {{ $trans->transaction_date }}</td>
                          <td>${{ $trans->amount }}</td>
                      </tr>
+                     @php
+                        $total += $trans->amount;
+                     @endphp
                   @endforeach
                </tbody>
                 <tfoot>
@@ -152,7 +155,7 @@
 
            // Update footer
            $( api.column( 5 ).footer() ).html(
-               '$'+total
+               '$'+parseFloat(total).toFixed(2)
            );
        }
    });

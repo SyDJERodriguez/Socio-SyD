@@ -473,8 +473,9 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
+        $total = 0;
 
-        return view('pages.Account.status', compact('data', 'tr'));
+        return view('pages.Account.status', compact('data', 'tr', 'total'));
         //return redirect()->route('customer.myAccount');
     }
 
