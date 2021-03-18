@@ -14,7 +14,9 @@ use App\Helpers\CustomersService;
 use App\Helpers\Twilio\TwilioService;
 use App\Helpers\Utils;
 use App\LogRegisters;
+use App\Mail\contactMail;
 use App\VueTables\EloquentVueTables;
+use Barryvdh\Reflection\DocBlock\Tag\AuthorTag;
 use DB;
 use Carbon\Carbon;
 use function GuzzleHttp\Psr7\get_message_body_summary;
@@ -22,6 +24,7 @@ use Hash;
 use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Str;
@@ -65,6 +68,17 @@ class CustomerController extends Controller
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
+        $query = DB::table('associates')
+                    ->where('mobile_number','=',$request['mobile_number'])
+                    ->orWhere('email','=',$request['email'])
+                    ->get();
+        $query = json_decode($query);
+        $query = (array)$query;//convert to array
+
+        if (is_array($query) == true && empty($query) === false){ //check if response exist
+            return redirect()->back()->with('exist', 'the email/mobile number its already in db');   
+        }
+
         //calculated number in associates table
         $number = $this->getNumberAssociate($request['customer_id']);
         ++$number; //plus one bc 0 don't exists
@@ -90,6 +104,7 @@ class CustomerController extends Controller
         }
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            $this->invitation($request);
             //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
             return redirect()->route('customer.employees');
         }else{
@@ -244,7 +259,7 @@ class CustomerController extends Controller
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
-            'client_type'   => $request['client_type'],
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
             'active'        => 0,
@@ -294,6 +309,24 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer){
+            $activated = false;
+            return view('pages.activationPage', compact('activated'));
+        }
+    }
+
+    //cerify associate
+    public function verify_associate($client_number = null, $mobile_number = null){
+        $query = DB::table('associates')
+                    ->where('client_number','=', $client_number)
+                    ->where('mobile_number','=',$mobile_number)
+                        ->update([
+                            'active_association' => 1
+                        ]);
+        if($query === 1 || $query === true){
+            $activated = true;
+            return view('pages.activationPage', compact('activated'));
+        }
+        if($query){
             $activated = false;
             return view('pages.activationPage', compact('activated'));
         }
@@ -440,7 +473,7 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
-        //dd($customer_trans);
+
         return view('pages.Account.status', compact('data', 'tr'));
         //return redirect()->route('customer.myAccount');
     }
@@ -462,7 +495,7 @@ class CustomerController extends Controller
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
-        $exist = \Storage::exists('polizas/'.Auth::user()->id.'.pdf');
+        $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         return view('pages.Account.documents', compact('data','link', 'exist'));
     }
 
@@ -470,13 +503,58 @@ class CustomerController extends Controller
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
 
+        $signature = DB::table('customers_sessions')
+            ->select('signature_id')
+            ->where('id', '=', Auth::user()->id)
+            ->first();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 1;
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 2;
+            }
+            if ($total_amount>7000) {
+                $level = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 1;
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 2;
+            }
+            if ($total_amount>1300) {
+                $level = 3;
+            }
+        }
+
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
             return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
         }
 
-        return view('pages.Account.beneficiary', compact('data'));
+        $signature = $signature->signature_id;
+
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level'));
     }
 
     //Go to benefits of Safe
@@ -498,43 +576,26 @@ class CustomerController extends Controller
 
         $level = 0;
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>0 && $total_amount<=2500) {
+            if ($total_amount>2500 && $total_amount<=4500) {
                 $level = 1;
             }
-            if ($total_amount>2500 && $total_amount<=4500) {
+            if ($total_amount>4500 && $total_amount<=7000) {
                 $level = 2;
             }
-            if ($total_amount>4500 && $total_amount<=7000) {
+            if ($total_amount>7000) {
                 $level = 3;
-            }
-            if ($total_amount>7000 && $total_amount<=9500) {
-                $level = 4;
-            }
-
-            if ($total_amount>9500) {
-                $level = 5;
             }
         }
 
         if (Auth::user()->client_type === "2"){
-            if ($total_amount>0 && $total_amount<=200) {
+            if ($total_amount>200 && $total_amount<=500) {
                 $level = 1;
             }
-            if ($total_amount>200 && $total_amount<=500) {
+            if ($total_amount>500 && $total_amount<=1300) {
                 $level = 2;
             }
-            if ($total_amount>500 && $total_amount<=1300) {
+            if ($total_amount>1300) {
                 $level = 3;
-            }
-            if ($total_amount>1300 && $total_amount<=1700) {
-                $level = 4;
-            }
-            if ($total_amount>1700 && $total_amount<=2500) {
-                $level = 5;
-            }
-
-            if ($total_amount>2500) {
-                $level = 6;
             }
         }
         return view('pages.Account.benefitSafe', compact('data', 'level'));
@@ -640,17 +701,17 @@ class CustomerController extends Controller
 
         $level = '';
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>4500 && $total_amount<=9500) {
+            if ($total_amount>4500 && $total_amount<=7000) {
                 $level = 'plata';
             }
-            if ($total_amount>9500) {
+            if ($total_amount>7000) {
                 $level = 'oro';
             }
         }
 
         if (Auth::user()->client_type === "2"){
             if ($total_amount>500 && $total_amount<=1300) {
-                $level = 'pata';
+                $level = 'plata';
             }
             if ($total_amount>1300) {
                 $level = 'oro';
@@ -696,15 +757,17 @@ class CustomerController extends Controller
         $numberEmployees = $this->getNumberAssociate($data['id']);
 
         //calculated the limit of employees
-        if( $limit > 2500.01 && $limit < 4500.01 && $numberEmployees < 5 ){ //bronce
+        if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
             $validated = true;
-        }else if($limit > 4500.01 && $limit < 7000.01 && $numberEmployees < 5){ //plata
+        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
-        }else if($limit > 7000.01 && $limit < 9500.01 && $numberEmployees < 10){ //oro
+        }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
-        }else if($limit > 9500.01 && $numberEmployees < 10) {
+        }
+        /*else if($limit > 9500.01 && $numberEmployees < 10) {
             $validated = true;
-        }else {
+        }*/
+        else {
             $validated = false;
         }
 
@@ -804,21 +867,32 @@ class CustomerController extends Controller
 
     //Contact form
     public function contact_us(Request $request){
-        $SYD_EMAILS = "equezada@syd.com.mx,
-                     nebratt@syd.com.mx,
-                     Ecommerce@syd.com.mx";
-        $to = explode(',',$SYD_EMAILS);
+        $SYD_EMAILS = ["equezada@syd.com.mx",
+                     "nebratt@syd.com.mx",
+                     "Ecommerce@syd.com.mx"];
+        //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
-            \Mail::send('emails.message',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
-                $m->to($to, 'SYD')->subject('Nuevo Registro de Club Dar');
+            Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Club Dar');
             });
-            return response()->json(['success'=>'submitted successfully','status' =>200]);
+            return redirect()->route('home');
         } catch (\Throwable $th) {
-            return response()->json(['success'=>'submitted successfully','status' =>401]);
+            return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
         }
-     }
+    }
+
+    //invitation email associate
+    public function invitation($data){
+        $email = $data['email'];
+        try {
+            Mail::send('emails.invitation',['data'=>$data], function($m) use ($email){
+                $m->to($email)->subject("Invitación a Socio SYD");
+            });
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
     protected function guard()
     {

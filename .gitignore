@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 .vagrant/
 storage/debugbar
+composer.lock
+composer.json

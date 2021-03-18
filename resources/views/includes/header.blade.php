@@ -8,26 +8,32 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div class="row ml-0 header" id="header">
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt="">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
             </div>
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
+            <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                 {{ session()->get('error') }}
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size:12px">
+                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -35,7 +41,7 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-lg-6 my-2">
+                    <div class="col-lg-6 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
@@ -172,12 +178,11 @@
         <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
     </a>
 
-    <form class="form-inline my-lg-0">
+    <div class="form-inline my-lg-0">
         @if(!empty(Auth::user()))
-        <div class="navbar-toggler ">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+        <div class="navbar-toggler">
+            <div class="btn-group">
+                <button id="bell1" class="btn" data-toggle="modal" data-target="#modalNotifications">
                     <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
                         1
                     </span>
@@ -196,7 +201,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
-    </form>
+    </div>
    
     {{-- navbar login --}}
     <div class="collapse navbar-collapse" id="navbarLogin">
@@ -262,46 +267,56 @@
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section2">¿CÓMO FUNCIONA?</a>
+                <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section3">TIPO DE CUENTA</a>
+                <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#section4">BENEFICIOS</a>
+                <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" href="#section6">¿DÓNDE COMPRAR?</a>
+                <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
             </li>
       </ul>
 
       @if(!empty(Auth::user()))
         <div class="bell2">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i
-                        class="far fa-bell" style="color: white; font-size: 22px;"> </i>
+            <div class="btn-group" >
+                <button class="btn" data-toggle="modal" data-target="#modalNotifications">
+                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                        1
+                    </span>
+                    <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
                 </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
             </div>
         </div>
         @endif
 
     </div>
   </nav>
+  
+  <script>
+        document.getElementById("bell1")
+                .addEventListener("click", checkTotal);
+
+        function checkTotal() {
+            
+            // value of selected option
+            
+            alert("holts");
+            // To pass this value in php you can do AJAX stuff here    
+        }
+    </script>
 
 <!-- Modal formulario dueño de negocio-->
 @include('includes.formularioDueño')
 
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanico')
+
+{{-- Modal notifications --}}
+@include('includes.notifications')

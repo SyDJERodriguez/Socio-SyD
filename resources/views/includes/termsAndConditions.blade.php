@@ -7,7 +7,9 @@
             </div>
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase"> TÉRMINOS Y CONDICIONES - SEGURO DE ACCIDENTES PERSONALES</h5>
-                <img  src="{{asset('img/line2.png')}}"  alt="line" width="80%">
+                <div class="line1">
+                    <img src="{{asset('img/line2.png')}}" alt="">
+                </div>
                 <h5>OPERADO POR: CHUBB</h5>
                 <br>
                 <div class="container">
@@ -15,28 +17,28 @@
                     <hr class="p-0 m-0">
                     <ul class="list-unstyled ml-3">
                         <li>
-                            Indemnización por pérdida orgánica (Escala B)hr
+                            Indemnización por pérdida orgánica (Escala B)
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Indemnización por invalidez total y permanentehr
+                        <li>Indemnización por invalidez total y permanente
                             <hr class="p-0 m-0">
                         </li>
-                        <li>por accidentehr
+                        <li>por accidente
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Indemnización por muerte accidentalhr
+                        <li>Indemnización por muerte accidental
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Reembolso de gastos médicos por accidentehr
+                        <li>Reembolso de gastos médicos por accidente
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Deducible de gastos médicoshr
+                        <li>Deducible de gastos médicos
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Renta diaria de hospital por accidentehr
+                        <li>Renta diaria de hospital por accidente
                             <hr class="p-0 m-0">
                         </li>
-                        <li>Periodo de beneficio*hr
+                        <li>Periodo de beneficio*
                             <hr class="p-0 m-0">
                         </li>
                         <li style="font-size: 10px">
@@ -44,14 +46,14 @@
                             <hr class="p-0 m-0">
                         </li>
                     </ul>
-                    <p>
+                    <p class="text-justify">
                         Tus compras desde $200.00 (Doscientos pesos) pesos mensuales mantienen activa la vigencia
                         de tu seguro. Con este requisito mínimo podrás tener acceso a todas las coberturas mes a mes
                     </p>
                     <h5>Coberturas</h5>
                     <hr class="p-0 m-0">
                     <h5>Pérdida orgánica</h5>
-                    <p>Si sufres la pérdida de un órgano como consecuencia de un Accidente Cubierto, dentro de los
+                    <p class="text-justify">Si sufres la pérdida de un órgano como consecuencia de un Accidente Cubierto, dentro de los
                         90
                         días siguientes a la fecha del mismo, recibirás el porcentaje de la Suma Asegurada
                         correspondiente
@@ -190,20 +192,20 @@
                     </ul>
                     <hr>
                     <h5>Invalidez total y permanente por accidente</h5>
-                    <p>A causa de un Accidente Cubierto, e independientemente de cualquier otra causa, sufrieras un
+                    <p class="text-justify">A causa de un Accidente Cubierto, e independientemente de cualquier otra causa, sufrieras un
                         estado de Invalidez Total y Permanente recibirás la Suma Asegurada correspondiente a $50,000.00
                         (Cincuenta mil pesos) dentro de los 90 días siguientes a la fecha del mismo </p>
                     <hr>
                     <h5>Muerte accidental</h5>
-                    <p>
+                    <p class="text-justify">
                         Por muerte accidental tu beneficiario designado recibirá la Suma Asegurada de $50,000.00
                         (Cincuenta mil pesos) dentro de los 90 días siguientes a la fecha del mismo
                     </p>
                     <hr>
                     <h5>Reembolso de Gastos Médicos por Accidente</h5>
-                    <p>
+                    <p class="text-justify">
 
-                        i necesitas un tratamiento médico, intervención quirúrgica, hospitalización, uso de ambulancia,
+                        Si necesitas un tratamiento médico, intervención quirúrgica, hospitalización, uso de ambulancia,
                         servicios de enfermera, medicinas o estudios de laboratorio y de gabinete a consecuencia de un
                         Accidente Cubierto, recibirás dentro de los 90 días siguientes a la fecha del mismo el monto de
                         hasta $10,000.00 (Diez mil pesos) con previa comprobación de gastos para reembolso
@@ -220,14 +222,14 @@
                     </p>
                     <hr>
                     <h5>Indemnización Diaria por Hospitalización por Enfermedad</h5>
-                    <p>
+                    <p class="text-justify">
                         Si eres hospitalizado como consecuencia de una enfermedad, recibirás el pago diario de
                         Hospitalización por $300.00 (Trescientos pesos) siempre y cuando transcurra por lo menos
                         un (1) Día de Hospitalización
                     </p>
                     <hr>
                     <h5>¿Qué hacer en caso de sufrir un accidente?</h5>
-                    <p>Llámanos inmediatamente al 01-800-087-4598 y ten a la mano la siguiente información:
+                    <p class="text-justify">Llámanos inmediatamente al 01-800-087-4598 y ten a la mano la siguiente información:
                     </p>
                     <br>
                     <ul>
@@ -241,7 +243,7 @@
                     </ul>
                     <hr>
                     <h5>Aplican restricciones</h5>
-                    <p>
+                    <p class="text-justify">
                         <span class="d-inline-block" style="min-width: 18%;">Edades de aceptación:</span> 		18 a 69 años
                         <br/>
                         <span class="d-inline-block" style="min-width: 18%;">Edad de cancelación:</span> 		Al cumplir 70 años

@@ -106,39 +106,6 @@
     </div>
 </div>
 
-<!-- Modal NOTIFICATIONS-->
-<div class="modal fade" id="modalNotifications" tabindex="-1" role="dialog" aria-labelledby="modalNotifications"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="toast-header text-white blue-dark p-0" >
-                <strong class="mr-auto ml-4">Notificaciones</strong>
-                <button type="button" class="ml-2  close text-white p-2"
-                        data-dismiss="modal" aria-label="Close" style="background-color:#00A5E6">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="float-left" style="font-size: 14px;">¡Ya tienes derecho a tu
-                                seguro<bR> de accidentes personales</span><span class="float-right"><i style="color: #00A5E6;"
-                                                                                                       class="fas fa-circle"></i></span></li>
-                    <li class="list-group-item"><span class="float-left" style="font-size: 14px;">Lorem ipsum dolor sit
-                                amet, consectetuer<br> adipiscing elit, sed diam </span><span class="float-right"><i
-                                style="color: #00A5E6;" class="far fa-check"></i></span></li>
-                    <li class="list-group-item"><span class="float-left" style="font-size: 14px;">Lorem ipsum dolor sit
-                                amet, consectetuer<br> adipiscing elit, sed diam </span><span class="float-right"><i
-                                style="color: #00A5E6;" class="far fa-check"></i></span></li>
-                    <li class="list-group-item"><span class="float-left" style="font-size: 14px;">Lorem ipsum dolor sit
-                                amet, consectetuer<br> adipiscing elit, sed diam </span><span class="float-right"><i
-                                style="color: #00A5E6;" class="far fa-check"></i></span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <!-- Modal CONTACTO FORMULARIO-->
 <div class="modal fade" id="contactModalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
@@ -255,7 +222,7 @@
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CUENTA!</h5>
                         <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA.</p>
-                        <p class="text-white"></p>
+                        <p class="text-white">SI NO VUALIZA EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA SPAM.</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>

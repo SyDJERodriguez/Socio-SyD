@@ -7,7 +7,9 @@
             </div>
             <div class="modal-body">
                 <h5 class="text-uppercase" id="title">ALTA EMPLEADO</h5>
-                <img src="{{asset('img/line.png')}}" alt="line">
+                <div class="line1">
+                    <img src="{{asset('img/line2.png')}}" alt="">
+                </div>
                 <br>
                 <br>
                 <form method="POST" action="{{route('customer.addEmployee')}}">
@@ -21,7 +23,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="name"   
                                         placeholder="NOMBRE(S)"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -29,7 +31,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -41,7 +43,7 @@
                                 <input class="form-control-sm form-control" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
@@ -79,7 +81,12 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-12 text-right">
+                            <div class="col-9 text-right">
+                                <p style="font-size:12px" class="primary-color">
+                                    *Es posible que el correo llegué a la bandeja de correo no deseado.
+                                </p>
+                            </div>
+                            <div class="col-3">
                                 <button type="submit" class="btn btn-info">ACEPTAR</button>
                             </div>
                         </div>
