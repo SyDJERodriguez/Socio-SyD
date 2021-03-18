@@ -76,7 +76,7 @@ class CustomerController extends Controller
         $query = (array)$query;//convert to array
 
         if (is_array($query) == true && empty($query) === false){ //check if response exist
-            return redirect()->back()->with('exist', 'the email/mobile number already in db');   
+            return redirect()->back()->with('exist', 'the email/mobile number its already in db');   
         }
 
         //calculated number in associates table
@@ -259,7 +259,7 @@ class CustomerController extends Controller
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
-            'client_type'   => $request['client_type'],
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
             'active'        => 0,
@@ -473,7 +473,7 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
-        //dd($customer_trans);
+
         return view('pages.Account.status', compact('data', 'tr'));
         //return redirect()->route('customer.myAccount');
     }

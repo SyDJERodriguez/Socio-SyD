@@ -86,7 +86,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
 
-                    <input type="hidden" id="confirmPassword" name="client_type" value="1">
+                    <input type="hidden" id="client_type" name="client_type" value="1">
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3">
