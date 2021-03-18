@@ -42,7 +42,7 @@
                         <td> {{ $trans->payment_method }}</td>
                         <td> {{ $trans->quantity }}</td>
                         <td> {{ $trans->transaction_date }}</td>
-                         <td>${{ $trans->amount }}</td>
+                         <td>${{ number_format($trans->amount,2,'.',',') }}</td>
                      </tr>
                   @endforeach
                </tbody>
@@ -152,7 +152,7 @@
 
            // Update footer
            $( api.column( 5 ).footer() ).html(
-               '$'+total
+               new Intl.NumberFormat('en-US',{ style: 'currency', currency: 'USD'}).format(total)
            );
        }
    });
