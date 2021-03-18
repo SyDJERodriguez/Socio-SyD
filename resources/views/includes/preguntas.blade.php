@@ -188,12 +188,6 @@
                                         </thead>
                                         <tbody class="question">
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $0 a $200.00</b> </td>
-                                                <td class="question firstTB noClas">X</td>
-                                                <td class="question firstTB noClas">X</td>
-                                                <td class="question firstTB noClas">X</td>
-                                            </tr>
-                                            <tr class="question">
                                                 <td class="question firstTB noClas"><b>De $200.02 a $500.00 </b></td>
                                                 <td class="question firstTB noClas">Bronce</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
@@ -382,12 +376,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="question">
-                                            <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $0 a $200.00</b> </td>
-                                                <td class="question firstTB noClas">X</td>
-                                                <td class="question firstTB noClas">X</td>
-                                                <td class="question firstTB noClas">X</td>
-                                            </tr>
                                             <tr class="question">
                                                 <td class="question firstTB noClas"><b>De $200.02 a $500.00 </b></td>
                                                 <td class="question firstTB noClas">Bronce</td>
