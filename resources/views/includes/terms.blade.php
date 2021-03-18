@@ -35,21 +35,25 @@
                                 <td class="question thirdTB noClas">Orientación emocional telefónica</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
+                                <td class="question thirdTB noClas text-center">X</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Orientación nutricional telefónica</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
+                                <td class="question thirdTB noClas text-center">X</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Video consulta por COVID19</td>
                                 <td class="question thirdTB noClas">1 evento</td>
                                 <td class="question thirdTB noClas">1 evento</td>
+                                <td class="question thirdTB noClas text-center">X</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Ambulancia terrestre por emergencia</td>
                                 <td class="question thirdTB noClas">2 eventos</td>
                                 <td class="question thirdTB noClas">1 evento</td>
+                                <td class="question thirdTB noClas text-center">X</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Especializado</td>
@@ -59,7 +63,7 @@
                                 <td class="question thirdTB noClas">1 evento hasta $15,000</td>
                             </tr>
                             <tr class="question">
-                                <td class="question thirdTB noClas">usuarios</td>
+                                <td class="question thirdTB noClas">Usuarios</td>
                                 <td class="question thirdTB noClas">$4,000</td>
                                 <td class="question thirdTB noClas">Costo unitario mensual $10.00 más IVA</td>
                                 <td class="question thirdTB noClas">Costo unitario mensual $15.00 más IVA</td>
