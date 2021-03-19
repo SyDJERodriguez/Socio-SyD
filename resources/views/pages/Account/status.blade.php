@@ -44,9 +44,6 @@
                         <td> {{ $trans->transaction_date }}</td>
                          <td>${{ $trans->amount }}</td>
                      </tr>
-                     @php
-                        $total += $trans->amount;
-                     @endphp
                   @endforeach
                </tbody>
                 <tfoot>

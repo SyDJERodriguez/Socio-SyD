@@ -18,6 +18,11 @@
                                        placeholder="CORREO ELECTRÓNICO" required>
 
                             </div>
+                            <div class="col-12">
+                                <p style="font-size:12px;padding-top:4px" class="primary-color">
+                                    *Sino visualiza el correo en su bandeja de entrada, revise en correo no deseado.
+                                </p>
+                            </div>
                         </div>
                     </div>
 

@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col-9 text-right">
                                 <p style="font-size:12px" class="primary-color">
-                                    *Es posible que el correo llegué a la bandeja de correo no deseado.
+                                    *Sino visualiza el correo en su bandeja de entrada, revise en correo no deseado.
                                 </p>
                             </div>
                             <div class="col-3">

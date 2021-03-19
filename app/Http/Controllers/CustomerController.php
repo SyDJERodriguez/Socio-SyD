@@ -473,7 +473,7 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
-        $total = 0;
+        $total = $this->total_amount();
 
         return view('pages.Account.status', compact('data', 'tr', 'total'));
         //return redirect()->route('customer.myAccount');
@@ -497,7 +497,9 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
-        return view('pages.Account.documents', compact('data','link', 'exist'));
+        $total = $this->total_amount();
+
+        return view('pages.Account.documents', compact('data','link', 'exist','total'));
     }
 
     //Go to register beneficiary
@@ -599,7 +601,8 @@ class CustomerController extends Controller
                 $level = 3;
             }
         }
-        return view('pages.Account.benefitSafe', compact('data', 'level'));
+        $total = $total_amount;
+        return view('pages.Account.benefitSafe', compact('data', 'level','total'));
     }
 
     //Go to signature section in benefits
@@ -721,6 +724,25 @@ class CustomerController extends Controller
         return view('pages.Account.assistance', compact('data', 'level'));
     }
 
+    //calculated total_amount
+    public function total_amount(){
+        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        return $total_amount;
+    }
+
     //Go to beneficiares section
     public function beneficiaries ()
     {
@@ -736,8 +758,9 @@ class CustomerController extends Controller
                     ->get();
         //Calculated the limit of employee
         $validated = $this->employeeLimit();
-              
-        return view('pages.Account.employees', compact('data','associates','validated'));
+        $total = $this->total_amount();
+
+        return view('pages.Account.employees', compact('data','associates','validated','total'));
     }
 
     //Function to generate limit for add employees according the rules
