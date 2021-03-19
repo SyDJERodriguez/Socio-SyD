@@ -307,10 +307,11 @@ class CustomerController extends Controller
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
             'active'   => 1
         ]);
+        $total = $this->total_amount();
 
         if ($update_customer){
             $activated = false;
-            return view('pages.activationPage', compact('activated'));
+            return view('pages.activationPage', compact('activated','total'));
         }
     }
 
@@ -322,13 +323,14 @@ class CustomerController extends Controller
                         ->update([
                             'active_association' => 1
                         ]);
+        $total = $this->total_amount();
         if($query === 1 || $query === true){
             $activated = true;
-            return view('pages.activationPage', compact('activated'));
+            return view('pages.activationPage', compact('activated','total'));
         }
         if($query){
             $activated = false;
-            return view('pages.activationPage', compact('activated'));
+            return view('pages.activationPage', compact('activated','total'));
         }
     }
 
@@ -398,7 +400,8 @@ class CustomerController extends Controller
 
     //Show form to update password
     public function edit_password($client_number) {
-        return view('pages.restorePassword', compact('client_number'));
+        $total = $this->total_amount();
+        return view('pages.restorePassword', compact('client_number','total'));
     }
 
     //Update password
@@ -449,7 +452,8 @@ class CustomerController extends Controller
 
     //Show form to change password to activate account
     public function edit_account($client_number) {
-        return view('pages.activateAccount', compact('client_number'));
+        $total = $this->total_amount();
+        return view('pages.activateAccount', compact('client_number','total'));
     }
 
     //Update account to activate
@@ -556,8 +560,9 @@ class CustomerController extends Controller
         }
 
         $signature = $signature->signature_id;
+        $total = $this->total_amount();
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total'));
     }
 
     //Go to benefits of Safe
@@ -618,8 +623,9 @@ class CustomerController extends Controller
         if(empty($query) === false){
             $imgData = $query[0];
         }
-        
-        return view('pages.Account.signature', compact('data', 'imgData'));
+        $total = $this->total_amount();
+
+        return view('pages.Account.signature', compact('data', 'imgData','total'));
     }
 
     //Create signature
@@ -721,7 +727,8 @@ class CustomerController extends Controller
                 $level = 'oro';
             }
         }
-        return view('pages.Account.assistance', compact('data', 'level'));
+        $total = $total_amount;
+        return view('pages.Account.assistance', compact('data', 'level','total'));
     }
 
     //calculated total_amount
@@ -747,7 +754,8 @@ class CustomerController extends Controller
     public function beneficiaries ()
     {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        return view('pages.Account.beneficiaries', compact('data'));
+        $total = $this->total_amount();
+        return view('pages.Account.beneficiaries', compact('data','total'));
     }
 
     //load data from associates AQUI
@@ -806,7 +814,8 @@ class CustomerController extends Controller
                     ->where('number','=',$user)
                     ->get();
         $employee = $query[0];
-        return view('pages.Account.editEmployee', compact('employee','user'));
+        $total = $this->total_amount();
+        return view('pages.Account.editEmployee', compact('employee','user','total'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){
