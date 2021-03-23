@@ -239,6 +239,12 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : ''
             ]);
+
+            //create data in notifications table
+            $update_notifications = DB::table('notifications')->insert([
+                'client_number'     => $client_number,
+                'name_id'           => 'SEGURO ASISTENCIAS'
+            ]);
         }
 
         //Verify is the email has not a relation with other client number
@@ -365,13 +371,27 @@ class CustomerController extends Controller
         //Login
         if(Auth::guard('customer')->attempt([
             'email'    => $request->email,
-            'password' => $request->password
-        ])){
+            'password' => $request->password])
+            ){
+            //update notifications each login
+            $notification = $this->updateNotifications($request->email);
+            
             return redirect()->route('customer.myAccount');
 
         }else{
             return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
         }
+    }
+
+    //update table notifications to seen
+    public function dismissNotification($client_number){
+        $dismiss = DB::table('notifications')
+                    ->where('client_number','=',$client_number)
+                    ->update([
+                        'seen' => 1
+                    ]);
+
+        return redirect()->back();
     }
 
     //Logout function
@@ -478,8 +498,9 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
-        return view('pages.Account.status', compact('data', 'tr', 'total'));
+        return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
     }
 
@@ -733,7 +754,6 @@ class CustomerController extends Controller
 
     //calculated total_amount
     public function total_amount(){
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -748,6 +768,65 @@ class CustomerController extends Controller
         }
 
         return $total_amount;
+    }
+
+    //get the total amount by passing client number as a parameter
+    public function totalAmountById($client_number){
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+        }
+
+        return $total_amount;
+    }
+
+    //get the data from notifications table
+    public function getNotifications(){
+        $query = DB::table('notifications')
+            ->where('client_number','=',Auth::user()->client_number)
+            ->get();
+
+        return $query[0];
+    }
+
+    //update notifications table 
+    public function updateNotifications($email){
+        //get client number by email
+        $data = DB::table('customers_sessions')
+                    ->where('email','=',$email)
+                    ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
+        //calcular el total amount
+        $total = $this->totalAmountById($data[0]->client_number);
+        //update en tabla notifications
+        $update_notifications = 'No matches';
+        if($data[0]->client_type == 1 && $total > 2500.01){
+            $update_notifications = DB::table('notifications')
+                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->update([
+                                        'available' => 1
+                                    ]);
+        }  
+        
+        if($data[0]->client_type == 2 && $total > 200.02){
+            $update_notifications = DB::table('notifications')
+                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->update([
+                                        'available' => 1
+                                    ]);
+        }
+
+        return $update_notifications;
+
     }
 
     //Go to beneficiares section

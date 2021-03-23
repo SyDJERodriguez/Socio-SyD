@@ -5,10 +5,7 @@
         <div class="modal-content">
             <div class="toast-header text-white blue-dark p-0">
                 <strong class="mr-auto ml-4">Notificaciones</strong>
-                <button type="button" class="ml-2  close text-white p-2" data-dismiss="modal" aria-label="Close"
-                    style="background-color:#00A5E6">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
 
             <div class="modal-body">
@@ -58,22 +55,10 @@
                                             </p>
                                     </li>
                                     @endif
-                                    <li class="list-group-item">
-                                        <span class="float-right">
-                                            <i style="color: #00A5E6;" class="far fa-check"></i></span>
-                                            <p class="float-left" style="font-size: 14px;width:95%">
-                                            Número de colaborades a afiliar: 
-                                                <b> 
-                                                @if ($total > 2500 && $total <= 4500)
-                                                    4
-                                                @elseif($total > 4500 && $total <= 7000)
-                                                    4
-                                                @elseif($total > 7000)
-                                                    8
-                                                @endif
-                                                </b>
-                                            </p>
-                                    </li>
+                                    <br>
+                                    <a class="btn btn-sm btn-block" href="{{route('customer.dismissNotification', Auth::user()->client_number)}}">
+                                        Aceptar
+                                    </a>
                                 @endif
                             @else
                                 <li class="list-group-item">

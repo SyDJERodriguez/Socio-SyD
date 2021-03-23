@@ -183,9 +183,11 @@
         <div class="navbar-toggler">
             <div class="btn-group">
                 <button id="bell1" class="btn" data-toggle="modal" data-target="#modalNotifications">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
-                        1
-                    </span>
+                    @if ($noti->available == 1 && $noti->seen == 0)
+                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                            1
+                        </span>
+                    @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
                 </button>
             </div>
@@ -287,9 +289,11 @@
         <div class="bell2">
             <div class="btn-group" >
                 <button class="btn" data-toggle="modal" data-target="#modalNotifications">
+                    @if ($noti->available == 1 && $noti->seen == 0)
                     <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
                         1
                     </span>
+                    @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
                 </button>
             </div>

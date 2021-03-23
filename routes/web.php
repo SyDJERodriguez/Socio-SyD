@@ -43,6 +43,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
+    Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');
 
 
 //Account URLs
