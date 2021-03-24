@@ -314,10 +314,11 @@ class CustomerController extends Controller
             'active'   => 1
         ]);
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
         if ($update_customer){
             $activated = false;
-            return view('pages.activationPage', compact('activated','total'));
+            return view('pages.activationPage', compact('activated','total','noti'));
         }
     }
 
@@ -421,7 +422,8 @@ class CustomerController extends Controller
     //Show form to update password
     public function edit_password($client_number) {
         $total = $this->total_amount();
-        return view('pages.restorePassword', compact('client_number','total'));
+        $noti = $this->getNotifications();
+        return view('pages.restorePassword', compact('client_number','total','noti'));
     }
 
     //Update password
@@ -473,7 +475,8 @@ class CustomerController extends Controller
     //Show form to change password to activate account
     public function edit_account($client_number) {
         $total = $this->total_amount();
-        return view('pages.activateAccount', compact('client_number','total'));
+        $noti = $this->getNotifications();
+        return view('pages.activateAccount', compact('client_number','total','noti'));
     }
 
     //Update account to activate
@@ -523,8 +526,9 @@ class CustomerController extends Controller
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
-        return view('pages.Account.documents', compact('data','link', 'exist','total'));
+        return view('pages.Account.documents', compact('data','link', 'exist','total','noti'));
     }
 
     //Go to register beneficiary
@@ -582,8 +586,9 @@ class CustomerController extends Controller
 
         $signature = $signature->signature_id;
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
     }
 
     //Go to benefits of Safe
@@ -628,7 +633,8 @@ class CustomerController extends Controller
             }
         }
         $total = $total_amount;
-        return view('pages.Account.benefitSafe', compact('data', 'level','total'));
+        $noti = $this->getNotifications();
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti'));
     }
 
     //Go to signature section in benefits
@@ -645,8 +651,9 @@ class CustomerController extends Controller
             $imgData = $query[0];
         }
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
-        return view('pages.Account.signature', compact('data', 'imgData','total'));
+        return view('pages.Account.signature', compact('data', 'imgData','total','noti'));
     }
 
     //Create signature
@@ -749,7 +756,8 @@ class CustomerController extends Controller
             }
         }
         $total = $total_amount;
-        return view('pages.Account.assistance', compact('data', 'level','total'));
+        $noti = $this->getNotifications();
+        return view('pages.Account.assistance', compact('data', 'level','total','noti'));
     }
 
     //calculated total_amount
@@ -834,7 +842,8 @@ class CustomerController extends Controller
     {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $total = $this->total_amount();
-        return view('pages.Account.beneficiaries', compact('data','total'));
+        $noti = $this->getNotifications();
+        return view('pages.Account.beneficiaries', compact('data','total','noti'));
     }
 
     //load data from associates AQUI
@@ -846,8 +855,9 @@ class CustomerController extends Controller
         //Calculated the limit of employee
         $validated = $this->employeeLimit();
         $total = $this->total_amount();
+        $noti = $this->getNotifications();
 
-        return view('pages.Account.employees', compact('data','associates','validated','total'));
+        return view('pages.Account.employees', compact('data','associates','validated','total','noti'));
     }
 
     //Function to generate limit for add employees according the rules
@@ -894,7 +904,8 @@ class CustomerController extends Controller
                     ->get();
         $employee = $query[0];
         $total = $this->total_amount();
-        return view('pages.Account.editEmployee', compact('employee','user','total'));
+        $noti = $this->getNotifications();
+        return view('pages.Account.editEmployee', compact('employee','user','total','noti'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){
