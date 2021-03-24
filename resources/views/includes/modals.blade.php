@@ -255,7 +255,7 @@
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CUENTA!</h5>
                         <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA.</p>
-                        <p class="text-white"></p>
+                        <p class="text-white">SI NO VUALIZA EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA SPAM.</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
