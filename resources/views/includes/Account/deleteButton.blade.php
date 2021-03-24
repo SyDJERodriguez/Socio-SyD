@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12 py-2 float-right">
-            <a href="#" class="btn btn-outline-dark btn-sm float-right"
+            <a href="#" class="btn btn-outline-dark btn-sm float-right" style="background-color: #bfbfbf"
                data-toggle="modal" data-target="#modalDelete">ELIMINAR MI CUENTA</a>
     </div>
 </div>
