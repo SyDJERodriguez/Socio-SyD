@@ -234,10 +234,12 @@
                             </p>
                         </li>
                     </ol>
+                </p>
+                <p class="text-justify">
                     Los formularios de las cuentas individuales y de negocios están disponibles en: <a
-                        href="https://www.sociosyd.com">https://www.sociosyd.com</a> o
+                    href="https://www.sociosyd.com">https://www.sociosyd.com</a> o
                     al teléfono <a href="tel:8007931010">
-                        800 SYD (793) 1010</a>.
+                    800 SYD (793) 1010</a>.
                 </p>
 
                 <hr>
@@ -273,9 +275,12 @@
                             </p>
                         </li>
                     </ul>
+                   <p class="text-justify">
                     Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SyD con
                     <b>cuentas
-                        de negocios</b>, estarán divididos en 4 niveles de obtención de beneficios.<br><br>
+                        de negocios</b>, estarán divididos en 4 niveles de obtención de beneficios.
+                   </p>
+                    <br>
 
                     <ul>
                         <li>
@@ -303,7 +308,8 @@
                             </p>
                         </li>
                     </ul>
-
+                </p>
+                <p class="text-justify">
                     Al iniciar un nuevo mes, todas las compras anteriores quedan descartadas y se considerarán
                     únicamente las
                     nuevas compras que se hagan durante el mes en curso. Esto significa que, al inicio de cada mes,
@@ -311,7 +317,6 @@
                     Clientes del Programa de Lealtad Socio Syd, empiezan sin ningún nivel hasta que alcancen el mínimo
                     de compra
                     requerido para cada nivel.
-
                 </p>
 
                 <hr>
@@ -491,10 +496,12 @@
                             </p>
                         </li>
                     </ul>
-                    En caso de requerir hacer uso de alguna de las coberturas de este seguro, debe llamar al teléfono
+                    
+                    <p class="text-justify">
+                        En caso de requerir hacer uso de alguna de las coberturas de este seguro, debe llamar al teléfono
                     800-087-4598 en un horario de 9:00 am a 18:00 horas de lunes a viernes y tener el certificado de
                     cobertura
-                    a la mano.<br><br>
+                    a la mano. <br><br>
 
                     Más detalles sobre la cobertura de este beneficio, así como los montos asegurados de cada rubro y
                     números de
@@ -504,8 +511,7 @@
 
                     Plan SyD se deslinda de la resolución de cobertura debido a que esta se sujeta a las disposiciones
                     emitidas por parte de la aseguradora responsable del cumplimiento de esta (Chubb Aseguradora).
-
-
+                    </p>
                 </p>
 
                 <hr>
@@ -595,10 +601,12 @@
                             </p>
                         </li>
                     </ul>
-                    Más detalles sobre la cobertura de los beneficios de asistencia, los límites de cada evento,
+                    <p class="text-justify">
+                        Más detalles sobre la cobertura de los beneficios de asistencia, los límites de cada evento,
                     el monto de cobertura de la asistencia funeraria comunicarse al 551105 2682 comunicarse en caso de
                     algún evento de cobertura, pueden ser consultados dentro del sitio web del Programa de Lealtad Socio
                     SyD, en la sección correspondiente al beneficio de asistencias personales.
+                    </p>
 
                 </p>
 
