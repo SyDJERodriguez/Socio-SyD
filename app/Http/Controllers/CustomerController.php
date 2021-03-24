@@ -255,6 +255,41 @@ class CustomerController extends Controller
             'password'      => $password
         ]);
 
+
+
+        if($request['client_type'] === '1'){
+            $idCustomer = DB::table('customers_sessions')
+                ->select('id')
+                ->where('email', '=', $request['email'])
+                ->first();
+            $if_associate_email = DB::table('associates')
+                ->select('email')
+                ->where('email', '', $request['email'])
+                ->first();
+            $if_associate_phone = DB::table('associates')
+                ->select('mobile_number')
+                ->where('mobile_number', '', $request['mobile'])
+                ->first();
+
+            if($if_associate_email === null && $if_associate_phone === null){
+                DB::table('associates')->insert([
+                    'customer_id'       => $idCustomer->id,
+                    'client_number'     => $client_number,
+                    'name'              => $request['name'],
+                    'last_name'         => $request['last_name'],
+                    'second_last_name'  => $request['second_last_name'],
+                    'role'              => isset($request['role']) ? $request['role'] : "",
+                    'active_association'=> 1,
+                    'number'            => 1,
+                    'birthday'          => $request['birthday'],
+                    'email'             => $request['email'],
+                    'mobile_number'     => $request['mobile'],
+                ]);
+            }
+        }
+
+
+
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
         if ($update_customer === 1 && $save_register === true){
