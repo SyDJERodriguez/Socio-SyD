@@ -225,11 +225,89 @@
 
     <section id="section6">
         <div class="container-fluid py-5">
-            <a href="https://www.refaccionarias-dar.com/" target="_blank">
-                
-                <div class="jumbotron">
+            <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
+                <div class="our-branches__content-address">
+
+                    <div class="our-branches__content-address-map sucursal col-md-4">
+                    </div>
+
+                    <div class="our-branches__content-address-location col-md-4">
+
+                        <div class="our-branches__content-address-location-search">
+                            <label class="our-branches__content-address-location-search-label"> Por favor elige la opción que deseas ver:
+                                <select class="our-branches__content-estate-location-search-select sucursal" type="text">
+                                    <option disabled selected>Selecciona un estado</option>
+                                </select>
+                                <select class="our-branches__content-address-location-search-select sucursal" type="text">
+                                    <option disabled selected>Selecciona una ubicación</option>
+                                </select>
+                            </label>
+                        </div>
+
+
+
+                        <div class="our-branches__content-address-location-result">
+                            <div class="our-branches__content-address-location-title--wrapper">
+                                <p class="our-branches__content-address-location-title sucursal"> DAR Santa Elena: </p>
+                            </div>
+
+                            <div class="our-branches__content-address-location-result-item">
+                                <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_GPS.png')}}">
+                                <div class="our-branches__content-address-location-result-item-body item_direccion sucursal">
+                                    <p>Av. de los Maestros #804, Fracc. Jardines de Sta. Elena</p>
+                                    <p>C.P. 20236, Aguascalientes, Aguascalientes</p>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div class="our-branches__content-address-location-result-item">
+                                <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_HORARIO.png')}}">
+                                <div class="our-branches__content-address-location-result-item-body item_horario sucursal">
+                                    <p> LUNES A VIERNES DE 9:00 AM A 7:00 PM </p>
+                                    <p> SÁBADO DE 9:00 AM A 5:00 PM. </p>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div class="our-branches__content-address-location-result-item">
+                                <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_TELEFONO.png')}}">
+                                <div class="our-branches__content-address-location-result-item-body item_tel sucursal">
+                                    <p> Tel: 01(449) 140-5442 </p>
+                                    <p> Tel: 01(449) 978-1196 </p>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div class="our-branches__content-address-location-result-item">
+                                <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_WHATSAPP.png')}}">
+                                <div class="our-branches__content-address-location-result-item-body item_whats sucursal">
+                                    <p> 55-1016-8974<br></p>
+                                </div>
+                            </div>
+
+                            <div class="our-branches__content-address-location-result-item our-branches__content-address-location-result-item--no-margin sucursal" style="display: none">
+                                <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_TALLER.png')}}">
+                                <div class="our-branches__content-address-location-result-item-body item_servicio sucursal" >
+                                    <p>Contamos con servicio de taller. <br></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <!--<div class="jumbotron">
                
-               <!-- <div class="row text-center">
+                <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
                     <div class="col-lg-4 ">
                         <h1 class="text-white text-center"><strong>¿DÓNDE COMPRAR?</strong></h1>
@@ -239,9 +317,9 @@
                 </div>
 
                 <h5 class=" text-white text-center py-4"><strong>OBTÉN LOS PRODUCTOS QUE NECESITAS <br>EN UN SÓLO CLIC</strong></h5>
-                <a class="btn btn-primary text-center" href="https://www.refaccionarias-dar.com/" role="button">COMPRA AHORA</a>-->
+                <a class="btn btn-primary text-center" href="https://www.refaccionarias-dar.com/" role="button">COMPRA AHORA</a>
                 </div>
-            </a>
+            </a>-->
         </div>
     </section>
     @include('includes.modals')

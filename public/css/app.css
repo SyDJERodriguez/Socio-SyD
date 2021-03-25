@@ -896,3 +896,106 @@ Label the data for the second TABLE
         margin: 0 221px !important;
     }
 }
+
+/* MAPA */
+
+.our-branches__content-address {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.our-branches__content-address-map {
+    flex: 0 50%;
+    position: relative;
+}
+
+.our-branches__content-address-location {
+    flex: 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.our-branches__content-address-location-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.our-branches__content-address-location-search-label {
+    width: 90%;
+    font-size: 16pt;
+    color: #e11f1d;
+    line-height: 40px;
+}
+
+.our-branches__content-address-location-title--wrapper {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.our-branches__content-address-location-result {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border: 1px solid #143153;
+    padding: 15px;
+    color: #143153;
+}
+
+#map, #map_2 {
+    margin-top: 10px;
+    width: 100%;
+    height: 400px;
+}
+
+.gm-style {
+    font: 400 11px Roboto, Arial, sans-serif;
+    text-decoration: none;
+}
+
+.our-branches__content-address-location-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.our-branches__content-estate-location-search-select, .our-branches__content-address-location-search-select {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 10px;
+    color: #143153;
+}
+
+.our-branches__content-address-location-title {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.our-branches__content-address-location-result-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.our-branches__content-address-location-result-item-img {
+    margin-right: 10px;
+}
+
+@media (max-width: 1120px) {
+    .our-branches__content-address {
+        flex-direction: column-reverse;
+    }
+}
+
+.our-branches__content-address-location-result-item-body > p {
+    margin-bottom: 1px !important;
+}
