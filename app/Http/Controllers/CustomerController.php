@@ -68,6 +68,7 @@ class CustomerController extends Controller
         $query = DB::table('associates')
                     ->where('mobile_number','=',$request['mobile_number'])
                     ->orWhere('email','=',$request['email'])
+                    ->where('active_association','=',1)
                     ->get();
         $query = json_decode($query);
         $query = (array)$query;//convert to array
