@@ -871,3 +871,25 @@
         }
     });
 </script>
+
+<script>
+    document.getElementById("name").addEventListener("keypress", function (evt) {
+    if (evt.which >= 48 && evt.which <= 57) //no numbers allow
+    {
+        evt.preventDefault();
+    }
+    });
+    document.getElementById("lastname").addEventListener("keypress", function (evt) {
+    if (evt.which >= 48 && evt.which <= 57) //no numbers allow
+    {
+        evt.preventDefault();
+    }
+    });
+    document.getElementById("mobileNum").addEventListener("keypress", function (evt) {
+    if (evt.which < 48 || evt.which > 57) //only numbers allow
+    {
+        evt.preventDefault();
+    }
+    });
+
+</script>
