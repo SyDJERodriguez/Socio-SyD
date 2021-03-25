@@ -271,20 +271,48 @@
                 <a class="nav-link active" href="#">¿QUÉ ES? <span class="sr-only">(current)</span></a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
+                @if(!Auth::check())
+                    <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
+                @endif
+                @if(Auth::check())
+                        <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section2">¿CÓMO FUNCIONA?</a>
+                @endif
+
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
+                @if(!Auth::check())
+                    <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
+                @endif
+                @if(Auth::check())
+                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section3">TIPO DE CUENTA</a>
+                @endif
+
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
+                @if(!Auth::check())
+                    <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
+                @endif
+                @if(Auth::check())
+                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section4">BENEFICIOS</a>
+                @endif
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link" href="#section5">TESTIMONIALES</a>
             </li>-->
             <li class="nav-item">
-                <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
+                @if(!Auth::check())
+                    <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
+                @endif
+                @if(Auth::check())
+                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section6">¿DÓNDE COMPRAR?</a>
+                @endif
             </li>
+
+          <!--<li class="nav-item">
+              @if(Auth::check())
+                  <a class="nav-link" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
+              @endif
+          </li>-->
       </ul>
 
       @if(!empty(Auth::user()))
