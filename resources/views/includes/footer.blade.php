@@ -87,11 +87,11 @@
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control" id="contact-name" name="name"
-                                  pattern="[A-Za-z].{3,}" placeholder="NOMBRE" required >
+                                  pattern="[A-Za-z]{3,}" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control"  id="contact-lastname" name="lastName"
-                                  pattern="[A-Za-z].{3,}" placeholder="APELLIDOS" required>
+                                  pattern="[A-Za-z]{3,}" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control"  id="contact-email" name="email"
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control"  id="contact-phone" name="mobile"
-                                  placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10" title="Ten digits code" required>
+                                  placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10" title="Digito de 10 números" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
                                     <textarea class="form-control" name="comment"  id="contact-comment" 
