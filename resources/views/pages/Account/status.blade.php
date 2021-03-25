@@ -87,6 +87,7 @@
 </div>
 
 <script>
+   $.noConflict();
    $('#tableTrans').DataTable({
       dom: 'Bfrtip',
       info: false,

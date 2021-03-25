@@ -89,6 +89,7 @@
 </div>
 
 <script>
+    $.noConflict();
     $('#tableEmployees').DataTable({
        dom: 'Bfrtip',
        info: false,
