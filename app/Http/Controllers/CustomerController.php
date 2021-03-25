@@ -793,11 +793,17 @@ class CustomerController extends Controller
 
     //get the data from notifications table
     public function getNotifications(){
-        $query = DB::table('notifications')
+        $data = DB::table('notifications')
             ->where('client_number','=',Auth::user()->client_number)
             ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
 
-        return $query[0];
+        //check if an array
+        if(is_array($data) == true && empty($data) === true){
+            return false;
+        }
+        return $data[0];
     }
 
     //update notifications table 
