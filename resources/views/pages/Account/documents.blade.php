@@ -24,8 +24,8 @@
             </div>
         </div>
         <div class="col-lg-10 py-5">
-            @if(!$exist)
-                <div class="modal-body " style="background-color: #143153;">
+
+                <!--<div class="modal-body " style="background-color: #143153;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
@@ -33,8 +33,8 @@
                             <p class="text-white"></p>
                         </div>
                     </div>
-                </div>
-            @else
+                </div>-->
+
                 <form>
                     <div class="form-row text-center" style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
                         <div class="col-lg-12" style="color: #143153;">  <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS DOCUMENTOS</strong></h5>
@@ -57,7 +57,7 @@
 
                     </div>
                 </form>
-            @endif
+
 
             @include('includes.Account.deleteButton')
         </div>

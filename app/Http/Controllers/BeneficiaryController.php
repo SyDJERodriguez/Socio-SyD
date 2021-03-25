@@ -99,11 +99,11 @@ class BeneficiaryController extends Controller
                     }
                 }
 
-                $generatePDF = $this->generatePDF();
-                if ($generatePDF === 'success') {
+                //$generatePDF = $this->generatePDF();
+                //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
                     return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
-                }
+                //}
 
             }catch(\Exception $e){
                 $error = $e;
@@ -129,13 +129,13 @@ class BeneficiaryController extends Controller
                         'customer_id'      => $data['id']
                     ]);
 
-            $generatePDF = $this->generatePDF();
+            //$generatePDF = $this->generatePDF();
 
-            if ($generatePDF === 'success'){
+            //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiary = 'true';
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
-            }
+           // }
         }
     }
 

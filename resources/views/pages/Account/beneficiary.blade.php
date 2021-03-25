@@ -35,6 +35,7 @@
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
                                         <h5 class="text-white">¡TUS BENEFICIARIOS YA HAN SIDO REGISTRADOS!</h5>
+                                        <a href="{{route('customer.myDocuments')}}" class="btn btn-primary">VER CERTIFICADO</a>
                                         <p class="text-white"></p>
                                     </div>
                                 </div>
@@ -48,17 +49,6 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif($signature == null)
-                        <div class="modal-body " style="background-color: #143153;">
-                            <div class="row">
-                                <div class="col-lg-12 text-center">
-                                    <h5 class="text-white">¡POR FAVOR AGREGA TU FIRMA PARA PODER AGREGAR TUS BENEFICIARIOS!</h5>
-                                    <p class="text-white"></p>
-                                </div>
-                            </div>
-                        </div>
-
-
                     @else
 
                             <!--<div class="col-lg-12">
