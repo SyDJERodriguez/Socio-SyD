@@ -152,13 +152,12 @@ class BeneficiaryController extends Controller
         $signature = DB::table('signatures')
             ->where('client_number', '=', Auth::user()->client_number)
             ->first();
-        $pdf = PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature]);
-        $pdf->save($customer->id.'.pdf');
-        $upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
-        if($upload){
-            return 'success';
-        }
+        return PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature, 'customer'=>$customer])->stream($customer->id.'.pdf');
+        //$upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
+        //if($upload){
+        //    return 'success';
+        //}
 
-        return 'failed';
+        //return 'failed';
     }
 }

@@ -124,15 +124,15 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Nombre del Asegurado:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Nombre del Asegurado: {{$customer->name.' '.$customer->last_name.' '.$customer->second_last_name}}</strong></p>
                 </td>
             </tr>
             <tr>
                 <td width="50%">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Sexo:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Sexo: {{$customer->gender}}</strong></p>
                 </td>
                 <td width="50%">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Fecha de nacimiento:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Fecha de nacimiento: {{date_format(date_create($customer->birthday),'d-m-Y')}}</strong></p>
                 </td>
             </tr>
         </table>
@@ -323,12 +323,15 @@
         </div>
         <div class="contenedor">
             <div class="fecha" align="left" style="width: 100%">
+                <p class="text">México a </p>
                 <p class="text">_______________________________________</p>
                 <p class="text" style=" padding: 0 80px;">Lugar y fecha</p>
             </div>
             <div style="width: 700px;"></div>
             <div class="firma" align="right" style="width: 100%">
-                <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;" >
+                @if(isset($signature))
+                    <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;" >
+                @endif
                 <p class="text">_______________________________________</p>
                 <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
             </div>
