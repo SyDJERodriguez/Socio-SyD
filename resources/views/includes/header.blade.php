@@ -308,11 +308,11 @@
                 @endif
             </li>
 
-          <!--<li class="nav-item">
+          {{-- <li class="nav-item">
               @if(Auth::check())
                   <a class="nav-link" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
               @endif
-          </li>-->
+          </li> --}}
       </ul>
 
       @if(!empty(Auth::user()))

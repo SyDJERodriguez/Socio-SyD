@@ -49,9 +49,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
 
-        Route::get('/home', function () {
-            return view('pages.home');
-        })->name('home');
+        Route::get('/home', 'CustomerController@home')->name('home');        
 
         //My Account
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');

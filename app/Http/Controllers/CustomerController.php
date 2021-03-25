@@ -344,7 +344,7 @@ class CustomerController extends Controller
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
             'active'   => 1
         ]);
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         if ($update_customer){
@@ -361,7 +361,7 @@ class CustomerController extends Controller
                         ->update([
                             'active_association' => 1
                         ]);
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         if($query === 1 || $query === true){
             $activated = true;
             return view('pages.activationPage', compact('activated','total'));
@@ -452,7 +452,7 @@ class CustomerController extends Controller
 
     //Show form to update password
     public function edit_password($client_number) {
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.restorePassword', compact('client_number','total','noti'));
     }
@@ -505,7 +505,7 @@ class CustomerController extends Controller
 
     //Show form to change password to activate account
     public function edit_account($client_number) {
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.activateAccount', compact('client_number','total','noti'));
     }
@@ -531,7 +531,7 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $tr = $this->get_trans($data['client_number']);
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
@@ -556,7 +556,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         return view('pages.Account.documents', compact('data','link', 'exist','total','noti'));
@@ -578,33 +578,33 @@ class CustomerController extends Controller
             ->where('client_number', Auth::user()->client_number)
             ->whereMonth('transaction_date','=',$current_month)
             ->get();
-        $total_amount = 0.0;
+        $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
         $level = 0;
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>2500 && $total_amount<=4500) {
+            if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
-            if ($total_amount>4500 && $total_amount<=7000) {
+            if ($totalAmount>4500 && $totalAmount<=7000) {
                 $level = 2;
             }
-            if ($total_amount>7000) {
+            if ($totalAmount>7000) {
                 $level = 3;
             }
         }
 
         if (Auth::user()->client_type === "2"){
-            if ($total_amount>200 && $total_amount<=500) {
+            if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
-            if ($total_amount>500 && $total_amount<=1300) {
+            if ($totalAmount>500 && $totalAmount<=1300) {
                 $level = 2;
             }
-            if ($total_amount>1300) {
+            if ($totalAmount>1300) {
                 $level = 3;
             }
         }
@@ -616,7 +616,7 @@ class CustomerController extends Controller
         }
 
         $signature = $signature->signature_id;
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
@@ -633,37 +633,37 @@ class CustomerController extends Controller
             ->where('client_number', Auth::user()->client_number)
             ->whereMonth('transaction_date','=',$current_month)
             ->get();
-        $total_amount = 0.0;
+        $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
         $level = 0;
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>2500 && $total_amount<=4500) {
+            if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
-            if ($total_amount>4500 && $total_amount<=7000) {
+            if ($totalAmount>4500 && $totalAmount<=7000) {
                 $level = 2;
             }
-            if ($total_amount>7000) {
+            if ($totalAmount>7000) {
                 $level = 3;
             }
         }
 
         if (Auth::user()->client_type === "2"){
-            if ($total_amount>200 && $total_amount<=500) {
+            if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
-            if ($total_amount>500 && $total_amount<=1300) {
+            if ($totalAmount>500 && $totalAmount<=1300) {
                 $level = 2;
             }
-            if ($total_amount>1300) {
+            if ($totalAmount>1300) {
                 $level = 3;
             }
         }
-        $total = $total_amount;
+        $total = $totalAmount;
         $noti = $this->getNotifications();
         return view('pages.Account.benefitSafe', compact('data', 'level','total','noti'));
     }
@@ -681,7 +681,7 @@ class CustomerController extends Controller
         if(empty($query) === false){
             $imgData = $query[0];
         }
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         return view('pages.Account.signature', compact('data', 'imgData','total','noti'));
@@ -762,37 +762,37 @@ class CustomerController extends Controller
             ->where('client_number', Auth::user()->client_number)
             ->whereMonth('transaction_date','=',$current_month)
             ->get();
-        $total_amount = 0.0;
+        $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
         $level = '';
         if (Auth::user()->client_type === "1"){
-            if ($total_amount>4500 && $total_amount<=7000) {
+            if ($totalAmount>4500 && $totalAmount<=7000) {
                 $level = 'plata';
             }
-            if ($total_amount>7000) {
+            if ($totalAmount>7000) {
                 $level = 'oro';
             }
         }
 
         if (Auth::user()->client_type === "2"){
-            if ($total_amount>500 && $total_amount<=1300) {
+            if ($totalAmount>500 && $totalAmount<=1300) {
                 $level = 'plata';
             }
-            if ($total_amount>1300) {
+            if ($totalAmount>1300) {
                 $level = 'oro';
             }
         }
-        $total = $total_amount;
+        $total = $totalAmount;
         $noti = $this->getNotifications();
         return view('pages.Account.assistance', compact('data', 'level','total','noti'));
     }
 
-    //calculated total_amount
-    public function total_amount(){
+    //calculated totalAmount
+    public function totalAmount(){
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -800,13 +800,13 @@ class CustomerController extends Controller
             ->where('client_number', Auth::user()->client_number)
             ->whereMonth('transaction_date','=',$current_month)
             ->get();
-        $total_amount = 0.0;
+        $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
-        return $total_amount;
+        return $totalAmount;
     }
 
     //get the total amount by passing client number as a parameter
@@ -818,13 +818,13 @@ class CustomerController extends Controller
             ->where('client_number', $client_number)
             ->whereMonth('transaction_date','=',$current_month)
             ->get();
-        $total_amount = 0.0;
+        $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
-        return $total_amount;
+        return $totalAmount;
     }
 
     //get the data from notifications table
@@ -878,7 +878,7 @@ class CustomerController extends Controller
     public function beneficiaries ()
     {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.Account.beneficiaries', compact('data','total','noti'));
     }
@@ -891,7 +891,7 @@ class CustomerController extends Controller
                     ->get();
         //Calculated the limit of employee
         $validated = $this->employeeLimit();
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         return view('pages.Account.employees', compact('data','associates','validated','total','noti'));
@@ -940,7 +940,7 @@ class CustomerController extends Controller
                     ->where('id','=',$id)
                     ->get();
         $employee = $query[0];
-        $total = $this->total_amount();
+        $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.Account.editEmployee', compact('employee','id','total','noti'));
     }
@@ -1009,6 +1009,13 @@ class CustomerController extends Controller
     	$register->email_validate = 'true';
     	$register->save();
     	return view('Collectors.verify_email', ['name'=> $register->name.' '.$register->last_name]);
+    }
+
+    public function home(){
+        $total = $this->totalAmount();
+        $noti  = $this->getNotifications();
+
+        return view('pages.home',compact('total','noti'));
     }
 
     public function phone_validate(Request $request){
