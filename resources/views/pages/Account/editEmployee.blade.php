@@ -15,14 +15,14 @@
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
                     <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
-                    <input type="hidden" name="number" value="{{$user}}">
+                    <input type="hidden" name="id" value="{{$id}}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
                                 <input class="form-control-sm form-control" type="text"
                                         name="name"   
                                         value="{{$employee->name}}"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -31,7 +31,7 @@
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
                                         value="{{$employee->last_name}}"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -44,7 +44,7 @@
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
                                         value="{{$employee->second_last_name}}"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">

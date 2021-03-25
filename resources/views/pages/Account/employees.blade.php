@@ -43,7 +43,7 @@
                             <td>{{$as->mobile_number}}</td>
                             <td>
                                 <a class="btn btn-outline-light btn-sm btn-block" 
-                                    href="{{ action('CustomerController@editEmployee',['user' => $as->number]) }}"
+                                    href="{{ action('CustomerController@editEmployee',['user' => $as->id]) }}"
                                     id="edit-item" 
                                     role="button">
                                     <i class="fa fa-pencil text-info"></i>
@@ -90,7 +90,8 @@
 
 <script>
     $.noConflict();
-    $('#tableEmployees').DataTable({
+    jQuery(document).ready(function($){
+        $('#tableEmployees').DataTable({
        dom: 'Bfrtip',
        info: false,
        searching:false,
@@ -126,6 +127,7 @@
         language: {
             emptyTable: "No hay registros para mostrar"
         }
+    });
     });
  </script>
 @stop

@@ -123,7 +123,7 @@ class CustomerController extends Controller
         //update data in associates table
         $update_associates ='';
         //update data in associates table
-        $update_associates = DB::table('associates')->where('number', '=', $request['number'])->update([
+        $update_associates = DB::table('associates')->where('id', '=', $request['id'])->update([
             'customer_id'       => $request['customer_id'],
             'client_number'     => $client_number,
             'name'              => $request['name'],
@@ -897,16 +897,16 @@ class CustomerController extends Controller
     }
 
     //Edit Employees
-    public function editEmployee($user){
+    public function editEmployee($id){
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $query = DB::table('associates')
                     ->where('client_number','=',$data['client_number'])
-                    ->where('number','=',$user)
+                    ->where('id','=',$id)
                     ->get();
         $employee = $query[0];
         $total = $this->total_amount();
         $noti = $this->getNotifications();
-        return view('pages.Account.editEmployee', compact('employee','user','total','noti'));
+        return view('pages.Account.editEmployee', compact('employee','id','total','noti'));
     }
 
     public function update_stage_two(Customer $customer, Request $request){

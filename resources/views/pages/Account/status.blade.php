@@ -88,7 +88,8 @@
 
 <script>
    $.noConflict();
-   $('#tableTrans').DataTable({
+   jQuery(document).ready(function($){
+      $('#tableTrans').DataTable({
       dom: 'Bfrtip',
       info: false,
       searching:false,
@@ -156,6 +157,7 @@
                '$'+parseFloat(total).toFixed(2)
            );
        }
+   });
    });
 
 </script>
