@@ -424,7 +424,7 @@
                             <p class="text-justifyy">
                                 <b>Nivel Oro</b>: beneficio de seguro de accidentes personales y beneficio de
                                 asistencias nivel 2 para hasta 8
-                                de sus colaboradores..
+                                de sus colaboradores.
                             </p>
                         </li>
                     </ul>
