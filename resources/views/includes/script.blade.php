@@ -367,3 +367,507 @@
         $('#beneficiaryParent').append(fields);
     });
 </script>
+
+<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
+
+
+<script>
+
+    function initMap(latitud, longitud, div) {
+        let styledMapType = new google.maps.StyledMapType(
+            [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#212121"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#212121"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.country",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.locality",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#bdbdbd"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#181818"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#616161"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#1b1b1b"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#2c2c2c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#8a8a8a"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#373737"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#3c3c3c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway.controlled_access",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#4e4e4e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "labels",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#616161"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#000000"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#3d3d3d"
+                        }
+                    ]
+                }
+            ],
+            {name: 'Styled Map'});
+
+
+        let map = new google.maps.Map(document.getElementById(div), {
+            center: {lat: latitud, lng: longitud},
+            zoom: 14
+        });
+        let icon = {
+            url: '{{asset('img/mapa/MARCADOR_MAPA.png')}}', // url
+            scaledSize: new google.maps.Size(40, 55), // scaled size
+            labelOrigin: new google.maps.Point(30, 70)
+        };
+        let marker = new google.maps.Marker({
+            position:  {lat: latitud, lng: longitud},
+            map: map,
+            icon: icon
+        });
+
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+    }
+
+    /* Helper function */
+    function download_file(fileURL, fileName) {
+        // for non-IE
+        if (!window.ActiveXObject) {
+            let save = document.createElement('a');
+            save.href = fileURL;
+            save.target = '_blank';
+            let filename = fileURL.substring(fileURL.lastIndexOf('/')+1);
+            save.download = fileName || filename;
+            if ( navigator.userAgent.toLowerCase().match(/(ipad|iphone|safari)/) && navigator.userAgent.search("Chrome") < 0) {
+                document.location = save.href;
+// window event not working here
+            }else{
+                let evt = new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': false
+                });
+                save.dispatchEvent(evt);
+                (window.URL || window.webkitURL).revokeObjectURL(save.href);
+            }
+        }
+
+        // for IE < 11
+        else if ( !! window.ActiveXObject && document.execCommand)     {
+            let _window = window.open(fileURL, '_blank');
+            _window.document.close();
+            _window.document.execCommand('SaveAs', true, fileName || fileURL)
+            _window.close();
+        }
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    $(window).on("load", function(){
+
+        html_map='<div id="map"></div>';
+        $('.our-branches__content-address-map.sucursal').html(html_map);
+
+        html_map_t='<div id="map_2"></div>';
+        $('.our-branches__content-address-map.taller').html(html_map_t);
+
+
+        $('.hero-slider').slick(
+            {
+                dots: true,
+                infinite: true,
+                speed: 600,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                prevArrow: false,
+                nextArrow: false
+            });
+
+        $( ".our-history__see-more-link" ).click(function()
+        {
+            console.log("on click");
+            if(!$(this).hasClass("active")){
+                $( ".our-history__line--hidden" ).css("display", "flex");
+                $(".our-history__see-more p").text("Ver menos");
+                $(this).addClass("active");
+                //$(".our-history__see-more").hide();
+            }else{
+                $( ".our-history__line--hidden" ).css("display", "none");
+                $(".our-history__see-more p").text("Ver más");
+                $(this).removeClass("active");
+                //$(".our-history__see-more").hide();
+            }
+        });
+
+
+        $('#option-one').change(function(){
+
+            $('html, body').animate({
+                scrollTop: $($(this).val()).offset().top
+            }, 2000);
+
+            $(this).val('Nosotros');
+        });
+
+        $('#option-two').change(function(){
+
+            $('html, body').animate({
+                scrollTop: $($(this).val()).offset().top
+            }, 2000);
+
+            $(this).val('Contacto');
+        });
+
+        $('.scroll-to').click(function()
+        {
+            $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top
+            }, 1000);
+        });
+
+        $('.catalogs').change(function()
+        {
+            if($(this).val().includes('descarga'))
+            {
+                console.log($(this).val().substring(9, 100));
+                download_file($(this).val().substring(9, 100), 'productos');
+            }
+            else
+            {
+                window.location = $(this).val();
+            }
+        });
+        initMap(21.866939,-102.309124, "map");
+        sucursales=JSON.parse('[ {   "region": "Bajio",   "pv": "Aguascalientes",   "sucursal": "0101-Aguascalientes",   "dar": "DAR Santa Elena",   "direccion": "Av. de los Maestros #804, Fracc. Jardines de Sta. Elena",   "cp": 20236,   "municipio": "Aguascalientes",   "estado": "Aguascalientes",   "lat": "21,866939",   "lon": "-102,309124",   "tel": "01(449) 140-5442 y 01(449) 978-1196",   "whats": "55-1016-8974",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Leon",   "sucursal": "1101-Leon",   "dar": "DAR León",   "direccion": "Av. Universidad #120 Bajos, Col. Lomas del Campestre,",   "cp": 37150,   "municipio": "Leon",   "estado": "Guanajuato",   "lat": "21,148262",   "lon": "-101,704944",   "tel": "01(47) 7718-3910",   "whats": "55-2730-6908",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Juarez",   "sucursal": "1102-Juarez",   "dar": "DAR Juárez",   "direccion": "Av. Juárez #1903, Col. Los Fresnos,",   "cp": 37390,   "municipio": "Leon",   "estado": "Guanajuato",   "lat": "21,105149",   "lon": "-101,690525",   "tel": "01(477) 712-1563 y 01(477) 712-1633",   "whats": "55-3188-5310",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Celaya",   "sucursal": "1103-Celaya",   "dar": "DAR Celaya",   "direccion": "Blvd. Adolfo López Mateos #606 Ote, Zona Centro",   "cp": 38000,   "municipio": "Celaya",   "estado": "Guanajuato",   "lat": "20,5192737",   "lon": "-100,8064474",   "tel": " 01-(461) 608-0334,  01-(461) 159-0350 y  01-(461) 688-2020",   "whats": "55-2197-6766",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Queretaro",   "sucursal": "2201-Queretaro",   "dar": "DAR Corregidora",   "direccion": "Corregidora Norte #913, Fracc. Villas del Parque,",   "cp": 76168,   "municipio": "Epigmenio Gonzalez",   "estado": "Querétaro",   "lat": "20,617473",   "lon": "-100,390272",   "tel": " 01(44) 2246-1370 y 01(44) 2246-2564",   "whats": "55-2197-9830",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Pasteur",   "sucursal": "2202-Pasteur",   "dar": "DAR Pasteur",   "direccion": "Manuel Orozco y Berra #101, Fracc. Prados del Mirador,",   "cp": 76079,   "municipio": "Querétaro",   "estado": "Querétaro",   "lat": "20,572233",   "lon": "-100,382584",   "tel": " 01(442) 248-2762 y 01(442) 248-2764",   "whats": "55-1017-4841",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Bajio",   "pv": "Satelite",   "sucursal": "2203-Satelite",   "dar": "DAR Satélite",   "direccion": "Av. De la Luz #109-B Satélite,",   "cp": 76110,   "municipio": "Santiago de Querétaro",   "estado": "Querétaro",   "lat": "20,6393738",   "lon": "-100,4443626",   "tel": " 01(44) 2325-0448  y 01(44) 2325-0449",   "whats": "55-2178-1740",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Tlalnepantla",   "sucursal": "0904-Tlalnepantla",   "dar": "DAR Tlalnepantla",   "direccion": "Av. Jesus Reyes Heroles #123, Col. Valle Ceylan,",   "cp": 54150,   "municipio": "Tlalnepantla",   "estado": "Estado de México",   "lat": "19,5378778",   "lon": "-99,18125",   "tel": " 01(55) 5389-1685 y 01(55) 5388-7007",   "whats": "55-2249-2439",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Tizapan",   "sucursal": "0905-Tizapan",   "dar": "DAR Tizapán",   "direccion": "San Luis Potosí #33, Esq. Frontera Col. Progreso, Tizapan.",   "cp": 1080,   "municipio": "Alvaro Obregón",   "estado": "Ciudad de México",   "lat": "19,341811",   "lon": "-99,197945",   "tel": " 01(55) 5550-4327 y  01(55) 5550-7057",   "whats": "55-6077-5867",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Cuitlahuac",   "sucursal": "0907-Cuitlahuac",   "dar": "DAR Cuitláhuac",   "direccion": "Av. Cuitláhuac #2909, Col. Obrero Popular",   "cp": 2840,   "municipio": "Azcapozalco",   "estado": "Estado de México",   "lat": "19,463637",   "lon": "-99,177406",   "tel": " 01(55) 2465-0080,  01(55) 2465-1385 y  01(55) 2465-0288",   "whats": "55-5198-4861",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Ecatepec",   "sucursal": "0909-Ecatepec",   "dar": "DAR Ecatepec",   "direccion": "Av. Adolfo López Mateos (antes R1) Lote 13 Mz. 4, Col. Faja de Oro",   "cp": 55490,   "municipio": "Ecatepec",   "estado": "Estado de México",   "lat": "19,533123",   "lon": "-99,047127",   "tel": " 01(55) 1541-1525,  01(55) 1541-0966 y  01(55) 1541-0846",   "whats": "55-3102-8113",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Nezahualcoyotl",   "sucursal": "0910-Nezahualcoyotl",   "dar": "DAR Nezahualcoyotl",   "direccion": "Av Texcoco S/N, entre Gral. Francisco Leyva y Gral Francisco O. Arce, Col Juan Escutia",   "cp": 9100,   "municipio": "Iztapalapa",   "estado": "Estado de México",   "lat": "19.391044",   "lon": "-99.036932",   "tel": " 55 50851863",   "whats": "55 13107677",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Toluca",   "sucursal": "1506-Toluca",   "dar": "DAR Toluca",   "direccion": "Av. José María Pino Suarez, No. 1602",   "cp": 50190,   "municipio": "Toluca",   "estado": "Estado de México",   "lat": "19,266165",   "lon": "-99,636844",   "tel": " 01(722) 238 4564",   "whats": "55 4769 3295",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Cuautitlan 2",   "sucursal": "1508-Cuautitlan 2",   "dar": "DAR Irlanda",   "direccion": "Irlanda 6, centro Ubano Cuautitlán Izcalli",   "cp": 54750,   "municipio": "Cuautitlán Izcalli",   "estado": "Estado de México",   "lat": "19,660388",   "lon": "-99,209968",   "tel": "(55)58314688",   "whats": "5531985523",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Tultepec",   "sucursal": "1509-Tultepec",   "dar": "DAR Tultepec",   "direccion": "Carretera Cuautitlán Tultepec, Lote 21, Local 3, Col. Villas de Cuautitlán.",   "cp": 54857,   "municipio": "Cuautitlán",   "estado": "Estado de México",   "lat": "19,6735",   "lon": "-99,162429",   "tel": "5831-4148",   "whats": "55 6105-9805",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Coacalco",   "sucursal": "1511-Coacalco",   "dar": "DAR Coacalco",   "direccion": "Vía Jose Lopez Portillo #109 Lte.1 Mza. “Y”. Fracc. Unidad Coacalco Villa de las Flores 1ra. Sec. Coacalco de Berriozábal , Edo.Méx.",   "cp": 54948,   "municipio": "Coacalco Berriozábal",   "estado": "Estado de México",   "lat": "19.632834",   "lon": "-99.093121",   "tel": " 5591547145",   "whats": "5591651901",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Centro",   "pv": "Ecatepec",   "sucursal": "1512-Ecatepec 2",   "dar": "DAR Ecatepec 2",   "direccion": "Av. Jardines de Morelos No.249 Manzana 213 Lote 20",   "cp": 55070,   "municipio": "Ecatepec de Morelos ",   "estado": "Estado de México",   "lat": "19,594966",   "lon": "-99,002129",   "tel": "5550389626",   "whats": "5591651497",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Saltillo",   "sucursal": "0501-Saltillo",   "dar": "DAR Saltillo",   "direccion": "Av. Mariano Abasolo #1120 Col. Centro,",   "cp": 25000,   "municipio": "Saltillo",   "estado": "Coahuila",   "lat": "25,426988",   "lon": "-100,988123",   "tel": " 01(84) 4410-3097 y  01(84) 4410-3231",   "whats": "55-1196-9419",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Chihuahua",   "sucursal": "0601-Chihuahua",   "dar": "DAR Chihuahua",   "direccion": "Av. Ignacio Vallarta No. 3905, Col. Granjas",   "cp": 31100,   "municipio": "Chihuahua",   "estado": "Chihuahua",   "lat": "28,662557",   "lon": "-106,0974",   "tel": "(614) 4121-844",   "whats": "55 2194-8996",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Guadalupe",   "sucursal": "1901-Guadalupe",   "dar": "DAR Guadalupe",   "direccion": "Av. Benito Juarez #3295, Col. Agua Nueva,",   "cp": 67180,   "municipio": "Guadalupe",   "estado": "Nuevo León",   "lat": "25,675888",   "lon": "-100,220759",   "tel": " 01(81) 8398-7097,  01 (81) 8398-6271 y  01 (81) 8367-8034",   "whats": "55-1130-7355",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Zuazua",   "sucursal": "1902-Zuazua",   "dar": "DAR Zuazua",   "direccion": "Zuazua #533 Norte, Col. Centro,",   "cp": 64000,   "municipio": "Monterrey",   "estado": "Nuevo León",   "lat": "25,679414",   "lon": "-100,307994",   "tel": " 01(81) 8375-9200,  01(81) 8375-9205,  01(81) 8375-9201,  01(81) 8375-9202 y  01(81) 8375-9203",   "whats": "55-2663-6503",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Afganistan",   "sucursal": "1903-Afganistan",   "dar": "DAR Afganistán",   "direccion": "Av. Afganistán #143, Col. Prados de la Cieneguita,",   "cp": 66636,   "municipio": "Apodaca",   "estado": "Nuevo León",   "lat": "25,777876",   "lon": "-100,256359",   "tel": " 01(81) 8314-5348,  01(81) 8314-5047 y 01(81) 8314-3122",   "whats": "55-9163-6623",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Aztlan",   "sucursal": "1904-Aztlan",   "dar": "DAR Aztlán",   "direccion": "Av. Aztlan #5140, Col. Valle del Topo Chico,",   "cp": 64259,   "municipio": "Monterrey",   "estado": "Nuevo León",   "lat": "25,726707",   "lon": "-100,343949",   "tel": " 01(81) 8373-2781 y  01(81) 8373-3174",   "whats": "55-9163-7678",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Norte",   "pv": "Pablo de la Garza",   "sucursal": "1905-Pablo de la Garza",   "dar": "DAR Pablo de la Garza",   "direccion": "Pablo A. de la Garza #1940, Col. Martinez,",   "cp": 64450,   "municipio": "Monterrey",   "estado": "Nuevo León",   "lat": "25,690013",   "lon": "-100,287502",   "tel": " 01(818) 191-9619 y  01(818) 191-9556",   "whats": "55-6132-2756",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Occidente",   "pv": "Zapopan",   "sucursal": "1401-Zapopan",   "dar": "DAR Zapopan",   "direccion": "Av. Juan Pablo II #50, Col. El Vigía,",   "cp": 45130,   "municipio": "Zapopan",   "estado": "Jalisco",   "lat": "20,72962",   "lon": "-103,39114",   "tel": " 01(33) 3636-1046,  01(33) 3636-0918 y  01(33) 3656-8961",   "whats": "55-2197-6594, 55-1130-3021",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "Contamos con servicio de taller." }, {   "region": "Occidente",   "pv": "Revolucion",   "sucursal": "1402-Revolucion",   "dar": "DAR Revolución",   "direccion": "Av. Revolución #639, Col. Analco",   "cp": 44450,   "municipio": "Guadalajara",   "estado": "Jalisco",   "lat": "20,667545",   "lon": "-103,335409",   "tel": " 01(33) 3618-1428,  01(33) 3617-0115,  01(33) 3617-4020 y  01(33) 3617-7658",   "whats": "55-1308-4991",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Occidente",   "pv": "Juan De Dios",   "sucursal": "1403-Juan De Dios",   "dar": "DAR Juan de Dios",   "direccion": "Juan de Dios Robledo #563-B, Sector Libertad,",   "cp": 44380,   "municipio": "Guadalajara",   "estado": "Jalisco",   "lat": "20,677645",   "lon": "-103,312126",   "tel": " 01(33) 3655-0613,  01(33) 3655-6748 y  01(33) 3665-8620",   "whats": "55-2518-4978",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Occidente",   "pv": "Tlaquepaque",   "sucursal": "1404-Tlaquepaque",   "dar": "DAR Tlaquepaque",   "direccion": "Av. 8 de Julio #3801 Local 1, Col. La Mezquitera,",   "cp": 45605,   "municipio": "Tlaquepaque",   "estado": "Jalisco",   "lat": "20,61246",   "lon": "-103,375039",   "tel": " 01(33) 3144-5235,  01(33) 3144-5247 y  01(33) 3144-5249",   "whats": "55-2197-8062",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Occidente",   "pv": "Culiacán",   "sucursal": "2501-Culiacán",   "dar": "DAR Culiacán",   "direccion": "Avenida Nicolás Bravo #102, Colonia Jorge Almada ",   "cp": 80200,   "municipio": "Culiacán",   "estado": "Sinaloa",   "lat": "24,803335",   "lon": "-107,402872",   "tel": "(667) 7644589",   "whats": "5591651731",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Occidente",   "pv": "Hermosillo",   "sucursal": "2601-Hermosillo",   "dar": "DAR Hermosillo",   "direccion": "Calle Nayarit 207, San Benito, Hermosillo, Sonora.",   "cp": 83190,   "municipio": "Hermosillo",   "estado": "Sonora, México",   "lat": "29,09419",   "lon": "-110,965956",   "tel": "(662) 1105022",   "whats": "5591651731",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Terres",   "sucursal": "0901-Terres",   "dar": "DAR Terrés",   "direccion": "Dr. José Terres #39, Col. Doctores",   "cp": 6720,   "municipio": "Cuauhtemoc",   "estado": "Ciudad de México",   "lat": "19,4166694",   "lon": "-99,14748333",   "tel": " 01(55) 5588-3744 y 01(55) 5588-0435",   "whats": "55-2197-6523, 55-2701-4933, 55-2663-2208",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "Contamos con servicio de taller." }, {   "region": "Sureste",   "pv": "Iztapalapa",   "sucursal": "0902-Iztapalapa",   "dar": "DAR Iztapalapa",   "direccion": "Calz. Ermita Iztapalapa #1090, Col. Barrio San Lucas,",   "cp": 9000,   "municipio": "Iztapalapa",   "estado": "Ciudad de México",   "lat": "19,356882",   "lon": "-99,09712",   "tel": "01(55) 5686-0062,  01(55) 5686-0362,  01(55) 5686-0173 y  01(55) 2636-2187",   "whats": "55-9162-9812, 55-2672-0086",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "Contamos con servicio de taller." }, {   "region": "Sureste",   "pv": "Xochimilco",   "sucursal": "0903-Xochimilco",   "dar": "DAR Xochimilco",   "direccion": "Prolongación División del Norte #5031, Col. San Lorenzo La Cebada,",   "cp": 16035,   "municipio": "Xochimilco",   "estado": "Ciudad de México",   "lat": "19,277933",   "lon": "-99,12248",   "tel": " 01(55) 5641-6046,  01(55) 5676-1475 y  01(55) 5641-6047",   "whats": "55-3950-8323",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Vertiz",   "sucursal": "0906-Vertiz",   "dar": "DAR Vertiz",   "direccion": "Dr. José Maria Vertiz #224, Col. Doctores,",   "cp": 6720,   "municipio": "Cuauhtemoc",   "estado": "Ciudad de México",   "lat": "19,416632",   "lon": "-99,147782",   "tel": " 01(55) 5578-2776 y  01(55) 5588-7239",   "whats": "55-6071-5684",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Chalco",   "sucursal": "0908-Chalco",   "dar": "DAR Chalco",   "direccion": "Blvd. Cuauhtémoc Poniente, #500, locales 6 y 7 mza. 10 lte. 12, Colonia Ejidal Chalco",   "cp": 56600,   "municipio": "Chalco de Diaz Covarrubias",   "estado": "Estado de México",   "lat": "19,267042",   "lon": "-98,895846",   "tel": " 01(55)5982-7887,  01(55)5982-7912 y  01(55)5982.7906",   "whats": "55-1016-0250",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Puebla",   "sucursal": "2101-Puebla",   "dar": "DAR Puebla",   "direccion": "Municipio Libre #1310, Col. Ex Rancho Vaquerías,",   "cp": 72464,   "municipio": "Puebla",   "estado": "Puebla",   "lat": "19,005885",   "lon": "-98,241416",   "tel": " 01(22) 2583-2087,  01(22) 2583-2088 y  01(22) 2583-2089",   "whats": "55-1307-7926",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Veracruz",   "sucursal": "3001-Veracruz",   "dar": "DAR Veracruz",   "direccion": "Av. Cuauhtemoc #2513, Col. Cristobal Colón",   "cp": 91755,   "municipio": "Veracruz",   "estado": "Veracruz",   "lat": "19,193859",   "lon": "-96,151144",   "tel": " 01(229) 155-3269,  01(229) 155-3885 y  01(229) 155-3599",   "whats": "55-1011-9183",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }, {   "region": "Sureste",   "pv": "Xalapa",   "sucursal": "3002-Xalapa",   "dar": "DAR Xalapa",   "direccion": "Avenida Lázaro Cárdenas 967 antes 6 . Col. Rafael Lucio",   "cp": 91110,   "municipio": "Xalapa",   "estado": "Veracruz",   "lat": "19,561686",   "lon": "-96,926559",   "tel": "(228)3192090",   "whats": "5531989781",   "horario": "LUNES A VIERNES DE 9:00 AM A 7:00 PM y SÁBADO DE 9:00 AM A 5:00 PM.",   "taller": "" }]');
+        sucursales.sort(function (x, y) {
+            let a = x.dar.toUpperCase(),
+                b = y.dar.toUpperCase();
+            return a == b ? 0 : a > b ? 1 : -1;
+        });
+
+
+        sucursales_estado=[];
+        for (var i = 0; i < sucursales.length; i++) {
+            if(sucursales_estado.indexOf(sucursales[i]['estado'])==-1){
+                sucursales_estado.push(sucursales[i]['estado']);
+                sucursales_estado.sort();
+            }
+        }
+
+        html='';
+        for (var i = 0; i < sucursales_estado.length; i++) {
+            html+='<option value="'+sucursales_estado[i]+'">'+sucursales_estado[i]+'</option>';
+        }
+        $(".our-branches__content-estate-location-search-select.sucursal").html(html);
+
+        estado_seleccionado=sucursales_estado[0];
+        html='';
+        for (var i = 0; i < sucursales.length; i++){
+            if(estado_seleccionado==sucursales[i]['estado']){
+                html+='<option value="'+sucursales[i]['dar']+'">'+sucursales[i]['dar']+'</option>';
+            }
+        }
+        $(".our-branches__content-address-location-search-select.sucursal").html(html);
+
+        $(".our-branches__content-address-location-search-select.sucursal").change(function(){
+            select=$(this).val();
+            for (var i = 0; i < sucursales.length; i++) {
+                if(select==sucursales[i]['dar']){
+                    suc_direccion='<p>'+sucursales[i]['direccion']+'</p> <p>C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
+                    $(".item_direccion.sucursal").html(suc_direccion);
+
+                    horarios= sucursales[i]['horario'].split("y");
+                    suc_horario='<p>'+horarios[0]+'</p> <p>'+horarios[1]+'</p> ';
+                    $(".item_horario.sucursal").html(suc_horario);
+
+                    telefonos= sucursales[i]['tel'].split("y");
+                    suc_tel="";
+                    for (var j = 0; j < telefonos.length; j++) {
+                        suc_tel+='<p>Tel: '+telefonos[j]+'</p>';
+                    }
+                    $(".item_tel.sucursal").html(suc_tel);
+
+                    whats= sucursales[i]['whats'].split(",");
+                    suc_whats="<p>";
+                    for (var j = 0; j < whats.length; j++) {
+                        if((whats.length-1)==j){
+                            suc_whats+='<a >'+whats[j]+'</a>';
+                        }else{
+                            suc_whats+='<a >'+whats[j]+', </a>';
+                        }
+                    }
+                    suc_whats+="</p>";
+                    $(".item_whats.sucursal").html(suc_whats);
+
+                    if(sucursales[i]['taller']!=""){
+                        $(".item_servicio.sucursal").parent().css("display", "inherit");
+                    }else{
+                        $(".item_servicio.sucursal").parent().css("display", "none");
+                    }
+
+                    $(".our-branches__content-address-location-title.sucursal").text(whats= sucursales[i]['dar'])
+
+                    lat=sucursales[i]['lat'].replace(",", ".");
+                    lon=sucursales[i]['lon'].replace(",", ".");
+                    console.log(sucursales[i]['lat']+" - "+sucursales[i]['lon']);
+                    console.log(lat+" - "+lon);
+
+                    html_map='<div id="map"></div>';
+                    $('.our-branches__content-address-map.sucursal').html(html_map);
+                    initMap(parseFloat(lat),parseFloat(lon), "map");
+
+
+                }
+            }
+        });
+
+
+        $(".our-branches__content-estate-location-search-select.sucursal").change(function(){
+            estado_seleccionado=$(this).val();
+            console.log(estado_seleccionado);
+            html='';
+            cont=0;
+            for (var i = 0; i < sucursales.length; i++) {
+                if(estado_seleccionado==sucursales[i]['estado']){
+                    html+='<option value="'+sucursales[i]['dar']+'">'+sucursales[i]['dar']+'</option>';
+                    if(cont==0){
+                        suc_direccion='<p>'+sucursales[i]['direccion']+'</p> <p>C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
+                        $(".item_direccion.sucursal").html(suc_direccion);
+
+                        horarios= sucursales[i]['horario'].split("y");
+                        suc_horario='<p>'+horarios[0]+'</p> <p>'+horarios[1]+'</p> ';
+                        $(".item_horario.sucursal").html(suc_horario);
+
+                        telefonos= sucursales[i]['tel'].split("y");
+                        suc_tel="";
+                        for (var j = 0; j < telefonos.length; j++) {
+                            suc_tel+='<p>Tel: '+telefonos[j]+'</p>';
+                        }
+                        $(".item_tel.sucursal").html(suc_tel);
+
+                        whats= sucursales[i]['whats'].split(",");
+                        suc_whats="<p>";
+                        for (var j = 0; j < whats.length; j++) {
+                            if((whats.length-1)==j){
+                                suc_whats+='<a >'+whats[j]+'</a>';
+                            }else{
+                                suc_whats+='<a >'+whats[j]+', </a>';
+                            }
+                        }
+                        suc_whats+="</p>";
+                        $(".item_whats.sucursal").html(suc_whats);
+
+                        if(sucursales[i]['taller']!=""){
+                            $(".item_servicio.sucursal").parent().css("display", "inherit");
+                        }else{
+                            $(".item_servicio.sucursal").parent().css("display", "none");
+                        }
+
+                        $(".our-branches__content-address-location-title.sucursal").text(whats= sucursales[i]['dar'])
+
+                        lat=sucursales[i]['lat'].replace(",", ".");
+                        lon=sucursales[i]['lon'].replace(",", ".");
+                        console.log(sucursales[i]['lat']+" - "+sucursales[i]['lon']);
+                        console.log(lat+" - "+lon);
+
+                        html_map='<div id="map"></div>';
+                        $('.our-branches__content-address-map.sucursal').html(html_map);
+                        initMap(parseFloat(lat),parseFloat(lon), "map");
+                        cont++;
+                    }
+                }
+            }
+            $(".our-branches__content-address-location-search-select.sucursal").html(html);
+
+
+        });
+
+        talleres_estado=[];
+
+        for (var i = 0; i < sucursales.length; i++) {
+            if(talleres_estado.indexOf(sucursales[i]['estado'])==-1){
+                if(sucursales[i]['taller']!=""){
+                    talleres_estado.push(sucursales[i]['estado']);
+                    talleres_estado.sort();
+                }
+            }
+        }
+    });
+</script>
