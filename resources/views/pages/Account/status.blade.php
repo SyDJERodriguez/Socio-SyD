@@ -159,8 +159,8 @@
 
            // Update footer
            $( api.column( 5 ).footer() ).html(
-               '$'+parseFloat(total).toFixed(2)
-           );
+               new Intl.NumberFormat('en-US',{ style: 'currency', currency: 'USD'}).format(total)
+       );
        }
    });
    });
