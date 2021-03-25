@@ -152,7 +152,22 @@ class BeneficiaryController extends Controller
         $signature = DB::table('signatures')
             ->where('client_number', '=', Auth::user()->client_number)
             ->first();
-        return PDF::loadView('layouts.Policies.safePolicy', ['beneficiary'=>$beneficiaries, 'signature'=>$signature, 'customer'=>$customer])->stream($customer->id.'.pdf');
+
+        $initDate = new Carbon('first day of next month');
+
+        $finDate = new Carbon('last day of next month');
+
+        $currentDate = Carbon::parse()->locale('es');
+       // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
         //$upload = \Storage::cloud()->put('polizas/'.$id.'.pdf', $pdf->output(), 'public');
         //if($upload){
         //    return 'success';
