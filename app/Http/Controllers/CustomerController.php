@@ -65,9 +65,6 @@ class CustomerController extends Controller
             }
         }
 
-        //Check if the client number is already in the DB
-        $data = Customer::where('client_number', $client_number)->first();
-
         $query = DB::table('associates')
                     ->where('mobile_number','=',$request['mobile_number'])
                     ->orWhere('email','=',$request['email'])
@@ -75,7 +72,7 @@ class CustomerController extends Controller
         $query = json_decode($query);
         $query = (array)$query;//convert to array
 
-        if (is_array($query) == true && empty($query) === false){ //check if response exist
+        if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 1){ //check if response exist
             return redirect()->back()->with('exist', 'the email/mobile number its already in db');   
         }
 
@@ -85,23 +82,21 @@ class CustomerController extends Controller
 
         //insert data in associates table
         $update_associates ='';
-        if($data !== null) {
-            //insert data in associates table
-            $update_associates = DB::table('associates')->insert([
-                'customer_id'       => $request['customer_id'],
-                'client_number'     => $client_number,
-                'name'              => $request['name'],
-                'last_name'         => $request['last_name'],
-                'second_last_name'  => $request['second_last_name'],
-                'role'              => isset($request['role']) ? $request['role'] : "",
-                'active_association'=> 1,
-                'number'            => $number,
-                'birthday'          => $request['bday'],
-                'created_at'        => date('Y-m-d H:i:s'),
-                'mobile_number'     => $request['mobile_number'],
-                'email'             => $request['email']
-            ]);
-        }
+        //insert data in associates table
+        $update_associates = DB::table('associates')->insert([
+            'customer_id'       => $request['customer_id'],
+            'client_number'     => $client_number,
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'role'              => isset($request['role']) ? $request['role'] : "",
+            'active_association'=> 1,
+            'number'            => $number,
+            'birthday'          => $request['bday'],
+            'created_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile_number'],
+            'email'             => $request['email']
+        ]);
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
@@ -157,7 +152,7 @@ class CustomerController extends Controller
         //update the employee with client number 00000000 and number = 0
         $update_associates ='';
         $update_associates = DB::table('associates')
-                ->where('number','=',$employee)
+                ->where('id','=',$employee)
                 ->where('client_number','=',$data['client_number'])
                 ->update([
                     'number'            => 0,

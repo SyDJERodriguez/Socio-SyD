@@ -52,7 +52,7 @@
                             <td>
                                 <a class="btn btn-outline-dark btn-sm btn-block" 
                                         style="border: 0px" 
-                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->number]) }}" 
+                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}" 
                                         role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
