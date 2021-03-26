@@ -318,7 +318,7 @@
             <hr>
             <p class="text" style="padding: 2px 5px; margin: 0px">
                 Para todos los efectos legales que pueda tener este consentimiento, hago constar que las declaraciones contenidas en él,
-                las he hecho personalmente y que son verídicas.</p><br><br>
+                las he hecho personalmente y que son verídicas.</p><br>
 
         </div>
         <div class="contenedor">
