@@ -92,7 +92,9 @@
 </div>
 
 <script>
-   $('#tableTrans').DataTable({
+   $.noConflict();
+   jQuery(document).ready(function($){
+      $('#tableTrans').DataTable({
       dom: 'Bfrtip',
       info: false,
       searching:false,
@@ -158,9 +160,11 @@
            // Update footer
            $( api.column( 5 ).footer() ).html(
                new Intl.NumberFormat('en-US',{ style: 'currency', currency: 'USD'}).format(total)
-           );
+       );
        }
    });
+   });
+
 </script>
 
 @stop

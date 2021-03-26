@@ -871,3 +871,25 @@
         }
     });
 </script>
+
+<script>
+    const names = document.querySelectorAll(".nameInput");
+    for(let i=0; i < names.length; i++){
+        names[i].addEventListener("keypress", function(evt){
+            if (evt.which >= 48 && evt.which <= 57) //no numbers allow
+            {
+                evt.preventDefault();
+            }
+        });
+    }
+
+    const mobiles = document.querySelectorAll(".mobileInput");
+    for (let i = 0; i < mobiles.length; i++) {
+        mobiles[i].addEventListener("keypress",function(evt){
+            if (evt.which < 48 || evt.which > 57) //only numbers allow
+            {
+                evt.preventDefault();
+            }
+        });
+    }
+</script>

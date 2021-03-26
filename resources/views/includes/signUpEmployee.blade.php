@@ -20,18 +20,18 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="name"   
                                         placeholder="NOMBRE(S)"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -40,14 +40,14 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
-                                        pattern="[A-Za-z].{3,}"
+                                        pattern="[A-Za-z]{3,}"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control mobileInput" type="text"
                                         name="mobile_number"
                                         placeholder="NO. TELEFÓNICO 10 DIG"
                                         pattern="[0-9]{10}"
@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col-9 text-right">
                                 <p style="font-size:12px" class="primary-color">
-                                    *Es posible que el correo llegué a la bandeja de correo no deseado.
+                                    *Sino visualiza el correo en su bandeja de entrada, revise en correo no deseado.
                                 </p>
                             </div>
                             <div class="col-3">
