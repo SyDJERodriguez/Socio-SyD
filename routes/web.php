@@ -49,7 +49,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
 
-        Route::get('/home', 'CustomerController@home')->name('home');        
+        Route::get('/home', 'CustomerController@home')->name('home');
 
         //My Account
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
@@ -70,7 +70,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
         Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
-        Route::get('/pdf','CustomerController@generatePDF')->name('pdf');
+        Route::get('/pdf','BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
