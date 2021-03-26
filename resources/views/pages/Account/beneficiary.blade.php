@@ -76,22 +76,22 @@
                                             <h6>BENEFICIARIO 1</h6>
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="name[]"  placeholder="NOMBRE"
+                                            <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-z].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="lastname[]" placeholder="PRIMER APELLIDO"
+                                            <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
                                                    pattern="[A-Za-z].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
+                                            <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
                                                    pattern="[A-Za-z].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="parent[]" placeholder="PARENTESCO"
+                                            <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
                                                    pattern="[A-Za-z].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
                                         </div>
@@ -100,13 +100,13 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">%</div>
                                                 </div>
-                                                <input type="text" class="form-control" name="percent[]" placeholder="PORCENTAJE DESTINADO"
+                                                <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
                                                        pattern="[0-9].{1,2}"
                                                        required maxlength="3" value="{{ isset($request) ? $request['percent'][0] : null  }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                                            <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
                                                    pattern="[0-9]{10}"
                                                    required  maxlength="10" value="{{ isset($request) ? $request['phone'][0] : null  }}">
                                         </div>
@@ -117,22 +117,22 @@
                                             <h6>BENEFICIARIO 2</h6>
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="name[]"  placeholder="NOMBRE"
+                                            <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-z].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="lastname[]" placeholder="PRIMER APELLIDO"
+                                            <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
                                                    pattern="[A-Za-z].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
+                                            <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
                                                    pattern="[A-Za-z].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="parent[]" placeholder="PARENTESCO"
+                                            <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
                                                    pattern="[A-Za-z].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
                                         </div>
@@ -141,13 +141,13 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">%</div>
                                                 </div>
-                                                <input type="text" class="form-control" name="percent[]" placeholder="PORCENTAJE DESTINADO"
+                                                <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
                                                        pattern="[0-9].{1,2}"
                                                         maxlength="3" value="{{ isset($request) ? $request['percent'][1] : null  }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 py-2">
-                                            <input type="text" class="form-control" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                                            <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
                                                    pattern="[0-9]{10}"
                                                      maxlength="10" value="{{ isset($request) ? $request['phone'][1] : null  }}">
                                         </div>

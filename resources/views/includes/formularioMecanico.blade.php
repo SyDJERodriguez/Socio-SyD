@@ -28,24 +28,24 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NOMBRE" id="nameMec" 
+                        <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameMec" 
                         name="name" pattern="[a-zA-Z]{3,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="PRIMER APELLIDO" 
+                        <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO" 
                         id="lastNameMec" name="last_name" pattern="[a-zA-Z]{3,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="SEGUNDO APELLIDO" 
+                        <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO" 
                         id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z]{3,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-2" id="mobile" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NO. TELEFÓNICO 10 DIG" 
+                        <input type="text" class="form-control mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" 
                         id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -65,7 +65,7 @@
                         </select>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+                        <input type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>

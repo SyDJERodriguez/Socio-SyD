@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="name"   
                                         value="{{$employee->name}}"
                                         pattern="[A-Za-z]{3,}"
@@ -27,7 +27,7 @@
 
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
                                         value="{{$employee->last_name}}"
@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control nameInput" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
                                         value="{{$employee->second_last_name}}"
@@ -48,7 +48,7 @@
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text"
+                                <input class="form-control-sm form-control mobileInput" type="text"
                                         name="mobile_number"
                                         value="{{(int)$employee->mobile_number}}"
                                         pattern="[0-9]{10}"
