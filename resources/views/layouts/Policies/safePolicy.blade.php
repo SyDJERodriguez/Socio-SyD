@@ -96,7 +96,7 @@
                     <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
                 </td>
                 <td colspan="2">
-                    <p class="text" align="left" style="padding: 2px 5px; margin: 0px"><strong>Vigencia:</strong> Del hola 12:00 horas al &nbsp 12:00 horas</p>
+                    <p class="text" align="left" style="padding: 2px 5px; margin: 0px"><strong>Vigencia:</strong> Del {{date_format(date_create($initDate),'d-m-Y')}} 12:00 horas al {{date_format(date_create($finDate),'d-m-Y')}}  12:00 horas</p>
                 </td>
             </tr>
             <tr>
@@ -124,15 +124,15 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Nombre del Asegurado:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Nombre del Asegurado: {{$customer->name.' '.$customer->last_name.' '.$customer->second_last_name}}</strong></p>
                 </td>
             </tr>
             <tr>
                 <td width="50%">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Sexo:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Sexo: {{$customer->gender}}</strong></p>
                 </td>
                 <td width="50%">
-                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Fecha de nacimiento:</strong></p>
+                    <p class="text" style="padding: 2px 5px; margin: 0px"><strong>Fecha de nacimiento: {{date_format(date_create($customer->birthday),'d-m-Y')}}</strong></p>
                 </td>
             </tr>
         </table>
@@ -322,15 +322,21 @@
 
         </div>
         <div class="contenedor">
-            <div class="fecha" align="left" style="width: 100%">
+            <div class="fecha col-md-3" align="left">
+                    <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
                 <p class="text">_______________________________________</p>
-                <p class="text" style=" padding: 0 80px;">Lugar y fecha</p>
+                    <p class="text" style=" padding: 0 80px;">Lugar y fecha</p>
             </div>
             <div style="width: 700px;"></div>
             <div class="firma" align="right" style="width: 100%">
-                <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;" >
-                <p class="text">_______________________________________</p>
-                <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
+                @if(isset($signature))
+                    <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;" >
+                    <p class="text">_______________________________________</p>
+                    <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
+                @else
+                    <p class="text" style="margin-top: 30px">_______________________________________</p>
+                    <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
+                @endif
             </div>
         </div>
 

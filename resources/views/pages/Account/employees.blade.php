@@ -23,6 +23,13 @@
         <div>
             <div style="margin-left: 10px !important;">
                 <h5>Detalle de empleados</h5>
+                @if (\Session::has('exist'))
+                 <div class="col-lg-12 text-justify text-primary">
+                    <p style="font-size:11px;color:red;text-align:center">
+                       El correo o número de teléfono ya se ha registrado previamente.
+                    </p>
+                 </div>
+                 @endif
                 <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
                     <thead>
                         <tr>
@@ -41,7 +48,7 @@
                             <td>{{$as->mobile_number}}</td>
                             <td>
                                 <a class="btn btn-outline-light btn-sm btn-block" 
-                                    href="{{ action('CustomerController@editEmployee',['user' => $as->number]) }}"
+                                    href="{{ action('CustomerController@editEmployee',['user' => $as->id]) }}"
                                     id="edit-item" 
                                     role="button">
                                     <i class="fa fa-pencil text-info"></i>
@@ -50,7 +57,7 @@
                             <td>
                                 <a class="btn btn-outline-dark btn-sm btn-block" 
                                         style="border: 0px" 
-                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->number]) }}" 
+                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}" 
                                         role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
@@ -64,6 +71,7 @@
                        <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
                     </p>
                  </div>
+                 
             </div>
         </div>
         <br>
@@ -86,7 +94,9 @@
 </div>
 
 <script>
-    $('#tableEmployees').DataTable({
+    $.noConflict();
+    jQuery(document).ready(function($){
+        $('#tableEmployees').DataTable({
        dom: 'Bfrtip',
        info: false,
        searching:false,
@@ -122,6 +132,7 @@
         language: {
             emptyTable: "No hay registros para mostrar"
         }
+    });
     });
  </script>
 @stop

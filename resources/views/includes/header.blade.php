@@ -173,20 +173,24 @@
 </div>
 
 <!--menu-->
-<nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection">
+<nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection" style="padding-top: 14px;
+padding-bottom: 14px;">
     <a class="navbar-brand" href="#">
         <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
     </a>
 
-    <form class="form-inline my-lg-0">
+    <div class="form-inline my-lg-0">
         @if(!empty(Auth::user()))
-        <div class="navbar-toggler ">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
-                        1
-                    </span>
+        <div class="navbar-toggler">
+            <div class="btn-group">
+                <button id="bell1" class="btn" data-toggle="modal" data-target="#modalNotifications">
+                    @if ($noti != false)
+                        @if ($noti->available == 1 && $noti->seen == 0)
+                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                            1
+                        </span>
+                        @endif
+                    @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
                 </button>
             </div>
@@ -202,7 +206,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
-    </form>
+    </div>
    
     {{-- navbar login --}}
     <div class="collapse navbar-collapse" id="navbarLogin">
@@ -269,28 +273,28 @@
             </li>-->
             <li class="nav-item">
                 @if(!Auth::check())
-                    <a class="nav-link" style="width:165px" href="#section2">¿CÓMO FUNCIONA?</a>
+                    <a class="navItemHeader" href="#section2" onclick="irAbajo()">¿CÓMO FUNCIONA?</a>
                 @endif
                 @if(Auth::check())
-                        <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section2">¿CÓMO FUNCIONA?</a>
+                    <a class="navItemHeader" style="width:165px" href="{{route('customer.home')}}/#section2">¿CÓMO FUNCIONA?</a>
                 @endif
 
             </li>
             <li class="nav-item">
                 @if(!Auth::check())
-                    <a class="nav-link" style="width:165px" href="#section3">TIPO DE CUENTA</a>
+                    <a class="navItemHeader" href="#section3">TIPO DE CUENTA</a>
                 @endif
                 @if(Auth::check())
-                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section3">TIPO DE CUENTA</a>
+                    <a class="navItemHeader" style="width:165px" href="{{route('customer.home')}}/#section3">TIPO DE CUENTA</a>
                 @endif
 
             </li>
             <li class="nav-item">
                 @if(!Auth::check())
-                    <a class="nav-link" style="width:165px" href="#section4">BENEFICIOS</a>
+                    <a class="navItemHeader" href="#section4">BENEFICIOS</a>
                 @endif
                 @if(Auth::check())
-                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section4">BENEFICIOS</a>
+                    <a class="navItemHeader" style="width:165px" href="{{route('customer.home')}}/#section4">BENEFICIOS</a>
                 @endif
             </li>
             <!--<li class="nav-item">
@@ -298,35 +302,33 @@
             </li>-->
             <li class="nav-item">
                 @if(!Auth::check())
-                    <a class="nav-link" style="width:165px" href="#section6">¿DÓNDE COMPRAR?</a>
+                    <a class="navItemHeader" href="#section6">¿DÓNDE COMPRAR?</a>
                 @endif
                 @if(Auth::check())
-                    <a class="nav-link" style="width:165px" href="{{route('customer.home')}}/#section6">¿DÓNDE COMPRAR?</a>
+                    <a class="navItemHeader" style="width:165px" href="{{route('customer.home')}}/#section6">¿DÓNDE COMPRAR?</a>
                 @endif
             </li>
 
-          <!--<li class="nav-item">
+          {{-- <li class="nav-item">
               @if(Auth::check())
                   <a class="nav-link" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
               @endif
-          </li>-->
+          </li> --}}
       </ul>
 
       @if(!empty(Auth::user()))
         <div class="bell2">
-            <div class="btn-group dropleft">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">1</span><i
-                        class="far fa-bell" style="color: white; font-size: 22px;"> </i>
+            <div class="btn-group" >
+                <button class="btn" data-toggle="modal" data-target="#modalNotifications">
+                    @if ($noti != false)
+                        @if ($noti->available == 1 && $noti->seen == 0)
+                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                            1
+                        </span>
+                        @endif
+                    @endif
+                    <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
                 </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
             </div>
         </div>
         @endif
@@ -339,3 +341,12 @@
 
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanico')
+
+{{-- Modal notifications --}}
+@include('includes.notifications')
+
+<script>
+    function irAbajo() {
+        console.log("hola");
+    }
+</script>

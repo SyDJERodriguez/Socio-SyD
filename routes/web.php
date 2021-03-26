@@ -43,14 +43,13 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::put('/update', 'CustomerController@update')->name('update');
     Route::post('/login', 'CustomerController@login')->name('login');
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
+    Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');
 
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
 
-        Route::get('/home', function () {
-            return view('pages.home');
-        })->name('home');
+        Route::get('/home', 'CustomerController@home')->name('home');
 
         //My Account
         Route::get('/account/', 'CustomerController@account_status')->name('myAccount');
@@ -68,10 +67,10 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Beneficiaries
         Route::get('/employees/', 'CustomerController@employees')->name('employees');
-        Route::get('/employees/{emp}', 'CustomerController@editEmployee');
+        Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
-        Route::get('/employees/{emp}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
-        Route::get('/pdf','CustomerController@generatePDF')->name('pdf');
+        Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
+        Route::get('/pdf','BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
