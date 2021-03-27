@@ -43,9 +43,8 @@ class CustomerController extends Controller
 
     public function insertCNTNumber() {
         $client_number = 90000000;
-        for ($i = 0; $i<=20000; $i++) {
-            $client_number = $client_number + $i;
-            $client_number = strval($client_number);
+        for ($i = 0; $i<20; $i++) {
+            $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
             DB::table('cnt_numbers')->insert([
                 'client_number'    => $client_number,
@@ -55,14 +54,104 @@ class CustomerController extends Controller
 
     public function cntRegister(Request $request) {
         $request = $request->input();
+        //For customer_session table
+        $passwordVerify = $request['password'];
+        $passwordConfirm = $request['confirmPassword'];
+
+        if ($passwordVerify !== $passwordConfirm){
+            return response()->json(['success'=>'false', 'verify_password'=>'false']);
+        }
+
+        $password      = Hash::make($request['password']);
+
         $client_number= '';
         if (!empty($request['client_number'])){
             $client_number = '00'.$request['client_number'];
         }else{
-
+            $number = DB::table('cnt_numbers')
+                ->where('registered', '=',1)
+                ->pluck('client_number')->toArray();
+            if (empty($number)){
+                $client_number ='0090000001';
+            }else{
+                $counter = count($number);
+                $counter = $counter-1;
+                $client_number = intval($number[$counter])+1;
+                $client_number = strval($client_number);
+                $client_number = '00'.$client_number;
+            }
         }
 
+        //Check if the email already has an account
 
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+
+        if ($verify_email !== null) {
+            return response()->json(['success'=>'false', 'verify_email'=>'false']);
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+      //  if (empty($request['cnt_number'])){
+            if($request['cnt_number'] !== '1000'){
+                return response()->json(['success'=>'false', 'cnt_number'=>'false']);
+            }
+        //}
+
+        //Insert data in customers table
+        $update_customer = DB::table('customers')->insert([
+            'client_number'    => $client_number,
+            'cnt'              => $request['cnt_number'],
+            'name'             => $request['name'],
+            'last_name'        => $request['last_name'],
+            'second_last_name' => $request['second_last_name'],
+            'email'            => $request['email'], //This is for customers_session table too
+            'mobile_number'    => $request['mobile'],
+            'birthday'         => $request['birthday'],
+            'gender'           => isset($request['gender']) ? $request['gender'] : ''
+        ]);
+
+        //create data in notifications table
+        $update_notifications = DB::table('notifications')->insert([
+            'client_number'     => $client_number,
+            'name_id'           => 'SEGURO ASISTENCIAS'
+        ]);
+
+        $save_register = DB::table('customers_sessions')->insert([
+            'client_number' => $client_number,
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+            'email'         => $request['email'],
+            'mobile'        => $request['mobile'],
+            'active'        => 0,
+            'password'      => $password
+        ]);
+
+        $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
+
+        if ($update_customer === 1 && $save_register === true){
+            DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
+            $this->send_welcome_email($client_number);
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
+        }elseif ($update_customer === true && $save_register === true){
+            DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
+            $this->send_welcome_email($client_number);
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
+        }elseif ($update_customer === 0 && $save_register === true){
+            DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
+            $this->send_welcome_email($client_number);
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
+        }
+        else{
+            return response()->json(['success'=>'false', 'update'=>$update_customer, 'save'=>$save_register]);
+        }
+
+        //return $client_number;
     }
 
     /*Here check if the client client number exist in the DB
@@ -652,6 +741,12 @@ class CustomerController extends Controller
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
 
+        $cnt = intval(Auth::user()->client_number);
+        $is_cnt = 'false';
+        if( ($cnt > 90000000) && ($cnt < 90020000)) {
+            $is_cnt = 'true';
+        }
+
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -691,7 +786,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti'));
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt'));
     }
 
     //Go to signature section in benefits

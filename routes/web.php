@@ -37,7 +37,7 @@ Route::get('account/verify/{client_number}', 'CustomerController@verify_account'
 Route::get('account/verify/{client_number}/{mobile_number}', 'CustomerController@verify_associate')->name('verify.associate');
 
 //CNT functions
-Route::put('/registerCNT', 'CustomerController@cntRegister')->name('cnt.register');
+Route::post('/registerCNT', 'CustomerController@cntRegister')->name('cnt.register');
 Route::get('/registerCNTNumbers', 'CustomerController@insertCNTNumber')->name('cnt.numbers');
 
 
