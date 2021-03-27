@@ -842,6 +842,21 @@ class CustomerController extends Controller
         return $data[0];
     }
 
+    //get the data from notifications table
+    public function getNotificationsById($client_number){
+        $data = DB::table('notifications')
+            ->where('client_number','=',$client_number)
+            ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
+
+        //check if an array
+        if(is_array($data) == true && empty($data) === true){
+            return false;
+        }
+        return $data[0];
+    }
+
     //update notifications table 
     public function updateNotifications($email){
         //get client number by email
@@ -1064,5 +1079,13 @@ class CustomerController extends Controller
     protected function guard()
     {
         return Auth::guard();
+    }
+
+    //form invitation
+    public function invitationForm($client_number){
+        $total = $this->totalAmountById($client_number);
+        $noti = $this->getNotificationsById($client_number);
+
+        return view('pages.invitationForm', compact('client_number','total','noti'));
     }
 }
