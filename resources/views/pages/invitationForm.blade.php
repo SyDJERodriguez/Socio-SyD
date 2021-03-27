@@ -9,8 +9,15 @@
             <div style="margin-left: 15px !important;">
                 <h4>Registro asociado</h4>
                 <br>
-                <form id="mechanicForm" method="POST" action="">
-                    @method('PUT')
+                @if (\Session::has('msg'))
+                 <div class="col-lg-12 text-justify text-primary">
+                    <p style="font-size:11px;color:red;text-align:center">
+                       {{Session::get('msg')}}
+                    </p>
+                 </div>
+                 @endif
+                <form id="mechanicForm" method="POST" action="{{route('signUpInvitation')}}">
+                    @method('POST')
                     @csrf
                     <div class="row">
                         <div class="col-lg-6 py-2" style="display: flex">
@@ -19,7 +26,7 @@
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <input type="text" class="form-control v" placeholder="NOMBRE" id="nameMec" 
+                            <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameMec" 
                             name="name" pattern="[a-zA-Z]{3,}" required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>

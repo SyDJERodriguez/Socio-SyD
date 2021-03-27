@@ -320,6 +320,70 @@ class CustomerController extends Controller
         }
     }
 
+    //form invitation sign up
+    public function signUpInvitation(Request $request){
+        //For customer_session table
+        $passwordVerify = $request['password'];
+        $passwordConfirm = $request['confirmPassword'];
+
+        if ($passwordVerify !== $passwordConfirm){
+            return redirect()->back()->with('msg', 'Las contraseñas no coinciden.'); 
+        }
+
+        $password = Hash::make($request['password']);
+
+        //Check if the email already has an account
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+        if ($verify_email !== null) {
+            return redirect()->back()->with('msg', 'El email ingresado ya existe.'); 
+        }
+
+        //Check if the client number is already in the DB
+        $data = Customer::where('client_number', $request['client_number'])->first();
+
+        $update_customer ='';
+        if ($data == null) {
+            //si no existe redirect hacia atras  mostrar error
+            return redirect()->back()->with('msg', 'El número de cliente no existe.'); 
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $request['client_number'] ){
+                return redirect()->back()->with('msg', 'El número de telefono ya existe.'); 
+            }
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
+        if (!empty($verify_email_number)){
+            if ($verify_email_number->client_number !== $request['client_number'] ){
+                return redirect()->back()->with('msg', 'El email ingresado ya existe.'); 
+            }
+        }
+
+        $save_register = DB::table('customers_sessions')->insert([
+            'client_number' => $request['client_number'],
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+            'email'         => $request['email'],
+            'mobile'        => $request['mobile'],
+            'active'        => 0,
+            'password'      => $password,
+            'signature_id'  => 0,
+            'is_associate'  => 1
+        ]);
+
+        if ( $save_register === true){
+            //$this->send_welcome_email($request['client_number']);
+            return redirect()->route('home');
+        }
+        else{
+            return redirect()->back()->with('msg', 'Algo salio mal, no se completó el registro.'); 
+        }
+    }
+
+
     //Send welcome email
     public function send_welcome_email($client_number) {
         $data = Customer::where('client_number', $client_number)->first();
