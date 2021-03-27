@@ -39,6 +39,32 @@ class CustomerController extends Controller
     use AuthenticatesUsers;
     //protected $redirectTo = '/customer/account/';
 
+    //REGISTER CNT THIS IS TEMPORARY
+
+    public function insertCNTNumber() {
+        $client_number = 90000000;
+        for ($i = 0; $i<=20000; $i++) {
+            $client_number = $client_number + $i;
+            $client_number = strval($client_number);
+            $client_number = '00'.$client_number;
+            DB::table('cnt_numbers')->insert([
+                'client_number'    => $client_number,
+            ]);
+        }
+    }
+
+    public function cntRegister(Request $request) {
+        $request = $request->input();
+        $client_number= '';
+        if (!empty($request['client_number'])){
+            $client_number = '00'.$request['client_number'];
+        }else{
+
+        }
+
+
+    }
+
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
