@@ -344,8 +344,10 @@ padding-bottom: 14px;">
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanico')
 
+@if(Auth::check())
 {{-- Modal notifications --}}
 @include('includes.notifications')
+@endif
 
 <script>
     function irAbajo() {
