@@ -55,10 +55,7 @@
                                                 </p>
                                         </li>
                                     @endif
-                                    <br>
-                                    <a class="btn btn-sm btn-block" href="{{route('customer.dismissNotification', Auth::user()->client_number)}}">
-                                        Aceptar
-                                    </a>
+
                                 @endif
                             @else
                                 <li class="list-group-item">
@@ -114,16 +111,16 @@
                                         </p>
                                 </li>
                                 @endif
-                                <br>
-                                <a class="btn btn-sm btn-block" href="{{route('customer.dismissNotification', Auth::user()->client_number)}}">
-                                    Aceptar
-                                </a>
+
                             @endif
                         </ul>
 
                     @endif
                 @endif
-
+                    <br>
+                    <a class="btn btn-sm btn-block" href="{{route('customer.dismissNotification', Auth::user()->client_number)}}">
+                        Aceptar
+                    </a>
             </div>
         </div>
     </div>
