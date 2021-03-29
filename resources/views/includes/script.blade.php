@@ -90,8 +90,8 @@
                         $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
                     }else if (data['success']==='false' && data['verify_email']==='false') {
-                        document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente.. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert").removeAttribute("hidden");
+                        document.getElementById("form_alert_email").innerHTML='El email ya se encuentra asociado a otro cliente.. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_email").removeAttribute("hidden");
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_pass").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                         document.getElementById("form_alert_pass").removeAttribute("hidden");
@@ -134,8 +134,8 @@
                         $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
                     }else if (data['success']==='false' && data['verify_email']==='false') {
-                        document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_mec").removeAttribute("hidden");
+                        document.getElementById("form_alert_mec_email").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_mec_email").removeAttribute("hidden");
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_mec_pass").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                         document.getElementById("form_alert_mec_pass").removeAttribute("hidden");
