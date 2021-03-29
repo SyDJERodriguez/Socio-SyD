@@ -19,6 +19,8 @@
 
               <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_email" role="alert" style="border-radius: 6px;" hidden>
+              </div>
               <div class="alert alert-danger" id="form_alert_mobile" role="alert" style="border-radius: 6px;" hidden>
               </div>
               <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
