@@ -672,16 +672,17 @@ class CustomerController extends Controller
                 $level = 3;
             }
         }
+        $total = $this->totalAmount();
+        $noti = $this->getNotifications();
 
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
+
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary','total','noti'));
         }
 
         $signature = $signature->signature_id;
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
 
         return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
     }

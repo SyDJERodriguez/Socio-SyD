@@ -64,6 +64,9 @@ class BeneficiaryController extends Controller
             }
         }
 
+        $total = $total_amount;
+        $noti = $this->getNotifications();
+
         foreach ($request['percent'] as $percent){
             $count++;
             //Sum the all percent
@@ -76,7 +79,7 @@ class BeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
 
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature','total','noti'));
                 //dd($total_percent);
             }
 
@@ -102,19 +105,19 @@ class BeneficiaryController extends Controller
                 //$generatePDF = $this->generatePDF();
                 //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature','total','noti'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request','total','noti'));
             }
 
         }elseif ($count == 1){
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature','total','noti'));
             }
 
 
@@ -134,9 +137,24 @@ class BeneficiaryController extends Controller
             //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiary = 'true';
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature','total','noti'));
            // }
         }
+    }
+
+    //get the data from notifications table
+     public function getNotifications(){
+        $data = DB::table('notifications')
+            ->where('client_number','=',Auth::user()->client_number)
+            ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
+
+        //check if an array
+        if(is_array($data) == true && empty($data) === true){
+            return false;
+        }
+        return $data[0];
     }
 
     //Function to generate PDF and upload AWS's S3
