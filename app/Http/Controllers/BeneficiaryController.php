@@ -39,6 +39,8 @@ class BeneficiaryController extends Controller
             strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
         }
 
+        $noti = $this->getNotifications();
+
         $level = 0;
         if (Auth::user()->client_type === "1"){
             if ($total_amount>2500 && $total_amount<=4500) {
@@ -76,7 +78,7 @@ class BeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
 
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti'));
                 //dd($total_percent);
             }
 
@@ -102,19 +104,19 @@ class BeneficiaryController extends Controller
                 //$generatePDF = $this->generatePDF();
                 //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'noti'));
             }
 
         }elseif ($count == 1){
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti'));
             }
 
 
@@ -134,7 +136,7 @@ class BeneficiaryController extends Controller
             //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiary = 'true';
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature'));
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti'));
            // }
         }
     }
@@ -174,5 +176,20 @@ class BeneficiaryController extends Controller
         //}
 
         //return 'failed';
+    }
+
+    //get the data from notifications table
+    public function getNotifications(){
+        $data = DB::table('notifications')
+            ->where('client_number','=',Auth::user()->client_number)
+            ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
+
+        //check if an array
+        if(is_array($data) == true && empty($data) === true){
+            return false;
+        }
+        return $data[0];
     }
 }
