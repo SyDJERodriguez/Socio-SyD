@@ -200,6 +200,28 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
+        /*$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile'])->first();
+
+        if ($verify_mobile_number !== null) {
+            return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+        }*/
+
+        //Verify is the email has not a relation with other client number
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
+        if (!empty($verify_email_number)){
+            if ($verify_email_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
+            }
+        }
+
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
@@ -243,21 +265,7 @@ class CustomerController extends Controller
             ]);
         }
 
-        //Verify is the email has not a relation with other client number
-        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
-        if(!empty($verify_mobile_number)){
-            if ($verify_mobile_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
-            }
-        }
 
-        //Verify is the email has not a relation with other client number
-        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
-        if (!empty($verify_email_number)){
-            if ($verify_email_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
-            }
-        }
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
