@@ -345,8 +345,3 @@ padding-bottom: 14px;">
 {{-- Modal notifications --}}
 @include('includes.notifications')
 
-<script>
-    function irAbajo() {
-        console.log("hola");
-    }
-</script>

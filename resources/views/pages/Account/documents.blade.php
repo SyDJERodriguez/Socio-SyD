@@ -10,13 +10,19 @@
         <div class="col-lg-2">
           <div style="padding-left: 0px !important;">
             <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-               No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
+                No. de Cliente 
+                   <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
+                      @if (Auth::user()->is_associate == 1)
+                          - {{$data->associate_number}}
+                      @endif
+                   </span>
+                <br>
                 @if ((int)Auth::user()->client_type == 1)
-                Cuenta: Negocios
+                    Cuenta: Negocios
                 @else
                     Cuenta: Individual
                 @endif
-            </h6>
+             </h6>
             <hr>
          </div>
             <div>

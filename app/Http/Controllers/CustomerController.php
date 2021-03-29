@@ -374,8 +374,23 @@ class CustomerController extends Controller
             'is_associate'  => 1
         ]);
 
+        //Insert data in customers table
+        $update_customer = DB::table('customers')->insert([
+            'client_number'    => null,
+            'name'             => $request['name'],
+            'last_name'        => $request['last_name'],
+            'second_last_name' => $request['second_last_name'],
+            'email'            => $request['email'], //This is for customers_session table too
+            'mobile_number'    => $request['mobile'],
+            'company'          => isset($request['company']) ? $request['company'] : '',
+            'birthday'         => $request['birthday'],
+            'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+            'work'             => isset($request['work']) ? $request['work'] : '',
+            'gender'           => isset($request['gender']) ? $request['gender'] : ''
+        ]);
+
         if ( $save_register === true){
-            //$this->send_welcome_email($request['client_number']);
+            $this->welcome_email_is_associate($request);
             return redirect()->route('home');
         }
         else{
@@ -398,18 +413,44 @@ class CustomerController extends Controller
         }
     }
 
+    //Send welcome email
+     public function welcome_email_is_associate($data) {
+        try {
+            \Mail::send('emails.welcomeInvitation',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@syd.com.mx',"SOCIO SYD");
+                $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
+    }
+
     //Verify account
     public function verify_account($client_number = null) {
-        $data = CustomersSession::where('client_number', $client_number)->first();
-        if ($data->active === 1){
-            $activated = true;
-            return view('pages.activationPage', compact('activated'));
+        $noti = 0;
+        $total = false;
+        if(strpos($client_number,'@')){ //es un email
+                $data = CustomersSession::where('email', $client_number)->first();
+            if ($data->active === 1){
+                $activated = true;
+            return view('pages.activationPage', compact('activated','total','noti'));
+            }
+            $update_customer = DB::table('customers_sessions')->where('email', '=', $client_number)->update([
+                'active'   => 1
+            ]);
+
+        }else{ //is a number
+            $data = CustomersSession::where('client_number', $client_number)->first();
+            if ($data->active === 1){
+                $activated = true;
+
+                return view('pages.activationPage', compact('activated','total','noti'));
+            }
+            $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
+                'active'   => 1
+            ]);
         }
-        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
-            'active'   => 1
-        ]);
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
 
         if ($update_customer){
             $activated = false;
@@ -425,14 +466,15 @@ class CustomerController extends Controller
                         ->update([
                             'active_association' => 1
                         ]);
-        $total = $this->totalAmount();
+        $total = $this->totalAmountById($client_number);
+        $noti = $this->getNotificationsById($client_number);
         if($query === 1 || $query === true){
             $activated = true;
-            return view('pages.activationPage', compact('activated','total'));
+            return view('pages.activationPage', compact('activated','total','noti'));
         }
         if($query){
             $activated = false;
-            return view('pages.activationPage', compact('activated','total'));
+            return view('pages.activationPage', compact('activated','total','noti'));
         }
     }
 
@@ -598,8 +640,38 @@ class CustomerController extends Controller
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
+
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
+    }
+
+    //get the full name in customers table
+    public function getRealName($data){
+        $query = DB::table('customers')
+                ->where('email','=', Auth::user()->email)
+                ->get();
+        $query = json_decode($query);
+        $query = (array)$query;
+
+        $data['name'] = $query[0]->name;
+        $data['last_name'] = $query[0]->last_name;
+        $data['second_last_name'] = $query[0]->second_last_name;
+        return $data;
+    }
+
+    public function getAssociateNumber(){
+        $query = DB::table('associates')
+                ->where('email','=', Auth::user()->email)
+                ->get();
+        $query = json_decode($query);
+        $query = (array)$query;
+
+        if(empty($query) === false){
+            return $query[0]->number;
+        }
+        return '';
     }
 
     //Get transactions
@@ -622,6 +694,9 @@ class CustomerController extends Controller
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
 
         return view('pages.Account.documents', compact('data','link', 'exist','total','noti'));
     }
@@ -674,6 +749,9 @@ class CustomerController extends Controller
         }
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
 
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
@@ -730,6 +808,10 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
+
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
+
         return view('pages.Account.benefitSafe', compact('data', 'level','total','noti'));
     }
 
@@ -853,6 +935,9 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
+
         return view('pages.Account.assistance', compact('data', 'level','total','noti'));
     }
 
@@ -960,6 +1045,9 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+        $data = $this->getRealName($data); //get the real name
+        $data->associate_number = $this->getAssociateNumber();//get number from associates table
+
         return view('pages.Account.beneficiaries', compact('data','total','noti'));
     }
 
