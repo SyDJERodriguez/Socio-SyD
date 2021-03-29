@@ -194,19 +194,19 @@ class CustomerController extends Controller
 
         //Check if the email already has an account
 
-        /*$verify_email = CustomersSession::where('email', $request['email'])->first();
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
 
         if ($verify_email !== null) {
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
-        /*$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile'])->first();
+        $verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile'])->first();
 
         if ($verify_mobile_number !== null) {
             return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
-        }*/
+        }
 
-        //Verify is the email has not a relation with other client number
+        /*Verify is the email has not a relation with other client number
         $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
         if(!empty($verify_mobile_number)){
             if ($verify_mobile_number->client_number !== $client_number ){
@@ -220,7 +220,7 @@ class CustomerController extends Controller
             if ($verify_email_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
             }
-        }
+        }*/
 
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
