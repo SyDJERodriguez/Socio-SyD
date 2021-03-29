@@ -200,7 +200,7 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
-        $verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile'])->first();
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
 
         if ($verify_mobile_number !== null) {
             return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
