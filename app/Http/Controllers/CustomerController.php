@@ -194,7 +194,7 @@ class CustomerController extends Controller
 
         //Check if the email already has an account
 
-        $verify_email = CustomersSession::where('email', $request['email'])->first();
+        /*$verify_email = CustomersSession::where('email', $request['email'])->first();
 
         if ($verify_email !== null) {
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
