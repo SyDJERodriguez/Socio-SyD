@@ -18,6 +18,10 @@
             </div>
           <div class="alert alert-danger" id="form_alert_mec" role="alert" style="border-radius: 6px;" hidden>
           </div>
+              <div class="alert alert-danger" id="form_alert_mec_mobile" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_mec_pass" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form id="mechanicForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
