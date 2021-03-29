@@ -12,7 +12,7 @@
                 @if (Auth::user())
                     @if ((int)Auth::user()->client_type == 1)
                         <ul class="list-group list-group-flush">
-                            @if ($total)
+                            @if (isset($total))
                                     @if ($total < 2500.01)
                                     <li class="list-group-item">
                                         <span class="float-right">
