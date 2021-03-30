@@ -92,17 +92,19 @@
                         $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
                     }else if (data['success']==='false' && data['verify_email']==='false') {
-                        document.getElementById("form_alert_email").innerHTML='El email ya se encuentra asociado a otro cliente.. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_email").innerHTML='El email ya se encuentra asociado a otro cliente.';
                         document.getElementById("form_alert_email").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_email").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
-                        document.getElementById("form_alert_pass").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_pass").innerHTML='Las contraseñas no coinciden, por favor verifique. ';
                         document.getElementById("form_alert_pass").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_pass").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
-                        document.getElementById("form_alert_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. ';
                         document.getElementById("form_alert_mobile").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                        setTimeout(function (){document.getElementById("form_alert_mobile").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_email_number']==='false') {
-                        document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente. ';
                         document.getElementById("form_alert").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
                     }else if (data['success']==='false'){
