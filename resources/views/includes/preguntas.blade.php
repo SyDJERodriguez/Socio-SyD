@@ -293,7 +293,7 @@
                                     Si tienes algún problema o duda a la hora de tu registro,
                                     puedes contactarnos a través de nuestro chat de Whatsapp disponible en el sitio web
                                     o llamando al número
-                                    800 SYD/DAR 1010.
+                                    <b>800 SYD/DAR 1010</b>.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -479,7 +479,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de CHUBB]
+                                        Comunícate al número de atención de Chubb: <a href="tel:8000874598">8000874598</a>
                                     </p>
                                 </li>
                             </ol>
@@ -490,7 +490,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>
@@ -501,7 +501,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>
@@ -512,7 +512,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>

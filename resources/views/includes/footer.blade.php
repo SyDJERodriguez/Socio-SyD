@@ -71,6 +71,8 @@
                               <span>TELÉFONO:</span><br>
                                 <a href="tel:8007931010">800 SYD (793) 1010</a>
                               <hr>
+                          </p>
+                          <p>
                               <span>CORREO:</span><br>
                                 <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
                               <br>
