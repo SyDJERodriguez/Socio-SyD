@@ -920,7 +920,7 @@ class CustomerController extends Controller
         $validated = 0; //var for button validated
 
         //get number of employees registrados
-        $numberEmployees = $this->getNumberAssociate($data['id']);
+        $numberEmployees = $this->getNumberAssociate(Auth::user()->id);
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
