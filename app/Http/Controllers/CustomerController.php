@@ -579,6 +579,9 @@ class CustomerController extends Controller
             ->where('id', '=', Auth::user()->id)
             ->first();
 
+        $noti = $this->getNotifications();
+        $total = $this->totalAmount();
+
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -620,12 +623,10 @@ class CustomerController extends Controller
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total'));
         }
 
         $signature = $signature->signature_id;
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
 
         return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
     }
