@@ -78,11 +78,11 @@
         <div class="row">
             <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"     
-                @if ($validated === 0)
+                @if ($validated === false)
                 disabled
                 @endif
                 style="background-color: #143153;" 
-                data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA {{$validated}}</button>
+                data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
         </div>
     </div>
