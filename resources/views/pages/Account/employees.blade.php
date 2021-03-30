@@ -82,7 +82,7 @@
                 disabled
                 @endif
                 style="background-color: #143153;" 
-                data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
+                data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA {{$validated}}</button>
             </div>
         </div>
     </div>
