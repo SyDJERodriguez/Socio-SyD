@@ -924,11 +924,11 @@ class CustomerController extends Controller
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
-            $validated = $limit;
+            $validated = $numberEmployees;
         }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
-            $validated = $limit;
+            $validated = $numberEmployees;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
-            $validated = $limit;
+            $validated = $numberEmployees;
         }
         /*else if($limit > 9500.01 && $numberEmployees < 10) {
             $validated = true;
