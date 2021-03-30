@@ -917,24 +917,24 @@ class CustomerController extends Controller
 
         //round the number with only 2 decimals        
         $limit = (float)number_format($query,2,'.','');
-        $validated = false; //var for button validated
+        $validated = 0; //var for button validated
 
         //get number of employees registrados
         $numberEmployees = $this->getNumberAssociate($data['id']);
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
-            $validated = true;
+            $validated = 1;
         }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
-            $validated = true;
+            $validated = 1;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
-            $validated = true;
+            $validated = 1;
         }
         /*else if($limit > 9500.01 && $numberEmployees < 10) {
             $validated = true;
         }*/
         else {
-            $validated = false;
+            $validated = 0;
         }
 
         return $validated;
