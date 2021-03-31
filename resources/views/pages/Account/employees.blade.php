@@ -5,8 +5,8 @@
 <div style="padding-left: 3rem !important;
     padding-right: 3rem !important;">
     <hr>
-    <div >
-        <div style="padding-left: 10px !important;">
+    <div class="col-md-12" style="display: flex;">
+        <div style="padding-left: 10px !important;" class="col-md-3">
             <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
                No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
                 @if ((int)Auth::user()->client_type == 1)
@@ -16,10 +16,12 @@
                 @endif
             </h6>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#survey">Nos interesa tu opinión</a>
-            <hr>
          </div>
+        <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
+            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.</h5>
+        </div>
     </div>
-
+    <hr>
     <div>
         <div>
             <div style="margin-left: 10px !important;">
