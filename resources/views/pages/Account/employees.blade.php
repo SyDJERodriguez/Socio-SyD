@@ -15,6 +15,7 @@
                     Cuenta: Individual
                 @endif
             </h6>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#survey">Nos interesa tu opinión</a>
             <hr>
          </div>
     </div>
@@ -78,7 +79,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"     
-                @if ($validated == 0)
+                @if ($validated === false)
                 disabled
                 @endif
                 style="background-color: #143153;" 

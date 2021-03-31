@@ -184,11 +184,13 @@ padding-bottom: 14px;">
         <div class="navbar-toggler">
             <div class="btn-group">
                 <button id="bell1" class="btn" data-toggle="modal" data-target="#modalNotifications">
-                    @if ($noti != false)
-                        @if ($noti->available == 1 && $noti->seen == 0)
-                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
-                            1
-                        </span>
+                    @if(isset($noti))
+                        @if ($noti != false)
+                            @if ($noti->available == 1 && $noti->seen == 0)
+                            <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                                1
+                            </span>
+                            @endif
                         @endif
                     @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
@@ -345,8 +347,10 @@ padding-bottom: 14px;">
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanicoCNT')
 
+@if(Auth::check())
 {{-- Modal notifications --}}
 @include('includes.notifications')
+@endif
 
 <script>
     function irAbajo() {

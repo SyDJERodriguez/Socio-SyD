@@ -315,6 +315,28 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+
+        if ($verify_mobile_number !== null) {
+            return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+        }
+
+        /*Verify is the email has not a relation with other client number
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if(!empty($verify_mobile_number)){
+            if ($verify_mobile_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+            }
+        }
+
+        //Verify is the email has not a relation with other client number
+        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
+        if (!empty($verify_email_number)){
+            if ($verify_email_number->client_number !== $client_number ){
+                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
+            }
+        }*/
+
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
@@ -358,21 +380,7 @@ class CustomerController extends Controller
             ]);
         }
 
-        //Verify is the email has not a relation with other client number
-        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
-        if(!empty($verify_mobile_number)){
-            if ($verify_mobile_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
-            }
-        }
 
-        //Verify is the email has not a relation with other client number
-        $verify_email_number = CustomersSession::where('email', $request['email'])->first();
-        if (!empty($verify_email_number)){
-            if ($verify_email_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_email_number'=>'false']);
-            }
-        }
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
@@ -686,6 +694,9 @@ class CustomerController extends Controller
             ->where('id', '=', Auth::user()->id)
             ->first();
 
+        $noti = $this->getNotifications();
+        $total = $this->totalAmount();
+
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -727,12 +738,10 @@ class CustomerController extends Controller
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total'));
         }
 
         $signature = $signature->signature_id;
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
 
         return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
     }
@@ -1033,7 +1042,7 @@ class CustomerController extends Controller
         $validated = false; //var for button validated
 
         //get number of employees registrados
-        $numberEmployees = $this->getNumberAssociate($data['id']);
+        $numberEmployees = $this->getNumberAssociate(Auth::user()->id);
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
