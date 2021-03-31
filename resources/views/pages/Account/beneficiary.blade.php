@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                    @elseif($level <= 0)
+                    @elseif($level <= 0 && $is_cnt !== 'true')
                         <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">

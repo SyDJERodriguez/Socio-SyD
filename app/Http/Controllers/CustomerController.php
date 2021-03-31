@@ -696,6 +696,7 @@ class CustomerController extends Controller
 
         $noti = $this->getNotifications();
         $total = $this->totalAmount();
+        $is_cnt = 'true';
 
         $now = Carbon::now();
         $current_month = $now->month;
@@ -743,7 +744,7 @@ class CustomerController extends Controller
 
         $signature = $signature->signature_id;
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt'));
     }
 
     //Go to benefits of Safe
