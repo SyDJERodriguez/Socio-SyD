@@ -16,8 +16,14 @@
                     </div>
                 </div>
             </div>
-          <div class="alert alert-danger" id="form_alert_cnt" role="alert" style="border-radius: 6px;" hidden>
+          <div class="alert alert-danger" id="form_alert_cnt_email" role="alert" style="border-radius: 6px;" hidden>
           </div>
+              <div class="alert alert-danger" id="form_alert_cnt_pass" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_cnt_mobile" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_cnt_ncnt" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
