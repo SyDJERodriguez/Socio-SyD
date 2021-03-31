@@ -123,6 +123,27 @@
         </div>
      </div>
 
+    <!-- Modal Encuesta-->
+    <div class="modal fade" id="survey" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div style="height: 34px;">
+
+                </div>
+                <div class="modal-body " style="background-color: #143153;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <iframe src="https://quaxar.typeform.com/to/SUldRQpq" scrolling="no" width="600" height="600"></iframe>
+                        </div>
+                        <div class="col-md-12" style="display: flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
+                            <a href="{{route('home')}}" class="text-white btn " data-dismiss="modal" aria-label="Close" style="background-color: #00A5E6;" >CERRAR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
       <!-- MODAL PREGUNTAS-->
       @extends('includes.preguntas')
 
