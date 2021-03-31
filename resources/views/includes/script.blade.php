@@ -45,6 +45,34 @@
             }
         });
 
+        //Get the CNT's client number
+        $("#client_number_cnt").keyup(function(){
+            let client_number_mec = $('input[id=client_number_cnt]').val();
+            if(client_number_mec.length===8){
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('customer.information')}}",
+                    data: {'client_number': client_number_mec},
+                    success: function (data) {
+                        console.log(data);
+                        if (data['success']==='false' && data['verify_client_number']==='false') {
+                            document.getElementById("form_alert_cnt").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        }
+                        $('input[id=nameCNT]').val(data['name']);
+                        $('input[id=lastNameCNT]').val(data['last_name']);
+                        $('input[id=secondLastNameCNT]').val(data['second_last_name']);
+                        $('input[id=mobileCNT]').val(data['mobile_number']);
+                        $('input[id=emailCNT]').val(data['email']);
+                        $('input[id=birthdayCNT]').val(data['birthday']);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
         //Get the mechanic's client number
         $("#client_number_mec").keyup(function(){
             let client_number_mec = $('input[id=client_number_mec]').val();
@@ -153,6 +181,56 @@
                         document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente. ';
                         document.getElementById("form_alert_mec").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                    }else if (data['success']==='false'){
+                        $('#modal5').modal('hide');
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //CNT's form
+        $("#cntForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#modal5').modal('hide');
+                        $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
+                        $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                        $('#clientMessage').text('En breve recibirás un email de activación.');
+                        $('#modalSuccess').modal('show');
+                    }else if (data['success']==='false' && data['verify_email']==='false') {
+                        document.getElementById("form_alert_cnt").innerHTML='El email ya se encuentra registrado. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_password']==='false') {
+                        document.getElementById("form_alert_cnt").innerHTML='Las contraseñas no coinciden, por favor verifique. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                        document.getElementById("form_alert_cnt").innerHTML='El número telefónico ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                        document.getElementById("form_alert_cnt").innerHTML='El email ya se encuentra asociado a otro cliente. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['cnt_number']==='false') {
+                        document.getElementById("form_alert_cnt").innerHTML='Número CNT incorrecto. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
                         $('#modalError').modal('show');

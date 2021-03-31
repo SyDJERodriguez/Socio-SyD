@@ -20,7 +20,7 @@
         </div>
        <!-- <form>-->
           <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-          @if($level>0)
+          @if($level>0 || $is_cnt === 'true')
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8" class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
