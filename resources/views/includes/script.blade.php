@@ -230,7 +230,7 @@
                     }else if (data['success']==='false' && data['cnt_number']==='false') {
                         document.getElementById("form_alert_cnt_ncnt").innerHTML='Número CNT incorrecto. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                         document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_ncnt").hidden= true}, 3000);
+                        setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
                         $('#modalError').modal('show');
