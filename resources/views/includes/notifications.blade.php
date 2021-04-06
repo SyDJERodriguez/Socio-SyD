@@ -18,14 +18,14 @@
                                             <span class="float-right">
                                                 <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                                 <p class="float-left" style="font-size: 14px;width:95%">
-                                                Aún no alcanzas el nivel mínimo de lealtad.</p>
+                                                Aun no alcanzas el nivel minimo de lealtad.</p>
                                         </li>
                                     @else
                                         <li class="list-group-item">
                                             <span class="float-right">
                                                 <i style="color: #00A5E6;" class="fas fa-circle"></i></span>
                                                 <p class="float-left" style="font-size: 14px;width:95%">
-                                                    Has alcanzado los beneficios de nivel 
+                                                Tu nivel de lealtad actual es:
                                                     @if ($total > 2500 && $total <= 4500)
                                                         Bronce
                                                     @elseif($total > 4500 && $total <= 7000)
@@ -33,7 +33,6 @@
                                                     @elseif($total > 7000)
                                                         Oro
                                                     @endif
-                                                     dentro de tu plan de lealtad.
                                                 </p>
                                         </li>
                                         <li class="list-group-item">
@@ -47,11 +46,11 @@
                                             <span class="float-right">
                                                 <i style="color: #00A5E6;" class="far fa-check"></i></span>
                                                 <p class="float-left" style="font-size: 14px;width:95%">
-                                                Ya eres acreedor a la cobertura de asistencias de nivel
+                                                Ya eres acreedor al nivel de asistencia
                                                    @if ($total > 4500 && $total <= 7000)
-                                                        Plata.
+                                                        Plata
                                                    @elseif($total > 7000)
-                                                        Oro.
+                                                        Oro
                                                    @endif
                                                 </p>
                                         </li>
@@ -61,7 +60,6 @@
                             @else
                                 <li class="list-group-item">
                                     <span class="float-right">
-                                        <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                         <p class="float-left" style="font-size: 14px;width:95%">
                                         No hay notificaciones disponibles.</p>
                                 </li>
@@ -76,14 +74,14 @@
                                     <span class="float-right">
                                         <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                         <p class="float-left" style="font-size: 14px;width:95%">
-                                        Aun no alcanzas el nivel minimo de lealtead.</p>
+                                        Aun no alcanzas el nivel minimo de lealtad.</p>
                                 </li>
                             @else
                                 <li class="list-group-item">
                                     <span class="float-right">
                                         <i style="color: #00A5E6;" class="fas fa-circle"></i></span>
                                         <p class="float-left" style="font-size: 14px;width:95%">
-                                        Tu nivel de lealtead actual es: 
+                                        Tu nivel de lealtad actual es: 
                                             @if ($total > 200.02 && $total <= 500)
                                                 Bronce
                                             @elseif($total > 500.01 && $total <= 1300)

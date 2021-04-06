@@ -104,7 +104,7 @@
                                 estén seguros en su lugar de trabajo:<br>
 
                                 <strong>
-                                    • Seguro contra Accidentes<br>
+                                    • Seguro contra accidentes<br>
                                     • Asistencia las 24 horas
                                 </strong>
                             </p>
