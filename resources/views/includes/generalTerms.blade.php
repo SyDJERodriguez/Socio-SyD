@@ -433,17 +433,8 @@
                 <hr>
                 <h5 class="text-uppercase">BENEFICIO DE SEGURO DE ACCIDENTES PERSONALES</h5>
                 <p class="text-justify">
-                    Al alcanzar el mínimo de compra mensual requerido para llegar al nivel básico en el caso de cuentas
-                    individuales
-                    y al nivel bronce en el caso de cuentas corporativas, el Cliente tendrá acceso a un seguro de
-                    accidentes
-                    personales con cobertura de muerte accidental e invalidez total y permanente por accidentes. Dicho
-                    seguro
-                    será otorgado a través de Chubb Aseguradora quien será el único responsable de autorizar la
-                    procedencia de
-                    una reclamación e indemnización. El seguro será aplicable para los beneficiarios designados dentro
-                    del
-                    Programa de Lealtad Socio SyD.<br><br>
+                    Al alcanzar el mínimo de compra mensual requerido para llegar al nivel bronce tanto en cuentas individuales como en el caso de cuentas corporativas, el Cliente tendrá acceso a un seguro de accidentes personales con cobertura de muerte accidental e invalidez total y permanente por accidentes. Dicho seguro será otorgado a través de Chubb Aseguradora quien será el único responsable de autorizar la procedencia de una reclamación e indemnización. 
+                    El seguro será aplicable para los beneficiarios designados dentro del Programa de Lealtad Socio SyD..<br><br>
 
                     El Cliente podrá dar de alta dentro del sitio web del programa (<a href="https://www.sociosyd.com">
                         https://www.sociosyd.com</a>), a las personas
@@ -517,16 +508,10 @@
                 <hr>
                 <h5 class="text-uppercase">BENEFICIO DE ASISTENCIAS PERSONALES</h5>
                 <p class="text-justify">
-                    Al alcanzar el mínimo de compra mensual requerido para llegar al nivel bronce en el caso de cuentas
-                    individuales y al nivel plata en el caso de cuentas corporativas, el Cliente tendrá acceso a un
-                    programa de asistencias personales. Dicho beneficio se puede aplicar para el Cliente individual o
-                    para los beneficiarios que designe el Cliente corporativo y se sumará al beneficio previamente
-                    obtenido
-                    del seguro de accidentes personales.<br><br>
+                    Al alcanzar el mínimo de compra mensual requerido para llegar al nivel plata tanto en el caso de cuentas individuales como en el caso de cuentas corporativas, el Cliente tendrá acceso a un programa de asistencias personales. Dicho beneficio se puede aplicar para el Cliente individual o para los beneficiarios que designe el Cliente corporativo y se sumará al beneficio previamente obtenido del seguro de accidentes personales.<br><br>
 
-                    La cobertura que tiene el programa de asistencias personales es la siguiente: <br>
-
-                    <b>Nivel Bronce</b> <br>
+                    La cobertura que tiene el programa de asistencias personales es la siguiente: <br> 
+                    <b>Nivel Plata</b> <br><br>
 
                     <ul>
                         <li>
@@ -556,13 +541,12 @@
                         </li>
                         <li>
                             <p class="text-justify">
-                                Asistencia funeraria por accidente, cubriendo hasta $10,000 pesos, en caso de
-                                fallecimiento del titular.
+                                Asistencia funeraria por accidente, cubriendo hasta $10,000 pesos, en caso de fallecimiento del titular.
                             </p>
                         </li>
                     </ul>
 
-                    <b>Nivel Plata y Oro</b> <br><br>
+                    <b>Nivel Oro</b> <br><br>
 
                     <ul>
                         <li>
