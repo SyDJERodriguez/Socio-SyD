@@ -60,6 +60,7 @@
                             @else
                                 <li class="list-group-item">
                                     <span class="float-right">
+                                        <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                         <p class="float-left" style="font-size: 14px;width:95%">
                                         No hay notificaciones disponibles.</p>
                                 </li>
