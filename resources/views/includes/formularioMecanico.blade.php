@@ -61,26 +61,31 @@
                             name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+                    <div class="col-lg-12 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfcMec" name="rfc">
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-3">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control" name="gender" required>
                             <option>GÉNERO</option>
                             <option value="F">FEMENINO</option>
                             <option value="M">MASCULINO</option>
                         </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -110,3 +115,27 @@
         </div>
       </div>
     </div>
+
+    <script>
+        document.getElementById('rfcMec').addEventListener('focus',function() {
+            var rfc = document.getElementById('rfc');
+            var fecha = $('#birthday').val().split('-');
+    
+            var CURP = [];
+            CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
+            for (let i = 1; i < $("#lastNameMec").val().length; i++) {
+                if($("#lastNameMec").val().charAt(i).match(/[aeiou]/gi)){
+                    CURP[1] = $("#lastNameMec").val().charAt(i).toUpperCase();
+                    break;    
+                }
+            }
+            CURP[2] = $("#secondLastNameMec").val().charAt(0).toUpperCase();
+            CURP[3] = $("#nameMec").val().charAt(0).toUpperCase();
+            CURP[4] = fecha[0].slice(2);//year
+            CURP[5] = fecha[1];//mont
+            CURP[6] = fecha[2];//day
+    
+            $('#rfcMec').val(CURP.join("").toString());
+            
+        })
+    </script>
