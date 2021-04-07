@@ -26,7 +26,7 @@
               <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
 
-            <form id="ownerForm" method="POST" action="{{route('customer.update')}}">
+            <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email" required>
+                        <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                        <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">

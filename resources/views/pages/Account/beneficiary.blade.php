@@ -57,7 +57,7 @@
                             </div>-->
 
 
-                            <form method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
+                            <form autocomplete="off" method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
                                 @csrf
                                 <div id="beneficiaryParent">
 

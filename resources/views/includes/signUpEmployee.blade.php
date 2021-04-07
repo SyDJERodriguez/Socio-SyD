@@ -12,7 +12,7 @@
                 </div>
                 <br>
                 <br>
-                <form method="POST" action="{{route('customer.addEmployee')}}">
+                <form autocomplete="off" method="POST" action="{{route('customer.addEmployee')}}">
                     @method("PUT")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
@@ -62,6 +62,7 @@
                             <div class="col-6">
                                 <input class="form-control-sm form-control" 
                                         type="email"
+                                        autocomplete="new-password"
                                         name="email"
                                         placeholder="CORREO ELECTRÓNICO"
                                         required>

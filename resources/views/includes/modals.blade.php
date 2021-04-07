@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text" name="email"
+                                <input autocomplete="new-password" class="form-control-sm form-control" type="text" name="email"
                                        placeholder="CORREO ELECTRÓNICO" required>
 
                             </div>
@@ -194,7 +194,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input class="form-control-sm form-control" type="text" name="email"
+                                <input autocomplete="new-password" class="form-control-sm form-control" type="text" name="email"
                                        placeholder="CORREO ELECTRÓNICO" required>
                             </div>
                         </div>
