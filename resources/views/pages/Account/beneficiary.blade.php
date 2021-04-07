@@ -154,7 +154,6 @@
                     </div>
 
                 </div>
-                @include('includes.Account.deleteButton')
             </div>
 
         </div>

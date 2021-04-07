@@ -79,7 +79,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR, POR FAVOR INTENTE DE NUEVO!</p>
+                        <p class="text-white">¡HA OCURRIDO UN ERROR! POR FAVOR INTENTE DE NUEVO</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR EN EL SERVIDOR</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR EN EL SERVIDOR, POR FAVOR INTENTE MÁS TARDE!</p>
+                        <p class="text-white">¡HA OCURRIDO UN ERROR EN EL SERVIDOR! POR FAVOR INTENTE MÁS TARDE.</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>

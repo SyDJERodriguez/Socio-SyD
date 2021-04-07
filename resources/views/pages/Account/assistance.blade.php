@@ -65,7 +65,7 @@
         @endif
     </div>
   </form>
-     @include('includes.Account.deleteButton')
+     
  </div>
     </div>
 </div>

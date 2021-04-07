@@ -84,9 +84,6 @@
             </p>
          </span>
           </div>
-          <div class="col-md-12">
-          @include('includes.Account.deleteButton')
-          </div>
       </div>
    </div>
    <br><br><br><br>
