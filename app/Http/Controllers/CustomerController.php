@@ -1202,9 +1202,9 @@ class CustomerController extends Controller
 
     //Contact form
     public function contact_us(Request $request){
-        $SYD_EMAILS = ["equezada@syd.com.mx",
+        $SYD_EMAILS = ["rguerrero@syd.com.mx",
                      "nebratt@syd.com.mx",
-                     "Ecommerce@syd.com.mx"];
+                     "ecommerce@syd.com.mx"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
