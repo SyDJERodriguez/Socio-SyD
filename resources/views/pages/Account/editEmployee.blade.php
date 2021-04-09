@@ -66,6 +66,7 @@
                                         autocomplete="new-password"
                                         name="email"
                                         value="{{$employee->email}}"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         required>
 
                             </div>

@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="CORREO ELECTRÓNICO" required>
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"
