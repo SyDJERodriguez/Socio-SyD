@@ -307,7 +307,7 @@
                                 <div style="width: 99%;padding: 8px;" >
                                     <p >
                                         <a href="https://www.refaccionarias-dar.com/"  class="btn btn-primary btn-sm btn-block" >
-                                        Ir a Refaccionarias DAR
+                                        Comprar aquí
                                         </a>
                                     </p>
                                   </div>

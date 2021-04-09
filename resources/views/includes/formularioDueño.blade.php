@@ -34,6 +34,11 @@
                         <h6>Datos personales</h6>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
+                        name="client_number" maxlength="8" required pattern="[0-9]{8}">
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="namePro" name="name" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -45,16 +50,16 @@
                         <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <label for="birthday" class="py-1 labelgre">FECHA DE NACIMIENTO</label>
-                        <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
                 </div>
                 <div class="row">
                    
                 </div>
                 <div class="row">
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <label for="birthday" class="py-1 labelgre">FECHA DE NACIMIENTO</label>
+                        <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control" name="gender" required>
                             <option>GÉNERO</option>
@@ -68,26 +73,18 @@
                         name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                </div>
-                <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRONICO" 
                         id="emailPro" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
-                        name="client_number" maxlength="8" required pattern="[0-9]{8}">
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
-                    
-                    <div class="col-lg-12 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
-                        <p style="color: red; margin: 0;visibility:hidden">*</p>
-                    </div>
                 </div>
                 
                 <div class="row ">
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                         <p style="color: red; margin: 0;">*</p>
@@ -118,6 +115,10 @@
                             <option value="5">MAYORISTA</option>
                             <option value="6">OTRO</option>
                         </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C COMPANY" id="RFC_company" name="RFC_company">
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                 </div>
