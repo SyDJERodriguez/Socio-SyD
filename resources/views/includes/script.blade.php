@@ -25,7 +25,8 @@
                     success: function (data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
-                            document.getElementById("form_alert").innerHTML='El número de cliente no se encuentra en la base de datos. ';
+                            document.getElementById("form_alert")
+                            .innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
                         }
