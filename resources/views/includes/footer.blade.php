@@ -19,7 +19,7 @@
                   <p><i class="fas fa-exclamation-triangle"></i>
                      <a href="#" class="primary-color" style="color:white; padding-left: 5px;" 
                      data-toggle="modal" data-target="#modalDelete">
-                     Desactivar mi cuenta
+                     Desuscribirme
                     </a>
                   </p>
                 @endif

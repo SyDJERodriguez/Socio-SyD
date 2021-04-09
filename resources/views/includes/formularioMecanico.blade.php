@@ -61,12 +61,10 @@
                             name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-12 py-2" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="R.F.C" id="rfcMec" name="rfc">
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control" name="gender" required>
                             <option>GÉNERO</option>
@@ -75,16 +73,18 @@
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                </div>
-                <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+                </div>
+                <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
