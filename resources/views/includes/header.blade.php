@@ -352,8 +352,3 @@ padding-bottom: 14px;">
 @include('includes.notifications')
 @endif
 
-<script>
-    function irAbajo() {
-        console.log("hola");
-    }
-</script>
