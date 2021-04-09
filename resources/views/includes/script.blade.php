@@ -85,7 +85,8 @@
                     success: function (data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
-                            document.getElementById("form_alert_mec").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_mec")
+                            .innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                         }
