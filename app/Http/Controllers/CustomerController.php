@@ -353,7 +353,8 @@ class CustomerController extends Controller
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : ''
+                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
         }
 
@@ -370,7 +371,8 @@ class CustomerController extends Controller
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : ''
+                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
 
             //create data in notifications table
