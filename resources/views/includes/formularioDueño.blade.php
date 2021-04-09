@@ -118,7 +118,7 @@
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C COMPANY" id="RFC_company" name="RFC_company">
+                        <input type="text" class="form-control" placeholder="R.F.C COMPANY" id="RFC_Company" name="RFC_Company">
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                 </div>
