@@ -355,8 +355,7 @@ class CustomerController extends Controller
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
-                'collector_id'     => 6
-                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
         }
@@ -375,8 +374,7 @@ class CustomerController extends Controller
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
-                'collector_id'     => 6
-                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
 
