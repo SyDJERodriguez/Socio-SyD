@@ -15,6 +15,14 @@
                 <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">
                   sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
+                @if (Auth::check())
+                  <p><i class="fas fa-exclamation-triangle"></i>
+                     <a href="#" class="primary-color" style="color:white; padding-left: 5px;" 
+                     data-toggle="modal" data-target="#modalDelete">
+                     Desuscribirme
+                    </a>
+                  </p>
+                @endif
             </div>
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Consulta </h4>
@@ -51,6 +59,8 @@
             </div>
         </div>
     </div>
+    {{-- Modal Deactivate account --}}
+    @include('includes.Account.deleteButton')
 
      <!-- Modal Contact-->
      <div class="modal fade rounded-0" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="modalContacto" aria-hidden="true">
@@ -97,7 +107,7 @@
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="CORREO ELECTRÓNICO" required>
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"

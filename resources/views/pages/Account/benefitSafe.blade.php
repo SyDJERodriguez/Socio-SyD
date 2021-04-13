@@ -24,7 +24,7 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8" class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PERDIDA ORGANICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
+                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"> <img data-toggle="modal" data-target="#modal8" class="py-2"  
@@ -43,7 +43,7 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img data-toggle="modal" data-target="#modal8"class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MEDICOS  <br>  
+                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
                             <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
                     </strong></h6>
                 </div>
@@ -67,7 +67,6 @@
           @endif
           </div>
        <!-- </form>-->
-          @include('includes.Account.deleteButton')
       </div>
   </div>
 </div>

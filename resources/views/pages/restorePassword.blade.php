@@ -39,7 +39,7 @@
                     <div class="row ">
                         <div class="col-lg-12 py-3" style="width: 400px !important;">
                             <label for="password">NUEVA CONTRASEÑA:</label>
-                            <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                            <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                             <input type="hidden" value="{{$client_number}}" name="client_number">
                         </div>
                     </div>
