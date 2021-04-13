@@ -27,7 +27,7 @@
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>"><span> - Registro de beneficiarios</span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
-            <a href="{{route('customer.benefits.signature')}}" class="<?php if($active === 3 ){echo 'active_sb';}?>"><span>- Firma electrónica</span></a>
+            <a href="{{route('customer.benefits.signature')}}" class="<?php if($active === 3 ){echo 'active_sb';}?>"><span>- Firma digital</span></a>
         </div>
         <a href="tel:8000874598" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
