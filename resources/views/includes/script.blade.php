@@ -30,14 +30,14 @@
                             document.getElementById("form_alert").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
                         }
-                        $('input[id=namePro]').val(data['name']);
+                        /*$('input[id=namePro]').val(data['name']);
                         $('input[id=lastNamePro]').val(data['last_name']);
                         $('input[id=secondLastNamePro]').val(data['second_last_name']);
                         $('input[id=mobilePro]').val(data['mobile_number']);
                         $('input[id=emailPro]').val(data['email']);
                         $('input[id=companyPro]').val(data['company']);
                         $('input[id=rfc]').val(data['rfc']);
-                        $('input[id=birthday]').val(data['birthday']);
+                        $('input[id=birthday]').val(data['birthday']);*/
                     },
                     error: function(error){
                         console.log(error);
@@ -60,12 +60,12 @@
                             document.getElementById("form_alert_cnt").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                             document.getElementById("form_alert_cnt").removeAttribute("hidden");
                         }
-                        $('input[id=nameCNT]').val(data['name']);
+                        /*$('input[id=nameCNT]').val(data['name']);
                         $('input[id=lastNameCNT]').val(data['last_name']);
                         $('input[id=secondLastNameCNT]').val(data['second_last_name']);
                         $('input[id=mobileCNT]').val(data['mobile_number']);
                         $('input[id=emailCNT]').val(data['email']);
-                        $('input[id=birthdayCNT]').val(data['birthday']);
+                        $('input[id=birthdayCNT]').val(data['birthday']);*/
                     },
                     error: function(error){
                         console.log(error);
@@ -90,12 +90,12 @@
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                         }
-                        $('input[id=nameMec]').val(data['name']);
+                        /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
                         $('input[id=secondLastNameMec]').val(data['second_last_name']);
                         $('input[id=mobileMec]').val(data['mobile_number']);
                         $('input[id=emailMec]').val(data['email']);
-                        $('input[id=birthday]').val(data['birthday']);
+                        $('input[id=birthday]').val(data['birthday']);*/
                     },
                     error: function(error){
                         console.log(error);

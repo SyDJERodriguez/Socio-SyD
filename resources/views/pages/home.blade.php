@@ -147,13 +147,13 @@
         </div>
         <div class="container-fluid">
             <div class="row blue-dark py-5 m-0">
-                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalBenefits">
+                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalSeguros">
                     <img src="{{asset('img/segor.png')}}" class="pb-4" alt="">
                     <h5 class="text-white mt-2"><strong>SEGURO DE ACCIDENTES<br>
                             PERSONALES</strong></h5>
                     <p>Hasta $50,000 pesos<br>por muerte accidental.</p>
                 </div>
-                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalBenefits">
+                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalAsistencias">
                     <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
                     <h5 class="text-white"><strong>SERVICIOS<br>
                         DE ASISTENCIA</strong></h5>
