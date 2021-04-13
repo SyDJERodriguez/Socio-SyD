@@ -1,9 +1,9 @@
-<div class="row">
+{{-- <div class="row">
     <div class="col-lg-12 py-2 float-right">
             <a href="#" class="btn btn-outline-dark btn-sm float-right" style="background-color: #bfbfbf"
                data-toggle="modal" data-target="#modalDelete">ELIMINAR MI CUENTA</a>
     </div>
-</div>
+</div> --}}
 
 <!-- Modal DEACTIVATE-->
 <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDelete"
@@ -64,7 +64,7 @@
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                 <div>
                     <h5 class="text-white"><b>AL HACER CLICK EN ACEPTAR, CONFIRMAS QUE:<br>
-                    ESTAS CONSCIENTE DE QUE PERDERAS TUS BENEFICIOS DE SEGURO Y ASISTENCIAS.</b></h5>
+                    ESTAS CONSCIENTE DE QUE PERDERÁS TUS BENEFICIOS DE SEGURO Y ASISTENCIAS.</b></h5>
                 </div>
                 <div class="row">
                 

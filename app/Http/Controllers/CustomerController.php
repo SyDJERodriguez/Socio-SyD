@@ -114,7 +114,8 @@ class CustomerController extends Controller
             'email'            => $request['email'], //This is for customers_session table too
             'mobile_number'    => $request['mobile'],
             'birthday'         => $request['birthday'],
-            'gender'           => isset($request['gender']) ? $request['gender'] : ''
+            'gender'           => isset($request['gender']) ? $request['gender'] : '',
+            'collector_id'     => 6
         ]);
 
         //create data in notifications table
@@ -353,7 +354,9 @@ class CustomerController extends Controller
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : ''
+                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
         }
 
@@ -370,7 +373,9 @@ class CustomerController extends Controller
                 'birthday'         => $request['birthday'],
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : ''
+                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
             ]);
 
             //create data in notifications table

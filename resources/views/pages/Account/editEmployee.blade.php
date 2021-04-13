@@ -10,7 +10,7 @@
             <div style="margin-left: 15px !important;">
                 <h4>Editar empleado</h4>
                 <br>
-                <form method="POST" action="{{route('customer.updateEmployee')}}">
+                <form autocomplete="off" method="POST" action="{{route('customer.updateEmployee')}}">
                     @method("POST")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
@@ -63,8 +63,10 @@
                             <div class="col-6">
                                 <input class="form-control-sm form-control" 
                                         type="email"
+                                        autocomplete="new-password"
                                         name="email"
                                         value="{{$employee->email}}"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         required>
 
                             </div>

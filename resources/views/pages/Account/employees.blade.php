@@ -90,7 +90,7 @@
         </div>
     </div>
     <br>
-    @include('includes.Account.deleteButton')
+
     @include('includes.signUpEmployee')
 
     <br><br><br><br>

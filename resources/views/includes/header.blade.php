@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn-sm p-0 adios"
+                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
                                     style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
                                     ¡REGÍSTRATE!
                                     </a>
@@ -352,8 +352,3 @@ padding-bottom: 14px;">
 @include('includes.notifications')
 @endif
 
-<script>
-    function irAbajo() {
-        console.log("hola");
-    }
-</script>
