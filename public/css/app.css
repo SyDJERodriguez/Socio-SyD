@@ -4,6 +4,10 @@ p, .noClas, ol{
     font-weight: normal;
 }
 
+a.btnComprar:hover{
+    background-color: #00A1E3;
+}
+
 /* header style */
 
 .whatsapp{

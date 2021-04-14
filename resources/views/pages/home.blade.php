@@ -303,14 +303,10 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <div style="width: 99%;padding: 8px;" >
-                                    <p >
-                                        <a href="https://www.refaccionarias-dar.com/"  class="btn btn-primary btn-sm btn-block" >
-                                        Comprar aquí
-                                        </a>
-                                    </p>
-                                  </div>
+                            <div style="padding: 10px 0px;" >
+                                    <a href="https://www.refaccionarias-dar.com/"  class="btn btn btn-sm btn-block btnComprar" style="background-color: #00A1E3;color:#FFF">
+                                    Comprar aquí
+                                    </a>
                             </div>
 
                         </div>
