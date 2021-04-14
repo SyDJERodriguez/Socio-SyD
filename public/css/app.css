@@ -5,7 +5,10 @@ p, .noClas, ol{
 }
 
 a.btnComprar:hover{
-    background-color: #00A1E3;
+    background-color: #00A1E3
+}
+a.btnExitNo:hover{
+    color: #00A1E3;
 }
 
 /* header style */
@@ -733,7 +736,7 @@ canvas {
 }
 
 .btn:hover {
-    color: white !important;
+    color: white;
     text-decoration: none;
 }
 
