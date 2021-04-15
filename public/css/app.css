@@ -11,6 +11,18 @@ a.btnExitNo:hover{
     color: #00A1E3;
 }
 
+.mapIcon{
+    position: relative;
+    left:5%;
+    padding-top: 1%;
+    text-align:center
+}
+
+.darTitle{
+    color:#00A1E3;
+    font-weight: bold;
+}
+
 /* header style */
 
 .whatsapp{

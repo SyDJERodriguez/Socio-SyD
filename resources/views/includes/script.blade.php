@@ -898,7 +898,7 @@
                         $(".item_direccion.sucursal").html(suc_direccion);
 
                         horarios= sucursales[i]['horario'].split("y");
-                        suc_horario='<p>'+horarios[0]+'</p> <p>'+horarios[1]+'</p> ';
+                        suc_horario='<p>'+horarios[0].toLowerCase()+'</p> <p>'+horarios[1].toLowerCase()+'</p> ';
                         $(".item_horario.sucursal").html(suc_horario);
 
                         telefonos= sucursales[i]['tel'].split("y");
