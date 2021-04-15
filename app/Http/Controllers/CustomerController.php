@@ -115,6 +115,7 @@ class CustomerController extends Controller
             'mobile_number'    => $request['mobile'],
             'birthday'         => $request['birthday'],
             'gender'           => isset($request['gender']) ? $request['gender'] : '',
+            'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
             'collector_id'     => 6
         ]);
 
