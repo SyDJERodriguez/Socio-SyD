@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary" style="background-color: #009CE0;border:0px">ACEPTAR</button>
+                                <button type="submit" class="btn btn" style="background-color: #009CE0;border:0px;color: #FFF">ACEPTAR</button>
                             </div>
                         </div>
                     </div>

@@ -47,7 +47,7 @@
                                                     </div>
 
                                                 </div>
-                                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                <button type="submit" class="btn btn btn-user btn-block" style="background-color: #00A1E3;color: #FFF;">
                                                     Ingresar
                                                 </button>
                                                 <hr>

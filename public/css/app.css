@@ -4,6 +4,25 @@ p, .noClas, ol{
     font-weight: normal;
 }
 
+a.btnComprar:hover{
+    background-color: #00A1E3
+}
+a.btnExitNo:hover{
+    color: #00A1E3;
+}
+
+.mapIcon{
+    position: relative;
+    left:5%;
+    padding-top: 1%;
+    text-align:center
+}
+
+.darTitle{
+    color:#00A1E3;
+    font-weight: bold;
+}
+
 /* header style */
 
 .whatsapp{
@@ -729,7 +748,7 @@ canvas {
 }
 
 .btn:hover {
-    color: white !important;
+    color: white;
     text-decoration: none;
 }
 

@@ -248,70 +248,78 @@
 
                         <div class="our-branches__content-address-location-result">
                             <div class="our-branches__content-address-location-title--wrapper">
-                                <p class="our-branches__content-address-location-title sucursal"> DAR Santa Elena: </p>
+                                <p class="our-branches__content-address-location-title sucursal darTitle"> 
+                                    DAR Santa Elena: 
+                                </p>
                             </div>
 
-                            <div class="our-branches__content-address-location-result-item">
-                                <svg aria-hidden="true" width="30" height="35" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#00A1E3" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
-                               <!-- <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_GPS.png')}}">-->
-                                <div class="our-branches__content-address-location-result-item-body item_direccion sucursal" style="padding-left: 15px">
-                                    <p>Av. de los Maestros #804, Fracc. Jardines de Sta. Elena</p>
-                                    <p>C.P. 20236, Aguascalientes, Aguascalientes</p>
+                            <div class="row">
+                                <div class="col-2 mapIcon">
+                                    <svg aria-hidden="true"  width="30" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#00A1E3" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                            </div>
-
-                            <div class="our-branches__content-address-location-result-item">
-                                <svg aria-hidden="true"  width="30" focusable="false" data-prefix="far" data-icon="clock" class="svg-inline--fa fa-clock fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>
-                                <!--<img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_HORARIO.png')}}">-->
-                                <div class="our-branches__content-address-location-result-item-body item_horario sucursal" style="padding-left: 15px">
-                                    <p> LUNES A VIERNES DE 9:00 AM A 7:00 PM </p>
-                                    <p> SÁBADO DE 9:00 AM A 5:00 PM. </p>
+                                <div class="col-9" >
+                                    <div class="our-branches__content-address-location-result-item-body item_direccion sucursal text-wrap" style="padding-left: 15px">
+                                        <div class="text-wrap">
+                                            Av. de los Maestros #804, Fracc. Jardines de Sta. 
+                                            Elena C.P. 20236, Aguascalientes, Aguascalientes.
+                                        </div>
+                                    </div>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                            </div>
 
-                            <div class="our-branches__content-address-location-result-item">
-                                <svg aria-hidden="true" width="30" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
-                                <!--<img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_TELEFONO.png')}}">-->
-                                <div class="our-branches__content-address-location-result-item-body item_tel sucursal" style="padding-left: 15px">
-                                    <p> Tel: 01(449) 140-5442 </p>
-                                    <p> Tel: 01(449) 978-1196 </p>
+                                <div class="col-2 mapIcon">
+                                    <svg aria-hidden="true"  width="30" focusable="false" data-prefix="far" data-icon="clock" class="svg-inline--fa fa-clock fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                            </div>
-
-                            <div class="our-branches__content-address-location-result-item">
-                                <svg aria-hidden="true" width="30" focusable="false" data-prefix="fab" data-icon="whatsapp" class="svg-inline--fa fa-whatsapp fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#00A1E3" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
-                                <!--<img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_WHATSAPP.png')}}">-->
-                                <div class="our-branches__content-address-location-result-item-body item_whats sucursal" style="padding-left: 15px">
-                                    <p> 55-1016-8974<br></p>
+                                <div class="col-9">
+                                    <div class="our-branches__content-address-location-result-item-body item_horario sucursal" style="padding-left: 15px;text-transform:capitalize">
+                                        <div class="text-wrap">
+                                            <p> 
+                                                Lunes A Viernes De 9:00 Am A 7:00 Pm
+                                                <br> Sábado De 9:00 Am A 5:00 Pm.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="our-branches__content-address-location-result-item">
-                                <svg aria-hidden="true" width="30" focusable="false" data-prefix="fab" data-icon="car" class="svg-inline--fa fa-whatsapp fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#00A1E3" d="M23.5 7c.276 0 .5.224.5.5v.511c0 .793-.926.989-1.616.989l-1.086-2h2.202zm-1.441 3.506c.639 1.186.946 2.252.946 3.666 0 1.37-.397 2.533-1.005 3.981v1.847c0 .552-.448 1-1 1h-1.5c-.552 0-1-.448-1-1v-1h-13v1c0 .552-.448 1-1 1h-1.5c-.552 0-1-.448-1-1v-1.847c-.608-1.448-1.005-2.611-1.005-3.981 0-1.414.307-2.48.946-3.666.829-1.537 1.851-3.453 2.93-5.252.828-1.382 1.262-1.707 2.278-1.889 1.532-.275 2.918-.365 4.851-.365s3.319.09 4.851.365c1.016.182 1.45.507 2.278 1.889 1.079 1.799 2.101 3.715 2.93 5.252zm-16.059 2.994c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5zm10 1c0-.276-.224-.5-.5-.5h-7c-.276 0-.5.224-.5.5s.224.5.5.5h7c.276 0 .5-.224.5-.5zm2.941-5.527s-.74-1.826-1.631-3.142c-.202-.298-.515-.502-.869-.566-1.511-.272-2.835-.359-4.441-.359s-2.93.087-4.441.359c-.354.063-.667.267-.869.566-.891 1.315-1.631 3.142-1.631 3.142 1.64.313 4.309.497 6.941.497s5.301-.184 6.941-.497zm2.059 4.527c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5zm-18.298-6.5h-2.202c-.276 0-.5.224-.5.5v.511c0 .793.926.989 1.616.989l1.086-2z"/></svg>
-                                {{-- <img class="our-branches__content-address-location-result-item-img" src="{{asset('img/mapa/ICONO_TALLER.png')}}"> --}}
-                                <div class="our-branches__content-address-location-result-item-body item_servicio sucursal" >
-                                    <p> &nbsp; &nbsp;Contamos con servicio de taller. <br></p>
+                                <div class="col-2 mapIcon">
+                                    <svg aria-hidden="true" width="30" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
                                 </div>
-                            </div>
+                                <div class="col-9">
+                                    <div class="our-branches__content-address-location-result-item-body item_tel sucursal text-wrap" style="padding-left: 15px;">
+                                        <p> Tel: 01(449) 140-5442 <br> Tel: 01(449) 978-1196 </p>
+                                    </div>
+                                </div>
 
-                            <div>
-                                <div style="width: 99%;padding: 8px;" >
-                                    <p >
-                                        <a href="https://www.refaccionarias-dar.com/"  class="btn btn-primary btn-sm btn-block" >
-                                        Comprar aquí
-                                        </a>
-                                    </p>
-                                  </div>
-                            </div>
+                                <div class="col-2 mapIcon">
+                                    <svg aria-hidden="true" width="30" focusable="false" data-prefix="fab" data-icon="whatsapp" class="svg-inline--fa fa-whatsapp fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#00A1E3" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+                                </div>
+                                <div class="col-9 py-1">
+                                    <div class="our-branches__content-address-location-result-item-body item_whats sucursal text-wrap" style="padding-left: 15px">
+                                        <p> 55-1016-8974<br></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-2 py-1 mapIcon">
+                                    <div class="our-branches__content-address-location-result-item-body item_servicio sucursal">
+                                        <svg aria-hidden="true" width="30" focusable="false" data-prefix="fab" data-icon="car" class="svg-inline--fa fa-whatsapp fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#00A1E3" d="M23.5 7c.276 0 .5.224.5.5v.511c0 .793-.926.989-1.616.989l-1.086-2h2.202zm-1.441 3.506c.639 1.186.946 2.252.946 3.666 0 1.37-.397 2.533-1.005 3.981v1.847c0 .552-.448 1-1 1h-1.5c-.552 0-1-.448-1-1v-1h-13v1c0 .552-.448 1-1 1h-1.5c-.552 0-1-.448-1-1v-1.847c-.608-1.448-1.005-2.611-1.005-3.981 0-1.414.307-2.48.946-3.666.829-1.537 1.851-3.453 2.93-5.252.828-1.382 1.262-1.707 2.278-1.889 1.532-.275 2.918-.365 4.851-.365s3.319.09 4.851.365c1.016.182 1.45.507 2.278 1.889 1.079 1.799 2.101 3.715 2.93 5.252zm-16.059 2.994c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5zm10 1c0-.276-.224-.5-.5-.5h-7c-.276 0-.5.224-.5.5s.224.5.5.5h7c.276 0 .5-.224.5-.5zm2.941-5.527s-.74-1.826-1.631-3.142c-.202-.298-.515-.502-.869-.566-1.511-.272-2.835-.359-4.441-.359s-2.93.087-4.441.359c-.354.063-.667.267-.869.566-.891 1.315-1.631 3.142-1.631 3.142 1.64.313 4.309.497 6.941.497s5.301-.184 6.941-.497zm2.059 4.527c0-.828-.672-1.5-1.5-1.5s-1.5.672-1.5 1.5.672 1.5 1.5 1.5 1.5-.672 1.5-1.5zm-18.298-6.5h-2.202c-.276 0-.5.224-.5.5v.511c0 .793.926.989 1.616.989l1.086-2z"/></svg>
+                                    </div>
+                                </div>
+                                <div class="col-9 py-1">
+                                    <div class="our-branches__content-address-location-result-item-body item_servicio sucursal text-wrap" style="padding-left: 15px;" >
+                                        <p>Contamos con servicio de taller. <br></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-10 offset-1 py-2" 
+                                style="right: 5px;">
+                                    <div >
+                                        <a href="https://www.refaccionarias-dar.com/"  class="btn btn btn-sm btn-block btnComprar" style="background-color: #00A1E3;color:#FFF">
+                                            Compra aquí
+                                            </a>
+                                    </div>
+                                </div>
+
+                                {{-- fin ROw --}}
+                            </div>   
 
                         </div>
 
