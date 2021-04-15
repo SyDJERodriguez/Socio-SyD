@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-              <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger alert-dismissible" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
               </div>
               <div class="alert alert-danger" id="form_alert_email" role="alert" style="border-radius: 6px;" hidden>
               </div>

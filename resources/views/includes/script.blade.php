@@ -26,9 +26,9 @@
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert")
-                            .innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
+                            .innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button> Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
                             document.getElementById("form_alert").removeAttribute("hidden");
-                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                            /*setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);*/
                         }
                         /*$('input[id=namePro]').val(data['name']);
                         $('input[id=lastNamePro]').val(data['last_name']);
@@ -57,7 +57,7 @@
                     success: function (data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
-                            document.getElementById("form_alert_cnt").innerHTML='El número de cliente no se encuentra en la base de datos. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt").innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button> El número de cliente no se encuentra en la base de datos.';
                             document.getElementById("form_alert_cnt").removeAttribute("hidden");
                         }
                         /*$('input[id=nameCNT]').val(data['name']);
@@ -86,9 +86,9 @@
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert_mec")
-                            .innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR. <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            .innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
-                            setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                            /*setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);*/
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
