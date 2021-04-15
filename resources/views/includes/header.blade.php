@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn-sm p-0 adios"
+                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
                                     style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
                                     ¡REGÍSTRATE!
                                     </a>
@@ -114,21 +114,19 @@
                 </div>
                 <div class="modal-body blue-dark">
                     <div>
-                        <br>
-                        <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS SALIR?</b></h5>
+                        <div>
+                            <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS SALIR?</b></h5>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-9 py-2 text-center">
                             <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                         <div class="col-lg-3 py2 text-center">
-                            <a href="#" class="text-white btn btn btn-sm my-2" onclick="event.preventDefault();
+                            <a href="#" class="text-white btn btn bg-primary btn-sm my-2" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
-                                style="padding-left: 40px;padding-right: 40px;background-color: #00A1E3;color:#FFF">SI</a>
-                                <br>
-                            {{-- <input type="button" value="NO" class="btn btn btnExitNo" data-dismiss="modal"
-                                style="padding-left: 35px;padding-right:35px;background-color: #FFF;color:#00A1E3"> --}}
-                            <a href="#" class="btn btn btn-sm btnExitNo" data-dismiss="modal"
-                            style="padding-left: 35px;padding-right:35px;background-color: #FFF;color:#00A1E3">NO</a>
+                                style="padding-left: 40px;padding-right: 40px;">SI</a><br>
+                            <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal"
+                                style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
                             <form id="logout-form" action="{{ route('customer.logout') }}" method="POST"
                                 style="display: none;">
                                 @csrf
