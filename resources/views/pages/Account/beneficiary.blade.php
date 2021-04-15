@@ -35,7 +35,7 @@
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
                                         <h5 class="text-white">¡TUS BENEFICIARIOS YA HAN SIDO REGISTRADOS!</h5>
-                                        <a href="{{route('customer.myDocuments')}}" class="btn btn-primary">VER CERTIFICADO</a>
+                                        <a href="{{route('customer.myDocuments')}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
                                         <p class="text-white"></p>
                                     </div>
                                 </div>

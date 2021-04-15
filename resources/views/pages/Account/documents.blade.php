@@ -17,7 +17,7 @@
                     Cuenta: Individual
                 @endif
             </h6>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#survey">Nos interesa tu opinión</a>
+              <a href="#" class="btn btn" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal" data-target="#survey">Nos interesa tu opinión</a>
             <hr>
          </div>
             <div>

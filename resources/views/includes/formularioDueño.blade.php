@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-              <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger alert-dismissible" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
               </div>
               <div class="alert alert-danger" id="form_alert_email" role="alert" style="border-radius: 6px;" hidden>
               </div>
@@ -30,8 +30,8 @@
                 @method('PUT')
                 @csrf
                 <div class="row">
-                    <div class="col-lg-12 py-2" style="display: flex">
-                        <h6>Datos personales</h6>
+                    <div class="col-lg-12 py-2" style="display: flex;">
+                        <h6 style="padding-left: 1px">Datos personales</h6>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
@@ -55,12 +55,12 @@
                    
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <label for="birthday" class="py-1 labelgre">FECHA DE NACIMIENTO</label>
+                    <div class="col-lg-6 py-3" style="display: flex">
+                        <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
                         <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 py-3" style="display: flex">
                         <select class="form-control" name="gender" required>
                             <option>GÉNERO</option>
                             <option value="F">FEMENINO</option>
@@ -82,8 +82,8 @@
                 
                 <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
-                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
+                        <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
@@ -99,7 +99,7 @@
 
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex">
-                        <h6>Razón social</h6>
+                        <h6 style="padding-left: 1px">Razón social</h6>
                     </div>
                     <div class="col-lg-6 py-2" id="company" style="display: flex">
                         <input type="text" class="form-control" placeholder="RAZÓN SOCIAL" id="companyPro" name="company" required>

@@ -115,6 +115,7 @@ class CustomerController extends Controller
             'mobile_number'    => $request['mobile'],
             'birthday'         => $request['birthday'],
             'gender'           => isset($request['gender']) ? $request['gender'] : '',
+            'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
             'collector_id'     => 6
         ]);
 
@@ -1172,7 +1173,8 @@ class CustomerController extends Controller
     public function contact_us(Request $request){
         $SYD_EMAILS = ["rguerrero@syd.com.mx",
                      "nebratt@syd.com.mx",
-                     "ecommerce@syd.com.mx"];
+                     "ecommerce@syd.com.mx",
+                     "equezada@syd.com.mx"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
