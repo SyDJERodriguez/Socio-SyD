@@ -31,7 +31,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex;">
-                        <h6 style="padding-left: 4px">Datos personales</h6>
+                        <h6 style="padding-left: 1px">Datos personales</h6>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
@@ -99,7 +99,7 @@
 
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex">
-                        <h6 style="padding-left: 4px">Razón social</h6>
+                        <h6 style="padding-left: 1px">Razón social</h6>
                     </div>
                     <div class="col-lg-6 py-2" id="company" style="display: flex">
                         <input type="text" class="form-control" placeholder="RAZÓN SOCIAL" id="companyPro" name="company" required>
