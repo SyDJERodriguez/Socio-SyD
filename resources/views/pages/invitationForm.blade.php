@@ -77,7 +77,7 @@
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                     </div>
-                    <input type="hidden" id="client_type" name="client_type" value="2">
+                    <input type="hidden" id="client_type" name="client_type" value="3">
                     <div class="modal-footer border-top-0">
                         <div class="form-check form-check-inline text-right">
                                 <label class="form-check-label pr-2" for="inlineCheckbox1"  
