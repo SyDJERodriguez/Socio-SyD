@@ -63,7 +63,7 @@
                         <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div>
                 @elseif($level === 'plata')
-                    <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;" data-toggle="modal" data-target="#modalTerms">
+                    <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
                         <h6 style="color: #c4c4c4;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div>
                 @endif
@@ -82,7 +82,7 @@
         @endif
     </div>
   </form>
-     
+
  </div>
     </div>
 </div>
