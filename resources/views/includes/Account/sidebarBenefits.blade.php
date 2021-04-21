@@ -43,11 +43,11 @@
     <div class="collapse show" id="collapseExample2">
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits.assistance')}}" 
-            class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia: 
+            class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia
                 @if ($level === 'Oro')
-                    Oro
+                Oro
                 @else
-                    Plata
+                Plata
                 @endif    
             </span></a>
 
