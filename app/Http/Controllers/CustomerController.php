@@ -821,7 +821,45 @@ class CustomerController extends Controller
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
-        return view('pages.Account.signature', compact('data', 'imgData','total','noti'));
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+        }
+
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $level = 1;
+            }
+            if ($totalAmount>4500 && $totalAmount<=7000) {
+                $level = 2;
+            }
+            if ($totalAmount>7000) {
+                $level = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($totalAmount>200 && $totalAmount<=500) {
+                $level = 1;
+            }
+            if ($totalAmount>500 && $totalAmount<=1300) {
+                $level = 2;
+            }
+            if ($totalAmount>1300) {
+                $level = 3;
+            }
+        }
+
+        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level'));
     }
 
     //Create signature
@@ -842,6 +880,43 @@ class CustomerController extends Controller
 
             if($response['success']){
                 if($response['score'] && $response['score'] > 0.5){*/
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->get();
+        $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+        }
+
+        $level = 0;
+        if (Auth::user()->client_type === "1"){
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $level = 1;
+            }
+            if ($totalAmount>4500 && $totalAmount<=7000) {
+                $level = 2;
+            }
+            if ($totalAmount>7000) {
+                $level = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"){
+            if ($totalAmount>200 && $totalAmount<=500) {
+                $level = 1;
+            }
+            if ($totalAmount>500 && $totalAmount<=1300) {
+                $level = 2;
+            }
+            if ($totalAmount>1300) {
+                $level = 3;
+            }
+        }
                     //save the efirm into db
                     $user = Customer::where('client_number', Auth::user()->client_number)->first();
                     $data = DB::table('signatures')
@@ -881,7 +956,7 @@ class CustomerController extends Controller
                     }
 
                     if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
-                        return redirect()->route('customer.benefits');
+                        return redirect()->route('customer.benefits', compact('level'));
                     }
                 //}
                 //else u r a robot
