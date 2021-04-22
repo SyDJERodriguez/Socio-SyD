@@ -581,9 +581,7 @@ class CustomerController extends Controller
 
     //Show form to update password
     public function edit_password($client_number) {
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
-        return view('pages.restorePassword', compact('client_number','total','noti'));
+        return view('pages.restorePassword', compact('client_number'));
     }
 
     //Update password
@@ -634,9 +632,7 @@ class CustomerController extends Controller
 
     //Show form to change password to activate account
     public function edit_account($client_number) {
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
-        return view('pages.activateAccount', compact('client_number','total','noti'));
+        return view('pages.activateAccount', compact('client_number'));
     }
 
     //Update account to activate
