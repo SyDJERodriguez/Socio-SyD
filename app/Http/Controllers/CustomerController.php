@@ -191,7 +191,7 @@ class CustomerController extends Controller
         $query = (array)$query;//convert to array
 
         if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 1){ //check if response exist
-            return redirect()->back()->with('exist', 'the email/mobile number its already in db');   
+            return redirect()->back()->with('exist', 'the email/mobile number its already in db');
         }
 
         //calculated number in associates table
@@ -473,12 +473,12 @@ class CustomerController extends Controller
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
             'active'   => 1
         ]);
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
+        //$total = $this->totalAmount();
+        //$noti = $this->getNotifications();
 
         if ($update_customer){
             $activated = false;
-            return view('pages.activationPage', compact('activated','total','noti'));
+            return view('pages.activationPage', compact('activated'));
         }
     }
 
@@ -536,7 +536,7 @@ class CustomerController extends Controller
             ){
             //update notifications each login
             $notification = $this->updateNotifications($request->email);
-            
+
             return redirect()->route('customer.myAccount');
 
         }else{
@@ -811,7 +811,7 @@ class CustomerController extends Controller
         $query = DB::table('signatures')
                 ->where('client_number','=',$data['client_number'])
                 ->get();
-        
+
         $query = json_decode($query);
         $query = (array)$query;
         $imgData = '';
@@ -828,7 +828,7 @@ class CustomerController extends Controller
     public function efirm(Request $request){
         //define('SITE_KEY', '6Lcj42QaAAAAACUH7dgidlq-nEKhvz2crDWbUQJ5');
         //$SECRET_KEY ='6Lcj42QaAAAAAMwOwhWsYwaykqN2448EhRYRPXWP';
-        
+
         //validated with recatpcha
         //if($request['googleResponseToken']){ //if token exist
             //$googleToken = $request['googleResponseToken'];
@@ -847,10 +847,10 @@ class CustomerController extends Controller
                     $data = DB::table('signatures')
                                 ->where('client_number','=',$user['client_number'])
                                 ->get();
-            
+
                     $data = json_decode($data);
                     $data = (array)$data;
-                    
+
                     //if dont exists, insert
                     $updateCustomer= '';
                     $idSign ='';
@@ -868,9 +868,9 @@ class CustomerController extends Controller
                             $idSign = DB::table('signatures')->insertGetId([
                                 'client_number'   => $user['client_number'],
                                 'created_at'      => date('Y-m-d H:i:s'),
-                                'imgData'         => $request['imgData'] 
+                                'imgData'         => $request['imgData']
                             ]);
-                
+
                             //then update customer table,signature id
                             $updateCustomer = DB::table('customers_sessions')
                                                 ->where('client_number', '=', $user['client_number'])
@@ -879,7 +879,7 @@ class CustomerController extends Controller
                                                 ]);
                         }
                     }
-                    
+
                     if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
                         return redirect()->route('customer.benefits');
                     }
@@ -979,7 +979,7 @@ class CustomerController extends Controller
         return $data[0];
     }
 
-    //update notifications table 
+    //update notifications table
     public function updateNotifications($email){
         //get client number by email
         $data = DB::table('customers_sessions')
@@ -997,8 +997,8 @@ class CustomerController extends Controller
                                     ->update([
                                         'available' => 1
                                     ]);
-        }  
-        
+        }
+
         if($data[0]->client_type == 2 && $total > 200.02){
             $update_notifications = DB::table('notifications')
                                     ->where('client_number','=',$data[0]->client_number)
@@ -1044,7 +1044,7 @@ class CustomerController extends Controller
             ->whereMonth('transaction_date','=',$now)
             ->sum('amount');
 
-        //round the number with only 2 decimals        
+        //round the number with only 2 decimals
         $limit = (float)number_format($query,2,'.','');
         $validated = false; //var for button validated
 
