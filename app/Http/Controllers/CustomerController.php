@@ -745,7 +745,7 @@ class CustomerController extends Controller
         $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         if($beneficiaries !== null){
             $beneficiary = 'true';
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level'));
         }
 
         $signature = $signature->signature_id;
