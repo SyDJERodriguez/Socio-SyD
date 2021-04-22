@@ -44,9 +44,9 @@
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits.assistance')}}"
             class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia
-                @if ($level === 'oro')
+                @if ($level === 'oro' || $level === 3)
                 Oro
-                @else
+                @elseif($level === 'plata' || $level === 2)
                 Plata
                 @endif
             </span></a>
