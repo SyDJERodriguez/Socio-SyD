@@ -738,9 +738,12 @@ class CustomerController extends Controller
             }
         }
 
-        $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
+        $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data['id'])
+                        ->get();
         if($beneficiaries !== null){
-            $beneficiary = 'true';
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
             return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level'));
         }
 

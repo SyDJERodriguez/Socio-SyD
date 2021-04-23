@@ -13,7 +13,14 @@ class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $beneficiary = 'true';
+        $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data['id'])
+                        ->get();
+        if($beneficiaries !== null){
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
+        }
+        //$beneficiary = 'true';
         //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
         //dd($request['name'][1]);
