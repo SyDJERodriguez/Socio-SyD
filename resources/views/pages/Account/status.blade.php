@@ -21,7 +21,9 @@
       <div>
       </div>
       <div style="padding-left: 10px !important;">
-         <h5>Detalle de la cuenta</h5>
+         <h5>Detalle de la cuenta - 
+            {{ucfirst(\Carbon\Carbon::now()->formatLocalized('%B'))}}
+         </h5>
          </div>
    </div>
    <div>
