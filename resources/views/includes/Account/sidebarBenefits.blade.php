@@ -4,19 +4,14 @@
 <div class="col-lg-3 benefits_sb">
     <div style="padding-left: 10px !important;">
         <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-            No. de Cliente 
-               <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
-                  @if (Auth::user()->is_associate == 1)
-                      - {{$data->associate_number}}
-                  @endif
-               </span>
-            <br>
+           No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
             @if ((int)Auth::user()->client_type == 1)
                 Cuenta: Negocios
             @else
                 Cuenta: Individual
             @endif
-         </h6>
+        </h6>
+        <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
         <hr>
      </div>
     <br>
@@ -32,7 +27,7 @@
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>"><span> - Registro de beneficiarios</span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
-            <a href="{{route('customer.benefits.signature')}}" class="<?php if($active === 3 ){echo 'active_sb';}?>"><span>- Firma electrónica</span></a>
+            <a href="{{route('customer.benefits.signature')}}" class="<?php if($active === 3 ){echo 'active_sb';}?>"><span>- Firma digital</span></a>
         </div>
         <a href="tel:8000874598" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
@@ -47,7 +42,14 @@
     <p></p>
     <div class="collapse show" id="collapseExample2">
         <div class="card card-body border-0">
-            <a href="{{route('customer.benefits.assistance')}}" class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia</span></a>
+            <a href="{{route('customer.benefits.assistance')}}"
+            class="<?php if($active === 4 ){echo 'active_sb';}?>"><span>- Tipo de asistencia
+                @if ($level === 'oro' || $level === 3)
+                Oro
+                @elseif($level === 'plata' || $level === 2)
+                Plata
+                @endif
+            </span></a>
 
         </div>
     </div>

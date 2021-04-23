@@ -1,4 +1,4 @@
-<div class="modal fade rounded-0" id="modal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade rounded-0" id="modalCNT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg rounded-0" role="document">
         <div class="modal-content rounded-0">
           <div class="modal-header border-0 rounded-0" style="background-color: #143153;;">
@@ -10,82 +10,85 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-lg-7 pt-2 pb-5">
-                    <h2>REGISTRO MECÁNICO </h2>
+                    <h2>REGISTRO MECÁNICO CNT</h2>
                     <div class="line1">
                         <img src="{{asset('img/line2.png')}}" alt="">
                     </div>
                 </div>
             </div>
-              <div class="alert alert-danger" id="form_alert_mec" role="alert" style="border-radius: 6px;" hidden>
-              </div>
-          <div class="alert alert-danger" id="form_alert_mec_email" role="alert" style="border-radius: 6px;" hidden>
+          <div class="alert alert-danger" id="form_alert_cnt_email" role="alert" style="border-radius: 6px;" hidden>
           </div>
-              <div class="alert alert-danger" id="form_alert_mec_mobile" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_cnt_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_mec_pass" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_cnt_mobile" role="alert" style="border-radius: 6px;" hidden>
               </div>
-            <form autocomplete="off" id="mechanicForm" method="POST" action="{{route('customer.update')}}">
-                @method('PUT')
+              <div class="alert alert-danger" id="form_alert_cnt_ncnt" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+            <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" 
-                        id="client_number_mec" name="client_number" pattern="[0-9]{8}" maxlength="8"required>
+                        <input type="text" class="form-control" placeholder="NÚMERO CNT"
+                               id="cnt_number" name="cnt_number" maxlength="4" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameMec" 
+                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" 
+                        id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8">
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameCNT"
                         name="name" pattern="[a-zA-Z]{3,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO" 
-                        id="lastNameMec" name="last_name" pattern="[a-zA-Z]{3,}" required>
+                        id="lastNameCNT" name="last_name" pattern="[a-zA-Z]{3,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO" 
-                        id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z]{3,}" required>
+                        id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-Z]{3,}" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" id="mobile" style="display: flex">
+                        <input type="text" class="form-control mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
+                               id="mobileCNT" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-3" id="mobile" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" 
-                        id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
                     <div class="col-lg-6 py-3" style="display: flex">
-                        <label for="" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                        <input class="form-control" type="date" id="birthday" 
+                        <label for="genderCNT" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
+                        <input class="form-control" type="date" id="birthdayCNT"
                             name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfcMec" name="rfc" required>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <select class="form-control" name="gender" required>
+                    <div class="col-lg-6 py-3">
+                        <select class="form-control" name="gender" required id="genderCNT">
                             <option>GÉNERO</option>
                             <option value="F">FEMENINO</option>
                             <option value="M">MASCULINO</option>
                         </select>
-                        <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" 
-                        id="emailMec" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                        id="emailCNT" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfcCNT" name="rfc" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row ">
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
@@ -116,27 +119,27 @@
         </div>
       </div>
     </div>
-
     <script>
-        document.getElementById('rfcMec').addEventListener('focus',function() {
-            var rfc = document.getElementById('rfc');
-            var fecha = $('#birthday').val().split('-');
+        document.getElementById('rfcCNT').addEventListener('focus',function() {
+            console.log("hola");
+            var rfc = document.getElementById('rfcCNT');
+            var fecha = $('#birthdayCNT').val().split('-');
     
             var CURP = [];
-            CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
-            for (let i = 1; i < $("#lastNameMec").val().length; i++) {
-                if($("#lastNameMec").val().charAt(i).match(/[aeiou]/gi)){
-                    CURP[1] = $("#lastNameMec").val().charAt(i).toUpperCase();
+            CURP[0] = $("#lastNameCNT").val().charAt(0).toUpperCase();
+            for (let i = 1; i < $("#lastNameCNT").val().length; i++) {
+                if($("#lastNameCNT").val().charAt(i).match(/[aeiou]/gi)){
+                    CURP[1] = $("#lastNameCNT").val().charAt(i).toUpperCase();
                     break;    
                 }
             }
-            CURP[2] = $("#secondLastNameMec").val().charAt(0).toUpperCase();
-            CURP[3] = $("#nameMec").val().charAt(0).toUpperCase();
+            CURP[2] = $("#secondLastNameCNT").val().charAt(0).toUpperCase();
+            CURP[3] = $("#nameCNT").val().charAt(0).toUpperCase();
             CURP[4] = fecha[0].slice(2);//year
             CURP[5] = fecha[1];//mont
             CURP[6] = fecha[2];//day
     
-            $('#rfcMec').val(CURP.join("").toString());
+            $('#rfcCNT').val(CURP.join("").toString());
             
         })
     </script>

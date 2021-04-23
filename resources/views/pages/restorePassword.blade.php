@@ -5,13 +5,19 @@
 </head>
 <body>
 <!-- Header - Navbar Start -->
-<div class="container-fluid">
+<div class="container-fluid" id="oneSection">
     <!--header-->
-    <div class="row header ml-0">
-        <div class="col-lg-3 p-2 pl-4">
-            <img src="{{asset('img/logo.png')}}" width="250px" alt="">
-        </div>
-        <div class="col-lg-7 pl-6 pt-1">
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
+        <div class="col-lg-4 p-3 pl-4" id="main-logo" >
+            <div class="fondoLogo">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
+            </div>
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
@@ -39,7 +45,7 @@
                     <div class="row ">
                         <div class="col-lg-12 py-3" style="width: 400px !important;">
                             <label for="password">NUEVA CONTRASEÑA:</label>
-                            <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                            <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
                             <input type="hidden" value="{{$client_number}}" name="client_number">
                         </div>
                     </div>

@@ -5,8 +5,8 @@
 <div style="padding-left: 3rem !important;
     padding-right: 3rem !important;">
     <hr>
-    <div >
-        <div style="padding-left: 10px !important;">
+    <div class="col-md-12" style="display: flex;">
+        <div style="padding-left: 10px !important;" class="col-md-3">
             <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
                No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
                 @if ((int)Auth::user()->client_type == 1)
@@ -15,10 +15,13 @@
                     Cuenta: Individual
                 @endif
             </h6>
-            <hr>
+            <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
          </div>
+        <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
+            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.</h5>
+        </div>
     </div>
-
+    <hr>
     <div>
         <div>
             <div style="margin-left: 10px !important;">
@@ -47,17 +50,17 @@
                             <td>{{$as->email}}</td>
                             <td>{{$as->mobile_number}}</td>
                             <td>
-                                <a class="btn btn-outline-light btn-sm btn-block" 
+                                <a class="btn btn-outline-light btn-sm btn-block"
                                     href="{{ action('CustomerController@editEmployee',['user' => $as->id]) }}"
-                                    id="edit-item" 
+                                    id="edit-item"
                                     role="button">
                                     <i class="fa fa-pencil text-info"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-dark btn-sm btn-block" 
-                                        style="border: 0px" 
-                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}" 
+                                <a class="btn btn-outline-dark btn-sm btn-block"
+                                        style="border: 0px"
+                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}"
                                         role="button">
                                     <i class="fa fa-trash"></i>
                                 </a>
@@ -71,23 +74,23 @@
                        <b>Desliza hacia la derecha con el scroll inferior, para ver la tabla completa.<b>
                     </p>
                  </div>
-                 
+
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-12 col-md-3 mx-auto">
-                <button class="btn btn-block text-white btn-alta"     
-                @if ($validated == false)
+                <button class="btn btn-block text-white btn-alta"
+                @if ($validated === false)
                 disabled
                 @endif
-                style="background-color: #143153;" 
+                style="background-color: #143153;"
                 data-toggle="modal" data-target="#modalSignUpEmployee">DAR DE ALTA</button>
             </div>
         </div>
     </div>
     <br>
-    @include('includes.Account.deleteButton')
+
     @include('includes.signUpEmployee')
 
     <br><br><br><br>

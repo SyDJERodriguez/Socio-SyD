@@ -38,6 +38,11 @@ Route::put('account/update/password', 'CustomerController@update_account')->name
 Route::get('account/verify/{client_number}', 'CustomerController@verify_account')->name('verify.account');
 Route::get('account/verify/{client_number}/{mobile_number}', 'CustomerController@verify_associate')->name('verify.associate');
 
+//CNT functions
+Route::post('/registerCNT', 'CustomerController@cntRegister')->name('cnt.register');
+Route::get('/registerCNTNumbers', 'CustomerController@insertCNTNumber')->name('cnt.numbers');
+
+
 
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs

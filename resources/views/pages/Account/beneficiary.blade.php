@@ -35,12 +35,12 @@
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
                                         <h5 class="text-white">¡TUS BENEFICIARIOS YA HAN SIDO REGISTRADOS!</h5>
-                                        <a href="{{route('customer.myDocuments')}}" class="btn btn-primary">VER CERTIFICADO</a>
+                                        <a href="{{route('customer.myDocuments')}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
                                         <p class="text-white"></p>
                                     </div>
                                 </div>
                             </div>
-                    @elseif($level <= 0)
+                    @elseif($level <= 0 && $is_cnt !== 'true')
                         <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
@@ -57,7 +57,7 @@
                             </div>-->
 
 
-                            <form method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
+                            <form autocomplete="off" method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
                                 @csrf
                                 <div id="beneficiaryParent">
 
@@ -154,7 +154,6 @@
                     </div>
 
                 </div>
-                @include('includes.Account.deleteButton')
             </div>
 
         </div>

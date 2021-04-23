@@ -17,13 +17,22 @@
                 </div>
             </div>
 
-              <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger alert-dismissible" id="form_alert" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_email" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_mobile" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
 
-            <form id="ownerForm" method="POST" action="{{route('customer.update')}}">
+            <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
+                    <div class="col-lg-12 py-2" style="display: flex;">
+                        <h6 style="padding-left: 1px">Datos personales</h6>
+                    </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
                         name="client_number" maxlength="8" required pattern="[0-9]{8}">
@@ -43,53 +52,60 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-2" id="company" style="display: flex">
-                        <input type="text" class="form-control" placeholder="RAZON SOCIAL" id="companyPro" name="company" required>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <label for="birthday" class="py-1 labelgre">FECHA DE NACIMIENTO</label>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 py-3" style="display: flex">
+                        <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
                         <input class="form-control" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 py-3">
+                    <div class="col-lg-6 py-3" style="display: flex">
                         <select class="form-control" name="gender" required>
                             <option>GÉNERO</option>
                             <option value="F">FEMENINO</option>
                             <option value="M">MASCULINO</option>
                         </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="tel" class="form-control mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
                         name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                </div>
-                <div class="row ">
-                    <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="email" class="form-control" placeholder="CORREO ELECTRONICO" id="emailPro" name="email" required>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input autocomplete="new-password" type="email" class="form-control" placeholder="CORREO ELECTRONICO" 
+                        id="emailPro" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc">
-                    </div>
                 </div>
+                
                 <div class="row ">
-                    <div class="col-lg-6 py-3" style="display: flex">
-                        <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C" id="rfc" name="rfc" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="password" class="form-control" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
 
                     <input type="hidden" id="client_type" name="client_type" value="1">
                 </div>
+
                 <div class="row">
-                    <div class="col-lg-6 py-3">
+                    <div class="col-lg-12 py-2" style="display: flex">
+                        <h6 style="padding-left: 1px">Razón social</h6>
+                    </div>
+                    <div class="col-lg-6 py-2" id="company" style="display: flex">
+                        <input type="text" class="form-control" placeholder="RAZÓN SOCIAL" id="companyPro" name="company" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control" name="work" required>
                             <option>TIPO DE NEGOCIO</option>
                             <option value="1">TALLER GENERAL</option>
@@ -99,6 +115,10 @@
                             <option value="5">MAYORISTA</option>
                             <option value="6">OTRO</option>
                         </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control" placeholder="R.F.C EMPRESA" id="RFC_Company" name="RFC_Company">
                     </div>
                 </div>
                 <div class="modal-footer border-top-0">
