@@ -537,7 +537,7 @@ class CustomerController extends Controller
             //update notifications each login
             $notification = $this->updateNotifications($request->email);
 
-            return redirect()->route('customer.myAccount');
+            return redirect()->route('customer.benefits');
 
         }else{
             return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
