@@ -740,10 +740,11 @@ class CustomerController extends Controller
 
         $beneficiaries = DB::table('beneficiaries')
                         ->where('customer_id','=', $data['id'])
-                        ->get();
-        if($beneficiaries !== null){
-            $beneficiaries = json_decode($beneficiaries);
-            $beneficiary = (array)$beneficiaries;//convert to array
+                        ->get();                
+        $beneficiaries = json_decode($beneficiaries);
+        $beneficiary = (array)$beneficiaries;//convert to array
+
+        if(empty($beneficiaries) == false){
             return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level'));
         }
 
