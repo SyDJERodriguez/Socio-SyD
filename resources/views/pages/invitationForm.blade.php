@@ -60,10 +60,12 @@
                                 <option>GÉNERO</option>
                                 <option value="F">FEMENINO</option>
                                 <option value="M">MASCULINO</option>
+                                <p style="color: red; margin: 0;visibility:hidden">*</p>
                             </select>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <input type="email" class="form-control" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
+                            <input type="email" class="form-control" 
+                            autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                     </div>
@@ -73,7 +75,8 @@
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <input type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" required>
+                            <input type="password" class="form-control" 
+                            autocomplete="new-password" placeholder="CONTRASEÑA" name="password" id="password" required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
@@ -110,4 +113,28 @@
 
     <br><br><br><br>
 </div>
+
+<script>
+    document.getElementById('rfc').addEventListener('focus',function() {
+        var rfc = document.getElementById('rfc');
+        var fecha = $('#birthday').val().split('-');
+
+        var CURP = [];
+        CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
+        for (let i = 1; i < $("#lastNameMec").val().length; i++) {
+            if($("#lastNameMec").val().charAt(i).match(/[aeiou]/gi)){
+                CURP[1] = $("#lastNameMec").val().charAt(i).toUpperCase();
+                break;    
+            }
+        }
+        CURP[2] = $("#secondLastNameMec").val().charAt(0).toUpperCase();
+        CURP[3] = $("#nameMec").val().charAt(0).toUpperCase();
+        CURP[4] = fecha[0].slice(2);//year
+        CURP[5] = fecha[1];//mont
+        CURP[6] = fecha[2];//day
+
+        $('#rfc').val(CURP.join("").toString());
+        
+    })
+</script>
 @stop
