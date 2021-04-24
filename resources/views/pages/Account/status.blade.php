@@ -21,6 +21,7 @@
                 Cuenta: Individual
             @endif
          </h6>
+          <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
          <hr>
       </div>
       <div>
@@ -88,9 +89,6 @@
                al 800 SYD (793) 1010
             </p>
          </span>
-          </div>
-          <div class="col-md-12">
-          @include('includes.Account.deleteButton')
           </div>
       </div>
    </div>

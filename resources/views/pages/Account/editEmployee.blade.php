@@ -10,7 +10,7 @@
             <div style="margin-left: 15px !important;">
                 <h4>Editar empleado</h4>
                 <br>
-                <form method="POST" action="{{route('customer.updateEmployee')}}">
+                <form autocomplete="off" method="POST" action="{{route('customer.updateEmployee')}}">
                     @method("POST")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
@@ -63,8 +63,10 @@
                             <div class="col-6">
                                 <input class="form-control-sm form-control" 
                                         type="email"
+                                        autocomplete="new-password"
                                         name="email"
                                         value="{{$employee->email}}"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         required>
 
                             </div>
@@ -83,7 +85,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary" style="background-color: #009CE0;border:0px">ACEPTAR</button>
+                                <button type="submit" class="btn btn" style="background-color: #009CE0;border:0px;color: #FFF">ACEPTAR</button>
                             </div>
                         </div>
                     </div>

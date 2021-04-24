@@ -15,6 +15,14 @@
                 <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">
                   sociosyd@syd.com </a></p>
                 <hr class="bg-primary">
+                @if (Auth::check())
+                  <p><i class="fas fa-exclamation-triangle"></i>
+                     <a href="#" class="primary-color" style="color:white; padding-left: 5px;" 
+                     data-toggle="modal" data-target="#modalDelete">
+                     Desuscribirme
+                    </a>
+                  </p>
+                @endif
             </div>
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Consulta </h4>
@@ -51,6 +59,8 @@
             </div>
         </div>
     </div>
+    {{-- Modal Deactivate account --}}
+    @include('includes.Account.deleteButton')
 
      <!-- Modal Contact-->
      <div class="modal fade rounded-0" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="modalContacto" aria-hidden="true">
@@ -71,6 +81,8 @@
                               <span>TELÉFONO:</span><br>
                                 <a href="tel:8007931010">800 SYD (793) 1010</a>
                               <hr>
+                          </p>
+                          <p>
                               <span>CORREO:</span><br>
                                 <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
                               <br>
@@ -95,7 +107,7 @@
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="CORREO ELECTRÓNICO" required>
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"
@@ -120,6 +132,27 @@
       </div>
         </div>
      </div>
+
+    <!-- Modal Encuesta-->
+    <div class="modal fade" id="survey" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div style="height: 34px;">
+
+                </div>
+                <div class="modal-body " style="background-color: #143153;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <iframe src="https://quaxar.typeform.com/to/SUldRQpq" scrolling="no" width="600" height="600"></iframe>
+                        </div>
+                        <div class="col-md-12" style="display: flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
+                            <a href="{{route('home')}}" class="text-white btn " data-dismiss="modal" aria-label="Close" style="background-color: #00A5E6;" >CERRAR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
       <!-- MODAL PREGUNTAS-->
       @extends('includes.preguntas')

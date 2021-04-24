@@ -68,7 +68,6 @@
                 </form>
                 @endif
 
-                @include('includes.Account.deleteButton')
             </div>
         </div>
     </div>

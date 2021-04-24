@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn btn-sm p-0 adios"
+                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
                                     style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
                                     ¡REGÍSTRATE!
                                     </a>
@@ -184,11 +184,13 @@ padding-bottom: 14px;">
         <div class="navbar-toggler">
             <div class="btn-group">
                 <button id="bell1" class="btn" data-toggle="modal" data-target="#modalNotifications">
-                    @if ($noti != false)
-                        @if ($noti->available == 1 && $noti->seen == 0)
-                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
-                            1
-                        </span>
+                    @if(isset($noti))
+                        @if ($noti != false)
+                            @if ($noti->available == 1 && $noti->seen == 0)
+                            <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                                1
+                            </span>
+                            @endif
                         @endif
                     @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
@@ -309,11 +311,11 @@ padding-bottom: 14px;">
                 @endif
             </li>
 
-          {{-- <li class="nav-item">
+          <li class="nav-item">
               @if(Auth::check())
-                  <a class="nav-link" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
+                  <a class="navItemHeader" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
               @endif
-          </li> --}}
+          </li>
       </ul>
 
       @if(!empty(Auth::user()))
@@ -342,6 +344,11 @@ padding-bottom: 14px;">
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanico')
 
+<!-- Modal formulario Mecanico-->
+@include('includes.formularioMecanicoCNT')
+
+@if(Auth::check())
 {{-- Modal notifications --}}
 @include('includes.notifications')
+@endif
 

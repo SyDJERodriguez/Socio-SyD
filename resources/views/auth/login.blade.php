@@ -22,7 +22,7 @@
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-4">¡Bienvenido a Club Dar!</h1>
                                             </div>
-                                            <form method="POST" action="{{ route('login') }}">
+                                            <form autocomplete="off" method="POST" action="{{ route('login') }}">
                                                 @csrf
                                                 <div class="form-group">
                                                     <input type="email" class="form-control form-control-user  @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Correo elctrónico">
@@ -47,7 +47,7 @@
                                                     </div>
 
                                                 </div>
-                                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                <button type="submit" class="btn btn btn-user btn-block" style="background-color: #00A1E3;color: #FFF;">
                                                     Ingresar
                                                 </button>
                                                 <hr>

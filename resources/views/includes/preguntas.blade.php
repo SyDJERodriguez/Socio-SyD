@@ -293,7 +293,7 @@
                                     Si tienes algún problema o duda a la hora de tu registro,
                                     puedes contactarnos a través de nuestro chat de Whatsapp disponible en el sitio web
                                     o llamando al número
-                                    800 SYD/DAR 1010.
+                                    <b>800 SYD (793) 1010</b>.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -465,10 +465,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Para afiliarte al programa no necesitas ningún documento, pero deberás llenar un
-                                        estudio socioeconómico, tu credencial de
-                                        elector (escaneado o en foto) y tu comprobante de domicilio para activar los
-                                        beneficios a los que tengas acceso.
+                                        Para afiliarte al programa no necesitas ningún documento.
                                     </p>
                                 </li>
                             </ol>
@@ -479,7 +476,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de CHUBB]
+                                        Comunícate al número de atención de Chubb: <a href="tel:8000874598">8000874598</a>
                                     </p>
                                 </li>
                             </ol>
@@ -490,7 +487,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>
@@ -501,7 +498,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>
@@ -512,7 +509,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono [Insertar teléfono de TELASIST]
+                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
                                     </p>
                                 </li>
                             </ol>
