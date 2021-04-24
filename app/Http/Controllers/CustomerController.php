@@ -1241,7 +1241,14 @@ class CustomerController extends Controller
                     ->where('client_number','=',$client_number)
                     ->where('mobile_number','=',$mobile_number)
                     ->get();
-        $employee = $query[0];
+        $query = json_decode($query);
+        $query = (array)$query;
+
+        $employee = null;
+        
+        if(empty($query) === false){
+            $employee = $query[0];
+        }
 
         $total = $this->totalAmountById($client_number);
         $noti = $this->getNotificationsById($client_number);
