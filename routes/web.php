@@ -28,7 +28,7 @@ Route::post('/contact_us','CustomerController@contact_us');
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
 Route::put('customer/update/password', 'CustomerController@update_password')->name('update.password');
-Route::get('/invitation/{client_number}', 'CustomerController@invitationForm')->name('invitationForm');
+Route::get('/invitation/{client_number}/{mobile_number}', 'CustomerController@invitationForm')->name('invitationForm');
 Route::post('/invitation/send','CustomerController@signUpInvitation')->name('signUpInvitation');
 
 //Account functions

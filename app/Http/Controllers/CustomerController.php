@@ -97,7 +97,7 @@ class CustomerController extends Controller
             'created_at'        => date('Y-m-d H:i:s'),
             'mobile_number'     => $request['mobile_number'],
             'email'             => $request['email']
-        ]);
+        ]); //debo buscar el associado de aqui en la DB(pasar en lra url el numero de telefono tambien)
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
@@ -1235,10 +1235,17 @@ class CustomerController extends Controller
     }
 
     //form invitation
-    public function invitationForm($client_number){
+    public function invitationForm($client_number,$mobile_number){ //clientnumber & mobile number
+
+        $query = DB::table('associates')
+                    ->where('client_number','=',$client_number)
+                    ->where('mobile_number','=',$mobile_number)
+                    ->get();
+        $employee = $query[0];
+
         $total = $this->totalAmountById($client_number);
         $noti = $this->getNotificationsById($client_number);
 
-        return view('pages.invitationForm', compact('client_number','total','noti'));
+        return view('pages.invitationForm', compact('employee','total','noti'));
     }
 }
