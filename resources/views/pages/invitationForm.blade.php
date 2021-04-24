@@ -31,18 +31,18 @@
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
-                             <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameMec" 
+                             <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameInv" 
                              name="name" value="{{$employee->name}}" pattern="[a-zA-Z\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO" 
-                             id="lastNameMec" value="{{$employee->last_name}}" name="last_name" pattern="[a-zA-Z\s]*" required>
+                             id="lastNameInv" value="{{$employee->last_name}}" name="last_name" pattern="[a-zA-Z\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO" 
-                             id="secondLastNameMec" value="{{$employee->second_last_name}}" name="second_last_name" pattern="[a-zA-Z\s]*" required>
+                             id="secondLastNameInv" value="{{$employee->second_last_name}}" name="second_last_name" pattern="[a-zA-Z\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
@@ -76,7 +76,7 @@
                      </div>
                      <div class="row ">
                          <div class="col-lg-6 py-2" style="display: flex">
-                             <input type="text" class="form-control" placeholder="R.F.C" id="rfcMec" name="rfc">
+                             <input type="text" class="form-control" placeholder="R.F.C" id="rfcInv" name="rfc">
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
@@ -122,26 +122,27 @@
 </div>
 
 <script>
-    document.getElementById('rfcMec').addEventListener('focus',function() {
+    //jQuery.noConflict();
+    document.getElementById('rfcInv').addEventListener('focus',function() {
     
-        var rfc = document.getElementById('rfcMec');
+        var rfc = document.getElementById('rfcInv');
         var fecha = $('#birthdayM').val().split('-');
 
         var CURP = [];
-        CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
-        for (let i = 1; i < $("#lastNameMec").val().length; i++) {
-            if($("#lastNameMec").val().charAt(i).match(/[aeiou]/gi)){
-                CURP[1] = $("#lastNameMec").val().charAt(i).toUpperCase();
+        CURP[0] = $("#lastNameInv").val().charAt(0).toUpperCase();
+        for (let i = 1; i < $("#lastNameInv").val().length; i++) {
+            if($("#lastNameInv").val().charAt(i).match(/[aeiou]/gi)){
+                CURP[1] = $("#lastNameInv").val().charAt(i).toUpperCase();
                 break;    
             }
         }
-        CURP[2] = $("#secondLastNameMec").val().charAt(0).toUpperCase();
-        CURP[3] = $("#nameMec").val().charAt(0).toUpperCase();
+        CURP[2] = $("#secondLastNameInv").val().charAt(0).toUpperCase();
+        CURP[3] = $("#nameInv").val().charAt(0).toUpperCase();
         CURP[4] = fecha[0].slice(2);//year
         CURP[5] = fecha[1];//mont
         CURP[6] = fecha[2];//day
 
-        $('#rfcMec').val(CURP.join("").toString());
+        $('#rfcInv').val(CURP.join("").toString());
         
     })
 </script>
