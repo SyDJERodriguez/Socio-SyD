@@ -322,6 +322,7 @@ class CustomerController extends Controller
 
     //form invitation sign up
     public function signUpInvitation(Request $request){
+        $request['client_number'] = '00'.$request['client_number'];
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
@@ -391,7 +392,7 @@ class CustomerController extends Controller
 
         if ( $save_register === true){
             $this->welcome_email_is_associate($request);
-            return redirect()->route('home');
+            return view('pages.activateInvitationPage');
         }
         else{
             return redirect()->back()->with('msg', 'Algo salio mal, no se completó el registro.'); 
