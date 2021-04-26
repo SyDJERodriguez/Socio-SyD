@@ -234,7 +234,8 @@
                     <div class="our-branches__content-address-location col-md-4">
 
                         <div class="our-branches__content-address-location-search">
-                            <label class="our-branches__content-address-location-search-label" style="color: #00A1E3"> Por favor elige la opción que deseas ver:
+                            <label class="our-branches__content-address-location-search-label" style="color: #00A1E3"> 
+                                <h6>Por favor elige la opción que deseas ver:</h6>
                                 <select class="our-branches__content-estate-location-search-select sucursal" type="text">
                                     <option disabled selected>Selecciona un estado</option>
                                 </select>
