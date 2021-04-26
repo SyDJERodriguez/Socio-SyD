@@ -10,6 +10,7 @@
 
             <div class="modal-body">
                 @if (Auth::user())
+                {{-- CLIENTE EMPRESA --}}
                     @if ((int)Auth::user()->client_type == 1)
                         <ul class="list-group list-group-flush">
                             @if ($total)
@@ -69,7 +70,8 @@
                             
                         </ul>
                     @else 
-                    {{-- notifications individual account --}}
+                    {{-- FIN CLIENTE EMPRESA --}}
+                    {{-- CLIENTE CUENTA INDIVIDUAL --}}
                         <ul class="list-group list-group-flush">
                             @if ($total < 200.01)
                                 <li class="list-group-item">
@@ -117,7 +119,7 @@
 
                             @endif
                         </ul>
-
+                        {{-- FIN CLIENTE INDIVIUAL --}}
                     @endif
                 @endif
                     <br>

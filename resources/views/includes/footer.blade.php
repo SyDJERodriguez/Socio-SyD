@@ -4,7 +4,7 @@
             <div class="col-lg-3 text-white">
                 <h4 class="text-white pb-3">Contáctanos</h4>
                 <p>
-                  Ciudad de México 
+                  Todo el país 
                   <br>
                     <i class="fas fa-phone-alt"></i>
                       <a href="tel:8007931010" class="primary-color" 
