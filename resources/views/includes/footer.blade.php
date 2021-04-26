@@ -2,19 +2,21 @@
     <div class="container-fluid blue-dark py-5">
         <div class="row m-0">
             <div class="col-lg-3 text-white">
-                <h4 class="text-white pb-3">Contáctanos</h4>
+                <h5 class="text-white pb-3">Contáctanos</h5>
                 <p>
-                  Ciudad de México 
+                  Todo el país 
                   <br>
                     <i class="fas fa-phone-alt"></i>
                       <a href="tel:8007931010" class="primary-color" 
                     style="color:white; padding-left: 5px;">
                     800 SYD (793) 1010</a>
                 </p>
-                <hr class="bg-primary">
-                <p><i class="fas fa-envelope"></i><a href="mailto:sociosyd@syd.com" class="primary-color" style="color:white; padding-left: 5px;">
+                <hr class="bg-primary hrFooter">
+                <p><i class="fas fa-envelope">
+                  </i><a href="mailto:sociosyd@syd.com" class="primary-color" 
+                  style="color:white; padding-left: 5px;">
                   sociosyd@syd.com </a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary hrFooter">
                 @if (Auth::check())
                   <p><i class="fas fa-exclamation-triangle"></i>
                      <a href="#" class="primary-color" style="color:white; padding-left: 5px;" 
@@ -25,22 +27,22 @@
                 @endif
             </div>
             <div class="col-lg-3 text-white">
-                <h4 class="text-white pb-3">Consulta </h4>
+                <h5 class="text-white pb-3">Consulta </h5>
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
                   Aviso de Privacidad
                 </a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary hrFooter">
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalGeneralTerms" style="color:white">
                   Términos y condiciones
                 </a></p>
-                <hr class="bg-primary" >
+                <hr class="bg-primary hrFooter" >
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalPreguntas" style="color:white">
                   Preguntas Frecuentes
                 </a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary hrFooter">
             </div>
             <div class="col-lg-3 text-white">
-                <h4 class="text-white pb-3">Síguenos en redes sociales </h4>
+                <h5 class="text-white">Síguenos en redes sociales </h5>
                 <h6 style="display: flex; justify-content: center;">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/"  target="_blank" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
                     <a href="https://www.instagram.com/dar.refaccionarias/" target="_blank" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
@@ -48,11 +50,11 @@
                 </h6>
 
                 <p><a href="https://www.refaccionarias-dar.com/" target="_blank" style="color:white">¿Dónde comprar?</a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary hrFooter">
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto
                 </a></p>
-                <hr class="bg-primary">
+                <hr class="bg-primary hrFooter">
             </div>
             <div class="col-lg-3 text-white text-right pr-0">
                 <img src="{{asset('img/logo_2.png')}}" alt="" id="footerLogo">
