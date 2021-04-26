@@ -46,7 +46,8 @@
                             placeholder="CORREO" name="email" required>
                             <div class="row">
                                 <div class="col-sm-7 ">
-                                    <p class="primary-color" style="margin-bottom: 0; font-size:12px;text-align:center;padding-top:5px">
+                                    <p class="primary-color" 
+                                    style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
@@ -59,13 +60,16 @@
                             </div>
                             
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="row ">
-                            <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
-                                <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
-                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
+                            <div class="col-sm-12"> 
+                                {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
+                                <a href="#" 
+                                style="display: flex; justify-content: center; align-items: flex-end;font-size:13px;"
+                                class="primary-color" data-toggle="modal" data-target="#modal4">
+                                    <b class="noDown">¿Olvidaste tu contraseña?</b>
                                 </a>
                             </div>
                         </div>
