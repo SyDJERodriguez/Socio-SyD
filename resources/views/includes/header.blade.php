@@ -46,26 +46,36 @@
                             placeholder="CORREO" name="email" required>
                             <div class="row">
                                 <div class="col-sm-7 ">
-                                    <p class="primary-color" style="margin-bottom: 0; font-size:12px;text-align:center;padding-top:5px">
+                                    <p class="primary-color" 
+                                    style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
-                                    style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
+                                    style="background-color: #143153;color:white;font-size: 11px; width: 75px;">
                                     ¡REGÍSTRATE!
                                     </a>
                                 </div>
                             </div>
                             
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-2" style="padding-top:4px">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="row ">
-                            <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
-                                <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
-                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
+                            <div class="col-sm-10"> 
+                                {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
+                                <a href="#" 
+                                style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
+                                class="primary-color" data-toggle="modal" data-target="#modal4">
+                                    <b class="noDown">¿Olvidaste tu contraseña?</b>
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
+                                style="background-color: #143153;color:white;font-size: 11px; width: 70px;visibility:hidden">
+                                {{-- boton no visibile --}}
                                 </a>
                             </div>
                         </div>

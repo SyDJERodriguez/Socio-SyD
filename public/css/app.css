@@ -4,6 +4,14 @@ p, .noClas, ol{
     font-weight: normal;
 }
 
+footer div div div hr.hrFooter{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+footer p{
+    margin-bottom: 5px;
+}
 a.btnComprar{
     background-color: #00A1E3;
     color:#FFF;
@@ -518,7 +526,7 @@ html{
 }
 div hr.bg-primary{
     background-color: #00A5E6!important;
-    height: 1px;
+    height: 0.05em;
 }
 .hgt{
     height: 400px;
@@ -943,8 +951,9 @@ Label the data for the second TABLE
 }
 
 .our-branches__content-address-map {
-    flex: 0 50%;
+    flex: 0 35%;
     position: relative;
+    padding-top: 8%;
 }
 
 .our-branches__content-address-location {
