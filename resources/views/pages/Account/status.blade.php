@@ -21,7 +21,9 @@
       <div>
       </div>
       <div style="padding-left: 10px !important;">
-         <h5>Detalle de la cuenta</h5>
+         <h5>Detalle de la cuenta - 
+            {{ucfirst($data->mes->isoformat('MMMM'))}}
+         </h5>
          </div>
    </div>
    <div>
