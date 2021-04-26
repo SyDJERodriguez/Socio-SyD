@@ -22,7 +22,7 @@
       </div>
       <div style="padding-left: 10px !important;">
          <h5>Detalle de la cuenta - 
-            {{ucfirst(\Carbon\Carbon::now()->formatLocalized('%B'))}}
+            {{ucfirst($data->mes->isoformat('MMMM'))}}
          </h5>
          </div>
    </div>

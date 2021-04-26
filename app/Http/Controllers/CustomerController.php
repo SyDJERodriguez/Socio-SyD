@@ -659,6 +659,9 @@ class CustomerController extends Controller
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
+        $mes = Carbon::parse()->locale('es');
+        $data->mes = $mes;
+
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
     }
