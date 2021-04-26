@@ -4,6 +4,12 @@ p, .noClas, ol{
     font-weight: normal;
 }
 
+a.btnComprar{
+    background-color: #00A1E3;
+    color:#FFF;
+    width:102%;
+}
+
 a.btnComprar:hover{
     background-color: #00A1E3
 }

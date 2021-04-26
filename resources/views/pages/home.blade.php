@@ -310,9 +310,9 @@
                                 </div>
 
                                 <div class="col-10 offset-1 py-2" 
-                                style="right: 5px;">
+                                style="right: 6px;">
                                     <div >
-                                        <a href="https://www.refaccionarias-dar.com/"  class="btn btn btn-sm btn-block btnComprar" style="background-color: #00A1E3;color:#FFF">
+                                        <a href="https://www.refaccionarias-dar.com/"  class="btn btn btn-sm btn-block btnComprar" >
                                             Compra aquí
                                             </a>
                                     </div>
