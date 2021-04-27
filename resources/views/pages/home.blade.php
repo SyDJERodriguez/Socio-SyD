@@ -122,7 +122,7 @@
                 <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
             </div>
 
-        <div class="container-fluid ">
+        <div class="container-fluid pb-5">
             <div class="row background m-0">
 
                 <div class="col-lg-6 mx-auto text-center py-1">

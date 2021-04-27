@@ -45,7 +45,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
-                                <div class="col-sm-7 ">
+                                <div class="col-sm-7 " style="display: flex;">
                                     <p class="primary-color"
                                     style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
@@ -235,8 +235,8 @@ padding-bottom: 14px;">
                     <div class="col-sm-12 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
-                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <p class="text-white pr-3" style="margin-bottom: 0">
+                        <div class="col-sm-12" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                            <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
