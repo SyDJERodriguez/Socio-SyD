@@ -91,7 +91,7 @@
                     <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="">
                     <p class="text-center"  style="font-size: 18px;line-height:90%">
                         <strong>OBTÉN BENEFICIOS</strong>
-                        <br><br><br>
+                        <br><br>
                     <span  style="font-size:15px;">
                         Obtén tu seguro de accidentes<br>
                         y más beneficios
@@ -103,13 +103,13 @@
         <div class="container-fluid pb-5">
             <div class="row m-0">
                 <div class="col-lg-4 py-2" >
-                    <img src="{{asset('img/slider2.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/B1.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
                 <div class="col-lg-4 py-2">
-                    <img src="{{asset('img/slider1.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/B2.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
                 <div class="col-lg-4 py-2">
-                    <img src="{{asset('img/slider3.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/B3.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
             </div>
         </div>
@@ -255,6 +255,11 @@
 
     <section id="section6">
         <div class="container-fluid py-5">
+            <div class="row my-3 mx-0">
+                <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
+                <div class="col-lg-6 col-xs-6 p-3"> <h1 class="primary-color text-center"><strong>¿DÓNDE COMPRAR?</strong></h1></div>
+                <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
+            </div>
             <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
                 <div class="our-branches__content-address">
 
