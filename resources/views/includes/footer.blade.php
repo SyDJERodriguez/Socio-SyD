@@ -9,7 +9,7 @@
                     <i class="fas fa-phone-alt"></i>
                       <a href="tel:8007931010" class="primary-color" 
                     style="color:white; padding-left: 5px;">
-                    800 SYD (793) 1010</a>
+                    800 SyD (793) 1010</a>
                 </p>
                 <hr class="bg-primary hrFooter">
                 <p><i class="fas fa-envelope">
