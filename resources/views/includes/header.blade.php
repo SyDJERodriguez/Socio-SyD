@@ -3,7 +3,7 @@
     <img src="{{asset('img/whatsIcon.png')}}" style="width: 40% !important;" alt="">
 </a>
 <a href="#oneSection" class="upButton">
-    <img src="{{asset('img/goUp.png')}}">
+    <img src="{{asset('img/goUp.png')}}" width="40%">
 </a>
 
 <div class="container-fluid" id="oneSection">

@@ -47,8 +47,8 @@ a.btnExitNo:hover{
 }
 
 .upButton{
-    top: 580px;
-    right: -12px;
+    top: 530px;
+    right: -190px;
     position: fixed;
     z-index: 99;
 }
