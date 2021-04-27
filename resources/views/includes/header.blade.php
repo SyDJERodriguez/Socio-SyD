@@ -41,7 +41,7 @@
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-lg-6 my-2" style="padding-top:4px">
+                    <div class="col-5 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
@@ -51,7 +51,7 @@
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" >
                                     <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
                                     style="background-color: #143153;color:white;font-size: 11px; width: 75px;">
                                     ¡REGÍSTRATE!
@@ -60,14 +60,14 @@
                             </div>
                             
                     </div>
-                    <div class="col-lg-4 my-2" style="padding-top:4px">
+                    <div class="col-4 my-2" style="padding-top:5px">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="row ">
                             <div class="col-sm-10"> 
                                 {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
                                 <a href="#" 
-                                style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
+                                style="margin-bottom: 0; font-size:13px;text-align:center;"
                                 class="primary-color" data-toggle="modal" data-target="#modal4">
                                     <b class="noDown">¿Olvidaste tu contraseña?</b>
                                 </a>
@@ -80,10 +80,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" id="buttonLogin">
+                    <div class="col-2" id="buttonLogin">
                         <button type="submit" id="login-button" class="btn btn"
-                            style="background-color: #143153;color:white; width: 150px">
-                            INICIAR SESIÓN
+                            style="background-color: #143153;color:white; width: 120px;margin-bottom: 20px">
+                            <span style="font-size: 13px">INICIAR SESIÓN</span>
                         </button>
                     </div>
                    
