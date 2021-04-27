@@ -236,7 +236,7 @@ nav a.active{
     div .jumbotron{
         height: 180px;
     }
-    
+
     .leyenda{
         visibility:visible;
     }
@@ -604,9 +604,9 @@ div hr.bg-primary{
         height: 100%;
     }
 
-    .bar{
+   /* .bar{
         display: none;
-    }
+    }*/
     .hgt{
         height: 200px;
     }
@@ -615,6 +615,11 @@ div hr.bg-primary{
 
     #efirm{
         width: 225px !important;
+    }
+
+    .img2,
+    .img3 {
+        background-size: auto !important;
     }
 
 }
@@ -843,11 +848,11 @@ a.navItemHeader{
     padding: 5px 0;
 }
 
-a.navItemHeader:hover 
+a.navItemHeader:hover
 {
-     color:#00A0C6; 
-     text-decoration:none; 
-     cursor:pointer;  
+     color:#00A0C6;
+     text-decoration:none;
+     cursor:pointer;
 }
 
 @media only screen and (max-width: 760px),
