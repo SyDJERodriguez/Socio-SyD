@@ -14,13 +14,12 @@
           <div class="col-4  text-center">
             <img class="py-2" src="{{asset('img/iconno-1.png')}}" style="width:120px; height:120px;">
           </div>
-          <div class="col-7">
-              <div class="imgBeneficiario"></div>
-              {{-- <img  src="{{asset('img/benefeciroimg.png')}}" class="imgBeneficiario" alt=""> --}}
+          <div class="col-7 ">
+              <img src="{{asset('img/benefeciroimg.png')}}" class="imgBene">
           </div>
         </div>
        <!-- <form>-->
-          <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+          <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
           @if($level>0 || $is_cnt === 'true')
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
                     <h6 style="color: #143153;"><img class="py-2"   

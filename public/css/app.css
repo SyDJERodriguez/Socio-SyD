@@ -50,10 +50,6 @@ a.btnExitNo:hover{
     top:85px;
 }
 
-.imgBeneficiario{
-    
-    background: url(../img/benefeciroimg.png) no-repeat center top scroll transparent;
-}
 
 /* header style */
 
@@ -135,12 +131,20 @@ nav a.active{
     .jumbotron{
         height: 340px;
     }
+    .imgBene{
+        width: 845px;
+        height: 170px;
+    }
 }
 
 @media(max-width:1801px){
     .jumbotron{
         width: 1800px;
         height: 300px;
+    }
+    .imgBene{
+        width: 510px;
+        height: 140px;
     }
 }
 
