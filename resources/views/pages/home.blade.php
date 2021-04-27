@@ -5,7 +5,7 @@
             <div class="row m-0">
                 <div class="col-lg-6 blue-dark text-center px-auto py-5">
                     <br>
-                    <p class="nav-link" style="font-size: 30px;line-height:90%"> 
+                    <p class="nav-link" style="font-size: 30px;line-height:90%">
                         <STRONG>SOCIO SyD®</STRONG>
                         <br>
                         <span style="font-size: 23px"> ES EL PROGRAMA<br>
@@ -20,6 +20,9 @@
 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
+                                <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel" alt="...">
+                            </div>
+                            <div class="carousel-item">
                                 <img src="{{asset('img/slider2.jpg')}}" class="d-block w-100 carousel" alt="...">
                             </div>
                             <div class="carousel-item">
@@ -50,7 +53,7 @@
         <div class="p-5">
             <div class="row">
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
-                <div class="col-lg-6 py-3"> 
+                <div class="col-lg-6 py-3">
                     <h2 class="primary-color text-center">
                         <strong>CÓMO FUNCIONA SOCIO SyD®</strong>
                     </h2>
@@ -59,9 +62,9 @@
             </div>
             <div class="row primary-color">
                 <div class="col-lg-4 mx-auto text-center img1">
-                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" alt="">
+                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" width="120px" alt="">
                     <p class="text-center" style="font-size: 18px;line-height:90%">
-                        <br><br>
+                        <br>
                         <strong>REGÍSTRATE</strong>
                         <br><br>
                     <span style="font-size:15px;">
@@ -72,20 +75,20 @@
                 </div>
                 <div class="col-lg-4 mx-auto text-center img2">
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt=""
-                    height="90px">
+                    width="120px">
                     <p class="text-center" style="font-size: 18px;line-height:90%">
                         <br>
                         <strong>COMPRA</strong>
                         <br><br>
                     <span style="font-size:15px;">
                         Haz una compra mínima<br>
-                        de <b>$200</b> pesos al mes <br> en cualquier sucursal <br> 
+                        de <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
                         DAR Refaccionarias
                     </span>
                     </p>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
-                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}" alt="">
+                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="">
                     <p class="text-center"  style="font-size: 18px;line-height:90%">
                         <strong>OBTÉN BENEFICIOS</strong>
                         <br><br><br>
@@ -125,7 +128,7 @@
                 <div class="col-lg-6 mx-auto text-center py-1">
                     <div class="bg-primary py-1">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
-                        <img class="my-3" src="{{asset('img/car.png')}}" alt="">
+                        <img class="my-3" src="{{asset('img/car.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">Registra a tus empleados para que siempre<br>
                                 estén seguros en su lugar de trabajo:<br>
@@ -146,7 +149,7 @@
                 <div class="col-lg-6 mx-auto text-center py-1">
                     <div class="bg-primary py-1">
                         <h4 class="primary-color mt-5 mb-2"><strong>MECÁNICO INDEPENDIENTE</strong></h4>
-                        <img class="my-3" src="{{asset('img/men_2.png')}}" alt="">
+                        <img class="my-3" src="{{asset('img/men_2.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">
                                 Regístrate y obtén beneficios como:<br>
@@ -261,7 +264,7 @@
                     <div class="our-branches__content-address-location col-md-4">
 
                         <div class="our-branches__content-address-location-search">
-                            <label class="our-branches__content-address-location-search-label" style="color: #00A1E3"> 
+                            <label class="our-branches__content-address-location-search-label" style="color: #00A1E3">
                                 <h6>Por favor elige la opción que deseas ver:</h6>
                                 <select class="our-branches__content-estate-location-search-select sucursal" type="text">
                                     <option disabled selected>Selecciona un estado</option>
@@ -276,8 +279,8 @@
 
                         <div class="our-branches__content-address-location-result">
                             <div class="our-branches__content-address-location-title--wrapper">
-                                <p class="our-branches__content-address-location-title sucursal darTitle"> 
-                                    DAR Santa Elena: 
+                                <p class="our-branches__content-address-location-title sucursal darTitle">
+                                    DAR Santa Elena:
                                 </p>
                             </div>
 
@@ -288,7 +291,7 @@
                                 <div class="col-9" >
                                     <div class="our-branches__content-address-location-result-item-body item_direccion sucursal text-wrap" style="padding-left: 15px">
                                         <div class="text-wrap">
-                                            Av. de los Maestros #804, Fracc. Jardines de Sta. 
+                                            Av. de los Maestros #804, Fracc. Jardines de Sta.
                                             Elena C.P. 20236, Aguascalientes, Aguascalientes.
                                         </div>
                                     </div>
@@ -300,7 +303,7 @@
                                 <div class="col-9">
                                     <div class="our-branches__content-address-location-result-item-body item_horario sucursal" style="padding-left: 15px;">
                                         <div class="text-wrap">
-                                            <p> 
+                                            <p>
                                                 Lunes a Viernes de 9:00am a 7:00pm
                                                 <br> Sábado de 9:00am a 5:00pm
                                             </p>
@@ -338,7 +341,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-10 offset-1 py-2" 
+                                <div class="col-10 offset-1 py-2"
                                 style="right: 6px;">
                                     <div >
                                         <a href="https://www.refaccionarias-dar.com/"  class="btn btn btn-sm btn-block btnComprar" >
@@ -348,7 +351,7 @@
                                 </div>
 
                                 {{-- fin ROw --}}
-                            </div>   
+                            </div>
 
                         </div>
 
@@ -358,7 +361,7 @@
                 </div>
 
                 <!--<div class="jumbotron">
-               
+
                 <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
                     <div class="col-lg-4 ">
