@@ -1,6 +1,6 @@
 <a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD." target="_blank"
     class="whatsapp">
-    <img src="{{asset('img/whatsIcon.png')}}" alt="">
+    <img src="{{asset('img/whatsIcon.png')}}" style="width: 40% !important;" alt="">
 </a>
 <a href="#oneSection" class="upButton">
     <img src="{{asset('img/goUp.png')}}">
@@ -15,7 +15,7 @@
     <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
                 style="position :absolute;z-index:2">
                
             </div>

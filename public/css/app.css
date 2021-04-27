@@ -40,8 +40,8 @@ a.btnExitNo:hover{
 /* header style */
 
 .whatsapp{
-    top: 500px;
-    right: -12px;
+    top: 450px;
+    right: -190px;
     position: fixed;
     z-index: 99;
 }

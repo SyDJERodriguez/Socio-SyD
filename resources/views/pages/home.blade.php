@@ -20,6 +20,9 @@
 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
+                                <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel" alt="...">
+                            </div>
+                            <div class="carousel-item active">
                                 <img src="{{asset('img/slider2.jpg')}}" class="d-block w-100 carousel" alt="...">
                             </div>
                             <div class="carousel-item">
@@ -59,9 +62,9 @@
             </div>
             <div class="row primary-color">
                 <div class="col-lg-4 mx-auto text-center img1">
-                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" alt="">
+                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" width="120px" alt="">
                     <p class="text-center" style="font-size: 18px;line-height:90%">
-                        <br><br>
+                        <br>
                         <strong>REGÍSTRATE</strong>
                         <br><br>
                     <span style="font-size:15px;">
@@ -72,7 +75,7 @@
                 </div>
                 <div class="col-lg-4 mx-auto text-center img2">
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt=""
-                    height="90px">
+                    width="120px">
                     <p class="text-center" style="font-size: 18px;line-height:90%">
                         <br>
                         <strong>COMPRA</strong>
@@ -85,7 +88,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
-                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}" alt="">
+                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="">
                     <p class="text-center"  style="font-size: 18px;line-height:90%">
                         <strong>OBTÉN BENEFICIOS</strong>
                         <br><br><br>
@@ -125,7 +128,7 @@
                 <div class="col-lg-6 mx-auto text-center py-1">
                     <div class="bg-primary py-1">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
-                        <img class="my-3" src="{{asset('img/car.png')}}" alt="">
+                        <img class="my-3" src="{{asset('img/car.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">Registra a tus empleados para que siempre<br>
                                 estén seguros en su lugar de trabajo:<br>
@@ -146,7 +149,7 @@
                 <div class="col-lg-6 mx-auto text-center py-1">
                     <div class="bg-primary py-1">
                         <h4 class="primary-color mt-5 mb-2"><strong>MECÁNICO INDEPENDIENTE</strong></h4>
-                        <img class="my-3" src="{{asset('img/men_2.png')}}" alt="">
+                        <img class="my-3" src="{{asset('img/men_2.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">
                                 Regístrate y obtén beneficios como:<br>
