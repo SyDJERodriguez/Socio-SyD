@@ -24,27 +24,27 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
+                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades </div> </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-4 py-6 text-center" style="cursor: pointer;top:85px" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"> <img class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
                             <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no  
-                                <br> puedes realizar tu trabajo. </div> </strong></h6>
+                                <br> puedes realizar tu trabajo</div> </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"><img class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
                          <br><strong class="py-3"> MUERTE ACCIDENTAL   <br> 
-                            <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div> 
+                            <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres</div> 
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"><img class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
-                            <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
+                            <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente </div>
                     </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
@@ -53,7 +53,7 @@
                     <h6 style="color: #143153;"><img class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
                         <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,  
-                            <br> nosotros te ayudamos.  </div> </strong></h6>
+                            <br> nosotros te ayudamos  </div> </strong></h6>
                 </div>
           @else
                   <div class="modal-body " style="background-color: #143153;">
