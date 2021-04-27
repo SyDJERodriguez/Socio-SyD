@@ -91,7 +91,7 @@
                     <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="">
                     <p class="text-center"  style="font-size: 18px;line-height:90%">
                         <strong>OBTÉN BENEFICIOS</strong>
-                        <br><br>
+                        <br><br><br>
                     <span  style="font-size:15px;">
                         Obtén tu seguro de accidentes<br>
                         y más beneficios

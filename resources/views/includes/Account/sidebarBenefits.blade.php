@@ -15,10 +15,20 @@
         <hr>
      </div>
     <br>
-    <button class="btn btn-lg text-white" style="background-color: #143153;font-size: 18px;width: 100%;"
+    <button class="btn btn-lg text-white" 
+            style="background-color: #143153;font-size: 17px;width: 100%;line-height: 98%"
             type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
             aria-controls="collapseExample">
-        <b>SEGURO DE ACCIDENTES PERSONALES<i class="fas fa-caret-down pl-2"></i></b>
+            <div class="row">
+                <div class="col-10">
+                    <span>
+                        <b>SEGURO DE ACCIDENTES PERSONALES</b>
+                    </span>
+                </div>
+                <div class="col-2">
+                    <i class="fas fa-caret-down" style="font-size:30px"></i>
+                </div>
+            </div>
     </button>
     <p></p>
     <div class="collapse show" id="collapseExample">
