@@ -12,13 +12,15 @@
 
 <div class="row">
   <div class="col-6  p-4">
-    <h4 style="color: #143153;">CON TU MONTO MÍNIMO DE COMPRA,</h4>
-    <h4 style="color: #143153;"><strong>OBTIENES BENEFICIOS ESPECIALES.</strong></h4>
+    <p style="color: #143153; font-size:21px;position :absolute;z-index:2">CON TU MONTO MÍNIMO DE COMPRA, <br>
+        <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
+    </p>
   </div>
   <div class="col-6 p-0">
-      <img  src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
+      <img  src="{{asset('img/benefeciroimg.png')}}" style="position: absolute;z-index:1" width="100%" alt="">
   </div>
 </div>
+<br><br>
   <form>
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
         @if($level === 'oro' || $level === 'plata')
