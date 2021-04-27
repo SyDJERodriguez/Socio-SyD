@@ -11,11 +11,12 @@
       <div class="col-lg-8 pb-5 pr-5 pl-5">
 
         <div class="row">
-          <div class="col-5  text-center">
-            <img class="py-2" src="{{asset('img/iconno-1.png')}}" style="width:150px; height:150px;">
+          <div class="col-4  text-center">
+            <img class="py-2" src="{{asset('img/iconno-1.png')}}" style="width:120px; height:120px;">
           </div>
-          <div class="col-7 p-0">
-              <img  src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
+          <div class="col-7">
+              <div class="imgBeneficiario"></div>
+              {{-- <img  src="{{asset('img/benefeciroimg.png')}}" class="imgBeneficiario" alt=""> --}}
           </div>
         </div>
        <!-- <form>-->
@@ -26,7 +27,7 @@
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades </div> </strong></h6>
                 </div>
-                <div class="col-4 py-6 text-center" style="cursor: pointer;top:85px" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"> <img class="py-2"  
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 

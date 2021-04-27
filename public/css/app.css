@@ -37,6 +37,24 @@ a.btnExitNo:hover{
     font-weight: bold;
 }
 
+/* sidebarbenefits */
+
+.btnSideBenefits{
+    background-color: #143153;
+    font-size: 17px;
+    width: 100%;
+    line-height: 98%"
+}
+
+.iconInvalid{
+    top:85px;
+}
+
+.imgBeneficiario{
+    
+    background: url(../img/benefeciroimg.png) no-repeat center top scroll transparent;
+}
+
 /* header style */
 
 .whatsapp{
@@ -204,6 +222,9 @@ nav a.active{
     }
     div .jumbotron{
         height: 200px;
+    }
+    .iconInvalid{
+        top: 0
     }
 }
 
