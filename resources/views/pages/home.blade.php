@@ -68,8 +68,8 @@
             </div>
             <div class="row primary-color">
                 <div class="col-lg-4 mx-auto text-center img1">
-                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" width="120px" alt="">
-                    <p class="text-center" style="font-size: 18px;line-height:90%">
+                    <img class="mx-auto py-2" src="{{asset('img/icon_pc.png')}}" width="120px" alt="" style="padding-top: 6% !important;">
+                    <p class="text-center" style="font-size: 18px;line-height:90%; margin-top: -3%">
                         <br>
                         <strong>REGÍSTRATE</strong>
                         <br><br>
@@ -82,7 +82,7 @@
                 <div class="col-lg-4 mx-auto text-center img2">
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt=""
                     width="120px">
-                    <p class="text-center" style="font-size: 18px;line-height:90%">
+                    <p class="text-center" style="font-size: 18px;line-height:90%; margin-top: 1% !important;">
                         <br>
                         <strong>COMPRA</strong>
                         <br><br>
@@ -94,8 +94,8 @@
                     </p>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
-                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="">
-                    <p class="text-center"  style="font-size: 18px;line-height:90%">
+                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="" style="margin-top: 5% !important;">
+                    <p class="text-center"  style="font-size: 18px;line-height:90%; margin-top: -4% !important;">
                         <strong>OBTÉN BENEFICIOS</strong>
                         <br><br>
                     <span  style="font-size:15px;">
