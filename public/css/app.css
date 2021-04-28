@@ -4,6 +4,20 @@ p, .noClas, ol{
     font-weight: normal;
 }
 
+footer div div div hr.hrFooter{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+footer p{
+    margin-bottom: 5px;
+}
+a.btnComprar{
+    background-color: #00A1E3;
+    color:#FFF;
+    width:102%;
+}
+
 a.btnComprar:hover{
     background-color: #00A1E3
 }
@@ -26,15 +40,15 @@ a.btnExitNo:hover{
 /* header style */
 
 .whatsapp{
-    top: 500px;
-    right: -12px;
+    top: 450px;
+    right: -190px;
     position: fixed;
     z-index: 99;
 }
 
 .upButton{
-    top: 580px;
-    right: -12px;
+    top: 530px;
+    right: -190px;
     position: fixed;
     z-index: 99;
 }
@@ -197,7 +211,7 @@ nav a.active{
     div .jumbotron{
         height: 180px;
     }
-    
+
     .leyenda{
         visibility:visible;
     }
@@ -512,7 +526,7 @@ html{
 }
 div hr.bg-primary{
     background-color: #00A5E6!important;
-    height: 1px;
+    height: 0.05em;
 }
 .hgt{
     height: 400px;
@@ -565,9 +579,9 @@ div hr.bg-primary{
         height: 100%;
     }
 
-    .bar{
+   /* .bar{
         display: none;
-    }
+    }*/
     .hgt{
         height: 200px;
     }
@@ -576,6 +590,11 @@ div hr.bg-primary{
 
     #efirm{
         width: 225px !important;
+    }
+
+    .img2,
+    .img3 {
+        background-size: auto !important;
     }
 
 }
@@ -804,11 +823,11 @@ a.navItemHeader{
     padding: 5px 0;
 }
 
-a.navItemHeader:hover 
+a.navItemHeader:hover
 {
-     color:#00A0C6; 
-     text-decoration:none; 
-     cursor:pointer;  
+     color:#00A0C6;
+     text-decoration:none;
+     cursor:pointer;
 }
 
 @media only screen and (max-width: 760px),
@@ -937,8 +956,9 @@ Label the data for the second TABLE
 }
 
 .our-branches__content-address-map {
-    flex: 0 50%;
+    flex: 0 35%;
     position: relative;
+    padding-top: 7%;
 }
 
 .our-branches__content-address-location {
@@ -982,7 +1002,7 @@ Label the data for the second TABLE
 #map, #map_2 {
     margin-top: 10px;
     width: 100%;
-    height: 400px;
+    height: 395px;
 }
 
 .gm-style {
@@ -1032,4 +1052,18 @@ Label the data for the second TABLE
 
 .navItemHeader{
     color: white;
+}
+
+.bg-primary {
+    background-color: #00a5e6 !important;
+}
+
+@media (max-width: 1366px) {
+    .our-branches__content-address-map {
+        padding-top: 8% !important;
+    }
+
+    #map, #map_2 {
+        height: 420px !important;
+    }
 }
