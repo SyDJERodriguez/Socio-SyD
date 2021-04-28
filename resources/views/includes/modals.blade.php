@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-12">
                                 <p style="font-size:12px;padding-top:4px" class="primary-color">
-                                    *Sino visualiza el correo en su bandeja de entrada, revise en correo no deseado.
+                                    *Si no visualiza el correo en su bandeja de entrada, revise en correo no deseado.
                                 </p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 rounded-0">
             <div style="height: 34px;">
-                
+
             </div>
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
@@ -273,11 +273,11 @@
                     <img src="{{asset('img/line2.png')}}" alt="">
                 </div>
                 <br>
-                
+
             </div>
 
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
-                   
+
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA </strong></h6>
                 </div>
@@ -311,7 +311,7 @@
                   Cerrar
                 </button>
               </div>
-            
+
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
                 </div>
@@ -335,43 +335,43 @@
                     <img src="{{asset('img/line2.png')}}" alt="">
                 </div>
                 <br>
-                
+
             </div>
 
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
-                
+
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"   
-                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
+                    <h6 style="color: #143153;"><img class="py-2"
+                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}"
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
-                    <h6 style="color: #143153;"> <img class="py-2"  
+                    <h6 style="color: #143153;"> <img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
-                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
-                            <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no  
+                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br>
+                            <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no
                                 <br> puedes realizar tu trabajo. </div> </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"  
+                    <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL   <br> 
-                            <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div> 
+                         <br><strong class="py-3"> MUERTE ACCIDENTAL   <br>
+                            <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div>
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"  
+                    <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
+                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>
                             <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
                     </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"  
+                    <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,  
+                        <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,
                             <br> nosotros te ayudamos.  </div> </strong></h6>
                 </div>
 
@@ -382,7 +382,7 @@
                   Cerrar
                 </button>
               </div>
-            
+
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
                 </div>
