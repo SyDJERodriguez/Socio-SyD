@@ -127,13 +127,24 @@ nav a.active{
     display:flex;justify-content:center;align-items:center;
 }
 
-@media(max-width:2201px){
+div.contenedorImg img.imgBene{
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+div.contenedorIcon img.iconBene{
+    width:140px; 
+    height:140px;
+}
+
+@media(max-width:2401px){
     .jumbotron{
         height: 340px;
     }
-    .imgBene{
-        width: 845px;
-        height: 170px;
+    div.contenedorImg img.imgBene{
+        width: 102%; 
+        height: 146px;
     }
 }
 
@@ -142,10 +153,7 @@ nav a.active{
         width: 1800px;
         height: 300px;
     }
-    .imgBene{
-        width: 510px;
-        height: 140px;
-    }
+    
 }
 
 @media(max-width:1601px){
@@ -166,6 +174,10 @@ nav a.active{
     .jumbotron{
         height: 250px;
     }
+    div.contenedorImg img.imgBene{
+        width: 103%;
+        height: 130px;
+    }
 
 }
 @media(max-width:960px){
@@ -185,6 +197,11 @@ nav a.active{
 
     .separadorBut .boton{
         margin: 0;
+    }
+
+    div.contenedorIcon img.iconBene{
+        width:110px; 
+        height:110px;
     }
 }
 @media(max-width:847px){
@@ -250,6 +267,11 @@ nav a.active{
     .leyenda{
         visibility:visible;
     }
+
+    div.contenedorImg img.imgBene{
+        width: 104%;
+        height: 110px;
+    }
 }
 
 @media(max-width:1003px){
@@ -282,6 +304,14 @@ nav a.active{
     div.jumbotron{
         height: 140px;
     }
+    div.contenedorImg img.imgBene{
+        width: 100%;
+        height: 90px;
+    }
+    div.contenedorIcon img.iconBene{
+        width: 97px; 
+        height: 97px;
+    }
 }
 
 @media(max-width:551px){
@@ -295,6 +325,14 @@ nav a.active{
     div.jumbotron{
         height: 100px;
     }
+    div.contenedorImg img.imgBene{
+        width: 98%;
+        height: 80px;
+    }
+    div.contenedorIcon img.iconBene{
+        width: 85px; 
+        height: 85px;
+    }
 }
 
 @media(max-width:404px){
@@ -306,6 +344,14 @@ nav a.active{
 @media(max-width:376px){
     div.jumbotron{
         height: 80px;
+    }
+    div.contenedorImg img.imgBene{
+        width: 100%;
+        height: 50px;
+    }
+    div.contenedorIcon img.iconBene{
+        width: 60px; 
+        height: 60px;
     }
 }
 

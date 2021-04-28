@@ -11,10 +11,10 @@
       <div class="col-lg-8 pb-5 pr-5 pl-5">
 
         <div class="row">
-          <div class="col-4  text-center">
-            <img class="py-2" src="{{asset('img/iconno-1.png')}}" style="width:120px; height:120px;">
+          <div class="col-5 text-center contenedorIcon">
+            <img src="{{asset('img/iconno-1.png')}}" class="py-2 iconBene">
           </div>
-          <div class="col-7 ">
+          <div class="col-7 contenedorImg">
               <img src="{{asset('img/benefeciroimg.png')}}" class="imgBene">
           </div>
         </div>
