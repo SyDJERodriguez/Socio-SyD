@@ -958,7 +958,7 @@ Label the data for the second TABLE
 .our-branches__content-address-map {
     flex: 0 35%;
     position: relative;
-    padding-top: 8%;
+    padding-top: 7%;
 }
 
 .our-branches__content-address-location {
@@ -1002,7 +1002,7 @@ Label the data for the second TABLE
 #map, #map_2 {
     margin-top: 10px;
     width: 100%;
-    height: 400px;
+    height: 395px;
 }
 
 .gm-style {
@@ -1056,4 +1056,14 @@ Label the data for the second TABLE
 
 .bg-primary {
     background-color: #00a5e6 !important;
+}
+
+@media (max-width: 1366px) {
+    .our-branches__content-address-map {
+        padding-top: 8% !important;
+    }
+
+    #map, #map_2 {
+        height: 420px !important;
+    }
 }
