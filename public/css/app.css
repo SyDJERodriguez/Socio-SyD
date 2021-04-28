@@ -1053,3 +1053,7 @@ Label the data for the second TABLE
 .navItemHeader{
     color: white;
 }
+
+.bg-primary {
+    background-color: #00a5e6 !important;
+}
