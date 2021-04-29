@@ -16,7 +16,7 @@
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
                 <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
-                style="position :absolute;z-index:2">
+                style="position :absolute;z-index:2; margin-top: -8px;">
 
             </div>
         </div>
