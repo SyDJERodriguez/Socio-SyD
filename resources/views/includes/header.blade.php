@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
-                                    style="background-color: #143153;color:white;font-size: 11px; width: 75px;">
+                                    style="background-color: #143153;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -23px !important;">
+                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -20px !important;">
                         <button type="submit" id="login-button" class="btn btn"
                             style="background-color: #143153;color:white; width: 150px">
                             INICIAR SESIÓN
