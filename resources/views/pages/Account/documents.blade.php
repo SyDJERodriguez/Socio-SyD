@@ -21,9 +21,9 @@
                     data-target="#survey">
                     <span style="font-size: 12px"> Nos interesa tu opinión</span>
                 </a>
-                
+
             </div>
-           
+
         </div>
 
         <div class="col-3 py-2 divImgIzquierda">
@@ -34,11 +34,11 @@
                 </div>
               </div>
         </div>
-          
 
-        <div class="col-8 py-2 divImgDerecha">
+
+        <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
             <form>
-                <div class="form-row text-center"
+                <div class="form-row text-center box_documents"
                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
                     <div class="col-lg-12" style="color: #143153;">
                         <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS

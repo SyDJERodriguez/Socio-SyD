@@ -8,17 +8,16 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div id="backHeader">
-        <img src="{{asset('img/headerBack.png')}}" alt=""
-        style="position: absolute;z-index:1; height: 110px;">
-    </div>
     <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
-            <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
-                style="position :absolute;z-index:2; margin-top: -8px;">
 
+            <div id="backHeader">
+                <img src="{{asset('img/headerBack.png')}}" alt=""
+                style="position: absolute;z-index:1; height: 110px; left: 0px;top: 0px;">
+                <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
+                class="logoHeader">
             </div>
+
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
@@ -43,8 +42,8 @@
                 <div class="form-row align-items-center">
                     <div class="col-lg-6 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
-                            placeholder="CORREO" name="email" required>
-                            <div class="row">
+                            placeholder="CORREO" name="email" required style="margin-top: 7px; border-color: black">
+                            <div class="row" style="margin-top: 3px">
                                 <div class="col-sm-7 " style="display: flex;">
                                     <p class="primary-color"
                                     style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
@@ -52,18 +51,18 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
-                                    style="background-color: #143153;color:white;font-size: 11px; width: 100px;">
+                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn adios"
+                                    style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
                                 </div>
                             </div>
 
                     </div>
-                    <div class="col-lg-4 my-2" style="padding-top:4px">
+                    <div class="col-lg-4 my-2" style="padding-top:6px">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
-                            placeholder="CONTRASEÑA" name="password" required>
-                        <div class="row ">
+                            placeholder="CONTRASEÑA" name="password" required style="border-color: black">
+                        <div class="row " style="margin-top: 5px">
                             <div class="col-sm-10">
                                 {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
                                 <a href="#"
@@ -80,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -20px !important;">
+                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -23px !important;">
                         <button type="submit" id="login-button" class="btn btn"
                             style="background-color: #143153;color:white; width: 150px">
                             INICIAR SESIÓN
@@ -98,7 +97,7 @@
                     <div class="col-sm-5 my-1"></div>
                 </div>
                 <div class="col-sm-2 my-3">
-                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px"
+                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 160px"
                         data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
                 </div>
 

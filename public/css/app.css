@@ -139,7 +139,7 @@ div.contenedorImg img.imgBene2{
 }
 
 div.contenedorIcon img.iconBene{
-    width:140px; 
+    width:140px;
     height:140px;
 }
 
@@ -160,16 +160,31 @@ img.imgDocument{
     margin-bottom: 50px;
 }
 
+img.logoHeader{
+    position :absolute;
+    z-index:2;
+    margin-top: -8px;
+}
+
+img.carousel{
+    width: 110%!important;
+}
+
+span.textSeguro{
+    font-size: 15px;
+    line-height: 50%;
+}
+
 @media(max-width:2401px){
     .jumbotron{
         height: 340px;
     }
     div.contenedorImg img.imgBene{
-        width: 102%; 
+        width: 102%;
         height: 146px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 146px;
     }
     div.contenedorFooter span.textFooter{
@@ -211,10 +226,10 @@ img.imgDocument{
         height: 300px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 120px;
     }
-    
+
 }
 
 @media(max-width: 1681px){
@@ -230,6 +245,9 @@ img.imgDocument{
 @media(max-width:1601px){
     .jumbotron{
         height: 300px;
+    }
+    div#backHeader img.logoHeader{
+        width: 300px
     }
 }
 
@@ -257,7 +275,7 @@ img.imgDocument{
         height: 130px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 100px;
     }
 
@@ -283,7 +301,7 @@ img.imgDocument{
 
 @media(max-width:1201px){
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 85px;
     }
 }
@@ -298,7 +316,7 @@ img.imgDocument{
         padding-right: 8%;
     }
     h5.redesSociales{
-        font-size: 18px;    
+        font-size: 18px;
     }
 }
 
@@ -325,7 +343,7 @@ img.imgDocument{
         font-size: 13px;
     }
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 98px;
     }
 }
@@ -370,7 +388,7 @@ img.imgDocument{
     }
 
     div.contenedorIcon img.iconBene{
-        width:110px; 
+        width:110px;
         height:110px;
     }
     div.contenedorIcon img.iconBene2{
@@ -378,7 +396,7 @@ img.imgDocument{
         height: 85px;
     }
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 78px;
     }
 }
@@ -473,7 +491,7 @@ img.imgDocument{
 
 div.divImgDerecha2{
     visibility: hidden;
-    display: none;   
+    display: none;
 }
 
 @media(max-width:684px){
@@ -507,7 +525,7 @@ div.divImgDerecha2{
     }
 
     div.contenedorImg img.imgBene2{
-        width: 105%; 
+        width: 105%;
         height: 88px;
     }
     p.textBene{
@@ -552,7 +570,7 @@ div.divImgDerecha2{
         height: 90px;
     }
     div.contenedorIcon img.iconBene{
-        width: 97px; 
+        width: 97px;
         height: 97px;
     }
     div.contenedorIcon img.iconBene2{
@@ -560,7 +578,7 @@ div.divImgDerecha2{
         height: 65px;
     }
     div.contenedorImg img.imgBene2{
-        width: 105%; 
+        width: 105%;
         height: 80px;
     }
 }
@@ -605,14 +623,14 @@ div.divImgDerecha2{
         height: 80px;
     }
     div.contenedorIcon img.iconBene{
-        width: 85px; 
+        width: 85px;
         height: 85px;
     }
     div.contenedorIcon img.iconBene2{
         width: 55px;
         height: 55px;
     }
-    
+
 }
 
 @media(max-width:438px){
@@ -641,7 +659,7 @@ div.divImgDerecha2{
         height: 50px;
     }
     div.contenedorIcon img.iconBene{
-        width: 60px; 
+        width: 60px;
         height: 60px;
     }
     div.contenedorIcon img.iconBene2{
@@ -655,6 +673,12 @@ div.divImgDerecha2{
     div.contenedorFooter span.textFooter{
         font-size: 9px;
         padding-right: 16%;
+    }
+}
+
+@media(max-width:994px){
+    a.navItemHeader{
+        font-size: 12px;
     }
 }
 
@@ -914,10 +938,17 @@ div hr.bg-primary{
     #backHeader img{
         width: 380px;
     }
+    div#backHeader img.logoHeader{
+        width: 290px
+    }
 }
 @media (max-width:1099px){
     #backHeader img{
         width: 340px;
+    }
+    div#backHeader img.logoHeader{
+        width: 250px;
+        top: 24%;
     }
 }
 
@@ -1440,4 +1471,12 @@ Label the data for the second TABLE
     #map, #map_2 {
         height: 420px !important;
     }
+
+    .box_documents {
+        height: 483px !important;
+    }
+}
+
+.box_documents {
+    height: 560px;
 }
