@@ -139,7 +139,7 @@ div.contenedorImg img.imgBene2{
 }
 
 div.contenedorIcon img.iconBene{
-    width:140px; 
+    width:140px;
     height:140px;
 }
 
@@ -162,7 +162,7 @@ img.imgDocument{
 
 img.logoHeader{
     position :absolute;
-    z-index:2; 
+    z-index:2;
     margin-top: -8px;
 }
 
@@ -180,11 +180,11 @@ span.textSeguro{
         height: 340px;
     }
     div.contenedorImg img.imgBene{
-        width: 102%; 
+        width: 102%;
         height: 146px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 146px;
     }
     div.contenedorFooter span.textFooter{
@@ -226,10 +226,10 @@ span.textSeguro{
         height: 300px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 120px;
     }
-    
+
 }
 
 @media(max-width: 1681px){
@@ -275,7 +275,7 @@ span.textSeguro{
         height: 130px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%; 
+        width: 102%;
         height: 100px;
     }
 
@@ -301,7 +301,7 @@ span.textSeguro{
 
 @media(max-width:1201px){
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 85px;
     }
 }
@@ -316,7 +316,7 @@ span.textSeguro{
         padding-right: 8%;
     }
     h5.redesSociales{
-        font-size: 18px;    
+        font-size: 18px;
     }
 }
 
@@ -343,7 +343,7 @@ span.textSeguro{
         font-size: 13px;
     }
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 98px;
     }
 }
@@ -388,7 +388,7 @@ span.textSeguro{
     }
 
     div.contenedorIcon img.iconBene{
-        width:110px; 
+        width:110px;
         height:110px;
     }
     div.contenedorIcon img.iconBene2{
@@ -396,7 +396,7 @@ span.textSeguro{
         height: 85px;
     }
     div.contenedorImg img.imgBene2{
-        width: 104%; 
+        width: 104%;
         height: 78px;
     }
 }
@@ -491,7 +491,7 @@ span.textSeguro{
 
 div.divImgDerecha2{
     visibility: hidden;
-    display: none;   
+    display: none;
 }
 
 @media(max-width:684px){
@@ -525,7 +525,7 @@ div.divImgDerecha2{
     }
 
     div.contenedorImg img.imgBene2{
-        width: 105%; 
+        width: 105%;
         height: 88px;
     }
     p.textBene{
@@ -570,7 +570,7 @@ div.divImgDerecha2{
         height: 90px;
     }
     div.contenedorIcon img.iconBene{
-        width: 97px; 
+        width: 97px;
         height: 97px;
     }
     div.contenedorIcon img.iconBene2{
@@ -578,7 +578,7 @@ div.divImgDerecha2{
         height: 65px;
     }
     div.contenedorImg img.imgBene2{
-        width: 105%; 
+        width: 105%;
         height: 80px;
     }
 }
@@ -623,14 +623,14 @@ div.divImgDerecha2{
         height: 80px;
     }
     div.contenedorIcon img.iconBene{
-        width: 85px; 
+        width: 85px;
         height: 85px;
     }
     div.contenedorIcon img.iconBene2{
         width: 55px;
         height: 55px;
     }
-    
+
 }
 
 @media(max-width:438px){
@@ -659,7 +659,7 @@ div.divImgDerecha2{
         height: 50px;
     }
     div.contenedorIcon img.iconBene{
-        width: 60px; 
+        width: 60px;
         height: 60px;
     }
     div.contenedorIcon img.iconBene2{
@@ -1471,4 +1471,12 @@ Label the data for the second TABLE
     #map, #map_2 {
         height: 420px !important;
     }
+
+    .box_documents {
+        height: 483px !important;
+    }
+}
+
+.box_documents {
+    height: 560px;
 }
