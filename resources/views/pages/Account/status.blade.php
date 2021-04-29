@@ -21,7 +21,7 @@
       <div>
       </div>
       <div style="padding-left: 10px !important;">
-         <h5>Detalle de la cuenta - 
+         <h5>Detalle de la cuenta -
             {{ucfirst($data->mes->isoformat('MMMM'))}}
          </h5>
          </div>
@@ -82,7 +82,7 @@
               <span class="float-left pl-2">
             <h4 style="color: #143153;"><strong>ACLARACIONES</strong></h4>
             <p>•	Para aclaraciones llámanos <br>
-               al 800 SYD (793) 1010
+               al 800 SyD (793) 1010
             </p>
          </span>
           </div>
