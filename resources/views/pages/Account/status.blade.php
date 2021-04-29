@@ -99,7 +99,7 @@
       info: false,
       searching:false,
       scrollX:true,
-      language: {
+      oLanguage: {
          paginate: {
             previous: "Anterior",
             next: "Siguiente"
