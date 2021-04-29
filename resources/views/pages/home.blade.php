@@ -316,8 +316,8 @@
                                     <div class="our-branches__content-address-location-result-item-body item_horario sucursal" style="padding-left: 15px;">
                                         <div class="text-wrap">
                                             <p>
-                                                Lunes a Viernes de 9:00am a 7:00pm
-                                                <br> Sábado de 9:00am a 5:00pm
+                                                Lunes a Viernes de 9:00 am a 7:00 pm
+                                                <br> Sábado de 9:00 am a 5:00 pm
                                             </p>
                                         </div>
                                     </div>
