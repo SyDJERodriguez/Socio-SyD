@@ -27,7 +27,7 @@
             aria-controls="collapseExample">
             <div class="row">
                 <div class="col-10">
-                    <span>
+                    <span class="textSeguro">
                         <b>SEGURO DE ACCIDENTES PERSONALES</b>
                     </span>
                 </div>
@@ -40,15 +40,15 @@
     <div class="collapse show" id="collapseExample">
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
-                <span style="font-size: 15px">- Coberturas principales del seguro</span></a>
+                <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
-                <span style="font-size: 15px"> - Registro de beneficiarios</span></a>
+                <span style="font-size: 13px"> - Registro de beneficiarios</span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
             <a href="{{route('customer.benefits.signature')}}" 
             title="Tu firma digital se utilizará únicamente para firmar tu certificado." 
             class="<?php if($active === 3 ){echo 'active_sb';}?>">
-            <span style="font-size: 15px">- Firma digital</span></a>
+            <span style="font-size: 13px">- Firma digital</span></a>
         </div>
         <a href="tel:8000874598" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
@@ -62,7 +62,7 @@
             aria-controls="collapseExample">
             <div class="row">
                 <div class="col-10 py-1">
-                    <span style="padding-top: 10px">
+                    <span style="padding-top: 10px" class="textSeguro">
                         <b>ASISTENCIAS ACTIVAS</b>
                     </span>
                 </div>

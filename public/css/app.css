@@ -170,6 +170,11 @@ img.carousel{
     width: 110%!important;
 }
 
+span.textSeguro{
+    font-size: 15px;
+    line-height: 50%;
+}
+
 @media(max-width:2401px){
     .jumbotron{
         height: 340px;
