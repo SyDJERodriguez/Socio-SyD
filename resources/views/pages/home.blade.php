@@ -3,7 +3,9 @@
     <section id="section1">
         <div class="container-fluid">
             <div class="row m-0">
-                <div class="col-lg-6 blue-dark text-center px-auto py-5" style="display: flex; justify-content: center; align-items: center;">
+                <div class="col-lg-6 blue-dark text-center px-auto py-5" 
+                style="display: flex; justify-content: center;display: flex;
+                align-items: center;">
                     <p class="nav-link" style="font-size: 30px;line-height:90%">
                         <STRONG>SOCIO SyD®</STRONG>
                         <br>
@@ -314,8 +316,8 @@
                                     <div class="our-branches__content-address-location-result-item-body item_horario sucursal" style="padding-left: 15px;">
                                         <div class="text-wrap">
                                             <p>
-                                                Lunes a Viernes de 9:00am a 7:00pm
-                                                <br> Sábado de 9:00am a 5:00pm
+                                                Lunes a Viernes de 9:00 am a 7:00 pm
+                                                <br> Sábado de 9:00 am a 5:00 pm
                                             </p>
                                         </div>
                                     </div>
