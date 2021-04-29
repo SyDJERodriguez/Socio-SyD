@@ -12,11 +12,11 @@
 
             <div class="col-lg-8 pt-0 pl-5 pr-5 pb-5" style="padding-bottom: 5rem !important;">
                 <div class="row">
-                    <div class="col-6 text-center p-4">
-                        <img src="{{asset('img/captch.png')}}" height="80px" alt="">
+                    <div class="col-6 text-center p-4 contenedorIcon">
+                        <img src="{{asset('img/captch.png')}}" class="iconBene2">
                     </div>
-                    <div class="col-6 p-0">
-                        <img src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
+                    <div class="col-6 p-0 contenedorImg">
+                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene">
                     </div>
                 </div>
                 @if ($imgData)
@@ -46,7 +46,9 @@
                         <div class="row">
                             <div class="col-7 py-1 offset-2">
                                 <label for="terms">
-                                    <h6>ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD</h6>
+                                    <p style="color: #143153;font-size:20px; line-height:90%">
+                                        <b> ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD </b>
+                                    </p>
                                 </label>
                             </div>
                             <div class="col-1 py-1">
@@ -93,7 +95,7 @@
 
     var canvas = document.getElementById("efirm");
     var ctx = canvas.getContext("2d");
-    var cw = canvas.width = 350,
+    var cw = canvas.width = 330,
         cx = cw / 2;
     var ch = canvas.height = 190,
         cy = ch / 2;
