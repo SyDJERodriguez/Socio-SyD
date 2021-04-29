@@ -166,6 +166,10 @@ img.logoHeader{
     margin-top: -8px;
 }
 
+img.carousel{
+    width: 110%!important;
+}
+
 @media(max-width:2401px){
     .jumbotron{
         height: 340px;

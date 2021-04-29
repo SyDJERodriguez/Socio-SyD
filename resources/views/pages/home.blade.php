@@ -3,7 +3,9 @@
     <section id="section1">
         <div class="container-fluid">
             <div class="row m-0">
-                <div class="col-lg-6 blue-dark text-center px-auto py-5" style="display: flex; justify-content: center; align-items: center;">
+                <div class="col-lg-6 blue-dark text-center px-auto py-5" 
+                style="display: flex; justify-content: center;display: flex;
+                align-items: center;">
                     <p class="nav-link" style="font-size: 30px;line-height:90%">
                         <STRONG>SOCIO SyD®</STRONG>
                         <br>
