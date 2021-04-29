@@ -42,8 +42,8 @@
                 <hr class="bg-primary hrFooter">
             </div>
             <div class="col-lg-3 text-white">
-                <h5 class="text-white">Síguenos en redes sociales </h5>
-                <h6 style="display: flex; justify-content: center;">
+                <h5 class="text-white redesSociales">Síguenos en redes sociales </h5>
+                <h6 style="display: flex;" class="iconSocial">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/"  target="_blank" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
                     <a href="https://www.instagram.com/dar.refaccionarias/" target="_blank" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
@@ -56,8 +56,9 @@
                 </a></p>
                 <hr class="bg-primary hrFooter">
             </div>
-            <div class="col-lg-3 text-white text-right pr-0">
-                <img src="{{asset('img/logo_2.png')}}" alt="" id="footerLogo">
+            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter">
+                <img src="{{asset('img/logo_2.png')}}" alt="footerLogo" id="footerLogo">
+                <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
             </div>
         </div>
     </div>

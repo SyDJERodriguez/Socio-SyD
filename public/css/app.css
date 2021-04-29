@@ -172,6 +172,10 @@ img.imgDocument{
         width: 102%; 
         height: 146px;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 18px;
+        padding-right: 5%;
+    }
 }
 
 @media(max-width: 2210px){
@@ -186,12 +190,18 @@ img.imgDocument{
         font-size: 30px;
         padding-top: 15px;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 16px;
+    }
 }
 
 @media(max-width: 1839px){
     p.textBene{
         font-size: 27px;
         padding-top: 15px;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 14px;
     }
 }
 
@@ -211,6 +221,9 @@ img.imgDocument{
     p.textBene{
         font-size: 22px;
         padding-top: 15px;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 12px;
     }
 }
 
@@ -250,10 +263,21 @@ img.imgDocument{
 
 }
 
+@media(max-width:1399px){
+    div.contenedorFooter span.textFooter{
+        font-size: 10px;
+        padding-right: 8%;
+    }
+}
+
 @media(max-width: 1258px){
     p.textBene{
         font-size: 16px;
         padding-top: 19px;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 9px;
+        padding-right: 8%;
     }
 }
 
@@ -269,12 +293,30 @@ img.imgDocument{
         font-size: 13px;
         padding-top: 19px;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 8px;
+        padding-right: 8%;
+    }
+    h5.redesSociales{
+        font-size: 18px;    
+    }
+}
+
+.iconSocial{
+    justify-content: center;
 }
 
 @media(max-width:991px){
     p.textBene{
         font-size: 20px;
         padding-top: 5px;
+    }
+    .iconSocial{
+        justify-content: left;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 13px;
+        padding-right: 31%;
     }
 }
 
@@ -299,6 +341,10 @@ img.imgDocument{
     p.textBene{
         font-size: 16px;
         padding-top: 14px;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 12px;
+        padding-right: 28%;
     }
 }
 
@@ -468,12 +514,20 @@ div.divImgDerecha2{
         font-size: 20px;
         padding-top: 0;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 12px;
+        padding-right: 25%;
+    }
 }
 
 @media(max-width:614px){
     p.textBene{
         font-size: 20px;
         padding-top: 0;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 11px;
+        padding-right: 25%;
     }
 }
 
@@ -529,6 +583,10 @@ div.divImgDerecha2{
         font-size: 17px;
         padding-top: 0;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 9px;
+        padding-right: 26%;
+    }
 }
 
 @media(max-width:491px){
@@ -568,6 +626,10 @@ div.divImgDerecha2{
     div.jumbotron{
         width: auto;
     }
+    div.contenedorFooter span.textFooter{
+        font-size: 9px;
+        padding-right: 24%;
+    }
 }
 
 @media(max-width:376px){
@@ -589,6 +651,10 @@ div.divImgDerecha2{
     div.contenedorImg img.imgBene2{
         width: 112%;
         height: 38px;
+    }
+    div.contenedorFooter span.textFooter{
+        font-size: 9px;
+        padding-right: 16%;
     }
 }
 
