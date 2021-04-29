@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-12">
                                 <p style="font-size:12px;padding-top:4px" class="primary-color">
-                                    *Si no visualiza el correo en su bandeja de entrada, revise en correo no deseado.
+                                    *Si no visualizas el correo en su bandeja de entrada, revise en correo no deseado
                                 </p>
                             </div>
                         </div>
