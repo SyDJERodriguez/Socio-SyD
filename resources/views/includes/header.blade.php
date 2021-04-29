@@ -8,17 +8,16 @@
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
-    <div id="backHeader">
-        <img src="{{asset('img/headerBack.png')}}" alt=""
-        style="position: absolute;z-index:1; height: 110px;">
-    </div>
     <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
-            <div class="fondoLogo">
+            
+            <div id="backHeader">
+                <img src="{{asset('img/headerBack.png')}}" alt=""
+                style="position: absolute;z-index:1; height: 110px; left: 0px;top: 0px;">
                 <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
-                style="position :absolute;z-index:2; margin-top: -8px;">
-
+                class="logoHeader">
             </div>
+
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
@@ -98,7 +97,7 @@
                     <div class="col-sm-5 my-1"></div>
                 </div>
                 <div class="col-sm-2 my-3">
-                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 200px"
+                    <a href="#" class="btn btn px-2" style="background-color: #143153;color:white; width: 160px"
                         data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
                 </div>
 

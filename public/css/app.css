@@ -160,6 +160,12 @@ img.imgDocument{
     margin-bottom: 50px;
 }
 
+img.logoHeader{
+    position :absolute;
+    z-index:2; 
+    margin-top: -8px;
+}
+
 @media(max-width:2401px){
     .jumbotron{
         height: 340px;
@@ -230,6 +236,9 @@ img.imgDocument{
 @media(max-width:1601px){
     .jumbotron{
         height: 300px;
+    }
+    div#backHeader img.logoHeader{
+        width: 300px
     }
 }
 
@@ -658,6 +667,12 @@ div.divImgDerecha2{
     }
 }
 
+@media(max-width:994px){
+    a.navItemHeader{
+        font-size: 12px;
+    }
+}
+
 @media(max-width: 991px){
     #formLogin2{
         visibility: visible;
@@ -914,10 +929,17 @@ div hr.bg-primary{
     #backHeader img{
         width: 380px;
     }
+    div#backHeader img.logoHeader{
+        width: 290px
+    }
 }
 @media (max-width:1099px){
     #backHeader img{
         width: 340px;
+    }
+    div#backHeader img.logoHeader{
+        width: 250px;
+        top: 24%;
     }
 }
 
