@@ -10,17 +10,30 @@
           @include('includes.Account.sidebarBenefits', ['active' => 4])
  <div class="col-lg-8 pb-5 pr-5 pl-5">
 
-<div class="row">
-  <div class="col-6  p-4">
-    <p style="color: #143153; font-size:21px;position :absolute;z-index:2">CON TU MONTO MÍNIMO DE COMPRA, <br>
-        <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
-    </p>
-  </div>
-  <div class="col-6 p-0">
-      <img  src="{{asset('img/benefeciroimg.png')}}" style="position: absolute;z-index:1" width="100%" alt="">
-  </div>
+<div class="row displayXL">
+    <div class="col-6" >
+        <p class="textBene">
+            CON TU MONTO MÍNIMO DE COMPRA, <br>
+            <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
+        </p>
+      </div>
+      <div class="col-6 contenedorImg">
+          <img src="{{asset('img/mecanico-2.png')}}" class="imgBene2">
+      </div>
 </div>
-<br><br>
+
+<div class="row displaySL">
+    <div class="col-12" >
+        <p class="textBene">
+            CON TU MONTO MÍNIMO DE COMPRA, <br>
+            <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
+        </p>
+      </div>
+      <div class="col-12 contenedorImg">
+          <img src="{{asset('img/mecanico-2.png')}}" class="imgBene2">
+      </div>
+</div>
+
   <form>
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
         @if($level === 'oro' || $level === 'plata')

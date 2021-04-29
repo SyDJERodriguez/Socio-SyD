@@ -47,7 +47,9 @@
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
     </div>
+
     <br>
+
     <button class="btn btn-lg text-white btnSideBenefits" 
             type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false"
             aria-controls="collapseExample">
@@ -75,14 +77,16 @@
             </span></a>
 
         </div>
-    </div>
-    <a href="tel:5511052682" style="color: grey;font-size: 20px;"><strong>
-                    SOLICITAR ASISTENCIA
-
-                    <i class="fas fa-phone-alt" style="font-size: 30px;vertical-align: top;"></i></strong>
+        
+    </div>    
+    
+                <a href="tel:5511052682" style="color: grey;font-size: 17px;">
+                    <b>SOLICITAR ASISTENCIA</b>
+                <i class="fas fa-phone-alt" style="font-size: 20px;vertical-align: top;"></i>
+                <br>
                 <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
-                <br />
-            </a>
+                </a>
+<br><br>
     <!--<button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
             data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
             aria-controls="collapseExample">
@@ -91,11 +95,9 @@
     <p></p>
     <div class="collapse" id="collapseExample3">
         <div class="card card-body border-0 text-center p-5">
-
-
         </div>
-
     </div>-->
-
-
 </div>
+
+
+

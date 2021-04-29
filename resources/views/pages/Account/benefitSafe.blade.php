@@ -15,7 +15,7 @@
             <img src="{{asset('img/iconno-1.png')}}" class="py-2 iconBene">
           </div>
           <div class="col-7 contenedorImg">
-              <img src="{{asset('img/benefeciroimg.png')}}" class="imgBene">
+              <img src="{{asset('img/mecanico-1.png')}}" class="imgBene">
           </div>
         </div>
        <!-- <form>-->

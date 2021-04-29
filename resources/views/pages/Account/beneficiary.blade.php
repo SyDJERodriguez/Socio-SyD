@@ -11,14 +11,16 @@
             @include('includes.Account.sidebarBenefits', ['active' => 2])
 
             <div class="col-lg-8 pt-0 pl-5 pr-5 pb-5">
+
                 <div class="row">
-                    <div class="col-6 text-center p-4">
-                        <img src="{{asset('img/Asset8.png')}}" height="80px" alt="">
+                    <div class="col-5 text-center contenedorIcon">
+                        <img src="{{asset('img/socioeconomico.png')}}" class="py-2 iconBene">
                     </div>
-                    <div class="col-6 p-0">
-                        <img src="{{asset('img/benefeciroimg.png')}}" width="100%" alt="">
+                    <div class="col-7 contenedorImg">
+                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene" style="left: 3px"> 
                     </div>
                 </div>
+
                 <div>
                     <div class="row" 
                     style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
