@@ -47,7 +47,7 @@
                             <div class="col-7 py-1 offset-2">
                                 <label for="terms">
                                     <p style="color: #143153;font-size:20px; line-height:90%">
-                                        <b> ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD </b>
+                                        <b> ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD®</b>
                                     </p>
                                 </label>
                             </div>
