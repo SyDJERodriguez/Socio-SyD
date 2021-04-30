@@ -14,7 +14,7 @@
     <div class="col-6" >
         <p class="textBene">
             CON TU MONTO MÍNIMO DE COMPRA, <br>
-            <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
+            <strong>OBTIENES BENEFICIOS ESPECIALES</strong>
         </p>
       </div>
       <div class="col-6 contenedorImg">
@@ -26,7 +26,7 @@
     <div class="col-12" >
         <p class="textBene">
             CON TU MONTO MÍNIMO DE COMPRA, <br>
-            <strong>OBTIENES BENEFICIOS ESPECIALES.</strong>
+            <strong>OBTIENES BENEFICIOS ESPECIALES</strong>
         </p>
       </div>
       <div class="col-12 contenedorImg">

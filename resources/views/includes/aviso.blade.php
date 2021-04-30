@@ -25,58 +25,58 @@
                             De conformidad con lo dispuesto en (i) la Ley Federal de Protección de Datos Personales en
                             Posesión de los Particulares (la “LFPD”); (ii) el Reglamento de la LFPD; y (iii) los
                             Lineamientos del Aviso de Privacidad publicados en el Diario Oficial de la Federación, “Plan
-                            de Lealtad SYD”, S.A. de C.V. (“SyD”), como Responsable del tratamiento de los datos
+                            de Lealtad SyD®”, S.A. de C.V. (“SyD®”), como Responsable del tratamiento de los datos
                             personales que recaba, pone a disposición de sus clientes y usuarios de plataformas
                             digitales (cada uno referido como “Titular”) el presente Aviso de Privacidad (el “Aviso”).
                         </p>
                         <p class="text-justify">
-                            SyD requiere someter a tratamiento determinados datos personales con el objeto de estar en
+                            SyD® requiere someter a tratamiento determinados datos personales con el objeto de estar en
                             condiciones de crear perfiles para los clientes interesados en obtener los beneficios del
-                            Plan de Lealtad SyD y dar acceso a los clientes registrados a dichos beneficios. SYD puede
+                            Plan de Lealtad SyD® y dar acceso a los clientes registrados a dichos beneficios. SyD® puede
                             obtener estos datos a través de su(s) sitio(s) web y landing page(s) (www.sociossyd.com) y/o
                             a través de cualquier vínculo, micrositio o acceso directamente relacionado con los mismos
                             (el “Sitio”).
 
                         </p>
                         <p class="text-justify">
-                            SyD se reserva el derecho de modificar en cualquier momento el contenido del presente Aviso.
+                            SyD® se reserva el derecho de modificar en cualquier momento el contenido del presente Aviso.
                             Cualquier cambio en el Aviso le será informado al Titular a través de una notificación
                             general en el Sitio. La modificación correspondiente entrará en vigor a partir del día
                             siguiente de su publicación.
                         </p>
-                        <p class="text-justify"><strong>Identidad y Domicilio de SYD.</strong></p>
-                        <p class="text-justify">SyD es una sociedad mercantil debidamente constituida de conformidad con
+                        <p class="text-justify"><strong>Identidad y Domicilio de SyD®.</strong></p>
+                        <p class="text-justify">SyD® es una sociedad mercantil debidamente constituida de conformidad con
                             la legislación mexicana, tal y como consta en la escritura pública 92,338, de fecha 11 de
                             febrero de 2021, pasada ante la fe del Lic. Roberto Núñez y Bandera, Notaria Pública número
                             1 de la Ciudad de México.
 
                         </p>
-                        <p class="text-justify">El domicilio de SyD se ubica en Calle San Luis Potosí, No. 33, Colonia
+                        <p class="text-justify">El domicilio de SyD® se ubica en Calle San Luis Potosí, No. 33, Colonia
                             Progreso Tizapán, Alcaldía Álvaro Obregón, Ciudad de México, C.P. 01080.
 
                         </p>
                         <p class="text-justify"><strong>Datos Personales sujetos a tratamiento.</strong></p>
-                        <p class="text-justify">Los datos del Titular que SyD tratará son los siguientes: nombre,
+                        <p class="text-justify">Los datos del Titular que SyD® tratará son los siguientes: nombre,
                             género, fecha de nacimiento, número telefónico y correo electrónico.
 
                         </p>
                         <p class="text-justify">El Titular reconoce que los datos personales antes mencionados podrán
-                            almacenarse utilizando almacenamiento en la nube. En su caso, SyD se asegurará de que el
+                            almacenarse utilizando almacenamiento en la nube. En su caso, SyD® se asegurará de que el
                             proveedor correspondiente cumpla con las disposiciones del Reglamento de la LFPD.
                         </p>
-                        <p class="text-justify">SyD en ningún momento recabará del Titular datos que puedan ser
+                        <p class="text-justify">SyD® en ningún momento recabará del Titular datos que puedan ser
                             considerados como sensibles, de acuerdo con la LFPD o su Reglamento.
                         </p>
                         <p class="text-justify"><strong>Finalidades del tratamiento. </strong></p>
-                        <p class="text-justify">Los datos personales tratados por SYD serán utilizados para llevar a
+                        <p class="text-justify">Los datos personales tratados por SyD® serán utilizados para llevar a
                             cabo las siguientes
                             finalidades:
                         </p>
                         <p class="text-justify">I. Finalidades primarias:<br>
                             a. Identificar al Titular; y<br>
                             b. Crear un perfil personalizado para el Titular como persona inscrita al Plan de Lealtad
-                            SyD; y <br>
-                            c. Ofrecer y otorgar los beneficios y recompensas del Plan de Lealtad SyD al Titular,
+                            SyD®; y <br>
+                            c. Ofrecer y otorgar los beneficios y recompensas del Plan de Lealtad SyD® al Titular,
                             incluyendo descuentos en la compra de productos, contrataciones de seguros, otorgamiento de
                             créditos y capacitaciones para los beneficiarios inscritos. <br>
                             d. Transferir los datos personales del Titular a terceros nacionales o extranjeros (socios
@@ -108,7 +108,7 @@
                         <p class="text-justify"><strong>Consentimiento del Titular. </strong></p>
                         <p class="text-justify">El Titular manifiesta que:</p>
 
-                        <p class="text-justify">a) El presente Aviso le ha sido dado a conocer por parte de SYD;<br>
+                        <p class="text-justify">a) El presente Aviso le ha sido dado a conocer por parte de SyD®;<br>
                             b) Ha leído, entendido y acordado los términos dispuestos en el presente Aviso, por lo que
                             otorga su consentimiento respecto del tratamiento de sus datos; y<br>
                             c) El uso del Sitio constituye confirmaciones tácitas de su consentimiento a lo dispuesto en
@@ -116,9 +116,9 @@
                             que no consienta con las disposiciones establecidas en el presente Aviso.
                         </p>
 
-                        <p class="text-justify">SyD asume que la información proporcionada por el Titular le pertenece a
+                        <p class="text-justify">SyD® asume que la información proporcionada por el Titular le pertenece a
                             este último. En caso de que no sea así, el Titular deberá informar dicha circunstancia
-                            inmediatamente a SyD, a través del envío de un correo electrónico a
+                            inmediatamente a SyD®, a través del envío de un correo electrónico a
                             <a href="mailto:protecciondatos@syd.com.mx">
                                 protecciondatos@syd.com.mx</a> el cual deberá contener su información de contacto y
                             cualquier
@@ -128,11 +128,11 @@
                         </p>
                         <p class="text-justify">El Titular podrá revocar el consentimiento antes referido en todo
                             momento. Para revocar el consentimiento proporcionado, el Titular deberá comunicar dicha
-                            circunstancia a SyD por medio de un correo electrónico enviado a <a
+                            circunstancia a SyD® por medio de un correo electrónico enviado a <a
                                 href="mailto:protecciondatos@syd.com.mx">
                                 protecciondatos@syd.com.mx</a>
                             indicando las causas que lo motivan a comunicar la revocación, así como la información que
-                            permita a SyD responder y dar seguimiento a dicha revocación.
+                            permita a SyD® responder y dar seguimiento a dicha revocación.
                         </p>
                         <p class="text-justify">En caso de que el Titular desee limitar el uso o la divulgación de
                             alguno de sus datos personales, podrá en cualquier momento enviar la manifestación de dicha
@@ -140,18 +140,18 @@
                                 href="mailto:protecciondatos@syd.com.mx">
                                 protecciondatos@syd.com.mx</a> en el
                             cual incluirá los datos personales cuyo tratamiento desea limitar, los motivos por los
-                            cuales desea limitarlos, así como la información que permita a SyD dar seguimiento a dicha
-                            solicitud. En caso de ser procedente la solicitud del Titular, SyD registrará al Titular en
+                            cuales desea limitarlos, así como la información que permita a SyD® dar seguimiento a dicha
+                            solicitud. En caso de ser procedente la solicitud del Titular, SyD® registrará al Titular en
                             la lista de exclusión que tendrá elaborada para tal efecto.
                         </p>
                         <p class="text-justify"><strong>Derechos de Acceso, Rectificación, Cancelación y Oposición
                                 (“ARCO”).</strong></p>
                         <p class="text-justify">Los Titulares tienen derecho a: (i) conocer qué datos personales son
-                            tratados por SYD y las
+                            tratados por SyD® y las
                             finalidades de su tratamiento (derecho a acceso); (ii) solicitar la corrección de sus datos
                             personales en caso de que estén desactualizados, sean inexactos o estén incompletos (derecho
                             de rectificación); (iii) que sus datos personales sean eliminados de los registros o bases
-                            de datos de SYD cuando consideren que no están siendo utilizados adecuadamente (derecho de
+                            de datos de SyD® cuando consideren que no están siendo utilizados adecuadamente (derecho de
                             cancelación); y (iv) oponerse al uso de sus datos personales para fines específicos (derecho
                             a oposición) (en su conjunto, los derechos “ARCO”)
                         </p>
@@ -162,7 +162,7 @@
                         </p>
 
                         <p class="text-justify">I. El nombre del Titular y/o su domicilio o correo electrónico, a efecto
-                            de que SYD pueda
+                            de que SyD® pueda
                             comunicarle la respuesta a su solicitud;</p>
                         <p class="text-justify">II. Los documentos que acrediten la identidad o, en su caso, la
                             representación legal del
@@ -173,7 +173,7 @@
                         <p class="text-justify">IV. Los motivos que fundamentan o justifican el ejercicio del derecho
                             ARCO correspondiente;
                         </p>
-                        <p class="text-justify">V. El formato o el medio en el que desea que SYD dé respuesta a su
+                        <p class="text-justify">V. El formato o el medio en el que desea que SyD® dé respuesta a su
                             solicitud, cuando resulte
                             aplicable;</p>
                         <p class="text-justify">VI. Cualquier otro elemento o documento que facilite el seguimiento a la
@@ -182,10 +182,10 @@
 
                         <p class="text-justify"><strong>Uso de cookies, web beacons o tecnologías similares o
                                 análogas.</strong></p>
-                        <p class="text-justify">SyD podrá utilizar cookies, web beacons y u otras tecnologías para
+                        <p class="text-justify">SyD® podrá utilizar cookies, web beacons y u otras tecnologías para
                             monitorear su comportamiento como usuario de internet, con la finalidad de brindarle un
                             mejor servicio y experiencia de usuario al navegar en el Sitio, así como ofrecerle nuevos
-                            productos basados en su preferencia. Los datos personales que SyD obtiene de estas
+                            productos basados en su preferencia. Los datos personales que SyD® obtiene de estas
                             tecnologías de rastreo son particularmente los siguientes: horario de navegación, tiempo de
                             navegación, secciones consultadas y páginas de internet accedidas previamente, dirección IP
                             de origen, navegador utilizado, sistema operativo, siendo posible monitorear su
