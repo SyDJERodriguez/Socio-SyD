@@ -47,7 +47,7 @@
                                     <a href="https://www.syd.com.mx/" target="_blank">https://www.syd.com.mx/</a> – <a
                                         href="https://www.refaccionarias-dar.com"
                                         target="_blank">https://www.refaccionarias-dar.com</a>)
-                                    o llamando al número <b>800 SYD (793) 1010</b> y solicita que te asignen
+                                    o llamando al número <b>800 SyD® (793) 1010</b> y solicita que te asignen
                                     tu número de cliente.
                                 </p>
                                 </li>
@@ -60,7 +60,7 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                     Solicítalo en la sucursal de tu preferencia o
-                                    llama al número <b>800 SYD (793)
+                                    llama al número <b>800 SyD® (793)
                                         1010</b> y solicítalo con tus datos.
                                     </p>
                                 </li>
@@ -109,7 +109,7 @@
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>)
                                         o llamando al
-                                        número: <b>800 SYD (793) 1010</b>.
+                                        número: <b>800 SyD® (793) 1010</b>.
                                     </p>
                                 </li>
                             </ol>
@@ -188,19 +188,19 @@
                                         </thead>
                                         <tbody class="question">
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $200.02 a $500.00 </b></td>
+                                                <td class="question firstTB noClas"><b>De $200 a $500 </b></td>
                                                 <td class="question firstTB noClas">Bronce</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">X</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $500.01 a $1,300.00</b> </td>
+                                                <td class="question firstTB noClas"><b>De $500.01 a $1,300</b> </td>
                                                 <td class="question firstTB noClas">Plata</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">Plata</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>Más de $1,300.00</b></td>
+                                                <td class="question firstTB noClas"><b>Más de $1,300</b></td>
                                                 <td class="question firstTB noClas">Oro</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">Oro</td>
@@ -229,21 +229,21 @@
                                         </thead>
                                         <tbody class="question">
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $2,500.01 a $4,500.00 </b></td>
+                                                <td class="question secondTB noClas"><b>De $2,500 a $4,500 </b></td>
                                                 <td class="question secondTB noClas">Bronce</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">X</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $4,500.01 a $7,000.00</b></td>
+                                                <td class="question secondTB noClas"><b>De $4,500.01 a $7,000</b></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $7,000.01 a $9,500.00</b></td>
+                                                <td class="question secondTB noClas"><b>Más de $7,000</b></td>
                                                 <td class="question secondTB noClas">Oro</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">Oro</td>
@@ -293,7 +293,7 @@
                                     Si tienes algún problema o duda a la hora de tu registro,
                                     puedes contactarnos a través de nuestro chat de Whatsapp disponible en el sitio web
                                     o llamando al número
-                                    <b>800 SYD (793) 1010</b>.
+                                    <b>800 SyD® (793) 1010</b>.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -316,7 +316,7 @@
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
-                                        o llamando al número: <b>800 SYD (793) 1010</b>.
+                                        o llamando al número: <b>800 SyD® (793) 1010</b>.
                                     </p>
                                 </li>
                             </ol>
@@ -334,7 +334,7 @@
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
-                                        o llamando al número: <b>800 SYD (793) 1010</b>.
+                                        o llamando al número: <b>800 SyD® (793) 1010</b>.
                                     </p>
                                 </li>
                             </ol>
@@ -377,19 +377,19 @@
                                         </thead>
                                         <tbody class="question">
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $200.02 a $500.00 </b></td>
+                                                <td class="question firstTB noClas"><b>De $200 a $500 </b></td>
                                                 <td class="question firstTB noClas">Bronce</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">X</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>De $500.01 a $1,300.00</b> </td>
+                                                <td class="question firstTB noClas"><b>De $500.01 a $1,300</b> </td>
                                                 <td class="question firstTB noClas">Plata</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">Plata</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>Más de $1,300.00</b></td>
+                                                <td class="question firstTB noClas"><b>Más de $1,300</b></td>
                                                 <td class="question firstTB noClas">Oro</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question firstTB noClas">Oro</td>
@@ -418,21 +418,21 @@
                                         </thead>
                                         <tbody class="question">
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $2,500.01 a $4,500.00 </b></td>
+                                                <td class="question secondTB noClas"><b>De $2,500 a $4,500</b></td>
                                                 <td class="question secondTB noClas">Bronce</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">X</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $4,500.01 a $7,000.00</b></td>
+                                                <td class="question secondTB noClas"><b>De $4,500.01 a $7,000</b></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>De $7,000.01 a $9,500.00</b></td>
+                                                <td class="question secondTB noClas"><b>Más de $7,000</b></td>
                                                 <td class="question secondTB noClas">Oro</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
                                                 <td class="question secondTB noClas">Oro</td>
