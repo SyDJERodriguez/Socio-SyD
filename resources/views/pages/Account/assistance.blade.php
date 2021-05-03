@@ -77,10 +77,9 @@
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                         <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div>
-                @else
-                    <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
+                    {{-- <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
                         <h6 style="padding-top: 13px;color: #c4c4c4;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
-                    </div>
+                    </div> --}}
                 @endif
 
         </div>
