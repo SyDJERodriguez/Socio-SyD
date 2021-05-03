@@ -110,7 +110,7 @@
 
                         <p class="text-justify">a) El presente Aviso le ha sido dado a conocer por parte de SyD®;<br>
                             b) Ha leído, entendido y acordado los términos dispuestos en el presente Aviso, por lo que
-                            otorga su consentimiento respecto del tratamiento de sus datos; y<br>
+                            otorga su consentimiento respecto del tratamiento de sus datos;<br>
                             c) El uso del Sitio constituye confirmaciones tácitas de su consentimiento a lo dispuesto en
                             el presente Aviso. El Titular deberá abstenerse de continuar utilizando el Sitio en caso de
                             que no consienta con las disposiciones establecidas en el presente Aviso.
