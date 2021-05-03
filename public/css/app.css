@@ -55,16 +55,18 @@ a.btnExitNo:hover{
 
 .whatsapp{
     top: 450px;
-    right: -190px;
+    right: 0px;
     position: fixed;
     z-index: 99;
+    text-align: right;
 }
 
 .upButton{
-    top: 530px;
-    right: -190px;
+    top: 515px;
+    right: 0px;
     position: fixed;
     z-index: 99;
+    text-align: right;
 }
 
 .top-bar {
