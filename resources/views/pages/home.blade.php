@@ -153,7 +153,9 @@
                         </div>
 
                         <div class="my-4 mb-5">
-                            <button class="btn btn blue-dark text-white " data-toggle="modal" data-target="#modal3">REGISTRARME</button>
+                            <button class="btn btn blue-dark text-white" style="border-color: black" data-toggle="modal" data-target="#modal3">
+                                REGISTRARME
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -173,7 +175,9 @@
                             </p>
                         </div>
                         <div class="my-4 mb-5">
-                            <button class="btn btn blue-dark text-white " data-toggle="modal" data-target="#modal5">REGISTRARME</button>
+                            <button class="btn btn blue-dark text-white" style="border-color: black" data-toggle="modal" data-target="#modal5">
+                                REGISTRARME
+                            </button>
                         </div>
                     </div>
                 </div>
