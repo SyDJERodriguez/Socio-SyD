@@ -64,7 +64,7 @@
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                 <div>
                     <h5 class="text-white"><b>AL HACER CLICK EN ACEPTAR, CONFIRMAS QUE:<br>
-                    ESTAS CONSCIENTE DE QUE PERDERÁS TUS BENEFICIOS DE SEGURO Y ASISTENCIAS.</b></h5>
+                    ESTAS CONSCIENTE DE QUE PERDERÁS TUS BENEFICIOS DE SEGURO Y ASISTENCIAS</b></h5>
                 </div>
                 <div class="row">
                 
