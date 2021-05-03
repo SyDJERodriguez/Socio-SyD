@@ -94,7 +94,7 @@
                     <span style="font-size:15px;">
                         Haz una compra mínima<br>
                         de <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
-                        DAR Refaccionarias
+                        DAR Refaccionarias®
                     </span>
                     </p>
                 </div>
