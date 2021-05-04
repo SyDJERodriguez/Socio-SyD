@@ -53,7 +53,7 @@
                                 <td class="question thirdTB noClas">Ambulancia terrestre por emergencia</td>
                                 <td class="question thirdTB noClas">2 eventos</td>
                                 <td class="question thirdTB noClas">1 evento</td>
-                                <td class="question thirdTB noClas text-center">X</td>
+                                <td class="question thirdTB noClas">1 evento</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Especializado</td>
