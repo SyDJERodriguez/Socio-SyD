@@ -20,8 +20,8 @@
                             <tr class="question">
                                 <th class="question">ASISTENCIA</th>
                                 <th class="question">SUBSERVICIO</th>
-                                <th class="question">PROGRAMA SALUD</th>
-                                <th class="question">PROGRAMA SALUD PLUS</th>
+                                <th class="question">PROGRAMA PLATA</th>
+                                <th class="question">PROGRAMA ORO</th>
                             </tr>
                         </thead>
                         <tbody class="question">
@@ -35,19 +35,19 @@
                                 <td class="question thirdTB noClas">Orientación emocional telefónica</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
-                                <td class="question thirdTB noClas text-center">X</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Orientación nutricional telefónica</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
                                 <td class="question thirdTB noClas">Sin límite de evento</td>
-                                <td class="question thirdTB noClas text-center">X</td>
+                                <td class="question thirdTB noClas">Sin límite de evento</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Video consulta por COVID19</td>
                                 <td class="question thirdTB noClas">1 evento</td>
                                 <td class="question thirdTB noClas">1 evento</td>
-                                <td class="question thirdTB noClas text-center">X</td>
+                                <td class="question thirdTB noClas">1 evento</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">Ambulancia terrestre por emergencia</td>
@@ -60,13 +60,7 @@
                                 <td class="question thirdTB noClas">Asistencia funeraria por accidente, este servicio debe ser coordinado desde un inicio 
                                     por TM-ASSISTANCE. No aplica reembolsos. Hasta 70 (setenta) años.</td>
                                 <td class="question thirdTB noClas">1 evento hasta $10,000</td>
-                                <td class="question thirdTB noClas">1 evento hasta $15,000</td>
-                            </tr>
-                            <tr class="question">
-                                <td class="question thirdTB noClas">Usuarios</td>
-                                <td class="question thirdTB noClas">$4,000</td>
-                                <td class="question thirdTB noClas">Costo unitario mensual $10.00 más IVA</td>
-                                <td class="question thirdTB noClas">Costo unitario mensual $15.00 más IVA</td>
+                                <td class="question thirdTB noClas">1 evento hasta $10,000</td>
                             </tr>
                             <tr class="question">
                                 <td class="question thirdTB noClas">VIAL</td>

@@ -1358,10 +1358,10 @@ Label the data for the second TABLE
         content: "SUBSERVICIO";
     }
     td.thirdTB:nth-of-type(3):before{
-        content: "PROGRAMA SALUD";
+        content: "PROGRAMA PLATA";
     }
     td.thirdTB:nth-of-type(4):before{
-        content: "PROGRAMA SALUD+";
+        content: "PROGRAMA ORO";
     }
 }
 #footerLogo{
