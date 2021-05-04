@@ -575,6 +575,29 @@ class CustomerController extends Controller
         }
     }
 
+    public function verify_invitation($email = null){
+        $data = DB::table('customers_sessions')
+                    ->where('email','=', $email)
+                    ->get();
+        $data = json_decode($data);
+        $data = (array)$data;//convert to array
+
+        if ( is_array($data) == true && empty($data) == false && $data[0]->active === 1){
+            $activated = true;
+            return view('pages.activationPage', compact('activated'));
+        }
+        $update_customer = DB::table('customers_sessions')->where('email', '=', $email)->update([
+            'active'   => 1
+        ]);
+        //$total = $this->totalAmount();
+        //$noti = $this->getNotifications();
+
+        if ($update_customer){
+            $activated = false;
+            return view('pages.activationPage', compact('activated'));
+        }
+    }
+
     //cerify associate
     public function verify_associate($client_number = null, $mobile_number = null){
         $query = DB::table('associates')
