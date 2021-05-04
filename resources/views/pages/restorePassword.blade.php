@@ -37,7 +37,7 @@
 <!-- Content Start -->
     <div class="container-fluid" style="display: flex; justify-content: center; padding: 100px 0;">
         <div class="card border-secondary mb-3" style="max-width: 40rem; ">
-            <div class="card-header" style="background-color: #143153; color: #ffffff;">RESTABLECER CONTRASEÑA</div>
+            <div class="card-header" style="background-color: #143153; color: #ffffff;">REESTABLECER CONTRASEÑA</div>
             <div class="card-body text-secondary">
                 <form id="restoreForm" method="POST" action="{{route('update.password')}}">
                     @method('PUT')

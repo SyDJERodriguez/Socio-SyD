@@ -571,7 +571,7 @@ class CustomerController extends Controller
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@quaxar.info',"Club Dar");
-                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Restablecer Contraseña Plataforma SYD');
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Reestablecer Contraseña Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {

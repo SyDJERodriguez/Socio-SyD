@@ -167,8 +167,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CONTRASEÑA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA.</p>
+                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CONTRASEÑA!</h5>
+                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
@@ -225,9 +225,9 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA RESTABLECER SU CUENTA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRA UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA.</p>
-                        <p class="text-white">SI NO VUALIZA EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA SPAM.</p>
+                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CUENTA!</h5>
+                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA</p>
+                        <p class="text-white">SI NO VUALIZAS EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA DE CORREO NO DESEADO</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
