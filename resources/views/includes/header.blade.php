@@ -21,18 +21,18 @@
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
+            <p class="error">
                 {{ session()->get('error') }}
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
-                        Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla.
+                    <p class="error">
+                        Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p style="color: red;margin-bottom: 0;text-align: center;font-size: 10px;">
+                    <p class="error">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -223,10 +223,21 @@ padding-bottom: 14px;">
     <div class="collapse navbar-collapse" id="navbarLogin">
         <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
             @if(session()->has('error'))
-            <p style="color: red;margin-bottom: 0;text-align: center;">
+            <p class="error2">
                 {{ session()->get('error') }}
             </p>
             @endif
+                @if(session()->has('deactivate'))
+                    <p class="error2">
+                        Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla
+                    </p>
+                @endif
+
+                @if(session()->has('register'))
+                    <p class="error2">
+                        El email no se encuentra registrado dentro de nuestra plataforma.
+                    </p>
+                @endif
             @guest
             <form id="login-form" method="POST" action="{{ route('customer.login') }}">
                 @csrf
