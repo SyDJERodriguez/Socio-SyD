@@ -53,6 +53,27 @@ a.btnExitNo:hover{
 
 /* header style */
 
+p.error{
+    color: red;
+    margin-bottom: -24;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    margin-bottom: -23;
+    left: 25%
+}
+
+p.error2{
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    background-color: whitesmoke;
+}
+
+button.btnBorder{
+    border-color: black;
+}
+
 .whatsapp{
     top: 450px;
     right: 0px;
@@ -337,6 +358,10 @@ span.textSeguro{
     div.contenedorFooter span.textFooter{
         font-size: 13px;
         padding-right: 31%;
+    }
+    button.btnBorder{
+        border-color: black;
+        border-width: 2px;
     }
 }
 
