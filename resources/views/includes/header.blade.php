@@ -1,23 +1,23 @@
 <a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD." target="_blank"
     class="whatsapp">
-    <img src="{{asset('img/whatsIcon.png')}}" alt="">
+    <img src="{{asset('img/whatsIcon.png')}}" style="width: 40% !important;" alt="">
 </a>
 <a href="#oneSection" class="upButton">
-    <img src="{{asset('img/goUp.png')}}">
+    <img src="{{asset('img/goUp.png')}}" width="40%">
 </a>
 
 <div class="container-fluid" id="oneSection">
     <!--header-->
     <div id="backHeader">
-        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        <img src="{{asset('img/headerBack.png')}}" alt=""
         style="position: absolute;z-index:1; height: 110px;">
     </div>
     <div class="row ml-0 header " id="header">
         <div class="col-lg-4 p-3 pl-4" id="main-logo" >
             <div class="fondoLogo">
-                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
                 style="position :absolute;z-index:2">
-               
+
             </div>
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
@@ -45,39 +45,49 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                             <div class="row">
-                                <div class="col-sm-7 ">
-                                    <p class="primary-color" style="margin-bottom: 0; font-size:12px;text-align:center;padding-top:5px">
+                                <div class="col-sm-7 " style="display: flex;">
+                                    <p class="primary-color"
+                                    style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
                                 <div class="col-md-4">
                                     <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
-                                    style="background-color: #143153;color:white;font-size: 11px; width: 70px;">
+                                    style="background-color: #143153;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
                                 </div>
                             </div>
-                            
+
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-2" style="padding-top:4px">
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="row ">
-                            <div class="col-lg-12 noDown" style="display: flex; justify-content: center; align-items: flex-end;font-size:14px">
-                                <a href="#" class="primary-color noDown" data-toggle="modal" data-target="#modal4">
-                                    <b style="font-size: 12px;">¿Olvidaste tu contraseña?</b>
+                            <div class="col-sm-10">
+                                {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
+                                <a href="#"
+                                style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
+                                class="primary-color" data-toggle="modal" data-target="#modal4">
+                                    <b class="noDown">¿Olvidaste tu contraseña?</b>
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
+                                style="background-color: #143153;color:white;font-size: 11px; width: 70px;visibility:hidden">
+                                {{-- boton no visibile --}}
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" id="buttonLogin">
+                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -20px !important;">
                         <button type="submit" id="login-button" class="btn btn"
                             style="background-color: #143153;color:white; width: 150px">
                             INICIAR SESIÓN
                         </button>
                     </div>
-                   
-                    
+
+
                 </div>
 
             </form>
@@ -97,7 +107,7 @@
 
             @endguest
         </div>
-        
+
     </div>
 
     <!-- Modal LOGOUT-->
@@ -209,7 +219,7 @@ padding-bottom: 14px;">
             <i class="fas fa-bars text-white"></i>
         </button>
     </div>
-   
+
     {{-- navbar login --}}
     <div class="collapse navbar-collapse" id="navbarLogin">
         <div class="col-lg-7 pl-6 pt-1" id="formLogin2"  >
@@ -225,8 +235,8 @@ padding-bottom: 14px;">
                     <div class="col-sm-12 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
-                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
-                            <p class="text-white pr-3" style="margin-bottom: 0">
+                        <div class="col-sm-12" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                            <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
@@ -245,19 +255,19 @@ padding-bottom: 14px;">
                         </div>
                     </div>
                     <div class="col-sm-12" id="buttonLogin">
-                        <button type="submit" class="btn btn-sm btn-block" 
+                        <button type="submit" class="btn btn-sm btn-block"
                         style="background-color: #3cb3e7;color:white">
                             INICIAR SESIÓN
                         </button>
-                       
+
                     </div>
-                    
+
                 </div>
             </form>
             @else
             <div >
                 <div class="col-lg-12 my-2">
-                    <a href="#" class="btn btn-sm btn-block" 
+                    <a href="#" class="btn btn-sm btn-block"
                     style="background-color: #3cb3e7;color:white"
                         data-toggle="modal" data-target="#modalLogOut">CERRAR SESIÓN</a>
                 </div>
@@ -265,7 +275,7 @@ padding-bottom: 14px;">
             @endguest
         </div>
     </div>
-  
+
     {{-- navbar collapse --}}
     <div class="collapse navbar-collapse" id="navbarNav">
 

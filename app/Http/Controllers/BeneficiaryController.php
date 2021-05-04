@@ -13,7 +13,8 @@ class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $beneficiary = 'true';
+        
+
         //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
         //dd($request['name'][1]);
@@ -105,6 +106,11 @@ class BeneficiaryController extends Controller
                 //$generatePDF = $this->generatePDF();
                 //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
+                    $beneficiaries = DB::table('beneficiaries')
+                                        ->where('customer_id','=', $data['id'])
+                                        ->get();                
+                        $beneficiaries = json_decode($beneficiaries);
+                        $beneficiary = (array)$beneficiaries;//convert to array
                     return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total'));
                 //}
 
@@ -136,7 +142,11 @@ class BeneficiaryController extends Controller
 
             //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
-                $beneficiary = 'true';
+                $beneficiaries = DB::table('beneficiaries')
+                                ->where('customer_id','=', $data['id'])
+                                ->get();                
+                    $beneficiaries = json_decode($beneficiaries);   
+                    $beneficiary = (array)$beneficiaries;//convert to array 
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total'));
            // }
         }

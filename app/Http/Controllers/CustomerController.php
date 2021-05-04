@@ -653,7 +653,7 @@ class CustomerController extends Controller
             //update notifications each login
             $notification = $this->updateNotifications($request->email);
 
-            return redirect()->route('customer.myAccount');
+            return redirect()->route('customer.benefits');
 
         }else{
             return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
@@ -775,6 +775,9 @@ class CustomerController extends Controller
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
+        $mes = Carbon::parse()->locale('es');
+        $data->mes = $mes;
+
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
     }
@@ -881,9 +884,13 @@ class CustomerController extends Controller
             }
         }
 
-        $beneficiaries = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
-        if($beneficiaries !== null){
-            $beneficiary = 'true';
+        $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data['id'])
+                        ->get();                
+        $beneficiaries = json_decode($beneficiaries);
+        $beneficiary = (array)$beneficiaries;//convert to array
+
+        if(empty($beneficiaries) == false){
             return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level'));
         }
 
