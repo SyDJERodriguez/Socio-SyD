@@ -20,7 +20,7 @@
                                         <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                         <p class="float-left" style="font-size: 14px;width:95%">
                                         {{-- sin nivel --}}
-                                        Aún no alcanzas el monto mínimo para beneficios.</p> 
+                                        Aún no alcanzas el monto mínimo para beneficios</p> 
                                 </li>
                             @else
                                 <li class="list-group-item">
@@ -35,7 +35,7 @@
                                             @elseif($total > 7000)
                                                 Oro
                                             @endif
-                                            dentro de tu plan de lealtad.
+                                            dentro de tu plan de lealtad
                                         </p>
                                 </li>
                                 <li class="list-group-item">
@@ -51,9 +51,9 @@
                                         <p class="float-left" style="font-size: 14px;width:95%">
                                         Ya eres acreedor a la cobertura de asistencias de nivel
                                            @if ($total > 4500 && $total <= 7000)
-                                                Plata.
+                                                Plata
                                            @elseif($total > 7000)
-                                                Oro.
+                                                Oro
                                            @endif
                                         </p>
                                 </li>
@@ -65,7 +65,7 @@
                             <span class="float-right">
                                 <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                 <p class="float-left" style="font-size: 14px;width:95%">
-                                No hay notificaciones disponibles.</p>
+                                No hay notificaciones disponibles</p>
                         </li>
                     @endif
                     
@@ -80,7 +80,7 @@
                                 <i style="color: #00A5E6;" class="fas fa-circle" hidden></i></span>
                                 <p class="float-left" style="font-size: 14px;width:95%">
                                 {{-- sin nivel --}}
-                                Aún no alcanzas el monto mínimo para beneficios.</p>
+                                Aún no alcanzas el monto mínimo para beneficios</p>
                         </li>
                     @else
                         <li class="list-group-item">
@@ -95,7 +95,7 @@
                                     @elseif($total > 1300)
                                         Oro
                                     @endif
-                                    dentro de tu plan de lealtad.
+                                    dentro de tu plan de lealtad
                                 </p>
                         </li>
                         <li class="list-group-item">
@@ -111,9 +111,9 @@
                                 <p class="float-left" style="font-size: 14px;width:95%">
                                     Ya eres acreedor a la cobertura de asistencias de nivel
                                    @if ($total > 500.01 && $total <= 1300)
-                                        Plata.
+                                        Plata
                                    @elseif($total > 1300)
-                                        Oro.
+                                        Oro
                                    @endif  
                                 </p>
                         </li>

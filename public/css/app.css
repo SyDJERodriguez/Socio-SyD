@@ -70,7 +70,10 @@ p.error2{
     background-color: whitesmoke;
 }
 
-button.btnBorder{
+div input.btnBorder{
+    border-color: black;
+}
+.btnBorder{
     border-color: black;
 }
 
@@ -358,10 +361,6 @@ span.textSeguro{
     div.contenedorFooter span.textFooter{
         font-size: 13px;
         padding-right: 31%;
-    }
-    button.btnBorder{
-        border-color: black;
-        border-width: 2px;
     }
 }
 
