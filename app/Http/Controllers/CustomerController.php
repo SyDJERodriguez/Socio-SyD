@@ -886,7 +886,7 @@ class CustomerController extends Controller
 
         $beneficiaries = DB::table('beneficiaries')
                         ->where('customer_id','=', $data['id'])
-                        ->get();                
+                        ->get();
         $beneficiaries = json_decode($beneficiaries);
         $beneficiary = (array)$beneficiaries;//convert to array
 
@@ -902,6 +902,14 @@ class CustomerController extends Controller
     //Go to benefits of Safe
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
 
         $cnt = intval(Auth::user()->client_number);
         $is_cnt = 'false';
@@ -948,7 +956,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt'));
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number'));
     }
 
     //Go to signature section in benefits
@@ -1452,7 +1460,7 @@ class CustomerController extends Controller
         $query = (array)$query;
 
         $employee = null;
-        
+
         if(empty($query) === false){
             $employee = $query[0];
         }
