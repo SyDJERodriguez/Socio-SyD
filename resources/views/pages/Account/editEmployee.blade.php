@@ -61,7 +61,7 @@
                                 <label class="text-muted sml p-0 m-0">FECHA DE NACIMIENTO</label><br>
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control" 
+                                <input class="form-control-sm form-control btnBorder" 
                                         type="email"
                                         autocomplete="new-password"
                                         name="email"
@@ -73,7 +73,7 @@
                             <div class="col-6">
                                 <div>
                                     <div>
-                                        <input class="form-control-sm form-control" type="date"
+                                        <input class="form-control-sm form-control btnBorder" type="date"
                                                 name="bday"        
                                                 value="{{$employee->birthday}}"
                                                 required>
