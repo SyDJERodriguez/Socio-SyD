@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn adios"
+                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn adios"
                                     style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
