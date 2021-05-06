@@ -171,7 +171,7 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia las 24 horas<br>
                                 </strong>
-                                Te brindamos la seguridad que nadie te da
+
                             </p>
                         </div>
                         <div class="my-4 mb-5">
@@ -343,7 +343,7 @@
                                 display: flex;
                                 align-items: center;">
                                     <div class="our-branches__content-address-location-result-item-body item_tel sucursal text-wrap" style="padding-left: 15px;">
-                                        <p> Tel: (449) 140-5442 <br> Tel: (449) 978-1196 </p>
+                                        <p> Tel: 44-9140-5442 <br> Tel: 44-9978-1196 </p>
                                     </div>
                                 </div>
 
