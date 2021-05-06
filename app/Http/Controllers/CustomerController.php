@@ -836,6 +836,14 @@ class CustomerController extends Controller
     //Go to register beneficiary
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
 
         $signature = DB::table('customers_sessions')
             ->select('signature_id')
@@ -891,12 +899,12 @@ class CustomerController extends Controller
         $beneficiary = (array)$beneficiaries;//convert to array
 
         if(empty($beneficiaries) == false){
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number'));
         }
 
         $signature = $signature->signature_id;
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt', 'number'));
     }
 
     //Go to benefits of Safe
@@ -962,6 +970,14 @@ class CustomerController extends Controller
     //Go to signature section in benefits
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
         $query = DB::table('signatures')
                 ->where('client_number','=',$data['client_number'])
                 ->get();
@@ -1013,7 +1029,7 @@ class CustomerController extends Controller
             }
         }
 
-        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level'));
+        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number'));
     }
 
     //Create signature
@@ -1121,6 +1137,14 @@ class CustomerController extends Controller
     //Go to benefits of assistance
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
         $now = Carbon::now();
         $current_month = $now->month;
 
@@ -1154,7 +1178,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.assistance', compact('data', 'level','total','noti'));
+        return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number'));
     }
 
     //calculated totalAmount
