@@ -24,7 +24,7 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades </div> </strong></h6>
+                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades </div> </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"> <img class="py-2"  
