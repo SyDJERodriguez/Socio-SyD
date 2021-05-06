@@ -171,7 +171,7 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia las 24 horas<br>
                                 </strong>
-                                Te brindamos la seguridad que nadie te da
+                                
                             </p>
                         </div>
                         <div class="my-4 mb-5">
