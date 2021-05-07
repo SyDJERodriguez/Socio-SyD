@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn adios"
+                                    <a href="#" data-toggle="modal" data-target="#modal3" class="btn adios"
                                     style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
@@ -72,7 +72,7 @@
                                 </a>
                             </div>
                             <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="#modalCNT" class="btn btn-sm p-0 adios"
+                                <a href="#" data-toggle="modal" data-target="" class="btn btn-sm p-0 adios"
                                 style="background-color: #143153;color:white;font-size: 11px; width: 70px;visibility:hidden">
                                 {{-- boton no visibile --}}
                                 </a>
@@ -249,7 +249,7 @@ padding-bottom: 14px;">
                             <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal3"
                                 style="color:white;font-size: 14px;">
                                 ¡REGÍSTRATE!
                             </a>
