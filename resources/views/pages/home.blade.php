@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-4 mx-auto text-center img2">
                     <img class="mx-auto py-2" src="{{asset('img/shopping.png')}}" alt=""
-                    width="120px" 
+                    width="120px"
                     style="
                     padding-top: 20px;
                     border-top-width: 10px;
@@ -99,7 +99,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 mx-auto text-center img3">
-                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt="" 
+                    <img class="mx-auto py-2 pb-3" src="{{asset('img/check.png')}}"  width="120px" height="155px" alt=""
                     style="margin-top: 5% !important;height: 144px">
                     <p class="text-center"  style="font-size: 18px;line-height:90%; margin-top: -2% !important;margin-top: -7px;">
                         <strong>OBTÉN BENEFICIOS</strong>
@@ -332,18 +332,18 @@
                                     </div>
                                 </div>
 
-                                <div class="col-2 mapIcon" 
+                                <div class="col-2 mapIcon"
                                 style="display: flex;
                                 justify-content: center;
                                 align-items: center;">
                                     <svg aria-hidden="true" width="30" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16 telIcon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
                                 </div>
-                                <div class="col-9" 
+                                <div class="col-9"
                                 style="height: 100%;
                                 display: flex;
                                 align-items: center;">
                                     <div class="our-branches__content-address-location-result-item-body item_tel sucursal text-wrap" style="padding-left: 15px;">
-                                        <p> Tel: 01(449) 140-5442 <br> Tel: 01(449) 978-1196 </p>
+                                        <p> Tel: 44-9140-5442 <br> Tel: 44-9978-1196 </p>
                                     </div>
                                 </div>
 
