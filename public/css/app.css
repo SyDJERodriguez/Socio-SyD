@@ -358,6 +358,12 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1084px){
+    img.imgCarou{
+        height: 271px;
+    }
+}
+
 .iconSocial{
     justify-content: center;
 }
@@ -381,6 +387,9 @@ h5.footerTitle3{
     h5.footerTitle3{
         margin-bottom: 15px;
         margin-top: 28px;
+    }
+    img.imgCarou{
+        height: 100%;
     }
 }
 
@@ -1150,6 +1159,12 @@ input[type='checkbox'] {
 
 .carousel-caption{
     position: unset;
+}
+
+.carouselFoto{
+    object-fit: cover;
+  height:100%;
+  width:100%;
 }
 
 .container-fluid{

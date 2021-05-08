@@ -19,26 +19,26 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel" alt="...">
+                            <div class="carousel-item active ">
+                                <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item carouselFoto">
+                                <img src="{{asset('img/slider2.jpg')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('img/slider2.jpg')}}" class="d-block w-100 carousel" alt="...">
+                                <img src="{{asset('img/C1.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('img/C1.png')}}" class="d-block w-100 carousel" alt="...">
+                                <img src="{{asset('img/C2.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('img/C2.png')}}" class="d-block w-100 carousel" alt="...">
+                                <img src="{{asset('img/C3.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('img/C3.png')}}" class="d-block w-100 carousel" alt="...">
+                                <img src="{{asset('img/C4.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{asset('img/C4.png')}}" class="d-block w-100 carousel" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{asset('img/C5.png')}}" class="d-block w-100 carousel" alt="...">
+                                <img src="{{asset('img/C5.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
