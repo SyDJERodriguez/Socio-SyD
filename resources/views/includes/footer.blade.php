@@ -2,7 +2,16 @@
     <div class="container-fluid blue-dark py-5">
         <div class="row m-0">
             <div class="col-lg-3 text-white">
-                <h5 class="text-white pb-3">Contáctanos</h5>
+                @if (Auth::check()) 
+                {{-- agregar una clase de css en cada if, y con mediaqueries modificar el margin-bottom --}}
+                  <h5 class="text-white pb-3">
+                    Contáctanos
+                  </h5>
+                @else
+                  <h5 class="text-white pb-3 footerTitle1">
+                    Contáctanos
+                  </h5>
+                @endif
                 <p>
                   Todo el país 
                   <br>
@@ -24,13 +33,20 @@
                      Desuscribirme
                     </a>
                   </p>
+                  <hr class="bg-primary hrFooter">
                 @endif
             </div>
             <div class="col-lg-3 text-white">
-                <h5 class="text-white pb-3">Consulta </h5>
-                <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
+              @if (Auth::check())
+                <h5 class="text-white pb-3 footerTitle2">Consulta </h5>                
+              @else
+                <h5 class="text-white pb-3">Consulta </h5> 
+              @endif
+                <p>
+                  <a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
                   Aviso de Privacidad
-                </a></p>
+                  </a>
+                </p>
                 <hr class="bg-primary hrFooter">
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalGeneralTerms" style="color:white">
                   Términos y condiciones
@@ -42,8 +58,12 @@
                 <hr class="bg-primary hrFooter">
             </div>
             <div class="col-lg-3 text-white">
-                <h5 class="text-white redesSociales">Síguenos en redes sociales </h5>
-                <h6 style="display: flex;" class="iconSocial">
+              @if (Auth::check())
+                <h5 class="text-white redesSociales footerTitle3">Síguenos en redes sociales </h5>
+              @else
+              <h5 class="text-white redesSociales">Síguenos en redes sociales </h5>  
+              @endif
+                <h6 style="display: flex;margin-bottom: 20px;" class="iconSocial">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/"  target="_blank" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
                     <a href="https://www.instagram.com/dar.refaccionarias/" target="_blank" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
