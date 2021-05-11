@@ -9,21 +9,32 @@
     <!-- Header - Navbar Start -->
     <div class="container-fluid">
         <!--header-->
-        <div id="backHeader">
-            <img src="{{asset('img/headerBack.png')}}" alt="" 
-            style="position: absolute;z-index:1; height: 110px;">
-        </div>
-        <div class="row ml-0 header " id="header">
-            <div class="col-lg-4 p-3 pl-4" id="main-logo" >
-                <div class="fondoLogo">
-                    <img src="{{asset('img/logo.png')}}" width="250px" alt=""
-                    style="position :absolute;z-index:2">
-                   
-                </div>
+    <div id="backHeader">
+        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        style="position: absolute;z-index:1; height: 110px;">
+    </div>
+    <div class="row ml-0 header " id="header">
+        <div class="col-lg-4 p-3 pl-4" id="main-logo" >
+            <div class="fondoLogo">
+                <img src="{{asset('img/logo.png')}}" width="250px" alt=""
+                style="position :absolute;z-index:2">
+               
             </div>
         </div>
-
-        <!-- Header - Navbar End -->
+    </div>
+    <nav class="navbar navbar-expand-lg navbar blue-dark top-bar">
+        <a class="navbar-brand" href="#">
+            <img class="logo-menu" src="{{asset('img/logo.png')}}" width="120px" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto" id="main-menu" style="height: 40px">
+            </ul>
+        </div>
+    </nav>
+    <!-- Header - Navbar End -->
 
         <!-- Content Start -->
         @if($activated)
@@ -34,8 +45,8 @@
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">TU CUENTA SE ENCUENTRA ACTIVA</h5>
-                            <p class="text-white">Tu cuenta ha sido activada previamente.</p>
-                            <p class="text-white">Ingresa a la plataforma con tus credenciales.</p>
+                            <p class="text-white">Tu cuenta ha sido activada previamente</p>
+                            <p class="text-white">Ingresa a la plataforma con tus credenciales</p>
                             <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                 style="background-color: #00A5E6;">ENTRAR</a>
                         </div>
@@ -51,8 +62,8 @@
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">CUENTA ACTIVADA</h5>
-                            <p class="text-white">Su cuenta ha sido activada.</p>
-                            <p class="text-white">Ya puedes ingresar a la plataforma.</p>
+                            <p class="text-white">Su cuenta ha sido activada</p>
+                            <p class="text-white">Ya puedes ingresar a la plataforma</p>
                             <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                 style="background-color: #00A5E6;">ENTRAR</a>
                         </div>

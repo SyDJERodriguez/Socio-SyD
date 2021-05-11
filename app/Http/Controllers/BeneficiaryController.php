@@ -13,7 +13,15 @@ class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        
+        $number = '';
+        if (Auth::user()->client_type === "3"){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
+
 
         //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
@@ -56,7 +64,7 @@ class BeneficiaryController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($total_amount>200 && $total_amount<=500) {
                 $level = 1;
             }
@@ -80,7 +88,7 @@ class BeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
 
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
                 //dd($total_percent);
             }
 
@@ -108,10 +116,10 @@ class BeneficiaryController extends Controller
                     $success = 'Los beneficiarios han sido agregados correctamente.';
                     $beneficiaries = DB::table('beneficiaries')
                                         ->where('customer_id','=', $data['id'])
-                                        ->get();                
+                                        ->get();
                         $beneficiaries = json_decode($beneficiaries);
                         $beneficiary = (array)$beneficiaries;//convert to array
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total'));
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
                 //}
 
             }catch(\Exception $e){
@@ -123,7 +131,7 @@ class BeneficiaryController extends Controller
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total'));
+                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
             }
 
 
@@ -144,10 +152,10 @@ class BeneficiaryController extends Controller
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiaries = DB::table('beneficiaries')
                                 ->where('customer_id','=', $data['id'])
-                                ->get();                
-                    $beneficiaries = json_decode($beneficiaries);   
-                    $beneficiary = (array)$beneficiaries;//convert to array 
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total'));
+                                ->get();
+                    $beneficiaries = json_decode($beneficiaries);
+                    $beneficiary = (array)$beneficiaries;//convert to array
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
            // }
         }
     }
