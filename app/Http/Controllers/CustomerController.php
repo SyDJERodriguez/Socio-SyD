@@ -880,7 +880,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -951,7 +951,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -971,16 +971,19 @@ class CustomerController extends Controller
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $number = '';
+        $query = DB::table('signatures')
+            ->where('client_number','=',$data['client_number'])
+            ->get();
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
                 ->first();
-        }
-        $query = DB::table('signatures')
-                ->where('client_number','=',$data['client_number'])
+            $query = DB::table('signatures')
+                ->where('customer_id','=',Auth::user()->id)
                 ->get();
+        }
 
         $query = json_decode($query);
         $query = (array)$query;
@@ -1017,7 +1020,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1076,7 +1079,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1092,6 +1095,12 @@ class CustomerController extends Controller
                     $data = DB::table('signatures')
                                 ->where('client_number','=',$user['client_number'])
                                 ->get();
+
+                    if(Auth::user()->client_type === "3") {
+                        $data = DB::table('signatures')
+                            ->where('customer_id','=',Auth::user()->id)
+                            ->get();
+                    }
 
                     $data = json_decode($data);
                     $data = (array)$data;
@@ -1110,11 +1119,22 @@ class CustomerController extends Controller
                         }
 
                         if(empty($data) === true){
-                            $idSign = DB::table('signatures')->insertGetId([
-                                'client_number'   => $user['client_number'],
-                                'created_at'      => date('Y-m-d H:i:s'),
-                                'imgData'         => $request['imgData']
-                            ]);
+                            if(Auth::user()->client_type !== "3"){
+                                $idSign = DB::table('signatures')->insertGetId([
+                                    'client_number'   => $user['client_number'],
+                                    'created_at'      => date('Y-m-d H:i:s'),
+                                    'imgData'         => $request['imgData']
+                                ]);
+                            }else{
+                                $idSign = DB::table('signatures')->insertGetId([
+                                    'client_number'   => '',
+                                    'customer_id'     => Auth::user()->id,
+                                    'created_at'      => date('Y-m-d H:i:s'),
+                                    'imgData'         => $request['imgData']
+                                ]);
+                            }
+
+
 
                             //then update customer table,signature id
                             $updateCustomer = DB::table('customers_sessions')
@@ -1168,7 +1188,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
             if ($totalAmount>500 && $totalAmount<=1300) {
                 $level = 'plata';
             }
