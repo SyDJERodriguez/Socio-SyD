@@ -1,34 +1,36 @@
 
 <div class="container-fluid mt-3 pr-5 pl-5">
-    <div class="row inside_nav someimpor optionsAccount" 
+    <div class="row inside_nav someimpor optionsAccount"
     style="display: flex; justify-content: center; width: 100%;">
       <div class="col-lg-3 py-1 border-primary separadorBut">
-        <a href="{{route('customer.benefits')}}" 
-            class="btn btn-md boton 
+        <a href="{{route('customer.benefits')}}"
+            class="btn btn-md boton
             <?php if($active === 1 ){echo 'active';}?>">
             Beneficios obtenidos
-            
+
         </a>
       </div>
       @if(Auth::user()->client_type === "1" )
         <div class="col-lg-3 py-1 border-primary separadorBut">
             <a href="{{route('customer.employees')}}"
-                class="btn btn-md boton 
+                class="btn btn-md boton
                 <?php if($active === 2 ){echo 'active';}?>">
                 Agregar dependientes
             </a>
         </div>
         @endif
-        <div class="col-lg-3 py-1 border-primary separadorBut">
-            <a href="{{route('customer.myAccount')}}"
-                class="btn btn-md boton 
-                <?php if($active === 3 ){echo 'active';}?>">
-                Estado de cuenta
-            </a>
-        </div>
+        @if(Auth::user()->client_type !== "3")
+            <div class="col-lg-3 py-1 border-primary separadorBut">
+                <a href="{{route('customer.myAccount')}}"
+                    class="btn btn-md boton
+                    <?php if($active === 3 ){echo 'active';}?>">
+                    Estado de cuenta
+                </a>
+            </div>
+        @endif
         <div class="col-lg-3 py-1 separadorBut">
             <a href="{{route('customer.myDocuments')}}"
-                class="btn btn-md boton 
+                class="btn btn-md boton
                 <?php if($active === 4 ){echo 'active';}?>">
                 Mis documentos
             </a>
@@ -40,7 +42,7 @@
   </div>
 
 <div class="container-fluid mt-3 pr-5 pl-5">
-    <div class="row inside_nav someimpor optionsAccount" 
+    <div class="row inside_nav someimpor optionsAccount"
     style="display: flex; justify-content: center; width: 100%;">
     </div>
 </div>
@@ -48,7 +50,7 @@
     <div class="row">
         <div class="col-lg-3 text-right pl-5">
             REGISTRO DE BENEFICIARIOS
-            
+
         </div>
         <div class="col-lg-3 text-center pl-5"> ESTUDIO SOCIOECONÓMICO</div>
         <div class="col-lg-3 text-center pr-5"> SUBIR DOCUMENTOS</div>
