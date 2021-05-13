@@ -36,7 +36,7 @@
                 </div>
             </div>
     </button>
-
+<br>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
@@ -50,9 +50,13 @@
             class="<?php if($active === 3 ){echo 'active_sb';}?>">
             <span style="font-size: 13px">- Firma digital</span></a>
         </div>
-        <a href="tel:8000874598" class="btn"
+        
+        @if ($level === 'oro' || $level === 'plata' || $level === 3 || $level === 2)
+        <a href="tel:8000874598" class="btn" 
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
+        @endif
+
     </div>
 
     <br>
@@ -90,12 +94,16 @@
 
     </div>
 
-                <a href="tel:5511052682" style="color: grey;font-size: 17px;">
-                    <b>SOLICITAR ASISTENCIA</b>
-                <i class="fas fa-phone-alt" style="font-size: 20px;vertical-align: top;"></i>
-                <br>
-                <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
-                </a>
+                @if ($level === 'oro' || $level === 'plata' || $level === 3 || $level === 2)
+                <div style="padding-top: 10px">
+                    <a href="tel:5511052682" style="color: grey;font-size: 17px;">
+                        <b>SOLICITAR ASISTENCIA</b>
+                    <i class="fas fa-phone-alt" style="font-size: 20px;vertical-align: top;"></i>
+                    <br>
+                    <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
+                    </a>
+                </div>
+                @endif
 <br><br>
     <!--<button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
             data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
