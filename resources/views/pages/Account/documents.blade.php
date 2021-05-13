@@ -53,6 +53,12 @@
             </form>
         </div>
 
+        @if(Auth::user()->client_type === "3")
+            <div class="col-md-11 col-sm-6" style="display: flex; justify-content: flex-end; padding: 10px 10px;">
+                <button class="btn btn-primary" style="background-color: #009CE0;" data-toggle="modal" data-target="#modalQuestion">Quiero ser independiente</button>
+            </div>
+        @endif
+
         <div class="col-12 py-2 divImgDerecha2">
           <form>
               <div class="form-row text-center"
@@ -73,5 +79,6 @@
 
     </div>
 </div>
+@include('includes.Account.unsuscribeEmployee')
 
 @stop

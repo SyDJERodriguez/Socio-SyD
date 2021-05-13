@@ -156,6 +156,39 @@ class CustomerController extends Controller
         //return $client_number;
     }
 
+    public function employeeToMechanic(Request $request){
+        $request = $request->input();
+        $client_number = '00'.$request['client_number'];
+        //Remove association
+        $update_associates = DB::table('associates')->where('email','=', Auth::user()->email)->update([
+            'active_association' => 0
+        ]);
+
+        if ($update_associates === 1){
+            //Update data in customers sessions table
+            $update_customer_session = DB::table('customers_sessions')->where('email','=', Auth::user()->email)->update([
+                'client_type'      => "2",
+                'is_associate'     => 0,
+                'client_number' => $client_number
+            ]);
+            if ($update_customer_session === 1){
+                //Add client number to customer table
+                $update_customer = DB::table('customers')->where('email','=', Auth::user()->email)->update([
+                    'client_number' => $client_number
+                ]);
+                if($update_customer === 1){
+                    return response()->json(['success'=>'true']);
+                }else{
+                    return response()->json(['success'=>'false']);
+                }
+            }else{
+                return response()->json(['success'=>'false']);
+            }
+        }else{
+            return response()->json(['success'=>'false']);
+        }
+    }
+
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){

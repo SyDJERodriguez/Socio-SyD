@@ -56,10 +56,10 @@
                                     style="height: 18px;width: 18px;" required>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-12 py-4">
                             <input type="submit" class="btn btn text-white px-5 btn-block"
-                                style="background-color: #009CE0;" 
+                                style="background-color: #009CE0;"
                                 id="confirmar"
                                 value="FIRMAR">
                         </div>
@@ -72,9 +72,16 @@
 
             </div>
         </div>
+        @if(Auth::user()->client_type === "3")
+            <div class="row">
+                <div class="col-md-12 col-sm-6" style="display: flex; justify-content: flex-end; padding: 10px 0;">
+                    <button class="btn btn-primary" style="background-color: #009CE0;" data-toggle="modal" data-target="#modalQuestion">Quiero ser independiente</button>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
-</div>
+
 
 <script>
     document.getElementById("confirmar")
@@ -172,7 +179,7 @@
     }
 
 
-    function redibujarTrazados() { //repaint 
+    function redibujarTrazados() { //repaint
         dibujar = false;
         ctx.clearRect(0, 0, cw, ch);
         reducirArray(factorDeAlisamiento, puntos);
@@ -238,5 +245,5 @@
     }, false);
 
 </script>
-
+@include('includes.Account.unsuscribeEmployee')
 @stop

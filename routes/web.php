@@ -85,6 +85,9 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Deactivate
         Route::put('/delete', 'CustomerController@deactivate_account')->name('deactivate');
-        
+
+        //Change employee to mechanic
+        Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
+
     });
 });
