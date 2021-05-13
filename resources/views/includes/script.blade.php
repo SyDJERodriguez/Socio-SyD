@@ -104,6 +104,35 @@
             }
         });
 
+        //Get the employee's client number
+        $("#client_number_employee").keyup(function(){
+            let client_number_employee = $('input[id=client_number_employee]').val();
+            if(client_number_employee.length===8){
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('customer.information')}}",
+                    data: {'client_number': client_number_employee},
+                    success: function (data) {
+                        console.log(data);
+                        if (data['success']==='false' && data['verify_client_number']==='false') {
+                            document.getElementById("form_alert_employee")
+                                .innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
+                            document.getElementById("form_alert_employee").removeAttribute("hidden");
+                            /*setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);*/
+                        }
+                        /*$('input[id=nameMec]').val(data['name']);
+                        $('input[id=lastNameMec]').val(data['last_name']);
+                        $('input[id=secondLastNameMec]').val(data['second_last_name']);
+                        $('input[id=mobileMec]').val(data['mobile_number']);
+                        $('input[id=emailMec]').val(data['email']);
+                        $('input[id=birthday]').val(data['birthday']);*/
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+        });
         //Owner's form
         $("#ownerForm").bind("submit",function(){
             // We capture send button
@@ -186,6 +215,33 @@
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
                         $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //Employees's form
+        $("#employeeForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#modalPositive').modal('hide');
+                        $('#modalSuccessEmployee').modal('show');
+                    }else if (data['success']==='false'){
+                        $('#modalPositive').modal('hide');
+                        $('#modalErrorEmployee').modal('show');
                     }
                 },
                 error: function(data){
