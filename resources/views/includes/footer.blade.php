@@ -107,7 +107,7 @@
                           </p>
                           <p>
                               <span>CORREO:</span><br>
-                                <a href="mailto:sociosyd@syd.com">SOCIOSYD@SYD.COM</a>
+                                <a href="mailto:contacto@sociosyd.com">CONTACTO@SOCIOSYD.COM</a>
                               <br>
                               <hr>
                           </p>
