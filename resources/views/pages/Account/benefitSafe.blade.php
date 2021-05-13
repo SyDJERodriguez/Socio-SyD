@@ -55,6 +55,9 @@
                         <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2 textBene"> Si necesitas hospitalización,  
                             <br> nosotros te ayudamos  </div> </strong></h6>
                 </div>
+                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                    *Consulta términos y condiciones
+                </p>
           @else
                   <div class="modal-body " style="background-color: #143153;">
                       <div class="row">

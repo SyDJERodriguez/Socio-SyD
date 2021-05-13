@@ -99,7 +99,9 @@
                         </strong></h6>
                 </div>
                 @endif
-
+                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                    *Consulta términos y condiciones
+                </p>
         </div>
 
         @else
