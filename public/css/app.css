@@ -326,6 +326,12 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1319px){
+    .textBene{
+        font-size: 14px;
+    }
+}
+
 @media(max-width: 1258px){
     p.textBene{
         font-size: 16px;
@@ -337,10 +343,22 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1203px){
+    .textBene{
+        font-size: 12px;
+    }
+}
+
 @media(max-width:1201px){
     div.contenedorImg img.imgBene2{
         width: 104%;
         height: 85px;
+    }
+}
+
+@media(max-width:1190px){
+    .textBene{
+        font-size: 12px;
     }
 }
 
@@ -356,11 +374,20 @@ h5.footerTitle3{
     h5.redesSociales{
         font-size: 18px;
     }
+    .textBene{
+        font-size: 11px;
+    }
 }
 
 @media(max-width:1084px){
     img.imgCarou{
         height: 271px;
+    }
+}
+
+@media(max-width:1030px){
+    .textBene{
+        font-size: 10px;
     }
 }
 
@@ -390,6 +417,9 @@ h5.footerTitle3{
     }
     img.imgCarou{
         height: 100%;
+    }
+    .textBene{
+        font-size: 13px;
     }
 }
 
