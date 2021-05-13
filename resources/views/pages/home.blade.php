@@ -22,9 +22,6 @@
                             <div class="carousel-item active ">
                                 <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
-                            <div class="carousel-item carouselFoto">
-                                <img src="{{asset('img/slider2.jpg')}}" class="d-block w-100 carousel imgCarou" alt="...">
-                            </div>
                             <div class="carousel-item">
                                 <img src="{{asset('img/C1.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
