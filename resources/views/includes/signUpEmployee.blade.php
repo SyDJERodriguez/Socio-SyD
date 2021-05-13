@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <input class="form-control-sm form-control nameInput" type="text"
-                                        name="name"   
+                                        name="name"
                                         placeholder="NOMBRE(S)"
                                         pattern="[a-zA-Z\s]*"
                                         required maxlength="30">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-6">
                                 <input class="form-control-sm form-control nameInput" type="text"
-                                        name="last_name"       
+                                        name="last_name"
                                         placeholder="APELLIDO PATERNO"
                                         pattern="[a-zA-Z\s]*"
                                         required maxlength="30">
@@ -60,7 +60,7 @@
                                 <label class="text-muted sml p-0 m-0">FECHA DE NACIMIENTO</label><br>
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control btnBorder" 
+                                <input class="form-control-sm form-control btnBorder"
                                         type="email"
                                         autocomplete="new-password"
                                         name="email"
@@ -73,7 +73,7 @@
                                 <div>
                                     <div>
                                         <input class="form-control-sm form-control btnBorder" type="date"
-                                                name="bday"        
+                                                name="bday"
                                                 placeholder="FECHA DE NACIMIENTO"
                                                 required>
                                     </div>
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-9 text-right">
                                 <p style="font-size:12px" class="primary-color">
-                                    *Sino visualiza el correo en su bandeja de entrada, revise en correo no deseado.
+                                    *Sino visualizas el correo en tu bandeja de entrada, revisa en correos no deseados
                                 </p>
                             </div>
                             <div class="col-3">

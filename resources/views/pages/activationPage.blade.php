@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <!--header-->
     <div id="backHeader">
-        <img src="{{asset('img/headerBack.png')}}" alt="" 
+        <img src="{{asset('img/headerBack.png')}}" alt=""
         style="position: absolute;z-index:1; height: 110px;">
     </div>
     <div class="row ml-0 header " id="header">
@@ -18,7 +18,7 @@
             <div class="fondoLogo">
                 <img src="{{asset('img/logo.png')}}" width="250px" alt=""
                 style="position :absolute;z-index:2">
-               
+
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">CUENTA ACTIVADA</h5>
-                            <p class="text-white">Su cuenta ha sido activada</p>
+                            <p class="text-white">Tu cuenta ha sido activada</p>
                             <p class="text-white">Ya puedes ingresar a la plataforma</p>
                             <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                 style="background-color: #00A5E6;">ENTRAR</a>
