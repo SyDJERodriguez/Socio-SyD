@@ -60,7 +60,7 @@
             <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                 <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE</strong></h6>
             </div>
-            
+
                 @if($level === 'oro')
                 <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
@@ -75,7 +75,7 @@
                 <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
                         FUNERARIA
-                        </strong></h6>
+                        </strong></h6></div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                         <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div>
@@ -114,8 +114,16 @@
         @endif
     </div>
   </form>
-
+     @if(Auth::user()->client_type === "3")
+         <div class="row">
+             <div class="col-md-12 col-sm-6" style="display: flex; justify-content: flex-end; padding: 10px 0;">
+                 <button class="btn btn-primary" style="background-color: #009CE0;" data-toggle="modal" data-target="#modalQuestion">Quiero ser independiente</button>
+             </div>
+         </div>
+     @endif
  </div>
+
     </div>
 </div>
+@include('includes.Account.unsuscribeEmployee')
 @stop

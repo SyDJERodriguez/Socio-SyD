@@ -17,12 +17,12 @@
                         <img src="{{asset('img/socioeconomico.png')}}" class="py-2 iconBene">
                     </div>
                     <div class="col-7 contenedorImg">
-                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene" style="left: 3px"> 
+                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene" style="left: 3px">
                     </div>
                 </div>
 
                 <div>
-                    <div class="row" 
+                    <div class="row"
                     style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
                         @if(isset($error))
                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
@@ -40,10 +40,10 @@
                                         <br>
                                         <div class="text-white">
                                             @for ($i = 0; $i < count($beneficiary); $i++)
-                                                <p>BENEFICIARIO {{$i+1}}: 
-                                                    {{strtoupper($beneficiary[$i]->name)}} 
-                                                    {{strtoupper($beneficiary[$i]->last_name)}} 
-                                                    {{strtoupper($beneficiary[$i]->second_last_name)}}</p>    
+                                                <p>BENEFICIARIO {{$i+1}}:
+                                                    {{strtoupper($beneficiary[$i]->name)}}
+                                                    {{strtoupper($beneficiary[$i]->last_name)}}
+                                                    {{strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
                                         <br>
@@ -166,10 +166,18 @@
                     </div>
 
                 </div>
+                @if(Auth::user()->client_type === "3")
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6" style="display: flex; justify-content: flex-end; padding: 10px 0;">
+                            <button class="btn btn-primary" style="background-color: #009CE0;" data-toggle="modal" data-target="#modalQuestion">Quiero ser independiente</button>
+                        </div>
+                    </div>
+                @endif
             </div>
+
 
         </div>
     </div>
 </div>
-
+@include('includes.Account.unsuscribeEmployee')
     @stop
