@@ -36,14 +36,14 @@
 
   <form>
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-        @if($level === 'oro' || $level === 'plata')
+        @if($level > 1)
 
         <div class="row">
-                @if ($level === 'oro')
+                @if ($level === 3)
                 <div class="col-12 text-center">
                     <h5>Nivel de asistencias actual: <b>Oro</b></h5>
                 </div>
-                @else
+                @elseif ($level === 2)
                 <div class="col-lg-12 text-center">
                     <h5>Nivel de asistencias actual: <b>Plata</b></h5>
                 </div>
@@ -61,7 +61,7 @@
                 <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE</strong></h6>
             </div>
 
-                @if($level === 'oro')
+                @if($level === 3)
                 <div class="col-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
                         ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
@@ -78,13 +78,13 @@
                         </strong></h6>
                 </div>
                 <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
-                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> 
+                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
                             <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                 </div>
                     {{-- <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
                         <h6 style="padding-top: 13px;color: #c4c4c4;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div> --}}
-                @else
+                @elseif($level === 2)
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
                         ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
