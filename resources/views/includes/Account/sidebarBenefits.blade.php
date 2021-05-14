@@ -50,9 +50,9 @@
             class="<?php if($active === 3 ){echo 'active_sb';}?>">
             <span style="font-size: 13px">- Firma digital</span></a>
         </div>
-        
-        @if ($level === 'oro' || $level === 'plata' || $level === 3 || $level === 2)
-        <a href="tel:8000874598" class="btn" 
+
+        @if ($level === 'oro' || $level === 'plata' || $level>0)
+        <a href="tel:8000874598" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
         @endif

@@ -2,7 +2,7 @@
     <div class="container-fluid blue-dark py-5">
         <div class="row m-0">
             <div class="col-lg-3 text-white">
-                @if (Auth::check()) 
+                @if (Auth::check())
                 {{-- agregar una clase de css en cada if, y con mediaqueries modificar el margin-bottom --}}
                   <h5 class="text-white pb-3">
                     Contáctanos
@@ -13,22 +13,22 @@
                   </h5>
                 @endif
                 <p>
-                  Todo el país 
+                  Todo el país
                   <br>
                     <i class="fas fa-phone-alt"></i>
-                      <a href="tel:8007931010" class="primary-color" 
+                      <a href="tel:8007931010" class="primary-color"
                     style="color:white; padding-left: 5px;">
                     800 SyD (793) 1010</a>
                 </p>
                 <hr class="bg-primary hrFooter">
                 <p><i class="fas fa-envelope">
-                  </i><a href="mailto:sociosyd@syd.com" class="primary-color" 
+                  </i><a href="mailto:sociosyd@syd.com" class="primary-color"
                   style="color:white; padding-left: 5px;">
                   sociosyd@syd.com </a></p>
                 <hr class="bg-primary hrFooter">
                 @if (Auth::check())
                   <p><i class="fas fa-exclamation-triangle"></i>
-                     <a href="#" class="primary-color" style="color:white; padding-left: 5px;" 
+                     <a href="#" class="primary-color" style="color:white; padding-left: 5px;"
                      data-toggle="modal" data-target="#modalDelete">
                      Desuscribirme
                     </a>
@@ -38,9 +38,9 @@
             </div>
             <div class="col-lg-3 text-white">
               @if (Auth::check())
-                <h5 class="text-white pb-3 footerTitle2">Consulta </h5>                
+                <h5 class="text-white pb-3 footerTitle2">Consulta </h5>
               @else
-                <h5 class="text-white pb-3">Consulta </h5> 
+                <h5 class="text-white pb-3">Consulta </h5>
               @endif
                 <p>
                   <a href="#" class="primary-color" data-toggle="modal" data-target="#modalAviso" style="color:white">
@@ -61,7 +61,7 @@
               @if (Auth::check())
                 <h5 class="text-white redesSociales footerTitle3">Síguenos en redes sociales </h5>
               @else
-              <h5 class="text-white redesSociales">Síguenos en redes sociales </h5>  
+              <h5 class="text-white redesSociales">Síguenos en redes sociales </h5>
               @endif
                 <h6 style="display: flex;margin-bottom: 20px;" class="iconSocial">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/"  target="_blank" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
@@ -107,7 +107,7 @@
                           </p>
                           <p>
                               <span>CORREO:</span><br>
-                                <a href="mailto:contacto@sociosyd.com">CONTACTO@SOCIOSYD.COM</a>
+                                <a href="mailto:contacto@sociosyd.com">contacto@sociosyd.com</a>
                               <br>
                               <hr>
                           </p>
@@ -137,13 +137,13 @@
                                   placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10" title="Digito de 10 números" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
-                                    <textarea class="form-control" name="comment"  id="contact-comment" 
+                                    <textarea class="form-control" name="comment"  id="contact-comment"
                                     pattern="[A-Za-z0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <button type="submit" id="contact_us_button" class="btn btn text-white float-right" 
+                                  <button type="submit" id="contact_us_button" class="btn btn text-white float-right"
                                   style="background-color: #00A1E3;" value="Enviar">Enviar</button>
                                 </div>
                               </div>
