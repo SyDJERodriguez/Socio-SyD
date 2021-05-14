@@ -1211,22 +1211,28 @@ class CustomerController extends Controller
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
 
-        $level = '';
+        $level = 0;
         if (Auth::user()->client_type === "1"){
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $level = 1;
+            }
             if ($totalAmount>4500 && $totalAmount<=7000) {
-                $level = 'plata';
+                $level = 2;
             }
             if ($totalAmount>7000) {
-                $level = 'oro';
+                $level = 3;
             }
         }
 
         if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+            if ($totalAmount>200 && $totalAmount<=500) {
+                $level = 1;
+            }
             if ($totalAmount>500 && $totalAmount<=1300) {
-                $level = 'plata';
+                $level = 2;
             }
             if ($totalAmount>1300) {
-                $level = 'oro';
+                $level = 3;
             }
         }
         $total = $totalAmount;

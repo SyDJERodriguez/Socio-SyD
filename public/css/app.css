@@ -1462,7 +1462,7 @@ Label the data for the second TABLE
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .our-branches__content-address-location-search {
@@ -1473,7 +1473,7 @@ Label the data for the second TABLE
 }
 
 .our-branches__content-address-location-search-label {
-    width: 90%;
+    width: 100%;
     font-size: 16pt;
     color: #e11f1d;
     line-height: 40px;
@@ -1490,7 +1490,7 @@ Label the data for the second TABLE
     display: flex;
     flex-direction: column;
     height: 400px;
-    width: 90%;
+    width: 100%;
     border: 1px solid #143153;
     padding: 15px;
     color: #143153;
@@ -1510,7 +1510,7 @@ Label the data for the second TABLE
 .our-branches__content-address-location-search {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
 }
 
