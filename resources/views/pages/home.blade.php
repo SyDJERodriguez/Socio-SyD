@@ -276,10 +276,10 @@
             <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
                 <div class="our-branches__content-address">
 
-                    <div class="our-branches__content-address-map sucursal col-4">
+                    <div class="our-branches__content-address-map sucursal col-md-4 col-sm-12">
                     </div>
 
-                    <div class="our-branches__content-address-location col-5">
+                    <div class="our-branches__content-address-location col-md-5 col-sm-12">
 
                         <div class="our-branches__content-address-location-search">
                             <label class="our-branches__content-address-location-search-label" style="color: #00A1E3">
