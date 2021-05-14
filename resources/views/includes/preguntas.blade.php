@@ -572,7 +572,7 @@
                             </ol>
 
                         </section>
-                        <div style="width: 99%;padding: 8px;">
+                        <div style="width: 100%;padding: 10px;">
                             <button class="btn btn-lg btn-block" data-dismiss="modal">
                                 Cerrar
                             </button>
