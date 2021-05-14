@@ -306,7 +306,8 @@
 
             </div>
 
-            <div style="width: 99%;padding: 8px;">
+            <div style="width: 100%;padding: 10px;">
+                <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
                   Cerrar
                 </button>
@@ -377,7 +378,8 @@
 
             </div>
 
-            <div style="width: 99%;padding: 8px;">
+            <div style="width: 100%;padding: 10px;">
+                <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
                   Cerrar
                 </button>

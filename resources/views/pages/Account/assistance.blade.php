@@ -62,23 +62,25 @@
             </div>
 
                 @if($level === 'oro')
-                <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                <div class="col-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
                         ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
                     </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
                         VIDEO CONSULTA <br>
                         POR COVID 19 </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
                         FUNERARIA
-                        </strong></h6></div>
-                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
-                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
-                    </div>
+                        </strong></h6>
+                </div>
+                <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> 
+                            <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                </div>
                     {{-- <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
                         <h6 style="padding-top: 13px;color: #c4c4c4;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
                     </div> --}}
@@ -99,7 +101,9 @@
                         </strong></h6>
                 </div>
                 @endif
-
+                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                    *Consulta términos y condiciones
+                </p>
         </div>
 
         @else

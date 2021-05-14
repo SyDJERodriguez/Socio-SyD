@@ -78,7 +78,7 @@ div input.btnBorder{
 }
 
 .whatsapp{
-    top: 450px;
+    top: 470px;
     right: 0px;
     position: fixed;
     z-index: 99;
@@ -86,7 +86,7 @@ div input.btnBorder{
 }
 
 .upButton{
-    top: 515px;
+    top: 530px;
     right: 0px;
     position: fixed;
     z-index: 99;
@@ -326,6 +326,12 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1319px){
+    .textBene{
+        font-size: 14px;
+    }
+}
+
 @media(max-width: 1258px){
     p.textBene{
         font-size: 16px;
@@ -337,10 +343,22 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1203px){
+    .textBene{
+        font-size: 12px;
+    }
+}
+
 @media(max-width:1201px){
     div.contenedorImg img.imgBene2{
         width: 104%;
         height: 85px;
+    }
+}
+
+@media(max-width:1190px){
+    .textBene{
+        font-size: 12px;
     }
 }
 
@@ -356,11 +374,20 @@ h5.footerTitle3{
     h5.redesSociales{
         font-size: 18px;
     }
+    .textBene{
+        font-size: 11px;
+    }
 }
 
 @media(max-width:1084px){
     img.imgCarou{
         height: 271px;
+    }
+}
+
+@media(max-width:1030px){
+    .textBene{
+        font-size: 10px;
     }
 }
 
@@ -390,6 +417,9 @@ h5.footerTitle3{
     }
     img.imgCarou{
         height: 100%;
+    }
+    .textBene{
+        font-size: 13px;
     }
 }
 
@@ -1424,7 +1454,7 @@ Label the data for the second TABLE
 .our-branches__content-address-map {
     flex: 0 35%;
     position: relative;
-    padding-top: 7%;
+    padding-top: 6.4%;
 }
 
 .our-branches__content-address-location {
@@ -1459,6 +1489,7 @@ Label the data for the second TABLE
 .our-branches__content-address-location-result {
     display: flex;
     flex-direction: column;
+    height: 400px;
     width: 90%;
     border: 1px solid #143153;
     padding: 15px;
@@ -1466,9 +1497,9 @@ Label the data for the second TABLE
 }
 
 #map, #map_2 {
-    margin-top: 10px;
+    margin-top: 19px;
     width: 100%;
-    height: 395px;
+    height: 400px;
 }
 
 .gm-style {
@@ -1529,9 +1560,9 @@ Label the data for the second TABLE
         padding-top: 8% !important;
     }
 
-    #map, #map_2 {
+    /* #map, #map_2 {
         height: 420px !important;
-    }
+    } */
 
     .box_documents {
         height: 483px !important;
