@@ -229,12 +229,21 @@ h5.footerTitle3{
         font-size: 18px;
         padding-right: 5%;
     }
+    .our-branches__content-address-map{
+        padding-top: 4.1%;
+    }
+    .our-branches__content-address-location-result {
+        height: 400px;
+    }
 }
 
 @media(max-width: 2210px){
     p.textBene{
         font-size: 34px;
         padding-top: 15px;
+    }
+    .our-branches__content-address-map{
+        padding-top: 4.3%;
     }
 }
 
@@ -245,6 +254,15 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 16px;
+    }
+    .our-branches__content-address-map{
+        padding-top: 4.6%;
+    }
+}
+
+@media(max-width: 1900px){
+    .our-branches__content-address-map{
+        padding-top: 5.1%;
     }
 }
 
@@ -269,6 +287,11 @@ h5.footerTitle3{
     }
 
 }
+@media(max-width:1700px){
+    .our-branches__content-address-map{
+        padding-top: 5.8%;
+    }
+}
 
 @media(max-width: 1681px){
     p.textBene{
@@ -286,6 +309,12 @@ h5.footerTitle3{
     }
     div#backHeader img.logoHeader{
         width: 300px
+    }
+}
+
+@media(max-width:1500px){
+    .our-branches__content-address-map{
+        padding-top: 6.6%;
     }
 }
 
@@ -718,10 +747,19 @@ div.divImgDerecha2{
 
 }
 
+@media(max-width:446px){
+    .our-branches__content-address-location-result{
+        height: 430px;
+    }
+}
+
 @media(max-width:438px){
     p.textBene{
         font-size: 12px;
         padding-top: 0;
+    }
+    .our-branches__content-address-location-result{
+        height: 430px;
     }
 }
 
@@ -732,6 +770,18 @@ div.divImgDerecha2{
     div.contenedorFooter span.textFooter{
         font-size: 9px;
         padding-right: 24%;
+    }
+}
+
+@media(max-width:387px){
+    .our-branches__content-address-location-result{
+        height: 470px;
+    }
+}
+
+@media(max-width:332px){
+    .our-branches__content-address-location-result{
+        height: 500px;
     }
 }
 
@@ -1454,7 +1504,6 @@ Label the data for the second TABLE
 .our-branches__content-address-map {
     flex: 0 35%;
     position: relative;
-    padding-top: 6.4%;
 }
 
 .our-branches__content-address-location {
@@ -1489,7 +1538,6 @@ Label the data for the second TABLE
 .our-branches__content-address-location-result {
     display: flex;
     flex-direction: column;
-    height: 400px;
     width: 100%;
     border: 1px solid #143153;
     padding: 15px;
@@ -1557,7 +1605,7 @@ Label the data for the second TABLE
 
 @media (max-width: 1366px) {
     .our-branches__content-address-map {
-        padding-top: 8% !important;
+        padding-top: 7.7%;
     }
 
     /* #map, #map_2 {
