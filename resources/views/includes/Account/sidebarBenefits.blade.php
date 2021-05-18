@@ -44,7 +44,7 @@
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
-                <span style="font-size: 13px"> - Registro de beneficiarios</span></a>
+                <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
             <a href="{{route('customer.benefits.signature')}}"
