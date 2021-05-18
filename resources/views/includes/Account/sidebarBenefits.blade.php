@@ -7,8 +7,10 @@
            No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}@if(Auth::user()->client_type == '3')-{{$number->number}} @endif</span><br>
             @if ((int)Auth::user()->client_type == 1)
                 Cuenta: Negocios
-            @else
+            @elseif((int)Auth::user()->client_type == 2)
                 Cuenta: Individual
+            @elseif((int)Auth::user()->client_type == 3)
+                Cuenta: Dependiente
             @endif
             {{-- <br>
             Nivel Actual:

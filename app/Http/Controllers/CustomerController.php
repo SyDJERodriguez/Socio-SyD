@@ -862,8 +862,16 @@ class CustomerController extends Controller
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
 
-        return view('pages.Account.documents', compact('data','link', 'exist','total','noti'));
+        return view('pages.Account.documents', compact('data','link', 'exist','total','noti', 'number'));
     }
 
     //Go to register beneficiary
