@@ -7,8 +7,10 @@
            No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}@if(Auth::user()->client_type == '3')-{{$number->number}} @endif</span><br>
             @if ((int)Auth::user()->client_type == 1)
                 Cuenta: Negocios
-            @else
+            @elseif((int)Auth::user()->client_type == 2)
                 Cuenta: Individual
+            @elseif((int)Auth::user()->client_type == 3)
+                Cuenta: Dependiente de {{$owner}}
             @endif
             {{-- <br>
             Nivel Actual:
@@ -42,7 +44,7 @@
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
-                <span style="font-size: 13px"> - Registro de beneficiarios</span></a>
+                <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
             <a href="{{route('customer.benefits.signature')}}"

@@ -36,16 +36,18 @@
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
-                                        <h5 class="text-white">¡TUS BENEFICIARIOS YA HAN SIDO REGISTRADOS!</h5>
+                                        <h5 class="text-white">¡Tus beneficiarios ya han sido registrados!</h5>
                                         <br>
                                         <div class="text-white">
                                             @for ($i = 0; $i < count($beneficiary); $i++)
-                                                <p>BENEFICIARIO {{$i+1}}:
+                                                <p>Beneficiario {{$i+1}}:
                                                     {{strtoupper($beneficiary[$i]->name)}}
                                                     {{strtoupper($beneficiary[$i]->last_name)}}
                                                     {{strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
+                                        <br>
+                                        <h5 class="text-white">¡Recuerda agregar tu firma al certificado!</h5>
                                         <br>
                                         <a href="{{route('customer.myDocuments')}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
                                         <p class="text-white"></p>

@@ -567,7 +567,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $client_number)->first();
         try {
             \Mail::send('emails.welcome',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@syd.com.mx',"SOCIO SYD");
+                $m->from('noreply@sociosyd.com',"SOCIO SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -580,7 +580,7 @@ class CustomerController extends Controller
      public function welcome_email_is_associate($data) {
         try {
             \Mail::send('emails.welcomeInvitation',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@syd.com.mx',"SOCIO SYD");
+                $m->from('noreply@sociosyd.com',"SOCIO SyD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -719,7 +719,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $data_session->client_number)->first();
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->from('noreply@sociosyd.com',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Reestablecer Contraseña Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -770,7 +770,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $data_session->client_number)->first();
         try {
             \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@quaxar.info',"Club Dar");
+                $m->from('noreply@sociosyd.com',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Activar cuenta Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -858,17 +858,27 @@ class CustomerController extends Controller
     //Go to My documments section
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+        $number = '';
+        if(Auth::user()->client_type === '3'){
+            $data = Customer::where('email', Auth::user()->email)->first();
+            $number = DB::table('associates')
+                ->select('number')
+                -> where('email', Auth::user()->email)
+                ->first();
+        }
 
-        return view('pages.Account.documents', compact('data','link', 'exist','total','noti'));
+        return view('pages.Account.documents', compact('data','link', 'exist','total','noti', 'number', 'owner'));
     }
 
     //Go to register beneficiary
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -932,17 +942,18 @@ class CustomerController extends Controller
         $beneficiary = (array)$beneficiaries;//convert to array
 
         if(empty($beneficiaries) == false){
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number', 'owner'));
         }
 
         $signature = $signature->signature_id;
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt', 'number'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt', 'number', 'owner'));
     }
 
     //Go to benefits of Safe
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -997,12 +1008,13 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number'));
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number', 'owner'));
     }
 
     //Go to signature section in benefits
     public function benefits_signature () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $query = DB::table('signatures')
             ->where('client_number','=',$data['client_number'])
@@ -1065,7 +1077,7 @@ class CustomerController extends Controller
             }
         }
 
-        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number'));
+        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number', 'owner'));
     }
 
     //Create signature
@@ -1190,6 +1202,7 @@ class CustomerController extends Controller
     //Go to benefits of assistance
     public function benefits_assistance () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -1237,7 +1250,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number'));
+        return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number', 'owner'));
     }
 
     //calculated totalAmount
@@ -1457,7 +1470,7 @@ class CustomerController extends Controller
 
     public function send_email($name, $email, $token){
     	\Mail::send('Collectors.email_customer',['name'=>$name,'token'=>$token], function($m) use ($email, $name){
-    		$m->from('noreply@quaxar.info',"Club Dar");
+    		$m->from('noreply@sociosyd.com',"Socio SyD");
     		$m->to($email, $name)->subject('Gracias por actualizar tus datos');
 	    });
     }
@@ -1507,7 +1520,7 @@ class CustomerController extends Controller
         $data = $request->all();
         try {
             Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
-                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Club Dar');
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Soci SyD');
             });
             return redirect()->route('home');
         } catch (\Throwable $th) {
@@ -1520,7 +1533,8 @@ class CustomerController extends Controller
         $email = $data['email'];
         try {
             Mail::send('emails.invitation',['data'=>$data], function($m) use ($email){
-                $m->to($email)->subject("Invitación a Socio SYD");
+                $m->from('noreply@sociosyd.com',"Socio SyD");
+                $m->to($email)->subject("Invitación a Socio SyD");
             });
         } catch (\Throwable $th) {
             //throw $th;
