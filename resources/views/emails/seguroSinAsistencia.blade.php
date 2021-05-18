@@ -12,12 +12,12 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="" target="_blank">
+			<a href="https://www.syd.com.mx/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-9_02.jpg" width="600" height="70" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="" target="_blank">
+			<a href="https://www.syd.com.mx/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-9_03.jpg" width="600" height="114" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>

@@ -19,9 +19,11 @@
             <td colspan="3">
                 <p
                     style="font-family: Arial; font-size: 24px; text-align: center; padding: 10px; vertical-align: middle;">
-                    Hola:<strong>{{Nombre}}</strong><br>
-                    muy pronto serás <strong>SOCIO SyD</strong>®<br>
-                    {{xxxxx}} te dió de alta como beneficiario</p>
+                    Hola:<strong>{{ strtoupper($data['name']) }}</strong><br>
+                    muy pronto serás <strong>SOCIO SyD</strong>®,<br>
+                    {{ strtoupper($data['nameClient']) .' '. strtoupper($data['lastNameClient'])}} <br>
+                    te dió de alta como beneficiario
+                </p>
             </td>
         </tr>
         <tr>
@@ -32,14 +34,14 @@
         </tr>
         <tr>
             <td colspan="3">
-                <a href="" target="_blank">
+                <a href="{{url('invitation/'.$data['client_number'].'/'.$data['mobile_number'] )}}" >
                     <img src="https://resources.quaxar.net/SyD/Socio_SyD/email-16_04.jpg" width="600" height="90" alt=""
                         border="0" style="display: block"></a>
             </td>
         </tr>
         <tr>
             <td colspan="3">
-                <a href="" target="_blank">
+                <a href="https://www.syd.com.mx/" target="_blank">
                     <img src="https://resources.quaxar.net/SyD/Socio_SyD/email-16_05.jpg" width="600" height="192"
                         alt="" border="0" style="display: block"></a>
             </td>

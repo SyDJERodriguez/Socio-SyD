@@ -8,21 +8,21 @@
 <table id="Tabla_01" width="600" height="" border="0" cellpadding="0" cellspacing="0" align="center" style="display: block">
 	<tr>
 		<td colspan="3">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-22_01.jpg" width="600" height="550" alt="" border="0" style="display: block"></td>
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-4_01.jpg" width="600" height="595" alt="" border="0" style="display: block"></td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="https://www.syd.com.mx/" target="_blank">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-22_02.jpg" width="600" height="110" alt="" border="0" style="display: block"></a></td>
+			<a href="{{url('account/verify/invitation/'.$data['email'])}}" >
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-4_02.jpg" width="600" height="70" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="https://www.syd.com.mx/" target="_blank">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-22_03.jpg" width="600" height="119" alt="" border="0" style="display: block"></a></td>
+			
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-4_03.jpg" width="600" height="114" alt="" border="0" style="display: block"></td>
 	</tr>
 	<tr>
 		<td>
-			<a href="https://sociosyd.com/" target="_blank">
+			<a href="https://www.syd.com.mx/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-footer_01.jpg" width="225" height="49" alt="" border="0" style="display: block"></a></td>
 		<td>
 			<a href="https://www.facebook.com/SyDMexico/" target="_blank">
