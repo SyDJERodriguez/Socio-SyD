@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <a href="https://www.syd.com.mx/" target="_blank">
+                <a href="https://www.sociosyd.com/" target="_blank">
                     <img src="https://resources.quaxar.net/SyD/Socio_SyD/email-16_05.jpg" width="600" height="192"
                         alt="" border="0" style="display: block"></a>
             </td>

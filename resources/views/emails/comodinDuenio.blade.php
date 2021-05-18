@@ -12,17 +12,17 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="" target="_blank">
+			<a href="https://www.sociosyd.com/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-8_02.jpg" width="600" height="70" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="" target="_blank">
+			<a href="https://www.sociosyd.com/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-8_03.jpg" width="600" height="148" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>
 		<td>
-			<a href="https://www.syd.com.mx/" target="_blank">
+			<a href="https://www.sociosyd.com/" target="_blank">
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-footer_01.jpg" width="225" height="49" alt="" border="0" style="display: block"></a></td>
 		<td>
 			<a href="https://www.facebook.com/SyDMexico/" target="_blank">
