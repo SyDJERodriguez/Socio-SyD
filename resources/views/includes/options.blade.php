@@ -15,7 +15,7 @@
             <a href="{{route('customer.employees')}}"
                 class="btn btn-md boton
                 <?php if($active === 2 ){echo 'active';}?>">
-                Agregar dependientes
+                Mis Dependientes
             </a>
         </div>
         @endif
