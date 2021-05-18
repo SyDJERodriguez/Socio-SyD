@@ -10,7 +10,7 @@
             @elseif((int)Auth::user()->client_type == 2)
                 Cuenta: Individual
             @elseif((int)Auth::user()->client_type == 3)
-                Cuenta: Dependiente
+                Cuenta: Dependiente de {{$owner}}
             @endif
             {{-- <br>
             Nivel Actual:

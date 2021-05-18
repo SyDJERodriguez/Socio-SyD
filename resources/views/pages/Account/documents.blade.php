@@ -16,7 +16,7 @@
                     @elseif((int)Auth::user()->client_type == 2)
                         Cuenta: Individual
                     @elseif((int)Auth::user()->client_type == 3)
-                        Cuenta: Dependiente
+                        Cuenta: Dependiente de {{$owner}}
                     @endif
                 </h6>
                 <a href="#" class="btn btn btn-sm" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal"
