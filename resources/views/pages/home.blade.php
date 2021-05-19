@@ -274,7 +274,7 @@
                 <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
             </div>
             <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
-                <div class="our-branches__content-address">
+                <div class="our-branches__content-address" style="display: flex;align-items: flex-end;">
 
                     <div class="our-branches__content-address-map sucursal col-4 col-12">
                     </div>
