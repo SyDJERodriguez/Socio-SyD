@@ -333,7 +333,11 @@ padding-bottom: 14px;">
 
           <li class="nav-item">
               @if(Auth::check())
-                  <a class="navItemHeader" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
+                  @if(Auth::user()->client_type !== '3')
+                    <a class="navItemHeader" style="width:165px" href="{{route('customer.myAccount')}}">MI CUENTA</a>
+                  @else
+                      <a class="navItemHeader" style="width:165px" href="{{route('customer.benefits')}}">MI CUENTA</a>
+                  @endif
               @endif
           </li>
       </ul>
