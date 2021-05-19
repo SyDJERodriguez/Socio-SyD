@@ -70,6 +70,7 @@
                             <option value="F">FEMENINO</option>
                             <option value="M">MASCULINO</option>
                         </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                 </div>
                 <div class="row">
