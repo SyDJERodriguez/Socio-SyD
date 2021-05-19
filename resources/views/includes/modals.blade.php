@@ -79,7 +79,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR! POR FAVOR INTENTE DE NUEVO</p>
+                        <p class="text-white">¡Ha ocurrido un error! Por favor intente de nuevo</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR EN EL SERVIDOR</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR EN EL SERVIDOR! POR FAVOR INTENTE MÁS TARDE.</p>
+                        <p class="text-white">¡Ha ocurrido un error en el servidor! Por favor intente más tarde</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
-                        <p class="text-white">NOS PONDREMOS EN CONTACTO A LA BREVEDAD.</p>
+                        <p class="text-white">Nos pondremos en contacto a la brevedad</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -146,7 +146,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">POR FAVOR INGRESE A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <p class="text-white">Por favor ingrese a nuestra plataforma con su nueva contraseña</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -168,7 +168,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CONTRASEÑA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA</p>
+                        <p class="text-white">En un momento recibirá un email con instrucciones<br> para reestablecer su contraseña</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
@@ -226,8 +226,8 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CUENTA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA</p>
-                        <p class="text-white">SI NO VUALIZAS EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA DE CORREO NO DESEADO</p>
+                        <p class="text-white">En un momento recibirá un email con instrucciones<br> para reestablecer su cuenta</p>
+                        <p class="text-white">Si no visualizas el email, por favor verifique su carpeta de correo no deseado</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">¡SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">YA PUEDE INGRESAR A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <p class="text-white">Ya puede ingresar a nuestra plataforma con su nueva contraseña</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -309,7 +309,7 @@
             <div style="width: 100%;padding: 10px;">
                 <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
-                  Cerrar
+                  CERRAR
                 </button>
               </div>
 
@@ -381,7 +381,7 @@
             <div style="width: 100%;padding: 10px;">
                 <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
-                  Cerrar
+                  CERRAR
                 </button>
               </div>
 
