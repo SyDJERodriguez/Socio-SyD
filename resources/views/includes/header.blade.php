@@ -124,7 +124,7 @@
                 <div class="modal-body blue-dark">
                     <div>
                         <div>
-                            <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS SALIR?</b></h5>
+                            <h5 class="text-white"><b>¿Estás seguro que deseas salir?</b></h5>
                         </div>
                     </div>
                     <div class="row">

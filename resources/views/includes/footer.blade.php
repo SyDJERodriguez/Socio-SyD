@@ -122,22 +122,22 @@
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput" id="name" name="name"
-                                  pattern="[A-Za-z]{3,}" placeholder="NOMBRE" required >
+                                  pattern="[A-Za-z ]{3,}" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput"  id="lastname" name="lastName"
-                                  pattern="[A-Za-z]{3,}" placeholder="APELLIDOS" required>
+                                  pattern="[A-Za-z ]{3,}" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
-                                  <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                  <input type="email" class="form-control" id="email" name="email" style="border: 1px solid black;"
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"
                                   placeholder="No. TELEFÓNICO 10 DÍGITOS" pattern="[0-9]{10}" maxlength="10" title="Digito de 10 números" required>
                                 </div>
                                 <div class="col-lg-12 py-2">
-                                    <textarea class="form-control" name="comment"  id="contact-comment"
+                                    <textarea class="form-control" name="comment"  id="contact-comment" style="border: 1px solid black;"
                                     pattern="[A-Za-z0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">

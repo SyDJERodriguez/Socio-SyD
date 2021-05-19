@@ -55,30 +55,30 @@
                          <div class="col-lg-6 py-3" style="display: flex">
                              <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
                              <input class="form-control"  type="date" id="birthdayM" 
-                                 name="birthday" value="<?php echo date($employee->birthday);?>" required>
+                                style="border: 1px solid black;"
+                                name="birthday" value="<?php echo date($employee->birthday);?>" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
                      <div class="row">
-                         <div class="col-lg-6 py-2">
-                             <select class="form-control" name="gender" required>
+                         <div class="col-lg-6 py-2" style="display: flex">
+                             <select class="form-control" name="gender" 
+                             style="border: 1px solid black;" required>
                                  <option>GÉNERO</option>
                                  <option value="F">FEMENINO</option>
                                  <option value="M">MASCULINO</option>
-                                 <p style="color: red; margin: 0;visibility:hidden">*</p>
-                             </select>
+                                </select>
+                                <p style="color: red; margin: 0;visibility:hidden">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="email" class="form-control" value="{{$employee->email}}" 
-                             autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
+                             autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" 
+                             pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                             style="border: 1px solid black;" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
                      <div class="row ">
-                         <div class="col-lg-6 py-2" style="display: flex">
-                             <input type="text" class="form-control" placeholder="R.F.C" id="rfcInv" name="rfc">
-                             <p style="color: red; margin: 0;">*</p>
-                         </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="password" class="form-control" 
                              autocomplete="new-password" placeholder="CONTRASEÑA" name="password" id="password" required>
@@ -88,6 +88,10 @@
                              <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
+                         <div class="col-lg-6 py-2" style="display: flex">
+                            <input type="text" class="form-control" placeholder="R.F.C" id="rfcInv" name="rfc">
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
                      </div>
                      <input type="hidden" id="client_type" name="client_type" value="3">
                      <div class="modal-footer border-top-0">
