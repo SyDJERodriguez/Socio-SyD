@@ -213,12 +213,24 @@ h5.footerTitle3{
     margin-bottom: 27px
 }
 
+@media(max-width:3000px){
+    div.contenedorImg img.imgBene{
+        width: 101%;
+        height: 220px;
+        position: relative;
+    }
+    div.contenedorImg img.imgBene2{
+        width: 102%;
+        height: 200px;
+    }
+}
+
 @media(max-width:2401px){
     .jumbotron{
         height: 340px;
     }
     div.contenedorImg img.imgBene{
-        width: 102%;
+        width: 101%;
         height: 146px;
     }
     div.contenedorImg img.imgBene2{
@@ -342,7 +354,7 @@ h5.footerTitle3{
         height: 130px;
     }
     div.contenedorImg img.imgBene2{
-        width: 102%;
+        width: 104%;
         height: 100px;
     }
 
