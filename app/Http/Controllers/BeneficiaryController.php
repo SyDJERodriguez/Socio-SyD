@@ -174,6 +174,19 @@ class BeneficiaryController extends Controller
             ->where('client_number', '=', Auth::user()->client_number)
             ->first();
 
+        if (Auth::user()->client_type === "3"){
+            $customer = DB::table('customers')
+                ->where('email', '=', Auth::user()->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $id)
+                ->first();
+        }
+
         $initDate = new Carbon('first day of next month');
 
         $finDate = new Carbon('last day of next month');
