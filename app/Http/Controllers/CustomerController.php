@@ -859,8 +859,8 @@ class CustomerController extends Controller
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
-        $link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
-        $exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
+        //$link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
+        //$exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
         $number = '';
@@ -872,7 +872,22 @@ class CustomerController extends Controller
                 ->first();
         }
 
-        return view('pages.Account.documents', compact('data','link', 'exist','total','noti', 'number', 'owner'));
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $data->id)
+            ->get();
+
+        if (Auth::user()->client_type === "3"){
+            $customer = DB::table('customers')
+                ->where('email', '=', Auth::user()->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+        }
+
+        //dd($beneficiaries);
+
+        return view('pages.Account.documents', compact('data','total','noti', 'number', 'owner', 'beneficiaries'));
     }
 
     //Go to register beneficiary
