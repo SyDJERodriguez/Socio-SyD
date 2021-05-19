@@ -223,6 +223,18 @@ h5.footerTitle3{
         width: 102%;
         height: 200px;
     }
+    .our-branches__content-address-map{
+        padding-top: 3.2%;
+    }
+    .our-branches__content-address-location-result {
+        height: 400px;
+    }
+}
+
+@media(max-width:2700px){
+    .our-branches__content-address-map{
+        padding-top: 3.5%;
+    }
 }
 
 @media(max-width:2401px){
