@@ -70,7 +70,8 @@
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="email" class="form-control" value="{{$employee->email}}" 
-                             autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" required>
+                             autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email" 
+                             pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
