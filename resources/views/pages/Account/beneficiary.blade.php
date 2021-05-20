@@ -17,13 +17,13 @@
                         <img src="{{asset('img/socioeconomico.png')}}" class="py-2 iconBene">
                     </div>
                     <div class="col-7 contenedorImg">
-                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene" style="left: 3px">
+                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene">
                     </div>
                 </div>
 
                 <div>
                     <div class="row"
-                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
+                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px">
                         @if(isset($error))
                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
                                 <strong>{{$error}}</strong>

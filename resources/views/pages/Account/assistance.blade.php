@@ -17,7 +17,7 @@
             <strong>OBTIENES BENEFICIOS ESPECIALES</strong>
         </p>
       </div>
-      <div class="col-6 contenedorImg">
+      <div class="col-6 contenedorImg2">
           <img src="{{asset('img/mecanico-2.png')}}" class="imgBene2">
       </div>
 </div>
@@ -29,13 +29,13 @@
             <strong>OBTIENES BENEFICIOS ESPECIALES</strong>
         </p>
       </div>
-      <div class="col-12 contenedorImg">
+      <div class="col-12 contenedorImg2" style="padding-right: 0px;padding-left: 0px;">
           <img src="{{asset('img/mecanico-2.png')}}" class="imgBene2">
       </div>
 </div>
 
   <form>
-    <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+    <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;margin-right: 0px;margin-left: 0px;">
         @if($level > 1)
 
         <div class="row">
