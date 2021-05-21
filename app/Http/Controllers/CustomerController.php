@@ -197,7 +197,7 @@ class CustomerController extends Controller
         $validated = $this->employeeLimit($client_number,$request['customer_id']);
         //dd($validated);
         if ($validated === false){
-            return view('pages.limitDependent');
+            return view('pages.limitDependent', ['owner' => $request['owner'], 'success'=> false]);
         }
 
         //calculated number in associates table
@@ -221,7 +221,7 @@ class CustomerController extends Controller
         if ($update_associates){
             //Update data in customers sessions table
             $update_customer_session = DB::table('customers_sessions')->where('email','=', $request['email'])->update([
-                'client_type'      => "2",
+                'client_type'      => "3",
                 'is_associate'     => 1,
                 'client_number' => $client_number
             ]);
@@ -231,15 +231,15 @@ class CustomerController extends Controller
                     'client_number' => ''
                 ]);
                 if($update_customer === 1){
-                    return response()->json(['success'=>'true']);
+                    return view('pages.limitDependent', ['success'=>true, 'owner'=> $request['owner']]);
                 }else{
-                    return response()->json(['success'=>'false']);
+                    return view('pages.limitDependent',['error'=>true]);
                 }
             }else{
-                return response()->json(['success'=>'false']);
+                return view('pages.limitDependent',['error'=>true]);
             }
         }else{
-            return response()->json(['success'=>'false']);
+            return view('pages.limitDependent',['error'=>true]);
         }
     }
 
@@ -307,6 +307,13 @@ class CustomerController extends Controller
         if(!empty($verify_mobile_email)){
             if ($verify_mobile_email[0]->client_type == '1'){
                 return redirect()->back()->with('isOwner', 'the email/mobile number its already in db');
+            }
+        }
+
+        //Check if th account is an owner account
+        if(!empty($verify_mobile_email)){
+            if ($verify_mobile_email[0]->client_type == '3'){
+                return redirect()->back()->with('isDependent', 'the email/mobile number its already in db');
             }
         }
 

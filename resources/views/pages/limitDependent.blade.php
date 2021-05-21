@@ -37,23 +37,60 @@
             </div>
         </nav>
 
-        <!-- Content Start -->
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content border-0 rounded-0">
-                <div class="modal-body " style="background-color: #143153;">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <img src="{{asset('img/icon_check.png')}}">
-                            <h5 class="text-white">NO ES POSIBLE ASOCIARTE A LA CUENTA DE NEOGCIO</h5>
-                            <p class="text-white">La cuenta de negocio a la cual quieres asociarte ha alcanzado su limite de dependientes</p>
-                            <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
-                                style="background-color: #00A5E6;">INICIO</a>
+        @if($success === false)
+            <!-- Content when the owner can't add more dependent -->
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content border-0 rounded-0">
+                    <div class="modal-body " style="background-color: #143153;">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <img src="{{asset('img/icon_check.png')}}">
+                                <h5 class="text-white">NO ES POSIBLE ASOCIARTE A {{ strtoupper($owner)}}</h5>
+                                <p class="text-white">La cuenta de negocio a la cual quieres asociarte ha alcanzado su limite de dependientes</p>
+                                <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
+                                    style="background-color: #00A5E6;">INICIO</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @else
+        <!-- Content when the individual account convert to dependent account -->
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content border-0 rounded-0">
+                    <div class="modal-body " style="background-color: #143153;">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <img src="{{asset('img/icon_check.png')}}">
+                                <h5 class="text-white">TE HAS ASOCIADO CORRECTAMENTE A {{ strtoupper($owner)}}</h5>
+                                <p class="text-white">Tu cuenta ahora es una cuenta dependiente</p>
+                                <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
+                                   style="background-color: #00A5E6;">INICIO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
+        @if(isset($error) && $error === true)
+            <!-- Content when the individual account convert to dependent account -->
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content border-0 rounded-0">
+                        <div class="modal-body " style="background-color: #143153;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <img src="{{asset('img/icon_check.png')}}">
+                                    <h5 class="text-white">ERROR TEMPORAL</h5>
+                                    <p class="text-white">Ha ocurrido un error, por favor intente más tarde</p>
+                                    <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
+                                       style="background-color: #00A5E6;">INICIO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        @endif
     </div>
     <!-- Content End -->
 

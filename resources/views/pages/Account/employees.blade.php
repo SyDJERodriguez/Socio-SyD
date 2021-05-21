@@ -28,44 +28,57 @@
                 <h5>Detalle de empleados</h5>
 
                 @if (session()->has('activeAssociate'))
-                     <div class="col-lg-12 text-justify text-primary">
-                        <h6 style="color:red;text-align:center">
-                           El correo y/o número de teléfono ya es dependiente de un cuenta de negocio
-                        </h6>
-                     </div>
+                    <script>
+                        $(function() {
+                            $('#dependentOwner').modal('show');
+                        });
+                    </script>
                 @endif
 
                 @if (session()->has('deactiveAssociate'))
-                    <div class="col-lg-12 text-justify text-primary">
-                        <h6 style="color:red;text-align:center">
-                            El correo y/o número de teléfono ya ha sido dependiente de este negocio<br>
-                            Se ha enviado un email para que active nuevamente su cuenta
-                        </h6>
-                    </div>
+                    <script>
+                        $(function() {
+                            $('#historicSuccess').modal('show');
+                        });
+                    </script>
                 @endif
 
                 @if(session()->has('isMechanic'))
-                    <div class="col-lg-12 text-justify text-primary">
-                        <h6 style="color:red;text-align:center">
-                            El email y/o número de teléfono pertenecen a una cuenta individual <br>
-                            Se ha enviado un email al usuario para aceptar tu invitación <br>
-                            En cuanto acepte tu invitación formará parte de tus dependientes
-                        </h6>
-                    </div>
+                    <script>
+                        $(function() {
+                            $('#individualSuccess').modal('show');
+                        });
+                    </script>
                 @endif
 
                 @if(session()->has('isOwner'))
-                    <div class="col-lg-12 text-justify text-primary">
-                        <h6 style="color:red;text-align:center">
-                            No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta de negocio
-                        </h6>
-                    </div>
+                    <script>
+                        $(function() {
+                            $('#ownerSuccess').modal('show');
+                        });
+                    </script>
+                @endif
+
+                @if(session()->has('isDependent'))
+                    <script>
+                        $(function() {
+                            $('#dependentSuccess').modal('show');
+                        });
+                    </script>
                 @endif
 
                 @if(session()->has('success'))
                     <script>
                         $(function() {
                             $('#associateSuccess').modal('show');
+                        });
+                    </script>
+                @endif
+
+                @if ($validated === false)
+                    <script>
+                        $(function() {
+                            $('#limitAccount').modal('show');
                         });
                     </script>
                 @endif
@@ -97,8 +110,8 @@
                             <td>
                                 <a class="btn btn-outline-dark btn-sm btn-block"
                                         style="border: 0px"
-                                        href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}"
-                                        role="button">
+                                        href="#"
+                                        role="button" data-toggle="modal" data-target="#deleteDependent">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -148,6 +161,170 @@
                         <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p>
                         <p class="text-white" id="clientNumber"></p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Individual Account Modal -->
+<div class="modal fade" id="individualSuccess" tabindex="-1" role="dialog" aria-labelledby="individualSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡HAS AGREGADO UN USUARIO CON CUENTA INDIVIDUAL!</h5>
+                        <p class="text-white">El email y/o número de teléfono pertenecen a una cuenta individual</p>
+                        <p class="text-white">Se ha enviado un email al usuario para aceptar tu invitación</p>
+                        <p class="text-white">En cuanto acepte tu invitación formará parte de tus dependientes</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Owner Account Modal -->
+<div class="modal fade" id="ownerSuccess" tabindex="-1" role="dialog" aria-labelledby="ownerSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO CON CUENTA DE NEGOCIO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta de negocio</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Owner Account Modal -->
+<div class="modal fade" id="dependentSuccess" tabindex="-1" role="dialog" aria-labelledby="dependentSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO REGISTRADO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta registrada</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Historic Dependent Account Modal -->
+<div class="modal fade" id="historicSuccess" tabindex="-1" role="dialog" aria-labelledby="historicSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA HA SIDO TU COLABORADOR!</h5>
+                        <p class="text-white">El correo y/o número de teléfono ya ha sido dependiente de este negocio</p>
+                        <p class="text-white">Se ha enviado un email para que active nuevamente su cuenta</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dependent to other Owner Account Modal -->
+<div class="modal fade" id="dependentOwner" tabindex="-1" role="dialog" aria-labelledby="dependentOwner" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA ESTA ASOCIADO A OTRA CUENTA DE NEGOCIO!</h5>
+                        <p class="text-white">El correo y/o número de teléfono ya es dependiente de un cuenta de negocio</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Limit Account Modal -->
+<div class="modal fade" id="limitAccount" tabindex="-1" role="dialog" aria-labelledby="limitAccount" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡HAZ LLEGADO AL LIMITE DE USUARIOS DEPENDIENTES!</h5>
+                        <p class="text-white">Sigue comprando para darle beneficios a más dependientes</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delet Dependent Modal -->
+<div class="modal fade" id="deleteDependent" tabindex="-1" role="dialog" aria-labelledby="deleteDependent" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¿ESTAS SEGURO QUE DESEAS ELIMINAR A TU DEPENDIENTE?</h5>
+                        <p class="text-white">Tu dependiente perdera los beneficios</p>
+                        <div class="row">
+                            <div class="col-lg-9 py-2 text-center">
+                                <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
+                            <div class="col-lg-3 py2 text-center">
+                                <a href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}"
+                                   class="text-white btn btn bg-primary btn-sm my-2"
+                                   style="padding-left: 40px;padding-right: 40px;"
+                                   >
+                                    SI
+                                </a>
+                                <br>
+                                <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal"
+                                       style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
