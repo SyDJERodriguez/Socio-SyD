@@ -196,8 +196,8 @@ class CustomerController extends Controller
 
         $validated = $this->employeeLimit($client_number,$request['customer_id']);
         //dd($validated);
-        if ($validated === true){
-            return "Es true";
+        if ($validated === false){
+            return view('pages.limitDependent');
         }
 
         //calculated number in associates table
@@ -220,15 +220,15 @@ class CustomerController extends Controller
 
         if ($update_associates){
             //Update data in customers sessions table
-            $update_customer_session = DB::table('customers_sessions')->where('email','=', Auth::user()->email)->update([
+            $update_customer_session = DB::table('customers_sessions')->where('email','=', $request['email'])->update([
                 'client_type'      => "2",
-                'is_associate'     => 0,
+                'is_associate'     => 1,
                 'client_number' => $client_number
             ]);
             if ($update_customer_session === 1){
-                //Add client number to customer table
-                $update_customer = DB::table('customers')->where('email','=', Auth::user()->email)->update([
-                    'client_number' => $client_number
+                //Remove client number to customer table
+                $update_customer = DB::table('customers')->where('email','=', $request['email'])->update([
+                    'client_number' => ''
                 ]);
                 if($update_customer === 1){
                     return response()->json(['success'=>'true']);
