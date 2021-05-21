@@ -43,6 +43,8 @@ Route::get('account/verify/{client_number}/{mobile_number}', 'CustomerController
 Route::post('/registerCNT', 'CustomerController@cntRegister')->name('cnt.register');
 Route::get('/registerCNTNumbers', 'CustomerController@insertCNTNumber')->name('cnt.numbers');
 
+//Change mechanic to employee
+Route::get('/mechanic_to_dependent/{array}', 'CustomerController@convertMechanicToDependentByEmail')->name('update.mechanic.dependent');
 
 
 Route::prefix('customer')->name('customer.')->group(function(){
@@ -78,7 +80,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
         Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
-        Route::get('/pdf','BeneficiaryController@generatePDF')->name('pdf');
+        Route::get('/pdf', 'BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
@@ -88,6 +90,5 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
-
     });
 });

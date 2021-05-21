@@ -46,7 +46,7 @@
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">REGISTRO REALIZADO CON ÉXITO</h5>
                             <p class="text-white">Revisa tu bandeja de correo electrónico</p>
-                            <p class="text-white">Ingresa a la plataforma con tus credenciales</p>
+                            <p class="text-white">Activa tu cuenta y accede con tus credenciales</p>
                             <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                 style="background-color: #00A5E6;">ENTRAR</a>
                         </div>
