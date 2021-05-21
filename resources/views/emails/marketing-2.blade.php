@@ -13,7 +13,7 @@
 	<tr>
 		<td colspan="3">
 			<a href="https://www.sociosyd.com/" target="_blank">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-2_02.jpg" width="600" height="94" alt="" border="0" style="display: block"></a></td>
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-2_02.jpg" width="600" height="134" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>
 		<td>
