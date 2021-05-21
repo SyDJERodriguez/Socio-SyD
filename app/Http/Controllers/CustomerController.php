@@ -189,6 +189,56 @@ class CustomerController extends Controller
         }
     }
 
+    public function convertMechanicToDependentByEmail(Request $request){
+        $request = $request->input();
+        //dd($request);
+        $client_number = '00'.$request['client_number'];
+
+        $validated = $this->employeeLimit($client_number,$request['customer_id']);
+
+        //calculated number in associates table
+        $number = $this->getNumberAssociate($request['customer_id']);
+        ++$number; //plus one bc 0 don't exists
+        //Remove association
+        $update_associates =  DB::table('associates')->insert([
+            'customer_id'       => $request['customer_id'],
+            'client_number'     => $client_number,
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'active_association'=> 1,
+            'number'            => $number,
+            'birthday'          => $request['birthday'],
+            'created_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile'],
+            'email'             => $request['email']
+        ]);
+
+        if ($update_associates){
+            //Update data in customers sessions table
+            $update_customer_session = DB::table('customers_sessions')->where('email','=', Auth::user()->email)->update([
+                'client_type'      => "2",
+                'is_associate'     => 0,
+                'client_number' => $client_number
+            ]);
+            if ($update_customer_session === 1){
+                //Add client number to customer table
+                $update_customer = DB::table('customers')->where('email','=', Auth::user()->email)->update([
+                    'client_number' => $client_number
+                ]);
+                if($update_customer === 1){
+                    return response()->json(['success'=>'true']);
+                }else{
+                    return response()->json(['success'=>'false']);
+                }
+            }else{
+                return response()->json(['success'=>'false']);
+            }
+        }else{
+            return response()->json(['success'=>'false']);
+        }
+    }
+
     /*Here check if the client client number exist in the DB
     if exist return the information to put in the inputs*/
     public function verify_client_number(Request $request){
@@ -208,13 +258,55 @@ class CustomerController extends Controller
         $client_number = $request['client_number'];
 
         //Verify is the email has not a relation with other client number
-        $verify_mobile_number = Customer::where('mobile_number', $request['mobile_number'])->first();
-        if(!empty($verify_mobile_number)){
-            if ($verify_mobile_number->client_number !== $client_number ){
-                return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
+        //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
+
+        //Verify if the guest has an account
+        $verify_mobile_email = DB::table('customers_sessions')
+            ->where('mobile', '=', $request['mobile_number'])
+            ->orWhere('email', '=', $request['email'])
+            ->get();
+
+        $verify_mobile_email = json_decode($verify_mobile_email);
+        $verify_mobile_email = (array)$verify_mobile_email;
+
+        //dd(!empty($verify_mobile_email));
+        //Check if the account is a mechanic account
+        if(!empty($verify_mobile_email)){
+            if($verify_mobile_email[0]->client_type == '2'){
+                $owner = DB::table('customers')
+                    ->where('client_number', '=', $request['client_number'])
+                    ->first();
+                $ownerName = $owner->name.' '.$owner->last_name.' '.$owner->second_last_name;
+
+                $data = DB::table('customers')
+                    ->where('email', '=', $request['email'])
+                    ->first();
+                $information = [
+                    'test'=> 'Datos',
+                    'customer_id'=> $request['customer_id'],
+                    'client_number'=> $request['client_number'],
+                    'name' => $data->name,
+                    'last_name' => $data->last_name,
+                    'second_last_name' => $data->second_last_name,
+                    'birthday' => $data->birthday,
+                    'mobile' => $data->mobile_number,
+                    'email' => $request['email'],
+                    'owner' => $ownerName
+                ];
+                //dd($information);
+                $this->inviteMechanicToDependent($information);
+                return redirect()->back()->with('isMechanic', 'the email/mobile number its already in db');
             }
         }
 
+        //Check if th account is an owner account
+        if(!empty($verify_mobile_email)){
+            if ($verify_mobile_email[0]->client_type == '1'){
+                return redirect()->back()->with('isOwner', 'the email/mobile number its already in db');
+            }
+        }
+
+        //Verify if the email is associates with other owner
         $query = DB::table('associates')
                     ->where('mobile_number','=',$request['mobile_number'])
                     ->orWhere('email','=',$request['email'])
@@ -224,7 +316,23 @@ class CustomerController extends Controller
         $query = (array)$query;//convert to array
 
         if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 1){ //check if response exist
-            return redirect()->back()->with('exist', 'the email/mobile number its already in db');
+            if($query[0]->mobile_number === $request['mobile_number'] || $query[0]->email === $request['email']){
+                return redirect()->back()->with('activeAssociate', 'the email/mobile number its already in db');
+            }
+            return redirect()->back()->with('activeAssociate', 'the email/mobile number its already in db');
+        }
+
+        //Verify if the email is deactive association with the current owner
+        $deactivate = DB::table('associates')
+            ->where('mobile_number','=',$request['mobile_number'])
+            ->orWhere('email','=',$request['email'])
+            ->where('active_association','=',0)
+            ->get();
+        $deactivate = json_decode($deactivate);
+        $deactivate = (array)$deactivate;//convert to array
+
+        if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 0){ //check if response exist
+            return redirect()->back()->with('deactiveAssociate', 'the email/mobile number its already in db');
         }
 
         //calculated number in associates table
@@ -252,7 +360,8 @@ class CustomerController extends Controller
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
             //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
-            return redirect()->route('customer.employees');
+            //return redirect()->route('customer.employees');
+            return redirect()->back()->with('success', 'the email/mobile number its already in db');
         }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
@@ -1383,7 +1492,7 @@ class CustomerController extends Controller
                     ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
                     ->get();
         //Calculated the limit of employee
-        $validated = $this->employeeLimit();
+        $validated = $this->employeeLimit(Auth::user()->client_number,Auth::user()->id);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
@@ -1391,8 +1500,8 @@ class CustomerController extends Controller
     }
 
     //Function to generate limit for add employees according the rules
-    public function employeeLimit(){
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+    public function employeeLimit($client_number, $id){
+        $data = Customer::where('client_number', $client_number)->first();
         $now = Carbon::now();
         //get sum of amount column
         $query = DB::table('transactions')
@@ -1405,7 +1514,7 @@ class CustomerController extends Controller
         $validated = false; //var for button validated
 
         //get number of employees registrados
-        $numberEmployees = $this->getNumberAssociate(Auth::user()->id);
+        $numberEmployees = $this->getNumberAssociate($id);
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
@@ -1554,6 +1663,19 @@ class CustomerController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    //invitation email associate
+    public function inviteMechanicToDependent($data){
+        $email = $data['email'];
+        //try {
+            Mail::send('emails.mechanicToDependent',['data'=>$data], function($m) use ($email){
+                $m->from('noreply@sociosyd.com',"Socio SyD");
+                $m->to($email)->subject("Invitación cuenta dependiente");
+            });
+        //} catch (\Throwable $th) {
+            //throw $th;
+        //}
     }
 
     protected function guard()
