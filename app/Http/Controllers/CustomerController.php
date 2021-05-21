@@ -192,9 +192,13 @@ class CustomerController extends Controller
     public function convertMechanicToDependentByEmail(Request $request){
         $request = $request->input();
         //dd($request);
-        $client_number = '00'.$request['client_number'];
+        $client_number = $request['client_number'];
 
         $validated = $this->employeeLimit($client_number,$request['customer_id']);
+        //dd($validated);
+        if ($validated === true){
+            return "Es true";
+        }
 
         //calculated number in associates table
         $number = $this->getNumberAssociate($request['customer_id']);
