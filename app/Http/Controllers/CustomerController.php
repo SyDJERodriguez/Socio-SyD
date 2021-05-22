@@ -602,6 +602,110 @@ class CustomerController extends Controller
         }
     }
 
+    public function updateData(Request $request){
+        $request          = $request->input();
+
+        //For customer_session table
+        $client_number = '00'.$request['client_number'];
+        $passwordVerify = $request['password'];
+        $passwordConfirm = $request['confirmPassword'];
+
+        if ($passwordVerify !== $passwordConfirm){
+            return redirect()->back()->with('msg', 'Las contraseñas no coinciden');
+        }
+
+        $password      = Hash::make($request['password']);
+
+        //Check if the email already has an account
+
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+
+        if ($verify_email == null) {
+            return redirect()->back()->with('msg', 'El email no existe');
+        }
+
+        //$verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+
+        //if ($verify_mobile_number == null) {
+        //    return redirect()->back()->with('msg', 'El número de teléfono no existe');
+        //}
+
+        //Check if the client number is already in the DB
+        $data = Customer::where('client_number', $client_number)->first();
+
+        $update_customer ='';
+        if($data !== null) {
+            //Update data in customers table
+            $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile'],
+                'company'          => isset($request['company']) ? $request['company'] : '',
+                'birthday'         => $request['birthday'],
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
+                'work'             => isset($request['work']) ? $request['work'] : '',
+                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
+            ]);
+        }
+
+        $save_register = DB::table('customers_sessions')->where('client_number','=',$client_number)->update([
+            'mobile'        => $request['mobile'],
+            'password'      => $password
+        ]);
+
+
+
+        if($request['client_type'] === '1'){
+            $idCustomer = DB::table('customers_sessions')
+                ->select('id')
+                ->where('email', '=', $request['email'])
+                ->first();
+            $if_associate_email = DB::table('associates')
+                ->select('email')
+                ->where('email', '', $request['email'])
+                ->first();
+            $if_associate_phone = DB::table('associates')
+                ->select('mobile_number')
+                ->where('mobile_number', '', $request['mobile'])
+                ->first();
+
+            if($if_associate_email === null && $if_associate_phone === null){
+                DB::table('associates')->where('client_number','=',$client_number)->update([
+                    'customer_id'       => $idCustomer->id,
+                    'client_number'     => $client_number,
+                    'name'              => $request['name'],
+                    'last_name'         => $request['last_name'],
+                    'second_last_name'  => $request['second_last_name'],
+                    'role'              => isset($request['role']) ? $request['role'] : "",
+                    'active_association'=> 1,
+                    'number'            => 1,
+                    'birthday'          => $request['birthday'],
+                    'email'             => $request['email'],
+                    'mobile_number'     => $request['mobile'],
+                ]);
+            }
+        }
+
+
+
+        //$name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
+
+        if ($update_customer == 1 && $save_register === 1){
+            return redirect()->back()->with('success',1);
+        }elseif ($update_customer == true && $save_register === true){
+            return redirect()->back()->with('success',1);
+        }elseif ($update_customer == 0 && $save_register === 0){
+            return redirect()->back()->with('success',1);
+        }
+        else{
+            return redirect()->back()->with('msg', 'Algo salio mal.');
+        }
+    }
+
     //form invitation sign up
     public function signUpInvitation(Request $request){
         $request['client_number'] = '00'.$request['client_number'];

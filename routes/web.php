@@ -51,6 +51,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
+    Route::put('/update/data', 'CustomerController@updateData')->name('updateData');
     Route::post('/login', 'CustomerController@login')->name('login');
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
     Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');

@@ -20,6 +20,13 @@
 
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
+            @if (\Session::has('msg'))
+            <div class="col-lg-12 text-justify text-primary">
+               <p style="font-size:11px;color:red;text-align:center">
+                  {{Session::get('msg')}}
+               </p>
+            </div>
+            @endif
             @if(session()->has('error'))
             <p class="error">
                 {{ session()->get('error') }}
@@ -377,5 +384,37 @@ padding-bottom: 14px;">
 
 {{-- Modal update datos --}}
 @include('includes.formUpdateData')
+@endif
+
+@if (\Session::has('success'))
+    <!-- Modal UPDATE SUCCESS-->
+    <div class="modal fade" id="modalUpdateSuccess" tabindex="-1" role="dialog" aria-labelledby="modalUpdateSuccess" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div style="height: 34px;">
+                    <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body " style="background-color: #143153;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <img src="{{asset('img/icon_check.png')}}">
+                            <p class="text-white" id="clientName"></p>
+                            <p class="text-white" id="clientNumber"></p>
+                            <p class="text-white" id="clientMessage"></p>
+                            <h5 class="text-white">TUS DATOS SE ACTUALIZARON CORRECTAMENTE</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(function() {
+        $('#modalUpdateSuccess').modal('show');
+    });
+    </script>
+
 @endif
 

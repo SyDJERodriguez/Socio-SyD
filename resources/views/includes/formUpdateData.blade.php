@@ -26,7 +26,7 @@
             <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
             </div>
 
-          <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
+          <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.updateData')}}">
               @method('PUT')
               @csrf
               <div class="row">
