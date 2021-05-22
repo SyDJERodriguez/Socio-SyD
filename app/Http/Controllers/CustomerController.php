@@ -1046,7 +1046,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1058,7 +1058,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type === "2"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1118,7 +1118,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1130,7 +1130,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type === "2"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1188,7 +1188,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1200,7 +1200,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type === "2"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1247,7 +1247,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1259,7 +1259,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type === "2"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1360,7 +1360,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1372,7 +1372,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type === "2"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
