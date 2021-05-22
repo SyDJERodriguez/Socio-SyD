@@ -374,5 +374,8 @@ padding-bottom: 14px;">
 @if(Auth::check())
 {{-- Modal notifications --}}
 @include('includes.notifications')
+
+{{-- Modal update datos --}}
+@include('includes.formUpdateData')
 @endif
 
