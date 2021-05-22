@@ -12,7 +12,7 @@
             <div class="modal-body blue-dark">
                 <div>
                     <div>
-                        <h5 class="text-white"><b>¿CUENTAS CON NÚMERO DE CLIENTE?</b></h5>
+                        <h5 class="text-white"><b>¿YA CUENTAS CON NÚMERO DE CLIENTE?</b></h5>
                     </div>
                 </div>
                 <div class="row">
@@ -54,7 +54,7 @@
             <div class="modal-body blue-dark">
                 <div>
                     <div>
-                        <h5 class="text-white" style="text-transform: uppercase;"><b>En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas</b></h5>
+                        <h5 class="text-white"><b>En caso de que no tengas o bien, no recuerdes tu número de cliente, comunícate al 800 SyD (793) 1010 y con gusto te apoyamos</b></h5>
                     </div>
                 </div>
                 <div class="row">
