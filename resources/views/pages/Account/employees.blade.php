@@ -108,10 +108,10 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-outline-dark btn-sm btn-block"
+                                <a class="btn btn-outline-dark btn-sm btn-block delete"
                                         style="border: 0px"
                                         href="#"
-                                        role="button" data-toggle="modal" data-target="#deleteDependent">
+                                        role="button" id="{{$as->id}}" onclick="deleteEmployee('{{$as->id}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -314,8 +314,8 @@
                             <div class="col-lg-9 py-2 text-center">
                                 <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                             <div class="col-lg-3 py2 text-center">
-                                <a href="{{ action('CustomerController@deleteEmployee',['employee' => $as->id]) }}"
-                                   class="text-white btn btn bg-primary btn-sm my-2"
+                                <a href="#"
+                                   class="text-white btn btn bg-primary btn-sm my-2 confirmDeleteButton"
                                    style="padding-left: 40px;padding-right: 40px;"
                                    >
                                     SI
@@ -333,6 +333,25 @@
 </div>
 
 <script>
+
+    function deleteEmployee(id){
+        console.log(id)
+        //$('.confirmDeleteButton').attr('id', id);
+        let href_button = "{{ url('/employees/{id}/delete') }}";
+        href_button = href_button.replace('{id}', id)
+        $('.confirmDeleteButton').attr('href', href_button)
+        $('#deleteDependent').modal('show');
+    }
+    /*$('.delete').on('click', function(){
+        let id = $(this).data('datos-id');
+        console.log('hola');
+        //rest.eliminarEjercicio(id);//Esto es lo que quiero hacer en el modal
+        $('#deleteDependent').data('id_elemento',id);
+
+        $('#deleteDependent').modal({backdrop: false});
+
+    });*/
+
     $.noConflict();
     jQuery(document).ready(function($){
         $('#tableEmployees').DataTable({
