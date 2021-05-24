@@ -399,11 +399,13 @@ padding-bottom: 14px;">
                 <div class="modal-body " style="background-color: #143153;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
+                            <p class="text-white" id="clientName">
+                                {{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}
+                            </p>
+                            <p class="text-white" id="clientNumber">No. de cliente {{substr($data->client_number,2)}}</p>
                             <img src="{{asset('img/icon_check.png')}}">
-                            <p class="text-white" id="clientName"></p>
-                            <p class="text-white" id="clientNumber"></p>
                             <p class="text-white" id="clientMessage"></p>
-                            <h5 class="text-white">TUS DATOS SE ACTUALIZARON CORRECTAMENTE</h5>
+                            <h5 class="text-white" style="font-size: 34px">TUS DATOS SE ACTUALIZARON CORRECTAMENTE</h5>
                         </div>
                     </div>
                 </div>
