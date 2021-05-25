@@ -196,37 +196,45 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <p>Ingresa tu correo electrónico registrado <br>
-                        o tu numero de teléfonico de 10 dígitos</p>
+                        <p style="padding-left: 1px">Ingresa tu correo electrónico registrado <br>
+                        o tu número de teléfonico de 10 dígitos</p>
                     </div>
                 </div>
 
-                <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                <form action="" method="GET" id="sendForgotClientNumberForm">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input autocomplete="new-password" class="form-control-sm form-control" type="text" name="email"
-                                       placeholder="CORREO ELECTRÓNICO" required>
+                                <input style="border: 1px solid black" 
+                                autocomplete="new-password" class="form-control-sm form-control" 
+                                type="email" name="email"
+                                placeholder="CORREO ELECTRÓNICO" 
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1">
+                                <input autocomplete="new-password" class="form-control-sm form-control" 
+                                type="text" name="email"
+                                placeholder="NO. TELEFÓNICO 10 DIG" 
+                                maxlength="10" pattern="[0-9]{10}">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <br>
                         <div class="row">
-                            <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-info" id="sendEmailRestore">ENVIAR</button>
+                            <div class="col-lg-3 offset-lg-9 text-center">
+                                <button type="submit" 
+                                style="background-color: #00A5E6;" 
+                                class="text-white btn btn-sm px-4" 
+                                id="sendForgotClientNumber">
+                                ENVIAR</button>
                             </div>
                         </div>
                     </div>
                 </form>
-
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-9 text-center">
-                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" 
-                        style="background-color: #00A5E6;">ENVIAR</a>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

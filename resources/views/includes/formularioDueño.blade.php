@@ -125,7 +125,7 @@
                     {{-- Modal ¿Olvidaste tu numero cliente --}}
                     <div class="col-lg-12 py-2" style="display: flex">
                         <p style="padding-left: 1px">
-                            <a href="#" data-toggle="modal" data-target="#modalForgotNum">
+                            <a href="#" data-toggle="modal" data-target="#modalClientNumber">
                                 ¿Olvidaste tu número de cliente?</a>
                         </p>
                     </div>
