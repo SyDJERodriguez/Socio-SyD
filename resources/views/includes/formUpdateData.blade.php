@@ -61,14 +61,14 @@
               <div class="row">
                   <div class="col-lg-6 py-3" style="display: flex">
                       <label for="birthdayUp" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                      <input class="form-control btnBorder" type="date" id="birthdayUp" name="birthdayUp" value="<?php echo $data->birthdayUp;?>" required>
+                      <input class="form-control btnBorder" type="date" id="birthdayUp" name="birthdayUp" value="<?php echo $data->birthday;?>" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-3" style="display: flex">
                       <select class="form-control btnBorder" name="gender" required>
-                          <option value="" selected disabled hidden>GÉNERO</option>
-                          <option value="F" >FEMENINO</option>
-                          <option value="M" >MASCULINO</option>
+                          <option value="" disabled hidden>GÉNERO</option>
+                          <option value="F" {{(($data->gender) == 'F' ? 'selected' : '')}}>FEMENINO</option>
+                          <option value="M" {{(($data->gender) == 'M' ? 'selected' : '')}}>MASCULINO</option>
                       </select>
                       <p style="color: red; margin: 0;visibility:hidden">*</p>
                   </div>
@@ -118,18 +118,19 @@
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
                       <select class="form-control btnBorder" name="work" required>
-                          <option value="" selected disabled hidden>TIPO DE NEGOCIO</option>
-                          <option value="1">TALLER GENERAL</option>
-                          <option value="2">TALLER SUSPENSIONISTA</option>
-                          <option value="3">MECANICO INDEPENDIENTE</option>
-                          <option value="4">REFACCIONARIA</option>
-                          <option value="5">MAYORISTA</option>
-                          <option value="6">OTRO</option>
+                          <option value="" disabled hidden>TIPO DE NEGOCIO</option>
+                          <option value="1" {{(($data->work) == '1' ? 'selected' : '')}} >TALLER GENERAL</option>
+                          <option value="2" {{(($data->work) == '2' ? 'selected' : '')}} >TALLER SUSPENSIONISTA</option>
+                          <option value="3" {{(($data->work) == '3' ? 'selected' : '')}} >MECANICO INDEPENDIENTE</option>
+                          <option value="4" {{(($data->work) == '4' ? 'selected' : '')}} >REFACCIONARIA</option>
+                          <option value="5" {{(($data->work) == '5' ? 'selected' : '')}} >MAYORISTA</option>
+                          <option value="6" {{(($data->work) == '6' ? 'selected' : '')}} >OTRO</option>
                       </select>
                       <p style="color: red; margin: 0;visibility:hidden">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder" placeholder="R.F.C EMPRESA" id="RFC_Company" name="RFC_Company">
+                      <input type="text" class="form-control btnBorder" placeholder="R.F.C EMPRESA" id="RFC_Company" name="RFC_Company"
+                      value="{{(($data->RFC_Company) !== null ? $data->RFC_Company : '')}}">
                       <p style="color: red; margin: 0;visibility:hidden">*</p>
                   </div>
               </div>
