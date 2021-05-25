@@ -1534,7 +1534,7 @@ class CustomerController extends Controller
     public function invitation($data){
         $email = $data['email'];
         try {
-            Mail::send('emails.invitacionBeneficiario',['data'=>$data], function($m) use ($email){
+            Mail::send('emails.invitacionAsociado',['data'=>$data], function($m) use ($email){
                 $m->to($email)->subject("Invitación a Socio SYD");
             });
         } catch (\Throwable $th) {
