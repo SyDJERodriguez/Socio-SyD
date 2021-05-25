@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.index');
     }
 
     /**
@@ -82,5 +82,19 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    // Function for search by client number
+    public function search_by_number()
+    {
+        $form = 1;
+        return view('Admin.customer', compact('form'));
+    }
+
+    // Function for search by email
+    public function search_by_email()
+    {
+        $form = 2;
+        return view('Admin.customer', compact('form'));
     }
 }

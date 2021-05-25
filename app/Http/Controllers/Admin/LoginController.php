@@ -28,6 +28,11 @@ class LoginController extends Controller
 		return view('Admin.Auth.login');
 	}
 
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
 	public function login(Request $request){
 		//Validando
 		$this->validate($request, [

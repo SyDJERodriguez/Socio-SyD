@@ -92,3 +92,14 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
     });
 });
+
+//CAT
+Route::prefix('admin')->name('admin.')->group(function (){
+    Route::get('/login','Admin\LoginController@showLoginForm')->name('login_form');
+    Route::post('/login','Admin\LoginController@login')->name('login');
+    Route::get('/register','Admin\LoginController@showRegisterForm')->name('register.form');
+    Route::post('/register','Auth\RegisterController@register')->name('register');
+    Route::get('/index', 'Admin\AdminController@index')->name('customer');
+    Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
+    Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
+});
