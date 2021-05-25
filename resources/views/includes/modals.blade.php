@@ -79,7 +79,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
-                        <p class="text-white">¡Ha ocurrido un error! Por favor intente de nuevo</p>
+                        <p class="text-white">Ha ocurrido un error. Por favor revíselo e inténtelo nuevamente</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
-                        <p class="text-white">Nos pondremos en contacto a la brevedad</p>
+                        <h5 class="text-white">NOTIFICACIÓN ENVIADA A TU CORREO CORRECTAMENTE</h5>
+                        <p class="text-white">En breve nos ponemos en contacto contigo</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -145,8 +145,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">Por favor ingrese a nuestra plataforma con su nueva contraseña</p>
+                        <h5 class="text-white">SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
+                        <p class="text-white">Por favor ingresa a nuestra página sociosyd.com con tu nueva contraseña</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -167,8 +167,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CONTRASEÑA!</h5>
-                        <p class="text-white">En un momento recibirá un email con instrucciones<br> para reestablecer su contraseña</p>
+                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS RESTABLECER TU CONTRASEÑA</h5>
+                        <p class="text-white">En un momento recibirás un correo con los pasos para que puedas restablecer tu contraseña</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
@@ -225,9 +225,9 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CUENTA!</h5>
-                        <p class="text-white">En un momento recibirá un email con instrucciones<br> para reestablecer su cuenta</p>
-                        <p class="text-white">Si no visualizas el email, por favor verifique su carpeta de correo no deseado</p>
+                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS RESTABLECER TU CUENTA</h5>
+                        <p class="text-white">En un momento recibirás un correo con los pasos<br> para que puedas restablecer tu contraseña</p>
+                        <p class="text-white">Si no visualizas el correo, por favor revisa tu correo en la carpeta de no deseado o SPAM</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
@@ -247,8 +247,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">Ya puede ingresar a nuestra plataforma con su nueva contraseña</p>
+                        <h5 class="text-white">SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
+                        <p class="text-white">Ya puedes ingresar a nuestra página sociosyd.com con tu nueva cuenta</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
