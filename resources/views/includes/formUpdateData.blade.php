@@ -40,17 +40,17 @@
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="namePro" name="name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name" 
                       value="{{$data->name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNamePro" name="last_name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNameUp" name="last_name" 
                       value="{{$data->last_name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro" name="second_last_name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name" 
                       value="{{$data->second_last_name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
@@ -60,8 +60,8 @@
               </div>
               <div class="row">
                   <div class="col-lg-6 py-3" style="display: flex">
-                      <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                      <input class="form-control btnBorder" type="date" id="birthday" name="birthday" value="<?php echo $data->birthday;?>" required>
+                      <label for="birthdayUp" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
+                      <input class="form-control btnBorder" type="date" id="birthdayUp" name="birthdayUp" value="<?php echo $data->birthdayUp;?>" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-3" style="display: flex">
@@ -88,7 +88,7 @@
               
               <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfc" name="rfc" 
+                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc" 
                         value="{{$data->rfc}}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -153,25 +153,25 @@
     </div>
   </div>
 <script>
-  document.getElementById('rfc').addEventListener('focus',function() {
-      var rfc = document.getElementById('rfc');
-      var fecha = $('#birthday').val().split('-');
+  document.getElementById('rfcUp').addEventListener('focus',function() {
+      var rfc = document.getElementById('rfcUp');
+      var fecha = $('#birthdayUp').val().split('-');
 
       var CURP = [];
-      CURP[0] = $("#lastNamePro").val().charAt(0).toUpperCase();
-      for (let i = 1; i < $("#lastNamePro").val().length; i++) {
-          if($("#lastNamePro").val().charAt(i).match(/[aeiou]/gi)){
-              CURP[1] = $("#lastNamePro").val().charAt(i).toUpperCase();
+      CURP[0] = $("#lastNameUp").val().charAt(0).toUpperCase();
+      for (let i = 1; i < $("#lastNameUp").val().length; i++) {
+          if($("#lastNameUp").val().charAt(i).match(/[aeiou]/gi)){
+              CURP[1] = $("#lastNameUp").val().charAt(i).toUpperCase();
               break;    
           }
       }
-      CURP[2] = $("#secondLastNamePro").val().charAt(0).toUpperCase();
-      CURP[3] = $("#namePro").val().charAt(0).toUpperCase();
+      CURP[2] = $("#secondLastNameUp").val().charAt(0).toUpperCase();
+      CURP[3] = $("#nameUp").val().charAt(0).toUpperCase();
       CURP[4] = fecha[0].slice(2);//year
       CURP[5] = fecha[1];//mont
       CURP[6] = fecha[2];//day
 
-      $('#rfc').val(CURP.join("").toString());
+      $('#rfcUp').val(CURP.join("").toString());
       
   })
 </script>
