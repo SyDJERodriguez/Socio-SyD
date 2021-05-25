@@ -695,8 +695,27 @@ class CustomerController extends Controller
             return redirect()->back()->with('success',1);
         }
         else{
-            return redirect()->back()->with('msg', 'Algo salio mal.');
+            return redirect()->back()->with('msg', 'Algo salió mal.');
         }
+    }
+
+    public function forgotClientNumber(Request $request){
+        if(($request['email'] === '' || $request['email'] === null) && ($request['mobile_number'] === '' || $request['mobile_number'] === null)){
+            return redirect()->back()->with('msg', 'No se pudo recuperar el número de cliente');
+        }
+
+        if($request['email'] == '' || $request['email'] == null){
+            //buscamo con el mobile number
+            $data = Customer::where('mobile_number', $request['mobile_number'])->first();
+            return redirect()->back()->with('forgot', $data->client_number);
+            
+        }
+        if($request['mobile_number'] == '' || $request['mobile_number'] == null){
+            //buscamos con el email
+            $data = Customer::where('email', $request['email'])->first();
+            return redirect()->back()->with('forgot', $data->client_number);
+        }
+        return redirect()->back()->with('msg', 'Algo salió mal.');
     }
 
     //form invitation sign up

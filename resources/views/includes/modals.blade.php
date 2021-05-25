@@ -201,7 +201,9 @@
                     </div>
                 </div>
 
-                <form action="" method="GET" id="sendForgotClientNumberForm">
+                <form autocomplete="off" action="{{route('customer.forgotClientNumber')}}" method="POST" id="sendForgotClientNumberForm">
+                    @method('POST')
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -215,7 +217,7 @@
                         <div class="row">
                             <div class="col-6 py-1">
                                 <input autocomplete="new-password" class="form-control-sm form-control" 
-                                type="text" name="email"
+                                type="text" name="mobile_number"
                                 placeholder="NO. TELEFÓNICO 10 DIG" 
                                 maxlength="10" pattern="[0-9]{10}">
                             </div>

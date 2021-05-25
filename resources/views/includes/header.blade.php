@@ -21,25 +21,25 @@
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if (\Session::has('msg'))
-            <div class="col-lg-12 text-justify text-primary">
+            <div class="col-lg-12 text-justify text-primary" style="position: absolute;">
                <p style="font-size:11px;color:red;text-align:center">
                   {{Session::get('msg')}}
                </p>
             </div>
             @endif
             @if(session()->has('error'))
-            <p class="error">
+            <p class="error" style="position: absolute;">
                 {{ session()->get('error') }}
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p class="error">
+                    <p class="error" style="position: absolute;">
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p class="error">
+                    <p class="error" style="position: absolute;">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -435,7 +435,7 @@ padding-bottom: 14px;">
                             <h5 class="text-white">ESTE ES TU NÚMERO DE CLIENTE</h5>
                             <h5 class="text-white btn btn-lg" 
                             style="background-color: #143153; border: 3px solid #00A5E6;">
-                            {{Session::get('forgot')}}
+                            {{ substr(Session::get('forgot'),2) }}
                             </h5>
                             <br>
                             <p class="text-white" id="clientMessage" style="font-size: 12px">
