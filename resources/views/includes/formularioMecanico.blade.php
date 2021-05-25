@@ -88,6 +88,13 @@
                         <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+                    {{-- Modal ¿Olvidaste tu numero cliente --}}
+                    <div class="col-lg-12 py-2" style="display: flex">
+                        <p style="padding-left: 1px">
+                            <a href="#" data-toggle="modal" data-target="#modalAviso">
+                                ¿Olvidaste tu número de cliente?</a>
+                        </p>
+                    </div>
                 </div>
                 
                 <input type="hidden" id="client_type" name="client_type" value="2">

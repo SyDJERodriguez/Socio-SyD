@@ -178,6 +178,60 @@
     </div>
 </div>
 
+<!-- Modal forgot client number-->
+<div class="modal fade" id="modalForgotNum" tabindex="-1" role="dialog" aria-labelledby="modalForgotNum" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px; background-color: #143153;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="border: 1px solid black;">
+                <div class="row">
+                    <div class="col-lg-8 pt-2 pb-5">
+                        <h4>RECUPERAR NÚMERO DE CLIENTE</h4>
+                        <div class="line1">
+                            <img src="{{asset('img/line2.png')}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Ingresa tu correo electrónico registrado <br>
+                        o tu numero de teléfonico de 10 dígitos</p>
+                    </div>
+                </div>
+
+                <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input autocomplete="new-password" class="form-control-sm form-control" type="text" name="email"
+                                       placeholder="CORREO ELECTRÓNICO" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="submit" class="btn btn-info" id="sendEmailRestore">ENVIAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-9 text-center">
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" 
+                        style="background-color: #00A5E6;">ENVIAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal ACTIVATE ACCOUNT-->
 <div class="modal fade" id="modalActivate" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
