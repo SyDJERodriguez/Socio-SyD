@@ -106,7 +106,7 @@
                     </div>
                   
 
-                  <input type="hidden" id="client_type" name="client_type" value="1">
+                  <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
               </div>
 
               @if ((int)Auth::user()->client_type == 1)
