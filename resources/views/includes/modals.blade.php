@@ -258,6 +258,27 @@
     </div>
 </div>
 
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoSocioSYD" class="videoInsert" autoplay controls>
+                            <source src="{{'video/socioSYD_video.mp4'}}" type="video/mp4">
+                          Your browser does not support the video tag.
+                          </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Asistencias -->
 <div class="modal fade" id="modalAsistencias" tabindex="-1" role="dialog" aria-labelledby="modalAsistencias" aria-hidden="true">
     <div class="modal-dialog modal-xl  " role="document">
