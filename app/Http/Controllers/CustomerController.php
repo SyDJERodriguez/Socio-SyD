@@ -638,7 +638,7 @@ class CustomerController extends Controller
         if($data !== null) {
             //si es invitado
             if($request['client_type'] === '3' || $request['client_type'] === 3){
-    
+
                 //Update data in customers table
                 $update_customer = DB::table('customers')->where('email', '=', $$request['email'])->update([
                     'name'             => $request['name'],
@@ -654,7 +654,7 @@ class CustomerController extends Controller
                     'collector_id'     => 6,
                     'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
                 ]);
-    
+
                 $save_register = DB::table('customers_sessions')->where('email','=',$request['email'])->update([
                     'mobile'        => $request['mobile'],
                     'password'      => $password
@@ -675,7 +675,7 @@ class CustomerController extends Controller
                     'collector_id'     => 6,
                     'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
                 ]);
-    
+
                 $save_register = DB::table('customers_sessions')->where('client_number','=',$client_number)->update([
                     'mobile'        => $request['mobile'],
                     'password'      => $password
@@ -708,7 +708,7 @@ class CustomerController extends Controller
             //buscamo con el mobile number
             $data = Customer::where('mobile_number', $request['mobile_number'])->first();
             return redirect()->back()->with('forgot', $data->client_number);
-            
+
         }
         if($request['mobile_number'] == '' || $request['mobile_number'] == null){
             //buscamos con el email
