@@ -58,9 +58,3 @@
         </div>
     </div>
 @endsection
-<script>
-    $(document).ready(function(){
-        $("#client_number").mask('00000000');
-    });
-
-</script>
