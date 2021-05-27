@@ -16,12 +16,17 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+
+                                    @if(session()->has('register'))
+                                        <span role="alert" style="width: 100%; margin-top: 0.25rem; font-size: 80%; color: #e3342f;">
+                                            <strong>Usuario incorrecto</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -36,6 +41,12 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+
+                                    @if(session()->has('error'))
+                                        <span role="alert" style="width: 100%; margin-top: 0.25rem; font-size: 80%; color: #e3342f;">
+                                            <strong>Contraseña incorrecta</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 

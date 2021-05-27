@@ -14,10 +14,10 @@
                             <div class="col-md-12" style="display: flex; justify-content: center;">
                                 <form method="GET" action="{{route('admin.search.client.number')}}">
                                     @csrf
-                                    <label for="name" class="col-md-8 col-form-label text-md-right">No. de cliente</label>
+                                    <label for="client_number" class="col-md-8 col-form-label text-md-right">No. de cliente</label>
 
                                     <div class="col-md-12">
-                                        <input id="name" type="text" class="form-control nameInput @error('client_number') is-invalid @enderror" name="client_number" value="{{ old('client_number') }}" required autocomplete="name" autofocus>
+                                        <input id="client_number" type="number" class="form-control client_numberInput @error('client_number') is-invalid @enderror" name="client_number" value="{{ old('client_number') }}" maxlength="8" required autocomplete="client_number" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
 
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -36,9 +36,9 @@
                             <div class="col-md-12" style="display: flex; justify-content: center;">
                                 <form method="GET" action="{{route('admin.search.email')}}">
                                     @csrf
-                                    <label for="name" class="col-md-8 col-form-label text-md-right">Email</label>
+                                    <label for="email" class="col-md-8 col-form-label text-md-right">Email</label>
                                     <div class="col-md-12">
-                                        <input id="name" type="text" class="form-control nameInput @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="name" autofocus>
+                                        <input id="name" type="email" class="form-control emailInput @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" >
 
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -58,3 +58,9 @@
         </div>
     </div>
 @endsection
+<script>
+    $(document).ready(function(){
+        $("#client_number").mask('00000000');
+    });
+
+</script>
