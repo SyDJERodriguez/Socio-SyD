@@ -34,9 +34,9 @@
                       <h6 style="padding-left: 1px">Datos personales</h6>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder " placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
+                      <input type="text" class="form-control btnBorder " placeholder="NÚMERO DE CLIENTE" id="client_number" 
                       name="client_number" maxlength="8" required pattern="[0-9]{8}"
-                      value="{{substr($data->client_number,2)}}">
+                      value="{{substr($data->client_number,2)}}" readonly>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
@@ -61,7 +61,7 @@
               <div class="row">
                   <div class="col-lg-6 py-3" style="display: flex">
                       <label for="birthdayUp" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                      <input class="form-control btnBorder" type="date" id="birthdayUp" name="birthdayUp" value="<?php echo $data->birthday;?>" required>
+                      <input class="form-control btnBorder" type="date" id="birthdayUp" name="birthday" value="<?php echo $data->birthday;?>" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-3" style="display: flex">
@@ -136,15 +136,7 @@
               </div>
               @endif
 
-              <div class="modal-footer border-top-0">
-                  {{-- <div class="form-check form-check-inline text-right">
-                      <label class="form-check-label pr-2" for="inlineCheckbox1"  style="color: grey;font-size: 12px;"><strong>ACEPTAR</strong><br>
-                          <a href="#" data-toggle="modal" data-target="#modalAviso">
-                              AVISO DE PRIVACIDAD</a>
-                          <br>
-                          <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">TÉRMINOS Y CONDICIONES</a></label>
-                      <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
-                  </div> --}}
+              <div class="modal-footer border-top-0">                  
                   <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
               </div>
           </form>

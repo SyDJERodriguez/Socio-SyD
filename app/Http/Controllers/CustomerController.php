@@ -695,7 +695,7 @@ class CustomerController extends Controller
             return redirect()->back()->with('success',1);
         }
         else{
-            return redirect()->back()->with('msg', 'Algo salió mal.');
+            return redirect()->back()->with('msg', 'Algo salió mal');
         }
     }
 
