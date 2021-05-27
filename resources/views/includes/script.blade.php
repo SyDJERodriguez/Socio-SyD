@@ -1035,3 +1035,14 @@
         });
     }
 </script>
+
+<script>
+    $(document).ready(function(){
+    // Modal hidden event fired
+    $('#modalVideo').on('hidden.bs.modal', function () {
+        var video = document.getElementById("videoSocioSYD");
+        video.pause();
+        video.currentTime = 0;
+        });
+    });
+</script>
