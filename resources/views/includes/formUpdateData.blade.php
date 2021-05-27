@@ -89,7 +89,7 @@
               <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc" 
-                        value="{{$data->rfc}}" required>
+                        value="{{$data->rfc}}" maxlength="10" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
@@ -105,6 +105,7 @@
                   <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
               </div>
 
+              {{-- <p>{{VAR_DUMP($data)}}</p> --}}
               @if ((int)Auth::user()->client_type == 1)
               <div class="row">
                   <div class="col-lg-12 py-2" style="display: flex">
