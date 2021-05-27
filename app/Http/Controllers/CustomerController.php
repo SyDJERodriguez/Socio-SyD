@@ -707,12 +707,18 @@ class CustomerController extends Controller
         if($request['email'] == '' || $request['email'] == null){
             //buscamo con el mobile number
             $data = Customer::where('mobile_number', $request['mobile_number'])->first();
+            if($data == null){
+                return redirect()->back()->with('msg','El número de teléfono no existe en el sistema');
+            }
             return redirect()->back()->with('forgot', $data->client_number);
 
         }
         if($request['mobile_number'] == '' || $request['mobile_number'] == null){
             //buscamos con el email
             $data = Customer::where('email', $request['email'])->first();
+            if($data == null){
+                return redirect()->back()->with('msg', 'El email no existe en el sistema');
+            }
             return redirect()->back()->with('forgot', $data->client_number);
         }
         return redirect()->back()->with('msg', 'Algo salió mal.');

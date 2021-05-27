@@ -449,11 +449,6 @@ padding-bottom: 14px;">
 @endif
 
 @if (\Session::has('msg'))
-            {{-- <div class="col-lg-12 text-justify text-primary" style="position: absolute;">
-               <p style="font-size:11px;color:red;text-align:center">
-                  {{Session::get('msg')}}
-               </p>
-            </div> --}}
             {{-- Modal algo salio mal (msg) --}}
             <div class="modal fade" id="modalErrorUpdate" tabindex="-1" role="dialog" aria-labelledby="modalErrorUpdate" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -466,7 +461,7 @@ padding-bottom: 14px;">
                         <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
-                                    <h5 class="text-white">ERROR AL ACTUALIZAR</h5>
+                                    <h5 class="text-white">ERROR</h5>
                                     <p class="text-white">{{Session::get('msg')}}</p>
                                     <a href="#" data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                                         ACEPTAR
