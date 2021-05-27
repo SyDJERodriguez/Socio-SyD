@@ -1040,7 +1040,6 @@
     $(document).ready(function(){
     // Modal hidden event fired
     $('#modalVideo').on('hidden.bs.modal', function () {
-        console.log("Modal closed and pause");
         var video = document.getElementById("videoSocioSYD");
         video.pause();
         video.currentTime = 0;
