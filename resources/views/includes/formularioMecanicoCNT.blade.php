@@ -99,8 +99,8 @@
                 <input type="hidden" id="client_type" name="client_type" value="2">
 
                  {{-- Modal ¿Olvidaste tu numero cliente --}}
-                 <div class="col-lg-12 py-2" style="display: flex">
-                    <p style="padding-left: 1px">
+                 <div class="col-lg-12 py-2" style="display: flex;padding-left: 0px;">
+                    <p>
                         <a href="#" data-toggle="modal" data-target="#modalForgotNum">
                             ¿Olvidaste tu número de cliente?</a>
                     </p>
