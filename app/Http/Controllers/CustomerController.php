@@ -624,12 +624,6 @@ class CustomerController extends Controller
             return redirect()->back()->with('msg', 'El email no existe');
         }
 
-        //$verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
-
-        //if ($verify_mobile_number == null) {
-        //    return redirect()->back()->with('msg', 'El número de teléfono no existe');
-        //}
-
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
 
@@ -686,10 +680,6 @@ class CustomerController extends Controller
                 ]);
             }
         }
-
-
-
-        //$name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
         if ($update_customer == 1 && $save_register == 1 ){
             return redirect()->back()->with('exito',1);
