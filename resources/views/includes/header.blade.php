@@ -379,7 +379,7 @@ padding-bottom: 14px;">
 @include('includes.formUpdateData')
 @endif
 
-@if (\Session::has('success'))
+@if (\Session::has('exito'))
     <!-- Modal UPDATE SUCCESS-->
     <div class="modal fade" id="modalUpdateSuccess" tabindex="-1" role="dialog" aria-labelledby="modalUpdateSuccess" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

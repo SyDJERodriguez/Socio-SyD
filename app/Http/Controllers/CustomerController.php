@@ -640,7 +640,7 @@ class CustomerController extends Controller
             if($request['client_type'] === '3' || $request['client_type'] === 3){
 
                 //Update data in customers table
-                $update_customer = DB::table('customers')->where('email', '=', $$request['email'])->update([
+                $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
                     'second_last_name' => $request['second_last_name'],
@@ -661,7 +661,9 @@ class CustomerController extends Controller
                 ]);
             }else{
                  //Update data in customers table
-                 $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+                 $update_customer = DB::table('customers')
+                                    ->where('client_number', '=', $client_number)
+                                    ->where('email','=',$request['email'])->update([
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
                     'second_last_name' => $request['second_last_name'],
@@ -676,7 +678,9 @@ class CustomerController extends Controller
                     'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : ''
                 ]);
 
-                $save_register = DB::table('customers_sessions')->where('client_number','=',$client_number)->update([
+                $save_register = DB::table('customers_sessions')
+                                    ->where('client_number','=',$client_number)
+                                    ->where('email','=',$request['email'])->update([
                     'mobile'        => $request['mobile'],
                     'password'      => $password
                 ]);
@@ -687,14 +691,9 @@ class CustomerController extends Controller
 
         //$name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
-        if ($update_customer == 1 && $save_register === 1){
-            return redirect()->back()->with('success',1);
-        }elseif ($update_customer == true && $save_register === true){
-            return redirect()->back()->with('success',1);
-        }elseif ($update_customer == 0 && $save_register === 0){
-            return redirect()->back()->with('success',1);
-        }
-        else{
+        if ($update_customer == 1 && $save_register == 1 ){
+            return redirect()->back()->with('exito',1);
+        }else{
             return redirect()->back()->with('msg', 'Algo salió mal');
         }
     }
