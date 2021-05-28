@@ -681,10 +681,10 @@ class CustomerController extends Controller
             }
         }
 
-        if ($update_customer == 1 && $save_register == 1 ){
+        if (($update_customer == 1 || $update_customer == 0) && $save_register == 1 ){
             return redirect()->back()->with('exito',1);
         }else{
-            return redirect()->back()->with('msg', 'Algo salió mal');
+            return redirect()->back()->with('msg', 'Algo salió mal ');
         }
     }
 
