@@ -710,6 +710,22 @@ class CustomerController extends Controller
             }
             return redirect()->back()->with('forgot', $data->client_number);
         }
+
+        // if se llenen ambos campos
+        if(isset($request['mobile_number']) && isset($request['email'])){
+            $dataMobile = Customer::where('mobile_number', $request['mobile_number'])->first();
+            $dataEmail = Customer::where('email', $request['email'])->first();
+
+            if($dataMobile == null && $dataEmail == null){
+                return redirect()->back()->with('msg','El número de teléfono o email no existe en el sistema');
+            
+            }else if($dataMobile != null){
+                return redirect()->back()->with('forgot', $dataMobile->client_number);
+
+            }else{
+                return redirect()->back()->with('forgot', $dataEmail->client_number);
+            }
+        }
         return redirect()->back()->with('msg', 'Algo salió mal.');
     }
 
