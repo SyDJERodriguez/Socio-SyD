@@ -207,18 +207,18 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
-                                <input style="border: 1px solid black" 
-                                autocomplete="new-password" class="form-control-sm form-control" 
+                                <input style="border: 1px solid black"
+                                autocomplete="new-password" class="form-control-sm form-control"
                                 type="email" name="email"
-                                placeholder="CORREO ELECTRÓNICO" 
+                                placeholder="CORREO ELECTRÓNICO"
                                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 py-1">
-                                <input autocomplete="new-password" class="form-control-sm form-control" 
+                                <input autocomplete="new-password" class="form-control-sm form-control"
                                 type="text" name="mobile_number"
-                                placeholder="NO. TELEFÓNICO 10 DIG" 
+                                placeholder="NO. TELEFÓNICO 10 DIG"
                                 maxlength="10" pattern="[0-9]{10}">
                             </div>
                         </div>
@@ -227,16 +227,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-3 offset-lg-9 text-center">
-                                <button type="submit" 
-                                style="background-color: #00A5E6;" 
-                                class="text-white btn btn-sm px-4" 
+                                <button type="submit"
+                                style="background-color: #00A5E6;"
+                                class="text-white btn btn-sm px-4"
                                 id="sendForgotClientNumber">
                                 ENVIAR</button>
                             </div>
                         </div>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div>
@@ -332,7 +332,7 @@
             <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
                 <div class="row">
                     <div class="div">
-                        <video id="videoSocioSYD" class="videoInsert" autoplay controls>
+                        <video id="videoSocioSYD" class="videoInsert" controls>
                             <source src="{{'video/socioSYD_video.mp4'}}" type="video/mp4">
                           Your browser does not support the video tag.
                           </video>
