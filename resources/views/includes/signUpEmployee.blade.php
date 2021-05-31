@@ -17,6 +17,8 @@
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
                     <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="nameClient" value="{{$data->name}}">
+                    <input type="hidden" name="lastNameClient" value="{{$data->last_name}}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">

@@ -18,7 +18,7 @@ class BeneficiaryController extends Controller
             $data = Customer::where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
-                -> where('email', Auth::user()->email)
+                ->where('email', Auth::user()->email)
                 ->first();
         }
 
@@ -119,6 +119,10 @@ class BeneficiaryController extends Controller
                                         ->get();
                         $beneficiaries = json_decode($beneficiaries);
                         $beneficiary = (array)$beneficiaries;//convert to array
+                     //send email if individual account added a beneficiary
+                     if(Auth::user()->client_type === "2"){
+                        $this->send_email_alta($data['client_number']);
+                    }
                     return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
                 //}
 
@@ -155,6 +159,10 @@ class BeneficiaryController extends Controller
                                 ->get();
                     $beneficiaries = json_decode($beneficiaries);
                     $beneficiary = (array)$beneficiaries;//convert to array
+                    //send email if individual account added a beneficiary
+                    if(Auth::user()->client_type === "2"){
+                        $this->send_email_alta($data['client_number']);
+                    }
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
            // }
         }
@@ -223,5 +231,18 @@ class BeneficiaryController extends Controller
             return false;
         }
         return $data[0];
+    }
+
+    public function send_email_alta($client_number){
+        $data = Customer::where('client_number', $client_number)->first();
+        try {
+            \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
+                $m->from('noreply@syd.com.mx',"SOCIO SYD");
+                $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
     }
 }
