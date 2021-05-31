@@ -34,29 +34,29 @@
                       <h6 style="padding-left: 1px">Datos personales</h6>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder " placeholder="NÚMERO DE CLIENTE" id="client_number" 
+                      <input type="text" class="form-control btnBorder " placeholder="NÚMERO DE CLIENTE" id="client_number"
                       name="client_number" maxlength="8" required pattern="[0-9]{8}"
                       value="{{substr($data->client_number,2)}}" readonly>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name"
                       value="{{$data->name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNameUp" name="last_name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNameUp" name="last_name"
                       value="{{$data->last_name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name" 
+                      <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name"
                       value="{{$data->second_last_name}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
               </div>
               <div class="row">
-                 
+
               </div>
               <div class="row">
                   <div class="col-lg-6 py-3" style="display: flex">
@@ -73,34 +73,34 @@
                       <p style="color: red; margin: 0;visibility:hidden">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
+                      <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro"
                       name="mobile" maxlength="10" pattern="[0-9]{10}" value="{{$data->mobile_number}}" required>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
                   <div class="col-lg-6 py-2" style="display: flex">
-                      <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO" 
-                      id="emailPro" name="email" 
+                      <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO"
+                      id="emailPro" name="email"
                       value="{{$data->email}}"
                       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" readonly>
                       <p style="color: red; margin: 0;">*</p>
                   </div>
               </div>
-              
+
               <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc" 
+                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc"
                         value="{{$data->rfc}}" maxlength="10" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" required>
+                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 offset-lg-6 py-2" style="display: flex">
-                        <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
+                        <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                  
+
 
                   <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
               </div>
@@ -111,7 +111,7 @@
                       <h6 style="padding-left: 1px">Razón social</h6>
                   </div>
                   <div class="col-lg-6 py-2" id="company" style="display: flex">
-                      <input type="text" class="form-control btnBorder" placeholder="RAZÓN SOCIAL" id="companyPro" name="company" 
+                      <input type="text" class="form-control btnBorder" placeholder="RAZÓN SOCIAL" id="companyPro" name="company"
                       value="{{$data->company}}"
                       required>
                       <p style="color: red; margin: 0;">*</p>
@@ -136,7 +136,7 @@
               </div>
               @endif
 
-              <div class="modal-footer border-top-0">                  
+              <div class="modal-footer border-top-0">
                   <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
               </div>
           </form>
@@ -155,7 +155,7 @@
       for (let i = 1; i < $("#lastNameUp").val().length; i++) {
           if($("#lastNameUp").val().charAt(i).match(/[aeiou]/gi)){
               CURP[1] = $("#lastNameUp").val().charAt(i).toUpperCase();
-              break;    
+              break;
           }
       }
       CURP[2] = $("#secondLastNameUp").val().charAt(0).toUpperCase();
@@ -165,6 +165,6 @@
       CURP[6] = fecha[2];//day
 
       $('#rfcUp').val(CURP.join("").toString());
-      
+
   })
 </script>

@@ -607,14 +607,17 @@ class CustomerController extends Controller
 
         //For customer_session table
         $client_number = '00'.$request['client_number'];
-        $passwordVerify = $request['password'];
-        $passwordConfirm = $request['confirmPassword'];
 
-        if ($passwordVerify !== $passwordConfirm){
-            return redirect()->back()->with('msg', 'Las contraseñas no coinciden');
+        if(!empty($request['password'])) {
+            $passwordVerify = $request['password'];
+            $passwordConfirm = $request['confirmPassword'];
+
+            if ($passwordVerify !== $passwordConfirm) {
+                return redirect()->back()->with('msg', 'Las contraseñas no coinciden');
+            }
+
+            $password = Hash::make($request['password']);
         }
-
-        $password      = Hash::make($request['password']);
 
         //Check if the email already has an account
 
@@ -649,10 +652,16 @@ class CustomerController extends Controller
                     'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : ''
                 ]);
 
-                $save_register = DB::table('customers_sessions')->where('email','=',$request['email'])->update([
-                    'mobile'        => $request['mobile'],
-                    'password'      => $password
-                ]);
+                if(isset($password)) {
+                    $save_register = DB::table('customers_sessions')->where('email', '=', $request['email'])->update([
+                        'mobile' => $request['mobile'],
+                        'password' => $password
+                    ]);
+                }else{
+                    $save_register = DB::table('customers_sessions')->where('email', '=', $request['email'])->update([
+                        'mobile' => $request['mobile'],
+                    ]);
+                }
             }else{
                  //Update data in customers table
                  $update_customer = DB::table('customers')
@@ -672,16 +681,24 @@ class CustomerController extends Controller
                     'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : ''
                 ]);
 
-                $save_register = DB::table('customers_sessions')
-                                    ->where('client_number','=',$client_number)
-                                    ->where('email','=',$request['email'])->update([
-                    'mobile'        => $request['mobile'],
-                    'password'      => $password
-                ]);
+                if(isset($password)) {
+                    $save_register = DB::table('customers_sessions')
+                        ->where('client_number', '=', $client_number)
+                        ->where('email', '=', $request['email'])->update([
+                            'mobile' => $request['mobile'],
+                            'password' => $password
+                        ]);
+                }else{
+                    $save_register = DB::table('customers_sessions')
+                        ->where('client_number', '=', $client_number)
+                        ->where('email', '=', $request['email'])->update([
+                            'mobile' => $request['mobile'],
+                        ]);
+                }
             }
         }
 
-        if (($update_customer == 1 || $update_customer == 0) && $save_register == 1 ){
+        if (($update_customer == 1 || $update_customer == 0) || $save_register == 1 ){
             return redirect()->back()->with('exito',1);
         }else{
             return redirect()->back()->with('msg', 'Algo salió mal ');
@@ -718,7 +735,7 @@ class CustomerController extends Controller
 
             if($dataMobile == null && $dataEmail == null){
                 return redirect()->back()->with('msg','El número de teléfono o email no existe en el sistema');
-            
+
             }else if($dataMobile != null){
                 return redirect()->back()->with('forgot', $dataMobile->client_number);
 
