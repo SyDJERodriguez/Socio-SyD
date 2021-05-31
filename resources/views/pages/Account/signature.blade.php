@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 @if ($imgData)
-                <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;margin-right: -20%;">
-                    <div class="col-lg-6 py-1 offset-md-4">
+                <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;">
+                    <div class="col-6 py-1 offset-4">
                         <img src="{{$imgData->imgData}}" id="signCustomer" alt="signatureCustomer" width="225"
                             height="190" style="display: block;">
                     </div>

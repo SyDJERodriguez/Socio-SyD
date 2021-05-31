@@ -79,7 +79,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR! POR FAVOR INTENTE DE NUEVO</p>
+                        <p class="text-white">Ha ocurrido un error. Por favor revíselo e inténtelo nuevamente</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">ERROR EN EL SERVIDOR</h5>
-                        <p class="text-white">¡HA OCURRIDO UN ERROR EN EL SERVIDOR! POR FAVOR INTENTE MÁS TARDE.</p>
+                        <p class="text-white">¡Ha ocurrido un error en el servidor! Por favor intente más tarde</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡NOTIFICACIÓN ENVIADA CORRECTAMENTE!</h5>
-                        <p class="text-white">NOS PONDREMOS EN CONTACTO A LA BREVEDAD.</p>
+                        <h5 class="text-white">NOTIFICACIÓN ENVIADA A TU CORREO CORRECTAMENTE</h5>
+                        <p class="text-white">En breve nos ponemos en contacto contigo</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="." class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -145,8 +145,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">POR FAVOR INGRESE A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <h5 class="text-white">SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
+                        <p class="text-white">Por favor ingresa a nuestra página sociosyd.com con tu nueva contraseña</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -167,12 +167,76 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CONTRASEÑA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CONTRASEÑA</p>
+                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS RESTABLECER TU CONTRASEÑA</h5>
+                        <p class="text-white">En un momento recibirás un correo con los pasos para que puedas restablecer tu contraseña</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal forgot client number-->
+<div class="modal fade" id="modalForgotNum" tabindex="-1" role="dialog" aria-labelledby="modalForgotNum" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px; background-color: #143153;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="border: 1px solid black;">
+                <div class="row">
+                    <div class="col-lg-8 pt-2 pb-5">
+                        <h4>RECUPERAR NÚMERO DE CLIENTE</h4>
+                        <div class="line1">
+                            <img src="{{asset('img/line2.png')}}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <p style="padding-left: 1px">Ingresa tu correo electrónico registrado <br>
+                        o tu número de teléfonico de 10 dígitos</p>
+                    </div>
+                </div>
+
+                <form autocomplete="off" action="{{route('customer.forgotClientNumber')}}" method="POST" id="sendForgotClientNumberForm">
+                    @method('POST')
+                    @csrf
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input style="border: 1px solid black" 
+                                autocomplete="new-password" class="form-control-sm form-control" 
+                                type="email" name="email"
+                                placeholder="CORREO ELECTRÓNICO" 
+                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-1">
+                                <input autocomplete="new-password" class="form-control-sm form-control" 
+                                type="text" name="mobile_number"
+                                placeholder="NO. TELEFÓNICO 10 DIG" 
+                                maxlength="10" pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-3 offset-lg-9 text-center">
+                                <button type="submit" 
+                                style="background-color: #00A5E6;" 
+                                class="text-white btn btn-sm px-4" 
+                                id="sendForgotClientNumber">
+                                ENVIAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
             </div>
         </div>
     </div>
@@ -225,9 +289,9 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SE HA ENVIADO UN EMAIL PARA REESTABLECER SU CUENTA!</h5>
-                        <p class="text-white">EN UN MOMENTO RECIBIRÁ UN EMAIL CON INSTRUCCIONES<br>PARA REESTABLECER SU CUENTA</p>
-                        <p class="text-white">SI NO VUALIZAS EL EMAIL, POR FAVOR VERIFIQUE SU CARPETA DE CORREO NO DESEADO</p>
+                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS RESTABLECER TU CUENTA</h5>
+                        <p class="text-white">En un momento recibirás un correo con los pasos<br> para que puedas restablecer tu contraseña</p>
+                        <p class="text-white">Si no visualizas el correo, por favor revisa tu correo en la carpeta de no deseado o SPAM</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
@@ -247,10 +311,31 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE!</h5>
-                        <p class="text-white">YA PUEDE INGRESAR A NUESTRA PLATAFORMA CON SU NUEVA CONTRASEÑA.</p>
+                        <h5 class="text-white">SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
+                        <p class="text-white">Ya puedes ingresar a nuestra página sociosyd.com con tu nueva cuenta</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoSocioSYD" class="videoInsert" autoplay controls>
+                            <source src="{{'video/socioSYD_video.mp4'}}" type="video/mp4">
+                          Your browser does not support the video tag.
+                          </video>
                     </div>
                 </div>
             </div>
@@ -309,7 +394,7 @@
             <div style="width: 100%;padding: 10px;">
                 <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
-                  Cerrar
+                  CERRAR
                 </button>
               </div>
 
@@ -381,7 +466,7 @@
             <div style="width: 100%;padding: 10px;">
                 <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
-                  Cerrar
+                  CERRAR
                 </button>
               </div>
 

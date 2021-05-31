@@ -43,12 +43,16 @@ Route::get('account/verify/{client_number}/{mobile_number}', 'CustomerController
 Route::post('/registerCNT', 'CustomerController@cntRegister')->name('cnt.register');
 Route::get('/registerCNTNumbers', 'CustomerController@insertCNTNumber')->name('cnt.numbers');
 
+//Change mechanic to employee
+Route::get('/mechanic_to_dependent/{array}', 'CustomerController@convertMechanicToDependentByEmail')->name('update.mechanic.dependent');
 
 
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
     Route::put('/update', 'CustomerController@update')->name('update');
+    Route::put('/update/data', 'CustomerController@updateData')->name('updateData');
+    Route::post('/forgotClientNumber', 'CustomerController@forgotClientNumber')->name('forgotClientNumber');
     Route::post('/login', 'CustomerController@login')->name('login');
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
     Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');
@@ -78,7 +82,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
         Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
-        Route::get('/pdf','BeneficiaryController@generatePDF')->name('pdf');
+        Route::get('/pdf', 'BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
         Route::post('/logout', 'CustomerController@logout')->name('logout');
@@ -88,6 +92,19 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
+    });
+});
 
+//CAT
+Route::prefix('admin')->name('admin.')->group(function (){
+    Route::get('/login','Admin\LoginController@showLoginForm')->name('login_form');
+    Route::post('/login','Admin\LoginController@login')->name('login');
+    Route::get('/register', 'Admin\LoginController@showRegisterForm')->name('register.form');
+    Route::post('/register', 'Auth\RegisterController@register')->name('register');
+    Route::group(['middleware' => ['auth:admin']], function() {
+        Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
+        Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
+        Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
+        Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });
 });

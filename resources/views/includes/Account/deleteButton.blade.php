@@ -20,7 +20,7 @@
             <div class="modal-body blue-dark">
                 <div>
                     <div>
-                        <h5 class="text-white"><b>¿ESTÁS SEGURO QUE DESEAS ELIMINAR TU CUENTA?</b></h5>
+                        <h5 class="text-white"><b>¿Estás seguro que quieres eliminar tu cuenta?</b></h5>
                     </div>
                 </div>
                 <div class="row">
@@ -63,8 +63,9 @@
                 <div class="col-lg-12 py-2 text-center">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                 <div>
-                    <h5 class="text-white"><b>AL HACER CLICK EN ACEPTAR, CONFIRMAS QUE:<br>
-                    ESTAS CONSCIENTE DE QUE PERDERÁS TUS BENEFICIOS DE SEGURO Y ASISTENCIAS</b></h5>
+                    <h5 class="text-white"><b>Al hacer click en aceptar, confirmas que:<br>
+                        que estas de acuerdo en que perderás los beneficios de Seguro de Accidentes Personales 
+                        y Servicios de Asistencias</b></h5>
                 </div>
                 <div class="row">
                 

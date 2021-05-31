@@ -17,13 +17,13 @@
                         <img src="{{asset('img/socioeconomico.png')}}" class="py-2 iconBene">
                     </div>
                     <div class="col-7 contenedorImg">
-                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene" style="left: 3px">
+                        <img src="{{asset('img/mecanico-1.png')}}" class="imgBene">
                     </div>
                 </div>
 
                 <div>
                     <div class="row"
-                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px;margin-right:-30px">
+                    style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px">
                         @if(isset($error))
                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
                                 <strong>{{$error}}</strong>
@@ -36,16 +36,18 @@
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
-                                        <h5 class="text-white">¡TUS BENEFICIARIOS YA HAN SIDO REGISTRADOS!</h5>
+                                        <h5 class="text-white">¡Tus beneficiarios ya han sido registrados!</h5>
                                         <br>
                                         <div class="text-white">
                                             @for ($i = 0; $i < count($beneficiary); $i++)
-                                                <p>BENEFICIARIO {{$i+1}}:
+                                                <p>Beneficiario {{$i+1}}:
                                                     {{strtoupper($beneficiary[$i]->name)}}
                                                     {{strtoupper($beneficiary[$i]->last_name)}}
                                                     {{strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
+                                        <br>
+                                        <h5 class="text-white">¡Recuerda agregar tu firma al certificado!</h5>
                                         <br>
                                         <a href="{{route('customer.myDocuments')}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
                                         <p class="text-white"></p>

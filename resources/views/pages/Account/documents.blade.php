@@ -10,11 +10,13 @@
         <div class="col-12">
             <div style="padding-left: 16px !important;">
                 <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-                    No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
+                    No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}@if(Auth::user()->client_type == '3')-{{$number->number}} @endif</span><br>
                     @if ((int)Auth::user()->client_type == 1)
-                    Cuenta: Negocios
-                    @else
-                    Cuenta: Individual
+                        Cuenta: Negocios
+                    @elseif((int)Auth::user()->client_type == 2)
+                        Cuenta: Individual
+                    @elseif((int)Auth::user()->client_type == 3)
+                        Cuenta: Dependiente
                     @endif
                 </h6>
                 <a href="#" class="btn btn btn-sm" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal"
@@ -35,23 +37,39 @@
               </div>
         </div>
 
-
-        <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
-            <form>
-                <div class="form-row text-center box_documents"
-                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
-                    <div class="col-lg-12" style="color: #143153;">
-                        <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
-                                DOCUMENTOS</strong></h5>
+        @if(count($beneficiaries) > 0)
+            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+                <form>
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                        <div class="col-lg-12" style="color: #143153;">
+                            <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
+                                    DOCUMENTOS</strong></h5>
+                        </div>
+                        <div class="col-lg-12 py-3 text-center">
+                            <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
+                            <a href="{{route('customer.pdf')}}" target="_blank" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                CERTIFICADO DE PÓLIZA</a> </div>
                     </div>
-                    <div class="col-lg-12 py-3 text-center">
-                        <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                        <a href="{{route('customer.pdf')}}" target="_blank" class="btn btn py-2  text-white "
-                            style="background-color: #143153;">
-                            CERTIFICADO DE PÓLIZA</a> </div>
+                </form>
+            </div>
+        @else
+            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 25%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <img src="{{asset('img/icon_check.png')}}">
+                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        @endif
 
         @if(Auth::user()->client_type === "3")
             <div class="col-md-11 col-sm-6" style="display: flex; justify-content: flex-end; padding: 10px 10px;">

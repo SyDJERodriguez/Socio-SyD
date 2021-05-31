@@ -1,4 +1,4 @@
-@extends('layouts.application')
+@extends('layouts.home')
 @section('content')
     <section id="section1">
         <div class="container-fluid">
@@ -13,6 +13,10 @@
                         RECIBEN BENEFICIOS,<br>
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
+                        <br>
+                        <a href="#" class="btn btn" data-toggle="modal" data-target="#modalVideo" 
+                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 100px;margin-top:20px">
+                        Ver video</a>
                     </p>
                 </div>
                 <div class="col-lg-6 p-0">
@@ -274,12 +278,12 @@
                 <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
             </div>
             <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
-                <div class="our-branches__content-address">
+                <div class="our-branches__content-address" style="display: flex;align-items: flex-end;">
 
-                    <div class="our-branches__content-address-map sucursal col-md-4 col-sm-12">
+                    <div class="our-branches__content-address-map sucursal col-4 col-12">
                     </div>
 
-                    <div class="our-branches__content-address-location col-md-5 col-sm-12">
+                    <div class="our-branches__content-address-location col-5 col-12">
 
                         <div class="our-branches__content-address-location-search">
                             <label class="our-branches__content-address-location-search-label" style="color: #00A1E3">
