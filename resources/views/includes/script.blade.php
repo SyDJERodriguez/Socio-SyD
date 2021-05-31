@@ -1038,6 +1038,11 @@
 
 <script>
     $(document).ready(function(){
+        $('#btnVideo').on('click', function (){
+            $('#modalVideo').modal('show');
+            var video = document.getElementById("videoSocioSYD");
+            video.play();
+        });
     // Modal hidden event fired
     $('#modalVideo').on('hidden.bs.modal', function () {
         var video = document.getElementById("videoSocioSYD");

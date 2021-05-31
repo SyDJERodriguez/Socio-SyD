@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' =>'elhangar.com.mx',
-        'secret' => 'key-0a4c0fb92374b3c3c8a16f00d1956bae',
+        'domain' =>'syd.com.mx',
+        'secret' => '0c5943ad79fc830590e3f8b7bc34ba99-203ef6d0-4323383e',
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 

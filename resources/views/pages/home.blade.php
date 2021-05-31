@@ -14,7 +14,7 @@
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
                         <br>
-                        <a href="#" class="btn btn" data-toggle="modal" data-target="#modalVideo" 
+                        <a href="#" class="btn btn" data-toggle="modal" data-target="#modalVideo" id="btnVideo"
                         style="background-color: #00a5e6;color:white;font-size: 13px; width: 100px;margin-top:20px">
                         Ver video</a>
                     </p>

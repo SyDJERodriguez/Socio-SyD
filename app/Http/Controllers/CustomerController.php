@@ -830,8 +830,8 @@ class CustomerController extends Controller
     public function send_welcome_email($client_number) {
         $data = Customer::where('client_number', $client_number)->first();
         try {
-            \Mail::send('emails.welcome',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@sociosyd.com',"SOCIO SyD");
+            \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -843,8 +843,8 @@ class CustomerController extends Controller
     //Send welcome email
      public function welcome_email_is_associate($data) {
         try {
-            \Mail::send('emails.welcomeInvitation',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@sociosyd.com',"SOCIO SyD");
+            \Mail::send('emails.signUpInvitationWelcome',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -983,7 +983,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $data_session->client_number)->first();
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@sociosyd.com',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Reestablecer Contraseña Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1007,9 +1007,24 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer === 1){
+            $this->send_signUp_success($request['client_number']);
             return response()->json(['success'=>'true','status' =>200]);
         }
         return response()->json(['success'=>'false','status' =>401]);
+    }
+
+    //Send signUp success email
+    public function send_signUp_success($client_number) {
+        $data = Customer::where('client_number', $client_number)->first();
+        try {
+            \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401]);
+        }
     }
 
     //Deactivate account
@@ -1034,7 +1049,7 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', $data_session->client_number)->first();
         try {
             \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@sociosyd.com',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Activar cuenta Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1749,7 +1764,7 @@ class CustomerController extends Controller
 
     public function send_email($name, $email, $token){
     	\Mail::send('Collectors.email_customer',['name'=>$name,'token'=>$token], function($m) use ($email, $name){
-    		$m->from('noreply@sociosyd.com',"Socio SyD");
+    		$m->from('sociosyd@syd.com.mx',"Socio SyD");
     		$m->to($email, $name)->subject('Gracias por actualizar tus datos');
 	    });
     }
@@ -1811,9 +1826,8 @@ class CustomerController extends Controller
     public function invitation($data){
         $email = $data['email'];
         try {
-            Mail::send('emails.invitation',['data'=>$data], function($m) use ($email){
-                $m->from('noreply@sociosyd.com',"Socio SyD");
-                $m->to($email)->subject("Invitación a Socio SyD");
+            Mail::send('emails.invitacionAsociado',['data'=>$data], function($m) use ($email){
+                $m->to($email)->subject("Invitación a Socio SYD");
             });
         } catch (\Throwable $th) {
             //throw $th;
@@ -1825,7 +1839,7 @@ class CustomerController extends Controller
         $email = $data['email'];
         //try {
             Mail::send('emails.mechanicToDependent',['data'=>$data], function($m) use ($email){
-                $m->from('noreply@sociosyd.com',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($email)->subject("Invitación cuenta dependiente");
             });
         //} catch (\Throwable $th) {
