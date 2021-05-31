@@ -21,18 +21,18 @@
         </div>
         <div class="col-lg-7 pl-6 pt-1 formLogin" >
             @if(session()->has('error'))
-            <p class="error">
+            <p class="error" style="position: absolute;">
                 {{ session()->get('error') }}
             </p>
             @endif
                 @if(session()->has('deactivate'))
-                    <p class="error">
+                    <p class="error" style="position: absolute;">
                         Su cuenta se encuentra desactivada. Haz <a href="#" data-toggle="modal" data-target="#modalActivate">clic aquí</a> para activarla
                     </p>
                 @endif
 
                 @if(session()->has('register'))
-                    <p class="error">
+                    <p class="error" style="position: absolute;">
                         El email no se encuentra registrado dentro de nuestra plataforma.
                     </p>
                 @endif
@@ -374,5 +374,107 @@ padding-bottom: 14px;">
 @if(Auth::check())
 {{-- Modal notifications --}}
 @include('includes.notifications')
+
+{{-- Modal update datos --}}
+@include('includes.formUpdateData')
 @endif
 
+@if (\Session::has('exito'))
+    <!-- Modal UPDATE SUCCESS-->
+    <div class="modal fade" id="modalUpdateSuccess" tabindex="-1" role="dialog" aria-labelledby="modalUpdateSuccess" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div style="height: 34px;">
+                    <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body " style="background-color: #143153;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p class="text-white" id="clientName">
+                                {{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}
+                            </p>
+                            <p class="text-white" id="clientNumber">No. de cliente {{substr($data->client_number,2)}}</p>
+                            <img src="{{asset('img/icon_check.png')}}">
+                            <p class="text-white" id="clientMessage"></p>
+                            <h5 class="text-white" style="font-size: 34px">TUS DATOS SE ACTUALIZARON CORRECTAMENTE</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(function() {
+        $('#modalUpdateSuccess').modal('show');
+    });
+    </script>
+@endif
+
+@if (\Session::has('forgot'))
+    <!-- Modal client number modal remember-->
+    <div class="modal fade" id="modalClientNumber" tabindex="-1" role="dialog" aria-labelledby="modalClientNumber" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0 rounded-0">
+                <div style="height: 34px;">
+                    <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body " style="background-color: #143153;border: 1px solid black;">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h5 class="text-white">ESTE ES TU NÚMERO DE CLIENTE</h5>
+                            <h5 class="text-white btn btn-lg" 
+                            style="background-color: #143153; border: 3px solid #00A5E6;">
+                            {{ substr(Session::get('forgot'),2) }}
+                            </h5>
+                            <br>
+                            <p class="text-white" id="clientMessage" style="font-size: 12px">
+                                Consérvalo y tenlo siempre disponible <br>
+                                Este número es personal e intransferible
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('#modalClientNumber').modal('show');
+        });
+        </script>
+@endif
+
+@if (\Session::has('msg'))
+            {{-- Modal algo salio mal (msg) --}}
+            <div class="modal fade" id="modalErrorUpdate" tabindex="-1" role="dialog" aria-labelledby="modalErrorUpdate" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content border-0 rounded-0">
+                        <div style="height: 34px;">
+                            <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="text-white">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body " style="background-color: #143153;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h5 class="text-white">ERROR</h5>
+                                    <p class="text-white">{{Session::get('msg')}}</p>
+                                    <a href="#" data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                                        ACEPTAR
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(function() {
+                    $('#modalErrorUpdate').modal('show');
+                });
+                </script>
+@endif
