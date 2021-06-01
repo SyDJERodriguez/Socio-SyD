@@ -73,7 +73,7 @@
                             finalidades:
                         </p>
                         <p class="text-justify">I. Finalidades primarias:<br>
-                            a. Identificar al Titular; y<br>
+                            a. Identificar al Titular; <br>
                             b. Crear un perfil personalizado para el Titular como persona inscrita al Plan de Lealtad
                             SyD®; y <br>
                             c. Ofrecer y otorgar los beneficios y recompensas del Plan de Lealtad SyD® al Titular,
@@ -98,8 +98,8 @@
                         <p class="text-justify">El Titular podrá manifestar su negativa al tratamiento de sus datos con
                             las finalidades
                             secundarias, a través del envío de un correo electrónico en dicho sentido a
-                            <a href="mailto:atencionsyd@syd.com.mx">
-                                atencionsyd@syd.com.mx</a> el cual deberá contener su información de contacto y
+                            <a href="mailto:protecciondatos@syd.com.mx">
+                                protecciondatos@syd.com.mx</a> el cual deberá contener su información de contacto y
                             cualquier otra
                             información que permita dar respuesta a dicho informe, absteniéndose de proporcionar
                             información confidencial de la que no sea Titular o de la que no tenga autorización para
@@ -110,7 +110,7 @@
 
                         <p class="text-justify">a) El presente Aviso le ha sido dado a conocer por parte de SyD®;<br>
                             b) Ha leído, entendido y acordado los términos dispuestos en el presente Aviso, por lo que
-                            otorga su consentimiento respecto del tratamiento de sus datos;<br>
+                            otorga su consentimiento respecto del tratamiento de sus datos personales, específicamente respecto de la finalidad relacionada con la transferencia de sus datos, y;<br>
                             c) El uso del Sitio constituye confirmaciones tácitas de su consentimiento a lo dispuesto en
                             el presente Aviso. El Titular deberá abstenerse de continuar utilizando el Sitio en caso de
                             que no consienta con las disposiciones establecidas en el presente Aviso.
