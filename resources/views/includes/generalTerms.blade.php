@@ -846,17 +846,20 @@
                                 Orientación nutrimental telefónica ilimitada proporcionada por médicos generales
                                 sugiriendo un plan de alimentación según sus necesidades, que incluye:
                                 <ul>
-                                    <li>Cálculo de peso ideal y el índice de masa corporal.</li>
-                                    <li>Diseño de dietas apropiadas para el tipo de persona solicitante.</li>
-                                    <li>Recomendaciones en materia de acondicionamiento físico.</li>
-                                    <li>Referencia a médicos especialistas cuando un problema de salud impida el uso de
+                                    <li style="font-weight: normal">Cálculo de peso ideal y el índice de masa corporal.</li>
+                                    <li style="font-weight: normal">Diseño de dietas apropiadas para el tipo de persona solicitante.</li>
+                                    <li style="font-weight: normal">Recomendaciones en materia de acondicionamiento físico.</li>
+                                    <li style="font-weight: normal">Referencia a médicos especialistas cuando un problema de salud impida el uso de
                                         dietas sin control médico.</li>
                                 </ul>
-                                En ningún caso, el médico podrá recetar medicamentos.
+                                <p class="text-justify">
+                                    En ningún caso, el médico podrá recetar medicamentos.
                                 Eventos ilimitados con horario de atención de 9:00 a 21:00 hrs de lunes a viernes.
-                                <br><br>
-                                La llamada tendrá una duración máxima de treinta minutos, transcurrido dicho término se
+                                </p>
+                                <p class="text-justify">
+                                    La llamada tendrá una duración máxima de treinta minutos, transcurrido dicho término se
                                 cortará la comunicación sin responsabilidad
+                                </p>
                             </p>
                         </li>
 
@@ -866,38 +869,48 @@
                                 Orientación nutrimental telefónica ilimitada proporcionada por médicos generales
                                 sugiriendo un plan de alimentación según sus necesidades, que incluye:
                                 <ul>
-                                    <li>Cálculo de peso ideal y el índice de masa corporal.</li>
-                                    <li>Diseño de dietas apropiadas para el tipo de persona solicitante.</li>
-                                    <li>Recomendaciones en materia de acondicionamiento físico.</li>
-                                    <li>Referencia a médicos especialistas cuando un problema de salud impida el uso de
+                                    <li style="font-weight: normal">Cálculo de peso ideal y el índice de masa corporal.</li>
+                                    <li style="font-weight: normal">Diseño de dietas apropiadas para el tipo de persona solicitante.</li>
+                                    <li style="font-weight: normal">Recomendaciones en materia de acondicionamiento físico.</li>
+                                    <li style="font-weight: normal">Referencia a médicos especialistas cuando un problema de salud impida el uso de
                                         dietas sin control médico.</li>
                                 </ul>
-                                En caso de emergencia médica, el Cliente podrá tener contacto inmediato por
+                                <p class="text-justify">
+                                    En caso de emergencia médica, el Cliente podrá tener contacto inmediato por
                                 videoconferencia por medio de la plataforma del sistema contratada a un proveedor
                                 certificado con médicos generales, de manera personalizada y virtual que pertenecen al
                                 tercero encargado de suministrar los servicios, quienes ayudarán a tomar las medidas
-                                necesarias para estabilizar al Cliente y ayudarlo con su malestar. <br><br>
+                                necesarias para estabilizar al Cliente y ayudarlo con su malestar.
+                                </p>
 
-                                La video consulta puede realizarse desde cualquier dispositivo móvil (celular, tablet) o
+                                <p class="text-justify">
+                                    La video consulta puede realizarse desde cualquier dispositivo móvil (celular, tablet) o
                                 PC que cuente con una cámara frontal y conexión de datos (preferentemente WIFI) por
-                                medio la plataforma digital que operará el prestador del servicio.<br><br>
-
-                                El personal que atiende esta asistencia son únicamente médicos titulados con cédula
-                                profesional, con experiencia en atención médica de primer contacto, normas éticas en
-                                medicina y con experiencia en identificación de situaciones que requieren otro nivel de
-                                atención.<br><br>
-
-                                El Cliente deberá de comunicarse a la línea de atención y en caso de requerir video
+                                medio la plataforma digital que operará el prestador del servicio.
+                                </p>
+                                <p class="text-justify">
+                                    El personal que atiende esta asistencia son únicamente médicos titulados con cédula
+                                    profesional, con experiencia en atención médica de primer contacto, normas éticas en
+                                    medicina y con experiencia en identificación de situaciones que requieren otro nivel de
+                                    atención.
+                                </p>
+                                <p class="text-justify">
+                                    El Cliente deberá de comunicarse a la línea de atención y en caso de requerir video
                                 consulta médica, se le hará llegar a su correo o a su celular una liga de la plataforma
-                                que utiliza el prestador del, con los datos para acceder a la video consulta.<br><br>
-
-                                El servicio no cubre ningún gasto médico generado. En ningún caso, el médico podrá dar
-                                un diagnóstico. El Cliente tendrá derecho a un (1) evento.<br><br>
+                                que utiliza el prestador del, con los datos para acceder a la video consulta.
+                                </p>
+                                <p class="text-justify">
+                                    El servicio no cubre ningún gasto médico generado. En ningún caso, el médico podrá dar
+                                un diagnóstico. El Cliente tendrá derecho a un (1) evento.
+                                </p>
+                                
                                 {{-- aqui va la imagen --}}
-                                El prestador del servicio que se contrate para tal efecto no se hace responsable de la
-                                prestación del servicio en los siguientes casos:
+                                <p class="text-justify">
+                                    El prestador del servicio que se contrate para tal efecto no se hace responsable de la
+                                    prestación del servicio en los siguientes casos:</p>
+                                
                                 <ul>
-                                    <li>Cuando el Cliente no cuente con conectividad adecuada y los medios electrónicos
+                                    <li style="font-weight: normal">Cuando el Cliente no cuente con conectividad adecuada y los medios electrónicos
                                         necesarios para descargar una video llamada: cámara frontal y conexión de datos
                                         (preferentemente WiFi), por medio de WhatsApp o la plataforma digital que ocupa
                                         el prestador del servicio En casos de fuerza mayor o caso fortuito, la
@@ -908,7 +921,7 @@
                                         atención vía remota desde el lugar en el que se encuentre, siempre y cuando los
                                         medios de comunicación no se vean afectados debido al caso fortuito o fuerza
                                         mayor. </li>
-                                    <li>Con el fin de prestar la atención médica por video llamada, el prestrador del
+                                    <li style="font-weight: normal">Con el fin de prestar la atención médica por video llamada, el prestrador del
                                         servicio podrá captar imagen o video de la consulta médica, para que el médico
                                         pueda proporcionarle la consulta médica, a través de diversas preguntas e
                                         información y poder determinar su diagnóstico y tratamiento; quedando
@@ -916,7 +929,7 @@
                                         Cliente, la reproducción total o parcial de la video llamada por cualquier
                                         medio, así como subirla a cualquier plataforma tecnológica, y redes sociales,
                                         toda la información, será tratada como información confidencial. </li>
-                                    <li>El prestador del servicio podrá utilizar datos personales, previa aceptación de
+                                    <li style="font-weight: normal">El prestador del servicio podrá utilizar datos personales, previa aceptación de
                                         los términos y condiciones de su aviso de privacidad..De igual manera los
                                         médicos independientes que proporcionan las consultas médicas tienen obligación
                                         de la privacidad del tratamiento de sus datos personales e información
@@ -999,11 +1012,11 @@
                                 El servicio es prestado por proveedores certificados, independientes, ajenos a los cuales cuentan con los seguros correspondientes para responder directamente ante el Cliente de cualquier daño directo imputable al proveedor que preste el servicio al vehículo trasladado, en el entendido, de que dicho proveedor será el único responsable ante el Cliente.  
                                 <br>El prestador del servicio no se hace responsable de la prestación del servicio en los siguientes casos:
                                 <ul>
-                                    <li>Cuando el Cliente  no proporcione información veraz y oportuna, que por su naturaleza no permita atender debidamente el asunto, o bien incurra en falsedad de declaraciones. </li>
-                                    <li>En casos de fuerza mayor o caso fortuito, o en el supuesto de que la Autoridad emita acuerdo mediante el cual declare la suspensión de actividades, la prestación del servicio puede verse afectada, en cuyo caso, el prestador del servicio  hará su mayor esfuerzo por prestar el Servicio en las mejores condiciones posibles, no siendo responsable por la falta o falla en la prestación de servicios derivada de dicha circunstancia.</li>
-                                    <li>El vehículo deberá encontrarse a pie de calle para facilitar el acceso de la plataforma de la grúa</li>
-                                    <li>El Cliente  deberá indicar el modelo y características de su vehículo a fin que se pueda definir el envío de tipo de plataforma a enviar.</li>
-                                    <li>El Cliente  deberá proporcionar su ubicación y/o localización, para el envío de la plataforma y/o grúa</li>
+                                    <li style="font-weight: normal">Cuando el Cliente  no proporcione información veraz y oportuna, que por su naturaleza no permita atender debidamente el asunto, o bien incurra en falsedad de declaraciones. </li>
+                                    <li style="font-weight: normal">En casos de fuerza mayor o caso fortuito, o en el supuesto de que la Autoridad emita acuerdo mediante el cual declare la suspensión de actividades, la prestación del servicio puede verse afectada, en cuyo caso, el prestador del servicio  hará su mayor esfuerzo por prestar el Servicio en las mejores condiciones posibles, no siendo responsable por la falta o falla en la prestación de servicios derivada de dicha circunstancia.</li>
+                                    <li style="font-weight: normal">El vehículo deberá encontrarse a pie de calle para facilitar el acceso de la plataforma de la grúa</li>
+                                    <li style="font-weight: normal">El Cliente  deberá indicar el modelo y características de su vehículo a fin que se pueda definir el envío de tipo de plataforma a enviar.</li>
+                                    <li style="font-weight: normal">El Cliente  deberá proporcionar su ubicación y/o localización, para el envío de la plataforma y/o grúa</li>
                                 </ul>
 
                             </p>
