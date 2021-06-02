@@ -64,12 +64,36 @@
                             </div>
                         </div>
                     @else
-
-                            <!--<div class="col-lg-12">
-                                <button class="btn btn float-right text-white px-5"
-                                        style="background-color: #009CE0;" id="btnAddBeneficiary">MÁS BENEFICIARIOS</button>
-                            </div>-->
-
+                            {{-- Modal BeneficiarySignUp --}}
+                            <div class="modal fade" id="modalBeneficiarySignUp" tabindex="-1" role="dialog" aria-labelledby="modalBeneficiarySignUp" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content border-0 rounded-0">
+                                        <div style="height: 34px;">
+                                            <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" class="text-white">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body " style="background-color: #143153;">
+                                            <div class="row">
+                                                <div class="col-lg-12 text-center">
+                                                    <img src="{{asset('img/icon_check.png')}}">
+                                                    <h5 class="text-white">REGISTRO DE BENEFICIARIOS</h5>
+                                                    <p class="text-white">Ingresa a continuación los beneficiarios del seguro de accidentes personales</p>
+                                                    <a href="#" data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                                                        ACEPTAR
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- call modalBeneficiarySignUp --}}
+                            <script>
+                                $(function() {
+                                    $('#modalBeneficiarySignUp').modal('show');
+                                });
+                            </script>
 
                             <form autocomplete="off" method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
                                 @csrf
