@@ -337,7 +337,7 @@
     function deleteEmployee(id){
         console.log(id)
         //$('.confirmDeleteButton').attr('id', id);
-        let href_button = "{{ url('/employees/{id}/delete') }}";
+        let href_button = "{{ url('/customer/employees/{id}/delete') }}";
         href_button = href_button.replace('{id}', id)
         $('.confirmDeleteButton').attr('href', href_button)
         $('#deleteDependent').modal('show');

@@ -131,7 +131,10 @@
     <section id="section3">
             <div class="row m-0">
                 <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
-                <div class="col-lg-6 p-3"> <h1 class="primary-color text-center"><strong>TIPO DE CUENTA</strong></h1></div>
+                <div class="col-lg-6 p-3"> <h1 class="primary-color text-center">
+                    <strong>TIPO DE CUENTA</strong> <br>
+                    <span style="font-size: 18px">  <strong>TÚ DECIDES COMO REGISTRARTE</strong></span>
+                </h1></div>
                 <div class="col-lg-3 p-5"><div class="bg-primary" style="height: 2px;"></div></div>
             </div>
 

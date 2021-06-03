@@ -26,7 +26,7 @@
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert")
-                            .innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button> Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR.';
+                            .innerHTML='<button type="button" class="close" data-dismiss="alert" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR. <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             /*setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);*/
                         }

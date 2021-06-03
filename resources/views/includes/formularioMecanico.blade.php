@@ -35,17 +35,17 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameMec" 
-                        name="name" pattern="[a-zA-Z]{3,}" required>
+                        name="name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" 
-                        id="lastNameMec" name="last_name" pattern="[a-zA-Z]{3,}" required>
+                        id="lastNameMec" name="last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" 
-                        id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z]{3,}" required>
+                        id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
