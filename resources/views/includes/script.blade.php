@@ -166,6 +166,10 @@
                         document.getElementById("form_alert").innerHTML='El email ya se encuentra asociado a otro cliente. ';
                         document.getElementById("form_alert").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone").hidden= true}, 3500);
                     }else if (data['success']==='false'){
                         $('#modal3').modal('hide');
                         $('#modalError').modal('show');
