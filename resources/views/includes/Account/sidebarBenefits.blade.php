@@ -25,6 +25,10 @@
         <br>
         <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#survey" 
         style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+        <p style="font-size: 13px">
+            Contacto de SyD®:
+              <a href="tel:8007931010">800-SYD-1010</a>
+        </p>
         <hr>
      </div>
     <br>
@@ -61,6 +65,9 @@
         <a href="tel:8000874598" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
+        <p style="font-size: 13px">
+            Atención Chubb: <a href="tel:8000874598">800-087-4598</a>
+        </p>
         @endif
 
     </div>
@@ -108,6 +115,9 @@
                     <br>
                     <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
                     </a>
+                    <p style="font-size: 13px">
+                        Contacto Telasist: <a href="tel:5511052682">551-105-2682</a>
+                    </p>
                 </div>
                 @endif
 <br><br>
