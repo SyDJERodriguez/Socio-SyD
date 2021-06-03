@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-lg-12 py-3 text-center">
                             <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                            <a href="{{route('customer.pdf')}}" target="_blank" class="btn btn py-2  text-white "
+                            <a href="#" data-toggle="modal" data-target="#modalRemember" target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
                     </div>
@@ -87,9 +87,10 @@
                   </div>
                   <div class="col-lg-12 py-3 text-center">
                       <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                      <a href="{{route('customer.pdf')}}" target="_blank" class="btn btn py-2  text-white "
-                          style="background-color: #143153;">
-                          CERTIFICADO DE PÓLIZA</a> </div>
+                      <a href="#" data-toggle="modal" data-target="#modalRemember" 
+                            target="_blank" class="btn btn py-2  text-white "
+                            style="background-color: #143153;">
+                            CERTIFICADO DE PÓLIZA</a> </div>
               </div>
           </form>
 
@@ -98,5 +99,29 @@
     </div>
 </div>
 @include('includes.Account.unsuscribeEmployee')
+
+<!-- Modal remember-->
+<div class="modal fade" id="modalRemember" tabindex="-1" role="dialog" aria-labelledby="modalRemember" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <p class="text-white">Recuerda imprimir y guardar tu certificado para cuando lo requieras</p>
+                        <a href="{{route('customer.pdf')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                            CERRAR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @stop
