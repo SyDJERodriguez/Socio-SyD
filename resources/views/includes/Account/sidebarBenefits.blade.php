@@ -66,7 +66,7 @@
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
         <p style="font-size: 13px">
-            Contacto Telasist: <a href="tel:5511052682">551-105-2682</a>
+            Atención Chubb: <a href="tel:8000874598">800-087-4598</a>
         </p>
         @endif
 
@@ -116,7 +116,7 @@
                     <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
                     </a>
                     <p style="font-size: 13px">
-                        Atención Chubb: <a href="tel:8000874598">800-087-4598</a>
+                        Contacto Telasist: <a href="tel:5511052682">551-105-2682</a>
                     </p>
                 </div>
                 @endif

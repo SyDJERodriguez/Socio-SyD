@@ -78,7 +78,7 @@
                                                 <div class="col-lg-12 text-center">
                                                     <img src="{{asset('img/icon_check.png')}}">
                                                     <h5 class="text-white">REGISTRO DE BENEFICIARIOS</h5>
-                                                    <p class="text-white">Ingresa a continuación los beneficiarios del seguro de accidentes personales</p>
+                                                    <p class="text-white">Recuerda que estas personas que des de alta, son quienes recibirán los beneficios del seguro en caso de que tú sufras algún accidente</p>
                                                     <a href="#" data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                                                         ACEPTAR
                                                     </a>
