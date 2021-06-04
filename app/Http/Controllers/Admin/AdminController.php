@@ -117,6 +117,9 @@ class AdminController extends Controller
 
         $level = 0;
         if ($account->client_type === "1" || $account->client_type === "3"){
+            if ($totalAmount<2500) {
+                $level = 0;
+            }
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -129,6 +132,9 @@ class AdminController extends Controller
         }
 
         if ($account->client_type === "2"){
+            if ($totalAmount<200) {
+                $level = 0;
+            }
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
