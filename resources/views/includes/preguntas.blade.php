@@ -26,7 +26,7 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>Solamente tienes que hacer clic en el botón de <b>“Registro”</b> dentro de este
                                         sitio web, llenar los
-                                        datos requerido y confirmar tu medio de
+                                        datos requeridos (número de cliente, nombre completo, fecha de nacimiento, género y RFC) y confirmar tu medio de
                                         contacto (número celular obligatorio y/o correo electrónico).
                                     </p>
                                 </li>
@@ -36,20 +36,18 @@
                             <h5 class="text-white barTitle">2. ¿Cómo consigo mi número de cliente?</h5>
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
-                                    <p>Solicítalo a tu vendedor en la sucursal de tu
-                                    preferencia.
-                                    </p></li>
-                                <li class="text-justify" style="width:99%">
-                                <p>Compra en cualquiera de nuestras tiendas de
-                                    DAR® Refaccionarias, a través de
-                                    nuestros canales digitales
+                                    <p>Al comprar con cualquiera de nuestros representantes de venta, en nuestras tiendas de DAR® Refaccionarias o a través de nuestros canales digitales 
                                     (
                                     <a href="https://www.syd.com.mx/" target="_blank">https://www.syd.com.mx/</a> – <a
                                         href="https://www.refaccionarias-dar.com"
                                         target="_blank">https://www.refaccionarias-dar.com</a>)
-                                    o llamando al número <b>800 SyD® (793) 1010</b> y solicita que te asignen
-                                    tu número de cliente.
-                                </p>
+                                    </p></li>
+                                <li class="text-justify" style="width:99%">
+                                    <p>También lo puedes conseguir a través a tu asesor de venta o llamando al número 800 SYD (793) 1010 en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas y solicita que te asignen tu número de cliente.
+                                    </p></li>
+                                <li class="text-justify" style="width:99%">
+                                	<p>A través del representante de venta directa que atiende a tu negocio.
+                                	</p>
                                 </li>
                             </ol>
                         </section>
@@ -61,14 +59,16 @@
                                     <p>
                                     Solicítalo en la sucursal de tu preferencia o
                                     llama al número <b>800 SyD® (793)
-                                        1010</b> y solicítalo con tus datos.
+                                        1010</b> en un horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
-                                    <p>En nuestro sitio web, solicítalo a través de
-                                    la opción “recordar mi número de
-                                    cliente” ingresando tu correo electrónico o teléfono de
-                                    contacto registrado. </p></li>
+                                    <p>
+                                    Proporciona tus datos (nombre completo, teléfono y correo electrónico).
+                                    </p>
+                                </li>
+                                <li class="text-justify" style="width:99%">
+                                    <p>O bien, si lo prefieres puedes solicitarlo en nuestro sitio web <a href="https://www.sociosyd.com.mx/" target="_blank">www.sociosyd.com.mx</a> a través de la opción “recordar mi número de cliente”, ingresando tu correo electrónico o teléfono de contacto registrado. </p></li>
                             </ol>
                         </section>
 
@@ -103,13 +103,11 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Cualquier persona o empresa que compre productos de la marca SyD® en alguna de
-                                        nuestras tiendas de DAR® Refaccionarias, a través
+                                        Cualquier persona o empresa que compre productos de la marca SyD® en nuestras tiendas de DAR® Refaccionarias, a través
                                         de nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
-                                            href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>)
-                                        o llamando al
-                                        número: <b>800 SyD® (793) 1010</b>.
+                                            href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>), venta directa o llamando al
+                                        número: <b>800 SyD® (793) 1010</b> en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
                                     </p>
                                 </li>
                             </ol>
@@ -152,7 +150,7 @@
                                         de accidentes personales, orientación médica telefónica emocional y nutricional,
                                         video consulta por Covid-19, ambulancia terrestre por emergencia, asistencia
                                         funeraria coordinada por
-                                        nosotros, envío de grúa por avería de automóvil y descuentos en tu compra. **
+                                        nosotros, envío de grúa por avería de automóvil, entre otros. **
                                         Los servicios son otorgados por terceros y deberán
                                         sujetarse a los términos y condiciones del presente plan.
                                     </p>
@@ -197,13 +195,13 @@
                                                 <td class="question firstTB noClas"><b>De $500.01 a $1,300</b> </td>
                                                 <td class="question firstTB noClas">Plata</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question firstTB noClas">Plata</td>
+                                                <td class="question firstTB noClas">Nivel Plata</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>Más de $1,300</b></td>
+                                                <td class="question firstTB noClas"><b>Más de $1,300.01</b></td>
                                                 <td class="question firstTB noClas">Oro</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question firstTB noClas">Oro</td>
+                                                <td class="question firstTB noClas">Nivel Oro</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -224,7 +222,7 @@
                                                 <th class="question">Nivel</th>
                                                 <th class="question">Seguro</th>
                                                 <th class="question">Asistencia</th>
-                                                <th class="question">No. de colaboradores a afiliar</th>
+                                                <th class="question">Número máximo de colaboradores a afiliar</th>
                                             </tr>
                                         </thead>
                                         <tbody class="question">
@@ -239,14 +237,14 @@
                                                 <td class="question secondTB noClas"><b>De $4,500.01 a $7,000</b></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question secondTB noClas">Plata</td>
+                                                <td class="question secondTB noClas">Nivel Plata</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>Más de $7,000</b></td>
+                                                <td class="question secondTB noClas"><b>Más de $7,000.01</b></td>
                                                 <td class="question secondTB noClas">Oro</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question secondTB noClas">Oro</td>
+                                                <td class="question secondTB noClas">Nivel Oro</td>
                                                 <td class="question secondTB noClas">8</td>
 
                                             </tr>
@@ -264,7 +262,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Cada uno de los beneficios alcanzados, tienen una vigencia de 1 mes. Para volver
+                                        Cada uno de los beneficios alcanzados, tienen una vigencia de 1 mes reflejados al mes posterior a la fecha efectiva de compra. Para volver
                                         a obtener tus beneficios, debes mantener
                                         tu monto de compra mensual.
                                     </p>
@@ -277,7 +275,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Regístrate en nuestro sitio web, compra productos SyD® en cualquiera de nuestros
+                                        Regístrate en nuestro sitio web <a href="https://www.sociosyd.com.mx/" target="_blank">www.sociosyd.com.mx</a>, compra productos SyD® en cualquiera de nuestros
                                         canales oficiales de venta, acumula
                                         automáticamente y haz uso de tus beneficios en el momento en que lo necesites.
                                     </p>
@@ -291,9 +289,8 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                     Si tienes algún problema o duda a la hora de tu registro,
-                                    puedes contactarnos a través de nuestro chat de Whatsapp disponible en el sitio web
-                                    o llamando al número
-                                    <b>800 SyD® (793) 1010</b>.
+                                    puedes contactarnos a través de nuestro chat de whatsApp disponible en el sitio web o llamando al  número
+                                    <b>800 SyD® (793) 1010</b> en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -310,9 +307,8 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Participan todos los productos que adquieras a través de nuestras tiendas de
-                                        DAR® Refaccionarias,
-                                        nuestros canales digitales (
+                                        Participan productos adquiridos a través de nuestras tiendas de
+                                        DAR® Refaccionarias, canales de venta directa SyD®,                                         nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
@@ -328,9 +324,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Sólo participan los productos SyD® comprados a través de nuestros canales
-                                        oficiales de venta. (nuestras tiendas de DAR®
-                                        Refaccionarias, a través de nuestros canales digitales (
+                                        Puedes comprar a través de nuestros canales oficiales de venta tiendas de DAR® Refaccionarias, venta directa, a través de nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
@@ -356,7 +350,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Existen los niveles Básico, Bronce, Plata y Platino para cada tipo de cuenta, de
+                                        Existen los niveles Bronce, Plata y Oro para cada tipo de cuenta, de
                                         acuerdo con las siguientes tablas:
                                     </p>
                                 </li>
@@ -386,13 +380,13 @@
                                                 <td class="question firstTB noClas"><b>De $500.01 a $1,300</b> </td>
                                                 <td class="question firstTB noClas">Plata</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question firstTB noClas">Plata</td>
+                                                <td class="question firstTB noClas">Nivel Plata</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question firstTB noClas"><b>Más de $1,300</b></td>
+                                                <td class="question firstTB noClas"><b>Más de $1,300.01</b></td>
                                                 <td class="question firstTB noClas">Oro</td>
                                                 <td class="question firstTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question firstTB noClas">Oro</td>
+                                                <td class="question firstTB noClas">Nivel Oro</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -413,7 +407,7 @@
                                                 <th class="question">Nivel</th>
                                                 <th class="question">Seguro</th>
                                                 <th class="question">Asistencia</th>
-                                                <th class="question">No. de colaboradores a afiliar</th>
+                                                <th class="question">Número máximo de colaboradores a afiliar</th>
                                             </tr>
                                         </thead>
                                         <tbody class="question">
@@ -428,14 +422,14 @@
                                                 <td class="question secondTB noClas"><b>De $4,500.01 a $7,000</b></td>
                                                 <td class="question secondTB noClas">Plata</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question secondTB noClas">Plata</td>
+                                                <td class="question secondTB noClas">Nivel Plata</td>
                                                 <td class="question secondTB noClas">4</td>
                                             </tr>
                                             <tr class="question">
-                                                <td class="question secondTB noClas"><b>Más de $7,000</b></td>
+                                                <td class="question secondTB noClas"><b>Más de $7,000.01</b></td>
                                                 <td class="question secondTB noClas">Oro</td>
                                                 <td class="question secondTB noClas"><i class="far fa-check"></i></td>
-                                                <td class="question secondTB noClas">Oro</td>
+                                                <td class="question secondTB noClas">Nivel Oro</td>
                                                 <td class="question secondTB noClas">8</td>
 
                                             </tr>
@@ -454,7 +448,7 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                         En el sitio web, dentro de la sección <b>“Mi Cuenta”</b> puedes dar de alta a
-                                        tus beneficiarios, llenando la información requerida.
+                                        tus beneficiarios, llenando la información requerida (Nombre completo del beneficiario, parentesco, número telefónico y porcentaje destinado).
                                     </p>
                                 </li>
                             </ol>
@@ -476,7 +470,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al número de atención de Chubb: <a href="tel:8000874598">8000874598</a>
+                                        Comunícate al teléfono <a href="tel:8000874598">800 087 4598</a> en horario de atención de lunes a viernes de 9:00 a 18:00 horas.
                                     </p>
                                 </li>
                             </ol>
@@ -487,7 +481,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
                                     </p>
                                 </li>
                             </ol>
@@ -498,7 +492,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
                                     </p>
                                 </li>
                             </ol>
@@ -509,7 +503,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al número de contacto de Telasist: <a href="tel:5511052682">5511052682</a>
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
                                     </p>
                                 </li>
                             </ol>
@@ -521,24 +515,18 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                    El seguro de accidentes personales no aplica en los casos en que el asegurado
-                                    estuviera involucrado en la participación de algún delito.
-                                    </p>
-                                </li>
-                                <li class="text-justify" style="width:99%">
-                                    <p>
-                                    No aplica en caso de enfermedad que no sea considerada como accidente.
+                                    Para conocer en que casos NO aplica por favor consulta las condiciones generales dentro de tu cuenta asi como los términos y condiciones del programa.  
                                     </p>
                                 </li>
                             </ol>
                         </section>
                         <section>
-                            <h5 class="text-white barTitle">25. ¿Cómo doy de alta a mis empleados dentro del programa?
+                            <h5 class="text-white barTitle">25. ¿Cómo doy de alta a mis colaboradores dentro del programa?
                             </h5>
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        En la sección de <b>“Mi Cuenta”</b> podrás dar de alta a tus empleados con su
+                                        En la sección de <b>“Mi Cuenta”</b> podrás dar de alta a tus colaboradores con su
                                         correo electrónico o número telefónico.
                                     </p>
                                 </li>
@@ -546,13 +534,13 @@
 
                         </section>
                         <section>
-                            <h5 class="text-white barTitle">26. ¿Cómo doy de baja a un trabajador dentro de mi cuenta?
+                            <h5 class="text-white barTitle">26. ¿Cómo doy de baja a un colaborador dentro de mi cuenta?
                             </h5>
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                         En la sección de <b>“Mi Cuenta”</b> podrás editar o eliminar los datos de los
-                                        trabajadores que hayas dado de alta previamente.
+                                        colaboradores que hayas dado de alta previamente.
                                     </p>
                                 </li>
                             </ol>
