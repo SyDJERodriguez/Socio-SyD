@@ -42,12 +42,20 @@
                     </div>
                     <div class="col-md-4">
                         <p>Nivel de beneficios:
-                            @if($level === 1)
+                            @if($level === 0)
                                 <b> Aún no cuenta con beneficios </b>
-                            @elseif($level === 2)
-                                <b> Plata </b>
-                            @elseif($level === 3)
-                                <b> Oro </b>
+                            @elseif($level === 1 && $account->client_type === "1")
+                                    <b> Seguro de accidentes para 4 colaboradores </b>
+                            @elseif($level === 1 && $account->client_type === "2")
+                                <b> Seguro de accidentes </b>
+                            @elseif($level === 2 && $account->client_type === "1")
+                                <b> Seguro de accidentes y asistencias plata para 4 colaboradores </b>
+                            @elseif($level === 2 && $account->client_type === "2")
+                                <b> Seguro de accidentes y asistencias plata </b>
+                            @elseif($level === 3 && $account->client_type === "1")
+                                <b> Seguro de accidentes y asistencias oro para 8 colaboradores </b>
+                            @elseif($level === 3 && $account->client_type === "2")
+                                <b> Seguro de accidentes y asistencias oro </b>
                             @endif
                         </p>
                     </div>
