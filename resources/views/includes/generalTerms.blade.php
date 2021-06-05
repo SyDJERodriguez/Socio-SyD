@@ -904,7 +904,6 @@
                                 un diagnóstico. El Cliente tendrá derecho a un (1) evento.
                                 </p>
                                 
-                                {{-- aqui va la imagen --}}
                                 <img src="{{asset('img/ProcesoOperativoCabinaMedica.jpg')}}" alt="infoProceso"
                                     style="max-width: 100%;height: auto">
 
