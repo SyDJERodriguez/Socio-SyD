@@ -142,7 +142,7 @@
             <div class="row background m-0">
 
                 <div class="col-lg-6 mx-auto text-center py-1">
-                    <div class="bg-primary py-1" style="background-color: #00a5e6 !important;">
+                    <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
                         <h6 class="text-white mt-5 mb-2"> 
                             <strong>Registrate y recibe beneficios para ti y tus colaboradores de negocio</strong>
@@ -160,8 +160,8 @@
                         </div>
 
                         <div>
-                            <img class="my-3" src="{{asset('img/tabla2.png')}}" alt="tablaNegocios"
-                            style="max-width: 100%;height: auto;padding: 0px 30px 0px 30px">
+                            <img class="my-3 imgTipo" src="{{asset('img/tabla2.png')}}" alt="tablaNegocios"
+                            style="max-width: 100%;padding: 0px 30px 0px 30px">
                         </div>
 
                         <div class="my-4 mb-5">
@@ -173,7 +173,7 @@
                 </div>
 
                 <div class="col-lg-6 mx-auto text-center py-1">
-                    <div class="bg-primary py-1" style="background-color: #00a5e6 !important;">
+                    <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>MECÁNICO INDEPENDIENTE</strong></h4>
                         <h6 class="text-white mt-5 mb-2"> 
                             <strong>Registrate y recibe beneficios únicamente para ti</strong>
@@ -191,8 +191,8 @@
                         </div>
 
                         <div>
-                            <img class="my-3" id="tableClientType1" src="{{asset('img/tabla1.png')}}" alt="tablaIndivuales" 
-                            style="max-width: 100%;height: auto;padding: 0px 30px 56px 30px">
+                            <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla1.png')}}" alt="tablaIndivuales" 
+                            style="max-width: 100%;padding: 0px 30px 56px 30px">
                         </div>
                         
 
