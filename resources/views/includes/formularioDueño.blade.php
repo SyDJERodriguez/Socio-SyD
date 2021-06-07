@@ -25,6 +25,8 @@
               </div>
               <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_phone_text" role="alert" style="border-radius: 6px;" hidden>
+              </div>
 
             <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
