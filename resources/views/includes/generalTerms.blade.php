@@ -904,7 +904,9 @@
                                 un diagnóstico. El Cliente tendrá derecho a un (1) evento.
                                 </p>
                                 
-                                {{-- aqui va la imagen --}}
+                                <img src="{{asset('img/ProcesoOperativoCabinaMedica.jpg')}}" alt="infoProceso"
+                                    style="max-width: 100%;height: auto">
+
                                 <p class="text-justify">
                                     El prestador del servicio que se contrate para tal efecto no se hace responsable de la
                                     prestación del servicio en los siguientes casos:</p>
