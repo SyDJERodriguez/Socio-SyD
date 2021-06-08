@@ -52,7 +52,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2 textBene"> Si necesitas hospitalización,  
+                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  <br>  <div class="pt-2 textBene"> Si necesitas hospitalización,  
                             <br> nosotros te ayudamos  </div> </strong></h6>
                 </div>
                 <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">

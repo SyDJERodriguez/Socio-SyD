@@ -281,6 +281,9 @@ h5.footerTitle3{
     div.divAzul{
         height: 1130px;
     }
+    div.box_documents {
+        height: auto;
+    }
 }
 
 @media(max-width:2700px){
@@ -1721,11 +1724,11 @@ Label the data for the second TABLE
         height: 420px !important;
     } */
 
-    .box_documents {
+    /* .box_documents {
         height: 483px !important;
-    }
+    } */
 }
 
 .box_documents {
-    height: 560px;
+    height: 600px;
 }

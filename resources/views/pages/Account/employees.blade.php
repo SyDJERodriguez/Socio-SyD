@@ -18,7 +18,7 @@
             <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
          </div>
         <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
-            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.</h5>
+            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
         </div>
     </div>
     <hr>
