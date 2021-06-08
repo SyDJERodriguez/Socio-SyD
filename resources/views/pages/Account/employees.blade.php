@@ -286,8 +286,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡HAZ LLEGADO AL LIMITE DE USUARIOS DEPENDIENTES!</h5>
+                        <h5 class="text-white">¡HAS LLEGADO AL LIMITE DE USUARIOS DEPENDIENTES!</h5>
                         <p class="text-white">Sigue comprando para darle beneficios a más dependientes</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
