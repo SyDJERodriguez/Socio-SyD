@@ -38,7 +38,7 @@
         </div>
 
         @if(count($beneficiaries) > 0)
-            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+            <div class="col-8 py-2 divImgDerecha">
                 <form>
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
@@ -54,9 +54,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-12 py-2 divImgDerecha2">
+            <div class="col-12 py-2 divImgDerecha2" >
                 <form>
-                    <div class="form-row text-center"
+                    <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
@@ -72,7 +72,7 @@
                 </form>
             </div>
         @else
-            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+            <div class="col-8 py-2 divImgDerecha" >
                 <div class="form-row text-center box_documents"
                      style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
                     <div class="modal-body " style="background-color: #143153; height: 30%">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 py-2 divImgDerecha2">
+            <div class="col-8 py-2 divImgDerecha2" >
                 <div class="form-row text-center box_documents"
                      style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
                     <div class="modal-body " style="background-color: #143153; height: 30%">
