@@ -38,7 +38,7 @@
         </div>
 
         @if(count($beneficiaries) > 0)
-            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+            <div class="col-8 py-2 divImgDerecha">
                 <form>
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
@@ -54,14 +54,45 @@
                     </div>
                 </form>
             </div>
+            <div class="col-12 py-2 divImgDerecha2" >
+                <form>
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                        <div class="col-lg-12" style="color: #143153;">
+                            <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
+                                    DOCUMENTOS</strong></h5>
+                        </div>
+                        <div class="col-lg-12 py-3 text-center">
+                            <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
+                            <a href="#" data-toggle="modal" data-target="#modalRemember" 
+                                target="_blank" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                CERTIFICADO DE PÓLIZA</a> </div>
+                    </div>
+                </form>
+            </div>
         @else
-            <div class="col-8 py-2 divImgDerecha" style="margin-top: -99px">
+            <div class="col-8 py-2 divImgDerecha" >
                 <div class="form-row text-center box_documents"
                      style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
-                    <div class="modal-body " style="background-color: #143153; height: 25%">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <img src="{{asset('img/icon_check.png')}}">
+                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 py-2 divImgDerecha2" >
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
                                 <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
                                 <br>
                             </div>
@@ -76,25 +107,6 @@
                 <button class="btn btn-primary" style="background-color: #009CE0;" data-toggle="modal" data-target="#modalQuestion">Quiero ser independiente</button>
             </div>
         @endif
-
-        <div class="col-12 py-2 divImgDerecha2">
-          <form>
-              <div class="form-row text-center"
-                  style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
-                  <div class="col-lg-12" style="color: #143153;">
-                      <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
-                              DOCUMENTOS</strong></h5>
-                  </div>
-                  <div class="col-lg-12 py-3 text-center">
-                      <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                      <a href="#" data-toggle="modal" data-target="#modalRemember" 
-                            target="_blank" class="btn btn py-2  text-white "
-                            style="background-color: #143153;">
-                            CERTIFICADO DE PÓLIZA</a> </div>
-              </div>
-          </form>
-
-      </div>
 
     </div>
 </div>
