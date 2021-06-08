@@ -1,11 +1,11 @@
 
 /*resolve Boostrap bold problem */
 .videoInsert{
-    position: absolute; 
+    position: absolute;
     right: 0px;
-    min-width: 100%; 
+    min-width: 100%;
     min-height: 100%;
-    width: 100%; 
+    width: 100%;
     background-size: cover;
     overflow: hidden;
 }
@@ -354,9 +354,9 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div.divAzul{
-        height: 1000px;
+        height: 850px;
     }
-    
+
 }
 
 @media(max-width:1801px){
@@ -488,7 +488,7 @@ h5.footerTitle3{
         font-size: 12px;
     }
     div.divAzul{
-        height: 830px;
+        height: 730px;
     }
 }
 
@@ -561,7 +561,7 @@ h5.footerTitle3{
         width: 70px;
     }
     img.imgTipo{
-        
+
         max-height: 300px;
     }
 }
@@ -1187,6 +1187,12 @@ div hr.bg-primary{
     div#backHeader img.logoHeader{
         width: 250px;
         top: 24%;
+    }
+}
+
+@media (min-width: 761px){
+    .imgTipo{
+        height: 300px;
     }
 }
 
