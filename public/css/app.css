@@ -1,11 +1,11 @@
 
 /*resolve Boostrap bold problem */
 .videoInsert{
-    position: absolute; 
+    position: absolute;
     right: 0px;
-    min-width: 100%; 
+    min-width: 100%;
     min-height: 100%;
-    width: 100%; 
+    width: 100%;
     background-size: cover;
     overflow: hidden;
 }
@@ -45,6 +45,10 @@ a.btnExitNo:hover{
 .darTitle{
     color:#00A1E3;
     font-weight: bold;
+}
+
+.imgTipo{
+    height: auto;
 }
 
 /* sidebarbenefits */
@@ -247,6 +251,9 @@ h5.footerTitle3{
     div.contenedorIcon img.iconBene2{
         width: 17%;
     }
+    div.divAzul{
+        height: 1130px;
+    }
 }
 
 @media(max-width:3000px){
@@ -270,6 +277,9 @@ h5.footerTitle3{
     }
     div.contenedorIcon img.iconBene2{
         width: 17%;
+    }
+    div.divAzul{
+        height: 1130px;
     }
 }
 
@@ -311,6 +321,9 @@ h5.footerTitle3{
     .our-branches__content-address-map{
         padding-top: 4.3%;
     }
+    div.divAzul{
+        height: 1000px;
+    }
 }
 
 @media(max-width: 2050px){
@@ -340,6 +353,10 @@ h5.footerTitle3{
     div.contenedorFooter span.textFooter{
         font-size: 14px;
     }
+    div.divAzul{
+        height: 850px;
+    }
+
 }
 
 @media(max-width:1801px){
@@ -385,6 +402,9 @@ h5.footerTitle3{
     .our-branches__content-address-map{
         padding-top: 6.6%;
     }
+    div.divAzul{
+        height: 950px;
+    }
 }
 
 @media(max-width: 1418px){
@@ -428,6 +448,9 @@ h5.footerTitle3{
     div.contenedorIcon img.iconBene2{
         width: 20%;
     }
+    div.divAzul{
+        height: 900px;
+    }
 }
 
 @media(max-width:1319px){
@@ -463,6 +486,9 @@ h5.footerTitle3{
 @media(max-width:1190px){
     .textBene{
         font-size: 12px;
+    }
+    div.divAzul{
+        height: 730px;
     }
 }
 
@@ -533,6 +559,10 @@ h5.footerTitle3{
     }
     div.contenedorIcon img.iconBene2{
         width: 70px;
+    }
+    img.imgTipo{
+
+        max-height: 300px;
     }
 }
 
@@ -1157,6 +1187,12 @@ div hr.bg-primary{
     div#backHeader img.logoHeader{
         width: 250px;
         top: 24%;
+    }
+}
+
+@media (min-width: 761px){
+    .imgTipo{
+        height: 300px;
     }
 }
 
