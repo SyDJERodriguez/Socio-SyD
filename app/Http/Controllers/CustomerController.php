@@ -1827,6 +1827,7 @@ class CustomerController extends Controller
         $email = $data['email'];
         try {
             Mail::send('emails.invitacionAsociado',['data'=>$data], function($m) use ($email){
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($email)->subject("Invitación a Socio SYD");
             });
         } catch (\Throwable $th) {
