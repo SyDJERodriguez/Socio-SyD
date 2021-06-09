@@ -1,5 +1,7 @@
 
 /*resolve Boostrap bold problem */
+div.modal { overflow: auto !important; }
+
 .videoInsert{
     position: absolute;
     right: 0px;
@@ -401,6 +403,12 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1538px){
+    img.imgCarou{
+        height: 389px;
+    }
+}
+
 @media(max-width:1500px){
     .our-branches__content-address-map{
         padding-top: 6.6%;
@@ -517,7 +525,7 @@ h5.footerTitle3{
 
 @media(max-width:1084px){
     img.imgCarou{
-        height: 271px;
+        height: 389px;
     }
 }
 

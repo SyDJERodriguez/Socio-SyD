@@ -25,6 +25,8 @@
               </div>
               <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_phone_text" role="alert" style="border-radius: 6px;" hidden>
+              </div>
 
             <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
@@ -34,7 +36,7 @@
                         <h6 style="padding-left: 1px">Datos personales</h6>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder " placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
+                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
                         name="client_number" maxlength="8" required pattern="[0-9]{8}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -69,8 +71,21 @@
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
-                        name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div style="border: 1px solid black" class="input-group-text">+52</div>
+                            </div>
+                            <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
+                            name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                            {{-- <div class="input-group-append">
+                                <div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>
+                            </div> --}}
+                            {{-- <div class="input-group-append">
+                                <div style="border: 1px solid black" class="input-group-text bg-succes text-white"> ✔ </div>
+                            </div> --}}
+                            <div class="input-group-append" id="form_alert_phone" hidden>
+                            </div>
+                        </div>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">

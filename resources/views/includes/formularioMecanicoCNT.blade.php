@@ -28,12 +28,12 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NÚMERO CNT"
+                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO CNT"
                                id="cnt_number" name="cnt_number" maxlength="4" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control" placeholder="NÚMERO DE CLIENTE" 
+                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE" 
                         id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
