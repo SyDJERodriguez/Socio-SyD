@@ -15,11 +15,11 @@
                         </span>
                         <br>
                         <a href="#" class="btn btn-lg" data-toggle="modal" data-target="#modalVideo" id="btnVideo"
-                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 201px;margin-top:20px">
-                        Ver video</a><br>
+                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px">
+                        VER VIDEO</a><br>
                         <a href="https://syd-files.s3.amazonaws.com/Folleto.pdf" class="btn btn-lg" id="btnVideo"
                            style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px">
-                            Descargar folleto informativo</a>
+                            DESCARGAR FOLLETO INFORMATIVO</a>
                     </p>
                 </div>
                 <div class="col-lg-6 p-0">

@@ -26,7 +26,7 @@
                      @csrf
                      <div class="row">
                          <div class="col-lg-6 py-2" style="display: flex">
-                             <input type="text" class="form-control" value="{{substr($employee->client_number, 2)}}"
+                             <input type="text" class="form-control mobileInput" value="{{substr($employee->client_number, 2)}}"
                              id="client_number_mec" name="client_number" pattern="[0-9]{8}" readonly required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
