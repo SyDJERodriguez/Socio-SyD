@@ -1,5 +1,7 @@
 
 /*resolve Boostrap bold problem */
+div.modal { overflow: auto !important; }
+
 .videoInsert{
     position: absolute;
     right: 0px;
