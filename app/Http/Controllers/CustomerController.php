@@ -447,6 +447,30 @@ class CustomerController extends Controller
         return $number;
     }
 
+    public function phoneValidator($mobile){
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        try {
+            $numberProtocol = $phoneUtil->parse($mobile,"MX");
+
+            $isValidRegion= $phoneUtil->isValidNumberForRegion($numberProtocol,"MX");
+            $isValidNum = $phoneUtil->isValidNumber($numberProtocol);
+            $isPossibleNum = $phoneUtil->isPossibleNumber($numberProtocol);
+
+            if(substr($mobile,0,3) === "888"){ //validate number china
+                return false;
+            }
+
+            if($isValidNum === true && $isValidRegion === true && $isPossibleNum === true){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (\libphonenumber\NumberParseException $e) {
+            throw $e;
+        }
+        return false;
+    }
+
     //Update data in customers table and insert new data en customer_session table
     public function update(Request $request){
         $request          = $request->input();
@@ -455,6 +479,12 @@ class CustomerController extends Controller
         $client_number = '00'.$request['client_number'];
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
+
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile']);
+        if ($valid == false){
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
