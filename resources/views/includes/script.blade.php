@@ -29,7 +29,7 @@
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=namePro]').val(data['name']);
                         $('input[id=lastNamePro]').val(data['last_name']);
@@ -60,8 +60,8 @@
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert_cnt").innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button> El número de cliente no se encuentra en la base de datos';
                             document.getElementById("form_alert_cnt").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=nameCNT]').val(data['name']);
                         $('input[id=lastNameCNT]').val(data['last_name']);
@@ -91,8 +91,8 @@
                             document.getElementById("form_alert_mec")
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
@@ -122,8 +122,8 @@
                             document.getElementById("form_alert_employee")
                                 .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_employee").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
