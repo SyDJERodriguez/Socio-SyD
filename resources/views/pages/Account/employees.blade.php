@@ -157,9 +157,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡HAS AGREGADO CORRECTAMENTE A TU DEPENDIENTE!</h5>
-                        <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p>
-                        <p class="text-white" id="clientNumber"></p>
+                        <h5 class="text-white">TU COLABORADOR HA SIDO DADO <br> DE ALTA CORRECTAMENTE</h5>
+                        {{-- <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p> --}}
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>
@@ -178,7 +177,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS AGREGADO UN USUARIO CON CUENTA INDIVIDUAL!</h5>
                         <p class="text-white">El email y/o número de teléfono pertenecen a una cuenta individual</p>
                         <p class="text-white">Se ha enviado un email al usuario para aceptar tu invitación</p>
@@ -201,7 +200,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO CON CUENTA DE NEGOCIO!</h5>
                         <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta de negocio</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -222,7 +221,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO REGISTRADO!</h5>
                         <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta registrada</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -243,7 +242,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA HA SIDO TU COLABORADOR!</h5>
                         <p class="text-white">El correo y/o número de teléfono ya ha sido dependiente de este negocio</p>
                         <p class="text-white">Se ha enviado un email para que active nuevamente su cuenta</p>
@@ -265,7 +264,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA ESTA ASOCIADO A OTRA CUENTA DE NEGOCIO!</h5>
                         <p class="text-white">El correo y/o número de teléfono ya es dependiente de un cuenta de negocio</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -286,8 +285,8 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">¡HAS LLEGADO AL LIMITE DE USUARIOS DEPENDIENTES!</h5>
-                        <p class="text-white">Sigue comprando para darle beneficios a más dependientes</p>
+                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <p class="text-white">Has llegado al límite de usuarios dependientes</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>
@@ -306,17 +305,15 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¿ESTAS SEGURO QUE DESEAS ELIMINAR A TU DEPENDIENTE?</h5>
-                        <p class="text-white">Tu dependiente perdera los beneficios</p>
+                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
                         <div class="row">
                             <div class="col-lg-9 py-2 text-center">
-                                <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
+                                <p class="text-white">Tu dependiente perdera los beneficios</p>
+                                <p class="text-white">Al eliminarlo perderá todos sus beneficiosS</p>
                             <div class="col-lg-3 py2 text-center">
                                 <a href="#"
                                    class="text-white btn btn bg-primary btn-sm my-2 confirmDeleteButton"
-                                   style="padding-left: 40px;padding-right: 40px;"
-                                   >
+                                   style="padding-left: 40px;padding-right: 40px;">
                                     SI
                                 </a>
                                 <br>
