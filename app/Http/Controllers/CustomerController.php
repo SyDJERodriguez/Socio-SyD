@@ -58,6 +58,15 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        }
+
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
         }
@@ -471,6 +480,23 @@ class CustomerController extends Controller
         return false;
     }
 
+    public function verify_dns(Request $request){
+        $request->validate([
+            'email' => 'email:rfc,dns'
+        ]);
+        /*Validator::make($request,[
+            'email' => 'email:rfc,dns',
+        ],[
+            'education.required' => 'Este campo es obligatorio',
+        ])->validate();
+        try {
+            return redirect()->route('collector.stage.two_thanks');
+        }catch(\Exception $e){
+            return redirect()->back()->withInput()->with('error','Ocurrio un error verifique sus datos e intentelo de nuevo  '.$e->getMessage());
+        }*/
+
+    }
+
     //Update data in customers table and insert new data en customer_session table
     public function update(Request $request){
         $request          = $request->input();
@@ -485,6 +511,16 @@ class CustomerController extends Controller
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
         }
+
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+       // return $validate_dns;
+        if ($validate_dns <= 0){
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        }
+
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
