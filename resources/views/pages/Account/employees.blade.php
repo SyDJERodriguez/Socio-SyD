@@ -307,17 +307,18 @@
                     <div class="col-lg-12 text-center">
                         <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
                         <div class="row">
-                            <div class="col-lg-9 py-2 text-center">
-                                <p class="text-white">Tu dependiente perdera los beneficios</p>
-                                <p class="text-white">Al eliminarlo perderá todos sus beneficiosS</p>
-                            <div class="col-lg-3 py2 text-center">
+                            <div class="col-9 py-2 text-center">
+                                <p class="text-white">Tu dependiente perderá los beneficios</p>
+                                <p class="text-white">Al eliminarlo perderá todos sus beneficios</p>
+                            </div>
+                            <div class="col-3 py2 text-center">
                                 <a href="#"
                                    class="text-white btn btn bg-primary btn-sm my-2 confirmDeleteButton"
                                    style="padding-left: 40px;padding-right: 40px;">
-                                    SI
+                                    ACEPTAR
                                 </a>
                                 <br>
-                                <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal"
+                                <input type="button" class="btn btn-light btn-sm" value="CANCELAR" data-dismiss="modal"
                                        style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
                             </div>
                         </div>

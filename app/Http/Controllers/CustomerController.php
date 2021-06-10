@@ -274,7 +274,7 @@ class CustomerController extends Controller
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
 
         //Verify if the guest has an account
-        $verify_mobile_email = DB::table('customers_sessions')
+        $verify_mobile_email = DB::table('customers')
             ->where('mobile', '=', $request['mobile_number'])
             ->orWhere('email', '=', $request['email'])
             ->get();
