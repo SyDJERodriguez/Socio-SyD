@@ -24,45 +24,47 @@
               </div>
               <div class="alert alert-danger" id="form_alert_mec_pass" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_dns_mec" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form autocomplete="off" id="mechanicForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE" 
+                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE"
                         id="client_number_mec" name="client_number" pattern="[0-9]{8}" maxlength="8"required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameMec" 
+                        <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameMec"
                         name="name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" 
+                        <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO"
                         id="lastNameMec" name="last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" 
+                        <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO"
                         id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3" id="mobile" style="display: flex">
-                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" 
+                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
                         id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <label for="" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                        <input class="form-control btnBorder" type="date" id="birthday" 
+                        <input class="form-control btnBorder" type="date" id="birthday"
                             name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRÓNICO" 
+                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRÓNICO"
                         id="emailMec" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -96,14 +98,14 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <input type="hidden" id="client_type" name="client_type" value="2">
                 <div class="modal-footer border-top-0">
                     <div class="form-check form-check-inline text-right">
-                            <label class="form-check-label pr-2" for="inlineCheckbox1"  
+                            <label class="form-check-label pr-2" for="inlineCheckbox1"
                                 style="color: grey;font-size: 12px;">
                                 <strong>ACEPTAR</strong>
-                            
+
                             <br>
                             <a href="#" data-toggle="modal" data-target="#modalAviso">
                                 AVISO DE PRIVACIDAD</a>
@@ -113,7 +115,7 @@
                             </label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
-                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" 
+                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;"
                     id="btnSend" value="Enviar">
                 </div>
             </form>
@@ -127,13 +129,13 @@
         document.getElementById('rfcMec').addEventListener('focus',function() {
             var rfc = document.getElementById('rfc');
             var fecha = $('#birthday').val().split('-');
-    
+
             var CURP = [];
             CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
             for (let i = 1; i < $("#lastNameMec").val().length; i++) {
                 if($("#lastNameMec").val().charAt(i).match(/[aeiou]/gi)){
                     CURP[1] = $("#lastNameMec").val().charAt(i).toUpperCase();
-                    break;    
+                    break;
                 }
             }
             CURP[2] = $("#secondLastNameMec").val().charAt(0).toUpperCase();
@@ -141,8 +143,8 @@
             CURP[4] = fecha[0].slice(2);//year
             CURP[5] = fecha[1];//mont
             CURP[6] = fecha[2];//day
-    
+
             $('#rfcMec').val(CURP.join("").toString());
-            
+
         })
     </script>

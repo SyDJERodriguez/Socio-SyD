@@ -24,6 +24,8 @@
               </div>
               <div class="alert alert-danger" id="form_alert_cnt_ncnt" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_dns_cnt" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
@@ -33,7 +35,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE" 
+                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE"
                         id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -43,12 +45,12 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO" 
+                        <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO"
                         id="lastNameCNT" name="last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO" 
+                        <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO"
                         id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-Z ]" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -77,7 +79,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRÓNICO" 
+                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRÓNICO"
                         id="emailCNT" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -107,10 +109,10 @@
                 </div>
                 <div class="modal-footer border-top-0">
                     <div class="form-check form-check-inline text-right">
-                            <label class="form-check-label pr-2" for="inlineCheckbox1"  
+                            <label class="form-check-label pr-2" for="inlineCheckbox1"
                                 style="color: grey;font-size: 12px;">
                                 <strong>ACEPTAR</strong>
-                            
+
                             <br>
                             <a href="#" data-toggle="modal" data-target="#modalAviso">
                                 AVISO DE PRIVACIDAD</a>
@@ -120,7 +122,7 @@
                             </label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
-                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" 
+                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;"
                     id="btnSend" value="Enviar">
                 </div>
             </form>
@@ -134,13 +136,13 @@
             console.log("hola");
             var rfc = document.getElementById('rfcCNT');
             var fecha = $('#birthdayCNT').val().split('-');
-    
+
             var CURP = [];
             CURP[0] = $("#lastNameCNT").val().charAt(0).toUpperCase();
             for (let i = 1; i < $("#lastNameCNT").val().length; i++) {
                 if($("#lastNameCNT").val().charAt(i).match(/[aeiou]/gi)){
                     CURP[1] = $("#lastNameCNT").val().charAt(i).toUpperCase();
-                    break;    
+                    break;
                 }
             }
             CURP[2] = $("#secondLastNameCNT").val().charAt(0).toUpperCase();
@@ -148,8 +150,8 @@
             CURP[4] = fecha[0].slice(2);//year
             CURP[5] = fecha[1];//mont
             CURP[6] = fecha[2];//day
-    
+
             $('#rfcCNT').val(CURP.join("").toString());
-            
+
         })
     </script>

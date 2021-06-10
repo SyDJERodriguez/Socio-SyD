@@ -27,6 +27,8 @@
               </div>
               <div class="alert alert-danger" id="form_alert_phone_text" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="form_alert_dns" role="alert" style="border-radius: 6px;" hidden>
+              </div>
 
             <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
@@ -36,7 +38,7 @@
                         <h6 style="padding-left: 1px">Datos personales</h6>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE" id="client_number_pro" 
+                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE" id="client_number_pro"
                         name="client_number" maxlength="8" required pattern="[0-9]{8}">
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -54,7 +56,7 @@
                     </div>
                 </div>
                 <div class="row">
-                   
+
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3" style="display: flex">
@@ -75,7 +77,7 @@
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
-                            <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro" 
+                            <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro"
                             name="mobile" maxlength="10" pattern="[0-9]{10}" required>
                             {{-- <div class="input-group-append">
                                 <div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>
@@ -89,12 +91,12 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO" 
+                        <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO"
                         id="emailPro" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
-                
+
                 <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfc" name="rfc" required>
@@ -172,7 +174,7 @@
         for (let i = 1; i < $("#lastNamePro").val().length; i++) {
             if($("#lastNamePro").val().charAt(i).match(/[aeiou]/gi)){
                 CURP[1] = $("#lastNamePro").val().charAt(i).toUpperCase();
-                break;    
+                break;
             }
         }
         CURP[2] = $("#secondLastNamePro").val().charAt(0).toUpperCase();
@@ -182,6 +184,6 @@
         CURP[6] = fecha[2];//day
 
         $('#rfc').val(CURP.join("").toString());
-        
+
     })
 </script>
