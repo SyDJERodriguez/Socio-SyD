@@ -63,7 +63,7 @@
                 <div class="col-lg-12 py-2 text-center">
                     <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
                 <div>
-                    <h5 class="text-white"><b>Al hacer click en aceptar, confirmas que:<br>
+                    <h5 class="text-white"><b>Al hacer click en aceptar, confirmas:<br>
                         que estas de acuerdo en que perderás los beneficios de Seguro de Accidentes Personales 
                         y Servicios de Asistencias</b></h5>
                 </div>
