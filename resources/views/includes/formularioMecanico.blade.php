@@ -37,24 +37,31 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameMec"
-                        name="name" pattern="[a-zA-Z ]" required>
+                        name="name" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO"
-                        id="lastNameMec" name="last_name" pattern="[a-zA-Z ]" required>
+                        id="lastNameMec" name="last_name" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO"
-                        id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z ]" required>
+                        id="secondLastNameMec" name="second_last_name" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3" id="mobile" style="display: flex">
-                        <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
-                        id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div style="border: 1px solid black" class="input-group-text">+52</div>
+                            </div>
+                            <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
+                            id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                            <div class="input-group-append" id="form_alert_phone" hidden>
+                            </div>
+                        </div>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">

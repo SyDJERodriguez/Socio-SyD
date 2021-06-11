@@ -49,11 +49,19 @@
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
-                                <input class="form-control-sm form-control mobileInput" type="text"
-                                        name="mobile_number"
-                                        placeholder="NO. TELEFÓNICO 10 DIG"
-                                        pattern="[0-9]{10}"
-                                        required  maxlength="10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <div style="border: 1px solid black" class="input-group-text">+52</div>
+                                    </div>
+                                    <input type="text" class="form-control btnBorder mobileInput" 
+                                    placeholder="NO. TELEFÓNICO 10 DIG"
+                                    name="mobile_number" 
+                                    maxlength="10" 
+                                    pattern="[0-9]{10}" 
+                                    required>
+                                    <div class="input-group-append" id="form_alert_phone" hidden>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
