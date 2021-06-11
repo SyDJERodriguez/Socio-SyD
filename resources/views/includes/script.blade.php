@@ -347,6 +347,10 @@
                         document.getElementById("form_alert_phone_text_AEF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
                         document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor porporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
                     }
                 },
                 error: function(data){

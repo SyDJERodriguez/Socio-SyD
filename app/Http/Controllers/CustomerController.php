@@ -276,6 +276,15 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
         }
 
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        }
+
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
 

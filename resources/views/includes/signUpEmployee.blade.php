@@ -13,6 +13,8 @@
                 <br>
                 <div class="alert alert-danger" id="form_alert_phone_text_AEF" role="alert" style="border-radius: 6px;" hidden>
                 </div>
+                <div class="alert alert-danger" id="form_alert_dns_AEF" role="alert" style="border-radius: 6px;" hidden>
+                </div>
                 <br>
                 <form autocomplete="off" id="addEmployeeForm" method="POST" action="{{route('customer.addEmployee')}}">
                     @method("PUT")
