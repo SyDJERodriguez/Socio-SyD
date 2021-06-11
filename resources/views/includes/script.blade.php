@@ -31,14 +31,14 @@
                             $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
                             setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
-                        /*$('input[id=namePro]').val(data['name']);
+                        $('input[id=namePro]').val(data['name']);
                         $('input[id=lastNamePro]').val(data['last_name']);
                         $('input[id=secondLastNamePro]').val(data['second_last_name']);
                         $('input[id=mobilePro]').val(data['mobile_number']);
                         $('input[id=emailPro]').val(data['email']);
                         $('input[id=companyPro]').val(data['company']);
                         $('input[id=rfc]').val(data['rfc']);
-                        $('input[id=birthday]').val(data['birthday']);*/
+                        $('input[id=birthday]').val(data['birthday']);
                     },
                     error: function(error){
                         console.log(error);
