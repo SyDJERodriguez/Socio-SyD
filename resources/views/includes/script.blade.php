@@ -368,6 +368,34 @@
             return false;
         });
 
+        //UpdateDataForm's form
+        $("#updateDataForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend3");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_UDF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_UDF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_UDF").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_UDF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_UDF").hidden = true},3500)
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){
             // We capture send button

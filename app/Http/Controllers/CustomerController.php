@@ -689,6 +689,12 @@ class CustomerController extends Controller
         //For customer_session table
         $client_number = '00'.$request['client_number'];
 
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile']);
+        if ($valid == false){
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
         if(!empty($request['password'])) {
             $passwordVerify = $request['password'];
             $passwordConfirm = $request['confirmPassword'];

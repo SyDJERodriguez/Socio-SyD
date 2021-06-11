@@ -25,9 +25,11 @@
             </div>
             <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
             </div>
+            <div class="alert alert-danger" id="form_alert_phone_text_UDF" role="alert" style="border-radius: 6px;" hidden>
+            </div>
 
           @if (isset($data))
-              <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.updateData')}}">
+              <form autocomplete="off" id="updateDataForm" method="POST" action="{{route('customer.updateData')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -80,7 +82,7 @@
                             </div>
                             <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
                             id="mobilePro" name="mobile" maxlength="10" pattern="[0-9]{10}" value="{{$data->mobile_number}}" required>
-                            <div class="input-group-append" id="form_alert_phone" hidden>
+                            <div class="input-group-append" id="form_alert_phone_UDF" hidden>
                             </div>
                         </div>
                         <p style="color: red; margin: 0;">*</p>
@@ -145,7 +147,7 @@
                 @endif
             
                 <div class="modal-footer border-top-0">
-                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
+                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend3" value="Enviar">
                 </div>
             </form>
           @endif
