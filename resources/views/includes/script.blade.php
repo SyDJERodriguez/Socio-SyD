@@ -329,6 +329,34 @@
             return false;
         });
 
+        //AddEmployeeForm's form
+        $("#addEmployeeForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend2");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){
             // We capture send button

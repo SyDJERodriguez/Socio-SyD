@@ -270,6 +270,12 @@ class CustomerController extends Controller
         $request       = $request->input();
         $client_number = $request['client_number'];
 
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile_number']);
+        if ($valid == false){
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
 
