@@ -18,11 +18,13 @@
             </div>
               <div class="alert alert-danger" id="form_alert_mec" role="alert" style="border-radius: 6px;" hidden>
               </div>
-          <div class="alert alert-danger" id="form_alert_mec_email" role="alert" style="border-radius: 6px;" hidden>
-          </div>
+              <div class="alert alert-danger" id="form_alert_mec_email" role="alert" style="border-radius: 6px;" hidden>
+              </div>
               <div class="alert alert-danger" id="form_alert_mec_mobile" role="alert" style="border-radius: 6px;" hidden>
               </div>
               <div class="alert alert-danger" id="form_alert_mec_pass" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="form_alert_phone_text_mec" role="alert" style="border-radius: 6px;" hidden>
               </div>
               <div class="alert alert-danger" id="form_alert_dns_mec" role="alert" style="border-radius: 6px;" hidden>
               </div>
@@ -59,7 +61,7 @@
                             </div>
                             <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
                             id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
-                            <div class="input-group-append" id="form_alert_phone" hidden>
+                            <div class="input-group-append" id="form_alert_phone_mec" hidden>
                             </div>
                         </div>
                         <p style="color: red; margin: 0;">*</p>

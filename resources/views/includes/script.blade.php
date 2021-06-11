@@ -91,8 +91,8 @@
                             document.getElementById("form_alert_mec")
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
-                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert_mec").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
@@ -229,6 +229,13 @@
                         document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente ';
                         document.getElementById("form_alert_mec").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_mec").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_mec").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_mec").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_mec").innerHTML='El número telefónico no es válido. Verifica tus datos';
+                        document.getElementById("form_alert_phone_text_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_mec").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
                         document.getElementById("form_alert_dns_mec").innerHTML='Por favor porporciona un email válido';
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
