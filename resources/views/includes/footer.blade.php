@@ -102,7 +102,7 @@
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>
                               <span>TELÉFONO:</span><br>
-                                <a href="tel:8007931010">800 SYD (793) 1010</a>
+                                <a href="tel:8007931010">800 SyD (793) 1010</a>
                               <hr>
                           </p>
                           <p>
