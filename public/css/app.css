@@ -93,20 +93,57 @@ div input.btnBorder{
     border-color: black;
 }
 
-.whatsapp{
-    top: 720px;
-    right: 0px;
-    position: fixed;
-    z-index: 99;
-    text-align: right;
+@media (min-width: 893px){
+    .whatsapp{
+        top: 600px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
+
+    .upButton{
+        top: 665px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
+}
+@media (max-width: 892px){
+    .whatsapp{
+        top: 445px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
+
+    .upButton{
+        top: 510px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
 }
 
-.upButton{
-    top: 785px;
-    right: 0px;
-    position: fixed;
-    z-index: 99;
-    text-align: right;
+@media (min-width: 1600px) {
+    .whatsapp {
+        top: 720px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
+
+    .upButton {
+        top: 785px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+    }
 }
 
 .top-bar {
@@ -359,7 +396,7 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div.divAzul{
-        height: 750px;
+        height: 720px !important;
     }
 
 }
@@ -540,6 +577,11 @@ h5.footerTitle3{
 }
 
 @media(max-width:991px){
+    img.imgTipo{
+
+        height: 10%;
+        width: 80%;
+    }
     p.textBene{
         font-size: 20px;
         padding-top: 5px;
@@ -570,11 +612,6 @@ h5.footerTitle3{
     }
     div.contenedorIcon img.iconBene2{
         width: 70px;
-    }
-    img.imgTipo{
-
-        height: 10% !important;
-        width: 80% !important;
     }
 }
 
