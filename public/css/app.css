@@ -94,7 +94,7 @@ div input.btnBorder{
 }
 
 .whatsapp{
-    top: 470px;
+    top: 720px;
     right: 0px;
     position: fixed;
     z-index: 99;
@@ -102,7 +102,7 @@ div input.btnBorder{
 }
 
 .upButton{
-    top: 530px;
+    top: 785px;
     right: 0px;
     position: fixed;
     z-index: 99;
@@ -359,7 +359,7 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div.divAzul{
-        height: 850px;
+        height: 750px;
     }
 
 }
@@ -573,7 +573,8 @@ h5.footerTitle3{
     }
     img.imgTipo{
 
-        max-height: 300px;
+        height: 10% !important;
+        width: 80% !important;
     }
 }
 
@@ -1739,4 +1740,12 @@ Label the data for the second TABLE
 
 .box_documents {
     height: 600px;
+}
+
+.info-content:hover p{
+    color: #00a5e6 !important;
+}
+
+.info-content:hover h5{
+    color: #00a5e6 !important;
 }
