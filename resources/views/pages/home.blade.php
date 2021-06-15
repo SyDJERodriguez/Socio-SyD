@@ -18,7 +18,7 @@
                         style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px">
                         VER VIDEO</a><br>
                         <a href="https://syd-files.s3.amazonaws.com/Folleto.pdf" class="btn btn-lg" id="btnVideo"
-                           style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px">
+                           style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank">
                             DESCARGAR FOLLETO INFORMATIVO</a>
                     </p>
                 </div>
@@ -78,8 +78,8 @@
                         <strong>REGÍSTRATE</strong>
                         <br><br>
                     <span style="font-size:15px;">
-                        Hazlo desde<br>
-                        cualquier dispositivo
+                        Desde cualquier<br>
+                         dispositivo
                         </span>
                     </p>
                 </div>
@@ -96,9 +96,8 @@
                         <strong>COMPRA</strong>
                         <br><br>
                     <span style="font-size:15px;">
-                        Haz una compra mínima<br>
-                        de <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
-                        DAR Refaccionarias®
+                        Mínimo <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
+                        DAR Refaccionarias® <br> o canales autorizados
                     </span>
                     </p>
                 </div>
@@ -148,23 +147,23 @@
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
-                            <strong>Registrate y recibe beneficios para ti y tus colaboradores de negocio</strong>
+                            <strong>Registrate y recibe beneficios para ti y hasta ocho colaboradores, como:</strong>
                         </h6>
                         <img class="my-3" src="{{asset('img/car.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
-                            <p class="my-2 text-white">Para ti y hasta 8 colaboradores recibe<br>
-                                beneficios como:<br>
-
+                            <p class="my-2 text-white">
                                 <strong>
                                     • Seguro contra accidentes<br>
-                                    • Asistencia las 24 horas
+                                    • Asistencia las 24 horas <br>
+                                    • Consulta médica telefónica <br>
+                                    • Video consulta por COVID
                                 </strong>
                             </p>
                         </div>
 
                         <div>
                             <img class="my-3 imgTipo" src="{{asset('img/tabla2.png')}}" alt="tablaNegocios"
-                            style="max-width: 100%;padding: 0px 30px 0px 30px">
+                            style="width: 41%; height: 10%;">
                         </div>
 
                         <div class="my-4 mb-5">
@@ -184,10 +183,10 @@
                         <img class="my-3" src="{{asset('img/men_2.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">
-                                Recibe beneficios como:<br>
                                 <strong>
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
+                                    <br>
                                 </strong>
                                 <br>
                             </p>
@@ -195,7 +194,7 @@
 
                         <div>
                             <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla1.png')}}" alt="tablaIndivuales"
-                            style="max-width: 100%;padding: 0 30px 0 30px">
+                            style="width: 50%; height: 10%;">
                         </div>
 
 
@@ -218,19 +217,24 @@
         </div>
         <div class="container-fluid">
             <div class="row blue-dark py-5 m-0">
-                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalSeguros">
-                    <img src="{{asset('img/segor.png')}}" class="pb-4" alt="">
-                    <h5 class="text-white mt-2"><strong>SEGURO DE ACCIDENTES<br>
-                            PERSONALES</strong></h5>
-                    <p>Hasta $50,000 pesos<br>por muerte accidental</p>
+                <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalSeguros" id="">
+                    <div class="info-content">
+                        <img src="{{asset('img/segor.png')}}" class="pb-4" alt="">
+                        <h5 class="text-white mt-2"><strong>SEGURO DE ACCIDENTES<br>
+                                PERSONALES</strong></h5>
+                        <p>Hasta $50,000 pesos<br>por muerte accidental</p>
+                    </div>
+
                 </div>
                 <div class="col-lg-6 text-center text-white" style="cursor: pointer;" data-toggle="modal" data-target="#modalAsistencias">
-                    <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
-                    <h5 class="text-white"><strong>SERVICIOS<br>
-                        DE ASISTENCIA</strong></h5>
-                    <p>Asistencia Médica 24 horas/<br>
-                        Servicio de Grúa/Ambulancia<br>Terrestre/Servicio Funerario<br>
-                        por hasta $10,000</p>
+                    <div class="info-content">
+                        <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
+                        <h5 class="text-white"><strong>SERVICIOS<br>
+                                DE ASISTENCIA</strong></h5>
+                        <p>Asistencia Médica 24 horas/<br>
+                            Servicio de Grúa/Ambulancia<br>Terrestre/Servicio Funerario<br>
+                            por hasta $10,000</p>
+                    </div>
                 </div>
             </div>
         </div>
