@@ -179,7 +179,7 @@
                         document.getElementById("form_alert_phone_text").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
 
@@ -237,7 +237,7 @@
                         document.getElementById("form_alert_phone_text_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_mec").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_mec").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns_mec").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
@@ -319,7 +319,7 @@
                         document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_cnt").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns_cnt").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_cnt").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_cnt").hidden = true},3500)
 
@@ -337,7 +337,7 @@
         });
 
         //AddEmployeeForm's form
-        $("#addEmployeeForm").bind("submit",function(){
+        /*$("#addEmployeeForm").bind("submit",function(){
             // We capture send button
             let btnSend = $("#btnSend2");
             $.ajax({
@@ -346,8 +346,13 @@
                 data:$(this).serialize(),
 
                 success: function(data){
-                    console.log(data);
-                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                    //console.log(data);
+                    if(data['success'] ==='true'){
+                        //$('#modalSignUpEmployee').modal('hide');
+                        $('#associateSuccess').modal('show');
+                        return true;
+
+                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
@@ -355,21 +360,22 @@
                         document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor porporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor proporciona un email válido</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
                     }
                 },
                 error: function(data){
+                    //console.log(data)
                     $('#modalErrorServer').modal('show');
                 }
             });
             // Nos permite cancelar el envio del formulario
             return false;
-        });
+        });*/
 
         //UpdateDataForm's form
-        $("#updateDataForm").bind("submit",function(){
+        /*$("#updateDataForm").bind("submit",function(){
             // We capture send button
             let btnSend = $("#btnSend3");
             $.ajax({
@@ -394,7 +400,7 @@
             });
             // Nos permite cancelar el envio del formulario
             return false;
-        });
+        });*/
 
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){

@@ -67,6 +67,22 @@
                     </script>
                 @endif
 
+                @if(session()->has('phoneNoValid'))
+                    <script>
+                        $(function() {
+                            $('#phoneNoValid').modal('show');
+                        });
+                    </script>
+                @endif
+
+                @if(session()->has('dnsNoValid'))
+                <script>
+                    $(function() {
+                        $('#dnsNoValid').modal('show');
+                    });
+                </script>
+            @endif
+
                 @if(session()->has('success'))
                     <script>
                         $(function() {
@@ -159,6 +175,48 @@
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">TU COLABORADOR HA SIDO DADO <br> DE ALTA CORRECTAMENTE</h5>
                         {{-- <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p> --}}
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- phoneNoValid Modal -->
+<div class="modal fade" id="phoneNoValid" tabindex="-1" role="dialog" aria-labelledby="phoneNoValid" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                        <h5 class="text-white">¡NÚMERO TELEFÓNICO NO VÁLIDO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, número de teléfono no es válido</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- dnsNoValid Modal -->
+<div class="modal fade" id="dnsNoValid" tabindex="-1" role="dialog" aria-labelledby="dnsNoValid" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                        <h5 class="text-white">¡CORREO ELECTRÓNICO NO VÁLIDO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, el email no es válido</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>

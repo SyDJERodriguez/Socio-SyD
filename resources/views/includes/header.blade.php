@@ -461,7 +461,8 @@ padding-bottom: 14px;">
                         <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
-                                    <h5 class="text-white">ERROR</h5>
+                                    <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                                    <h5 class="text-white">NO SE ACTUALIZARON LOS DATOS</h5>
                                     <p class="text-white">{{Session::get('msg')}}</p>
                                     <a href="#" data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                                         ACEPTAR
