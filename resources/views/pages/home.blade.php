@@ -162,7 +162,7 @@
                         </div>
 
                         <div>
-                            <img class="my-3 imgTipo" src="{{asset('img/tabla2.png')}}" alt="tablaNegocios"
+                            <img class="my-3 imgTipo" src="{{asset('img/tabla1.svg')}}" alt="tablaNegocios"
                             style="width: 41%; height: 10%;">
                         </div>
 
@@ -178,7 +178,7 @@
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>MECÁNICO INDEPENDIENTE</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
-                            <strong>Registrate y recibe beneficios únicamente para ti</strong>
+                            <strong>Registrate y recibe beneficios únicamente para ti, como:</strong>
                         </h6>
                         <img class="my-3" src="{{asset('img/men_2.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
@@ -186,6 +186,8 @@
                                 <strong>
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
+                                    • Consulta médica telefónica <br>
+                                    • Video consulta por COVID
                                     <br>
                                 </strong>
                                 <br>
@@ -193,7 +195,7 @@
                         </div>
 
                         <div>
-                            <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla1.png')}}" alt="tablaIndivuales"
+                            <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla2.svg')}}" alt="tablaIndivuales"
                             style="width: 50%; height: 10%;">
                         </div>
 
