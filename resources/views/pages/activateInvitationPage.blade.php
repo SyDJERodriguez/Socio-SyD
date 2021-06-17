@@ -45,13 +45,13 @@
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">REGISTRO REALIZADO CON ÉXITO</h5>
-                            <p class="text-white">Sigue estos dos pasos para que empieces a disfrutar de los beneficios <br> que el programa Socio SyD® tiene para ti:</p>
+                            <p class="text-white">Sigue estos dos pasos para que empieces a disfrutar de los beneficios <br> que el programa <b>Socio SyD</b>® tiene para ti:</p>
                             <ul>
                                 <li>
                                     <p class="text-white">Revisa tu bandeja de correo electrónico </p>
                                 </li>
                                 <li>
-                                    <p class="text-white">Ingresa a la página sociosyd.com con tu correo y contraseña generada</p>
+                                    <p class="text-white">Ingresa a la página <b>sociosyd.com</b> con tu correo y contraseña generada</p>
                                 </li>
                             </ul>
                             

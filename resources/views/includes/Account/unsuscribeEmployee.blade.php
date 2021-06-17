@@ -54,7 +54,7 @@
             <div class="modal-body blue-dark">
                 <div>
                     <div>
-                        <h5 class="text-white"><b>En caso de que no tengas o bien, no recuerdes tu número de cliente, comunícate al 800 SyD (793) 1010 y con gusto te apoyamos</b></h5>
+                        <h5 class="text-white"><b>En caso de que no tengas o bien, no recuerdes tu número de cliente, comunícate al <b>800 SyD (793) 1010</b> y con gusto te apoyamos</b></h5>
                     </div>
                 </div>
                 <div class="row">

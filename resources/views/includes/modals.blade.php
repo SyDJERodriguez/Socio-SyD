@@ -77,9 +77,9 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
                         <h5 class="text-white">ERROR AL GENERAR EL REGISTRO</h5>
-                        <p class="text-white">Ha ocurrido un error. Por favor revíselo e inténtelo nuevamente</p>
+                        <p class="text-white">Ha ocurrido un error. <br>Por favor revíselo e inténtelo nuevamente</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">SU CONTRASEÑA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
-                        <p class="text-white">Por favor ingresa a nuestra página sociosyd.com con tu nueva contraseña</p>
+                        <p class="text-white">Por favor ingresa a nuestra página <b>sociosyd.com</b> con tu nueva contraseña</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
@@ -167,8 +167,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS RESTABLECER TU CONTRASEÑA</h5>
-                        <p class="text-white">En un momento recibirás un correo con los pasos para que puedas restablecer tu contraseña</p>
+                        <h5 class="text-white">SE HA ENVIADO UN MAIL PARA QUE PUEDAS <br>RESTABLECER TU CONTRASEÑA</h5>
+                        <p class="text-white">En un momento recibirás un correo <br>con los pasos para que puedas restablecer tu contraseña</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
@@ -312,7 +312,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">SU CUENTA HA SIDO RESTABLECIDA CORRECTAMENTE</h5>
-                        <p class="text-white">Ya puedes ingresar a nuestra página sociosyd.com con tu nueva cuenta</p>
+                        <p class="text-white">Ya puedes ingresar a nuestra página <b>sociosyd.com</b> <br>con tu nueva cuenta</p>
                         <p class="text-white" id="clientNumber"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
                     </div>
