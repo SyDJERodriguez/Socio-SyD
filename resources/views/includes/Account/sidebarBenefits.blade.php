@@ -27,7 +27,7 @@
         style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
         <p style="font-size: 13px">
             Contacto de SyD®:
-              <a href="tel:8007931010">800-SYD-1010</a>
+              <a href="tel:8007931010">800-SyD-(793)-1010</a>
         </p>
         <hr>
      </div>

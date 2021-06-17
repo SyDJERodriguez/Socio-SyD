@@ -270,6 +270,21 @@ class CustomerController extends Controller
         $request       = $request->input();
         $client_number = $request['client_number'];
 
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile_number']);
+        if ($valid == false){
+            return redirect()->back()->with('phoneNoValid', 'the email/mobile number its already in db');
+        }
+
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return redirect()->back()->with('dnsNoValid', 'the email/mobile number its already in db');
+        }
+
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
 
@@ -379,7 +394,7 @@ class CustomerController extends Controller
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
-            //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
+            //return response()->json(['success'=>'true']);
             //return redirect()->route('customer.employees');
             return redirect()->back()->with('success', 'the email/mobile number its already in db');
         }else{
@@ -673,6 +688,12 @@ class CustomerController extends Controller
 
         //For customer_session table
         $client_number = '00'.$request['client_number'];
+
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile']);
+        if ($valid == false){
+            return redirect()->back()->with('msg', 'El número de teléfono no es válido');
+        }
 
         if(!empty($request['password'])) {
             $passwordVerify = $request['password'];

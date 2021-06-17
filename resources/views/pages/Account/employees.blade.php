@@ -67,6 +67,22 @@
                     </script>
                 @endif
 
+                @if(session()->has('phoneNoValid'))
+                    <script>
+                        $(function() {
+                            $('#phoneNoValid').modal('show');
+                        });
+                    </script>
+                @endif
+
+                @if(session()->has('dnsNoValid'))
+                <script>
+                    $(function() {
+                        $('#dnsNoValid').modal('show');
+                    });
+                </script>
+            @endif
+
                 @if(session()->has('success'))
                     <script>
                         $(function() {
@@ -111,7 +127,8 @@
                                 <a class="btn btn-outline-dark btn-sm btn-block delete"
                                         style="border: 0px"
                                         href="#"
-                                        role="button" id="{{$as->id}}" onclick="deleteEmployee('{{$as->id}}')">
+                                        role="button" id="{{$as->id}}" 
+                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -157,9 +174,50 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¡HAS AGREGADO CORRECTAMENTE A TU DEPENDIENTE!</h5>
-                        <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p>
-                        <p class="text-white" id="clientNumber"></p>
+                        <h5 class="text-white">TU COLABORADOR HA SIDO DADO <br> DE ALTA CORRECTAMENTE</h5>
+                        {{-- <p class="text-white">Se ha enviado un email a tu dependiente para crear su cuenta</p> --}}
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- phoneNoValid Modal -->
+<div class="modal fade" id="phoneNoValid" tabindex="-1" role="dialog" aria-labelledby="phoneNoValid" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                        <h5 class="text-white">¡NÚMERO TELEFÓNICO NO VÁLIDO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, número de teléfono no es válido</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- dnsNoValid Modal -->
+<div class="modal fade" id="dnsNoValid" tabindex="-1" role="dialog" aria-labelledby="dnsNoValid" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
+                        <h5 class="text-white">¡CORREO ELECTRÓNICO NO VÁLIDO!</h5>
+                        <p class="text-white">No es posible registrar al asociado, el email no es válido</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>
@@ -178,7 +236,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS AGREGADO UN USUARIO CON CUENTA INDIVIDUAL!</h5>
                         <p class="text-white">El email y/o número de teléfono pertenecen a una cuenta individual</p>
                         <p class="text-white">Se ha enviado un email al usuario para aceptar tu invitación</p>
@@ -201,7 +259,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO CON CUENTA DE NEGOCIO!</h5>
                         <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta de negocio</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -222,7 +280,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡HAS INTENTADO AGREGAR UN USUARIO REGISTRADO!</h5>
                         <p class="text-white">No es posible registrar al asociado, el email y/o número de teléfono pertenecen a una cuenta registrada</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -243,7 +301,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA HA SIDO TU COLABORADOR!</h5>
                         <p class="text-white">El correo y/o número de teléfono ya ha sido dependiente de este negocio</p>
                         <p class="text-white">Se ha enviado un email para que active nuevamente su cuenta</p>
@@ -265,7 +323,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
                         <h5 class="text-white">¡EL DEPENDIENTE AGREGADO YA ESTA ASOCIADO A OTRA CUENTA DE NEGOCIO!</h5>
                         <p class="text-white">El correo y/o número de teléfono ya es dependiente de un cuenta de negocio</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
@@ -286,8 +344,8 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">¡HAS LLEGADO AL LIMITE DE USUARIOS DEPENDIENTES!</h5>
-                        <p class="text-white">Sigue comprando para darle beneficios a más dependientes</p>
+                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <p class="text-white">Has llegado al límite de usuarios dependientes</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>
@@ -305,23 +363,23 @@
             </div>
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <img src="{{asset('img/icon_check.png')}}">
-                        <h5 class="text-white">¿ESTAS SEGURO QUE DESEAS ELIMINAR A TU DEPENDIENTE?</h5>
-                        <p class="text-white">Tu dependiente perdera los beneficios</p>
+                    <div class="col-12 text-center">
+                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
                         <div class="row">
-                            <div class="col-lg-9 py-2 text-center">
-                                <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
-                            <div class="col-lg-3 py2 text-center">
+                            <div class="col-8 py-2 text-center">
+                                <p class="text-white">El siguiente dependiente perderá los beneficios:</p>
+                                <p class="text-white" id="nameDependient"></p>
+                                <p class="text-white">Al eliminarlo perderá todos sus beneficios</p>
+                            </div>
+                            <div class="col-2 py2 text-center" style="padding: 30px 0 0 0;">
+                                <input type="button" class="btn btn-light btn-sm" value="CANCELAR" data-dismiss="modal"
+                                       style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;width: 138px;">
+                                <br>
                                 <a href="#"
                                    class="text-white btn btn bg-primary btn-sm my-2 confirmDeleteButton"
-                                   style="padding-left: 40px;padding-right: 40px;"
-                                   >
-                                    SI
+                                   style="padding-left: 40px;padding-right: 40px">
+                                    ACEPTAR
                                 </a>
-                                <br>
-                                <input type="button" class="btn btn-light btn-sm" value="NO" data-dismiss="modal"
-                                       style="padding-left: 35px;padding-right: 35px;background-color: white;color: #00A5E6;">
                             </div>
                         </div>
                     </div>
@@ -333,9 +391,10 @@
 
 <script>
 
-    function deleteEmployee(id){
-        console.log(id)
+    function deleteEmployee(id,name){
+        //console.log(id+" "+name)
         //$('.confirmDeleteButton').attr('id', id);
+        document.getElementById('nameDependient').innerText=name;
         let href_button = "{{ url('/customer/employees/{id}/delete') }}";
         href_button = href_button.replace('{id}', id)
         $('.confirmDeleteButton').attr('href', href_button)

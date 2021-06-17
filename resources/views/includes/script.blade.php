@@ -29,16 +29,16 @@
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
-                        /*$('input[id=namePro]').val(data['name']);
+                        $('input[id=namePro]').val(data['name']);
                         $('input[id=lastNamePro]').val(data['last_name']);
                         $('input[id=secondLastNamePro]').val(data['second_last_name']);
                         $('input[id=mobilePro]').val(data['mobile_number']);
                         $('input[id=emailPro]').val(data['email']);
                         $('input[id=companyPro]').val(data['company']);
                         $('input[id=rfc]').val(data['rfc']);
-                        $('input[id=birthday]').val(data['birthday']);*/
+                        $('input[id=birthday]').val(data['birthday']);
                     },
                     error: function(error){
                         console.log(error);
@@ -60,8 +60,8 @@
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert_cnt").innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button> El número de cliente no se encuentra en la base de datos';
                             document.getElementById("form_alert_cnt").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=nameCNT]').val(data['name']);
                         $('input[id=lastNameCNT]').val(data['last_name']);
@@ -91,8 +91,8 @@
                             document.getElementById("form_alert_mec")
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert_mec").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
@@ -122,8 +122,8 @@
                             document.getElementById("form_alert_employee")
                                 .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_employee").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){$(this).parent().hide()});
-                            //setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3500);
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
@@ -179,7 +179,7 @@
                         document.getElementById("form_alert_phone_text").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
 
@@ -229,8 +229,15 @@
                         document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente ';
                         document.getElementById("form_alert_mec").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
+                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_mec").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_mec").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_mec").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_mec").innerHTML='El número telefónico no es válido. Verifica tus datos';
+                        document.getElementById("form_alert_phone_text_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_mec").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_mec").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns_mec").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
@@ -312,7 +319,7 @@
                         document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_cnt").innerHTML='Por favor porporciona un email válido';
+                        document.getElementById("form_alert_dns_cnt").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_cnt").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_cnt").hidden = true},3500)
 
@@ -328,6 +335,72 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
+
+        //AddEmployeeForm's form
+        /*$("#addEmployeeForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend2");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    //console.log(data);
+                    if(data['success'] ==='true'){
+                        //$('#modalSignUpEmployee').modal('hide');
+                        $('#associateSuccess').modal('show');
+                        return true;
+
+                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor proporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
+                    }
+                },
+                error: function(data){
+                    //console.log(data)
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });*/
+
+        //UpdateDataForm's form
+        /*$("#updateDataForm").bind("submit",function(){
+            // We capture send button
+            let btnSend = $("#btnSend3");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_UDF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_UDF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_UDF").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_UDF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_UDF").hidden = true},3500)
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });*/
 
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){

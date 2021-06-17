@@ -62,8 +62,7 @@
                         <div class="col-lg-12 text-center">
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">TU CUENTA HA SIDO ACTIVADA</h5>
-                            <p class="text-white">Tu cuenta ha sido activada</p>
-                            <p class="text-white">¡Estas listo para disfrutar de los beneficios que Socio SyD® tiene para ti! <br> Solo tienes que ingresar a la página sociosyd.com</p>
+                            <p class="text-white">¡Estas listo para disfrutar de los beneficios que <b>Socio SyD</b>® tiene para ti! <br> Solo tienes que ingresar a la página <b>sociosyd.com</b></p>
                             <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                 style="background-color: #00A5E6;">ENTRAR</a>
                         </div>

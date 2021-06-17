@@ -413,7 +413,7 @@
                     nuestros canales digitales,
                     (<a href="https://www.syd.com-mx">https://www.syd.com.mx</a> –
                     <a href="https://www.refaccionariasdar.com.mx">https://www.refaccionariasdar.com.mx</a>)
-                    o llamando al número a <a href="tel:8007931010">800-SYD®-1010</a>.<br><br>
+                    o llamando al número a <a href="tel:8007931010">800-SyD®-1010</a>.<br><br>
 
                     Las cuentas individuales tendrán acceso a cada uno de estos beneficios al alcanzar el monto de
                     compra

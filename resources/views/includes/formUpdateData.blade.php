@@ -25,9 +25,11 @@
             </div>
             <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
             </div>
+            <div class="alert alert-danger" id="form_alert_phone_text_UDF" role="alert" style="border-radius: 6px;" hidden>
+            </div>
 
           @if (isset($data))
-              <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.updateData')}}">
+              <form autocomplete="off" id="updateDataForm" method="POST" action="{{route('customer.updateData')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -42,17 +44,17 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name"
-                        value="{{$data->name}}" required>
+                        value="{{$data->name}}" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNameUp" name="last_name"
-                        value="{{$data->last_name}}" required>
+                        value="{{$data->last_name}}" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex"> 
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name"
-                        value="{{$data->second_last_name}}" required>
+                        value="{{$data->second_last_name}}" pattern="[a-zA-Z ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
@@ -74,8 +76,15 @@
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobilePro"
-                        name="mobile" maxlength="10" pattern="[0-9]{10}" value="{{$data->mobile_number}}" required>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div style="border: 1px solid black" class="input-group-text">+52</div>
+                            </div>
+                            <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
+                            id="mobilePro" name="mobile" maxlength="10" pattern="[0-9]{10}" value="{{$data->mobile_number}}" required>
+                            <div class="input-group-append" id="form_alert_phone_UDF" hidden>
+                            </div>
+                        </div>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
@@ -138,7 +147,7 @@
                 @endif
             
                 <div class="modal-footer border-top-0">
-                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
+                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend3" value="Enviar">
                 </div>
             </form>
           @endif
