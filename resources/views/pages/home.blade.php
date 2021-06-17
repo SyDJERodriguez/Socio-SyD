@@ -163,7 +163,7 @@
 
                         <div>
                             <img class="my-3 imgTipo" src="{{asset('img/tabla1.svg')}}" alt="tablaNegocios"
-                            style="width: 41%; height: 10%;">
+                            style="width: 41%; height: 10%; margin-bottom: 0 !important; margin-top: 11px !important;">
                         </div>
 
                         <div class="my-4 mb-5">
@@ -188,7 +188,6 @@
                                     • Asistencia médica las 24 horas<br>
                                     • Consulta médica telefónica <br>
                                     • Video consulta por COVID
-                                    <br>
                                 </strong>
                                 <br>
                             </p>
@@ -196,7 +195,7 @@
 
                         <div>
                             <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla2.svg')}}" alt="tablaIndivuales"
-                            style="width: 50%; height: 10%;">
+                            style="width: 50%; height: 10%; margin-bottom: 3px !important;">
                         </div>
 
 
