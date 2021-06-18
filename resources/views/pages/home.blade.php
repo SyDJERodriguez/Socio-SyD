@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="col-lg-6 p-0">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide carusel-desktop" data-ride="carousel">
 
                         <div class="carousel-inner">
                             <div class="carousel-item active ">
@@ -50,6 +50,37 @@
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div id="carouselExampleIndicator" class="carousel slide carusel-mobile" data-ride="carousel" style="display: none;">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <img src="{{asset('img/banners/1.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{asset('img/banners/2.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{asset('img/banners/3.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{asset('img/banners/4.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{asset('img/banners/5.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{asset('img/banners/6.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicator" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicator" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
