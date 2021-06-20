@@ -273,7 +273,8 @@ class CustomerController extends Controller
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile_number']);
         if ($valid == false){
-            return redirect()->back()->with('phoneNoValid', 'the email/mobile number its already in db');
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+            //return redirect()->back()->with('phoneNoValid', 'the email/mobile number its already in db');
         }
 
         //Validate DNS email
@@ -282,7 +283,8 @@ class CustomerController extends Controller
 
         // return $validate_dns;
         if ($validate_dns <= 0){
-            return redirect()->back()->with('dnsNoValid', 'the email/mobile number its already in db');
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+            //return redirect()->back()->with('dnsNoValid', 'the email/mobile number its already in db');
         }
 
         //Verify is the email has not a relation with other client number
@@ -394,9 +396,9 @@ class CustomerController extends Controller
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
-            //return response()->json(['success'=>'true']);
+            return response()->json(['success'=>'true']);
             //return redirect()->route('customer.employees');
-            return redirect()->back()->with('success', 'the email/mobile number its already in db');
+            //return redirect()->back()->with('success', 'the email/mobile number its already in db');
         }else{
             return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
