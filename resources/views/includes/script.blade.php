@@ -337,7 +337,6 @@
         });
 
         //AddEmployeeForm's form
-        var canSubmitEmployee = false;
         $("#addEmployeeForm").bind("submit",function(){
             // We capture send button
             let btnSend = $("#btnSend2");
@@ -345,14 +344,10 @@
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-                beforeSend: function (data) {
-                    canSubmitEmployee = false;
-                },
+
                 success: function(data){
                     //console.log(data);
-                    //canSubmitEmployee = true;
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
-                        canSubmitEmployee = false;
                         document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
@@ -360,12 +355,11 @@
                         document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        canSubmitEmployee = false;
                         document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor proporciona un email válido</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
-                    }else if(data['success']==='true']){
-                        //window.location = "/customer/employees";
+                    }else{
+                        window.location = "{{route('customer.employees')}}";
                     }
                 },
                 error: function(data){
@@ -373,15 +367,16 @@
                     $('#modalErrorServer').modal('show');
                 }
             });
+            // Nos permite cancelar el envio del formulario
             return false;
         });
             // Nos permite cancelar el envio del formulario
-            $('#addEmployeeForm').on('submit', function() {
-                console.log(canSubmitEmployee);
+            //$('#addEmployeeForm').on('submit', function() {
+                //console.log(canSubmitEmployee);
                 //if(!canSubmitEmployee){
-                    return false;
+                    //return false;
                 //}
-            })
+            //})
 
         //UpdateDataForm's form
         /*$("#updateDataForm").bind("submit",function(){
