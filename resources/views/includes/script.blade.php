@@ -345,12 +345,12 @@
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
                 beforeSend: function(){
-                    btnSend2.val("Enviando");
+                    btnSend2.html("Enviando");
                     btnSend2.attr("disabled",true);
                 },
                 success: function(data){
                     //console.log(data);
-                    btnSend2.val("Aceptar");
+                    btnSend2.html("Aceptar");
                     btnSend2.attr("disabled",false);
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
