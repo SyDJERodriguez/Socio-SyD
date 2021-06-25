@@ -339,23 +339,28 @@
         //AddEmployeeForm's form
         $("#addEmployeeForm").bind("submit",function(){
             // We capture send button
-            let btnSend = $("#btnSend2");
+            let btnSend2 = $("#btnSend2");
             $.ajax({
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-
+                beforeSend: function(){
+                    btnSend2.val("Enviando");
+                    btnSend2.attr("disabled",true);
+                },
                 success: function(data){
                     //console.log(data);
+                    btnSend2.val("Aceptar");
+                    btnSend2.attr("disabled",false);
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
-                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
                         document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor proporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">Por favor proporciona un email válido</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
                     }else{
@@ -370,13 +375,6 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
-            // Nos permite cancelar el envio del formulario
-            //$('#addEmployeeForm').on('submit', function() {
-                //console.log(canSubmitEmployee);
-                //if(!canSubmitEmployee){
-                    //return false;
-                //}
-            //})
 
         //UpdateDataForm's form
         /*$("#updateDataForm").bind("submit",function(){

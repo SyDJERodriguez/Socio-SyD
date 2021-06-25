@@ -268,7 +268,6 @@ class CustomerController extends Controller
     //update data in beneficiaries table
     public function addEmployee(Request $request){
         $session = $request;
-        $session->session()->flush();        
         $request       = $request->input();
         $client_number = $request['client_number'];
         
@@ -276,7 +275,6 @@ class CustomerController extends Controller
         $valid = $this->phoneValidator($request['mobile_number']);
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
-            //return redirect()->back()->with('phoneNoValid', 'the email/mobile number its already in db');
         }
 
         //Validate DNS email
@@ -286,7 +284,6 @@ class CustomerController extends Controller
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-            //return redirect()->back()->with('dnsNoValid', 'the email/mobile number its already in db');
         }
 
         //Verify is the email has not a relation with other client number
@@ -327,27 +324,24 @@ class CustomerController extends Controller
                 ];
                 //dd($information);
                 $this->inviteMechanicToDependent($information);
-                $session->session()->put('isMechanic', 'the email/mobile number its already in db');
+                $session->session()->flash('isMechanic', 'the email/mobile number its already in db');
                 return response()->json(['succes'=>'true']);
-                //return redirect()->back()->with('isMechanic', 'the email/mobile number its already in db');
             }
         }
 
         //Check if th account is an owner account
         if(!empty($verify_mobile_email)){
             if ($verify_mobile_email[0]->client_type == '1'){
-                $session->session()->put('isOwner', 'the email/mobile number its already in db');
+                $session->session()->flash('isOwner', 'the email/mobile number its already in db');
                 return response()->json(['success'=>'true']);
-                //return redirect()->back()->with('isOwner', 'the email/mobile number its already in db');
             }
         }
 
         //Check if th account is an owner account
         if(!empty($verify_mobile_email)){
             if ($verify_mobile_email[0]->client_type == '3'){
-                $session->session()->put('isDependent', 'the email/mobile number its already in db');
+                $session->session()->flash('isDependent', 'the email/mobile number its already in db');
                 return response()->json(['success'=>'true']);
-                //return redirect()->back()->with('isDependent', 'the email/mobile number its already in db');
             }
         }
 
@@ -362,13 +356,11 @@ class CustomerController extends Controller
 
         if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 1){ //check if response exist
             if($query[0]->mobile_number === $request['mobile_number'] || $query[0]->email === $request['email']){
-                //return redirect()->back()->with('activeAssociate', 'the email/mobile number its already in db');
-                $session->session()->put('activeAssociate', 'the email/mobile number its already in db');
+                $session->session()->flash('activeAssociate', 'the email/mobile number its already in db');
                 return response()->json(['success'=>'true']);
             }
-            $session->session()->put('activeAssociate', 'the email/mobile number its already in db');
+            $session->session()->flash('activeAssociate', 'the email/mobile number its already in db');
             return response()->json(['success'=>'true']);
-            //return redirect()->back()->with('activeAssociate', 'the email/mobile number its already in db');
         }
 
         //Verify if the email is deactive association with the current owner
@@ -381,7 +373,7 @@ class CustomerController extends Controller
         $deactivate = (array)$deactivate;//convert to array
 
         if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 0){ //check if response exist
-            $session->session()->put('deactiveAssociate', 'the email/mobile number its already in db');
+            $session->session()->flash('deactiveAssociate', 'the email/mobile number its already in db');
             return response()->json(['success'=>'true']);
         }
 
@@ -409,7 +401,7 @@ class CustomerController extends Controller
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
-            $session->session()->put('success','the email/mobile number its already in db');
+            $session->session()->flash('success','the email/mobile number its already in db');
 
             return response()->json(['success'=>'true']);
         }else{
@@ -419,7 +411,6 @@ class CustomerController extends Controller
 
     //Update employees
     public function updateEmployee(Request $request){
-        $request->session()->flush();
         $request       = $request->input();
         $client_number = $request['client_number'];
 
