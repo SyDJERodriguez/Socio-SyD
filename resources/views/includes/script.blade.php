@@ -385,7 +385,7 @@
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
                 beforeSend: function (data) {
-                    btnSend3.html('Enviando');
+                    btnSend3.prop('Enviando','Enviando');
                     btnSend3.html('disabled',true);
                 },
                 success: function(data){
