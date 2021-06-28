@@ -229,7 +229,7 @@
                     </p>
                     <hr>
                     <h5>¿Qué hacer en caso de sufrir un accidente?</h5>
-                    <p class="text-justify">Llámanos inmediatamente al 01-800-087-4598 y ten a la mano la siguiente información:
+                    <p class="text-justify">Encuentra el proceso de reclamación para cada tipo de cobertura en la sección “mis documentos” y ten a la mano
                     </p>
                     <br>
                     <ul>
@@ -238,8 +238,7 @@
                         <li>Fecha del siniestro</li>
                         <li>Fecha de nacimiento</li>
                         <li>Familiar al que podamos contactar y su teléfono celular</li>
-                        <li>Dirección indicada en tu certificado de póliza de seguro</li>
-                        <li>Una vez en la llamada te asesoraremos en todo momento</li>
+                        <li>Dirección (deberá corresponder con la impresa en tu certificado de póliza de seguro)</li>
                     </ul>
                     <hr>
                     <h5>Aplican restricciones</h5>
@@ -250,7 +249,7 @@
                         <br/>
                         <span class="d-inline-block" style="min-width: 18%;">Atención:	</span> 			Las 24 horas de los 365 días del año
                         <br/>
-                        <span class="d-inline-block" style="min-width: 18%;">obertura:	</span> 			La póliza debe estar vigente al momento del siniestro
+                        <span class="d-inline-block" style="min-width: 18%;">Cobertura:	</span> 			La póliza debe estar vigente al momento del siniestro
                         Casco obligatorio en uso de motocicleta </p>
                     <br>
 
