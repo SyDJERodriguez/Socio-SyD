@@ -377,23 +377,32 @@
         });
 
         //UpdateDataForm's form
-        /*$("#updateDataForm").bind("submit",function(){
+        $("#updateDataForm").bind("submit",function(){
             // We capture send button
-            let btnSend = $("#btnSend3");
+            let btnSend3 = $("#btnSend3");
             $.ajax({
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-
+                beforeSend: function (data) {
+                    btnSend3.html('Enviando');
+                    btnSend3.html('disabled',true);
+                },
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_UDF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_UDF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_UDF").hidden= true}, 3500);
-                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
                         document.getElementById("form_alert_phone_text_UDF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_UDF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['verify_password']==='false'){
+                        document.getElementById("form_alert_pass_UDF").innerHTML='Las contraseñas no coinciden, por favor verifica';
+                        document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_pass_UDF").hidden= true}, 3000);
+                    }else{
+                        window.location = "{{route('customer.benefits')}}"   
                     }
                 },
                 error: function(data){
@@ -402,7 +411,7 @@
             });
             // Nos permite cancelar el envio del formulario
             return false;
-        });*/
+        });
 
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){

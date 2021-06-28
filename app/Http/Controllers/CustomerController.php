@@ -691,6 +691,7 @@ class CustomerController extends Controller
     }
 
     public function updateData(Request $request){
+        $session          = $request;
         $request          = $request->input();
 
         //For customer_session table
@@ -699,7 +700,7 @@ class CustomerController extends Controller
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
-            return redirect()->back()->with('msg', 'El número de teléfono no es válido');
+            return response()->json(['success' =>'false',  'verify_valid_mobile'=>'false']);
         }
 
         if(!empty($request['password'])) {
@@ -707,7 +708,7 @@ class CustomerController extends Controller
             $passwordConfirm = $request['confirmPassword'];
 
             if ($passwordVerify !== $passwordConfirm) {
-                return redirect()->back()->with('msg', 'Las contraseñas no coinciden');
+                return response()->json(['success' =>'false',  'verify_password'=>'false']);
             }
 
             $password = Hash::make($request['password']);
@@ -718,7 +719,8 @@ class CustomerController extends Controller
         $verify_email = CustomersSession::where('email', $request['email'])->first();
 
         if ($verify_email == null) {
-            return redirect()->back()->with('msg', 'El email no existe');
+            $session->session()->flash('msg', 'El email no existe');
+            return response()->json(['success' =>'false']);
         }
 
         //Check if the client number is already in the DB
@@ -793,9 +795,11 @@ class CustomerController extends Controller
         }
 
         if (($update_customer == 1 || $update_customer == 0) || $save_register == 1 ){
-            return redirect()->back()->with('exito',1);
+            $session->session()->flash('exito', 'Se actualizaron los datos');
+            return response()->json(['success' =>'true']);
         }else{
-            return redirect()->back()->with('msg', 'Algo salió mal ');
+            $session->session()->flash('msg', 'Algo salió mal');
+            return response()->json(['success' =>'false']);
         }
     }
 
