@@ -333,7 +333,7 @@
                 <div class="row">
                     <div class="div">
                         <video id="videoSocioSYD" class="videoInsert" controls>
-                            <source src="{{'video/socioSYD_video.mp4'}}" type="video/mp4">
+                            <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4">
                           Your browser does not support the video tag.
                           </video>
                     </div>
