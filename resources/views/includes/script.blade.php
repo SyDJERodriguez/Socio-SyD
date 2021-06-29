@@ -337,32 +337,34 @@
         });
 
         //AddEmployeeForm's form
-        /*$("#addEmployeeForm").bind("submit",function(){
+        $("#addEmployeeForm").bind("submit",function(){
             // We capture send button
-            let btnSend = $("#btnSend2");
+            let btnSend2 = $("#btnSend2");
             $.ajax({
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-
+                beforeSend: function(){
+                    btnSend2.html("Enviando");
+                    btnSend2.attr("disabled",true);
+                },
                 success: function(data){
                     //console.log(data);
-                    if(data['success'] ==='true'){
-                        //$('#modalSignUpEmployee').modal('hide');
-                        $('#associateSuccess').modal('show');
-                        return true;
-
-                    }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                    btnSend2.html("Aceptar");
+                    btnSend2.attr("disabled",false);
+                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_AEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_AEF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_AEF").hidden= true}, 3500);
-                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_AEF").innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
                         document.getElementById("form_alert_phone_text_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_AEF").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_AEF").innerHTML='<p>Por favor proporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">Por favor proporciona un email válido</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
+                    }else{
+                        window.location = "{{route('customer.employees')}}";
                     }
                 },
                 error: function(data){
@@ -372,26 +374,35 @@
             });
             // Nos permite cancelar el envio del formulario
             return false;
-        });*/
+        });
 
         //UpdateDataForm's form
-        /*$("#updateDataForm").bind("submit",function(){
+        $("#updateDataForm").bind("submit",function(){
             // We capture send button
-            let btnSend = $("#btnSend3");
+            let btnSend3 = $("#btnSend3");
             $.ajax({
                 type: $(this).attr("method"),
                 url: $(this).attr("action"),
                 data:$(this).serialize(),
-
+                beforeSend: function (data) {
+                    btnSend3.prop('Enviando','Enviando');
+                    btnSend3.html('disabled',true);
+                },
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         document.getElementById("form_alert_phone_UDF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         document.getElementById("form_alert_phone_UDF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_phone_UDF").hidden= true}, 3500);
-                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p>El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_UDF").innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
                         document.getElementById("form_alert_phone_text_UDF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_phone_text_UDF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['verify_password']==='false'){
+                        document.getElementById("form_alert_pass_UDF").innerHTML='Las contraseñas no coinciden, por favor verifica';
+                        document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_pass_UDF").hidden= true}, 3000);
+                    }else{
+                        window.location = "{{route('customer.benefits')}}"   
                     }
                 },
                 error: function(data){
@@ -400,7 +411,7 @@
             });
             // Nos permite cancelar el envio del formulario
             return false;
-        });*/
+        });
 
         //Restore Password
         $("#sendRestorePassword").bind("submit",function(){
