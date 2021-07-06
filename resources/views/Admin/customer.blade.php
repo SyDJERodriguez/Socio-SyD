@@ -12,7 +12,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     @if(isset($client_number))
-                        <h2>Datos del usuario con número de cliente {{$client_number}}</h2>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="col-md-8">
+                                <h2>Datos del usuario con número de cliente {{$client_number}}</h2>
+                            </div>
+                            <div class="col-md-4" style="display: flex; justify-content: flex-end;">
+                                <a href="{{route('admin.customers.index')}}"
+                                   class="btn btn-lg"
+                                   style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Regresar</a>
+                            </div>
+                        </div>
                         <hr>
                     @elseif(isset($email))
                         <h2>Datos del cliente con email {{$email}}</h2>
@@ -89,7 +98,7 @@
                         </p>
                     </div>
                     <div class="col-md-4">
-                        <p>Decha de Nacimiento: <b>{{$customerData->birthday}}</b></p>
+                        <p>Fecha de Nacimiento: <b>{{$customerData->birthday}}</b></p>
                     </div>
                     <div class="col-md-4">
                         <p>RFC: <b>{{$customerData->rfc}}</b></p>
