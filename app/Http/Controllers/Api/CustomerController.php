@@ -185,7 +185,7 @@ class CustomerController extends Controller
                                   }elseif (empty($query->mobile_number) && empty($query->client_number)){
                                        $response =CustomersRepository::ws_new_client($request, $collector);
                                         return response()->json($response);
-                                   }   
+                                   }
 
                                   }else{
                                   $response =CustomersRepository::ws_new_client($request,$collector);
@@ -212,8 +212,8 @@ class CustomerController extends Controller
                                       return response()->json($response);
                             }
 
-                             }    
-                       
+                             }
+
                           }
                     }else{
                         return response()->json(['status'=>400, 'msg'=>'El número de teléfono es obligatorio.']);
@@ -256,28 +256,39 @@ class CustomerController extends Controller
                 return response()->json($response);
 
             }
-         
+
         }else{
             return ['status'=>'400','message'=>'Por favor ingresa un número de cliente.'];
         }
 
     }
+
+    //Report for Telasist
+    public function report_telasist(){
+
+    }
+
+    //Report for Chubb
+    public function report_chubb(){
+
+    }
+
     public function ws_verifacte_mobile_number(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         $response = CustomersRepository::ws_verifacte_mobile_number($request['mobile_number']);
         return response()->json($response);
-     
+
     }
     public function ws_verifacte_email(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         $response = CustomersRepository::ws_verifacte_email($request['email']);
         return response()->json($response);
-     
-    } 
-    
-   
+
+    }
+
+
 
     private function validator(array $data){
         return Validator::make($data,[
