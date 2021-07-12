@@ -49,7 +49,7 @@
 <br>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body border-0">
-            <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
+            <a href="{{route('customer.myDocuments')}}" >
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
