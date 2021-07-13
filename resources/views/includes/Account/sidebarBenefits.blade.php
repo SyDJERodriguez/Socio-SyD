@@ -20,10 +20,10 @@
                 Plata
                 @endif --}}
         </h6>
-        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#modalUpdateData" 
+        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#modalUpdateData"
         style="background-color: #143153;color: #FFF;margin-bottom: 2px">Actualizar datos</a>
         <br>
-        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#survey" 
+        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#survey"
         style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
         <p style="font-size: 13px">
             Contacto de SyD®:
@@ -49,7 +49,7 @@
 <br>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body border-0">
-            <a href="{{route('customer.myDocuments')}}" >
+            <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
@@ -62,11 +62,11 @@
         </div>
 
         @if ($level === 'oro' || $level === 'plata' || $level>0)
-        <a href="tel:8000874598" class="btn"
+        <a href="{{route('customer.myDocuments')}}" class="btn"
                 style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
                 UN ACCIDENTE</b> </a>
         <p style="font-size: 13px">
-            Atención Chubb: <a href="tel:8000874598">800-087-4598</a>
+            Atención Chubb: <a href="tel:8007931010">800-SyD-(793)-1010</a>
         </p>
         @endif
 
