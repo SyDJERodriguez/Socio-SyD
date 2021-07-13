@@ -39,9 +39,10 @@
 
         @if(count($beneficiaries) > 0)
             <div class="col-8 py-2 divImgDerecha">
-                <form>
+                 <form>
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
+                       
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
@@ -51,34 +52,31 @@
                             <a href="#" data-toggle="modal" data-target="#modalRemember" target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
-                    </div>
-                    </form>
-                    <div class="form-row text-center box_documents"
-                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                     </form>
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLICK PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
-                                POR COBERTURA DEL SEGURO
+                            <h5 class="text-center"> <strong> DA CLICK PARA SABER QUE HACER EN CASO DE NECESITAR <br> UNA RECLAMACIÓN POR 
+                                COBERTURA DEL SEGURO
                             </strong></h5>
                         </div>
-                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
+                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
                          </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
                     <h6 style="color: #143153;"> <img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
                             </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
                          <br><strong class="py-3"> MUERTE ACCIDENTAL
                         </strong></h6>
                 </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
@@ -86,7 +84,7 @@
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
@@ -99,9 +97,10 @@
                 
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
-                <form>
+              
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
+                          <form>
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
@@ -112,33 +111,31 @@
                                 target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
-                    </div>
-                    </form>
-                    <div class="form-row text-center box_documents"
-                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                                 </form>
+               
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLICK PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
                                 POR COBERTURA DEL SEGURO
                             </strong></h5>
-                            <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
+                            <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
                          </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
                     <h6 style="color: #143153;"> <img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
                             </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
                          <br><strong class="py-3"> MUERTE ACCIDENTAL
                         </strong></h6>
                 </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
@@ -146,7 +143,7 @@
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
@@ -156,25 +153,25 @@
                     *Consulta términos y condiciones
                 </p>
                         </div>
-                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
+                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
                          </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
                     <h6 style="color: #143153;"> <img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
                             </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
                          <br><strong class="py-3"> MUERTE ACCIDENTAL
                         </strong></h6>
                 </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
@@ -182,7 +179,7 @@
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
@@ -258,5 +255,5 @@
         </div>
     </div>
 </div>
-@include('includes.termsAndConditions')
+@include('includes.modalsMyDocuments')
 @stop
