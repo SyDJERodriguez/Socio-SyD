@@ -555,21 +555,19 @@
             </div>
             <div class="modal-body mb-0 pb-0">
                 <h3 class="text-uppercase font-weight-bold"> LISTA DE DOCUMENTOS</h3>
-                <div class="line1">
-                    <img src="{{asset('img/linea.png')}}" alt="">
-                </div>
+             
                 <div class="container">
                     <ul class="list-unstyled ml-3">
+                    <li>
+                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                Formato de Reclamación de Siniestro Gastos Medicos</a> 
+                        </li>
+                        <br>
                         <li>
                         <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 Formato de Reclamación de Siniestro Vida</a> 
-                        </li>
-                        <br>
-                        <li>
-                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato de Reclamación de Siniestro Gastos Medicos</a> 
                         </li>
                         <br>
                         <li>
@@ -579,9 +577,9 @@
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
+                        <a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
-                                Informe Médico</a> 
+                                Aviso de Accidente o Enfermedad</a> 
                         </li>
                         <br>
                         <li>
@@ -591,16 +589,17 @@
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Aviso de Accidente o Enfermedad</a> 
-                        </li>
-                        <br>
-                        <li>
                         <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 Pase de Atención</a> 
                         </li>
+                        <br>
+                        <li>
+                        <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                Informe Médico</a> 
+                        </li>
+                      
                     </ul>
                     
                 </div>
