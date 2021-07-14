@@ -39,7 +39,7 @@
                                 select.options.add(new Option(element['branch_name'],element['branch_number']));
                             });
                         } catch (e) {
-                            select.options.add(new Option("Sucursal",'','',true);
+                            //select.options.add(new Option("Sucursal",'','',true);
                             console.error(e);
                         }
                     },
