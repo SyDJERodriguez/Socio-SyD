@@ -265,6 +265,19 @@ class CustomerController extends Controller
         return response($data);
     }
 
+    public function verify_client_branch(Request $request){
+        $request = $request->input();
+        $client_number = '00'.$request['client_number'];
+        $verify_client_number = DB::table('client_numbers')->where('client_number',$client_number)->first();
+        if ($verify_client_number == null) {
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        }
+        $data = DB::table('branches_clients')
+                ->where('client_number', '=', $client_number)
+                ->get();
+        return response($data);
+    }
+
     //update data in beneficiaries table
     public function addEmployee(Request $request){
         $session = $request;

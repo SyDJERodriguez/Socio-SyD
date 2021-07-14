@@ -14,6 +14,42 @@
 
     $(document).ready(function(){
 
+        //get branch information with clientNumber
+        $('#clientNumberBr').keyup(function () {
+            let clientNumberBr = $('input[id=clientNumberBr').val();
+            if (clientNumberBr.length === 8){
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('customer.branchInformation')}}",
+                    data: {'client_number': clientNumberBr},
+                    success: function (data) {
+                        if (data['success']==='false' && data['verify_client_number']==='false') {
+                            document.getElementById("form_alert_br")
+                            .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                            document.getElementById("form_alert_br").removeAttribute("hidden");
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert_br").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 5000);
+                        }
+                        //console.log(data);
+                        let select = document.getElementById("branch_name");
+                        try {
+                            select.options.length = 0;
+
+                            data.forEach(element => {
+                                select.options.add(new Option(element['branch_name'],element['branch_number']));
+                            });
+                        } catch (e) {
+                            select.options.add(new Option("Sucursal",'','',true);
+                            console.error(e);
+                        }
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
         //Get owner's client number
         $("#client_number_pro").keyup(function(){
             let client_number_pro = $('input[id=client_number_pro]').val();
