@@ -90,6 +90,16 @@
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
                         </strong></h6>
                 </div>
+                <div class="col-lg-4 py-3 text-center">
+                </div>
+                <div class="col-lg-4 py-3 text-center">
+                <a href="#" data-toggle="modal" data-target="#modal14" 
+                                target="_blank" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                LISTADO DE DOCUMENTOS</a>  
+                </div>
+                <div class="col-lg-4 py-3 text-center">
+                </div>
                 <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
                     *Consulta términos y condiciones
                 </p>
@@ -185,6 +195,17 @@
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
                         </strong></h6>
                 </div>
+                <div class="col-lg-4 py-3 text-center">
+                </div>
+                <div class="col-lg-4 py-3 text-center">
+                <a href="#" data-toggle="modal" data-target="#modal14" 
+                                target="_blank" class="btn btn py-2  text-white "
+                                style="background-color: #143153;">
+                                LISTADO DE DOCUMENTOS</a>  
+                </div>
+                <div class="col-lg-4 py-3 text-center">
+                </div>
+                 
                 <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
                     *Consulta términos y condiciones
                 </p>

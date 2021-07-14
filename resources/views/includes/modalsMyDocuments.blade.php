@@ -547,3 +547,84 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal14" tabindex="-1" role="dialog" aria-labelledby="modal14" aria-hidden="true">
+    <div class="modal-dialog modal-xl  " role="document">
+        <div class="modal-content  mb-0 pb-0">
+            <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body mb-0 pb-0">
+                <h3 class="text-uppercase font-weight-bold"> LISTA DE DOCUMENTOS</h3>
+             
+                <div class="container">
+                    <ul class="list-unstyled ml-3">
+                    <li>
+                        <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
+                            style="background-color: #143153; width: 100%">
+                            Formato de Reclamación de Siniestro Gastos Medicos</a> </div>
+                        
+                        </li>
+                        <br>
+                        <li>
+                            <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Formato de Reclamación de Siniestro Vida</a> </div>
+                        
+                        </li>
+                        <br>
+                        <li>
+                            <div ><a target="_blank" href="{{asset('files/Formato_Transferencias_Bancarias.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Formato Transferencias Bancarias</a> </div>
+                        
+                        </li>
+                        <br>
+                        <li>
+                            <div ><a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Aviso de Accidente o Enfermedad</a> </div>
+                        
+                        </li>
+                        <br>
+                        <li>
+                            <div ><a target="_blank" href="{{asset('files/Conoce_a_tu_Cliente.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Conoce a tu Cliente</a> </div>
+                        
+                        </li>
+                        <br>
+                        <li>
+                            <div> <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Pase de Atención</a> </div>
+                       
+                        </li>
+                        <br>
+                        <li>
+                            <div> <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Informe Médico</a> </div>
+                       
+                        </li>
+                      
+                    </ul>
+                    
+                </div>
+
+                    <div style="width: 100%;padding: 10px;">
+                        <button class="btn btn-lg btn-block" data-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+                      
+                <div style="background: #143153" class="row p-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
