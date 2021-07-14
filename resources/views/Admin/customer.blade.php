@@ -173,6 +173,32 @@
                     </table>
                 </div>
             </div>
+
+            @if($account->client_type === '1')
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <h4>Dependientes</h4>
+                        <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
+                            <thead>
+                            <tr>
+                                <td><b>Nombre </b></td>
+                                <td><b>Correo electrónico</b></td>
+                                <td><b>Teléfono </b></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($associates as $as)
+                                <tr>
+                                    <td>{{$as->name}} {{$as->last_name}} {{$as->second_last_name}}</td>
+                                    <td>{{$as->email}}</td>
+                                    <td>{{$as->mobile_number}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
         @endif
     </div>
 @endsection
