@@ -559,45 +559,52 @@
                 <div class="container">
                     <ul class="list-unstyled ml-3">
                     <li>
-                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato de Reclamación de Siniestro Gastos Medicos</a> 
+                        <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
+                            style="background-color: #143153; width: 45%">
+                            Formato de Reclamación de Siniestro Gastos Medicos</a> </div>
+                        
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato de Reclamación de Siniestro Vida</a> 
+                            <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Formato de Reclamación de Siniestro Vida</a> </div>
+                        
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Formato_Transferencias_Bancarias.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato Transferencias Bancarias</a> 
+                            <div ><a target="_blank" href="{{asset('files/Formato_Transferencias_Bancarias.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Formato Transferencias Bancarias</a> </div>
+                        
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Aviso de Accidente o Enfermedad</a> 
+                            <div ><a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Aviso de Accidente o Enfermedad</a> </div>
+                        
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Conoce_a_tu_Cliente.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Conoce a tu Cliente</a> 
+                            <div ><a target="_blank" href="{{asset('files/Conoce_a_tu_Cliente.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Conoce a tu Cliente</a> </div>
+                        
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Pase de Atención</a> 
+                            <div> <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Pase de Atención</a> </div>
+                       
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Informe Médico</a> 
+                            <div> <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 45%">
+                                Informe Médico</a> </div>
+                       
                         </li>
                       
                     </ul>
