@@ -175,8 +175,8 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCanales"
-                                    style="width: 270px;">CANALES</button>
+                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
+                                    style="width: 270px;">CADENAS</button>
                             </div>
                         </div>
                     </div>

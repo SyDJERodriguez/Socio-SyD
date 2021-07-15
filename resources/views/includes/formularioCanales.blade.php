@@ -1,4 +1,4 @@
-<div class="modal fade rounded-0" id="modalCanales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade rounded-0" id="modalCadenas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg rounded-0" role="document">
         <div class="modal-content rounded-0">
           <div class="modal-header border-0 rounded-0" style="background-color: #143153;">
@@ -10,7 +10,7 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-lg-8 pt-2 pb-5">
-                    <h2>REGISTRO CANALES</h2>
+                    <h2>REGISTRO CADENAS</h2>
                     <div class="line1">
                         <img src="{{asset('img/line2.png')}}" alt="">
                     </div>
@@ -30,7 +30,7 @@
               <div class="alert alert-danger" id="form_alert_dns" role="alert" style="border-radius: 6px;" hidden>
               </div>
 
-            <form autocomplete="off" id="canalesForm" method="POST" action="{{route('customer.update')}}">
+            <form autocomplete="off" id="cadenasForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -47,7 +47,7 @@
 
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control btnBorder" id="branch_name" name="branch_number" required>
-                            <option disabled>SUCURSAL</option>
+                            <option disabled selected>SUCURSAL</option>
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
