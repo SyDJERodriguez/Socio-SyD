@@ -44,7 +44,7 @@
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                        
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
+                            <h5 class="text-center"> <strong> DA CLIC EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
                         </div>
                         <div class="col-lg-12 py-3 text-center">
@@ -52,9 +52,12 @@
                             <a href="#" data-toggle="modal" data-target="#modalRemember" target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
-                     
+                    </div>
+                </form>
+                    <div class="form-row text-center box_documents"
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLICK PARA SABER QUE HACER EN CASO DE NECESITAR <br> UNA RECLAMACIÓN POR 
+                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR <br> UNA RECLAMACIÓN POR 
                                 COBERTURA DEL SEGURO
                             </strong></h5>
                         </div>
@@ -104,7 +107,7 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
-                </form>
+                
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
             <form>
@@ -112,7 +115,7 @@
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                          
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLICK EN CADA SECCIÓN PARA VER O EDITAR TUS
+                            <h5 class="text-center"> <strong> DA CLIC EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
                         </div>
                         <div class="col-lg-12 py-3 text-center">
@@ -121,10 +124,13 @@
                                 target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
-                                 
+                    </div>
+                </form>
+                    <div class="form-row text-center box_documents"
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">      
                
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLICK PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
+                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
                                 POR COBERTURA DEL SEGURO
                             </strong></h5>
                             <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
@@ -159,9 +165,6 @@
                         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
                         </strong></h6>
                 </div>
-                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
-                    *Consulta términos y condiciones
-                </p>
                         </div>
                         <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
@@ -210,7 +213,7 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
-                </form>
+                
             </div>
         @else
             <div class="col-8 py-2 divImgDerecha" >
