@@ -19,15 +19,15 @@
 
               <div class="alert alert-danger alert-dismissible" id="form_alert_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_email" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_email_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_mobile" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_mobile_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_pass" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_pass_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_phone_text" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_phone_text_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
-              <div class="alert alert-danger" id="form_alert_dns" role="alert" style="border-radius: 6px;" hidden>
+              <div class="alert alert-danger" id="form_alert_dns_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
 
             <form autocomplete="off" id="cadenasForm" method="POST" action="{{route('customer.update')}}">
@@ -81,7 +81,7 @@
                 <div class="row">
                     <div class="col-lg-6 py-3" style="display: flex">
                         <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                        <input class="form-control btnBorder" type="date" id="birthdaybr" name="birthday" value="<?php echo date('Y-m-d');?>" required>
+                        <input class="form-control btnBorder" type="date" id="birthdayBr" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
@@ -96,7 +96,7 @@
                             </div>
                             <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobileBr"
                             name="mobile" maxlength="10" pattern="[0-9]{10}" required>
-                            <div class="input-group-append" id="form_alert_phone" hidden>
+                            <div class="input-group-append" id="form_alert_phone_BR" hidden>
                             </div>
                         </div>
                         <p style="color: red; margin: 0;">*</p>
@@ -163,7 +163,7 @@
                             <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">TÉRMINOS Y CONDICIONES</a></label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
-                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend" value="Enviar">
+                    <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend4" value="Enviar">
                 </div>
             </form>
           </div>

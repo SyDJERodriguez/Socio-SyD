@@ -648,7 +648,9 @@ class CustomerController extends Controller
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
             'active'        => 0,
-            'password'      => $password
+            'password'      => $password,
+            'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
+            'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
         ]);
 
 

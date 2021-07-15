@@ -175,6 +175,63 @@
                 });
             }
         });
+        //cadenas Form
+        $('#cadenasForm').bind('submit', function(){
+            let btnSend4 = $('#btnSend4');
+            $.ajax({
+                type: $(this).attr('method'),
+                url:  $(this).attr('action'),
+                data: $(this).serialize(),
+
+                success: function(data){
+                    console.log(data);
+                    if(data['success']==='true'){
+                        $('#modalCadenas').modal('hide');
+                        $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
+                        $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                        $('#clientMessage').text('En breve recibirás un email de activación.');
+                        $('#modalSuccess').modal('show');
+                    }else if (data['success']==='false' && data['verify_email']==='false') {
+                        document.getElementById("form_alert_email_br").innerHTML='El email ya se encuentra asociado a otro cliente';
+                        document.getElementById("form_alert_email_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_email_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_password']==='false') {
+                        document.getElementById("form_alert_pass_br").innerHTML='Las contraseñas no coinciden, por favor verifica ';
+                        document.getElementById("form_alert_pass_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_pass_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                        document.getElementById("form_alert_mobile_br").innerHTML='El número telefónico ya se encuentra asociado a otro cliente ';
+                        document.getElementById("form_alert_mobile_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_mobile_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                        document.getElementById("form_alert_br").innerHTML='El email ya se encuentra asociado a otro cliente ';
+                        document.getElementById("form_alert_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_BR").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_BR").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_BR").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_br").innerHTML='El número telefónico no es válido. Verifica tus datos ';
+                        document.getElementById("form_alert_phone_text_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text").hidden = true},3500)
+                    }else if (data['success']==='false' && data['verify_valid_dns']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML='Por favor proporciona un email válido';
+                        document.getElementById("form_alert_dns_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
+
+                    }else if (data['success']==='false'){
+                        $('#modalCadenas').modal('hide');
+                        $('#modalError').modal('show');
+                    }
+                },
+                error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
         //Owner's form
         $("#ownerForm").bind("submit",function(){
             // We capture send button
