@@ -14,7 +14,7 @@ class AlterTableCustomersSessions extends Migration
     public function up()
     {
         Schema::table('customers_sessions', function (Blueprint $table) {
-            $table->bigInteger('signature_id')->nulleable();
+            $table->bigInteger('signature_id')->nullable();
         });
         
     }
