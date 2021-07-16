@@ -18,7 +18,15 @@
                     @elseif((int)Auth::user()->client_type == 3)
                         Cuenta: Dependiente
                     @endif
+                    {{$level}}
                 </h6>
+                <h5>
+                    
+                </h5>
+               
+                {{-- @if($level > 1)
+                    Level 1
+                @endif --}}
                 <a href="#" class="btn btn btn-sm" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal"
                     data-target="#survey">
                     <span style="font-size: 12px"> Nos interesa tu opinión</span>
@@ -107,6 +115,65 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
+                    @if($level > 1)
+                <div class="form-row text-center box_documents"
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                    <div class="col-lg-12" style="color: #143153;">
+                        <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
+                        </strong></h5>
+                    </div>
+
+                    <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA</strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE POR EMERGENCIA</strong></h6>
+                    </div>
+                    @if($level === 3)
+                <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                        ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                    </strong></h6>
+                </div>
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                        VIDEO CONSULTA <br>
+                        POR COVID 19 </strong></h6>
+                </div>
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                        POR ACCIDENTE
+                        </strong></h6>
+                </div>
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
+                            <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                </div>
+                @elseif($level === 2)
+                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                        ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                    </strong></h6>
+                </div>
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                        VIDEO CONSULTA <br>
+                        POR COVID 19 </strong></h6>
+                </div>
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                    <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                        POR ACCIDENTE
+                        </strong></h6>
+                </div>
+                @endif
+                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                    *Consulta términos y condiciones
+                </p>
+                </div>
+                @endif
                 
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
@@ -213,7 +280,65 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
-                
+                    @if($level > 1)
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                        <div class="col-lg-12" style="color: #143153;">
+                            <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
+                            </strong></h5>
+                        </div>
+    
+                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                            <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA</strong></h6>
+                        </div>
+                        <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                            <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
+                        </div>
+                        <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE POR EMERGENCIA</strong></h6>
+                        </div>
+                        @if($level === 3)
+                    <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                            ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                        </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                            VIDEO CONSULTA <br>
+                            POR COVID 19 </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                            POR ACCIDENTEsssss
+                            </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                            <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
+                                <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                    </div>
+                    @elseif($level === 2)
+                    <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                            ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                        </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                            VIDEO CONSULTA <br>
+                            POR COVID 19 </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
+                        <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                            POR ACCIDENTE
+                            </strong></h6>
+                    </div>
+                    @endif
+                    <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                        *Consulta términos y condiciones
+                    </p>
+                    </div>
+                    @endif
             </div>
         @else
             <div class="col-8 py-2 divImgDerecha" >

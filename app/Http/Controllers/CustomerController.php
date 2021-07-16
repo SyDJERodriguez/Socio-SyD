@@ -1261,10 +1261,46 @@ class CustomerController extends Controller
                 ->where('customer_id', '=', $customer->id)
                 ->get();
         }
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $data_customer = DB::table('transactions')
+        ->where('client_number', Auth::user()->client_number)
+        ->whereMonth('transaction_date','=',$current_month)
+        ->get();
+    $totalAmount = 0.0;
+    foreach ($data_customer as $d){
+        $amount_customer = floatval($d->amount);
+        strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+    }
+
+    $level = 0;
+    if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if ($totalAmount>2500 && $totalAmount<=4500) {
+            $level = 1;
+        }
+        if ($totalAmount>4500 && $totalAmount<=7000) {
+            $level = 2;
+        }
+        if ($totalAmount>7000) {
+            $level = 3;
+        }
+    }
+
+    if (Auth::user()->client_type === "2"){
+        if ($totalAmount>200 && $totalAmount<=500) {
+            $level = 1;
+        }
+        if ($totalAmount>500 && $totalAmount<=1300) {
+            $level = 2;
+        }
+        if ($totalAmount>1300) {
+            $level = 3;
+        }
+    }
 
         //dd($beneficiaries);
 
-        return view('pages.Account.documents', compact('data','total','noti', 'number', 'owner', 'beneficiaries'));
+        return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries'));
     }
 
     //Go to register beneficiary
