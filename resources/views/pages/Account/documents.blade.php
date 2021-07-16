@@ -18,7 +18,6 @@
                     @elseif((int)Auth::user()->client_type == 3)
                         Cuenta: Dependiente
                     @endif
-                    {{$level}}
                 </h6>
                 <h5>
                     
