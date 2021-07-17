@@ -765,8 +765,8 @@ class CustomerController extends Controller
 
                 if(isset($password)) {
                     $save_register = DB::table('customers_sessions')->where('email', '=', $request['email'])->update([
-                        'mobile' => $request['mobile'],
-                        'password' => $password
+                        'mobile'    => $request['mobile'],
+                        'password'  => $password,
                     ]);
                 }else{
                     $save_register = DB::table('customers_sessions')->where('email', '=', $request['email'])->update([
@@ -1360,6 +1360,15 @@ class CustomerController extends Controller
     //Go to benefits of Safe
     public function benefits () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $branch_name = DB::table('branches_clients')
+                                ->where('client_number','=',$data->client_number)
+                                ->get();
+        $data->branch_name = $branch_name[0]->branch_name;
+
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         if(Auth::user()->client_type === '3'){
