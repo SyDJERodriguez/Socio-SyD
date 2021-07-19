@@ -30,7 +30,7 @@
               <div class="alert alert-danger" id="form_alert_dns_br" role="alert" style="border-radius: 6px;" hidden>
               </div>
 
-            <form autocomplete="off" id="cadenasForm" method="POST" action="{{route('customer.update')}}">
+            <form autocomplete="off" id="cadenasForm" method="POST" action="{{route('customer.updateCadena')}}">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -118,7 +118,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
 
-                    <input type="hidden" id="client_type" name="client_type" value="1">
+                    <input type="hidden" id="client_type" name="client_type" value="4">
                 </div>
 
                 <div class="row">

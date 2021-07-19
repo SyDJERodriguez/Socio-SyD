@@ -30,7 +30,7 @@
                             $(".alertClose").on("click", function (){document.getElementById("form_alert_br").hidden= true});
                             setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 5000);
                         }
-                        //console.log(data);
+                        console.log(data);
                         let select = document.getElementById("branch_name");
                         try {
                             select.options.length = 0;
