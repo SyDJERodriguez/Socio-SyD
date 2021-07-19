@@ -595,7 +595,7 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
             ]);
         }
 
@@ -614,7 +614,7 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
             ]);
 
             //create data in notifications table
@@ -744,7 +744,7 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
             ]);
         }
 
@@ -763,7 +763,7 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : ''
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
             ]);
 
             //create data in notifications table
