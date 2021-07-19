@@ -47,7 +47,7 @@
 
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control btnBorder" id="branch_name" name="branch_number" required>
-                            <option disabled selected value="{{null}}">SUCURSAL</option>
+                            <option disabled selected value="">SUCURSAL</option>
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>

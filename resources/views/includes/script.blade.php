@@ -40,11 +40,11 @@
                                     select.options.add(new Option(element['branch_name'],element['branch_number']));
                                 });
                             }else{
-                                select.innerHTML = '<option disabled selected value="null">SUCURSAL</option>';
+                                select.innerHTML = '<option disabled selected value=""> SUCURSAL</option>';
                             }
                         } catch (e) {
                             //select.options.add(new Option();
-                            select.innerHTML = '<option disabled selected value="null">SUCURSAL</option>';
+                            select.innerHTML = '<option disabled selected value=""> SUCURSAL</option>';
                             console.error(e);
                         }
                         //console.log(data);
