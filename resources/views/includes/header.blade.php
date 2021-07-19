@@ -378,7 +378,7 @@ padding-bottom: 14px;">
 @include('includes.formularioMecanicoCNT')
 
 <!--Modal formulario Canales -->
-@include('includes.formularioCanales')
+@include('includes.formularioCadenas')
 
 @if(Auth::check())
 {{-- Modal notifications --}}
