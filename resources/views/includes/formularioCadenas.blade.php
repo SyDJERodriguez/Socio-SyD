@@ -47,7 +47,7 @@
 
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control btnBorder" id="branch_name" name="branch_number" required>
-                            <option disabled selected>SUCURSAL</option>
+                            <option disabled selected value="{{null}}">SUCURSAL</option>
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
@@ -96,7 +96,7 @@
                             </div>
                             <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobileBr"
                             name="mobile" maxlength="10" pattern="[0-9]{10}" required>
-                            <div class="input-group-append" id="form_alert_phone_BR" hidden>
+                            <div class="input-group-append" id="form_alert_phone_br" hidden>
                             </div>
                         </div>
                         <p style="color: red; margin: 0;">*</p>

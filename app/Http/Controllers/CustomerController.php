@@ -726,9 +726,10 @@ class CustomerController extends Controller
         //Check if the client number is already in the DB
         //$data = Customer::where('client_number', $client_number)->first();
         //esta linea de arriba verifica que si existe lo actualiza y sino ps inserta
-        $data = CustomersSession::where('client_number', $request['client_number'])
-                                ->where('branch_number', $request['branch_number'])
-                                ->first();
+        $data = DB::table('customers_sessions')
+                    ->where('client_number','=', $request['client_number'])
+                    ->where('branch_number','=', $request['branch_number'])
+                    ->first();
         $update_customer ='';
         if($data !== null) {
             //Update data in customers table

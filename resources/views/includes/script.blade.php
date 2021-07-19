@@ -30,19 +30,25 @@
                             $(".alertClose").on("click", function (){document.getElementById("form_alert_br").hidden= true});
                             setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 5000);
                         }
-                        console.log(data);
+                        
                         let select = document.getElementById("branch_name");
                         try {
                             select.options.length = 0;
-
-                            data.forEach(element => {
-                                select.options.add(new Option(element['branch_name'],element['branch_number']));
-                            });
+                            
+                            if(typeof data.length == "number" && data.length > 0){
+                                data.forEach(element => {
+                                    select.options.add(new Option(element['branch_name'],element['branch_number']));
+                                });
+                            }else{
+                                select.innerHTML = '<option disabled selected value="null">SUCURSAL</option>';
+                            }
                         } catch (e) {
                             //select.options.add(new Option();
-                            select.innerHTML = '<option disabled selected>SUCURSAL</option>';
+                            select.innerHTML = '<option disabled selected value="null">SUCURSAL</option>';
                             console.error(e);
                         }
+                        //console.log(data);
+                        
                     },
                     error: function(error){
                         console.log(error);
@@ -208,12 +214,12 @@
                         document.getElementById("form_alert_br").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_valid_mobile']==='false'){
-                        document.getElementById("form_alert_phone_BR").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
-                        document.getElementById("form_alert_phone_BR").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_phone_BR").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_br").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_br").hidden= true}, 3500);
                         document.getElementById("form_alert_phone_text_br").innerHTML='El número telefónico no es válido. Verifica tus datos ';
                         document.getElementById("form_alert_phone_text_br").removeAttribute("hidden");
-                        setTimeout(function(){document.getElementById("form_alert_phone_text").hidden = true},3500)
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_br").hidden = true},3500)
                     }else if (data['success']==='false' && data['verify_valid_dns']==='false'){
                         document.getElementById("form_alert_dns_br").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
@@ -226,6 +232,8 @@
                 },
                 error: function(data){
                     $('#modalErrorServer').modal('show');
+                    console.log(data.status);
+                    console.log(data.responseJSON);
                 }
             });
             // Nos permite cancelar el envio del formulario
