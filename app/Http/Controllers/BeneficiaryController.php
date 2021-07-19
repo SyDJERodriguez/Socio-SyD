@@ -105,7 +105,8 @@ class BeneficiaryController extends Controller
                                 'relationship'     => $request['parent'][$i],
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
-                                'customer_id'      => $data['id']
+                                'customer_id'      => $data['id'],
+                                'branch_number'    => $request['branch_number'][$i]
                             ]);
                         }
                     }
@@ -137,17 +138,15 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%.';
                 return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
             }
-
-
-
                     $insertBeneficiary = DB::table('beneficiaries')->insert([
                         'name'             => $request['name'][0],
                         'last_name'        => $request['lastname'][0],
                         'second_last_name' => $request['second_lastname'][0],
                         'relationship'     => $request['parent'][0],
                         'mobile_number'    => $request['phone'][0],
-                        'percent'          => $request['percent'][0]   ,
-                        'customer_id'      => $data['id']
+                        'percent'          => $request['percent'][0],
+                        'customer_id'      => $data['id'],
+                        'branch_number'    => $request['branch_number'][0]
                     ]);
 
             //$generatePDF = $this->generatePDF();

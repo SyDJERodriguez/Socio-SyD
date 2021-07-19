@@ -1434,6 +1434,16 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $branch_name = DB::table('branches_clients')
+                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->get();
+        $data->branch_name = $branch_name[0]->branch_name;
+
+
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
