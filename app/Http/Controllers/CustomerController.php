@@ -1332,6 +1332,15 @@ class CustomerController extends Controller
         $mes = Carbon::parse()->locale('es');
         $data->mes = $mes;
 
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $branch_name = DB::table('branches_clients')
+                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->get();
+        $data->branch_name = $branch_name[0]->branch_name;
+
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
     }
@@ -1379,6 +1388,15 @@ class CustomerController extends Controller
     //Go to My documments section
     public function my_documents() {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $branch_name = DB::table('branches_clients')
+                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->get();
+        $data->branch_name = $branch_name[0]->branch_name;
+
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         //$exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
@@ -1495,6 +1513,7 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
         $branch_name = DB::table('branches_clients')
                                 ->where('client_number','=',$data->client_number)
+                                ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
         $data->branch_name = $branch_name[0]->branch_name;
 

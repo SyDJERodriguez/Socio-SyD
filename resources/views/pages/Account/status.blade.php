@@ -13,13 +13,27 @@
                   @if (Auth::user()->is_associate == 1)
                       - {{$data->associate_number}}
                   @endif
-               </span>
-            <br>
-            @if ((int)Auth::user()->client_type == 1)
-                Cuenta: Negocios
-            @else
-                Cuenta: Individual
-            @endif
+                  @if (Auth::user()->client_type=='4')
+                  - {{ $data->branch_number }}
+              @endif
+          </span><br>
+                          
+              @switch((int)Auth::user()->client_type)
+                  @case(1)
+                  Cuenta: Negocios
+                      @break
+                  @case(2)
+                  Cuenta: Individual
+                      @break
+                  @case(3)
+                  Cuenta: Dependiente
+                      @break
+                  @case(4)
+                  Cuenta: Sucursal ({{ $data->branch_name }})
+                      @break
+                  @default
+                      Cuenta:
+              @endswitch 
          </h6>
           <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
          <hr>
