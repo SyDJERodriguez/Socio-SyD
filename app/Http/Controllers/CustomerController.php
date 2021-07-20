@@ -725,6 +725,12 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
         }
 
+        $verify_branch_number = CustomersSession::where('branch_number', $request['branch_number'])
+                                                ->first();
+        if($verify_branch_number !== null){
+            return response()->json(['success'=>'false', 'verify_branch_number'=>'false']);
+        }
+
         //Check if the client number is already in the DB
         //$data = Customer::where('client_number', $client_number)->first();
         //esta linea de arriba verifica que si existe lo actualiza y sino ps inserta

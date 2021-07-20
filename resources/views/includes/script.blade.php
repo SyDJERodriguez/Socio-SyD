@@ -188,7 +188,10 @@
                 type: $(this).attr('method'),
                 url:  $(this).attr('action'),
                 data: $(this).serialize(),
-
+                beforeSend: function (data) {
+                    btnSend4.prop('Enviando','Enviando');
+                    btnSend4.html('disabled',true);
+                },
                 success: function(data){
                     console.log(data);
                     if(data['success']==='true'){
@@ -224,7 +227,10 @@
                         document.getElementById("form_alert_dns_br").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
-
+                    }else if (data['success']==='false' && data['verify_branch_number']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML='Esa sucursal ya ha sido registrada previamente';
+                        document.getElementById("form_alert_dns_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
                     }else if (data['success']==='false'){
                         $('#modalCadenas').modal('hide');
                         $('#modalError').modal('show');
