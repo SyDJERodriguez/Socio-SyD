@@ -108,3 +108,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });
 });
+
+//Reports for Telasist and Chubb
+Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
+Route::get('chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'report_chubb'])->name('report_chubb');

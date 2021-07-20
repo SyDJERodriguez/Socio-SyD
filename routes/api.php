@@ -26,10 +26,6 @@ Route::middleware('auth:api')->group(function (){
     //Route::post('customer/lead/register',[\App\Http\Controllers\CustomerController::class,'insert_lead'])->name('api.lead.register');
     Route::post('collector/customer/',[App\Http\Controllers\Api\CollectorCustomerController::class,'store'])->name('api.collector.customer.create');
     Route::post('testing',[\App\Http\Controllers\TestingController::class, 'test'])->name('api.testing');
-
-    //Reports for Telasist and Chubb
-    Route::get('telasist', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
-    Route::get('chubb', [\App\Http\Controllers\Api\CustomerController::class,'report_chubb'])->name('report_chubb');
 });
 
 //customers

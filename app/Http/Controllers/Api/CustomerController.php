@@ -264,13 +264,15 @@ class CustomerController extends Controller
     }
 
     //Report for Telasist
-    public function report_telasist(){
-
+    public function report_telasist(Request $request){
+        $response = "For telasis";
+        return response()->json($response);
     }
 
     //Report for Chubb
-    public function report_chubb(){
-
+    public function report_chubb(Request $request){
+        $response = "For chubb";
+        return response()->json($response);
     }
 
     public function ws_verifacte_mobile_number(Request $request){
