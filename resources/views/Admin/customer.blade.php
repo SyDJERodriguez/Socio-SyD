@@ -75,12 +75,14 @@
                     <div class="col-md-4">
                         <p>Nombre: <b>{{$customerData->name.' '.$customerData->last_name.' '.$customerData->second_last_name}}</b></p>
                     </div>
-                    <div class="col-md-4">
-                        <p>Email: <b>{{$customerData->email}}</b></p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Número telefónico: <b>{{$customerData->mobile_number}}</b></p>
-                    </div>
+                    @if(Auth::user()->type_user == '1' || Auth::user()->type_user == '2')
+                        <div class="col-md-4">
+                            <p>Email: <b>{{$customerData->email}}</b></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Número telefónico: <b>{{$customerData->mobile_number}}</b></p>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -136,43 +138,71 @@
                 </div>
             @endif
 
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h4>Movimientos transaccionales</h4>
-                    <table class="table table-striped table-bordered" id="tableTrans" style="width:100%">
-                        <thead>
-                        <tr>
-                            <!-- <th scope="col">Pieza</th> -->
-                            <th scope="col">Familia</th>
-                            <th scope="col">Oficina de Venta</th>
-                            <!-- <th scope="col">SKU</th> -->
-                            <th scope="col">Método de pago</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Monto</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($transactions as $trans)
+            @if(Auth::user()->type_user == '1')
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <h4>Movimientos transaccionales</h4>
+                        <table class="table table-striped table-bordered" id="tableTrans" style="width:100%">
+                            <thead>
                             <tr>
-                                <th> {{ $trans->material_type }}</th>
-                                <td> {{ $trans->sale_office }}</td>
-                                <td> {{ $trans->payment_method }}</td>
-                                <td> {{ $trans->quantity }}</td>
-                                <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
-                                <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                                <!-- <th scope="col">Pieza</th> -->
+                                <th scope="col">Familia</th>
+                                <th scope="col">Oficina de Venta</th>
+                                <!-- <th scope="col">SKU</th> -->
+                                <th scope="col">Método de pago</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Monto</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th colspan="5" style="text-align:right">Total: </th>
-                            <th>$ <b>{{ number_format($totalAmount,2,'.',',')}}</b></th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach ($transactions as $trans)
+                                <tr>
+                                    <th> {{ $trans->material_type }}</th>
+                                    <td> {{ $trans->sale_office }}</td>
+                                    <td> {{ $trans->payment_method }}</td>
+                                    <td> {{ $trans->quantity }}</td>
+                                    <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
+                                    <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th colspan="5" style="text-align:right">Total: </th>
+                                <th>$ <b>{{ number_format($totalAmount,2,'.',',')}}</b></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            @endif
+
+            @if($account->client_type === '1')
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <h4>Dependientes</h4>
+                        <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
+                            <thead>
+                            <tr>
+                                <td><b>Nombre </b></td>
+                                <td><b>Correo electrónico</b></td>
+                                <td><b>Teléfono </b></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($associates as $as)
+                                <tr>
+                                    <td>{{$as->name}} {{$as->last_name}} {{$as->second_last_name}}</td>
+                                    <td>{{$as->email}}</td>
+                                    <td>{{$as->mobile_number}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
         @endif
     </div>
 @endsection
