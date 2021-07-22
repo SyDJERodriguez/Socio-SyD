@@ -10,6 +10,7 @@ use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
@@ -266,7 +267,31 @@ class CustomerController extends Controller
     //Report for Telasist
     public function report_telasist(Request $request){
         $response = "For telasis";
-        return response()->json($response);
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $transactions = DB::table('transactions')
+            //->select('transactions.client_number','transactions.amount', 'transactions.branch_number')
+            ->selectRaw('transactions.client_number as client_number')
+            ->selectRaw('SUM(transactions.amount) as total')
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereNull('transactions.branch_number')
+            ->groupBy('transactions.client_number')
+            ->get();
+
+        $data = [];
+        foreach ($transactions as $transaction){
+            $customer = DB::table('customers')
+                ->select('id', 'name', 'last_name', 'second_last_name', 'email', 'birthday', 'mobile_number', 'gender')
+                ->where('client_number', '=', $transaction->client_number)
+                ->first();
+            foreach ($customer as $custom){
+                $customer_data = $transaction->client_number.'-'.$custom->id.'|'.$customer->name;
+            }
+
+            array_push($data,$customer);
+        }
+        return response()->json($data);
     }
 
     //Report for Chubb
