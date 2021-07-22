@@ -210,7 +210,7 @@ class CustomerController extends Controller
         }
 
         //calculated number in associates table
-        $number = $this->getNumberAssociate($request['customer_id']);
+        $number = $this->getNumberAssociate($request['customer_id'],null);
         ++$number; //plus one bc 0 don't exists
         //Remove association
         $update_associates =  DB::table('associates')->insert([
@@ -393,7 +393,7 @@ class CustomerController extends Controller
         }
 
         //calculated number in associates table
-        $number = $this->getNumberAssociate($request['customer_id']);
+        $number = $this->getNumberAssociate($request['customer_id'],$request['branch_number']);
         ++$number; //plus one bc 0 don't exists
 
         //insert data in associates table
@@ -486,11 +486,11 @@ class CustomerController extends Controller
     }
 
     //function to calculated number of associate
-    public function getNumberAssociate($customer_id){
-        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+    public function getNumberAssociate($customer_id,$branch_number){
+        //$dataSession = CustomersSession::where('email','=', Auth::user()->email)->first();
         $number = DB::table('associates')
         ->where('customer_id','=', $customer_id)
-        ->where('branch_number','=', $dataSession['branch_number'])
+        ->where('branch_number','=', $branch_number)
         ->where('active_association','=',1)
         ->count();
         return $number;
@@ -1363,28 +1363,15 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $dataSession = CustomersSession::where('email',$email)->first();
 
-        if($client_type === 4 || $client_type === "4"){
-            $customer_trans = DB::table('transactions')
-                ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
-                ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
-                ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
-                ->where('transactions.client_number','=', $client_number)
-                ->where('transactions.branch_number','=', $dataSession['branch_number'])
-                ->whereMonth('transaction_date','=',$now)
-                ->get();
-            return $customer_trans;
-        }else{
-            $customer_trans = DB::table('transactions')
-                ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
-                ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
-                ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
-                ->where('transactions.client_number','=', $client_number)
-                ->whereMonth('transaction_date','=',$now)
-                ->get();
-            return $customer_trans;
-        }
-
-
+        $customer_trans = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->where('transactions.branch_number','=', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$now)
+            ->get();
+        return $customer_trans;
     }
 
     //Go to My documments section
@@ -1962,13 +1949,14 @@ class CustomerController extends Controller
     //load data from associates AQUI
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $associates = DB::table('associates')
-                    ->where([
-                         ['client_number','=',$data['client_number']],
-                         ['active_association', '=', 1]
-                         ])
-                    ->get();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+        $associates = DB::table('associates')
+                            ->where([
+                                ['client_number','=',$data['client_number']],
+                                ['branch_number','=',$dataSession->branch_number],
+                                ['active_association', '=', 1]
+                                ])
+                            ->get();
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
@@ -1980,15 +1968,6 @@ class CustomerController extends Controller
         $query = (array)$query;
         if(empty($query) == false){
             $data->branch_name = $query[0]->branch_name;//get branch name to the view
-
-            //get de associates for a sucursal account
-            $associates = DB::table('associates')
-                            ->where([
-                                ['client_number','=',$data['client_number']],
-                                ['branch_number','=',$dataSession->branch_number],
-                                ['active_association', '=', 1]
-                                ])
-                            ->get();
         } 
         //Calculated the limit of employee
         $validated = $this->employeeLimit(
@@ -2027,7 +2006,7 @@ class CustomerController extends Controller
         $validated = false; //var for button validated
 
         //get number of employees registrados
-        $numberEmployees = $this->getNumberAssociate($id);
+        $numberEmployees = $this->getNumberAssociate($id,$dataSession['branch_number']);
 
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
