@@ -1304,7 +1304,7 @@ class CustomerController extends Controller
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $tr = $this->get_trans($data['client_number']);
+        $tr = $this->get_trans($data['client_number'],$data['email'],$data['client_type']);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
@@ -1352,16 +1352,32 @@ class CustomerController extends Controller
     }
 
     //Get transactions
-    public function get_trans($client_number){
+    public function get_trans($client_number,$email,$client_type){
         $now = Carbon::now();
-        $customer_trans = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
-            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
-            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
-            ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$now)
-            ->get();
-        return $customer_trans;
+        $dataSession = CustomersSession::where('email',$email)->first();
+
+        if($client_type === 4 || $client_type === "4"){
+            $customer_trans = DB::table('transactions')
+                ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+                ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+                ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+                ->where('transactions.client_number','=', $client_number)
+                ->where('transactions.branch_number','=', $dataSession['branch_number'])
+                ->whereMonth('transaction_date','=',$now)
+                ->get();
+            return $customer_trans;
+        }else{
+            $customer_trans = DB::table('transactions')
+                ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+                ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+                ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+                ->where('transactions.client_number','=', $client_number)
+                ->whereMonth('transaction_date','=',$now)
+                ->get();
+            return $customer_trans;
+        }
+
+
     }
 
     //Go to My documments section
@@ -1408,6 +1424,26 @@ class CustomerController extends Controller
         return view('pages.Account.documents', compact('data','total','noti', 'number', 'owner', 'beneficiaries'));
     }
 
+    //get transactions by branch_number or client_number
+    public function getTransCadena($email){
+        $dataSession = CustomersSession::where('email', $email)->first(); 
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        if($dataSession['branch_number'] !== null){
+            return DB::table('transactions')
+                        ->where('client_number','=', $dataSession['client_number'])
+                        ->where('branch_number','=', $dataSession['branch_number'])
+                        ->whereMonth('transaction_date','=',$current_month)
+                        ->get();
+        }else{
+            return DB::table('transactions')
+                        ->where('client_number','=', $dataSession['client_number'])
+                        ->whereMonth('transaction_date','=',$current_month)
+                        ->get();
+        }
+    }
+
     //Go to register beneficiary
     public function register_beneficiary () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
@@ -1443,10 +1479,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1525,10 +1558,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1595,10 +1625,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1654,10 +1681,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1767,10 +1791,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1811,10 +1832,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1829,10 +1847,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', $client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1921,7 +1936,10 @@ class CustomerController extends Controller
                     ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
                     ->get();
         //Calculated the limit of employee
-        $validated = $this->employeeLimit(Auth::user()->client_number,Auth::user()->id);
+        $validated = $this->employeeLimit(
+                            Auth::user()->client_number,
+                            Auth::user()->id,
+                            Auth::user()->client_type);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
@@ -1929,14 +1947,25 @@ class CustomerController extends Controller
     }
 
     //Function to generate limit for add employees according the rules
-    public function employeeLimit($client_number, $id){
+    public function employeeLimit($client_number, $id, $client_type){
         $data = Customer::where('client_number', $client_number)->first();
+        $dataSession = CustomersSession::where('email', $data['email'])->first();
         $now = Carbon::now();
-        //get sum of amount column
-        $query = DB::table('transactions')
-            ->where('client_number','=', $data['client_number'])
-            ->whereMonth('transaction_date','=',$now)
-            ->sum('amount');
+
+        if($client_type === 4 || $client_type === "4"){
+            //get sum of amount column by sucursal
+            $query = DB::table('transactions')
+                        ->where('client_number','=', $data['client_number'])
+                        ->where('branch_number','=',$dataSession['branch_number'])
+                        ->whereMonth('transaction_date','=',$now)
+                        ->sum('amount');
+        }else{
+            //get sum of amount column
+            $query = DB::table('transactions')
+                ->where('client_number','=', $data['client_number'])
+                ->whereMonth('transaction_date','=',$now)
+                ->sum('amount');
+        }
 
         //round the number with only 2 decimals
         $limit = (float)number_format($query,2,'.','');

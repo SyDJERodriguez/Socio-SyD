@@ -38,10 +38,8 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -164,6 +162,26 @@ class BeneficiaryController extends Controller
                     }
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
            // }
+        }
+    }
+
+    //get transactions by branch_number or client_number
+    public function getTransCadena($email){
+        $dataSession = CustomersSession::where('email', $email)->first(); 
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        if($dataSession['branch_number'] !== null){
+            return DB::table('transactions')
+                        ->where('client_number','=', $dataSession['client_number'])
+                        ->where('branch_number','=', $dataSession['branch_number'])
+                        ->whereMonth('transaction_date','=',$current_month)
+                        ->get();
+        }else{
+            return DB::table('transactions')
+                        ->where('client_number','=', $dataSession['client_number'])
+                        ->whereMonth('transaction_date','=',$current_month)
+                        ->get();
         }
     }
 
