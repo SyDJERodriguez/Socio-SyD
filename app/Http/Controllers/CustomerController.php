@@ -1789,6 +1789,19 @@ class CustomerController extends Controller
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $query = DB::table('branches_clients')
+                    ->where('branch_number','=',$dataSession->branch_number)
+                    ->get();
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;//get branch name to the view
+        } 
+        
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
@@ -1832,6 +1845,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
+        ///
         return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number', 'owner'));
     }
 
