@@ -1315,10 +1315,14 @@ class CustomerController extends Controller
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
-        $branch_name = DB::table('branches_clients')
+        $query = DB::table('branches_clients')
                                 ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
-        $data->branch_name = $branch_name[0]->branch_name;
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;
+        } 
 
         return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
         //return redirect()->route('customer.myAccount');
@@ -1387,10 +1391,14 @@ class CustomerController extends Controller
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
-        $branch_name = DB::table('branches_clients')
+        $query = DB::table('branches_clients')
                                 ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
-        $data->branch_name = $branch_name[0]->branch_name;
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;
+        } 
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
@@ -1431,16 +1439,18 @@ class CustomerController extends Controller
         $current_month = $now->month;
 
         if($dataSession['branch_number'] !== null){
-            return DB::table('transactions')
+            $data= DB::table('transactions')
                         ->where('client_number','=', $dataSession['client_number'])
                         ->where('branch_number','=', $dataSession['branch_number'])
                         ->whereMonth('transaction_date','=',$current_month)
                         ->get();
+            return $data;
         }else{
-            return DB::table('transactions')
+            $data = DB::table('transactions')
                         ->where('client_number','=', $dataSession['client_number'])
                         ->whereMonth('transaction_date','=',$current_month)
                         ->get();
+            return $data;
         }
     }
 
@@ -1453,10 +1463,15 @@ class CustomerController extends Controller
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
-        $branch_name = DB::table('branches_clients')
+        $query = DB::table('branches_clients')
                                 ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
-        $data->branch_name = $branch_name[0]->branch_name;
+        //$data->branch_name = $branch_name[0]->branch_name;
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;
+        }
 
 
         if(Auth::user()->client_type === '3'){
@@ -1533,11 +1548,15 @@ class CustomerController extends Controller
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
-        $branch_name = DB::table('branches_clients')
+        $query = DB::table('branches_clients')
                                 ->where('client_number','=',$data->client_number)
                                 ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
-        $data->branch_name = $branch_name[0]->branch_name;
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;
+        } 
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
