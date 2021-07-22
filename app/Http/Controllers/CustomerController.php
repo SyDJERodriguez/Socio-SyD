@@ -1843,11 +1843,11 @@ class CustomerController extends Controller
     }
 
     //get the total amount by passing client number as a parameter
-    public function totalAmountById($client_number){
+    public function totalAmountById($client_number,$email){
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
+        $data_customer = $this->getTransCadena($email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -1897,7 +1897,7 @@ class CustomerController extends Controller
         $data = json_decode($data);
         $data = (array)$data;
         //calcular el total amount
-        $total = $this->totalAmountById($data[0]->client_number);
+        $total = $this->totalAmountById($data[0]->client_number, $email);
         //update en tabla notifications
         $update_notifications = 'No matches';
         if($data[0]->client_type == 1 && $total > 2500.01){
