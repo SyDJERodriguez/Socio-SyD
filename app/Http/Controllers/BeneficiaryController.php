@@ -171,18 +171,12 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        if($dataSession['branch_number'] !== null){
-            return DB::table('transactions')
-                        ->where('client_number','=', $dataSession['client_number'])
-                        ->where('branch_number','=', $dataSession['branch_number'])
-                        ->whereMonth('transaction_date','=',$current_month)
-                        ->get();
-        }else{
-            return DB::table('transactions')
-                        ->where('client_number','=', $dataSession['client_number'])
-                        ->whereMonth('transaction_date','=',$current_month)
-                        ->get();
-        }
+        return DB::table('transactions')
+                    ->where('client_number','=', $dataSession['client_number'])
+                    ->where('branch_number','=', $dataSession['branch_number'])
+                    ->whereMonth('transaction_date','=',$current_month)
+                    ->get();
+        
     }
 
     //Function to generate PDF and upload AWS's S3
