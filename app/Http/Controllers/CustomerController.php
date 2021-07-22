@@ -203,7 +203,7 @@ class CustomerController extends Controller
         //dd($request);
         $client_number = $request['client_number'];
 
-        $validated = $this->employeeLimit($client_number,$request['customer_id']);
+        $validated = $this->employeeLimit($client_number,$request['customer_id'], Auth::user()->client_type);
         //dd($validated);
         if ($validated === false){
             return view('pages.limitDependent', ['owner' => $request['owner'], 'success'=> false]);
@@ -346,7 +346,7 @@ class CustomerController extends Controller
 
         //Check if th account is an owner account
         if(!empty($verify_mobile_email)){
-            if ($verify_mobile_email[0]->client_type == '1'){
+            if ($verify_mobile_email[0]->client_type == '1' || $verify_mobile_email[0]->client_type == '4'){
                 $session->session()->flash('isOwner', 'the email/mobile number its already in db');
                 return response()->json(['success'=>'true']);
             }
@@ -411,7 +411,8 @@ class CustomerController extends Controller
             'birthday'          => $request['bday'],
             'created_at'        => date('Y-m-d H:i:s'),
             'mobile_number'     => $request['mobile_number'],
-            'email'             => $request['email']
+            'email'             => $request['email'],
+            'branch_number'     => isset($request['branch_number']) ? $request['branch_number'] : null
         ]); //debo buscar el associado de aqui en la DB(pasar en lra url el numero de telefono tambien)
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
@@ -486,8 +487,10 @@ class CustomerController extends Controller
 
     //function to calculated number of associate
     public function getNumberAssociate($customer_id){
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $number = DB::table('associates')
         ->where('customer_id','=', $customer_id)
+        ->where('branch_number','=', $dataSession['branch_number'])
         ->where('active_association','=',1)
         ->count();
         return $number;
@@ -1304,7 +1307,7 @@ class CustomerController extends Controller
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $tr = $this->get_trans($data['client_number'],$data['email'],$data['client_type']);
+        $tr = $this->get_trans($data['client_number'],$data['email'],Auth::user()->client_type);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
@@ -1818,7 +1821,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type != "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1927,6 +1930,14 @@ class CustomerController extends Controller
                                     ]);
         }
 
+        if($data[0]->client_type == 4 && $total > 2500.01){
+            $update_notifications = DB::table('notifications')
+                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->update([
+                                        'available' => 1
+                                    ]);
+        }
+
         if($data[0]->client_type == 2 && $total > 200.02){
             $update_notifications = DB::table('notifications')
                                     ->where('client_number','=',$data[0]->client_number)
@@ -1952,8 +1963,33 @@ class CustomerController extends Controller
     public function employees () {
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $associates = DB::table('associates')
-                    ->where([['client_number','=',$data['client_number']], ['active_association', '=', 1]])
+                    ->where([
+                         ['client_number','=',$data['client_number']],
+                         ['active_association', '=', 1]
+                         ])
                     ->get();
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+
+        $data->is_branch = $dataSession->is_branch;
+        $data->branch_number = $dataSession->branch_number;
+        $query = DB::table('branches_clients')
+                                ->where('client_number','=',$data->client_number)
+                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->get();
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;//get branch name to the view
+
+            //get de associates for a sucursal account
+            $associates = DB::table('associates')
+                            ->where([
+                                ['client_number','=',$data['client_number']],
+                                ['branch_number','=',$dataSession->branch_number],
+                                ['active_association', '=', 1]
+                                ])
+                            ->get();
+        } 
         //Calculated the limit of employee
         $validated = $this->employeeLimit(
                             Auth::user()->client_number,
@@ -1971,11 +2007,11 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
         $now = Carbon::now();
 
-        if($client_type === 4 || $client_type === "4"){
+        if($client_type == 4 || $client_type == "4"){
             //get sum of amount column by sucursal
             $query = DB::table('transactions')
                         ->where('client_number','=', $data['client_number'])
-                        ->where('branch_number','=',$dataSession['branch_number'])
+                        ->where('branch_number','=', $dataSession['branch_number'])
                         ->whereMonth('transaction_date','=',$now)
                         ->sum('amount');
         }else{
