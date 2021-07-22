@@ -108,7 +108,7 @@
                     </script>
                 @endif
 
-                @if ($validated === false)
+                @if ($data->limiteAsociados === true)
                     <script>
                         $(function() {
                             $('#limitAccount').modal('show');
@@ -165,7 +165,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"
-                @if ($validated === false)
+                @if ($data->validated === false)
                 disabled
                 @endif
                 style="background-color: #143153;"

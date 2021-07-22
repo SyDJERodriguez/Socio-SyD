@@ -1307,14 +1307,14 @@ class CustomerController extends Controller
     public function account_status(){
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
-        $tr = $this->get_trans($data['client_number'],$data['email'],Auth::user()->client_type);
+        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+        $tr = $this->get_trans($data['client_number'], $dataSession['branch_number']);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
         $mes = Carbon::parse()->locale('es');
         $data->mes = $mes;
 
-        $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
 
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
@@ -1359,16 +1359,15 @@ class CustomerController extends Controller
     }
 
     //Get transactions
-    public function get_trans($client_number,$email,$client_type){
+    public function get_trans($client_number,$branch_number){
         $now = Carbon::now();
-        $dataSession = CustomersSession::where('email',$email)->first();
 
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->where('transactions.branch_number','=', $dataSession['branch_number'])
+            ->where('transactions.branch_number','=', $branch_number)
             ->whereMonth('transaction_date','=',$now)
             ->get();
         return $customer_trans;
@@ -1970,14 +1969,17 @@ class CustomerController extends Controller
             $data->branch_name = $query[0]->branch_name;//get branch name to the view
         } 
         //Calculated the limit of employee
-        $validated = $this->employeeLimit(
+        $response = $this->employeeLimit(
                             Auth::user()->client_number,
                             Auth::user()->id,
                             Auth::user()->client_type);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
+        
+        $data->limiteAsociados = $response->limiteAsociados;
+        $data->validated = $response->validated;
 
-        return view('pages.Account.employees', compact('data','associates','validated','total','noti'));
+        return view('pages.Account.employees', compact('data','associates','total','noti'));
     }
 
     //Function to generate limit for add employees according the rules
@@ -2008,6 +2010,8 @@ class CustomerController extends Controller
         //get number of employees registrados
         $numberEmployees = $this->getNumberAssociate($id,$dataSession['branch_number']);
 
+        $validated = false;
+        $limiteAsociados = false;
         //calculated the limit of employees
         if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
             $validated = true;
@@ -2016,14 +2020,19 @@ class CustomerController extends Controller
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
         }
-        /*else if($limit > 9500.01 && $numberEmployees < 10) {
-            $validated = true;
-        }*/
-        else {
-            $validated = false;
+
+        if( $limit > 2500 && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+            $limiteAsociados = true;
+        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
+            $limiteAsociados = true;
+        }else if($limit > 7000 && $numberEmployees == 8){ //oro
+            $limiteAsociados = true;
         }
 
-        return $validated;
+        $data->validated = $validated;
+        $data->limiteAsociados = $limiteAsociados;
+
+        return $data;
     }
 
     //Edit Employees
