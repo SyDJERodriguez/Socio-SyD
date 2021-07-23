@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Customer;
 use App\Collector;
+use App\CustomersSession;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
@@ -281,17 +282,63 @@ class CustomerController extends Controller
 
         $data = [];
         foreach ($transactions as $transaction){
-            $customer = DB::table('customers')
-                ->select('id', 'name', 'last_name', 'second_last_name', 'email', 'birthday', 'mobile_number', 'gender')
-                ->where('client_number', '=', $transaction->client_number)
-                ->first();
-            foreach ($customer as $custom){
-                $customer_data = $transaction->client_number.'-'.$custom->id.'|'.$customer->name;
-            }
+            $customer_type = CustomersSession::where('client_number', '=', $transaction->client_number)
+                ->select('client_type', 'email')
+                ->get();
+            //dd($customer_type);
+            foreach ($customer_type as $customer){
+                $customer_info = Customer::where('email', '=', $customer->email)
+                    ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
+                    ->first();
 
-            array_push($data,$customer);
+
+                $level = '';
+                if ($customer->client_type === "1" || $customer->client_type === "3"){
+                    if ($transaction->total>4500 && $transaction->total<=7000) {
+                        $level = 'plata';
+                    }
+                    if ($transaction->total>7000) {
+                        $level = 'oro';
+                    }
+                }
+
+                if ($customer->client_type === "2"){
+                    if ($transaction->total>500 && $transaction->total<=1300) {
+                        $level = 'plata';
+                    }
+                    if ($transaction->total>1300) {
+                        $level = 'plata';
+                    }
+                }
+
+                $customer_data = $transaction->client_number.'-'.$customer_info->id.'|'.$customer_info->name.'|'.$customer_info->last_name.'|'.
+                    $customer_info->second_last_name.'|'.$customer->email.'|'.$customer_info->birthday.'|'.$customer_info->mobile_number.'|'.
+                    $customer_info->gender.'|'.$level;
+
+
+                if ($level === 'plata' || $level === 'oro'){
+                    array_push($data,$customer_data);
+                }
+            }
         }
-        return response()->json($data);
+        $array_num = count($data);
+        $content = '';
+        for ($i = 0; $i < $array_num; $i++){
+            $content .= $data[$i];
+            $content .= "\n";
+        }
+
+        $current_date = Carbon::now()->format('Y-m-d');
+
+        $fileName = 'Telasist-'.$current_date.'.txt';
+        $headers = [
+            'Content-type' => 'text/plain',
+            'Cache-Control' => 'no-store, no-cache',
+            'Content-Disposition' => sprintf('attachment; filename="%s"', $fileName),
+
+        ];
+        return \Response::make($content, 200, $headers);
+        //return response()->json($data);
     }
 
     //Report for Chubb
