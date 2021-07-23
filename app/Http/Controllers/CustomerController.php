@@ -1427,20 +1427,13 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        if($dataSession['branch_number'] !== null){
-            $data= DB::table('transactions')
-                        ->where('client_number','=', $dataSession['client_number'])
-                        ->where('branch_number','=', $dataSession['branch_number'])
-                        ->whereMonth('transaction_date','=',$current_month)
-                        ->get();
-            return $data;
-        }else{
-            $data = DB::table('transactions')
-                        ->where('client_number','=', $dataSession['client_number'])
-                        ->whereMonth('transaction_date','=',$current_month)
-                        ->get();
-            return $data;
-        }
+        $data= DB::table('transactions')
+                    ->where('client_number','=', $dataSession['client_number'])
+                    ->where('branch_number','=', $dataSession['branch_number'])
+                    ->whereMonth('transaction_date','=',$current_month)
+                    ->get();
+        return $data;
+        
     }
 
     //Go to register beneficiary
@@ -1491,7 +1484,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type !== "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1574,7 +1567,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type != "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1641,7 +1634,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type != "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1697,7 +1690,7 @@ class CustomerController extends Controller
         }
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+        if (Auth::user()->client_type != "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
