@@ -268,9 +268,9 @@
                         document.getElementById("form_alert_email").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_email").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
-                        document.getElementById("form_alert_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
-                        document.getElementById("form_alert_pass").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_pass").hidden= true}, 3000);
+                        document.getElementById("form_alert_pass_pro").innerHTML='Las contraseñas no coinciden, por favor verifica ';
+                        document.getElementById("form_alert_pass_pro").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_pass_pro").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
                         document.getElementById("form_alert_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente ';
                         document.getElementById("form_alert_mobile").removeAttribute("hidden");
