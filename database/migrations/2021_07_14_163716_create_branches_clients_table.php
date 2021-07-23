@@ -16,7 +16,7 @@ class CreateBranchesClientsTable extends Migration
         Schema::create('branches_clients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('client_number',13);
-            $table->bigInteger('branch_number')->unsigned();
+            $table->string('branch_number')->nullable();
             $table->string('branch_name');
         });
     }

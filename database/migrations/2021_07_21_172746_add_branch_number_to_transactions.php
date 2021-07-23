@@ -14,7 +14,7 @@ class AddBranchNumberToTransactions extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->bigInteger('branch_number')->nullable()->default(null);
+            $table->string('branch_number')->nullable()->default(null);
         });
     }
 

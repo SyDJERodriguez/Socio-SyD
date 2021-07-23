@@ -314,7 +314,7 @@
                 data:$(this).serialize(),
 
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     if(data['success']==='true'){
                         $('#modal5').modal('hide');
                         $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
@@ -352,6 +352,7 @@
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
                         $('#modalError').modal('show');
+                        //console.log(data);
                     }
                 },
                 error: function(data){

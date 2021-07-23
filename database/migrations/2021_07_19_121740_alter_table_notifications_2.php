@@ -14,7 +14,7 @@ class AlterTableNotifications2 extends Migration
     public function up()
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->bigInteger('branch_number')->nullable()->default(null);
+            $table->string('branch_number')->nullable()->default(null);
         });
     }
 

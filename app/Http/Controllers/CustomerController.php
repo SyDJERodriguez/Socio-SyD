@@ -629,18 +629,31 @@ class CustomerController extends Controller
             ]);
         }
 
-        $save_register = DB::table('customers_sessions')->insert([
-            'client_number' => $client_number,
-            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
-            'email'         => $request['email'],
-            'mobile'        => $request['mobile'],
-            'active'        => 0,
-            'password'      => $password,
-            'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
-            'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
-        ]);
+        if($request['client_type'] != '1'){
+            $save_register = DB::table('customers_sessions')->insert([
+                'client_number' => $client_number,
+                'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+                'email'         => $request['email'],
+                'mobile'        => $request['mobile'],
+                'active'        => 0,
+                'password'      => $password,
+                'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
+                'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
+            ]);
+        }
 
         if($request['client_type'] === '1'){
+            $save_register = DB::table('customers_sessions')->insert([
+                'client_number' => $client_number,
+                'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+                'email'         => $request['email'],
+                'mobile'        => $request['mobile'],
+                'active'        => 0,
+                'password'      => $password,
+                'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
+                'branch_number' => $client_number
+            ]);
+
             $idCustomer = DB::table('customers_sessions')
                 ->select('id')
                 ->where('email', '=', $request['email'])
@@ -667,6 +680,7 @@ class CustomerController extends Controller
                     'birthday'          => $request['birthday'],
                     'email'             => $request['email'],
                     'mobile_number'     => $request['mobile'],
+                    'branch_number'     => $client_number
                 ]);
             }
         }

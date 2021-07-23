@@ -15,7 +15,7 @@ class AlterTableCustomersSessions2 extends Migration
     {
         Schema::table('customers_sessions', function (Blueprint $table) {
             $table->tinyInteger('is_branch')->default(0);
-            $table->bigInteger('branch_number')->nullable()->default(null);
+            $table->string('branch_number')->nullable()->default(null);
         });
     }
 

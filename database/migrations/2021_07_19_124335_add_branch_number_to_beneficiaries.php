@@ -14,7 +14,7 @@ class AddBranchNumberToBeneficiaries extends Migration
     public function up()
     {
         Schema::table('beneficiaries', function (Blueprint $table) {
-            $table->bigInteger('branch_number')->nullable()->default(null);
+            $table->string('branch_number')->nullable()->default(null);
         });
     }
 
