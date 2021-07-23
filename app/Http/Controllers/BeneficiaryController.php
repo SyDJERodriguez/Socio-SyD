@@ -190,7 +190,7 @@ class BeneficiaryController extends Controller
             ->get();
 
         $signature = DB::table('signatures')
-            ->where('client_number', '=', Auth::user()->client_number)
+            ->where('customer_id', '=', Auth::user()->id)
             ->first();
 
         if (Auth::user()->client_type === "3"){

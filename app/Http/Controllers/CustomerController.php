@@ -1373,7 +1373,7 @@ class CustomerController extends Controller
     }
 
     //Get transactions
-    public function get_trans($client_number,$branch_number){
+    public function get_trans($client_number, $branch_number){
         $now = Carbon::now();
 
         $customer_trans = DB::table('transactions')
@@ -1615,7 +1615,7 @@ class CustomerController extends Controller
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $query = DB::table('signatures')
-            ->where('client_number','=',$data['client_number'])
+            ->where('customer_id','=',Auth::user()->id)
             ->get();
         if(Auth::user()->client_type === '3'){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -1730,14 +1730,14 @@ class CustomerController extends Controller
                     //save the efirm into db
                     $user = Customer::where('client_number', Auth::user()->client_number)->first();
                     $data = DB::table('signatures')
-                                ->where('client_number','=',$user['client_number'])
+                                ->where('customer_id','=',Auth::user()->id)
                                 ->get();
 
-                    if(Auth::user()->client_type === "3") {
+                    /* if(Auth::user()->client_type === "3") {
                         $data = DB::table('signatures')
                             ->where('customer_id','=',Auth::user()->id)
                             ->get();
-                    }
+                    } */
 
                     $data = json_decode($data);
                     $data = (array)$data;
@@ -1760,14 +1760,16 @@ class CustomerController extends Controller
                                 $idSign = DB::table('signatures')->insertGetId([
                                     'client_number'   => $user['client_number'],
                                     'created_at'      => date('Y-m-d H:i:s'),
-                                    'imgData'         => $request['imgData']
+                                    'imgData'         => $request['imgData'],
+                                    'customer_id'     => Auth::user()->id
                                 ]);
                             }else{
                                 $idSign = DB::table('signatures')->insertGetId([
                                     'client_number'   => '',
                                     'customer_id'     => Auth::user()->id,
                                     'created_at'      => date('Y-m-d H:i:s'),
-                                    'imgData'         => $request['imgData']
+                                    'imgData'         => $request['imgData'],
+                                    'customer_id'     => Auth::user()->id
                                 ]);
                             }
 
