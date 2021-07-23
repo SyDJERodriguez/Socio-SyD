@@ -167,15 +167,17 @@ class BeneficiaryController extends Controller
 
     //get transactions by branch_number or client_number
     public function getTransCadena($email){
-        $dataSession = CustomersSession::where('email', $email)->first(); 
+        $dataSession = DB::table('customers_sessions')
+                        ->where('email','=', $email)->first(); 
         $now = Carbon::now();
         $current_month = $now->month;
 
-        return DB::table('transactions')
-                    ->where('client_number','=', $dataSession['client_number'])
-                    ->where('branch_number','=', $dataSession['branch_number'])
+        $data= DB::table('transactions')
+                    ->where('client_number','=', $dataSession->client_number)
+                    ->where('branch_number','=', $dataSession->branch_number)
                     ->whereMonth('transaction_date','=',$current_month)
                     ->get();
+        return $data;
         
     }
 

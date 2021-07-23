@@ -297,6 +297,8 @@
                     }
                 },
                 error: function(data){
+                    //console.log(data);
+                    //console.log(data['update']);
                     $('#modalErrorServer').modal('show');
                 }
             });

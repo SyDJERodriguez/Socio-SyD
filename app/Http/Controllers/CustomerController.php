@@ -623,10 +623,10 @@ class CustomerController extends Controller
             ]);
 
             //create data in notifications table
-            $update_notifications = DB::table('notifications')->insert([
+            /* $update_notifications = DB::table('notifications')->insert([
                 'client_number'     => $client_number,
                 'name_id'           => 'SEGURO ASISTENCIAS'
-            ]);
+            ]); */
         }
 
         if($request['client_type'] != '1'){
@@ -639,6 +639,13 @@ class CustomerController extends Controller
                 'password'      => $password,
                 'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
                 'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
+            ]);
+
+            //create data in notifications table
+            $update_notifications = DB::table('notifications')->insert([
+                'client_number'     => $client_number,
+                'name_id'           => 'SEGURO ASISTENCIAS',
+                'branch_number'     => null
             ]);
         }
 
@@ -654,7 +661,14 @@ class CustomerController extends Controller
                 'branch_number' => $client_number
             ]);
 
-            $idCustomer = DB::table('customers_sessions')
+            //create data in notifications table
+            $update_notifications = DB::table('notifications')->insert([
+                'client_number'     => $client_number,
+                'name_id'           => 'SEGURO ASISTENCIAS',
+                'branch_number'     => $client_number
+            ]);
+
+            $idCustomer = DB::table('customers')
                 ->select('id')
                 ->where('email', '=', $request['email'])
                 ->first();
@@ -668,20 +682,27 @@ class CustomerController extends Controller
                 ->first();
 
             if($if_associate_email === null && $if_associate_phone === null){
-                DB::table('associates')->insert([
-                    'customer_id'       => $idCustomer->id,
-                    'client_number'     => $client_number,
-                    'name'              => $request['name'],
-                    'last_name'         => $request['last_name'],
-                    'second_last_name'  => $request['second_last_name'],
-                    'role'              => isset($request['role']) ? $request['role'] : "",
-                    'active_association'=> 1,
-                    'number'            => 1,
-                    'birthday'          => $request['birthday'],
-                    'email'             => $request['email'],
-                    'mobile_number'     => $request['mobile'],
-                    'branch_number'     => $client_number
-                ]);
+                try {
+                    DB::table('associates')->insert([
+                        'customer_id'       => $idCustomer->id,
+                        'client_number'     => $client_number,
+                        'name'              => $request['name'],
+                        'last_name'         => $request['last_name'],
+                        'second_last_name'  => $request['second_last_name'],
+                        'role'              => isset($request['role']) ? $request['role'] : "",
+                        'active_association'=> 1,
+                        'number'            => 1,
+                        'birthday'          => $request['birthday'],
+                        'email'             => $request['email'],
+                        'mobile_number'     => $request['mobile'],
+                        'branch_number'     => $client_number
+                    ]);
+                    //code...
+                } catch (\Throwable $th) {
+                    DB::rollback();
+                    $update_customer = $th;
+                    throw $th;
+                }
             }
         }
 
@@ -1322,7 +1343,9 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = Customer::where('client_number', Auth::user()->client_number)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
-        $tr = $this->get_trans($data['client_number'], $dataSession['branch_number']);
+        $tr = $this->get_trans(
+                    $data['client_number'], 
+                    $dataSession['branch_number']);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
 
@@ -1384,6 +1407,7 @@ class CustomerController extends Controller
             ->where('transactions.branch_number','=', $branch_number)
             ->whereMonth('transaction_date','=',$now)
             ->get();
+
         return $customer_trans;
     }
 
@@ -1413,7 +1437,7 @@ class CustomerController extends Controller
             $data = Customer::where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
-                -> where('email', Auth::user()->email)
+                ->where('email', Auth::user()->email)
                 ->first();
         }
 
@@ -1437,13 +1461,14 @@ class CustomerController extends Controller
 
     //get transactions by branch_number or client_number
     public function getTransCadena($email){
-        $dataSession = CustomersSession::where('email', $email)->first(); 
+        $dataSession = DB::table('customers_sessions')
+                        ->where('email','=', $email)->first(); 
         $now = Carbon::now();
         $current_month = $now->month;
 
         $data= DB::table('transactions')
-                    ->where('client_number','=', $dataSession['client_number'])
-                    ->where('branch_number','=', $dataSession['branch_number'])
+                    ->where('client_number','=', $dataSession->client_number)
+                    ->where('branch_number','=', $dataSession->branch_number)
                     ->whereMonth('transaction_date','=',$current_month)
                     ->get();
         return $data;
