@@ -588,7 +588,7 @@ class CustomerController extends Controller
         $update_customer ='';
         if($data !== null) {
             //Update data in customers table
-            $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+            $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
                 'second_last_name' => $request['second_last_name'],
@@ -769,15 +769,14 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_branch_number'=>'false']);
         }
 
-        //esta linea de arriba verifica que si existe lo actualiza y sino ps inserta
         $data = DB::table('customers_sessions')
                     ->where('client_number','=', $request['client_number'])
-                    ->where('branch_number','=', $request['branch_number'])
+                    ->where('email','=', $request['email'])
                     ->first();
         $update_customer ='';
         if($data !== null) {
             //Update data in customers table
-            $update_customer = DB::table('customers')->where('client_number', '=', $client_number)->update([
+            $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
                 'second_last_name' => $request['second_last_name'],
@@ -1916,6 +1915,7 @@ class CustomerController extends Controller
     public function getNotifications(){
         $data = DB::table('notifications')
             ->where('client_number','=',Auth::user()->client_number)
+            ->where('branch_number','=', Auth::user()->branch_number)
             ->get();
         $data = json_decode($data);
         $data = (array)$data;
