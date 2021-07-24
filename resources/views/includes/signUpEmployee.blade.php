@@ -20,7 +20,7 @@
                     @method("PUT")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
-                    <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="customer_id" value="{{$data->id}}">
                     <input type="hidden" name="nameClient" value="{{$data->name}}">
                     <input type="hidden" name="lastNameClient" value="{{$data->last_name}}">
                     <input type="hidden" name="branch_number" value="{{ isset($data->branch_number) ? $data->branch_number : null }}">
