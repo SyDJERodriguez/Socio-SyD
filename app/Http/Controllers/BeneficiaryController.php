@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $number = '';
         if (Auth::user()->client_type === "3"){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -38,6 +38,7 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
@@ -122,7 +123,9 @@ class BeneficiaryController extends Controller
                      if(Auth::user()->client_type === "2"){
                         $this->send_email_alta($data['client_number']);
                     }
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
+                    return view('pages.Account.beneficiary', compact(
+                        'success', 'data', 'beneficiary', 'level', 
+                        'signature', 'noti', 'total', 'number','owner'));
                 //}
 
             }catch(\Exception $e){

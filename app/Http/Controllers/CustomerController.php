@@ -2000,16 +2000,14 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $associates = DB::table('associates')
                             ->where([
-                                ['client_number','=',$data['client_number']],
+                                ['client_number','=',$data->client_number],
                                 ['branch_number','=',$dataSession->branch_number],
                                 ['active_association', '=', 1]
                                 ])
                             ->get();
-
-        //$data->is_branch = $dataSession->is_branch;
+        
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
-                                ->where('client_number','=',$data->client_number)
                                 ->where('branch_number','=',$dataSession->branch_number)
                                 ->get();
         $query = json_decode($query);
