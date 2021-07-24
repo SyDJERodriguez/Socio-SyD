@@ -3,7 +3,7 @@
 </div>
 <div class="col-lg-3 benefits_sb">
     <div style="padding-left: 10px !important;">
-        <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+        <h6>Hola {{$owner}}<br>
            No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
             @if(Auth::user()->client_type == '3')
                 - {{$number->number}} 

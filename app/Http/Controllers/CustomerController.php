@@ -1564,10 +1564,10 @@ class CustomerController extends Controller
 
     //Go to benefits of Safe
     public function benefits () {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
 
-        $data->is_branch = $dataSession->is_branch;
+        //$data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
                                 ->where('client_number','=',$data->client_number)
