@@ -147,15 +147,15 @@ class CustomerController extends Controller
 
         if ($update_customer === 1 && $save_register === true){
             DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
         }elseif ($update_customer === true && $save_register === true){
             DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
         }elseif ($update_customer === 0 && $save_register === true){
             DB::table('cnt_numbers')->where('client_number', '=', $client_number)->update(['registered' => 1]);
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$client_number]);
         }
         else{
@@ -466,7 +466,7 @@ class CustomerController extends Controller
 
     //Deactivate employees
     public function deleteEmployee($employee){
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         //update the employee with client number 00000000 and number = 0
         $update_associates ='';
         $update_associates = DB::table('associates')
@@ -709,13 +709,13 @@ class CustomerController extends Controller
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
         if ($update_customer === 1 && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === true && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === 0 && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }
         else{
@@ -769,8 +769,6 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_branch_number'=>'false']);
         }
 
-        //Check if the client number is already in the DB
-        //$data = Customer::where('client_number', $client_number)->first();
         //esta linea de arriba verifica que si existe lo actualiza y sino ps inserta
         $data = DB::table('customers_sessions')
                     ->where('client_number','=', $request['client_number'])
@@ -1086,8 +1084,8 @@ class CustomerController extends Controller
 
 
     //Send welcome email
-    public function send_welcome_email($client_number) {
-        $data = Customer::where('client_number', $client_number)->first();
+    public function send_welcome_email($email) {
+        $data = Customer::where('email', $email)->first();
         try {
             \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
@@ -1238,8 +1236,8 @@ class CustomerController extends Controller
     //Send email to restore password
     public function send_restore_password(Request $request) {
         $request = $request->input();
-        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
-        $data = Customer::where('client_number', $data_session->client_number)->first();
+        //$data_session = CustomersSession::where('email', $request['email'])->first();
+        $data = Customer::where('email', $request['email'])->first();
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
@@ -1266,15 +1264,15 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer === 1){
-            $this->send_signUp_success($request['client_number']);
+            $this->send_signUp_success($request['email']);
             return response()->json(['success'=>'true','status' =>200]);
         }
         return response()->json(['success'=>'false','status' =>401]);
     }
 
     //Send signUp success email
-    public function send_signUp_success($client_number) {
-        $data = Customer::where('client_number', $client_number)->first();
+    public function send_signUp_success($email) {
+        $data = Customer::where('email', $email)->first();
         try {
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
@@ -1304,8 +1302,8 @@ class CustomerController extends Controller
     //Send email to activate account
     public function send_activate_account(Request $request) {
         $request = $request->input();
-        $data_session = $verify_email = CustomersSession::where('email', $request['email'])->first();
-        $data = Customer::where('client_number', $data_session->client_number)->first();
+
+        $data = Customer::where('email', $request['email'])->first();
         try {
             \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
@@ -1414,10 +1412,10 @@ class CustomerController extends Controller
 
     //Go to My documments section
     public function my_documents() {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
 
-        $data->is_branch = $dataSession->is_branch;
+        //$data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
                                 ->where('branch_number','=',$dataSession->branch_number)
@@ -2076,7 +2074,7 @@ class CustomerController extends Controller
 
     //Edit Employees
     public function editEmployee($id){
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $query = DB::table('associates')
                     ->where('client_number','=',$data['client_number'])
                     ->where('id','=',$id)
