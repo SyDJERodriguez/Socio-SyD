@@ -203,7 +203,7 @@ class CustomerController extends Controller
         //dd($request);
         $client_number = $request['client_number'];
 
-        $validated = $this->employeeLimit($client_number,$request['customer_id'], Auth::user()->client_type);
+        $validated = $this->employeeLimit($request['email'],$request['customer_id'], Auth::user()->client_type);
         //dd($validated);
         if ($validated === false){
             return view('pages.limitDependent', ['owner' => $request['owner'], 'success'=> false]);
@@ -2018,7 +2018,7 @@ class CustomerController extends Controller
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //Calculated the limit of employee
         $response = $this->employeeLimit(
-                            Auth::user()->client_number,
+                            Auth::user()->email,
                             Auth::user()->id,
                             Auth::user()->client_type);
         $total = $this->totalAmount();
@@ -2031,25 +2031,16 @@ class CustomerController extends Controller
     }
 
     //Function to generate limit for add employees according the rules
-    public function employeeLimit($client_number, $id, $client_type){
-        $data = Customer::where('client_number', $client_number)->first();
-        $dataSession = CustomersSession::where('email', $data['email'])->first();
+    public function employeeLimit($email, $id, $client_type){
+        $data = Customer::where('email', $email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
         $now = Carbon::now();
 
-        if($client_type == 4 || $client_type == "4"){
-            //get sum of amount column by sucursal
-            $query = DB::table('transactions')
-                        ->where('client_number','=', $data['client_number'])
-                        ->where('branch_number','=', $dataSession['branch_number'])
-                        ->whereMonth('transaction_date','=',$now)
-                        ->sum('amount');
-        }else{
-            //get sum of amount column
-            $query = DB::table('transactions')
-                ->where('client_number','=', $data['client_number'])
-                ->whereMonth('transaction_date','=',$now)
-                ->sum('amount');
-        }
+        $query = DB::table('transactions')
+                    ->where('client_number','=', $data['client_number'])
+                    ->where('branch_number','=', $dataSession['branch_number'])
+                    ->whereMonth('transaction_date','=',$now)
+                    ->sum('amount');
 
         //round the number with only 2 decimals
         $limit = (float)number_format($query,2,'.','');
