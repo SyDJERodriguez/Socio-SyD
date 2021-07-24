@@ -1478,7 +1478,7 @@ class CustomerController extends Controller
 
     //Go to register beneficiary
     public function register_beneficiary () {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
@@ -1637,7 +1637,7 @@ class CustomerController extends Controller
 
     //Go to signature section in benefits
     public function benefits_signature () {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $query = DB::table('signatures')
@@ -1821,7 +1821,7 @@ class CustomerController extends Controller
 
     //Go to benefits of assistance
     public function benefits_assistance () {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
@@ -1988,7 +1988,7 @@ class CustomerController extends Controller
     //Go to beneficiares section
     public function beneficiaries ()
     {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.Account.beneficiaries', compact('data','total','noti'));
