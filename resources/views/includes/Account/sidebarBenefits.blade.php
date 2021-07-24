@@ -3,33 +3,9 @@
 </div>
 <div class="col-lg-3 benefits_sb">
     <div style="padding-left: 10px !important;">
-        <h6>Hola {{$owner}}<br>
-           No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
-            @if(Auth::user()->client_type == '3')
-                - {{$number->number}} 
-            @endif
-            @if (Auth::user()->client_type=='4')
-                - {{ $data->branch_number }}
-            @endif
-        </span><br>
-                        
-            @switch((int)Auth::user()->client_type)
-                @case(1)
-                Cuenta: Negocios
-                    @break
-                @case(2)
-                Cuenta: Individual
-                    @break
-                @case(3)
-                Cuenta: Dependiente
-                    @break
-                @case(4)
-                Cuenta: Sucursal ({{ $data->branch_name }})
-                    @break
-                @default
-                    Cuenta:
-            @endswitch 
-        </h6>
+
+        @include('includes.accountData')
+        
         <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#modalUpdateData"
         style="background-color: #143153;color: #FFF;margin-bottom: 2px">Actualizar datos</a>
         <br>

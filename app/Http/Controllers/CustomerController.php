@@ -1341,7 +1341,7 @@ class CustomerController extends Controller
     //Go to My account
     public function account_status(){
         //dd(Auth::user()->client_number);
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $tr = $this->get_trans(
                     $data['client_number'], 
@@ -1353,7 +1353,8 @@ class CustomerController extends Controller
         $data->mes = $mes;
 
 
-        $data->is_branch = $dataSession->is_branch;
+        //$data->is_branch = $dataSession->is_branch;
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
                                 ->where('branch_number','=',$dataSession->branch_number)
@@ -1364,7 +1365,7 @@ class CustomerController extends Controller
             $data->branch_name = $query[0]->branch_name;
         } 
 
-        return view('pages.Account.status', compact('data', 'tr', 'total','noti'));
+        return view('pages.Account.status', compact('data', 'tr', 'total','noti','owner'));
         //return redirect()->route('customer.myAccount');
     }
 
@@ -1995,7 +1996,7 @@ class CustomerController extends Controller
 
     //load data from associates AQUI
     public function employees () {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $associates = DB::table('associates')
                             ->where([
@@ -2005,7 +2006,7 @@ class CustomerController extends Controller
                                 ])
                             ->get();
 
-        $data->is_branch = $dataSession->is_branch;
+        //$data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
                                 ->where('client_number','=',$data->client_number)
@@ -2016,6 +2017,7 @@ class CustomerController extends Controller
         if(empty($query) == false){
             $data->branch_name = $query[0]->branch_name;//get branch name to the view
         } 
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //Calculated the limit of employee
         $response = $this->employeeLimit(
                             Auth::user()->client_number,
@@ -2027,7 +2029,7 @@ class CustomerController extends Controller
         $data->limiteAsociados = $response->limiteAsociados;
         $data->validated = $response->validated;
 
-        return view('pages.Account.employees', compact('data','associates','total','noti'));
+        return view('pages.Account.employees', compact('data','associates','total','noti','owner'));
     }
 
     //Function to generate limit for add employees according the rules

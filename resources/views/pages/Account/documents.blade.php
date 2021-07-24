@@ -9,32 +9,9 @@
         </div>
         <div class="col-12" >
             <div style="padding-left: 16px !important;" >
-                <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-                    No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
-                        @if(Auth::user()->client_type == '3')
-                        - {{$number->number}} 
-                        @endif
-                        @if (Auth::user()->client_type=='4')
-                        - {{ $data->branch_number }}
-                    @endif
-                </span><br>   
-                    @switch((int)Auth::user()->client_type)
-                        @case(1)
-                        Cuenta: Negocios
-                            @break
-                        @case(2)
-                        Cuenta: Individual
-                            @break
-                        @case(3)
-                        Cuenta: Dependiente
-                            @break
-                        @case(4)
-                        Cuenta: Sucursal ({{ $data->branch_name }})
-                            @break
-                        @default
-                            Cuenta:
-                    @endswitch 
-                </h6>
+                
+                @include('includes.accountData')
+
                 <a href="#" class="btn btn btn-sm" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal"
                     data-target="#survey">
                     <span style="font-size: 12px"> Nos interesa tu opinión</span>
