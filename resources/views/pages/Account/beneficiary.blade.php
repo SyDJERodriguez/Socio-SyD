@@ -103,6 +103,8 @@
                                         <div class="col-lg-12">
                                             <h6>BENEFICIARIO 1</h6>
                                         </div>
+                                        <input type="hidden" id="branch_number1" name="branch_number[]" value="{{$data->branch_number}}">
+
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-z].{2,}"
@@ -144,6 +146,8 @@
                                         <div class="col-lg-12">
                                             <h6>BENEFICIARIO 2</h6>
                                         </div>
+                                        <input type="hidden" id="branch_number" name="branch_number[]" value="{{$data->branch_number}}">
+                                        
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-z].{2,}"

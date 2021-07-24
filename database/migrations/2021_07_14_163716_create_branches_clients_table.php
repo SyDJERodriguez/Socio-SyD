@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTableCustomersSessions extends Migration
+class CreateBranchesClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class AlterTableCustomersSessions extends Migration
      */
     public function up()
     {
-        Schema::table('customers_sessions', function (Blueprint $table) {
-            $table->bigInteger('signature_id')->nullable();
+        Schema::create('branches_clients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('client_number',13);
+            $table->string('branch_number')->nullable();
+            $table->string('branch_name');
         });
-        
     }
 
     /**
@@ -26,6 +28,6 @@ class AlterTableCustomersSessions extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('branches_clients');
     }
 }
