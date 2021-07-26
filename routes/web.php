@@ -50,7 +50,9 @@ Route::get('/mechanic_to_dependent/{array}', 'CustomerController@convertMechanic
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
+    Route::get('/branchInformation','CustomerController@verify_client_branch')->name('branchInformation');
     Route::put('/update', 'CustomerController@update')->name('update');
+    Route::put('/updateCadena', 'CustomerController@updateCadena')->name('updateCadena');
     Route::put('/update/data', 'CustomerController@updateData')->name('updateData');
     Route::post('/forgotClientNumber', 'CustomerController@forgotClientNumber')->name('forgotClientNumber');
     Route::post('/login', 'CustomerController@login')->name('login');
@@ -108,3 +110,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });
 });
+
+//Reports for Telasist and Chubb
+Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
+Route::get('chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'report_chubb'])->name('report_chubb');

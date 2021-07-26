@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modal3" class="btn adios"
+                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn adios"
                                     style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
                                     ¡REGÍSTRATE!
                                     </a>
@@ -64,7 +64,6 @@
                             placeholder="CONTRASEÑA" name="password" required style="border-color: black">
                         <div class="row " style="margin-top: 5px">
                             <div class="col-sm-10">
-                                {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
                                 <a href="#"
                                 style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
                                 class="primary-color" data-toggle="modal" data-target="#modal4">
@@ -171,6 +170,13 @@
                             <div class="col-12">
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
                                     style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
+                                    style="width: 270px;">CADENAS</button>
                             </div>
                         </div>
                     </div>
@@ -370,6 +376,9 @@ padding-bottom: 14px;">
 
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanicoCNT')
+
+<!--Modal formulario Canales -->
+@include('includes.formularioCadenas')
 
 @if(Auth::check())
 {{-- Modal notifications --}}

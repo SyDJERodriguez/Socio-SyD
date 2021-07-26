@@ -6,10 +6,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Customer;
 use App\Collector;
+use App\CustomersSession;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
@@ -185,7 +187,7 @@ class CustomerController extends Controller
                                   }elseif (empty($query->mobile_number) && empty($query->client_number)){
                                        $response =CustomersRepository::ws_new_client($request, $collector);
                                         return response()->json($response);
-                                   }   
+                                   }
 
                                   }else{
                                   $response =CustomersRepository::ws_new_client($request,$collector);
@@ -212,8 +214,8 @@ class CustomerController extends Controller
                                       return response()->json($response);
                             }
 
-                             }    
-                       
+                             }
+
                           }
                     }else{
                         return response()->json(['status'=>400, 'msg'=>'El número de teléfono es obligatorio.']);
@@ -256,28 +258,111 @@ class CustomerController extends Controller
                 return response()->json($response);
 
             }
-         
+
         }else{
             return ['status'=>'400','message'=>'Por favor ingresa un número de cliente.'];
         }
 
     }
+
+    //Report for Telasist
+    public function report_telasist(Request $request){
+        $response = "For telasis";
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $transactions = DB::table('transactions')
+            //->select('transactions.client_number','transactions.amount', 'transactions.branch_number')
+            ->selectRaw('transactions.client_number as client_number')
+            ->selectRaw('SUM(transactions.amount) as total')
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereNull('transactions.branch_number')
+            ->groupBy('transactions.client_number')
+            ->get();
+
+        $data = [];
+        foreach ($transactions as $transaction){
+            $customer_type = CustomersSession::where('client_number', '=', $transaction->client_number)
+                ->select('client_type', 'email')
+                ->get();
+            //dd($customer_type);
+            foreach ($customer_type as $customer){
+                $customer_info = Customer::where('email', '=', $customer->email)
+                    ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
+                    ->first();
+
+
+                $level = '';
+                if ($customer->client_type === "1" || $customer->client_type === "3"){
+                    if ($transaction->total>4500 && $transaction->total<=7000) {
+                        $level = 'plata';
+                    }
+                    if ($transaction->total>7000) {
+                        $level = 'oro';
+                    }
+                }
+
+                if ($customer->client_type === "2"){
+                    if ($transaction->total>500 && $transaction->total<=1300) {
+                        $level = 'plata';
+                    }
+                    if ($transaction->total>1300) {
+                        $level = 'plata';
+                    }
+                }
+
+                $customer_data = $transaction->client_number.'-'.$customer_info->id.'|'.$customer_info->name.'|'.$customer_info->last_name.'|'.
+                    $customer_info->second_last_name.'|'.$customer->email.'|'.$customer_info->birthday.'|'.$customer_info->mobile_number.'|'.
+                    $customer_info->gender.'|'.$level;
+
+
+                if ($level === 'plata' || $level === 'oro'){
+                    array_push($data,$customer_data);
+                }
+            }
+        }
+        $array_num = count($data);
+        $content = '';
+        for ($i = 0; $i < $array_num; $i++){
+            $content .= $data[$i];
+            $content .= "\n";
+        }
+
+        $current_date = Carbon::now()->format('Y-m-d');
+
+        $fileName = 'Telasist-'.$current_date.'.txt';
+        $headers = [
+            'Content-type' => 'text/plain',
+            'Cache-Control' => 'no-store, no-cache',
+            'Content-Disposition' => sprintf('attachment; filename="%s"', $fileName),
+
+        ];
+        return \Response::make($content, 200, $headers);
+        //return response()->json($data);
+    }
+
+    //Report for Chubb
+    public function report_chubb(Request $request){
+        $response = "For chubb";
+        return response()->json($response);
+    }
+
     public function ws_verifacte_mobile_number(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         $response = CustomersRepository::ws_verifacte_mobile_number($request['mobile_number']);
         return response()->json($response);
-     
+
     }
     public function ws_verifacte_email(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         $response = CustomersRepository::ws_verifacte_email($request['email']);
         return response()->json($response);
-     
-    } 
-    
-   
+
+    }
+
+
 
     private function validator(array $data){
         return Validator::make($data,[

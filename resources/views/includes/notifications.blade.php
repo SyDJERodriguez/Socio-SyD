@@ -11,7 +11,7 @@
             <div class="modal-body">
                 @if (Auth::user())
                 {{-- CLIENTE EMPRESA --}}
-                @if ((int)Auth::user()->client_type == 1)
+                @if ((int)Auth::user()->client_type != 2)
                 <ul class="list-group list-group-flush">
                     @if ($total)
                             @if ($total < 2500.01)

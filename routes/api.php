@@ -37,3 +37,4 @@ Route::get('catalogs/cities','CollectorController@api_cities_by_state')->name('a
 //Vue routes
 
 
+

@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <label for="" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
-                        <input class="form-control btnBorder" type="date" id="birthday"
+                        <input class="form-control btnBorder" type="date" id="birthdayMec"
                             name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
@@ -137,7 +137,7 @@
     <script>
         document.getElementById('rfcMec').addEventListener('focus',function() {
             var rfc = document.getElementById('rfc');
-            var fecha = $('#birthday').val().split('-');
+            var fecha = $('#birthdayMec').val().split('-');
 
             var CURP = [];
             CURP[0] = $("#lastNameMec").val().charAt(0).toUpperCase();
