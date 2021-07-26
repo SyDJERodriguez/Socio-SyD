@@ -584,22 +584,21 @@ class CustomerController extends Controller
 
         //Check if the client number is already in the DB
         $data = Customer::where('client_number', $client_number)->first();
-
+        
+        $data_branch = DB::table('branches_clients')
+                            ->where('client_number','=', $client_number)
+                            ->first();
+        
         $update_customer ='';
         if($data !== null) {
 
-
-            $data_branch = DB::table('branches_clients')
-                                ->where('client_number','=', $client_number)
-                                ->first();
-            
             if($data_branch !== null){
                 //client number already exist in branches, redirect to sucursal
                 return response()->json(['success'=>'false', 'verify_data_branch'=>'false']);
             }
 
             //Update data in customers table
-            $update_customer = DB::table('customers')->insert([
+            $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
                 'second_last_name' => $request['second_last_name'],
@@ -616,6 +615,12 @@ class CustomerController extends Controller
         }
 
         if ($data == null) {
+
+            if($data_branch !== null){
+                //client number already exist in branches, redirect to sucursal
+                return response()->json(['success'=>'false', 'verify_data_branch'=>'false']);
+            }
+
             //Insert data in customers table
             $update_customer = DB::table('customers')->insert([
                 'client_number'    => $client_number,
