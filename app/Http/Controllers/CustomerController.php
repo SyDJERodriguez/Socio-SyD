@@ -649,14 +649,15 @@ class CustomerController extends Controller
                 'active'        => 0,
                 'password'      => $password,
                 'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
-                'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
+                'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null,
+                'branch_number' => $client_number
             ]);
 
             //create data in notifications table
             $update_notifications = DB::table('notifications')->insert([
                 'client_number'     => $client_number,
                 'name_id'           => 'SEGURO ASISTENCIAS',
-                'branch_number'     => null
+                'branch_number'     => $client_number
             ]);
         }
 
