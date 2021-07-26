@@ -100,15 +100,20 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">El número de cliente ya existe</h5>
-                        <p class="text-white">Registrate como una cuenta de CADENAS</p>
-                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                        <h5 class="text-white">Por favor, registrate en el  formulario de Cadenas</h5>
+                        <a href="javascript:void(0)" onclick="abrirModalCadenas()" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function abrirModalCadenas() {
+        $('.modal').modal('hide');
+        $('#modalCadenas').modal('show');
+    }
+</script>
 
 <!-- Modal Error SERVER-->
 <div class="modal fade" id="modalErrorServer" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
