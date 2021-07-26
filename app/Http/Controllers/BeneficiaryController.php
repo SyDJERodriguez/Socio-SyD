@@ -121,7 +121,7 @@ class BeneficiaryController extends Controller
                         $beneficiary = (array)$beneficiaries;//convert to array
                      //send email if individual account added a beneficiary
                      if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['client_number']);
+                        $this->send_email_alta($data['email']);
                     }
                     return view('pages.Account.beneficiary', compact(
                         'success', 'data', 'beneficiary', 'level', 
@@ -161,7 +161,7 @@ class BeneficiaryController extends Controller
                     $beneficiary = (array)$beneficiaries;//convert to array
                     //send email if individual account added a beneficiary
                     if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['client_number']);
+                        $this->send_email_alta($data['email']);
                     }
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
            // }
@@ -188,7 +188,7 @@ class BeneficiaryController extends Controller
     public function generatePDF() {
         $id = Auth::user()->id;
         $customer = DB::table('customers')
-            ->where('client_number', '=', Auth::user()->client_number)
+            ->where('email', '=', Auth::user()->email)
             ->first();
         $beneficiaries = DB::table('beneficiaries')
             ->where('customer_id', '=', $customer->id)
@@ -238,6 +238,7 @@ class BeneficiaryController extends Controller
     public function getNotifications(){
         $data = DB::table('notifications')
             ->where('client_number','=',Auth::user()->client_number)
+            ->where('branch_number','=', Auth::user()->branch_number)
             ->get();
         $data = json_decode($data);
         $data = (array)$data;
@@ -249,8 +250,8 @@ class BeneficiaryController extends Controller
         return $data[0];
     }
 
-    public function send_email_alta($client_number){
-        $data = Customer::where('client_number', $client_number)->first();
+    public function send_email_alta($email){
+        $data = Customer::where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"SOCIO SYD");
