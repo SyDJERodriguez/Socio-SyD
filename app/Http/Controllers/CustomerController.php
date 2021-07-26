@@ -587,8 +587,19 @@ class CustomerController extends Controller
 
         $update_customer ='';
         if($data !== null) {
+
+
+            $data_branch = DB::table('branches_clients')
+                                ->where('client_number','=', $client_number)
+                                ->first();
+            
+            if($data_branch !== null){
+                //client number already exist in branches, redirect to sucursal
+                return response()->json(['success'=>'false', 'verify_data_branch'=>'false']);
+            }
+
             //Update data in customers table
-            $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
+            $update_customer = DB::table('customers')->insert([
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
                 'second_last_name' => $request['second_last_name'],
@@ -638,14 +649,14 @@ class CustomerController extends Controller
                 'active'        => 0,
                 'password'      => $password,
                 'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
-                'branch_number' => isset($request['branch_number']) ? $request['branch_number'] : null
+                'branch_number' => $client_number
             ]);
 
             //create data in notifications table
             $update_notifications = DB::table('notifications')->insert([
                 'client_number'     => $client_number,
                 'name_id'           => 'SEGURO ASISTENCIAS',
-                'branch_number'     => null
+                'branch_number'     => $client_number
             ]);
         }
 
