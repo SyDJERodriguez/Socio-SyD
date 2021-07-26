@@ -88,6 +88,28 @@
     </div>
 </div>
 
+{{-- Modal modalSignUpInCadenas --}}
+<div class="modal fade" id="modalSignUpInCadenas" tabindex="-1" role="dialog" aria-labelledby="modalSignUpInCadenas" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;background-color: #143153;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h5 class="text-white">El número de cliente ya existe</h5>
+                        <p class="text-white">Registrate como una cuenta de CADENAS</p>
+                        <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Error SERVER-->
 <div class="modal fade" id="modalErrorServer" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
