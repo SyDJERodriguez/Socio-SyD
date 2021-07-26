@@ -50,7 +50,9 @@ Route::get('/mechanic_to_dependent/{array}', 'CustomerController@convertMechanic
 Route::prefix('customer')->name('customer.')->group(function(){
     //Register's URLs
     Route::get('/information','CustomerController@verify_client_number')->name('information');
+    Route::get('/branchInformation','CustomerController@verify_client_branch')->name('branchInformation');
     Route::put('/update', 'CustomerController@update')->name('update');
+    Route::put('/updateCadena', 'CustomerController@updateCadena')->name('updateCadena');
     Route::put('/update/data', 'CustomerController@updateData')->name('updateData');
     Route::post('/forgotClientNumber', 'CustomerController@forgotClientNumber')->name('forgotClientNumber');
     Route::post('/login', 'CustomerController@login')->name('login');
