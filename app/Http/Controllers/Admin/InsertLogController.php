@@ -12,10 +12,10 @@ use Carbon\Carbon;
 class InsertLogController extends Controller
 {   
     public function insert (){
-        $now = Carbon::now();
+    $now = Carbon::now();
     $user = Auth::user();
-    $nowDate = $now->format('Y-m-d');
-    $nowTime = $now->format('H:m:s');
+    $nowDate = $now->toDateString(); 
+    $nowTime = $now->toTimeString();
     $insert_log = DB::table('log_sessions_cat')->insert([
         'user' => $user->email,
         'name' => $user->name,
@@ -34,6 +34,16 @@ class InsertLogController extends Controller
     return view('Admin.logSessions', compact('logSessions'));
 
     }
+    public function logSearches () {
+
+
+        $logSearches = DB::table('log_admin_searches')
+        ->get();
+
+    return view('Admin.logSearches', compact('logSearches'));
+
+    }
+    
 
 
 }

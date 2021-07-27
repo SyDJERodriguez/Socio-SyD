@@ -43,8 +43,11 @@
             </a>
             @guest
             @else
-            <a class="navbar-brand" href="{{ route('admin.consultLog') }}">
-                Log Table
+            <a class="navbar-brand" href="{{ route('admin.consultLogSessions') }}">
+                Log Sesiones
+            </a>
+            <a class="navbar-brand" href="{{ route('admin.consultLogSearches') }}">
+                Log Busquedas
             </a>
             @endguest
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
