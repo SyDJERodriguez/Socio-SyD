@@ -57,12 +57,14 @@
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
                         </li>
                     @else
-                    <a class="navbar-brand" href="{{ route('admin.consultLogSessions') }}">
+                    @if (Auth::user()->type_user==1)
+                    <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
                         Log Sesiones
                     </a>
-                    <a class="navbar-brand" href="{{ route('admin.consultLogSearches') }}">
+                    <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
                         Log Busquedas
                     </a>
+                    @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
