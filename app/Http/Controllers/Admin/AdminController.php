@@ -146,7 +146,11 @@ class AdminController extends Controller
             }
         }
 
-        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level'));
+        $associates = DB::table('associates')
+            ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
+            ->get();
+
+        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
     // Function for search by email
@@ -197,7 +201,11 @@ class AdminController extends Controller
             }
         }
 
-        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level'));
+        $associates = DB::table('associates')
+            ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
+            ->get();
+
+        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
     //calculated totalAmount

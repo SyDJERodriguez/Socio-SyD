@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
-        $data = Customer::where('client_number', Auth::user()->client_number)->first();
+        $data = Customer::where('email', Auth::user()->email)->first();
         $number = '';
         if (Auth::user()->client_type === "3"){
             $data = Customer::where('email', Auth::user()->email)->first();
@@ -38,10 +38,9 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', Auth::user()->client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
+        //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
+        $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -105,7 +104,8 @@ class BeneficiaryController extends Controller
                                 'relationship'     => $request['parent'][$i],
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
-                                'customer_id'      => $data['id']
+                                'customer_id'      => $data['id'],
+                                'branch_number'    => $request['branch_number'][$i]
                             ]);
                         }
                     }
@@ -123,7 +123,9 @@ class BeneficiaryController extends Controller
                      if(Auth::user()->client_type === "2"){
                         $this->send_email_alta($data['client_number']);
                     }
-                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
+                    return view('pages.Account.beneficiary', compact(
+                        'success', 'data', 'beneficiary', 'level', 
+                        'signature', 'noti', 'total', 'number','owner'));
                 //}
 
             }catch(\Exception $e){
@@ -137,17 +139,15 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%.';
                 return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
             }
-
-
-
                     $insertBeneficiary = DB::table('beneficiaries')->insert([
                         'name'             => $request['name'][0],
                         'last_name'        => $request['lastname'][0],
                         'second_last_name' => $request['second_lastname'][0],
                         'relationship'     => $request['parent'][0],
                         'mobile_number'    => $request['phone'][0],
-                        'percent'          => $request['percent'][0]   ,
-                        'customer_id'      => $data['id']
+                        'percent'          => $request['percent'][0],
+                        'customer_id'      => $data['id'],
+                        'branch_number'    => $request['branch_number'][0]
                     ]);
 
             //$generatePDF = $this->generatePDF();
@@ -168,6 +168,22 @@ class BeneficiaryController extends Controller
         }
     }
 
+    //get transactions by branch_number or client_number
+    public function getTransCadena($email){
+        $dataSession = DB::table('customers_sessions')
+                        ->where('email','=', $email)->first(); 
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+        $data= DB::table('transactions')
+                    ->where('client_number','=', $dataSession->client_number)
+                    ->where('branch_number','=', $dataSession->branch_number)
+                    ->whereMonth('transaction_date','=',$current_month)
+                    ->get();
+        return $data;
+        
+    }
+
     //Function to generate PDF and upload AWS's S3
     public function generatePDF() {
         $id = Auth::user()->id;
@@ -179,7 +195,7 @@ class BeneficiaryController extends Controller
             ->get();
 
         $signature = DB::table('signatures')
-            ->where('client_number', '=', Auth::user()->client_number)
+            ->where('customer_id', '=', Auth::user()->id)
             ->first();
 
         if (Auth::user()->client_type === "3"){

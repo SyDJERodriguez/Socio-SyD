@@ -41,6 +41,12 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
+            @guest
+            @else
+            <a class="navbar-brand" href="{{ route('admin.consultLog') }}">
+                Log Table
+            </a>
+            @endguest
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,6 +62,7 @@
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
                         </li>
                     @else
+                    
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -109,3 +116,45 @@
 
 </body>
 </html>
+<script>
+    $.noConflict();
+jQuery(document).ready(function($){
+   $('#logsSessions').DataTable({
+  dom: 'Bfrtip',
+  info: false,
+  searching:false,
+  scrollX:true,
+  oLanguage: {
+     paginate: {
+        previous: "Anterior",
+        next: "Siguiente"
+     }
+  },
+  buttons: [
+     {
+        extend: 'excel',
+        text: 'Excel',
+        className: 'excel',
+        exportOptions: {
+            modifier: {
+                page: 'current'
+            }
+        }
+    },
+    {
+        extend: 'print',
+        text: 'Imprimir',
+        className: 'print',
+        exportOptions: {
+            modifier: {
+                page: 'current'
+            }
+        }
+    }
+   ],
+   language: {
+       emptyTable: "No hay registros para mostrar"
+   }
+});
+});
+</script>

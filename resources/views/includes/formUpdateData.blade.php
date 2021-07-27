@@ -42,6 +42,23 @@
                         value="{{substr($data->client_number,2)}}" readonly>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+
+                    <input type="hidden" id="isBranch" name="is_branch" 
+                            value="{{ isset($data->is_branch) ? $data->is_branch : 0 }}">
+
+                    {{-- <div class="col-lg-6 py-2" style="display: flex">
+                        <select class="form-control btnBorder" id="branch_name" name="branch_number">
+                            @if ($data->branch_number != null)
+                                <option value="{{$data->branch_number}}" selected> 
+                                    {{ $data->branch_name }} 
+                                </option>
+                            @else
+                                <option disabled value="0">SUCURSAL</option>
+                            @endif
+                        </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div> --}}
+
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name"
                         value="{{$data->name}}" pattern="[a-zA-Z ]{2,}" required>

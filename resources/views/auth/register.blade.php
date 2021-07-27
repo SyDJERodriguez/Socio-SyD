@@ -40,6 +40,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="type_user" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>
+
+                            <div class="col-md-6">
+                                <select name="type_user" id="type_user" class="form-control @error('type_user') is-invalid @enderror" required autocomplete="type_user">
+                                    <option value="1">Dirección</option>
+                                    <option value="2">CAT</option>
+                                    <option value="3">Sucursal</option>
+                                </select>
+                                @error('type_user')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
 
                             <div class="col-md-6">

@@ -24,35 +24,35 @@
                     <ul>
                         <li>
                             Formato de reclamación debidamente llenado y firmado
-                           
+
                         </li>
                         <li>
                             Copia simple de identificación oficial vigente con fotografía y firma del asegurado y beneficiario según sea el caso (Credencial de Elector, Pasaporte, Cédula Profesional)
-                           
+
                         </li>
                         <li>
                             Copia del comprobante de domicilio del beneficiario con antigüedad no mayor a tres meses (agua, luz, predial o teléfono)
-                           
+
                         </li>
                         <li>
                             Formato de transferencia y copia del estado de cuenta a nombre del beneficiario con antigüedad no mayor a 3 meses (no es posible ingresar una cuenta de crédito)
-                           
+
                         </li>
                         <li>
                             Actuaciones del Ministerio Público completas e informe de las partes que intervinieron en el evento
-                           
+
                         </li>
                         <li>
                             Certificado de seguro del programa
-                            
+
                         </li>
                         <li>
                             Historia clínica completa, amplia y detallada que indique: Antecedentes Personales, Antecedentes Patológicos, Evolución de Padecimiento, Estado Actual
-                            
+
                         </li>
                         <li>
                             Resumen clínico con fechas exactas del diagnóstico, emitida por la institución que determinón la perdida orgánica
-                            
+
                         </li>
                     </ul>
                     <p class="text-justify"><strong>Importante: </strong>La información enviada no es limitativa, siendo posible que del departamento de análisis de la aseguradora solicite documentación o inforamción adicional
@@ -63,11 +63,11 @@
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 3</h5>
                     <h6 class="font-weight-bold">• Enviar los documentos por correo electrónico a las siguientes direcciones:</h6>
-                  
+
                     <ul>
                         <li>
                             Documentacion.siniestrosAH@chubb.com
-                            
+
                         </li>
                         <li>
                             chubb-siniestros.mx@chubb.com
@@ -76,7 +76,7 @@
                             jgutierrez@masa.com.mx
                         </li>
                     </ul>
-                  
+
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 4</h5>
                     <h6 class="font-weight-bold">• Si tienes dudas, comunícate a los siguientes números telefónicos:</h6>
@@ -102,7 +102,7 @@
                           Cerrar
                         </button>
                       </div>
-                      
+
                 <div style="background: #143153" class="row p-3">
 
                 </div>
@@ -135,34 +135,34 @@
                     <ul>
                         <li>
                             Resumen clínico con fechas exactas del diagnóstico emitido por le institución que determinó la invalidez total y permanente
-                           
+
                         </li>
                         <li>
                             Formato de reclamación debidamente llenado y firmado
-                           
+
                         </li>
                         <li>
                             Copia simple de identificación oficial vigente con fotografía y firma del asegurado y beneficiario según sea el caso (Credencial de Elector, Pasaporte, Cédula Profesional)
-                           
+
                         </li>
                         <li>
                             Copia del comprobante de domicilio del beneficiario con antigüedad no mayor a tres meses (agua, luz, predial o teléfono)
-                           
+
                         </li>
                         <li>
                             Formato de transferencia y copia del estado de cuenta a nombre del beneficiario con antigüedad no mayor a 3 meses (no es posible ingresar una cuenta de crédito)
-                           
+
                         </li>
                         <li>
                             Actuaciones del Ministerio Público completas e informe de las partes que intervinieron en el evento
-                            
+
                         </li>
                         <li>
                             Certificado de seguro del programa
-                            
+
                         </li>
                         <li>
-                            Historia clínica completa, amplia y detallada que indique: Antecedentes Personales, Antecedentes Patológicos, Evolución de Padecimiento, Estado Actual 
+                            Historia clínica completa, amplia y detallada que indique: Antecedentes Personales, Antecedentes Patológicos, Evolución de Padecimiento, Estado Actual
                         </li>
                     </ul>
                     <p class="text-justify"><strong>Importante: </strong>La información enviada no es limitativa, siendo posible que del departamento de análisis le solicite documentación adicional
@@ -173,11 +173,11 @@
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 3</h5>
                     <h6 class="font-weight-bold">• Enviar los documentos por correo electrónico a las siguientes direcciones:</h6>
-                  
+
                     <ul>
                         <li>
                             Documentacion.siniestrosAH@chubb.com
-                            
+
                         </li>
                         <li>
                             chubb-siniestros.mx@chubb.com
@@ -186,7 +186,7 @@
                             jgutierrez@masa.com.mx
                         </li>
                     </ul>
-                  
+
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 4</h5>
                     <h6 class="font-weight-bold">• Si tienes dudas, comunícate a los siguientes números telefónicos:</h6>
@@ -208,7 +208,7 @@
                           Cerrar
                         </button>
                       </div>
-                      
+
                 <div style="background: #143153" class="row p-3">
 
                 </div>
@@ -241,17 +241,17 @@
                     <ul>
                         <li>
                             Pide a tu beneficiario que en caso de fallecimiento marque al teléfono 555-540-1859 para apoyo en la apertura de reclamaciones. Para dar seguimiento a una reclamación previamente abierta marca a 800-087-4598
-                           
+
                         </li>
                     </ul>
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 3</h5>
                     <h6 class="font-weight-bold">• Descarga y llena los siguientes documentos:</h6>
-                  
+
                     <ul>
                         <li>
                             Certificado / Consentimiento con designación de beneficiarios firmado por el asegurado principal
-                            
+
                         </li>
                         <li>
                             Formato de reclamación debidamente llenado y firmado
@@ -308,7 +308,7 @@
                           Cerrar
                         </button>
                       </div>
-                      
+
                 <div style="background: #143153" class="row p-3">
 
                 </div>
@@ -346,23 +346,23 @@
                     <ul>
                         <li>
                             Formato de reclamación debidamente llenado y firmado
-                           
+
                         </li>
                         <li>
                             Copia simple de identificación oficial vigente con fotografía y firma del asegurado y beneficiario según sea el caso (Credencial de Elector, Pasaporte, Cédula Profesional) o Copia del comprobante de domicilio del beneficiario con antigüedad no mayor a tres meses (agua, luz, predial o teléfono)
-                           
+
                         </li>
                         <li>
                             Formato de transferencia y copia del estado de cuenta a nombre del beneficiario con antigüedad no mayor a 3 meses (no es posible ingresar una cuenta de crédito)
-                           
+
                         </li>
                         <li>
                             Actuaciones del Ministerio Público completas e informe de las partes que intervinieron en el evento
-                           
+
                         </li>
                         <li>
                             Certificado de seguro del programa
-                           
+
                         </li>
                     </ul>
                     <h6 class="font-weight-bold">• Documentos que tiene que llenar el médico:</h6>
@@ -386,11 +386,11 @@
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 3</h5>
                     <h6 class="font-weight-bold">• Enviar los documentos por correo electrónico a las siguientes direcciones:</h6>
-                  
+
                     <ul>
                         <li>
                             Documentacion.siniestrosAH@chubb.com
-                            
+
                         </li>
                         <li>
                             chubb-siniestros.mx@chubb.com
@@ -399,7 +399,7 @@
                             jgutierrez@masa.com.mx
                         </li>
                     </ul>
-                  
+
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 4</h5>
                     <h6 class="font-weight-bold">• Si tienes dudas, comunícate a los siguientes números telefónicos:</h6>
@@ -421,7 +421,7 @@
                           Cerrar
                         </button>
                       </div>
-                      
+
                 <div style="background: #143153" class="row p-3">
 
                 </div>
@@ -459,19 +459,19 @@
                     <ul>
                         <li>
                             Formato de reclamación
-                           
+
                         </li>
                         <li>
                             Formato de aviso de accidente
-                           
+
                         </li>
                         <li>
                             Formato Conoce a tu Cliente
-                           
+
                         </li>
                         <li>
                             Número de póliza
-                           
+
                         </li>
                         <li>
                             Interpretación de estudios
@@ -504,11 +504,11 @@
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 3</h5>
                     <h6 class="font-weight-bold">• Enviar los documentos por correo electrónico a las siguientes direcciones:</h6>
-                  
+
                     <ul>
                         <li>
                             Documentacion.siniestrosAH@chubb.com
-                            
+
                         </li>
                         <li>
                             chubb-siniestros.mx@chubb.com
@@ -517,7 +517,7 @@
                             jgutierrez@masa.com.mx
                         </li>
                     </ul>
-                  
+
                     <hr class="p-0 m-0">
                     <h5 class="font-weight-bold">Paso 4</h5>
                     <h6 class="font-weight-bold">• Si tienes dudas, comunícate a los siguientes números telefónicos:</h6>
@@ -530,7 +530,7 @@
                         </li>
                     </ul>
                     <p class="font-weight-bold p-8 m-8" style="font-size: 12px">
-                        <strong>Nota: La ayuda se te pagará posteriormente mediante un reembolso, siempre y cuando hayas estado más de 24 horas hospitalizado</strong>
+                        <strong>Nota: La ayuda se te pagará posteriormente a un dictamen médico por la compañía de seguros mediante un reembolso</strong>
                      </p>
                 </div>
 
@@ -539,7 +539,7 @@
                           Cerrar
                         </button>
                       </div>
-                      
+
                 <div style="background: #143153" class="row p-3">
 
                 </div>
@@ -555,52 +555,99 @@
             </div>
             <div class="modal-body mb-0 pb-0">
                 <h3 class="text-uppercase font-weight-bold"> LISTA DE DOCUMENTOS</h3>
-             
+
                 <div class="container">
                     <ul class="list-unstyled ml-3">
                     <li>
-                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato de Reclamación de Siniestro Gastos Medicos</a> 
+                        <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Gastos_Medicos.pdf')}}" class="btn btn py-2  text-white "
+                            style="background-color: #143153; width: 100%">
+                            Formato de Reclamación de Siniestro Gastos Medicos</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato de Reclamación de Siniestro Vida</a> 
+                            <div><a target="_blank" href="{{asset('files/Formato_de_Reclamacion_de_Siniestro_Vida.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Formato de Reclamación de Siniestro Vida</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Formato_Transferencias_Bancarias.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Formato Transferencias Bancarias</a> 
+                            <div ><a target="_blank" href="{{asset('files/Formato_Transferencias_Bancarias.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Formato Transferencias Bancarias</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Aviso de Accidente o Enfermedad</a> 
+                            <div ><a target="_blank" href="{{asset('files/Aviso_de_Accidente_Enfermedad.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Aviso de Accidente o Enfermedad</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Conoce_a_tu_Cliente.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Conoce a tu Cliente</a> 
+                            <div ><a target="_blank" href="{{asset('files/Conoce_a_tu_Cliente.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Conoce a tu Cliente</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Pase de Atención</a> 
+                            <div> <a target="_blank" href="{{asset('files/Pase_de_Atencion.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Pase de Atención</a> </div>
+
                         </li>
                         <br>
                         <li>
-                        <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                Informe Médico</a> 
+                            <div> <a target="_blank" href="{{asset('files/Informe_Medico.pdf')}}" class="btn btn py-2  text-white "
+                                style="background-color: #143153; width: 100%">
+                                Informe Médico</a> </div>
+
                         </li>
-                      
+
                     </ul>
+
+                </div>
+
+                    <div style="width: 100%;padding: 10px;">
+                        <button class="btn btn-lg btn-block" data-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+
+                <div style="background: #143153" class="row p-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal15" tabindex="-1" role="dialog" aria-labelledby="modal15" aria-hidden="true">
+    <div class="modal-dialog modal-xl  " role="document">
+        <div class="modal-content  mb-0 pb-0">
+            <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body mb-0 pb-0">
+                <div class="container mt-0">
+                    <div>
+                        <img src="{{asset('img/pleca-b.jpg')}}" alt="" width="100%">
+                        </div>
+                        
+                    
+                        <div class="asistencia">
+                            
+                        <h3>?</h3>
+                        <h4><strong>¿QUÉ HACER EN CASO DE NECESITAR<br>
+                            SERVICIOS DE ASISTENCIA?</strong></h4><br><br>
+                        
+                        <h4>LLÁMANOS AL NÚMERO</h4>
+                        <h4><strong>(55) 1165-2682</strong></h4>
+                        
+                            
+                    </div>
                     
                 </div>
 
@@ -617,7 +664,6 @@
         </div>
     </div>
 </div>
-
 
 
 
