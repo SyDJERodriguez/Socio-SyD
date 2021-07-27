@@ -145,11 +145,23 @@ class AdminController extends Controller
                 $level = 3;
             }
         }
+        $now = Carbon::now();
+        $user = Auth::user();
+        $nowDate = $now->toDateString(); 
+        $nowTime = $now->toTimeString();
+        $insert_log = DB::table('log_admin_searches')->insert([
+            'user' => $user->email,
+            'name' => $user->name,
+            'wanted_client' => $client_number,
+            'date' => $nowDate,
+            'time' => $nowTime
+    
+        ]);
 
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
-
+        
         return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
@@ -200,6 +212,18 @@ class AdminController extends Controller
                 $level = 3;
             }
         }
+        $now = Carbon::now();
+        $user = Auth::user();
+        $nowDate = $now->toDateString(); 
+        $nowTime = $now->toTimeString();
+        $insert_log = DB::table('log_admin_searches')->insert([
+            'user' => $user->email,
+            'name' => $user->name,
+            'wanted_client' => $email,
+            'date' => $nowDate,
+            'time' => $nowTime
+    
+        ]);
 
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])

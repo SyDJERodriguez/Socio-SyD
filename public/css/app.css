@@ -1795,3 +1795,22 @@ Label the data for the second TABLE
 .info-content:hover h5{
     color: #00a5e6 !important;
 }
+.asistencia{
+	text-align: center;
+	color: #FFF;
+	background-color: #002E52;
+	padding: 1rem 0rem;
+    font-family: 'Akzidenz-Grotesk BQ Bold', "Helvetica", "Arial", "sans-serif";
+	font-weight: bold;
+}
+
+.asistencia h3{
+	font-size: 60px;
+	color: #009BDC;
+}
+
+.asistencia h4{
+	font-family: "Akzidenz-Grotesk BQ Regular", "Helvetica", "Arial", "sans-serif";
+	font-weight: normal;
+}
+

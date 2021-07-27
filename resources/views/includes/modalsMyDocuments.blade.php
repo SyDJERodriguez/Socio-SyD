@@ -624,7 +624,46 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal15" tabindex="-1" role="dialog" aria-labelledby="modal15" aria-hidden="true">
+    <div class="modal-dialog modal-xl  " role="document">
+        <div class="modal-content  mb-0 pb-0">
+            <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body mb-0 pb-0">
+                <div class="container mt-0">
+                    <div>
+                        <img src="{{asset('img/pleca-b.jpg')}}" alt="" width="100%">
+                        </div>
+                        
+                    
+                        <div class="asistencia">
+                            
+                        <h3>?</h3>
+                        <h4><strong>¿QUÉ HACER EN CASO DE NECESITAR<br>
+                            SERVICIOS DE ASISTENCIA?</strong></h4><br><br>
+                        
+                        <h4>LLÁMANOS AL NÚMERO</h4>
+                        <h4><strong>(55) 1165-2682</strong></h4>
+                        
+                            
+                    </div>
+                    
+                </div>
 
+                    <div style="width: 100%;padding: 10px;">
+                        <button class="btn btn-lg btn-block" data-dismiss="modal">
+                          Cerrar
+                        </button>
+                      </div>
+                      
+                <div style="background: #143153" class="row p-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
