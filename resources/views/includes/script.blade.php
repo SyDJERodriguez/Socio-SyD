@@ -227,6 +227,10 @@
                         document.getElementById("form_alert_dns_br").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
+                    }else if (data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML='El número de cliente y sucursal ya existen';
+                        document.getElementById("form_alert_dns_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
                     }else if (data['success']==='false'){
                         $('#modalCadenas').modal('hide');
                         $('#modalError').modal('show');
@@ -252,7 +256,7 @@
                 data:$(this).serialize(),
 
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     if(data['success']==='true'){
                         $('#modal3').modal('hide');
                         $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
@@ -284,6 +288,11 @@
                         setTimeout(function(){document.getElementById("form_alert_phone_text").hidden = true},3500)
                     }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
                         document.getElementById("form_alert_dns").innerHTML='Por favor proporciona un email válido';
+                        document.getElementById("form_alert_dns").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
+
+                    }else if(data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns").innerHTML='El número de cliente ya está en uso';
                         document.getElementById("form_alert_dns").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
 
@@ -350,6 +359,11 @@
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
+                    }else if(data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns_mec").innerHTML='El número de cliente ya está en uso';
+                        document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
+                        
                     }else if(data['success']==='false' && data['verify_data_branch']==='false'){
                         $('#modalSignUpInCadenas').modal('show');
 
@@ -361,6 +375,8 @@
                 },
                 error: function(data){
                     $('#modalErrorServer').modal('show');
+                    //console.log(data);
+                    //console.log(data['update']);
                 }
             });
             // Nos permite cancelar el envio del formulario
