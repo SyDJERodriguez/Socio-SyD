@@ -2234,7 +2234,7 @@ class CustomerController extends Controller
         $data = $request->all();
         try {
             Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
-                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Soci SyD');
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Socio SyD');
             });
             return redirect()->route('home');
         } catch (\Throwable $th) {
