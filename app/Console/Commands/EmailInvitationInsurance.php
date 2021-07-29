@@ -61,9 +61,10 @@ class EmailInvitationInsurance extends Command
                                 ->get();
             Storage::append('archivo.txt', $destinataries);
             //sin seguro negocios
-            Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', ['data' => $destinataries] , function($m) use ($destinataries){
-                $m->to($destinataries->email)->subject('Invitacion a Seguro Socio SyD');
-            });
+            //\Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', ['data' => $destinataries] , function($m) use ($destinataries){
+            //    Storage::append('archivo.text', $destinataries[0]);
+            //    $m->to($destinataries)->subject('Invitacion a Seguro Socio SyD');
+            //});
         } catch (\Throwable $th) {
             $texto = $th;
             Storage::append('archivo.txt', $texto);
