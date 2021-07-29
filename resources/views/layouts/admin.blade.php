@@ -122,6 +122,7 @@
     $.noConflict();
 jQuery(document).ready(function($){
    $('#logsSessions').DataTable({
+    "order": [[ 2, "desc" ],[ 3, "desc" ]],  
   dom: 'Bfrtip',
   info: false,
   searching:false,
