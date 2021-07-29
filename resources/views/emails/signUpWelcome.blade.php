@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			
+
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/email-4_03.jpg" width="600" height="114" alt="" border="0" style="display: block"></td>
 	</tr>
 	<tr>
