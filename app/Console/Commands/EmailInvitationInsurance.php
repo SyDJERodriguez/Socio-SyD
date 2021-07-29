@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use DB;
 
@@ -51,16 +52,16 @@ class EmailInvitationInsurance extends Command
             $destinataries = DB::table('customers_sessions')
                                 ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
                                 ->whereMonth('transaction_date','=', $now)
-                                ->select('customers_sessions.email as email',
-                                        'customers_sessions.client_type as client_type',
-                                        DB::raw('SUM(transactions.amount)'))
+                                ->select('customers_sessions.email',
+                                         'customers_sessions.client_type',
+                                        DB::raw('SUM(transactions.amount) as total'))
                                 ->where('client_type','=', '1')//only negocios
-                                ->havingRaw('SUM(transactions.amount) ? <',[2500])
+                                //->havingRaw('SUM(transactions.amount) ? <',[2500])
                                 ->groupBy('transactions.branch_number')
                                 ->get();
-
+            Storage::append('archivo.txt', $destinataries);
             //sin seguro negocios
-            Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', function($m) use ($destinataries){
+            Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', ['data' => $destinataries] , function($m) use ($destinataries){
                 $m->to($destinataries->email)->subject('Invitacion a Seguro Socio SyD');
             });
         } catch (\Throwable $th) {
