@@ -1049,7 +1049,8 @@ class CustomerController extends Controller
             'active'        => 0,
             'password'      => $password,
             'signature_id'  => 0,
-            'is_associate'  => 1
+            'is_associate'  => 1,
+            'branch_number' => $request['client_number']
         ]);
 
         //Insert data in customers table
@@ -2271,8 +2272,8 @@ class CustomerController extends Controller
             $employee = $query[0];
         }
 
-        $total = $this->totalAmountById($client_number);
-        $noti = $this->getNotificationsById($client_number);
+        $total = 0;
+        $noti = 0;
 
         return view('pages.invitationForm', compact('employee','total','noti'));
     }
