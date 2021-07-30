@@ -828,13 +828,13 @@ class CustomerController extends Controller
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
 
         if ($update_customer === 1 && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === true && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }elseif ($update_customer === 0 && $save_register === true){
-            $this->send_welcome_email($client_number);
+            $this->send_welcome_email($request['email']);
             return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
         }
         else{
@@ -1049,7 +1049,8 @@ class CustomerController extends Controller
             'active'        => 0,
             'password'      => $password,
             'signature_id'  => 0,
-            'is_associate'  => 1
+            'is_associate'  => 1,
+            'branch_number' => $request['client_number']
         ]);
 
         //Insert data in customers table
@@ -1079,7 +1080,10 @@ class CustomerController extends Controller
 
     //Send welcome email
     public function send_welcome_email($email) {
-        $data = Customer::where('email', $email)->first();
+        $data = Customer::where('email',$email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
+        $data->branch_number = $dataSession->branch_number;
+
         try {
             \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
@@ -1087,7 +1091,7 @@ class CustomerController extends Controller
             });
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {
-            return response()->json(['success'=>'true','status' =>401]);
+            return response()->json(['success'=>'false','status' =>401]);
         }
     }
 
@@ -1105,13 +1109,13 @@ class CustomerController extends Controller
     }
 
     //Verify account
-    public function verify_account($client_number = null) {
-        $data = CustomersSession::where('client_number', $client_number)->first();
+    public function verify_account($branch_number = null) {
+        $data = CustomersSession::where('branch_number', $branch_number)->first();
         if ($data->active === 1){
             $activated = true;
             return view('pages.activationPage', compact('activated'));
         }
-        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $client_number)->update([
+        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
         ]);
         //$total = $this->totalAmount();
@@ -2268,8 +2272,8 @@ class CustomerController extends Controller
             $employee = $query[0];
         }
 
-        $total = $this->totalAmountById($client_number);
-        $noti = $this->getNotificationsById($client_number);
+        $total = 0;
+        $noti = 0;
 
         return view('pages.invitationForm', compact('employee','total','noti'));
     }
