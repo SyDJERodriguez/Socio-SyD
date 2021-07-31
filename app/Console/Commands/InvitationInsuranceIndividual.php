@@ -8,21 +8,21 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use DB;
 
-class EmailInvitationInsurance extends Command
+class InvitationInsuranceIndividual extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'email:seguroNegocio';
+    protected $signature = 'email:seguroIndividual';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Envio de invitacion a seguro cada 20 de Mes';
+    protected $description = 'Envio de invitacion a seguro cada 20 de Mes. Cuenta Individual';
 
     /**
      * Create a new command instance.
@@ -49,17 +49,17 @@ class EmailInvitationInsurance extends Command
                                 ->whereMonth('transaction_date','=', $now)
                                 ->select('customers_sessions.email')
                                 ->groupBy('transactions.branch_number')
-                                ->where('client_type','=', '1')//only negocios
-                                ->havingRaw('SUM(transactions.amount) < ?', [2500])
+                                ->where('client_type','=', '2')//only negocios
+                                ->havingRaw('SUM(transactions.amount) < ?', [200])
                                 ->get();
-                                //sin seguro negocios
+                                //sin seguro individual
             $destinataries = json_decode($destinataries);
             $destinataries = (array)$destinataries;
 
             if(empty($destinataries) == false){
                 
                 foreach ($destinataries as $recipient) {
-                    Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($recipient) {
+                    Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($recipient) {
                         $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
@@ -71,6 +71,5 @@ class EmailInvitationInsurance extends Command
 
             throw $th;
         }
-
     }
 }
