@@ -50,7 +50,7 @@ class EmailInvitationInsurance extends Command
                                 ->select('customers_sessions.email')
                                 ->groupBy('transactions.branch_number')
                                 ->where('client_type','=', '1')//only negocios
-                                ->havingRaw('SUM(transactions.amount) < ?', [2600])
+                                ->havingRaw('SUM(transactions.amount) < ?', [2500])
                                 ->get();
                                 //sin seguro negocios
             $destinataries = json_decode($destinataries);

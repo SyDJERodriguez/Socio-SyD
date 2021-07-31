@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('command:seguro')->monthlyOn(20, '10:00'); //20/mes
+        //$schedule->command('command:seguro')->everyMinute(); //20/mes
     }
 
     /**
