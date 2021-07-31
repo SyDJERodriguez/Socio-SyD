@@ -55,18 +55,15 @@ class EmailInvitationInsurance extends Command
                                 //sin seguro negocios
             $destinataries = json_decode($destinataries);
             $destinataries = (array)$destinataries;
-            $emails = [];
 
             if(empty($destinataries) == false){
                 
-                for ($i=0; $i < count($destinataries); $i++) { 
-                    $emails[$i] = $destinataries[$i]->email;
+                foreach ($destinataries as $recipient) {
+                    Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($recipient) {
+                        $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');
+                    });
                 }
-                
                 //Storage::append('archivo.txt', json_encode($destinataries));
-                \Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] , function($m) use ($emails){
-                    $m->to($emails)->subject('Invitacion a Seguro Socio SyD');
-                });
             }
         } catch (\Throwable $th) {
             $texto = $th;
