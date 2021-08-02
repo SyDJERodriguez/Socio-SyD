@@ -49,7 +49,7 @@ class InvitationInsuranceIndividual extends Command
                                 ->whereMonth('transaction_date','=', $now)
                                 ->select('customers_sessions.email')
                                 ->groupBy('transactions.branch_number')
-                                ->where('client_type','=', '2')//only negocios
+                                ->where('client_type','=', '2')//only individual
                                 ->havingRaw('SUM(transactions.amount) < ?', [200])
                                 ->get();
                                 //sin seguro individual
@@ -63,8 +63,8 @@ class InvitationInsuranceIndividual extends Command
                         $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
-                //Storage::append('archivo.txt', json_encode($destinataries));
             }
+            //Storage::append('archivo.txt', json_encode($destinataries));
         } catch (\Throwable $th) {
             $texto = $th;
             //Storage::append('archivo.txt', $texto);

@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('email:seguroNegocio')->monthlyOn(20, '10:00'); //20/mes
         $schedule->command('email:seguroIndividual')->monthlyOn(20, '10:00'); //20/mes
-        //$schedule->command('command:seguro')->everyMinute(); 
+        //$schedule->command('email:seguroIndividual')->everyMinute(); 
     }
 
     /**
