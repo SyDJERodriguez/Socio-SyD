@@ -623,6 +623,7 @@ class CustomerController extends Controller
                 'mobile_number'    => $request['mobile'],
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
+                'created_at'       => date('Y-m-d H:i:s'),
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
@@ -643,6 +644,7 @@ class CustomerController extends Controller
                     'client_type'   => $request['client_type'], //1 duenio; 2 independiente
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
+                    'created_at'    => date('Y-m-d H:i:s'),
                     'active'        => 0,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
@@ -663,6 +665,7 @@ class CustomerController extends Controller
                     'client_type'   => $request['client_type'], //1 duenio; 2 independiente
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
+                    'created_at'    => date('Y-m-d H:i:s'),
                     'active'        => 0,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
@@ -699,6 +702,7 @@ class CustomerController extends Controller
                             'second_last_name'  => $request['second_last_name'],
                             'role'              => isset($request['role']) ? $request['role'] : "",
                             'active_association'=> 1,
+                            'created_at'        => date('Y-m-d H:i:s'),
                             'number'            => 1,
                             'birthday'          => $request['birthday'],
                             'email'             => $request['email'],
@@ -802,7 +806,8 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                'created_at'       => date('Y-m-d H:i:s')
             ]);
 
             //create data in notifications table
@@ -818,6 +823,7 @@ class CustomerController extends Controller
                 'email'         => $request['email'],
                 'mobile'        => $request['mobile'],
                 'active'        => 0,
+                'created_at'    => date('Y-m-d H:i:s'),
                 'password'      => $password,
                 'signature_id'  => isset($request['signature_id']) ? $request['signature_id'] : null,
                 'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,

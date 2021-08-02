@@ -44,7 +44,7 @@
               </div>
         </div>
 
-        @if(count($beneficiaries) > 0)
+        @if(count($beneficiaries) > 0 && $level >= 1)
             <div class="col-8 py-2 divImgDerecha">
                  <form>
                     <div class="form-row text-center box_documents"
@@ -347,7 +347,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <h5 class="text-white">¡No alcanzas el nivel para activar tus beneficios o tus beneficiarios aún no han sido registrados!</h5>
                                 <br>
                             </div>
                         </div>
@@ -361,7 +361,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <h5 class="text-white">¡No alcanzas el nivel para activar tus beneficios o tus beneficiarios aún no han sido registrados!</h5>
                                 <br>
                             </div>
                         </div>
