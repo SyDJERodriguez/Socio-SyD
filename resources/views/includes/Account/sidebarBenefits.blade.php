@@ -80,13 +80,20 @@
             <a href="{{route('customer.benefits.assistance')}}"
             class="<?php if($active === 4 ){echo 'active_sb';}?>" style="font-size: 13px">
             <span>- Tipo de Asistencia:
-                @if ($level === 'oro' || $level === 3)
-                Oro
-                @elseif($level === 'plata' || $level === 2)
-                Plata
+
+                @if ( ($data->mes >= new DateTime("4-08-2021")) && ($data->mes <= new DateTime("2-08-2021")))
+                    {{-- TODOO: QUE npo entre en esa semana --}}
+                    @if ($level === 'oro' || $level === 3)
+                    Oro
+                    @elseif($level === 'plata' || $level === 2)
+                    Plata
+                    @else
+                    Ninguna
+                    @endif
                 @else
-                Ninguna
+                    Ninguna
                 @endif
+
             </span></a>
 
         </div>
