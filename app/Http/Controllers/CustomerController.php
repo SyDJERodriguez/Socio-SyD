@@ -1970,9 +1970,9 @@ class CustomerController extends Controller
 
     //update notifications table
     //get the data from notifications table
-    public function getNotificationsById($client_number){
+    /* public function getNotificationsById($client_number){
         $data = DB::table('notifications')
-            ->where('client_number','=',$client_number)
+            ->where('branch_number','=',$client_number)
             ->get();
         $data = json_decode($data);
         $data = (array)$data;
@@ -1982,7 +1982,7 @@ class CustomerController extends Controller
             return false;
         }
         return $data[0];
-    }
+    } */
 
     //update notifications table
     public function updateNotifications($email){
@@ -1996,17 +1996,9 @@ class CustomerController extends Controller
         $total = $this->totalAmountById($data[0]->client_number, $email);
         //update en tabla notifications
         $update_notifications = 'No matches';
-        if($data[0]->client_type == 1 && $total > 2500.01){
+        if($data[0]->client_type != 2 && $total > 2500.01){
             $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
-                                    ->update([
-                                        'available' => 1
-                                    ]);
-        }
-
-        if($data[0]->client_type == 4 && $total > 2500.01){
-            $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
                                         'available' => 1
                                     ]);
@@ -2014,7 +2006,15 @@ class CustomerController extends Controller
 
         if($data[0]->client_type == 2 && $total > 200.02){
             $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->where('branch_number','=',$data[0]->branch_number)
+                                    ->update([
+                                        'available' => 1
+                                    ]);
+        }
+
+        if($data[0]->created_at >= Carbon::createFromFormat('Y-m-d', '2021-08-15') && $data[0]->created_at <= Carbon::createFromFormat('Y-m-d', '2021-08-30')){
+            $update_notifications = DB::table('notifications')
+                                    ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
                                         'available' => 1
                                     ]);
