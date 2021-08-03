@@ -1469,7 +1469,7 @@ class CustomerController extends Controller
     }
 
     $level = 0;
-    if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+    if (Auth::user()->client_type != "2"){
         if ($totalAmount>2500 && $totalAmount<=4500) {
             $level = 1;
         }

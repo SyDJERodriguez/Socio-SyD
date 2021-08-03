@@ -47,13 +47,19 @@
             <span style="font-size: 13px">- Firma digital</span></a>
         </div>
 
-        @if ($level === 'oro' || $level === 'plata' || $level>0)
-        <a href="{{route('customer.myDocuments')}}" class="btn"
-                style="color: #143153;border:8px solid #009CE0;border-radius: 10px;width: 100%;font-size: 20px;"  id="assistanceCall"><b>TUVE
-                UN ACCIDENTE</b> </a>
-        <p style="font-size: 13px">
-            Atención Chubb: <a href="tel:8007931010">800-SyD-(793)-1010</a>
-        </p>
+        @if (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))
+            {{-- SPECIAL WEEK --}}
+        @else
+            @if ($level === 'oro' || $level === 'plata' || $level >0)
+            <a href="{{route('customer.myDocuments')}}" class="btn"
+                    style="color: #143153;border:8px solid #009CE0;border-radius: 10px;
+                    width: 100%;font-size: 20px;"  
+                    id="assistanceCall">
+                    <b>TUVE UN ACCIDENTE</b> </a>
+            <p style="font-size: 13px">
+                Atención Chubb: <a href="tel:8007931010">800-SyD-(793)-1010</a>
+            </p>
+            @endif
         @endif
 
     </div>
@@ -81,8 +87,10 @@
             class="<?php if($active === 4 ){echo 'active_sb';}?>" style="font-size: 13px">
             <span>- Tipo de Asistencia:
 
-                @if ( ($data->mes >= new DateTime("4-08-2021")) && ($data->mes <= new DateTime("2-08-2021")))
-                    {{-- TODOO: QUE npo entre en esa semana --}}
+                {{-- SPECIAL WEEK --}}
+                @if ( Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021") )
+                    Ninguna
+                @else
                     @if ($level === 'oro' || $level === 3)
                     Oro
                     @elseif($level === 'plata' || $level === 2)
@@ -90,8 +98,6 @@
                     @else
                     Ninguna
                     @endif
-                @else
-                    Ninguna
                 @endif
 
             </span></a>
@@ -100,19 +106,23 @@
 
     </div>
 
-                @if ($level === 'oro' || $level === 'plata' || $level === 3 || $level === 2)
-                <div style="padding-top: 10px">
-                    <a href="tel:5511052682" style="color: grey;font-size: 17px;">
-                        <b>SOLICITAR ASISTENCIA</b>
-                    <i class="fas fa-phone-alt" style="font-size: 20px;vertical-align: top;"></i>
-                    <br>
-                    <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
-                    </a>
-                    <p style="font-size: 13px">
-                        Contacto Telasist: <a href="tel:5511052682">551-105-2682</a>
-                    </p>
-                </div>
-                @endif
+    @if (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))
+        {{-- SPECIAL WEEK --}}
+    @else
+        @if ($level === 'oro' || $level === 'plata' || $level === 3 || $level === 2)
+        <div style="padding-top: 10px">
+            <a href="tel:5511052682" style="color: grey;font-size: 17px;">
+                <b>SOLICITAR ASISTENCIA</b>
+            <i class="fas fa-phone-alt" style="font-size: 20px;vertical-align: top;"></i>
+            <br>
+            <hr style="margin: 0; border: 1px solid grey;width: 60%;" />
+            </a>
+            <p style="font-size: 13px">
+                Contacto Telasist: <a href="tel:5511052682">551-105-2682</a>
+            </p>
+        </div>
+        @endif
+    @endif
 <br><br>
     <!--<button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
             data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"

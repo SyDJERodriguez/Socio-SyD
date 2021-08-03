@@ -20,6 +20,7 @@
         </div>
        <!-- <form>-->
           <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
+            {{-- SPECIAL WEEK --}}
             @if (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021"))
                     <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
                         <h6 style="color: #143153;"><img class="py-2"   

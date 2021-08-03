@@ -36,8 +36,8 @@
 
   <form>
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;margin-right: 0px;margin-left: 0px;">
-        @if($level > 1)
-        {{-- TODO: no,debe dejar pasar en esa semana especila --}}
+        {{-- SPECIAL WEEK --}}
+        @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
 
         <div class="row">
                 @if ($level === 3)

@@ -12,6 +12,7 @@
                 @if (Auth::user())
                 {{-- CLIENTE EMPRESA --}}
                     
+                    {{-- SPECIAL WEEK --}}
                     {{-- mayorIgual al 15 de agosto pero menorIgual al 30 --}}
                     @if (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))
                         <ul class="list-group list-group-flush">

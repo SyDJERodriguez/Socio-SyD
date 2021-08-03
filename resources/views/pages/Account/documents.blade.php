@@ -44,7 +44,8 @@
               </div>
         </div>
 
-        @if(count($beneficiaries) > 0 && $level >= 1)
+        {{-- SPECIAL WEEK --}}
+        @if(count($beneficiaries) > 0 && $level >= 1 || (count($beneficiaries) && (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))))
             <div class="col-8 py-2 divImgDerecha">
                  <form>
                     <div class="form-row text-center box_documents"
@@ -114,7 +115,8 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
-                    @if($level > 1)
+                    {{-- SPECIAL WEEK --}}
+                    @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
                 <div class="form-row text-center box_documents"
                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
                     <div class="col-lg-12" style="color: #143153;">
