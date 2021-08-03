@@ -311,7 +311,7 @@
                     </div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
                         <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
-                            POR ACCIDENTEsssss
+                            POR ACCIDENTE
                             </strong></h6>
                     </div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
