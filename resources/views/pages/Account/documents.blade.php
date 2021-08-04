@@ -44,7 +44,8 @@
               </div>
         </div>
 
-        @if(count($beneficiaries) > 0)
+        {{-- SPECIAL WEEK --}}
+        @if(count($beneficiaries) > 0 && $level >= 1 || (count($beneficiaries) && (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))))
             <div class="col-8 py-2 divImgDerecha">
                  <form>
                     <div class="form-row text-center box_documents"
@@ -114,7 +115,8 @@
                     *Consulta términos y condiciones
                 </p>
                     </div>
-                    @if($level > 1)
+                    {{-- SPECIAL WEEK --}}
+                    @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
                 <div class="form-row text-center box_documents"
                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
                     <div class="col-lg-12" style="color: #143153;">
@@ -309,7 +311,7 @@
                     </div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
                         <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
-                            POR ACCIDENTEsssss
+                            POR ACCIDENTE
                             </strong></h6>
                     </div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
@@ -347,7 +349,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <h5 class="text-white">¡No alcanzas el nivel para activar tus beneficios o tus beneficiarios aún no han sido registrados!</h5>
                                 <br>
                             </div>
                         </div>
@@ -361,7 +363,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <h5 class="text-white">¡No alcanzas el nivel para activar tus beneficios o tus beneficiarios aún no han sido registrados!</h5>
                                 <br>
                             </div>
                         </div>

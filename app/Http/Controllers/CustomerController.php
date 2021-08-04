@@ -623,6 +623,7 @@ class CustomerController extends Controller
                 'mobile_number'    => $request['mobile'],
                 'company'          => isset($request['company']) ? $request['company'] : '',
                 'birthday'         => $request['birthday'],
+                'created_at'       => date('Y-m-d H:i:s'),
                 'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
@@ -643,6 +644,7 @@ class CustomerController extends Controller
                     'client_type'   => $request['client_type'], //1 duenio; 2 independiente
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
+                    'created_at'    => date('Y-m-d H:i:s'),
                     'active'        => 0,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
@@ -663,6 +665,7 @@ class CustomerController extends Controller
                     'client_type'   => $request['client_type'], //1 duenio; 2 independiente
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
+                    'created_at'    => date('Y-m-d H:i:s'),
                     'active'        => 0,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
@@ -699,6 +702,7 @@ class CustomerController extends Controller
                             'second_last_name'  => $request['second_last_name'],
                             'role'              => isset($request['role']) ? $request['role'] : "",
                             'active_association'=> 1,
+                            'created_at'        => date('Y-m-d H:i:s'),
                             'number'            => 1,
                             'birthday'          => $request['birthday'],
                             'email'             => $request['email'],
@@ -802,7 +806,8 @@ class CustomerController extends Controller
                 'work'             => isset($request['work']) ? $request['work'] : '',
                 'gender'           => isset($request['gender']) ? $request['gender'] : '',
                 'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                'created_at'       => date('Y-m-d H:i:s')
             ]);
 
             //create data in notifications table
@@ -818,6 +823,7 @@ class CustomerController extends Controller
                 'email'         => $request['email'],
                 'mobile'        => $request['mobile'],
                 'active'        => 0,
+                'created_at'    => date('Y-m-d H:i:s'),
                 'password'      => $password,
                 'signature_id'  => isset($request['signature_id']) ? $request['signature_id'] : null,
                 'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
@@ -1463,7 +1469,7 @@ class CustomerController extends Controller
     }
 
     $level = 0;
-    if (Auth::user()->client_type === "1" || Auth::user()->client_type === "3"){
+    if (Auth::user()->client_type != "2"){
         if ($totalAmount>2500 && $totalAmount<=4500) {
             $level = 1;
         }
@@ -1964,9 +1970,9 @@ class CustomerController extends Controller
 
     //update notifications table
     //get the data from notifications table
-    public function getNotificationsById($client_number){
+    /* public function getNotificationsById($client_number){
         $data = DB::table('notifications')
-            ->where('client_number','=',$client_number)
+            ->where('branch_number','=',$client_number)
             ->get();
         $data = json_decode($data);
         $data = (array)$data;
@@ -1976,7 +1982,7 @@ class CustomerController extends Controller
             return false;
         }
         return $data[0];
-    }
+    } */
 
     //update notifications table
     public function updateNotifications($email){
@@ -1990,17 +1996,9 @@ class CustomerController extends Controller
         $total = $this->totalAmountById($data[0]->client_number, $email);
         //update en tabla notifications
         $update_notifications = 'No matches';
-        if($data[0]->client_type == 1 && $total > 2500.01){
+        if($data[0]->client_type != 2 && $total > 2500.01){
             $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
-                                    ->update([
-                                        'available' => 1
-                                    ]);
-        }
-
-        if($data[0]->client_type == 4 && $total > 2500.01){
-            $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
                                         'available' => 1
                                     ]);
@@ -2008,7 +2006,15 @@ class CustomerController extends Controller
 
         if($data[0]->client_type == 2 && $total > 200.02){
             $update_notifications = DB::table('notifications')
-                                    ->where('client_number','=',$data[0]->client_number)
+                                    ->where('branch_number','=',$data[0]->branch_number)
+                                    ->update([
+                                        'available' => 1
+                                    ]);
+        }
+
+        if($data[0]->created_at >= Carbon::createFromFormat('Y-m-d', '2021-08-15') && $data[0]->created_at <= Carbon::createFromFormat('Y-m-d', '2021-08-30')){
+            $update_notifications = DB::table('notifications')
+                                    ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
                                         'available' => 1
                                     ]);

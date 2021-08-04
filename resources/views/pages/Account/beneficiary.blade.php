@@ -63,7 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif( $level != 0 )
+                        {{-- SPECIAL WEEK --}}
+                    @elseif( $level != 0 || (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021")) )
                             {{-- Modal BeneficiarySignUp --}}
                             <div class="modal fade" id="modalBeneficiarySignUp" tabindex="-1" role="dialog" aria-labelledby="modalBeneficiarySignUp" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
