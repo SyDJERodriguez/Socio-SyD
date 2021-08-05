@@ -1459,7 +1459,7 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $data_customer = DB::table('transactions')
-        ->where('client_number', Auth::user()->client_number)
+        ->where('branch_number', Auth::user()->branch_number)
         ->whereMonth('transaction_date','=',$current_month)
         ->get();
     $totalAmount = 0.0;
