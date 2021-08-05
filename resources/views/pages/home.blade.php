@@ -230,7 +230,7 @@
                         </div>
 
 
-                        <div class="my-4 mb-5">
+                        <div class="my-3 mb-5">
                             <button class="btn btn blue-dark text-white btnBorder" data-toggle="modal" data-target="#modal5">
                                 REGISTRARME
                             </button>

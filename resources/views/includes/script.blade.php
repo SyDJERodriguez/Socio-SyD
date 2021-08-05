@@ -129,7 +129,7 @@
                     url: "{{route('customer.information')}}",
                     data: {'client_number': client_number_mec},
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             document.getElementById("form_alert_mec")
                             .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
@@ -227,8 +227,8 @@
                         document.getElementById("form_alert_dns_br").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
-                    }else if (data['success']==='false' && data['verify_branch_number']==='false'){
-                        document.getElementById("form_alert_dns_br").innerHTML='Esa sucursal ya ha sido registrada previamente';
+                    }else if (data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML='El número de cliente y sucursal ya existen';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
                     }else if (data['success']==='false'){
@@ -256,7 +256,7 @@
                 data:$(this).serialize(),
 
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
                     if(data['success']==='true'){
                         $('#modal3').modal('hide');
                         $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
@@ -290,6 +290,14 @@
                         document.getElementById("form_alert_dns").innerHTML='Por favor proporciona un email válido';
                         document.getElementById("form_alert_dns").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
+
+                    }else if(data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns").innerHTML='El número de cliente ya está en uso';
+                        document.getElementById("form_alert_dns").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
+
+                    }else if(data['success']==='false' && data['verify_data_branch']==='false'){
+                        $('#modalSignUpInCadenas').modal('show');
 
                     }else if (data['success']==='false'){
                         $('#modal3').modal('hide');
@@ -351,6 +359,14 @@
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
+                    }else if(data['success']==='false' && data['verify_client']==='false'){
+                        document.getElementById("form_alert_dns_mec").innerHTML='El número de cliente ya está en uso';
+                        document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
+                        
+                    }else if(data['success']==='false' && data['verify_data_branch']==='false'){
+                        $('#modalSignUpInCadenas').modal('show');
+
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
                         $('#modalError').modal('show');
@@ -359,6 +375,8 @@
                 },
                 error: function(data){
                     $('#modalErrorServer').modal('show');
+                    //console.log(data);
+                    //console.log(data['update']);
                 }
             });
             // Nos permite cancelar el envio del formulario

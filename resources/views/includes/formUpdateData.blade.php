@@ -132,7 +132,7 @@
                     <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
                 </div>
             
-                @if ((int)Auth::user()->client_type == 1)
+                @if ((int)Auth::user()->client_type != 2)
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex">
                         <h6 style="padding-left: 1px">Razón social</h6>

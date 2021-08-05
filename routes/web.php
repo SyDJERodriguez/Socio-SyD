@@ -105,7 +105,8 @@ Route::prefix('admin')->name('admin.')->group(function (){
     Route::post('/register', 'Auth\RegisterController@register')->name('register');
     Route::group(['middleware' => ['auth:admin']], function() {
         Route::get('/insert', 'Admin\InsertLogController@insert')->name('insertLog');
-        Route::get('/log', 'Admin\InsertLogController@logSessions')->name('consultLog');
+        Route::get('/logSesiones', 'Admin\InsertLogController@logSessions')->name('consultLogSessions');
+        Route::get('/logBusquedas', 'Admin\InsertLogController@logSearches')->name('consultLogSearches');
         Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
         Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');

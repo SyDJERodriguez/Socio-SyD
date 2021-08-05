@@ -22,7 +22,6 @@ class BeneficiaryController extends Controller
                 ->first();
         }
 
-
         //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
         //dd($request['name'][1]);
@@ -47,11 +46,17 @@ class BeneficiaryController extends Controller
             strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
         }
 
+        $cnt = intval(Auth::user()->client_number);
+        $is_cnt = 'false';
+        if( ($cnt > 90000000) && ($cnt < 90020000)) {
+            $is_cnt = 'true';
+        }
+
         $noti = $this->getNotifications();
         $total = 0;
 
         $level = 0;
-        if (Auth::user()->client_type === "1"){
+        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "4"){
             if ($total_amount>2500 && $total_amount<=4500) {
                 $level = 1;
             }
@@ -75,6 +80,19 @@ class BeneficiaryController extends Controller
             }
         }
 
+        $valid = false;
+        foreach ($request['phone'] as $mobile) {
+            $valid = $this->phoneValidator($mobile);
+
+            if ($valid === false){
+                $error = 'Un número de teléfono ingresado no es válido';
+    
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level','is_cnt', 
+                    'signature', 'noti', 'total', 'number','owner'));
+            }
+        }
+
         foreach ($request['percent'] as $percent){
             $count++;
             //Sum the all percent
@@ -85,9 +103,11 @@ class BeneficiaryController extends Controller
         if ($count == 2){
             if ($total_percent !== 100){
                 //Here the response if total percent of beneficiaries is not 100
-                $error = 'El porcentaje total debe ser de 100%.';
+                $error = 'El porcentaje total debe ser de 100%';
 
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level','is_cnt', 
+                    'signature', 'noti', 'total', 'number','owner'));
                 //dd($total_percent);
             }
 
@@ -121,34 +141,39 @@ class BeneficiaryController extends Controller
                         $beneficiary = (array)$beneficiaries;//convert to array
                      //send email if individual account added a beneficiary
                      if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['client_number']);
+                        $this->send_email_alta($data['email']);
                     }
                     return view('pages.Account.beneficiary', compact(
-                        'success', 'data', 'beneficiary', 'level', 
+                        'success', 'data', 'beneficiary', 'level','is_cnt', 
                         'signature', 'noti', 'total', 'number','owner'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'noti', 'total'));
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'noti', 
+                    'total','owner','total','number','is_cnt'));
             }
 
         }elseif ($count == 1){
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
-                $error = 'El porcentaje total debe ser de 100%.';
-                return view('pages.Account.beneficiary', compact('error', 'data', 'request', 'level', 'signature', 'noti', 'total', 'number'));
+                $error = 'El porcentaje total debe ser de 100%';
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level', 
+                    'signature', 'noti', 'total', 'number',
+                    'owner','is_cnt'));
             }
-                    $insertBeneficiary = DB::table('beneficiaries')->insert([
-                        'name'             => $request['name'][0],
-                        'last_name'        => $request['lastname'][0],
-                        'second_last_name' => $request['second_lastname'][0],
-                        'relationship'     => $request['parent'][0],
-                        'mobile_number'    => $request['phone'][0],
-                        'percent'          => $request['percent'][0],
-                        'customer_id'      => $data['id'],
-                        'branch_number'    => $request['branch_number'][0]
-                    ]);
+            $insertBeneficiary = DB::table('beneficiaries')->insert([
+                'name'             => $request['name'][0],
+                'last_name'        => $request['lastname'][0],
+                'second_last_name' => $request['second_lastname'][0],
+                'relationship'     => $request['parent'][0],
+                'mobile_number'    => $request['phone'][0],
+                'percent'          => $request['percent'][0],
+                'customer_id'      => $data['id'],
+                'branch_number'    => $request['branch_number'][0]
+            ]);
 
             //$generatePDF = $this->generatePDF();
 
@@ -161,9 +186,9 @@ class BeneficiaryController extends Controller
                     $beneficiary = (array)$beneficiaries;//convert to array
                     //send email if individual account added a beneficiary
                     if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['client_number']);
+                        $this->send_email_alta($data['email']);
                     }
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number'));
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
            // }
         }
     }
@@ -184,11 +209,36 @@ class BeneficiaryController extends Controller
         
     }
 
+    //validated a valid phone number
+    public function phoneValidator($mobile){
+        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+        try {
+            $numberProtocol = $phoneUtil->parse($mobile,"MX");
+
+            $isValidRegion= $phoneUtil->isValidNumberForRegion($numberProtocol,"MX");
+            $isValidNum = $phoneUtil->isValidNumber($numberProtocol);
+            $isPossibleNum = $phoneUtil->isPossibleNumber($numberProtocol);
+
+            if(substr($mobile,0,3) === "888"){ //validate number china
+                return false;
+            }
+
+            if($isValidNum === true && $isValidRegion === true && $isPossibleNum === true){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (\libphonenumber\NumberParseException $e) {
+            throw $e;
+        }
+        return false;
+    }
+
     //Function to generate PDF and upload AWS's S3
     public function generatePDF() {
         $id = Auth::user()->id;
         $customer = DB::table('customers')
-            ->where('client_number', '=', Auth::user()->client_number)
+            ->where('email', '=', Auth::user()->email)
             ->first();
         $beneficiaries = DB::table('beneficiaries')
             ->where('customer_id', '=', $customer->id)
@@ -238,6 +288,7 @@ class BeneficiaryController extends Controller
     public function getNotifications(){
         $data = DB::table('notifications')
             ->where('client_number','=',Auth::user()->client_number)
+            ->where('branch_number','=', Auth::user()->branch_number)
             ->get();
         $data = json_decode($data);
         $data = (array)$data;
@@ -249,8 +300,8 @@ class BeneficiaryController extends Controller
         return $data[0];
     }
 
-    public function send_email_alta($client_number){
-        $data = Customer::where('client_number', $client_number)->first();
+    public function send_email_alta($email){
+        $data = Customer::where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"SOCIO SYD");
@@ -258,7 +309,7 @@ class BeneficiaryController extends Controller
             });
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {
-            return response()->json(['success'=>'true','status' =>401]);
+            return response()->json(['success'=>'false','status' =>401]);
         }
     }
 }

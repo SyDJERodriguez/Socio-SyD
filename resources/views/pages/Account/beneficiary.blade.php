@@ -63,7 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                        {{-- SPECIAL WEEK --}}
+                    @elseif( $level != 0 || (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021")) )
                             {{-- Modal BeneficiarySignUp --}}
                             <div class="modal fade" id="modalBeneficiarySignUp" tabindex="-1" role="dialog" aria-labelledby="modalBeneficiarySignUp" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -192,6 +193,17 @@
                                            style="background-color: #009CE0;" value="CONFIRMAR">
                                 </div>
                             </form>
+                    @else
+
+                    <div class="modal-body " style="background-color: #143153;">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
+                                <p class="text-white"></p>
+                            </div>
+                        </div>
+                    </div>
+
                     @endif
                     </div>
 
