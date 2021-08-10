@@ -9,8 +9,9 @@
         <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#modalUpdateData"
         style="background-color: #143153;color: #FFF;margin-bottom: 2px">Actualizar datos</a>
         <br>
-        <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#survey"
-        style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+        
+        @include('includes.opinionButton')
+
         <p style="font-size: 13px">
             Contacto de SyD®:
               <a href="tel:8007931010">800-SyD-(793)-1010</a>
@@ -37,14 +38,16 @@
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
-            <a href="{{route('customer.register.beneficiary')}}" class="<?php if($active === 2 ){echo 'active_sb';}?>">
+            <a href="{{route('customer.register.beneficiary')}}" 
+            class="<?php if($active === 2 ){echo 'active_sb';}?>"
+            title="Recuerda que estas personas que des de alta, son quienes recibirán los beneficios del seguro en caso de que tú sufras algún accidente">
                 <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->
             <a href="{{route('customer.benefits.signature')}}"
             title="Tu firma digital se utilizará únicamente para firmar tu certificado."
             class="<?php if($active === 3 ){echo 'active_sb';}?>">
-            <span style="font-size: 13px">- Firma digital</span></a>
+            <span style="font-size: 13px;font-weight: bold">- FIRMA DIGITAL</span></a>
         </div>
 
         @if (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))
