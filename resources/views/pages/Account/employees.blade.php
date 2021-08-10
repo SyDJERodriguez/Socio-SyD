@@ -10,10 +10,17 @@
            
             @include('includes.accountData')
 
-            <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+            @include('includes.opinionButton')
          </div>
         <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
-            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @if (Auth::user()->client_type === '1' || Auth::user()->client_type === 1)
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.
+                    Recuerda que tú eres el primer beneficiario de tu seguro. Puedes modificar eso en esta sección
+                </h5>
+            @else
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @endif
+            
         </div>
     </div>
     <hr>
