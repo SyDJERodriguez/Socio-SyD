@@ -621,12 +621,12 @@ class CustomerController extends Controller
                 'second_last_name' => $request['second_last_name'],
                 'email'            => $request['email'], //This is for customers_session table too
                 'mobile_number'    => $request['mobile'],
-                'company'          => isset($request['company']) ? $request['company'] : '',
+                'company'          => isset($request['company']) ? $request['company'] : null,
                 'birthday'         => $request['birthday'],
                 'created_at'       => date('Y-m-d H:i:s'),
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
-                'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                'work'             => isset($request['work']) ? $request['work'] : null,
+                'gender'           => isset($request['gender']) ? $request['gender'] : null,
                 'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
             ]);
@@ -800,11 +800,11 @@ class CustomerController extends Controller
                 'second_last_name' => $request['second_last_name'],
                 'email'            => $request['email'], //This is for customers_session table too
                 'mobile_number'    => $request['mobile'],
-                'company'          => isset($request['company']) ? $request['company'] : '',
+                'company'          => isset($request['company']) ? $request['company'] : null,
                 'birthday'         => $request['birthday'],
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
-                'work'             => isset($request['work']) ? $request['work'] : '',
-                'gender'           => isset($request['gender']) ? $request['gender'] : '',
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                'work'             => isset($request['work']) ? $request['work'] : null,
+                'gender'           => isset($request['gender']) ? $request['gender'] : null,
                 'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
                 'created_at'       => date('Y-m-d H:i:s')
@@ -1067,11 +1067,11 @@ class CustomerController extends Controller
             'second_last_name' => $request['second_last_name'],
             'email'            => $request['email'], //This is for customers_session table too
             'mobile_number'    => $request['mobile'],
-            'company'          => isset($request['company']) ? $request['company'] : '',
+            'company'          => isset($request['company']) ? $request['company'] : null,
             'birthday'         => $request['birthday'],
-            'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
-            'work'             => isset($request['work']) ? $request['work'] : '',
-            'gender'           => isset($request['gender']) ? $request['gender'] : ''
+            'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+            'work'             => isset($request['work']) ? $request['work'] : null,
+            'gender'           => isset($request['gender']) ? $request['gender'] : null
         ]);
 
         if ( $save_register === true){

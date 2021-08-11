@@ -99,8 +99,8 @@
 
                 <div class="row ">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfc" name="rfc" required>
-                        <p style="color: red; margin: 0;">*</p>
+                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfc" name="rfc">
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" required>
