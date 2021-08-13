@@ -375,8 +375,9 @@
                     <div class="modal-body " style="background-color: #143153; height: 30%">
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres a tus beneficiarios o que alcances el mínimo de compra</h5>
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
                         </div>
@@ -389,8 +390,9 @@
                     <div class="modal-body " style="background-color: #143153; height: 30%">
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres a tus beneficiarios o que alcances el mínimo de compra</h5>
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
                         </div>
