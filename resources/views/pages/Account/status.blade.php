@@ -8,9 +8,9 @@
    <div>
       <div style="padding-left: 10px !important;">
 
-        @include('includes.accountData')
+         @include('includes.accountData')
 
-          <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+         @include('includes.opinionButton')
          <hr>
       </div>
       <div>
