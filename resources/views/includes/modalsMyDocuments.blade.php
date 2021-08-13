@@ -554,7 +554,9 @@
                 <span class="times" data-dismiss="modal" aria-label="Close">X</span>
             </div>
             <div class="modal-body mb-0 pb-0">
-                <h3 class="text-uppercase font-weight-bold"> DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN</h3>
+                <h3 class="text-uppercase font-weight-bold text-center">
+                    DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
+                </h3>
 
                 <div class="container">
                     <ul class="list-unstyled ml-3">

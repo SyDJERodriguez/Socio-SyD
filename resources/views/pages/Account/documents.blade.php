@@ -69,7 +69,7 @@
                         <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
+                        ><br> <strong class="py-3"> PÉRDIDA <br>ORGÁNICA
                          </strong></h6>
                         </div>
                 <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
@@ -81,7 +81,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
+                         <br><strong class="py-3"> MUERTE <br>ACCIDENTAL
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
@@ -95,7 +95,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
+                        <strong class="py-3"> INDEMNIZACIÓN POR <br>ACCIDENTE  
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
@@ -106,11 +106,18 @@
                                 style="background-color: #143153;">
                                 LISTADO DE DOCUMENTOS</a>  
                 </div>
-                <div class="col-lg-4 py-3 text-center">
+                
+                <div class="col-lg-12" style="color: #143153">
+                    <h5 class="text-center" style="padding-left: 15px">
+                        DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
+                    </h5>
                 </div>
-                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
-                    *Consulta términos y condiciones
-                </p>
+
+                <div class="col-lg-12 text-left">
+                    <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                        *Consulta términos y condiciones
+                    </p>
+                </div>
                     </div>
 
                     @if ($level == 1)
@@ -163,7 +170,7 @@
                 </div>
                 <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
                         <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
-                            <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                            <br><strong class="py-2"> ENVÍO DE <br> GRÚA</strong></h6>
                 </div>
                 @elseif($level === 2)
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
@@ -216,7 +223,7 @@
                             <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
+                        ><br> <strong class="py-3"> PÉRDIDA <br>ORGÁNICA
                          </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
@@ -228,7 +235,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
+                         <br><strong class="py-3"> MUERTE <br> ACCIDENTAL
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
@@ -242,14 +249,14 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
+                        <strong class="py-3"> INDEMNIZACIÓN POR <br> ACCIDENTE  
                         </strong></h6>
                 </div>
                         </div>
                         <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
                     <h6 style="color: #143153;"><img class="py-2"   
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
+                        ><br> <strong class="py-3"> PÉRDIDA <br>ORGÁNICA
                          </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
@@ -261,7 +268,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
+                         <br><strong class="py-3"> MUERTE <br>ACCIDENTAL
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
@@ -275,7 +282,7 @@
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
+                        <strong class="py-3"> INDEMNIZACIÓN POR <br> ACCIDENTE  
                         </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
@@ -286,13 +293,18 @@
                                 style="background-color: #143153;">
                                 LISTADO DE DOCUMENTOS</a>  
                 </div>
-                <div class="col-lg-4 py-3 text-center">
+                <div class="col-lg-12" style="color: #143153">
+                    <h5 class="text-center" style="padding-left: 15px">
+                        DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
+                    </h5>
                 </div>
-                 
-                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
-                    *Consulta términos y condiciones
-                </p>
+
+                <div class="col-lg-12 text-left">
+                    <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                        *Consulta términos y condiciones
+                    </p>
                 </div>
+                    </div>
                      @if ($level == 1)
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);
@@ -343,7 +355,7 @@
                     </div>
                     <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
                             <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
-                                <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                                <br><strong class="py-2"> ENVÍO DE <br> GRÚA</strong></h6>
                     </div>
                     @elseif($level === 2)
                     <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
