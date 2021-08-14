@@ -5,18 +5,26 @@
                 src="{{asset('img/perdida_organica.png')}}" 
         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
          </strong></h6>
-         <a class="btn btn-outline-light btn-sm"
+         <a class="btn btn-outline-light btn-sm playBenefits"
               style="background-color: #143153"
               id="showVideoButton1"
               href="#"
               onclick="playVideoBenefit('perdidaOrganica')"
              >Ver video</a>
         </div>
-<div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
-    <h6 style="color: #143153;"> <img class="py-2"
-        style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
+<div class="col-lg-4 py-3 text-center iconInvalid">
+    <h6 style="color: #143153;cursor: pointer" data-toggle="modal" data-target="#modal8">
+        <img class="py-2" 
+                style="width:150px; height:150px;" 
+                src="{{asset('img/invalidez_total.png')}}">
         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
             </strong></h6>
+         <a class="btn btn-outline-light btn-sm playBenefits"
+            style="background-color: #143153"
+            id="showVideoButton2"
+            href="#"
+            onclick="playVideoBenefit('invalidezTotal')"
+            >Ver video</a>
 </div>
 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
     <h6 style="color: #143153;"><img class="py-2"
@@ -54,7 +62,7 @@
                     <div class="div">
                         <video id="videoBenefits" class="videoInsert" controls>
                             <source id="videoSource"
-                                    src="{{ asset('video/perdidaOrganica.mp4') }}"
+                                    src="{{ asset('video/{name}.mp4') }}"
                                     type="video/mp4">
                           Your browser does not support the video tag.
                           </video>
@@ -69,9 +77,12 @@
     function playVideoBenefit(videoName) {
         let hrefVideo = "{{ asset('video/{name}.mp4') }}";
         hrefVideo = hrefVideo.replace('{name}',videoName);
-        console.log(hrefVideo);
+
         $("#videoSource").src = hrefVideo;
+        //$("#videoSource").load();
+        console.log($("#videoSource"));
+
         $("#modalVideoBenefits").modal('show'); 
-        /* TODO: ya abre video pero no se pausa la reproduccion */
+        /* TODO: error no se reproduce */
     }
 </script>
