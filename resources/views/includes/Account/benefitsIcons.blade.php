@@ -12,7 +12,7 @@
               onclick="playVideoBenefit('perdidaOrganica')"
              >Ver video</a>
         </div>
-<div class="col-lg-4 py-3 text-center iconInvalid">
+<div class="col-lg-4 text-center iconInvalid">
     <h6 style="color: #143153;cursor: pointer" data-toggle="modal" data-target="#modal8">
         <img class="py-2" 
                 style="width:150px; height:150px;" 
@@ -26,11 +26,18 @@
             onclick="playVideoBenefit('invalidezTotal')"
             >Ver video</a>
 </div>
-<div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-    <h6 style="color: #143153;"><img class="py-2"
+<div class="col-lg-4 py-3 text-center">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+        <img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
          <br><strong class="py-3"> MUERTE ACCIDENTAL
         </strong></h6>
+        <a class="btn btn-outline-light btn-sm playBenefits"
+              style="background-color: #143153"
+              id="showVideoButton1"
+              href="#"
+              onclick="playVideoBenefit('invalidezTotal')"
+             >Ver video</a>
 </div>
 <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
     <h6 style="color: #143153;"><img class="py-2"
@@ -38,9 +45,8 @@
         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
     </strong></h6>
 </div>
-<div class="col-lg-4 py-3 text-center">
-</div>
-<div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
+
+<div class="col-lg-4 offset-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
     <h6 style="color: #143153;"><img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
@@ -61,9 +67,7 @@
                 <div class="row">
                     <div class="div">
                         <video id="videoBenefits" class="videoInsert" controls>
-                            <source id="videoSource"
-                                    src="{{ asset('video/{name}.mp4') }}"
-                                    type="video/mp4">
+                           
                           Your browser does not support the video tag.
                           </video>
                     </div>
@@ -75,14 +79,23 @@
 
 <script>
     function playVideoBenefit(videoName) {
-        let hrefVideo = "{{ asset('video/{name}.mp4') }}";
-        hrefVideo = hrefVideo.replace('{name}',videoName);
+        let element = document.getElementById('benefitSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
 
-        $("#videoSource").src = hrefVideo;
-        //$("#videoSource").load();
-        console.log($("#videoSource"));
+        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        let video = document.getElementById('videoBenefits');
 
-        $("#modalVideoBenefits").modal('show'); 
-        /* TODO: error no se reproduce */
+        let source = document.createElement('source');
+        source.id = "benefitSource";
+        source.src = hrefVideo;
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        video.load();
+
+        //console.log($('#videoBenefits')[0].outerHTML)
+        $("#modalVideoBenefits").modal('show');
     }
 </script>
