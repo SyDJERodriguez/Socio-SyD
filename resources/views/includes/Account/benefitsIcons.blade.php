@@ -29,25 +29,34 @@
 <div class="col-lg-4 py-3 text-center">
     <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
         <img class="py-2"
-        style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
+            style="width:150px; height:150px;" 
+            src="{{asset('img/muerte_accidental.png')}}">
          <br><strong class="py-3"> MUERTE ACCIDENTAL
         </strong></h6>
         <a class="btn btn-outline-light btn-sm playBenefits"
               style="background-color: #143153"
               id="showVideoButton1"
               href="#"
-              onclick="playVideoBenefit('invalidezTotal')"
+              onclick="playVideoBenefit('muerteAccidental')"
              >Ver video</a>
 </div>
-<div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-    <h6 style="color: #143153;"><img class="py-2"
+<div class="col-lg-4 text-center py-3">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+        <img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
     </strong></h6>
+    <a class="btn btn-outline-light btn-sm playBenefits"
+              style="background-color: #143153"
+              id="showVideoButton1"
+              href="#"
+              onclick="playVideoBenefit('gastosMedicos')"
+             >Ver video</a>
 </div>
 
-<div class="col-lg-4 offset-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-    <h6 style="color: #143153;"><img class="py-2"
+<div class="col-lg-4 offset-lg-4 py-3 text-center">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+        <img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
         </strong></h6>
