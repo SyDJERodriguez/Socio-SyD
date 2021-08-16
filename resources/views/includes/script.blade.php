@@ -1278,16 +1278,28 @@
 
 <script>
     $(document).ready(function(){
+        // autoplay video
         $('#btnVideo').on('click', function (){
             $('#modalVideo').modal('show');
             var video = document.getElementById("videoSocioSYD");
             video.play();
         });
-    // Modal hidden event fired
-    $('#modalVideo').on('hidden.bs.modal', function () {
-        var video = document.getElementById("videoSocioSYD");
-        video.pause();
-        video.currentTime = 0;
+        // Modal hidden event fired
+        $('#modalVideo').on('hidden.bs.modal', function () {
+            var video = document.getElementById("videoSocioSYD");
+            video.pause();
+            video.currentTime = 0;
+        });
+        // autoplay video
+        $('.playBenefits').on('click', function (){
+            var video = document.getElementById("videoBenefits");
+            video.play();
+        });
+        // Modal hidden event fired (benefits)
+        $('#modalVideoBenefits').on('hidden.bs.modal', function () {
+            var video = document.getElementById("videoBenefits");
+            video.pause();
+            video.currentTime = 0;
         });
     });
 </script>
