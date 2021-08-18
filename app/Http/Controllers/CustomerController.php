@@ -2218,12 +2218,13 @@ class CustomerController extends Controller
         $SYD_EMAILS = ["rguerrero@syd.com.mx",
                      "nebratt@syd.com.mx",
                      "ecommerce@syd.com.mx",
-                     "equezada@syd.com.mx"];
+                     "equezada@syd.com.mx",
+                     "sociosyd@syd.com"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
             Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
-                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Soci SyD');
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Socio SyD');
             });
             return redirect()->route('home');
         } catch (\Throwable $th) {
