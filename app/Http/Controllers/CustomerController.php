@@ -1124,8 +1124,6 @@ class CustomerController extends Controller
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
         ]);
-        //$total = $this->totalAmount();
-        //$noti = $this->getNotifications();
 
         if ($update_customer){
             $activated = false;
@@ -1147,8 +1145,6 @@ class CustomerController extends Controller
         $update_customer = DB::table('customers_sessions')->where('email', '=', $email)->update([
             'active'   => 1
         ]);
-        //$total = $this->totalAmount();
-        //$noti = $this->getNotifications();
 
         if ($update_customer){
             $activated = false;
@@ -1354,7 +1350,6 @@ class CustomerController extends Controller
         $mes = Carbon::parse()->locale('es');
         $data->mes = $mes;
 
-
         //$data->is_branch = $dataSession->is_branch;
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $data->branch_number = $dataSession->branch_number;
@@ -1433,7 +1428,7 @@ class CustomerController extends Controller
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$link = \Storage::cloud()->temporaryUrl('polizas/'.Auth::user()->id.'.pdf', now()->addMinute(2));
         //$exist = \Storage::cloud()->exists('polizas/'.Auth::user()->id.'.pdf');
-        $total = $this->totalAmount();
+    
         $noti = $this->getNotifications();
         $number = '';
         if(Auth::user()->client_type === '3'){
@@ -1462,37 +1457,38 @@ class CustomerController extends Controller
         ->where('branch_number', Auth::user()->branch_number)
         ->whereMonth('transaction_date','=',$current_month)
         ->get();
-    $totalAmount = 0.0;
-    foreach ($data_customer as $d){
-        $amount_customer = floatval($d->amount);
-        strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-    }
+        $totalAmount = $this->totalAmount();
+        /* $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            $MALOamount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+        } */
 
-    $level = 0;
-    if (Auth::user()->client_type != "2"){
-        if ($totalAmount>2500 && $totalAmount<=4500) {
-            $level = 1;
+        $level = 0;
+        if (Auth::user()->client_type != "2"){
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $level = 1;
+            }
+            if ($totalAmount>4500 && $totalAmount<=7000) {
+                $level = 2;
+            }
+            if ($totalAmount>7000) {
+                $level = 3;
+            }
         }
-        if ($totalAmount>4500 && $totalAmount<=7000) {
-            $level = 2;
-        }
-        if ($totalAmount>7000) {
-            $level = 3;
-        }
-    }
 
-    if (Auth::user()->client_type === "2"){
-        if ($totalAmount>200 && $totalAmount<=500) {
-            $level = 1;
+        if (Auth::user()->client_type === "2"){
+            if ($totalAmount>200 && $totalAmount<=500) {
+                $level = 1;
+            }
+            if ($totalAmount>500 && $totalAmount<=1300) {
+                $level = 2;
+            }
+            if ($totalAmount>1300) {
+                $level = 3;
+            }
         }
-        if ($totalAmount>500 && $totalAmount<=1300) {
-            $level = 2;
-        }
-        if ($totalAmount>1300) {
-            $level = 3;
-        }
-    }
-
+        $total = $totalAmount;
         //dd($beneficiaries);
 
         return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries'));
@@ -1548,18 +1544,18 @@ class CustomerController extends Controller
             ->first();
 
         $noti = $this->getNotifications();
-        $total = $this->totalAmount();
         $is_cnt = 'true';
 
         $now = Carbon::now();
         $current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = 0.0;
+        $totalAmount = $this->totalAmount();
+        /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
+            $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-        }
+        } */
 
         $level = 0;
         if (Auth::user()->client_type !== "2"){
@@ -1591,6 +1587,8 @@ class CustomerController extends Controller
                         ->get();
         $beneficiaries = json_decode($beneficiaries);
         $beneficiary = (array)$beneficiaries;//convert to array
+
+        $total = $totalAmount;
 
         if(empty($beneficiaries) == false){
             return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number', 'owner'));
@@ -1638,11 +1636,12 @@ class CustomerController extends Controller
         $current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = 0.0;
+        $totalAmount = $this->totalAmount();
+        /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
+            $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-        }
+        } */
 
         $level = 0;
         if (Auth::user()->client_type != "2"){
@@ -1698,18 +1697,18 @@ class CustomerController extends Controller
         if(empty($query) === false){
             $imgData = $query[0];
         }
-        $total = $this->totalAmount();
+        $totalAmount = $this->totalAmount();
         $noti = $this->getNotifications();
 
         $now = Carbon::now();
         $current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = 0.0;
+        /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
+            $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-        }
+        } */
 
         $level = 0;
         if (Auth::user()->client_type != "2"){
@@ -1735,6 +1734,7 @@ class CustomerController extends Controller
                 $level = 3;
             }
         }
+        $total = $totalAmount;
 
         return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number', 'owner'));
     }
@@ -1761,12 +1761,13 @@ class CustomerController extends Controller
         $current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = 0.0;
+        $totalAmount = $this->totalAmount();
+        /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
+            $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
-
+ */
         $level = 0;
         if (Auth::user()->client_type != "2"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
@@ -1886,11 +1887,12 @@ class CustomerController extends Controller
         $current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = 0.0;
+        $totalAmount = $this->totalAmount();
+        /*$totalAmount =  0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
+            $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-        }
+        } */
 
         $level = 0;
         if (Auth::user()->client_type != "2"){
@@ -1930,8 +1932,10 @@ class CustomerController extends Controller
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
         }
 
         return $totalAmount;
@@ -1945,8 +1949,10 @@ class CustomerController extends Controller
         $data_customer = $this->getTransCadena($email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
         }
 
         return $totalAmount;
@@ -2075,14 +2081,14 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $email)->first();
         $now = Carbon::now();
 
-        $query = DB::table('transactions')
+        /* $query = DB::table('transactions')
                     ->where('client_number','=', $data['client_number'])
                     ->where('branch_number','=', $dataSession['branch_number'])
                     ->whereMonth('transaction_date','=',$now)
                     ->sum('amount');
-
+        */
         //round the number with only 2 decimals
-        $limit = (float)number_format($query,2,'.','');
+        $limit = $this->totalAmount();
         $validated = false; //var for button validated
 
         //get number of employees registrados
@@ -2218,12 +2224,13 @@ class CustomerController extends Controller
         $SYD_EMAILS = ["rguerrero@syd.com.mx",
                      "nebratt@syd.com.mx",
                      "ecommerce@syd.com.mx",
-                     "equezada@syd.com.mx"];
+                     "equezada@syd.com.mx",
+                     "sociosyd@syd.com"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
             Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
-                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Soci SyD');
+                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Socio SyD');
             });
             return redirect()->route('home');
         } catch (\Throwable $th) {

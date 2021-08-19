@@ -39,7 +39,12 @@
                </thead>
                <tbody>
                   @foreach ($tr as $trans)
-                     <tr>
+                  {{-- compare fecha de trans y fecha actual --}}
+                     <tr 
+                        @if ( date_format(date_create($trans->transaction_date)->modify('+2 day'), 'Y-m-d') >= date($data->mes->isoformat("Y-MM-D")) )
+                        style='color: rgb(185, 185, 185)'
+                        @endif
+                        >
                         <th> {{ $trans->material_type }}</th>
                         <td> {{ $trans->sale_office }}</td>
                         <td> {{ $trans->payment_method }}</td>
@@ -127,6 +132,9 @@
         },
        "footerCallback": function ( row, data, start, end, display ) {
            var api = this.api(), data;
+           let today = new Date();
+           //today = today.getDate()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+today.getFullYear();
+           today = today.getFullYear()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+(today.getDate());
 
            // Remove the formatting to get integer data for summation
            var intVal = function ( i ) {
@@ -136,21 +144,36 @@
                        i : 0;
            };
 
+           //only the dates after de actual date
            // Total over all pages
            total = api
-               .column( 5 )
-               .data()
-               .reduce( function (a, b) {
-                   return intVal(a) + intVal(b);
-               }, 0 );
+               .data()//data[4] is date, data[5] is for price
+               .filter( function (data) {
+                     let fec = data[4].split('-');//get de date from colum 4
+                     var fecha = new Date( fec[2],fec[1]-1,fec[0] );//set date to parse a new date
+                     var hoy = new Date(today + " 00:00:00");
+
+                     //added two days to the transactions date, and compare with current time
+                     if( (new Date(fecha.getTime() + (2 * 86400000)) < (new Date(hoy.getTime()))) ){
+                        //console.log( new Date(fecha.getTime() + (2 * 86400000)) )
+                        //console.log( new Date(hoy.getTime() + 86400000))
+                        return data
+                     }
+
+                  })
+               .map( x => x[5])
+               .reduce( function (a,b) {
+                     return intVal(a) + intVal(b);
+               },0 );
+               //console.log(total)
 
            // Total over this page
-           pageTotal = api
+           /* pageTotal = api
                .column( 5, { page: 'current'} )
                .data()
                .reduce( function (a, b) {
                    return intVal(a) + intVal(b);
-               }, 0 );
+               }, 0 ); */
 
            // Update footer
            $( api.column( 5 ).footer() ).html(

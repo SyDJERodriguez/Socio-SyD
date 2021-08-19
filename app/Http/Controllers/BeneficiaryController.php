@@ -42,8 +42,10 @@ class BeneficiaryController extends Controller
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            }
         }
 
         $cnt = intval(Auth::user()->client_number);
@@ -53,7 +55,7 @@ class BeneficiaryController extends Controller
         }
 
         $noti = $this->getNotifications();
-        $total = 0;
+        $total = $total_amount;
 
         $level = 0;
         if (Auth::user()->client_type === "1" || Auth::user()->client_type === "4"){
