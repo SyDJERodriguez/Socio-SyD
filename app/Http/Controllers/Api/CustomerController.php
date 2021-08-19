@@ -282,7 +282,7 @@ class CustomerController extends Controller
 
         $data = [];
         foreach ($transactions as $transaction){
-            $customer_type = CustomersSession::where('client_number', '=', $transaction->client_number)
+           $customer_type = CustomersSession::where('branch_number', '=', $transaction->client_number)
                 ->select('client_type', 'email')
                 ->get();
             //dd($customer_type);
@@ -293,7 +293,7 @@ class CustomerController extends Controller
 
 
                 $level = '';
-                if ($customer->client_type === "1" || $customer->client_type === "3"){
+                if ($customer->client_type != "2"){
                     if ($transaction->total>4500 && $transaction->total<=7000) {
                         $level = 'plata';
                     }
