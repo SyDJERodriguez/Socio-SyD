@@ -2229,9 +2229,11 @@ class CustomerController extends Controller
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         try {
-            Mail::send('emails.messageContact',['data'=>$data],function($m) use ($SYD_EMAILS){
-                $m->to($SYD_EMAILS)->subject('Nuevo Registro de Socio SyD');
-            });
+            foreach( $SYD_EMAILS as $emails){
+                Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
+                    $m->to($emails)->subject('Nuevo Registro de Socio SyD');
+                });
+            }
             return redirect()->route('home');
         } catch (\Throwable $th) {
             return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
