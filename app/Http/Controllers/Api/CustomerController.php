@@ -16,7 +16,11 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
+use App\Exports\SessionExport;
+use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends Controller
 {
     public function store(){
@@ -342,9 +346,10 @@ class CustomerController extends Controller
     }
 
     //Report for Chubb
-    public function report_chubb(Request $request){
-        $response = "For chubb";
-        return response()->json($response);
+    public function chubb_report(){
+        //$response = "For chubb";
+        return Excel::download( new SessionExport, 'reporteChubb.xlsx' );
+        //return response()->json($response);
     }
 
     public function ws_verifacte_mobile_number(Request $request){
