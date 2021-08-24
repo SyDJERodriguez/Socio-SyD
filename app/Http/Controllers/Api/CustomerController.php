@@ -348,7 +348,25 @@ class CustomerController extends Controller
     //Report for Chubb
     public function chubb_report(){
         //$response = "For chubb";
-        return Excel::download( new SessionExport, 'reporteChubb.xlsx' );
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $data = DB::table('customers')
+                ->join('customers_sessions', 'customers_sessions.email', '=', 'customers.email')
+                ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+                ->whereMonth('transaction_date','=',$current_month)
+                ->selectRaw('customers.name as name')
+                ->selectRaw('customers.last_name as lastname')
+                ->selectRaw('customers.second_last_name as secondLastName')
+                ->selectRaw('customers.rfc as rfc')
+                ->selectRaw('customers.birthday as bday')
+                ->selectRaw('customers.gender as gender')
+                ->selectRaw('customers_sessions.client_type as level')
+                ->selectRaw('SUM(transactions.amount) as total')
+                //->whereNull('transactions.branch_number')
+                ->groupBy('customers.email')
+                ->get();
+        
+        return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
         //return response()->json($response);
     }
 
