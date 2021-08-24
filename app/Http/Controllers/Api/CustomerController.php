@@ -362,12 +362,66 @@ class CustomerController extends Controller
                 ->selectRaw('customers.gender as gender')
                 ->selectRaw('customers_sessions.client_type as level')
                 ->selectRaw('SUM(transactions.amount) as total')
-                //->whereNull('transactions.branch_number')
                 ->groupBy('customers.email')
                 ->get();
         
+        foreach( $data as $d ){
+
+            switch ($d->level) {
+                case '1':
+                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
+                    $d->level = 'Negocio';
+                    break;
+                case '2':
+                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
+                    $d->level = 'Independiente';
+                    break;
+                case '3': 
+                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
+                    $d->level = 'Dependiente';
+                    break;
+                case '4':
+                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
+                    $d->level = 'Sucursal';
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+        }
+        
         return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
-        //return response()->json($response);
+    }
+
+    public function seguroAsistencia($level,$total){
+        if($level != '2'){
+           if( $total > 2500 && $total <= 4500 ){
+                return "Seguro";    
+           }
+           if( $total > 4500 && $total <= 7000){
+                return "Seguro y Asistencias Plata";
+           }
+           if( $total > 7000 ){
+               return "Seguro y Asistencias Oro";
+           }
+
+           return "Sin seguro ni Asistencias";
+        }
+
+        if( $level == '2' ){
+            if( $total > 200 && $total <= 500 ){
+                return "Seguro";    
+           }
+           if( $total > 500 && $total <= 1300){
+                return "Seguro y Asistencias Plata";
+           }
+           if( $total > 1300 ){
+               return "Seguro y Asistencias Oro";
+           }
+
+           return "Sin seguro ni Asistencias";
+        }
     }
 
     public function ws_verifacte_mobile_number(Request $request){

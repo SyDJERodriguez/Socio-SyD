@@ -5,8 +5,11 @@ namespace App\Exports;
 use App\CustomersSession;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class SessionExport implements FromCollection
+
+class SessionExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     protected $data;
     /**
@@ -15,6 +18,20 @@ class SessionExport implements FromCollection
 
     public function __construct($data){
         $this->data = $data;
+    }
+
+    public function headings(): array
+    {
+        return [
+            'Nombre(s)',
+            'Primer Apellido',
+            'Segundo Apellido',
+            'RFC',
+            'Fecha de Nacimiento',
+            'Género',
+            'Tipo de cuenta',
+            'Beneficios'
+        ];
     }
 
     public function collection()
