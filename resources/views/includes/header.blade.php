@@ -1,4 +1,4 @@
-<a href="https://api.whatsapp.com/send?phone=5591859309&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
+<a href="https://api.whatsapp.com/send?phone=5215591859309&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
     class="whatsapp">
     <img src="{{asset('img/whatsIcon.png')}}" style="width: 30% !important;" alt="">
 </a>
