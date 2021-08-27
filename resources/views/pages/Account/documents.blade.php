@@ -45,6 +45,7 @@
         @if(count($beneficiaries) > 0 && $level >= 1 || (count($beneficiaries) && (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))))
             <div class="col-8 py-2 divImgDerecha">
                  <form>
+                     @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                        
@@ -167,6 +168,7 @@
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
             <form>
+                @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                          

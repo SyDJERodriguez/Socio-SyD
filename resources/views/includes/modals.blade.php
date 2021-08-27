@@ -11,6 +11,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.restore.password')}}" method="GET" id="sendRestorePassword">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -282,6 +283,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
