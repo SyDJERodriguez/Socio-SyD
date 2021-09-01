@@ -39,9 +39,10 @@
                </thead>
                <tbody>
                   @foreach ($tr as $trans)
-                  {{-- compare fecha de trans y fecha actual --}}
+                  {{-- compare fecha de trans (mismo mes y negativo) y fecha actual --}}
                      <tr 
-                        @if ( date_format(date_create($trans->transaction_date)->modify('+2 day'), 'Y-m-d') >= date($data->mes->isoformat("Y-MM-D")) )
+                        @if ( date('m', strtotime($trans->transaction_date) ) == date($data->mes->isoformat("MM")) 
+                              && $trans->amount < 0 )
                         style='color: rgb(185, 185, 185)'
                         @endif
                         >
@@ -154,9 +155,12 @@
                      var hoy = new Date(today + " 00:00:00");
 
                      //added two days to the transactions date, and compare with current time
-                     if( (new Date(fecha.getTime() + (2 * 86400000)) < (new Date(hoy.getTime()))) ){
+                     if( (new Date(fecha.getTime()) < (new Date(hoy.getTime()))) ){
                         //console.log( new Date(fecha.getTime() + (2 * 86400000)) )
-                        //console.log( new Date(hoy.getTime() + 86400000))
+                        console.log(hoy.getMonth() + 1) 
+                        // encontrar una forma de que los valores negativso del mes pasado
+                        // salgan en el siguiente mes mmm
+                        console.log(data[5]) //string
                         return data
                      }
 
@@ -166,6 +170,14 @@
                      return intVal(a) + intVal(b);
                },0 );
                //console.log(total)
+
+               // Total over all pages (getted from another brach)
+               /* total = api
+               .column( 5 )
+               .data()
+               .reduce( function (a, b) {
+                   return intVal(a) + intVal(b);
+               }, 0 ); */
 
            // Total over this page
            /* pageTotal = api

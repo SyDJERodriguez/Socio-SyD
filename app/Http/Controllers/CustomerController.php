@@ -1396,6 +1396,9 @@ class CustomerController extends Controller
     //Get transactions
     public function get_trans($client_number, $branch_number){
         $now = Carbon::now();
+        
+        $current_month = $now->month;
+        $last_month = $now->subMonth();
 
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
@@ -1403,7 +1406,8 @@ class CustomerController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->where('transactions.branch_number','=', $branch_number)
-            ->whereMonth('transaction_date','=',$now)
+            //->whereMonth( 'transaction_date', '=' , $current_month ) TODOO
+            ->whereBetween( 'transaction_date', [ $last_month, $current_month] )
             ->get();
 
         return $customer_trans;
@@ -1500,11 +1504,13 @@ class CustomerController extends Controller
                         ->where('email','=', $email)->first();
         $now = Carbon::now();
         $current_month = $now->month;
+        $last_month = $now->subMonth();
 
         $data= DB::table('transactions')
                     ->where('client_number','=', $dataSession->client_number)
                     ->where('branch_number','=', $dataSession->branch_number)
-                    ->whereMonth('transaction_date','=',$current_month)
+                    ->whereMonth('transaction_date', '=' ,$now)
+                    //->whereMonth('transaction_date', '=' ,$last_month) TODO
                     ->get();
         return $data;
 
