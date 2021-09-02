@@ -19,6 +19,43 @@ use DB;
 
 class CustomerController extends Controller
 {
+    /** Webservices for get registered clients in Pegaso platform **/
+
+    public function get_registered_clients() {
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customers', 'customers.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                         'customers.name AS name',
+                         'customers.last_name AS last_name',
+                         'customers.second_last_name AS second_last_name',
+                         'customers.email AS email',
+                         'customers_sessions.mobile AS phone',
+                         'customers.birthday AS birthday',
+                         'customers_sessions.created_at AS fecha_registro',
+                         'customers_sessions.client_type AS type_user'
+            )
+            ->get();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+
+        $totalAmount = 0.0;
+        foreach ($registered_clients as $client){
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->get();
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+
+        }
+        return response()->json($totalAmount);
+    }
+
     public function store(){
 
     }
