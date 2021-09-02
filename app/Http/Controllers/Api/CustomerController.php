@@ -41,19 +41,68 @@ class CustomerController extends Controller
         $current_month = $now->month;
 
 
-        $totalAmount = 0.0;
+
         foreach ($registered_clients as $client){
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
                 ->whereMonth('transaction_date','=',$current_month)
                 ->get();
+            $totalAmount = 0.0;
+
+            if($client->type_user === '3'){
+                $associate_data = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                $client->client_number = $client->client_number.'-'.$associate_data->number;
+            }
+
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+            }
+
+
             foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }
+            $client->amount = $totalAmount;
 
+            if ($client->type_user === "1" || $client->type_user === "3" || $client->type_user === "4"){
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else{
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
         }
-        return response()->json($totalAmount);
+        return response()->json($registered_clients);
     }
 
     public function store(){
