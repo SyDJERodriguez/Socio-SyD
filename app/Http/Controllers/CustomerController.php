@@ -1362,6 +1362,18 @@ class CustomerController extends Controller
             $data->branch_name = $query[0]->branch_name;
         }
 
+        /* $now = Carbon::now();
+
+        $current_month = $now->addMonth();
+        $last_month = $now->subMonth(2);
+
+        $log = $last_month->format('Y-m') . '-01'; */
+        //$log   = $current_month->format('Y-m') . '-28';
+        
+        //$log = $now->format('Y-m') . '-28';
+        //$last_month = $log->subMonth()->month;
+        //$log = '2021-08-01';
+
         return view('pages.Account.status', compact('data', 'tr', 'total','noti','owner'));
         //return redirect()->route('customer.myAccount');
     }
@@ -1397,18 +1409,37 @@ class CustomerController extends Controller
     public function get_trans($client_number, $branch_number){
         $now = Carbon::now();
         
-        $current_month = $now->month;
-        $last_month = $now->subMonth();
+        $current_month = $now->addMonth();
+        $endDate   = $current_month->format('Y-m') . '-28';
+        
+        $last_month = $now->subMonth(2); //2 bc prevously we added a month
+        $startDate = $last_month->format('Y-m'). '-01';
 
+        //todo: hacer dos condiciones where para traer negattivos del mes pasado y positivos/negatios del mes actual
+        //seria: where igual al mes anterior y amount < 0; and mes actual todos
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->where('transactions.branch_number','=', $branch_number)
-            //->whereMonth( 'transaction_date', '=' , $current_month ) TODOO
-            ->whereBetween( 'transaction_date', [ $last_month, $current_month] )
+            ->whereDate( 'transaction_date', '>=', $startDate)
+            ->whereDate( 'transaction_date', '<=', $endDate)
             ->get();
+
+        //creo que este forEACH Ya no se jhara
+        /* $customer_trans = json_decode($customer_trans, true);
+        $customer_trans = (array)$customer_trans;
+        //TODO hacer un aprueba si viene vacio el response
+        if( $customer_trans ){
+            $newCustoemr_trans = array_filter( $customer_trans, function($tran){
+                foreach ($tran as $tr) {
+                    if (date('m', strtotime($tr['transaction_date']) ) < date(Carbon::now()) 
+                        && $tr['amount'] > 0 ) return false;
+                }
+                return true;
+            });
+        } */
 
         return $customer_trans;
     }

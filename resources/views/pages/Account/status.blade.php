@@ -39,6 +39,7 @@
                </thead>
                <tbody>
                   @foreach ($tr as $trans)
+                  {{-- <p> {{VAR_DUMP($trans->client_number)}} </p> --}}
                   {{-- compare fecha de trans (mismo mes y negativo) y fecha actual --}}
                      <tr 
                         @if ( date('m', strtotime($trans->transaction_date) ) == date($data->mes->isoformat("MM")) 
