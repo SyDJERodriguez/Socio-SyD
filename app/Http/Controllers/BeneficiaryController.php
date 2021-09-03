@@ -34,18 +34,18 @@ class BeneficiaryController extends Controller
             ->first();
         $signature = $signature->signature_id;
 
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
-            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
                 $amount_customer = floatval($d->amount);
                 strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
-            }
+            //}
         }
 
         $cnt = intval(Auth::user()->client_number);
@@ -202,11 +202,27 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data= DB::table('transactions')
-                    ->where('client_number','=', $dataSession->client_number)
-                    ->where('branch_number','=', $dataSession->branch_number)
-                    ->whereMonth('transaction_date','=',$current_month)
-                    ->get();
+        $trans1 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '>', 0)
+            ->whereMonth('transaction_date', $now->month)
+            ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '<', 0)
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $data = $trans1->merge($trans2);
         return $data;
         
     }
