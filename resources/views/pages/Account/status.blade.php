@@ -150,7 +150,7 @@
            // Total over all pages
            total = api
                .data()//data[4] is date, data[5] is for price
-               .filter( function (data) {
+               /* .filter( function (data) {
                      let fec = data[4].split('-');//get de date from colum 4
                      var fecha = new Date( fec[2],fec[1]-1,fec[0] );//set date to parse a new date
                      var hoy = new Date(today + " 00:00:00");
@@ -159,13 +159,11 @@
                      if( (new Date(fecha.getTime()) < (new Date(hoy.getTime()))) ){
                         //console.log( new Date(fecha.getTime() + (2 * 86400000)) )
                         console.log(hoy.getMonth() + 1) 
-                        // encontrar una forma de que los valores negativso del mes pasado
-                        // salgan en el siguiente mes mmm
                         console.log(data[5]) //string
                         return data
                      }
 
-                  })
+                  }) */
                .map( x => x[5])
                .reduce( function (a,b) {
                      return intVal(a) + intVal(b);

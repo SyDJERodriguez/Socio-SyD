@@ -1342,7 +1342,7 @@ class CustomerController extends Controller
         $data = Customer::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $tr = $this->get_trans(
-                    $data['client_number'],
+                    $dataSession['client_number'],
                     $dataSession['branch_number']);
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
@@ -1361,18 +1361,6 @@ class CustomerController extends Controller
         if(empty($query) == false){
             $data->branch_name = $query[0]->branch_name;
         }
-
-        /* $now = Carbon::now();
-
-        $current_month = $now->addMonth();
-        $last_month = $now->subMonth(2);
-
-        $log = $last_month->format('Y-m') . '-01'; */
-        //$log   = $current_month->format('Y-m') . '-28';
-        
-        //$log = $now->format('Y-m') . '-28';
-        //$last_month = $log->subMonth()->month;
-        //$log = '2021-08-01';
 
         return view('pages.Account.status', compact('data', 'tr', 'total','noti','owner'));
         //return redirect()->route('customer.myAccount');
@@ -1409,37 +1397,32 @@ class CustomerController extends Controller
     public function get_trans($client_number, $branch_number){
         $now = Carbon::now();
         
-        $current_month = $now->addMonth();
-        $endDate   = $current_month->format('Y-m') . '-28';
-        
-        $last_month = $now->subMonth(2); //2 bc prevously we added a month
-        $startDate = $last_month->format('Y-m'). '-01';
+        //$current_month = $now->addMonth();
+        //$endDate   = $current_month->format('Y-m') . '-28';
+        //$last_month = $now->subMonth(2); //2 bc prevously we added a month
+        //$startDate = $last_month->format('Y-m'). '-01';
 
-        //todo: hacer dos condiciones where para traer negattivos del mes pasado y positivos/negatios del mes actual
-        //seria: where igual al mes anterior y amount < 0; and mes actual todos
-        $customer_trans = DB::table('transactions')
+        $trans1 = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->where('transactions.branch_number','=', $branch_number)
-            ->whereDate( 'transaction_date', '>=', $startDate)
-            ->whereDate( 'transaction_date', '<=', $endDate)
+            ->where('amount', '>', 0)
+            ->whereMonth('transaction_date', $now->month)
             ->get();
 
-        //creo que este forEACH Ya no se jhara
-        /* $customer_trans = json_decode($customer_trans, true);
-        $customer_trans = (array)$customer_trans;
-        //TODO hacer un aprueba si viene vacio el response
-        if( $customer_trans ){
-            $newCustoemr_trans = array_filter( $customer_trans, function($tran){
-                foreach ($tran as $tr) {
-                    if (date('m', strtotime($tr['transaction_date']) ) < date(Carbon::now()) 
-                        && $tr['amount'] > 0 ) return false;
-                }
-                return true;
-            });
-        } */
+        $trans2 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->where('transactions.branch_number','=', $branch_number)
+            ->where('amount', '<', 0)
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $customer_trans = $trans1->merge($trans2);
 
         return $customer_trans;
     }
@@ -1534,17 +1517,39 @@ class CustomerController extends Controller
         $dataSession = DB::table('customers_sessions')
                         ->where('email','=', $email)->first();
         $now = Carbon::now();
-        $current_month = $now->month;
-        $last_month = $now->subMonth();
+        //$current_month = $now->month;
+        //$last_month = $now->subMonth();
 
-        $data= DB::table('transactions')
+       /*  $data= DB::table('transactions')
                     ->where('client_number','=', $dataSession->client_number)
                     ->where('branch_number','=', $dataSession->branch_number)
                     ->whereMonth('transaction_date', '=' ,$now)
                     //->whereMonth('transaction_date', '=' ,$last_month) TODO
-                    ->get();
-        return $data;
+                    ->get(); */
 
+        $trans1 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '>', 0)
+            ->whereMonth('transaction_date', $now->month)
+            ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '<', 0)
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $data = $trans1->merge($trans2);
+
+        return $data;
     }
 
     //Go to register beneficiary
@@ -1583,16 +1588,8 @@ class CustomerController extends Controller
         $noti = $this->getNotifications();
         $is_cnt = 'true';
 
-        $now = Carbon::now();
-        $current_month = $now->month;
-
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = $this->totalAmount();
-        /* $totalAmount = 0.0;
-        foreach ($data_customer as $d){
-            $MALOamount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-        } */
 
         $level = 0;
         if (Auth::user()->client_type !== "2"){
@@ -1669,8 +1666,8 @@ class CustomerController extends Controller
             $is_cnt = 'true';
         }
 
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = $this->totalAmount();
@@ -1737,8 +1734,8 @@ class CustomerController extends Controller
         $totalAmount = $this->totalAmount();
         $noti = $this->getNotifications();
 
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
         /* $totalAmount = 0.0;
@@ -1794,8 +1791,8 @@ class CustomerController extends Controller
 
             if($response['success']){
                 if($response['score'] && $response['score'] > 0.5){*/
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = $this->totalAmount();
@@ -1920,8 +1917,8 @@ class CustomerController extends Controller
                 -> where('email', Auth::user()->email)
                 ->first();
         }
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = $this->totalAmount();
@@ -1963,16 +1960,16 @@ class CustomerController extends Controller
 
     //calculated totalAmount
     public function totalAmount(){
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
                 $amount_customer = floatval($d->amount);
                 strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-            }
+            //}
         }
 
         return $totalAmount;
@@ -1980,16 +1977,16 @@ class CustomerController extends Controller
 
     //get the total amount by passing client number as a parameter
     public function totalAmountById($client_number,$email){
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $data_customer = $this->getTransCadena($email);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
-            if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
                 $amount_customer = floatval($d->amount);
                 strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-            }
+            //}
         }
 
         return $totalAmount;
