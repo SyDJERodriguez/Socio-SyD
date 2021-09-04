@@ -12,10 +12,12 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Illuminate\Support\Facades\Http;
 
 class CustomerController extends Controller
 {
@@ -43,6 +45,15 @@ class CustomerController extends Controller
 
 
         foreach ($registered_clients as $client){
+            //$survey_xalapa = self::get_quality_xalapa('0000000001');
+
+            $client_http = new Client();
+            $response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
+            $body = $response->getBody();
+
+            $client->survey_xalapa = $body;
+
+
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
                 ->whereMonth('transaction_date','=',$current_month)
@@ -102,7 +113,17 @@ class CustomerController extends Controller
                 }
             }
         }
+        //$client_http = new Client();
+        //$response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
+        //$body = $response->getBody();
         return response()->json($registered_clients);
+    }
+
+    public function save_survey_typeform (Request $request) {
+        $request = $request->input();
+        $request = json_encode($request);
+
+        return response()->json($request);
     }
 
     public function store(){
@@ -462,5 +483,12 @@ class CustomerController extends Controller
             'created_at.required'  => 'La fecha de creación SAP es obligatoria',
             'pay_cond.required'         => 'El plazo de pago es obligatorio',
         ]);
+    }
+
+    private function get_quality_xalapa($client_number){
+        $client = new Client();
+        $response = $client->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/00000012');
+        $body = $response->getBody();
+        return $body;
     }
 }
