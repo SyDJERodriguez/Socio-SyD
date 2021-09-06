@@ -12,13 +12,126 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Illuminate\Support\Facades\Http;
 
 class CustomerController extends Controller
 {
+    /** Webservices for get registered clients in Pegaso platform **/
+
+    public function get_registered_clients() {
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customers', 'customers.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                         'customers.name AS name',
+                         'customers.last_name AS last_name',
+                         'customers.second_last_name AS second_last_name',
+                         'customers.email AS email',
+                         'customers_sessions.mobile AS phone',
+                         'customers.birthday AS birthday',
+                         'customers_sessions.created_at AS fecha_registro',
+                         'customers_sessions.client_type AS type_user'
+            )
+            ->get();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+
+
+
+        foreach ($registered_clients as $client){
+            //$survey_xalapa = self::get_quality_xalapa('0000000001');
+
+            $client_http = new Client();
+            $response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
+            $body = $response->getBody();
+
+            $client->survey_xalapa = $body;
+
+
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->get();
+            $totalAmount = 0.0;
+
+            if($client->type_user === '3'){
+                $associate_data = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                $client->client_number = $client->client_number.'-'.$associate_data->number;
+            }
+
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+            }
+
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            if ($client->type_user === "1" || $client->type_user === "3" || $client->type_user === "4"){
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else{
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
+        }
+        //$client_http = new Client();
+        //$response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
+        //$body = $response->getBody();
+        return response()->json($registered_clients);
+    }
+
+    public function save_survey_typeform (Request $request) {
+        $request = $request->input();
+        //$request = json_encode($request);
+
+        \Log::channel('api')->info('===========================START PROCESS==================================================================================');
+        $agent = new Agent();
+        \Log::channel('api')->info('Solicitud a insert in log: ip->'.Utils::getUserIpAddr().' device->'.$agent->platform().' - '.$agent->browser());
+        \Log::channel('api')->info('Datos recibidos:  '.json_encode($request));
+        \Log::channel('api')->info('=====================================END PROCESS========================================================================');
+
+        return response()->json($request);
+    }
+
     public function store(){
 
     }
@@ -376,5 +489,12 @@ class CustomerController extends Controller
             'created_at.required'  => 'La fecha de creación SAP es obligatoria',
             'pay_cond.required'         => 'El plazo de pago es obligatorio',
         ]);
+    }
+
+    private function get_quality_xalapa($client_number){
+        $client = new Client();
+        $response = $client->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/00000012');
+        $body = $response->getBody();
+        return $body;
     }
 }
