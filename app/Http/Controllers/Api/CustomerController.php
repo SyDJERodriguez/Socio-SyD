@@ -121,7 +121,13 @@ class CustomerController extends Controller
 
     public function save_survey_typeform (Request $request) {
         $request = $request->input();
-        $request = json_encode($request);
+        //$request = json_encode($request);
+
+        \Log::channel('api')->info('===========================START PROCESS==================================================================================');
+        $agent = new Agent();
+        \Log::channel('api')->info('Solicitud a insert in log: ip->'.Utils::getUserIpAddr().' device->'.$agent->platform().' - '.$agent->browser());
+        \Log::channel('api')->info('Datos recibidos:  '.json_encode($request));
+        \Log::channel('api')->info('=====================================END PROCESS========================================================================');
 
         return response()->json($request);
     }
