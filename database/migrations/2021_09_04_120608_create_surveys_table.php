@@ -17,6 +17,7 @@ class CreateSurveysTable extends Migration
             $table->bigIncrements('id');
             $table->string('client_number');
             $table->string('survey');
+            $table->string('answers');
             $table->string('questions');
             $table->timestamps();
         });
