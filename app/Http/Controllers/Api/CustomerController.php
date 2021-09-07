@@ -76,7 +76,7 @@ class CustomerController extends Controller
             }
             $client->amount = $totalAmount;
 
-            if ($client->type_user == "1" || $client->type_user == "3" || $client->type_user == "4"){
+            if($client->type_user != "2"){
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
