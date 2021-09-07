@@ -42,33 +42,8 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-
-
         foreach ($registered_clients as $client){
-
-            $survey_xalapa = DB::table('surveys')
-                ->where('client_number', '=', $client->client_number)
-                ->where('survey', '=', 'xalapa')
-                ->first();
-
-            $questions = unserialize($survey_xalapa->questions);
-            $answers = unserialize($survey_xalapa->answers);
-
-            $final_answers = [];
-
-            //return unserialize($survey_xalapa->questions);
-            //return unserialize($survey_xalapa->answers);
-            foreach ($questions as $question){
-                if(isset($answers[$question['id']])){
-                    array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
-                }
-
-                //return $answers[$question['id']]['value'];
-            }
-            return $final_answers;
-
-
-            return response()->json($survey_xalapa);
+            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
@@ -128,6 +103,19 @@ class CustomerController extends Controller
                     $client->level= 'Sin beneficios';
                 }
             }
+
+            $xalapa_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'xalapa')
+                ->first();
+
+            $quality_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'calidad')
+                ->first();
+
+            $xalapa_survey ? $client->xalapa_survey = self::get_surveys($xalapa_survey) : $client->xalapa_survey = 'No tiene encuesta registrada';
+            $quality_survey ? $client->quality_survey = self::get_surveys($quality_survey) : $client->quality_survey = 'No tiene encuesta registrada';
         }
 
         return response()->json($registered_clients);
@@ -515,10 +503,16 @@ class CustomerController extends Controller
         ]);
     }
 
-    private function get_quality_xalapa($client_number){
-        $client = new Client();
-        $response = $client->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/00000012');
-        $body = $response->getBody();
-        return $body;
+    private function get_surveys($query_response){
+        $questions = unserialize($query_response->questions);
+        $answers = unserialize($query_response->answers);
+
+        $final_answers = [];
+        foreach ($questions as $question){
+            if(isset($answers[$question['id']])){
+                array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
+            }
+        }
+        return $final_answers;
     }
 }
