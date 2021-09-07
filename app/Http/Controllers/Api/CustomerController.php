@@ -56,13 +56,16 @@ class CustomerController extends Controller
 
             $final_answers = [];
 
-            return unserialize($survey_xalapa->questions);
-            return unserialize($survey_xalapa->answers);
+            //return unserialize($survey_xalapa->questions);
+            //return unserialize($survey_xalapa->answers);
             foreach ($questions as $question){
-                array_push($final_answers, array($question['id']=>$answers[$question['id']]['value']));
+                if(isset($answers[$question['id']])){
+                    array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
+                }
+
                 //return $answers[$question['id']]['value'];
             }
-            //return $final_answers;
+            return $final_answers;
 
 
             return response()->json($survey_xalapa);
