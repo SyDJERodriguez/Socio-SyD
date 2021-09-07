@@ -45,14 +45,30 @@ class CustomerController extends Controller
 
 
         foreach ($registered_clients as $client){
-            //$survey_xalapa = self::get_quality_xalapa('0000000001');
 
-            $client_http = new Client();
-            $response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
-            $body = $response->getBody();
+            $survey_xalapa = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'xalapa')
+                ->first();
 
-            $client->survey_xalapa = $body;
+            $questions = unserialize($survey_xalapa->questions);
+            $answers = unserialize($survey_xalapa->answers);
 
+            $final_answers = [];
+
+            //return unserialize($survey_xalapa->questions);
+            //return unserialize($survey_xalapa->answers);
+            foreach ($questions as $question){
+                if(isset($answers[$question['id']])){
+                    array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
+                }
+
+                //return $answers[$question['id']]['value'];
+            }
+            return $final_answers;
+
+
+            return response()->json($survey_xalapa);
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
@@ -113,22 +129,30 @@ class CustomerController extends Controller
                 }
             }
         }
-        //$client_http = new Client();
-        //$response = $client_http->request('GET', 'http://system.quaxarcustomerhangar.com/campaigns/survey_xalapa/0000000001');
-        //$body = $response->getBody();
+
         return response()->json($registered_clients);
     }
 
     public function save_survey_typeform (Request $request) {
         $request = $request->input();
-        //$request = json_encode($request);
 
-        \Log::channel('api')->info('===========================START PROCESS==================================================================================');
-        $agent = new Agent();
-        \Log::channel('api')->info('Solicitud a insert in log: ip->'.Utils::getUserIpAddr().' device->'.$agent->platform().' - '.$agent->browser());
-        \Log::channel('api')->info('Datos recibidos:  '.json_encode($request));
-        \Log::channel('api')->info('=====================================END PROCESS========================================================================');
+        $questions = [];
+        foreach ($request['questions'] as $question){
+            $question = array(
+                'label' => $question['label'],
+                'id'    => $question['id']
+            );
 
+            array_push($questions,$question);
+        }
+
+        $client = array(
+            'client_number' => $request['client_number'],
+            'survey' => $request['survey'],
+            'answers' => serialize($request['answer']),
+            'questions' => serialize($questions),
+        );
+        DB::table('surveys')->insert($client);
         return response()->json($request);
     }
 
