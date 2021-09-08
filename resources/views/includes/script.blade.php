@@ -204,6 +204,10 @@
                         document.getElementById("form_alert_email_br").innerHTML='El email ya se encuentra asociado a otro cliente';
                         document.getElementById("form_alert_email_br").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_email_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert_br").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_pass_br").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                         document.getElementById("form_alert_pass_br").removeAttribute("hidden");
@@ -263,6 +267,11 @@
                         $('#clientNumber').text('No. de Cliente '+data['client_number']);
                         $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                    
                     }else if (data['success']==='false' && data['verify_email']==='false') {
                         document.getElementById("form_alert_email").innerHTML='El email ya se encuentra asociado a otro cliente';
                         document.getElementById("form_alert_email").removeAttribute("hidden");
@@ -335,6 +344,10 @@
                         document.getElementById("form_alert_mec_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
                         document.getElementById("form_alert_mec_email").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_mec_email").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert_mec").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert_mec").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_mec_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                         document.getElementById("form_alert_mec_pass").removeAttribute("hidden");

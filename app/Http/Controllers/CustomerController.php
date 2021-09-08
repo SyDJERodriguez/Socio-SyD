@@ -546,6 +546,12 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
+        $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
+        if($dataClient == null){
+            //no exist clientNumber in clientNumbers table
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        }
+
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
@@ -584,7 +590,7 @@ class CustomerController extends Controller
 
         //Check if the client number is already in the DB
         try {
-            $data = Customer::where('client_number', $client_number)->first();
+            $data = CustomersSession::where('branch_number', $client_number)->first();
 
             $data_branch = DB::table('branches_clients')
                                 ->where('client_number','=', $client_number)
@@ -613,8 +619,48 @@ class CustomerController extends Controller
                 return response()->json(['success'=>'false', 'verify_data_branch'=>'false']);
             }
 
+            $update_customer = Customer::where('email', $request['email'])->first();
+
+            if($update_customer == null){
+                //Insert data in customers table
+                $update_customer = DB::table('customers')->insert([
+                    'client_number'    => $client_number,
+                    'name'             => $request['name'],
+                    'last_name'        => $request['last_name'],
+                    'second_last_name' => $request['second_last_name'],
+                    'email'            => $request['email'], //This is for customers_session table too
+                    'mobile_number'    => $request['mobile'],
+                    'company'          => isset($request['company']) ? $request['company'] : null,
+                    'birthday'         => $request['birthday'],
+                    'created_at'       => date('Y-m-d H:i:s'),
+                    'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                    'work'             => isset($request['work']) ? $request['work'] : null,
+                    'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                    'collector_id'     => 6,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                ]);
+            }else{
+                //u[date]
+                $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
+                    'client_number'    => $client_number,
+                    'name'             => $request['name'],
+                    'last_name'        => $request['last_name'],
+                    'second_last_name' => $request['second_last_name'],
+                    'email'            => $request['email'], //This is for customers_session table too
+                    'mobile_number'    => $request['mobile'],
+                    'company'          => isset($request['company']) ? $request['company'] : null,
+                    'birthday'         => $request['birthday'],
+                    'created_at'       => date('Y-m-d H:i:s'),
+                    'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                    'work'             => isset($request['work']) ? $request['work'] : null,
+                    'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                    'collector_id'     => 6,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                ]);
+            }
+
             //Insert data in customers table
-            $update_customer = DB::table('customers')->insert([
+            /* $update_customer = DB::table('customers')->insert([
                 'client_number'    => $client_number,
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
@@ -629,7 +675,7 @@ class CustomerController extends Controller
                 'gender'           => isset($request['gender']) ? $request['gender'] : null,
                 'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
-            ]);
+            ]); */
 
             //create data in notifications table
             /* $update_notifications = DB::table('notifications')->insert([
@@ -745,6 +791,12 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
+        $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
+        if($dataClient == null){
+            //no exist clientNumber in clientNumbers table
+            return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+        }
+
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
@@ -792,23 +844,44 @@ class CustomerController extends Controller
         }
 
         if ($data == null) {
-            //Insert data in customers table
-            $update_customer = DB::table('customers')->insert([
-                'client_number'    => $client_number,
-                'name'             => $request['name'],
-                'last_name'        => $request['last_name'],
-                'second_last_name' => $request['second_last_name'],
-                'email'            => $request['email'], //This is for customers_session table too
-                'mobile_number'    => $request['mobile'],
-                'company'          => isset($request['company']) ? $request['company'] : null,
-                'birthday'         => $request['birthday'],
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
-                'work'             => isset($request['work']) ? $request['work'] : null,
-                'gender'           => isset($request['gender']) ? $request['gender'] : null,
-                'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
-                'created_at'       => date('Y-m-d H:i:s')
-            ]);
+            $update_customer = Customer::where('email', $request['email'])->first();
+
+            if($update_customer == null){
+                //Insert data in customers table
+                $update_customer = DB::table('customers')->insert([
+                    'client_number'    => $client_number,
+                    'name'             => $request['name'],
+                    'last_name'        => $request['last_name'],
+                    'second_last_name' => $request['second_last_name'],
+                    'email'            => $request['email'], //This is for customers_session table too
+                    'mobile_number'    => $request['mobile'],
+                    'company'          => isset($request['company']) ? $request['company'] : null,
+                    'birthday'         => $request['birthday'],
+                    'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                    'work'             => isset($request['work']) ? $request['work'] : null,
+                    'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                    'collector_id'     => 6,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                    'created_at'       => date('Y-m-d H:i:s')
+                ]);
+            }else{
+                $update_customer = DB::table('customers')->where('email', '=' ,$request['email'])->update([
+                    'client_number'    => $client_number,
+                    'name'             => $request['name'],
+                    'last_name'        => $request['last_name'],
+                    'second_last_name' => $request['second_last_name'],
+                    'email'            => $request['email'], //This is for customers_session table too
+                    'mobile_number'    => $request['mobile'],
+                    'company'          => isset($request['company']) ? $request['company'] : null,
+                    'birthday'         => $request['birthday'],
+                    'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                    'work'             => isset($request['work']) ? $request['work'] : null,
+                    'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                    'collector_id'     => 6,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                    'created_at'       => date('Y-m-d H:i:s')
+                ]);
+            }
 
             //create data in notifications table
             $update_notifications = DB::table('notifications')->insert([
