@@ -34,7 +34,7 @@ class CreateCustomersPlatformTable extends Migration
 		    $table->string('street')->nullable()->default(null);
 		    $table->string('colonia')->nullable()->default(null);
 		    $table->string('postal_code')->nullable()->default(null);
-		    $table->integer('education')->length(11)->default(null);
+		    $table->integer('education')->length(11)->nullable()->default(null);
 		    $table->bigInteger('state_id')->length(20)->nullable()->default(null);
 		    $table->bigInteger('city_id')->length(20)->nullable()->default(null);
 		    $table->string('source')->nullable()->default(null);
