@@ -590,7 +590,7 @@ class CustomerController extends Controller
 
         //Check if the client number is already in the DB
         try {
-            $data = CustomersSession::where('branch_number', $client_number)->first();
+            $data = CustomersSession::where('email', $request['email'])->first();
 
             $data_branch = DB::table('branches_clients')
                                 ->where('client_number','=', $client_number)
@@ -1628,7 +1628,7 @@ class CustomerController extends Controller
 
 
         if(Auth::user()->client_type === '3'){
-            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->get();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
@@ -1672,7 +1672,7 @@ class CustomerController extends Controller
         }
 
         $beneficiaries = DB::table('beneficiaries')
-                        ->where('customer_id','=', $data['id'])
+                        ->where('customer_id','=', $data->id)
                         ->get();
         $beneficiaries = json_decode($beneficiaries);
         $beneficiary = (array)$beneficiaries;//convert to array
@@ -1902,7 +1902,7 @@ class CustomerController extends Controller
                     if (is_array($data) == true) { //check if an array
                         if(empty($data) === false){
                             $idSign = DB::table('signatures')
-                                        ->where('client_number','=',$user['client_number'])
+                                        ->where('client_number','=',$user->client_number)
                                         ->update([
                                             'imgData'    => $request['imgData'],
                                             'updated_at' => date('Y-m-d H:i:s')
@@ -1912,7 +1912,7 @@ class CustomerController extends Controller
                         if(empty($data) === true){
                             if(Auth::user()->client_type !== "3"){
                                 $idSign = DB::table('signatures')->insertGetId([
-                                    'client_number'   => $user['client_number'],
+                                    'client_number'   => $user->client_number,
                                     'created_at'      => date('Y-m-d H:i:s'),
                                     'imgData'         => $request['imgData'],
                                     'customer_id'     => Auth::user()->id
@@ -1931,7 +1931,7 @@ class CustomerController extends Controller
 
                             //then update customer table,signature id
                             $updateCustomer = DB::table('customers_sessions')
-                                                ->where('client_number', '=', $user['client_number'])
+                                                ->where('client_number', '=', $user->client_number)
                                                 ->update([
                                                     'signature_id' => $idSign
                                                 ]);

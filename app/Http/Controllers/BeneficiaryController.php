@@ -22,7 +22,6 @@ class BeneficiaryController extends Controller
                 ->first();
         }
 
-        //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
         //dd($request['name'][1]);
         $count = 0;
@@ -126,7 +125,7 @@ class BeneficiaryController extends Controller
                                 'relationship'     => $request['parent'][$i],
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
-                                'customer_id'      => $data['id'],
+                                'customer_id'      => $data->id,
                                 'branch_number'    => $request['branch_number'][$i]
                             ]);
                         }
@@ -137,7 +136,7 @@ class BeneficiaryController extends Controller
                 //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
                     $beneficiaries = DB::table('beneficiaries')
-                                        ->where('customer_id','=', $data['id'])
+                                        ->where('customer_id','=', $data->id)
                                         ->get();
                         $beneficiaries = json_decode($beneficiaries);
                         $beneficiary = (array)$beneficiaries;//convert to array
@@ -173,7 +172,7 @@ class BeneficiaryController extends Controller
                 'relationship'     => $request['parent'][0],
                 'mobile_number'    => $request['phone'][0],
                 'percent'          => $request['percent'][0],
-                'customer_id'      => $data['id'],
+                'customer_id'      => $data->id,
                 'branch_number'    => $request['branch_number'][0]
             ]);
 
@@ -182,7 +181,7 @@ class BeneficiaryController extends Controller
             //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiaries = DB::table('beneficiaries')
-                                ->where('customer_id','=', $data['id'])
+                                ->where('customer_id','=', $data->id)
                                 ->get();
                     $beneficiaries = json_decode($beneficiaries);
                     $beneficiary = (array)$beneficiaries;//convert to array
