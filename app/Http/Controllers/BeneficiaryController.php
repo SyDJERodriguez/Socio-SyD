@@ -12,10 +12,10 @@ use Carbon\Carbon;
 class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $number = '';
         if (Auth::user()->client_type === "3"){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 ->where('email', Auth::user()->email)
@@ -255,7 +255,7 @@ class BeneficiaryController extends Controller
     //Function to generate PDF and upload AWS's S3
     public function generatePDF() {
         $id = Auth::user()->id;
-        $customer = DB::table('customers')
+        $customer = DB::table('customers_platform')
             ->where('email', '=', Auth::user()->email)
             ->first();
         $beneficiaries = DB::table('beneficiaries')
@@ -267,7 +267,7 @@ class BeneficiaryController extends Controller
             ->first();
 
         if (Auth::user()->client_type === "3"){
-            $customer = DB::table('customers')
+            $customer = DB::table('customers_platform')
                 ->where('email', '=', Auth::user()->email)
                 ->first();
             $beneficiaries = DB::table('beneficiaries')
@@ -319,7 +319,7 @@ class BeneficiaryController extends Controller
     }
 
     public function send_email_alta($email){
-        $data = Customer::where('email', $email)->first();
+        $data = DB::table('customers_platform')->where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"SOCIO SYD");
