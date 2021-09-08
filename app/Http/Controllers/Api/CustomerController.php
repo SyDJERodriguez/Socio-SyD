@@ -59,24 +59,71 @@ class CustomerController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            if($client->type_user === '1'){
-                $client->type_user = 'Dueño de Negocio';
-            }else if($client->type_user === '2'){
-                $client->type_user = 'Mecánico Individual';
-            }else if($client->type_user === '3'){
-                $client->type_user = 'Empleado Dependiente';
-            }else if($client->type_user === '4'){
-                $client->type_user = 'Cadenas';
-            }
-
-
             foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }
             $client->amount = $totalAmount;
 
-            if($client->type_user != '2'){
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
+
+            /*if($client->type_user != '2'){
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
@@ -103,7 +150,7 @@ class CustomerController extends Controller
                 if ($totalAmount == 0) {
                     $client->level= 'Sin beneficios';
                 }
-            }
+            }*/
 
             $xalapa_survey = DB::table('surveys')
                 ->where('client_number', '=', $client->client_number)
