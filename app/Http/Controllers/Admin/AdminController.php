@@ -97,7 +97,7 @@ class AdminController extends Controller
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
 
-        $customerData = DB::table('customers')
+        $customerData = DB::table('customers_platform')
             ->where('client_number', '=', $client_number)
             ->first();
 
@@ -186,7 +186,7 @@ class AdminController extends Controller
 
         $client_number = $account->client_number;
 
-        $customerData = DB::table('customers')
+        $customerData = DB::table('customers_platform')
             ->where('client_number', '=', $client_number)
             ->first();
 
