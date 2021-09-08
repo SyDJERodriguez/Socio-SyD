@@ -112,6 +112,11 @@ class AdminController extends Controller
             ->where('email', '=', $email)
             ->first();
 
+        if (empty($account)){
+            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+            return view('Admin.customer', compact('error'));
+        }
+
         $transactions = $this->getTransactions($client_number);
         $totalAmount = $this->totalAmount($client_number);
 
@@ -147,7 +152,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -155,13 +160,13 @@ class AdminController extends Controller
             'wanted_client' => $client_number,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
-        
+
         return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
@@ -214,7 +219,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -222,7 +227,7 @@ class AdminController extends Controller
             'wanted_client' => $email,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
