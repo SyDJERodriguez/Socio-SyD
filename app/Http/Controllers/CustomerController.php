@@ -114,7 +114,7 @@ class CustomerController extends Controller
         //}
 
         //Insert data in customers table
-        $update_customer = DB::table('customers')->insert([
+        $update_customer = DB::table('customers_platform')->insert([
             'client_number'    => $client_number,
             'cnt'              => $request['cnt_number'],
             'name'             => $request['name'],
@@ -182,7 +182,7 @@ class CustomerController extends Controller
             ]);
             if ($update_customer_session === 1){
                 //Add client number to customer table
-                $update_customer = DB::table('customers')->where('email','=', Auth::user()->email)->update([
+                $update_customer = DB::table('customers_platform')->where('email','=', Auth::user()->email)->update([
                     'client_number' => $client_number
                 ]);
                 if($update_customer === 1){
@@ -236,7 +236,7 @@ class CustomerController extends Controller
             ]);
             if ($update_customer_session === 1){
                 //Remove client number to customer table
-                $update_customer = DB::table('customers')->where('email','=', $request['email'])->update([
+                $update_customer = DB::table('customers_platform')->where('email','=', $request['email'])->update([
                     'client_number' => ''
                 ]);
                 if($update_customer === 1){
@@ -261,7 +261,7 @@ class CustomerController extends Controller
         if ($verify_client_number == null) {
             return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
         }
-        $data = Customer::where('client_number', $client_number)->first();
+        $data = DB::table('customers_platform')->where('client_number', $client_number)->first();
         return response($data);
     }
 
@@ -317,12 +317,12 @@ class CustomerController extends Controller
         //Check if the account is a mechanic account
         if(!empty($verify_mobile_email)){
             if($verify_mobile_email[0]->client_type == '2'){
-                $owner = DB::table('customers')
+                $owner = DB::table('customers_platform')
                     ->where('client_number', '=', $request['client_number'])
                     ->first();
                 $ownerName = $owner->name.' '.$owner->last_name.' '.$owner->second_last_name;
 
-                $data = DB::table('customers')
+                $data = DB::table('customers_platform')
                     ->where('email', '=', $request['email'])
                     ->first();
                 $information = [
@@ -431,7 +431,7 @@ class CustomerController extends Controller
         $client_number = $request['client_number'];
 
         //Verify is the email has not a relation with other client number
-        $verify_mobile_number = Customer::where('mobile_number', $request['mobile_number'])->first();
+        $verify_mobile_number = DB::table('customers_platform')->where('mobile_number', $request['mobile_number'])->first();
         if(!empty($verify_mobile_number)){
             if ($verify_mobile_number->client_number !== $client_number ){
                 return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
@@ -466,7 +466,7 @@ class CustomerController extends Controller
 
     //Deactivate employees
     public function deleteEmployee($employee){
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         //update the employee with client number 00000000 and number = 0
         $update_associates ='';
         $update_associates = DB::table('associates')
@@ -590,7 +590,7 @@ class CustomerController extends Controller
 
         //Check if the client number is already in the DB
         try {
-            $data = CustomersSession::where('branch_number', $client_number)->first();
+            $data = CustomersSession::where('email', $request['email'])->first();
 
             $data_branch = DB::table('branches_clients')
                                 ->where('client_number','=', $client_number)
@@ -619,11 +619,13 @@ class CustomerController extends Controller
                 return response()->json(['success'=>'false', 'verify_data_branch'=>'false']);
             }
 
-            $update_customer = Customer::where('email', $request['email'])->first();
+            $update_customer = DB::table('customers_platform')
+                                    ->where('email', '=', $request['email'])
+                                    ->first();
 
             if($update_customer == null){
                 //Insert data in customers table
-                $update_customer = DB::table('customers')->insert([
+                $update_customer = DB::table('customers_platform')->insert([
                     'client_number'    => $client_number,
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
@@ -641,7 +643,7 @@ class CustomerController extends Controller
                 ]);
             }else{
                 //u[date]
-                $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
+                $update_customer = DB::table('customers_platform')->where('email', '=', $request['email'])->update([
                     'client_number'    => $client_number,
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
@@ -658,30 +660,6 @@ class CustomerController extends Controller
                     'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
                 ]);
             }
-
-            //Insert data in customers table
-            /* $update_customer = DB::table('customers')->insert([
-                'client_number'    => $client_number,
-                'name'             => $request['name'],
-                'last_name'        => $request['last_name'],
-                'second_last_name' => $request['second_last_name'],
-                'email'            => $request['email'], //This is for customers_session table too
-                'mobile_number'    => $request['mobile'],
-                'company'          => isset($request['company']) ? $request['company'] : null,
-                'birthday'         => $request['birthday'],
-                'created_at'       => date('Y-m-d H:i:s'),
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
-                'work'             => isset($request['work']) ? $request['work'] : null,
-                'gender'           => isset($request['gender']) ? $request['gender'] : null,
-                'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
-            ]); */
-
-            //create data in notifications table
-            /* $update_notifications = DB::table('notifications')->insert([
-                'client_number'     => $client_number,
-                'name_id'           => 'SEGURO ASISTENCIAS'
-            ]); */
 
 
             if($request['client_type'] != '1'){
@@ -725,7 +703,7 @@ class CustomerController extends Controller
                     'branch_number'     => $client_number
                 ]);
 
-                $idCustomer = DB::table('customers')
+                $idCustomer = DB::table('customers_platform')
                     ->select('id')
                     ->where('email', '=', $request['email'])
                     ->first();
@@ -844,11 +822,13 @@ class CustomerController extends Controller
         }
 
         if ($data == null) {
-            $update_customer = Customer::where('email', $request['email'])->first();
+            $update_customer = DB::table('customers_platform')
+                                ->where('email', $request['email'])
+                                ->first();
 
             if($update_customer == null){
                 //Insert data in customers table
-                $update_customer = DB::table('customers')->insert([
+                $update_customer = DB::table('customers_platform')->insert([
                     'client_number'    => $client_number,
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
@@ -865,7 +845,7 @@ class CustomerController extends Controller
                     'created_at'       => date('Y-m-d H:i:s')
                 ]);
             }else{
-                $update_customer = DB::table('customers')->where('email', '=' ,$request['email'])->update([
+                $update_customer = DB::table('customers_platform')->where('email', '=' ,$request['email'])->update([
                     'client_number'    => $client_number,
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
@@ -956,7 +936,7 @@ class CustomerController extends Controller
         }
 
         //Check if the client number is already in the DB
-        $data = Customer::where('client_number', $client_number)->first();
+        $data = DB::table('customers_platform')->where('email', '=' ,$request['email'])->first();
 
         $update_customer ='';
         $save_register = '';
@@ -965,7 +945,9 @@ class CustomerController extends Controller
             if($request['client_type'] === '3' || $request['client_type'] === 3){
 
                 //Update data in customers table
-                $update_customer = DB::table('customers')->where('email', '=', $request['email'])->update([
+                $update_customer = DB::table('customers_platform')
+                ->where('email', '=', $request['email'])
+                ->update([
                     'name'             => $request['name'],
                     'last_name'        => $request['last_name'],
                     'second_last_name' => $request['second_last_name'],
@@ -992,7 +974,7 @@ class CustomerController extends Controller
                 }
             }else{
                  //Update data in customers table
-                 $update_customer = DB::table('customers')
+                 $update_customer = DB::table('customers_platform')
                                     ->where('client_number', '=', $client_number)
                                     ->where('email','=',$request['email'])->update([
                     'name'             => $request['name'],
@@ -1042,7 +1024,7 @@ class CustomerController extends Controller
 
         if($request['email'] == '' || $request['email'] == null){
             //buscamo con el mobile number
-            $data = Customer::where('mobile_number', $request['mobile_number'])->first();
+            $data = DB::table('customers_platform')->where('mobile_number', $request['mobile_number'])->first();
             if($data == null){
                 return redirect()->back()->with('msg','El número de teléfono no existe en el sistema');
             }
@@ -1051,7 +1033,7 @@ class CustomerController extends Controller
         }
         if($request['mobile_number'] == '' || $request['mobile_number'] == null){
             //buscamos con el email
-            $data = Customer::where('email', $request['email'])->first();
+            $data = DB::table('customers_platform')->where('email', $request['email'])->first();
             if($data == null){
                 return redirect()->back()->with('msg', 'El email no existe en el sistema');
             }
@@ -1060,8 +1042,8 @@ class CustomerController extends Controller
 
         // if se llenen ambos campos
         if(isset($request['mobile_number']) && isset($request['email'])){
-            $dataMobile = Customer::where('mobile_number', $request['mobile_number'])->first();
-            $dataEmail = Customer::where('email', $request['email'])->first();
+            $dataMobile = DB::table('customers_platform')->where('mobile_number', $request['mobile_number'])->first();
+            $dataEmail = DB::table('customers_platform')->where('email', $request['email'])->first();
 
             if($dataMobile == null && $dataEmail == null){
                 return redirect()->back()->with('msg','El número de teléfono o email no existe en el sistema');
@@ -1096,7 +1078,7 @@ class CustomerController extends Controller
         }
 
         //Check if the client number is already in the DB
-        $data = Customer::where('client_number', $request['client_number'])->first();
+        $data = DB::table('customers_platform')->where('client_number', $request['client_number'])->first();
 
         $update_customer ='';
         if ($data == null) {
@@ -1133,7 +1115,7 @@ class CustomerController extends Controller
         ]);
 
         //Insert data in customers table
-        $update_customer = DB::table('customers')->insert([
+        $update_customer = DB::table('customers_platform')->insert([
             'client_number'    => null,
             'name'             => $request['name'],
             'last_name'        => $request['last_name'],
@@ -1159,7 +1141,7 @@ class CustomerController extends Controller
 
     //Send welcome email
     public function send_welcome_email($email) {
-        $data = Customer::where('email',$email)->first();
+        $data = DB::table('customers_platform')->where('email',$email)->first();
         $dataSession = CustomersSession::where('email', $email)->first();
         $data->branch_number = $dataSession->branch_number;
 
@@ -1310,7 +1292,7 @@ class CustomerController extends Controller
     public function send_restore_password(Request $request) {
         $request = $request->input();
         //$data_session = CustomersSession::where('email', $request['email'])->first();
-        $data = Customer::where('email', $request['email'])->first();
+        $data = DB::table('customers_platform')->where('email', $request['email'])->first();
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
@@ -1345,7 +1327,7 @@ class CustomerController extends Controller
 
     //Send signUp success email
     public function send_signUp_success($email) {
-        $data = Customer::where('email', $email)->first();
+        $data = DB::table('customers_platform')->where('email', $email)->first();
         try {
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
@@ -1376,7 +1358,7 @@ class CustomerController extends Controller
     public function send_activate_account(Request $request) {
         $request = $request->input();
 
-        $data = Customer::where('email', $request['email'])->first();
+        $data = DB::table('customers_platform')->where('email', $request['email'])->first();
         try {
             \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
@@ -1412,7 +1394,7 @@ class CustomerController extends Controller
     //Go to My account
     public function account_status(){
         //dd(Auth::user()->client_number);
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $tr = $this->get_trans(
                     $dataSession['client_number'],
@@ -1441,7 +1423,7 @@ class CustomerController extends Controller
 
     //get the full name in customers table
     public function getRealName($data){
-        $query = DB::table('customers')
+        $query = DB::table('customers_platform')
                 ->where('email','=', Auth::user()->email)
                 ->get();
         $query = json_decode($query);
@@ -1502,7 +1484,7 @@ class CustomerController extends Controller
 
     //Go to My documments section
     public function my_documents() {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
 
         //$data->is_branch = $dataSession->is_branch;
@@ -1523,7 +1505,7 @@ class CustomerController extends Controller
         $noti = $this->getNotifications();
         $number = '';
         if(Auth::user()->client_type === '3'){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 ->where('email', Auth::user()->email)
@@ -1535,7 +1517,7 @@ class CustomerController extends Controller
             ->get();
 
         if (Auth::user()->client_type === "3"){
-            $customer = DB::table('customers')
+            $customer = DB::table('customers_platform')
                 ->where('email', '=', Auth::user()->email)
                 ->first();
             $beneficiaries = DB::table('beneficiaries')
@@ -1627,7 +1609,7 @@ class CustomerController extends Controller
 
     //Go to register beneficiary
     public function register_beneficiary () {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
@@ -1646,7 +1628,7 @@ class CustomerController extends Controller
 
 
         if(Auth::user()->client_type === '3'){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->get();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
@@ -1690,7 +1672,7 @@ class CustomerController extends Controller
         }
 
         $beneficiaries = DB::table('beneficiaries')
-                        ->where('customer_id','=', $data['id'])
+                        ->where('customer_id','=', $data->id)
                         ->get();
         $beneficiaries = json_decode($beneficiaries);
         $beneficiary = (array)$beneficiaries;//convert to array
@@ -1708,7 +1690,7 @@ class CustomerController extends Controller
 
     //Go to benefits of Safe
     public function benefits () {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
 
         //$data->is_branch = $dataSession->is_branch;
@@ -1726,7 +1708,7 @@ class CustomerController extends Controller
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         if(Auth::user()->client_type === '3'){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
@@ -1781,14 +1763,14 @@ class CustomerController extends Controller
 
     //Go to signature section in benefits
     public function benefits_signature () {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $query = DB::table('signatures')
             ->where('customer_id','=',Auth::user()->id)
             ->get();
         if(Auth::user()->client_type === '3'){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
@@ -1900,7 +1882,7 @@ class CustomerController extends Controller
             }
         }
                     //save the efirm into db
-                    $user = Customer::where('client_number', Auth::user()->client_number)->first();
+                    $user = DB::table('customers_platform')->where('client_number', Auth::user()->client_number)->first();
                     $data = DB::table('signatures')
                                 ->where('customer_id','=',Auth::user()->id)
                                 ->get();
@@ -1920,7 +1902,7 @@ class CustomerController extends Controller
                     if (is_array($data) == true) { //check if an array
                         if(empty($data) === false){
                             $idSign = DB::table('signatures')
-                                        ->where('client_number','=',$user['client_number'])
+                                        ->where('client_number','=',$user->client_number)
                                         ->update([
                                             'imgData'    => $request['imgData'],
                                             'updated_at' => date('Y-m-d H:i:s')
@@ -1930,7 +1912,7 @@ class CustomerController extends Controller
                         if(empty($data) === true){
                             if(Auth::user()->client_type !== "3"){
                                 $idSign = DB::table('signatures')->insertGetId([
-                                    'client_number'   => $user['client_number'],
+                                    'client_number'   => $user->client_number,
                                     'created_at'      => date('Y-m-d H:i:s'),
                                     'imgData'         => $request['imgData'],
                                     'customer_id'     => Auth::user()->id
@@ -1949,7 +1931,7 @@ class CustomerController extends Controller
 
                             //then update customer table,signature id
                             $updateCustomer = DB::table('customers_sessions')
-                                                ->where('client_number', '=', $user['client_number'])
+                                                ->where('client_number', '=', $user->client_number)
                                                 ->update([
                                                     'signature_id' => $idSign
                                                 ]);
@@ -1967,7 +1949,7 @@ class CustomerController extends Controller
 
     //Go to benefits of assistance
     public function benefits_assistance () {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $number = '';
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
@@ -1984,7 +1966,7 @@ class CustomerController extends Controller
         }
 
         if(Auth::user()->client_type === '3'){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 -> where('email', Auth::user()->email)
@@ -2140,7 +2122,7 @@ class CustomerController extends Controller
     //Go to beneficiares section
     public function beneficiaries ()
     {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $total = $this->totalAmount();
         $noti = $this->getNotifications();
         return view('pages.Account.beneficiaries', compact('data','total','noti'));
@@ -2148,7 +2130,7 @@ class CustomerController extends Controller
 
     //load data from associates AQUI
     public function employees () {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
         $associates = DB::table('associates')
                             ->where([
@@ -2184,7 +2166,7 @@ class CustomerController extends Controller
 
     //Function to generate limit for add employees according the rules
     public function employeeLimit($email, $id, $client_type){
-        $data = Customer::where('email', $email)->first();
+        $data = DB::table('customers_platform')->where('email', $email)->first();
         $dataSession = CustomersSession::where('email', $email)->first();
         $now = Carbon::now();
 
@@ -2228,7 +2210,7 @@ class CustomerController extends Controller
 
     //Edit Employees
     public function editEmployee($id){
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
         $query = DB::table('associates')
                     ->where('client_number','=',$data['client_number'])
                     ->where('id','=',$id)
@@ -2299,7 +2281,7 @@ class CustomerController extends Controller
     }
 
     public function email_validate($token){
-    	$register = Customer::where('email_validate',$token)->first();
+    	$register = DB::table('customers_platform')->where('email_validate',$token)->first();
     	$register->email_validate = 'true';
     	$register->save();
     	return view('Collectors.verify_email', ['name'=> $register->name.' '.$register->last_name]);
@@ -2314,7 +2296,7 @@ class CustomerController extends Controller
 
     public function phone_validate(Request $request){
         try{
-            $register = Customer::where('phone_validate',$request->code)->first();
+            $register = DB::table('customers_platform')->where('phone_validate',$request->code)->first();
             if(!$register)
                 return ['status' => 0 , 'msg'  => 'El código ingresado es incorrecto'];
 
