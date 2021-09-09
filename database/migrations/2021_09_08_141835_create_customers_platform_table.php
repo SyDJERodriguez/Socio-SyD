@@ -13,7 +13,7 @@ class CreateCustomersPlatformTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers_platform', function (Blueprint $table) {
+        Schema::create('customer_platforms', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
 		    $table->string('client_number')->nullable()->default(null);
 		    $table->string('name')->length(150)->nullable()->default(null);
@@ -58,6 +58,6 @@ class CreateCustomersPlatformTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers_platform');
+        Schema::dropIfExists('customer_platforms');
     }
 }

@@ -163,14 +163,14 @@
                                     <td> {{ $trans->payment_method }}</td>
                                     <td> {{ $trans->quantity }}</td>
                                     <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
-                                    <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                                    <td>$ {{ $trans->amount }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th colspan="5" style="text-align:right">Total: </th>
-                                <th>$ <b>{{ number_format($totalAmount,2,'.',',')}}</b></th>
+                                <th>$ <b>{{ $totalAmount}}</b></th>
                             </tr>
                             </tfoot>
                         </table>

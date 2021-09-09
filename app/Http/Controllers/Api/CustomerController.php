@@ -41,6 +41,7 @@ class CustomerController extends Controller
 
         $now = Carbon::now();
         $current_month = $now->month;
+        $current_year = $now->year;
 
         foreach ($registered_clients as $client){
             $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
@@ -48,6 +49,7 @@ class CustomerController extends Controller
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
                 ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
                 ->get();
             $totalAmount = 0.0;
 
@@ -122,35 +124,6 @@ class CustomerController extends Controller
                     $client->level= 'Sin beneficios';
                 }
             }
-
-            /*if($client->type_user != '2'){
-                if ($totalAmount>2500 && $totalAmount<=4500) {
-                    $client->level= 'Bronce';
-                }
-                if ($totalAmount>4500 && $totalAmount<=7000) {
-                    $client->level= 'Plata';
-                }
-                if ($totalAmount>7000) {
-                    $client->level= 'Oro';
-                }
-                if ($totalAmount == 0) {
-                    $client->level= 'Sin beneficios';
-                }
-            }
-            if($client->type_user === '2'){
-                if ($totalAmount>200 && $totalAmount<=500) {
-                    $client->level= 'Bronce';
-                }
-                if ($totalAmount>500 && $totalAmount<=1300) {
-                    $client->level= 'Plata';
-                }
-                if ($totalAmount>1300) {
-                    $client->level= 'Oro';
-                }
-                if ($totalAmount == 0) {
-                    $client->level= 'Sin beneficios';
-                }
-            }*/
 
             $xalapa_survey = DB::table('surveys')
                 ->where('client_number', '=', $client->client_number)
