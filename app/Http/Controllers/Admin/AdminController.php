@@ -241,10 +241,12 @@ class AdminController extends Controller
     public function totalAmount($client_number){
         $now = Carbon::now();
         $current_month = $now->month;
+        $current_year = $now->year;
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $client_number)
             ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
             ->get();
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
@@ -259,6 +261,7 @@ class AdminController extends Controller
     public function getTransactions($client_number){
         $now = Carbon::now();
         $current_month = $now->month;
+        $current_year = $now->year;
 
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
@@ -266,6 +269,7 @@ class AdminController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
             ->get();
         return $customer_trans;
     }
