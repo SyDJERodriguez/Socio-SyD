@@ -68,6 +68,7 @@
                             </strong></h5>
                         </div>
 
+                        {{-- Benefits icons and videos --}}
                         @include('includes.Account.benefitsIcons')
                         
                         <div class="col-lg-12 py-3 text-center">
@@ -194,6 +195,7 @@
                             
                         </div>
 
+                        {{-- Benefits icons and videos --}}
                         @include('includes.Account.benefitsIcons')
 
                         <div class="col-lg-4 py-3 text-center">
@@ -356,5 +358,8 @@
         </div>
     </div>
 </div>
+
 @include('includes.modalsMyDocuments')
+@include('includes.termsAndConditions')
+
 @stop
