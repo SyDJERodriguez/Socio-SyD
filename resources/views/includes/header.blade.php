@@ -161,15 +161,15 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
-                                    style="width: 270px">DUEÑO DE NEGOCIO</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
+                                        style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
-                                    style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
+                                        style="width: 270px">DUEÑO DE NEGOCIO</button>
                             </div>
                         </div>
                         <br>
@@ -437,7 +437,7 @@ padding-bottom: 14px;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <h5 class="text-white">ESTE ES TU NÚMERO DE CLIENTE</h5>
-                            <h5 class="text-white btn btn-lg" 
+                            <h5 class="text-white btn btn-lg"
                             style="background-color: #143153; border: 3px solid #00A5E6;">
                             {{ substr(Session::get('forgot'),2) }}
                             </h5>
