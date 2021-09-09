@@ -162,15 +162,15 @@
                                     <td> {{ $trans->sale_office }}</td>
                                     <td> {{ $trans->payment_method }}</td>
                                     <td> {{ $trans->quantity }}</td>
-                                    <td> {{ $trans->transaction_date }}</td>
-                                    <td>${{ $trans->amount }}</td>
+                                    <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
+                                    <td>$ {{ $trans->amount }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th colspan="5" style="text-align:right">Total: </th>
-                                <th>$ <b>{{ $totalAmount }}</b></th>
+                                <th>$ <b>{{ $totalAmount}}</b></th>
                             </tr>
                             </tfoot>
                         </table>
