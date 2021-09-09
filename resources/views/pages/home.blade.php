@@ -14,9 +14,11 @@
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
                         <br>
-                        <a href="#" class="btn btn-lg" data-toggle="modal" data-target="#modalVideo" id="btnVideo"
-                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px">
-                        VER VIDEO</a><br>
+                        <a href="#" class="btn btn-lg playHomeVideo" 
+                        id="btnVideo"
+                        onclick="playHomeVideo('socioSYD_video',0)"
+                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
+                        >VER VIDEO</a><br>
                         <a href="https://syd-files.s3.amazonaws.com/Folleto.pdf" class="btn btn-lg" id="btnVideo"
                            style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank">
                             DESCARGAR FOLLETO INFORMATIVO</a>
@@ -174,7 +176,7 @@
         <div class="container-fluid pb-5">
             <div class="row background m-0">
 
-                <div class="col-lg-6 mx-auto text-center py-1">
+                <div class="col-lg-6 mx-auto text-center py-1 " id="divCuenta">
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
@@ -202,6 +204,14 @@
                                 REGISTRARME
                             </button>
                         </div>
+
+                        <div> {{-- video negocio --}}
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                                    onclick="playHomeVideo('cuentaNegocios',1)">
+                                VER VIDEO
+                            </button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -226,13 +236,20 @@
 
                         <div>
                             <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla2.svg')}}" alt="tablaIndivuales"
-                            style="width: 50%; height: 10%; margin-bottom: 3px !important;">
+                            style="width: 47%; height: 10%; margin-bottom: 3px !important;">
                         </div>
 
 
                         <div class="my-3 mb-5">
                             <button class="btn btn blue-dark text-white btnBorder" data-toggle="modal" data-target="#modal5">
                                 REGISTRARME
+                            </button>
+                        </div>
+
+                        <div> {{-- video individual --}}
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                            onclick="playHomeVideo('cuentaIndividual',1)">
+                                VER VIDEO
                             </button>
                         </div>
                     </div>
