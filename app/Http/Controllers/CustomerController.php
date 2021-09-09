@@ -644,7 +644,7 @@ class CustomerController extends Controller
                     'work'             => isset($request['work']) ? $request['work'] : null,
                     'gender'           => isset($request['gender']) ? $request['gender'] : null,
                     'collector_id'     => 6,
-                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                    'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
                 ]);
             }else{
                 //u[date]
@@ -662,7 +662,7 @@ class CustomerController extends Controller
                     'work'             => isset($request['work']) ? $request['work'] : null,
                     'gender'           => isset($request['gender']) ? $request['gender'] : null,
                     'collector_id'     => 6,
-                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null
+                    'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
                 ]);
             }
 
@@ -846,7 +846,7 @@ class CustomerController extends Controller
                     'work'             => isset($request['work']) ? $request['work'] : null,
                     'gender'           => isset($request['gender']) ? $request['gender'] : null,
                     'collector_id'     => 6,
-                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null,
                     'created_at'       => date('Y-m-d H:i:s')
                 ]);
             }else{
@@ -863,7 +863,7 @@ class CustomerController extends Controller
                     'work'             => isset($request['work']) ? $request['work'] : null,
                     'gender'           => isset($request['gender']) ? $request['gender'] : null,
                     'collector_id'     => 6,
-                    'RFC_Company'      => isset($request['RFC_Company']) ? isset($request['RFC_Company']) : null,
+                    'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null,
                     'created_at'       => date('Y-m-d H:i:s')
                 ]);
             }

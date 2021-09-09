@@ -258,12 +258,14 @@ class AdminController extends Controller
     //Get transactions
     public function getTransactions($client_number){
         $now = Carbon::now();
+        $current_month = $now->month;
+
         $customer_trans = DB::table('transactions')
             ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$now)
+            ->whereMonth('transaction_date','=',$current_month)
             ->get();
         return $customer_trans;
     }
