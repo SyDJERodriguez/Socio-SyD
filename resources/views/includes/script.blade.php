@@ -1292,7 +1292,7 @@
 <script>
     $(document).ready(function(){
         // autoplay video
-        $('#btnVideo').on('click', function (){
+        $('.playHomeVideo').on('click', function (){
             $('#modalVideo').modal('show');
             var video = document.getElementById("videoSocioSYD");
             video.play();
@@ -1315,4 +1315,32 @@
             video.currentTime = 0;
         });
     });
+</script>
+<script>
+    function playHomeVideo(videoName, isRemote) {
+        //isRemote: 1 is remote in aws, 0 is local
+        let element = document.getElementById('homeSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
+        
+        let source = document.createElement('source');
+        let hrefVideo = '';
+
+        if(isRemote == 0){
+            hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        }else{
+            hrefVideo = `https://syd-files.s3.amazonaws.com/${videoName}.mp4`;
+        }
+        
+        source.src = hrefVideo;
+        source.id = "homeSource";
+        source.type = 'video/mp4';
+
+        let video = document.getElementById('videoSocioSYD');
+        video.appendChild(source);
+        video.load();
+
+        $('#modalVideo').modal('show');
+    }
 </script>
