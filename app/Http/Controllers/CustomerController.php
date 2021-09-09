@@ -590,7 +590,7 @@ class CustomerController extends Controller
 
         //Check if the client number is already in the DB
         try {
-            $data = CustomersSession::where('email', $request['email'])->first();
+            $data = CustomersSession::where('client_number', $client_number)->first();
 
             $data_branch = DB::table('branches_clients')
                                 ->where('client_number','=', $client_number)
@@ -1141,8 +1141,8 @@ class CustomerController extends Controller
 
     //Send welcome email
     public function send_welcome_email($email) {
-        $data = DB::table('customers_platform')->where('email',$email)->first();
-        $dataSession = CustomersSession::where('email', $email)->first();
+        $data = DB::table('customers_platform')->where('email','=',$email)->first();
+        $dataSession = CustomersSession::where('email','=', $email)->first();
         $data->branch_number = $dataSession->branch_number;
 
         try {
