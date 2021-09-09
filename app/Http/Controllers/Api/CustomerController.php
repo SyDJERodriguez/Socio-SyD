@@ -25,7 +25,7 @@ class CustomerController extends Controller
 
     public function get_registered_clients() {
         $registered_clients = DB::table('customers_sessions')
-            ->join('customers', 'customers.email', '=', 'customers_sessions.email')
+            ->join('customer_platforms', 'customers.email', '=', 'customers_sessions.email')
             ->select(
                 'customers_sessions.client_number AS client_number',
                          'customers.name AS name',
