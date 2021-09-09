@@ -1029,7 +1029,7 @@ class CustomerController extends Controller
 
         if($request['email'] == '' || $request['email'] == null){
             //buscamo con el mobile number
-            $data = CustomerPlatform::where('mobile_number', $request['mobile_number'])->first();
+            $data = Customer::where('mobile_number', $request['mobile_number'])->first();
             if($data == null){
                 return redirect()->back()->with('msg','El número de teléfono no existe en el sistema');
             }
@@ -1038,7 +1038,7 @@ class CustomerController extends Controller
         }
         if($request['mobile_number'] == '' || $request['mobile_number'] == null){
             //buscamos con el email
-            $data = CustomerPlatform::where('email', $request['email'])->first();
+            $data = Customer::where('email', $request['email'])->first();
             if($data == null){
                 return redirect()->back()->with('msg', 'El email no existe en el sistema');
             }
@@ -1047,8 +1047,8 @@ class CustomerController extends Controller
 
         // if se llenen ambos campos
         if(isset($request['mobile_number']) && isset($request['email'])){
-            $dataMobile = CustomerPlatform::where('mobile_number', $request['mobile_number'])->first();
-            $dataEmail = CustomerPlatform::where('email', $request['email'])->first();
+            $dataMobile = Customer::where('mobile_number', $request['mobile_number'])->first();
+            $dataEmail = Customer::where('email', $request['email'])->first();
 
             if($dataMobile == null && $dataEmail == null){
                 return redirect()->back()->with('msg','El número de teléfono o email no existe en el sistema');
