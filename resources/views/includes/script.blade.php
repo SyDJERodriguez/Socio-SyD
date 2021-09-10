@@ -478,6 +478,34 @@
             return false;
         });
 
+        //Signature Submit
+        $('#signatureForm').bind("submit", function(){
+            //capture de sendBtn
+            //let btnSendSign = $('#confirmarSign');
+            //let check = $("#terms");
+            //alert(check);
+            $.ajax({
+                type: $(this).attr("method"),
+                url:  $(this).attr("action"),
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    //console.log("ok")
+                },
+                success: function (data) {
+                    
+                    if(data['success'] === 'true'){
+                        $('#modalConfirmSign').modal('show');
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
         //AddEmployeeForm's form
         $("#addEmployeeForm").bind("submit",function(){
             // We capture send button
