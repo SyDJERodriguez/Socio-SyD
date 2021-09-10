@@ -144,7 +144,7 @@ class BeneficiaryController extends Controller
                         $beneficiary = (array)$beneficiaries;//convert to array
                      //send email if individual account added a beneficiary
                      if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['email']);
+                        $this->send_email_alta($data->email);
                     }
                     return view('pages.Account.beneficiary', compact(
                         'success', 'data', 'beneficiary', 'level','is_cnt', 
@@ -189,7 +189,7 @@ class BeneficiaryController extends Controller
                     $beneficiary = (array)$beneficiaries;//convert to array
                     //send email if individual account added a beneficiary
                     if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['email']);
+                        $this->send_email_alta($data->email);
                     }
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
            // }
