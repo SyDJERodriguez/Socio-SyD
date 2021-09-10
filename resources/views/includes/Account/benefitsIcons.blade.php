@@ -1,5 +1,11 @@
 <div class="col-lg-4 text-center py-3" >
-    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" 
+        @if (Route::currentRouteName() == 'customer.benefits')
+            data-target="#modal8"
+        @else
+            data-target="#modal9"
+        @endif
+        >
         <img class="py-2"   
                 style="width:150px; height:150px;" 
                 src="{{asset('img/perdida_organica.png')}}" 
@@ -13,7 +19,13 @@
              >Ver video</a>
         </div>
 <div class="col-lg-4 text-center iconInvalid">
-    <h6 style="color: #143153;cursor: pointer" data-toggle="modal" data-target="#modal8">
+    <h6 style="color: #143153;cursor: pointer" data-toggle="modal" 
+        @if (Route::currentRouteName() == 'customer.benefits')
+            data-target="#modal8"
+        @else
+            data-target="#modal10"
+        @endif
+        >
         <img class="py-2" 
                 style="width:150px; height:150px;" 
                 src="{{asset('img/invalidez_total.png')}}">
@@ -27,7 +39,13 @@
             >Ver video</a>
 </div>
 <div class="col-lg-4 py-3 text-center">
-    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" 
+        @if (Route::currentRouteName() == 'customer.benefits')
+            data-target="#modal8"
+        @else
+            data-target="#modal11"
+        @endif
+        >
         <img class="py-2"
             style="width:150px; height:150px;" 
             src="{{asset('img/muerte_accidental.png')}}">
@@ -41,7 +59,13 @@
              >Ver video</a>
 </div>
 <div class="col-lg-4 text-center py-3">
-    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" 
+        @if (Route::currentRouteName() == 'customer.benefits')
+            data-target="#modal8"
+        @else
+            data-target="#modal12"
+        @endif
+        >
         <img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
@@ -55,7 +79,13 @@
 </div>
 
 <div class="col-lg-4 offset-lg-4 py-3 text-center">
-    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal" data-target="#modal8">
+    <h6 style="color: #143153;cursor: pointer;" data-toggle="modal"
+        @if (Route::currentRouteName() == 'customer.benefits')
+            data-target="#modal8"
+        @else
+            data-target="#modal13"
+        @endif
+        >
         <img class="py-2"
         style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
         <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
@@ -65,7 +95,7 @@
     *Consulta términos y condiciones
 </p>
 
-<!-- Modal VIDEO HOME-->
+{{-- Modal VIDEO HOME --}}
 <div class="modal fade" id="modalVideoBenefits" tabindex="-1" role="dialog" aria-labelledby="modalVideoBenefits" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 rounded-0">
@@ -85,26 +115,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function playVideoBenefit(videoName) {
-        let element = document.getElementById('benefitSource');
-        if(element != null){
-            element.parentNode.removeChild(element);
-        }
-
-        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
-        let video = document.getElementById('videoBenefits');
-
-        let source = document.createElement('source');
-        source.id = "benefitSource";
-        source.src = hrefVideo;
-        source.type = "video/mp4";
-
-        video.appendChild(source);
-        video.load();
-
-        //console.log($('#videoBenefits')[0].outerHTML)
-        $("#modalVideoBenefits").modal('show');
-    }
-</script>
