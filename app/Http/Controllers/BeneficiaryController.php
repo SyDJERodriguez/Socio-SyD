@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\CustomerPlatform;
 use Auth;
 use DB;
 use PDF;
@@ -12,10 +13,11 @@ use Carbon\Carbon;
 class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
-        $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
+        $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
+        $data->branch_number = Auth::user()->branch_number;
         $number = '';
         if (Auth::user()->client_type === "3"){
-            $data = DB::table('customers_platform')->where('email', Auth::user()->email)->first();
+            $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
             $number = DB::table('associates')
                 ->select('number')
                 ->where('email', Auth::user()->email)
@@ -152,7 +154,7 @@ class BeneficiaryController extends Controller
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'noti', 
+                    'error', 'data', 'request', 'noti','level', 
                     'total','owner','total','number','is_cnt'));
             }
 
@@ -254,7 +256,7 @@ class BeneficiaryController extends Controller
     //Function to generate PDF and upload AWS's S3
     public function generatePDF() {
         $id = Auth::user()->id;
-        $customer = DB::table('customers_platform')
+        $customer = DB::table('customer_platforms')
             ->where('email', '=', Auth::user()->email)
             ->first();
         $beneficiaries = DB::table('beneficiaries')
@@ -266,7 +268,7 @@ class BeneficiaryController extends Controller
             ->first();
 
         if (Auth::user()->client_type === "3"){
-            $customer = DB::table('customers_platform')
+            $customer = DB::table('customer_platforms')
                 ->where('email', '=', Auth::user()->email)
                 ->first();
             $beneficiaries = DB::table('beneficiaries')
@@ -318,7 +320,7 @@ class BeneficiaryController extends Controller
     }
 
     public function send_email_alta($email){
-        $data = DB::table('customers_platform')->where('email', $email)->first();
+        $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"SOCIO SYD");
