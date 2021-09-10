@@ -1944,7 +1944,9 @@ class CustomerController extends Controller
                     }
 
                     if ($idSign === 1 ||  $idSign === true || is_null($idSign) == false){ //if everything ok, redirect
-                        return redirect()->route('customer.benefits', compact('level'));
+                        //aqui
+                        return response()->json(['success'=>'true', 'level'=>$level]);
+                        //return redirect()->route('customer.benefits', compact('level'));
                     }
                 //}
                 //else u r a robot

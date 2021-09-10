@@ -95,7 +95,7 @@
     *Consulta términos y condiciones
 </p>
 
-<!-- Modal VIDEO HOME-->
+{{-- Modal VIDEO HOME --}}
 <div class="modal fade" id="modalVideoBenefits" tabindex="-1" role="dialog" aria-labelledby="modalVideoBenefits" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 rounded-0">
@@ -115,26 +115,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function playVideoBenefit(videoName) {
-        let element = document.getElementById('benefitSource');
-        if(element != null){
-            element.parentNode.removeChild(element);
-        }
-
-        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
-        let video = document.getElementById('videoBenefits');
-
-        let source = document.createElement('source');
-        source.id = "benefitSource";
-        source.src = hrefVideo;
-        source.type = "video/mp4";
-
-        video.appendChild(source);
-        video.load();
-
-        //console.log($('#videoBenefits')[0].outerHTML)
-        $("#modalVideoBenefits").modal('show');
-    }
-</script>

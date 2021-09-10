@@ -27,7 +27,7 @@
                         </div>
                     </div> 
                 @else--}}
-                <form method="POST" action="{{route('customer.efirm')}}">
+                <form method="POST" id="signatureForm" action="{{route('customer.efirm')}}">
                     @method('POST')
                     @csrf
                     <div class="row" id="contentCanvas"
@@ -59,14 +59,16 @@
 
                         <div class="col-lg-12 py-4">
                             <input type="submit" class="btn btn text-white px-5 btn-block"
-                                style="background-color: #009CE0;"
-                                id="confirmar"
-                                value="FIRMAR">
+                                                style="background-color: #009CE0;"
+                                                id="confirmarSign"
+                                                value="FIRMAR">
                         </div>
                         <!-- <div>
                             <input type="hidden" name="googleResponseToken" id="googleResponseToken">
                         </div> -->
+
                     </div>
+
                 </form>
                 {{-- @endif --}}
 
@@ -79,6 +81,31 @@
                 </div>
             </div>
         @endif
+    </div>
+</div>
+
+<!-- Modal Signature-->
+<div class="modal fade" id="modalConfirmSign" tabindex="-1" role="dialog" aria-labelledby="modalConfirmSign" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h5 class="text-white">FIRMA REGISTRADA</h5>
+                        <p class="text-white">Tu firma se ha guardado correctamente</p>
+                        <a href="{{route('customer.benefits')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                            ACEPTAR
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -99,7 +126,7 @@
 @endif
 
 <script>
-    document.getElementById("confirmar")
+    document.getElementById("confirmarSign")
         .addEventListener("click", imgData); //click confirmar button to call imgData function
 
     function imgData() { //set format of canvas to pass in post as base64

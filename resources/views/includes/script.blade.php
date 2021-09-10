@@ -478,6 +478,34 @@
             return false;
         });
 
+        //Signature Submit
+        $('#signatureForm').bind("submit", function(){
+            //capture de sendBtn
+            //let btnSendSign = $('#confirmarSign');
+            //let check = $("#terms");
+            //alert(check);
+            $.ajax({
+                type: $(this).attr("method"),
+                url:  $(this).attr("action"),
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    //console.log("ok")
+                },
+                success: function (data) {
+                    
+                    if(data['success'] === 'true'){
+                        $('#modalConfirmSign').modal('show');
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
         //AddEmployeeForm's form
         $("#addEmployeeForm").bind("submit",function(){
             // We capture send button
@@ -1342,5 +1370,27 @@
         video.load();
 
         $('#modalVideo').modal('show');
+    }
+</script>
+<script>
+    function playVideoBenefit(videoName) {
+        let element = document.getElementById('benefitSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
+
+        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        let video = document.getElementById('videoBenefits');
+
+        let source = document.createElement('source');
+        source.id = "benefitSource";
+        source.src = hrefVideo;
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        video.load();
+
+        //console.log($('#videoBenefits')[0].outerHTML)
+        $("#modalVideoBenefits").modal('show');
     }
 </script>
