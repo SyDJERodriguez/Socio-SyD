@@ -746,8 +746,8 @@
                                     SERVICIOS DE ASISTENCIA?</strong></h4><br><br>
 
                             <h4>LLÁMANOS AL NÚMERO</h4>
-                            <a href="tel:5511652682">
-                                <h4><strong>(55) 1165-2682</strong></h4>
+                            <a href="tel:5511052682">
+                                <h4><strong>(55) 1105-2682</strong></h4>
                             </a>
 
 
