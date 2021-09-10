@@ -1344,3 +1344,25 @@
         $('#modalVideo').modal('show');
     }
 </script>
+<script>
+    function playVideoBenefit(videoName) {
+        let element = document.getElementById('benefitSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
+
+        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        let video = document.getElementById('videoBenefits');
+
+        let source = document.createElement('source');
+        source.id = "benefitSource";
+        source.src = hrefVideo;
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        video.load();
+
+        //console.log($('#videoBenefits')[0].outerHTML)
+        $("#modalVideoBenefits").modal('show');
+    }
+</script>
