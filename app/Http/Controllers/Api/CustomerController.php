@@ -350,19 +350,19 @@ class CustomerController extends Controller
         //$response = "For chubb";
         $now = Carbon::now();
         $current_month = $now->month;
-        $data = DB::table('customers')
-                ->join('customers_sessions', 'customers_sessions.email', '=', 'customers.email')
+        $data = DB::table('customer_platforms')
+                ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
                 ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
                 ->whereMonth('transaction_date','=',$current_month)
-                ->selectRaw('customers.name as name')
-                ->selectRaw('customers.last_name as lastname')
-                ->selectRaw('customers.second_last_name as secondLastName')
-                ->selectRaw('customers.rfc as rfc')
-                ->selectRaw('customers.birthday as bday')
-                ->selectRaw('customers.gender as gender')
+                ->selectRaw('customer_platforms.name as name')
+                ->selectRaw('customer_platforms.last_name as lastname')
+                ->selectRaw('customer_platforms.second_last_name as secondLastName')
+                ->selectRaw('customer_platforms.rfc as rfc')
+                ->selectRaw('customer_platforms.birthday as bday')
+                ->selectRaw('customer_platforms.gender as gender')
                 ->selectRaw('customers_sessions.client_type as level')
                 ->selectRaw('SUM(transactions.amount) as total')
-                ->groupBy('customers.email')
+                ->groupBy('customer_platforms.email')
                 ->get();
         
         foreach( $data as $d ){
