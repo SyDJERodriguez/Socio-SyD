@@ -113,7 +113,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
@@ -137,7 +137,7 @@
     <div>
         <p class="text">Por medio del presente documento otorgo mi consentimiento para ser asegurado en la Póliza de
             Seguro Colectivo<br>
-            ________________________ que el Contratante del Seguro tiene celebrada con Chubb Seguros México, S.A.</p>
+            <u>58828</u> que el Contratante del Seguro tiene celebrada con Chubb Seguros México, S.A.</p>
     </div>
     <div>
         <p class="text" style="background-color: #ecedee; padding: 2px 5px; margin: 0px"><strong>Datos del contratante y
@@ -451,7 +451,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
