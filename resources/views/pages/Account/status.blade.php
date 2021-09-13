@@ -140,10 +140,19 @@
 
            // Remove the formatting to get integer data for summation
            var intVal = function ( i ) {
-               return typeof i === 'string' ?
-                   i.replace(/[\$,]/g, '')*1 :
-                   typeof i === 'number' ?
-                       i : 0;
+            if( typeof i === 'string' ){
+                  let e = i.replace(/[\$,]/g, '');
+                  //console.log(i);
+                  if( e.includes("-") ){
+                     return ("-" + e.replace("-",'') )*1;
+                  }
+                  //console.log(e);
+                  return e * 1;
+               }else if( typeof i === 'number' ){
+                  return i;
+               }else{
+                  return 0;
+               }
            };
 
            //only the dates after de actual date
