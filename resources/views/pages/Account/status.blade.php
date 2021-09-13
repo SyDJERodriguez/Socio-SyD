@@ -41,8 +41,8 @@
                   @foreach ($tr as $trans)
                   {{-- <p> {{VAR_DUMP($trans->client_number)}} </p> --}}
                   {{-- compare fecha de trans (mismo mes y negativo) y fecha actual --}}
-                     <tr 
-                        @if ( date('m', strtotime($trans->transaction_date) ) == date($data->mes->isoformat("MM")) 
+                     <tr
+                        @if ( date('m', strtotime($trans->transaction_date) ) == date($data->mes->isoformat("MM"))
                               && $trans->amount < 0 )
                         style='color: rgb(185, 185, 185)'
                         @endif
@@ -52,7 +52,7 @@
                         <td> {{ $trans->payment_method }}</td>
                         <td> {{ $trans->quantity }}</td>
                         <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
-                        <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                        <td>${{ $trans->amount }}</td>
                      </tr>
                   @endforeach
                </tbody>
@@ -158,7 +158,7 @@
                      //added two days to the transactions date, and compare with current time
                      if( (new Date(fecha.getTime()) < (new Date(hoy.getTime()))) ){
                         //console.log( new Date(fecha.getTime() + (2 * 86400000)) )
-                        console.log(hoy.getMonth() + 1) 
+                        console.log(hoy.getMonth() + 1)
                         console.log(data[5]) //string
                         return data
                      }
