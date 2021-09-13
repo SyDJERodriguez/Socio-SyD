@@ -1468,7 +1468,7 @@ class CustomerController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->where('transactions.branch_number','=', $branch_number)
-            ->where('amount', '>', 0)
+            ->where('amount', 'not like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->month)
             ->get();
 
@@ -1478,7 +1478,7 @@ class CustomerController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
             ->where('transactions.branch_number','=', $branch_number)
-            ->where('amount', '<', 0)
+            ->where('amount', 'like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->subMonth(1)->month)
             ->get();
 
@@ -1593,7 +1593,7 @@ class CustomerController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $dataSession->client_number)
             ->where('transactions.branch_number','=', $dataSession->branch_number)
-            ->where('amount', '>', 0)
+            ->where('amount', 'not like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->month)
             ->get();
 
@@ -1603,7 +1603,7 @@ class CustomerController extends Controller
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $dataSession->client_number)
             ->where('transactions.branch_number','=', $dataSession->branch_number)
-            ->where('amount', '<', 0)
+            ->where('amount', 'like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->subMonth(1)->month)
             ->get();
 
