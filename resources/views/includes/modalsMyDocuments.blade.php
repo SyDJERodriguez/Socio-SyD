@@ -739,9 +739,8 @@
                         </div>
 
 
-                        <div class="asistencia">
+                        <div class="asistencia text-center">
 
-                            <h3>?</h3>
                             <h4><strong>¿QUÉ HACER EN CASO DE NECESITAR<br>
                                     SERVICIOS DE ASISTENCIA?</strong></h4><br><br>
 
