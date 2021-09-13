@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\Collector;
 use App\CustomersSession;
+use App\CustomerPlatform;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
@@ -284,14 +285,16 @@ class CustomerController extends Controller
             ->groupBy('transactions.client_number')
             ->get();
 
+        return response()->json($transactions);
+
         $data = [];
         foreach ($transactions as $transaction){
-           $customer_type = CustomersSession::where('branch_number', '=', $transaction->client_number)
+           $customer_type = CustomersSession::where('client_number', $transaction->client_number)
                 ->select('client_type', 'email')
                 ->get();
             //dd($customer_type);
             foreach ($customer_type as $customer){
-                $customer_info = Customer::where('email', '=', $customer->email)
+                $customer_info = CustomerPlatform::where('email', $customer->email)
                     ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
                     ->first();
 
