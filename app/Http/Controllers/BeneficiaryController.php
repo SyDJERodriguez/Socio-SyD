@@ -18,6 +18,7 @@ class BeneficiaryController extends Controller
         $number = '';
         if (Auth::user()->client_type === "3"){
             $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
+            $data->branch_number = Auth::user()->branch_number;
             $number = DB::table('associates')
                 ->select('number')
                 ->where('email', Auth::user()->email)
