@@ -93,7 +93,7 @@
                     <ul>
                         <li>
                             Dudas para aperturar una reclamación por accidente, marca al <strong><a class="text-dark"
-                                    href="tel:525555401859">555-540-1859</a></strong>
+                                    href="tel:525555401859">555-540-1859</a></strong> extensión <b>112</b> o <b>116</b>
                         </li>
                         <li>
                             Dudas para seguimiento a una reclamación previamente abierta marca a <strong><a
@@ -218,7 +218,7 @@
                     <ul>
                         <li>
                             Dudas para aperturar una reclamación por accidente, marca al <strong><a class="text-dark"
-                                    href="tel:525555401859">555-540-1859</a></strong>
+                                    href="tel:525555401859">555-540-1859</a></strong> extensión <b>112</b> o <b>116</b>
                         </li>
                         <li>
                             Dudas para seguimiento a una reclamación previamente abierta marca a <strong><a
@@ -271,7 +271,7 @@
                     <h5 class="font-weight-bold">Paso 2</h5>
                     <ul>
                         <li>
-                            Pide a tu beneficiario que en caso de fallecimiento marque al teléfono 555-540-1859 para
+                            Pide a tu beneficiario que en caso de fallecimiento marque al teléfono 555-540-1859 extensión 112 o 116 para
                             apoyo en la apertura de reclamaciones. Para dar seguimiento a una reclamación previamente
                             abierta marca a 800-087-4598
 
@@ -460,7 +460,7 @@
                     <ul>
                         <li>
                             Dudas para aperturar una reclamación por accidente, marca al <strong><a class="text-dark"
-                                    href="tel:525555401859">555-540-1859</a></strong>
+                                    href="tel:525555401859">555-540-1859</a></strong> extensión <b>112</b> o <b>116</b>
                         </li>
                         <li>
                             Dudas para seguimiento a una reclamación previamente abierta marca a <strong><a
@@ -587,7 +587,7 @@
                     <ul>
                         <li>
                             Dudas para aperturar una reclamación por accidente, marca al <strong><a class="text-dark"
-                                    href="tel:525555401859">555-540-1859</a></strong>
+                                    href="tel:525555401859">555-540-1859</a></strong> extensión <b>112</b> o <b>116</b>
                         </li>
                         <li>
                             Dudas para seguimiento a una reclamación previamente abierta marca a <strong><a
