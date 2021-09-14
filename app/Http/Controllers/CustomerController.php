@@ -1633,10 +1633,9 @@ class CustomerController extends Controller
 
 
         if(Auth::user()->client_type === '3'){
-            $data = CustomerPlatform::where('email', Auth::user()->email)->get();
             $number = DB::table('associates')
                 ->select('number')
-                -> where('email', Auth::user()->email)
+                ->where('email', Auth::user()->email)
                 ->first();
         }
 
