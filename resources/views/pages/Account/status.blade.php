@@ -28,11 +28,11 @@
                <thead>
                   <tr>
                      <!-- <th scope="col">Pieza</th> -->
-                     <th scope="col">Familia</th>
+                     <th scope="col">Factura</th>
                      <th scope="col">Oficina de Venta</th>
                      <!-- <th scope="col">SKU</th> -->
                      <th scope="col">Método de pago</th>
-                     <th scope="col">Cantidad</th>
+                     <!--<th scope="col">Cantidad</th>-->
                      <th scope="col">Fecha</th>
                       <th scope="col">Monto</th>
                   </tr>
@@ -47,10 +47,10 @@
                         style='color: rgb(185, 185, 185)'
                         @endif
                         >
-                        <th> {{ $trans->material_type }}</th>
+                        <th> {{ $trans->invoce }}</th>
                         <td> {{ $trans->sale_office }}</td>
                         <td> {{ $trans->payment_method }}</td>
-                        <td> {{ $trans->quantity }}</td>
+                       <!-- <td> </td>-->
                         <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
                         <td>${{ $trans->amount }}</td>
                      </tr>
@@ -58,7 +58,7 @@
                </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="5" style="text-align:right">Total:</th>
+                    <th colspan="4" style="text-align:right">Total:</th>
                     <th></th>
                 </tr>
                 </tfoot>
@@ -173,7 +173,7 @@
                      }
 
                   }) */
-               .map( x => x[5])
+               .map( x => x[4])
                .reduce( function (a,b) {
                      return intVal(a) + intVal(b);
                },0 );
@@ -196,7 +196,7 @@
                }, 0 ); */
 
            // Update footer
-           $( api.column( 5 ).footer() ).html(
+           $( api.column( 4 ).footer() ).html(
                new Intl.NumberFormat('en-US',{ style: 'currency', currency: 'USD'}).format(total)
        );
        }

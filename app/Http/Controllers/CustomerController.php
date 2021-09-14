@@ -1463,7 +1463,7 @@ class CustomerController extends Controller
         //$startDate = $last_month->format('Y-m'). '-01';
 
         $trans1 = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+           // ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
@@ -1473,7 +1473,7 @@ class CustomerController extends Controller
             ->get();
 
         $trans2 = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+           // ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
