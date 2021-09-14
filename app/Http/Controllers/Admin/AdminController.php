@@ -243,11 +243,7 @@ class AdminController extends Controller
         $current_month = $now->month;
         $current_year = $now->year;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', $client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->whereYear('transaction_date', '=', $current_year )
-            ->get();
+        $data_customer = $this->getTransactions($client_number);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -263,14 +259,25 @@ class AdminController extends Controller
         $current_month = $now->month;
         $current_year = $now->year;
 
-        $customer_trans = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+        $trans1 = DB::table('transactions')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->whereYear('transaction_date', '=', $current_year )
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'not like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $current_month)
             ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $customer_trans = $trans1->merge($trans2);
         return $customer_trans;
     }
 }
