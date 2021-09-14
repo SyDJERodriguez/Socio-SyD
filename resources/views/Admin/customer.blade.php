@@ -146,11 +146,11 @@
                             <thead>
                             <tr>
                                 <!-- <th scope="col">Pieza</th> -->
-                                <th scope="col">Familia</th>
+                                <th scope="col">Factura</th>
                                 <th scope="col">Oficina de Venta</th>
                                 <!-- <th scope="col">SKU</th> -->
                                 <th scope="col">Método de pago</th>
-                                <th scope="col">Cantidad</th>
+                                {{-- <th scope="col">Cantidad</th> --}}
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Monto</th>
                             </tr>
@@ -158,10 +158,9 @@
                             <tbody>
                             @foreach ($transactions as $trans)
                                 <tr>
-                                    <th> {{ $trans->material_type }}</th>
+                                    <th> {{ $trans->invoce }}</th>
                                     <td> {{ $trans->sale_office }}</td>
                                     <td> {{ $trans->payment_method }}</td>
-                                    <td> {{ $trans->quantity }}</td>
                                     <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
                                     <td>$ {{ $trans->amount }}</td>
                                 </tr>
@@ -169,7 +168,7 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th colspan="5" style="text-align:right">Total: </th>
+                                <th colspan="4" style="text-align:right">Total: </th>
                                 <th>$ <b>{{ $totalAmount}}</b></th>
                             </tr>
                             </tfoot>
