@@ -357,41 +357,23 @@ class CustomerController extends Controller
                 ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
                 ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
                 ->whereMonth('transaction_date','=',$current_month)
+                ->selectRaw('customer_platforms.client_number as client_number')
                 ->selectRaw('customer_platforms.name as name')
                 ->selectRaw('customer_platforms.last_name as lastname')
                 ->selectRaw('customer_platforms.second_last_name as secondLastName')
                 ->selectRaw('customer_platforms.rfc as rfc')
                 ->selectRaw('customer_platforms.birthday as bday')
                 ->selectRaw('customer_platforms.gender as gender')
-                ->selectRaw('customers_sessions.client_type as level')
-                ->selectRaw('SUM(transactions.amount) as total')
                 ->groupBy('customer_platforms.email')
                 ->get();
         
         foreach( $data as $d ){
 
-            switch ($d->level) {
-                case '1':
-                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
-                    $d->level = 'Negocio';
-                    break;
-                case '2':
-                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
-                    $d->level = 'Independiente';
-                    break;
-                case '3': 
-                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
-                    $d->level = 'Dependiente';
-                    break;
-                case '4':
-                    $d->total = $this->seguroAsistencia( $d->level, $d->total );
-                    $d->level = 'Sucursal';
-                    break;
-                default:
-                    # code...
-                    break;
+            if( $this->seguroAsistencia( $d->level, $d->total ) ){
+                //true = ok; false borrar registro
             }
-
+            //TODO: terminar el reporte CHUB, corregir el de telasist y cambiar el nombre del archivo.txt
+            
         }
         
         return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
@@ -399,31 +381,11 @@ class CustomerController extends Controller
 
     public function seguroAsistencia($level,$total){
         if($level != '2'){
-           if( $total > 2500 && $total <= 4500 ){
-                return "Seguro";    
-           }
-           if( $total > 4500 && $total <= 7000){
-                return "Seguro y Asistencias Plata";
-           }
-           if( $total > 7000 ){
-               return "Seguro y Asistencias Oro";
-           }
-
-           return "Sin seguro ni Asistencias";
+           return $total > 2500;
         }
 
         if( $level == '2' ){
-            if( $total > 200 && $total <= 500 ){
-                return "Seguro";    
-           }
-           if( $total > 500 && $total <= 1300){
-                return "Seguro y Asistencias Plata";
-           }
-           if( $total > 1300 ){
-               return "Seguro y Asistencias Oro";
-           }
-
-           return "Sin seguro ni Asistencias";
+            return $total > 200;
         }
     }
 

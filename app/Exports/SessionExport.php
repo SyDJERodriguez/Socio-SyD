@@ -23,14 +23,13 @@ class SessionExport implements FromCollection, WithHeadings, ShouldAutoSize
     public function headings(): array
     {
         return [
+            '# Cliente',
             'Nombre(s)',
             'Primer Apellido',
             'Segundo Apellido',
             'RFC',
             'Fecha de Nacimiento',
-            'Género',
-            'Tipo de cuenta',
-            'Beneficios'
+            'Género'
         ];
     }
 
