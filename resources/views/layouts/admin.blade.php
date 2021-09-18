@@ -53,9 +53,9 @@
                     <!-- Authentication Links -->
                     @guest
                     
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
-                        </li>
+                        </li>-->
                     @else
                     @if (Auth::user()->type_user==1)
                     <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
