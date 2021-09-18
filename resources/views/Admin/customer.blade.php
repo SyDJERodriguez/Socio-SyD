@@ -14,7 +14,13 @@
                     @if(isset($client_number))
                         <div style="display: flex; justify-content: space-between;">
                             <div class="col-md-8">
-                                <h2>Datos del usuario con número de cliente {{$client_number}}</h2>
+                                <h3>Datos del usuario con 
+                                    @if ($account->client_type === '4')
+                                    número de destinatario    
+                                    @else
+                                    número de cliente
+                                    @endif
+                                    {{$client_number}}</h3>
                             </div>
                             <div class="col-md-4" style="display: flex; justify-content: flex-end;">
                                 <a href="{{route('admin.customers.index')}}"
@@ -33,11 +39,22 @@
                 <div class="col-md-12" style="display: flex;">
                     <div class="col-md-4">
                         <p>Tipo de cuenta:
-                            @if($account->client_type === "1")
-                                <b> Negocio </b>
-                            @elseif($account->client_type === "2")
-                                <b> Individual </b>
-                            @endif
+                            @switch($account->client_type)
+                                @case(1)
+                                    <b> Negocio </b>
+                                    @break
+                                @case(2)
+                                    <b> Individual </b>
+                                    @break
+                                @case(3)
+                                    <b> Dependiente </b>
+                                    @break
+                                @case(4)
+                                    <b> Sucursal </b>
+                                    @break
+                                @default
+                                    <b> Otro </b>
+                            @endswitch
                         </p>
                     </div>
                     <div class="col-md-4">
@@ -53,15 +70,17 @@
                         <p>Nivel de beneficios:
                             @if($level === 0)
                                 <b> Aún no cuenta con beneficios </b>
-                            @elseif($level === 1 && $account->client_type === "1")
-                                    <b> Seguro de accidentes para 4 colaboradores </b>
+                            @elseif($level === 1 && $account->client_type != "2")
+                                <b> Seguro de accidentes para 4 colaboradores </b>
                             @elseif($level === 1 && $account->client_type === "2")
                                 <b> Seguro de accidentes </b>
-                            @elseif($level === 2 && $account->client_type === "1")
+
+                            @elseif($level === 2 && $account->client_type != "2")
                                 <b> Seguro de accidentes y asistencias plata para 4 colaboradores </b>
                             @elseif($level === 2 && $account->client_type === "2")
                                 <b> Seguro de accidentes y asistencias plata </b>
-                            @elseif($level === 3 && $account->client_type === "1")
+
+                            @elseif($level === 3 && $account->client_type != "2")
                                 <b> Seguro de accidentes y asistencias oro para 8 colaboradores </b>
                             @elseif($level === 3 && $account->client_type === "2")
                                 <b> Seguro de accidentes y asistencias oro </b>
