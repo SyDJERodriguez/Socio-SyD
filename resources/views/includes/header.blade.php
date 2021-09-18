@@ -1,4 +1,4 @@
-<a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
+<a href="https://api.whatsapp.com/send?phone=5215591859309&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
     class="whatsapp">
     <img src="{{asset('img/whatsIcon.png')}}" style="width: 30% !important;" alt="">
 </a>
@@ -161,15 +161,15 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
-                                    style="width: 270px">DUEÑO DE NEGOCIO</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
+                                        style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
-                                    style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
+                                        style="width: 270px">DUEÑO DE NEGOCIO</button>
                             </div>
                         </div>
                         <br>
@@ -437,7 +437,7 @@ padding-bottom: 14px;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <h5 class="text-white">ESTE ES TU NÚMERO DE CLIENTE</h5>
-                            <h5 class="text-white btn btn-lg" 
+                            <h5 class="text-white btn btn-lg"
                             style="background-color: #143153; border: 3px solid #00A5E6;">
                             {{ substr(Session::get('forgot'),2) }}
                             </h5>

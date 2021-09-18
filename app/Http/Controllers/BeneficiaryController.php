@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\CustomerPlatform;
 use Auth;
 use DB;
 use PDF;
@@ -12,17 +13,18 @@ use Carbon\Carbon;
 class BeneficiaryController extends Controller
 {
     public function add_beneficiaries (Request $request) {
-        $data = Customer::where('email', Auth::user()->email)->first();
+        $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
+        $data->branch_number = Auth::user()->branch_number;
         $number = '';
         if (Auth::user()->client_type === "3"){
-            $data = Customer::where('email', Auth::user()->email)->first();
+            $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
+            $data->branch_number = Auth::user()->branch_number;
             $number = DB::table('associates')
                 ->select('number')
                 ->where('email', Auth::user()->email)
                 ->first();
         }
 
-        //$beneficiares = DB::table('beneficiaries')->where('customer_id', $data['id'])->first();
         $request = $request->input();
         //dd($request['name'][1]);
         $count = 0;
@@ -34,16 +36,18 @@ class BeneficiaryController extends Controller
             ->first();
         $signature = $signature->signature_id;
 
-        $now = Carbon::now();
-        $current_month = $now->month;
+        //$now = Carbon::now();
+        //$current_month = $now->month;
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
         $data_customer = $this->getTransCadena(Auth::user()->email);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
-            $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            //}
         }
 
         $cnt = intval(Auth::user()->client_number);
@@ -53,7 +57,7 @@ class BeneficiaryController extends Controller
         }
 
         $noti = $this->getNotifications();
-        $total = 0;
+        $total = $total_amount;
 
         $level = 0;
         if (Auth::user()->client_type === "1" || Auth::user()->client_type === "4"){
@@ -124,7 +128,7 @@ class BeneficiaryController extends Controller
                                 'relationship'     => $request['parent'][$i],
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
-                                'customer_id'      => $data['id'],
+                                'customer_id'      => $data->id,
                                 'branch_number'    => $request['branch_number'][$i]
                             ]);
                         }
@@ -135,13 +139,13 @@ class BeneficiaryController extends Controller
                 //if ($generatePDF === 'success') {
                     $success = 'Los beneficiarios han sido agregados correctamente.';
                     $beneficiaries = DB::table('beneficiaries')
-                                        ->where('customer_id','=', $data['id'])
+                                        ->where('customer_id','=', $data->id)
                                         ->get();
                         $beneficiaries = json_decode($beneficiaries);
                         $beneficiary = (array)$beneficiaries;//convert to array
                      //send email if individual account added a beneficiary
                      if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['email']);
+                        $this->send_email_alta($data->email);
                     }
                     return view('pages.Account.beneficiary', compact(
                         'success', 'data', 'beneficiary', 'level','is_cnt', 
@@ -151,7 +155,7 @@ class BeneficiaryController extends Controller
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'noti', 
+                    'error', 'data', 'request', 'noti','level', 
                     'total','owner','total','number','is_cnt'));
             }
 
@@ -171,7 +175,7 @@ class BeneficiaryController extends Controller
                 'relationship'     => $request['parent'][0],
                 'mobile_number'    => $request['phone'][0],
                 'percent'          => $request['percent'][0],
-                'customer_id'      => $data['id'],
+                'customer_id'      => $data->id,
                 'branch_number'    => $request['branch_number'][0]
             ]);
 
@@ -180,13 +184,13 @@ class BeneficiaryController extends Controller
             //if ($generatePDF === 'success'){
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiaries = DB::table('beneficiaries')
-                                ->where('customer_id','=', $data['id'])
+                                ->where('customer_id','=', $data->id)
                                 ->get();
                     $beneficiaries = json_decode($beneficiaries);
                     $beneficiary = (array)$beneficiaries;//convert to array
                     //send email if individual account added a beneficiary
                     if(Auth::user()->client_type === "2"){
-                        $this->send_email_alta($data['email']);
+                        $this->send_email_alta($data->email);
                     }
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
            // }
@@ -200,11 +204,27 @@ class BeneficiaryController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
 
-        $data= DB::table('transactions')
-                    ->where('client_number','=', $dataSession->client_number)
-                    ->where('branch_number','=', $dataSession->branch_number)
-                    ->whereMonth('transaction_date','=',$current_month)
-                    ->get();
+        $trans1 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '>', 0)
+            ->whereMonth('transaction_date', $now->month)
+            ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', '<', 0)
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $data = $trans1->merge($trans2);
         return $data;
         
     }
@@ -237,7 +257,7 @@ class BeneficiaryController extends Controller
     //Function to generate PDF and upload AWS's S3
     public function generatePDF() {
         $id = Auth::user()->id;
-        $customer = DB::table('customers')
+        $customer = DB::table('customer_platforms')
             ->where('email', '=', Auth::user()->email)
             ->first();
         $beneficiaries = DB::table('beneficiaries')
@@ -249,7 +269,7 @@ class BeneficiaryController extends Controller
             ->first();
 
         if (Auth::user()->client_type === "3"){
-            $customer = DB::table('customers')
+            $customer = DB::table('customer_platforms')
                 ->where('email', '=', Auth::user()->email)
                 ->first();
             $beneficiaries = DB::table('beneficiaries')
@@ -301,7 +321,7 @@ class BeneficiaryController extends Controller
     }
 
     public function send_email_alta($email){
-        $data = Customer::where('email', $email)->first();
+        $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"SOCIO SYD");

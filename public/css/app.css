@@ -327,7 +327,7 @@ h5.footerTitle3{
         width: 17%;
     }
     div.divAzul{
-        height: 1130px;
+        height: 950px;
     }
     div.box_documents {
         height: auto;
@@ -373,7 +373,7 @@ h5.footerTitle3{
         padding-top: 4.3%;
     }
     div.divAzul{
-        height: 745px;
+        height: 850px;
     }
 }
 
@@ -405,7 +405,7 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div.divAzul{
-        height: 660px !important;
+        height: 790px; /* !important */
     }
 
 }
@@ -460,7 +460,7 @@ h5.footerTitle3{
         padding-top: 6.6%;
     }
     div.divAzul{
-        height: 950px;
+        height: 790px;
     }
 }
 
@@ -506,7 +506,7 @@ h5.footerTitle3{
         width: 20%;
     }
     div.divAzul{
-        height: 900px;
+        height: 790px;
     }
 }
 
@@ -545,7 +545,7 @@ h5.footerTitle3{
         font-size: 12px;
     }
     div.divAzul{
-        height: 730px;
+        height: 799px;
     }
 }
 
@@ -726,6 +726,10 @@ h5.footerTitle3{
     }
     .iconInvalid{
         top: 0
+    }
+
+    div.divAzul{
+        margin-bottom: 12px;
     }
 }
 
@@ -1253,6 +1257,11 @@ div hr.bg-primary{
         height: 300px;
     }
 }
+@media only screen and (max-width: 627px) {
+    div .divAzul{
+        height: 750px
+    }
+}
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
@@ -1399,8 +1408,6 @@ input[type='checkbox'] {
 
 
 /* footer style */
-
-
 
 /* fix styles */
 

@@ -97,7 +97,7 @@ class AdminController extends Controller
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
 
-        $customerData = DB::table('customers')
+        $customerData = DB::table('customer_platforms')
             ->where('client_number', '=', $client_number)
             ->first();
 
@@ -111,6 +111,11 @@ class AdminController extends Controller
         $account = DB::table('customers_sessions')
             ->where('email', '=', $email)
             ->first();
+
+        if (empty($account)){
+            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+            return view('Admin.customer', compact('error'));
+        }
 
         $transactions = $this->getTransactions($client_number);
         $totalAmount = $this->totalAmount($client_number);
@@ -147,7 +152,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -155,13 +160,13 @@ class AdminController extends Controller
             'wanted_client' => $client_number,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
-        
+
         return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
@@ -181,7 +186,7 @@ class AdminController extends Controller
 
         $client_number = $account->client_number;
 
-        $customerData = DB::table('customers')
+        $customerData = DB::table('customer_platforms')
             ->where('client_number', '=', $client_number)
             ->first();
 
@@ -214,7 +219,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -222,7 +227,7 @@ class AdminController extends Controller
             'wanted_client' => $email,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
@@ -236,11 +241,9 @@ class AdminController extends Controller
     public function totalAmount($client_number){
         $now = Carbon::now();
         $current_month = $now->month;
+        $current_year = $now->year;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', $client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransactions($client_number);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -253,13 +256,28 @@ class AdminController extends Controller
     //Get transactions
     public function getTransactions($client_number){
         $now = Carbon::now();
-        $customer_trans = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $trans1 = DB::table('transactions')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$now)
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'not like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $current_month)
             ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $customer_trans = $trans1->merge($trans2);
         return $customer_trans;
     }
 }

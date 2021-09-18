@@ -40,7 +40,7 @@
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
             <a href="{{route('customer.register.beneficiary')}}" 
             class="<?php if($active === 2 ){echo 'active_sb';}?>"
-            title="Recuerda que estas personas que des de alta, son quienes recibirán los beneficios del seguro en caso de que tú sufras algún accidente">
+            title="Recuerda que las personas dadas de alta en esta sección recibirán los beneficios del seguro en caso de que no estés">
                 <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
             <!--<span>- Estudio Socioeconómico</span>
             <span>- Subir documentos</span>-->

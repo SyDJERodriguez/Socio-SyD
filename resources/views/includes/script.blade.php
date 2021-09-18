@@ -204,6 +204,10 @@
                         document.getElementById("form_alert_email_br").innerHTML='El email ya se encuentra asociado a otro cliente';
                         document.getElementById("form_alert_email_br").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_email_br").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert_br").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert_br").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_br").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_pass_br").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                         document.getElementById("form_alert_pass_br").removeAttribute("hidden");
@@ -263,6 +267,11 @@
                         $('#clientNumber').text('No. de Cliente '+data['client_number']);
                         $('#clientMessage').text('En breve recibirás un email de activación.');
                         $('#modalSuccess').modal('show');
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert").hidden= true}, 3000);
+                    
                     }else if (data['success']==='false' && data['verify_email']==='false') {
                         document.getElementById("form_alert_email").innerHTML='El email ya se encuentra asociado a otro cliente';
                         document.getElementById("form_alert_email").removeAttribute("hidden");
@@ -335,6 +344,10 @@
                         document.getElementById("form_alert_mec_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
                         document.getElementById("form_alert_mec_email").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_mec_email").hidden= true}, 3000);
+                    }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                        document.getElementById("form_alert_mec").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                        document.getElementById("form_alert_mec").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                     }else if (data['success']==='false' && data['verify_password']==='false') {
                         document.getElementById("form_alert_mec_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                         document.getElementById("form_alert_mec_pass").removeAttribute("hidden");
@@ -458,6 +471,34 @@
                     }
                 },
                 error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //Signature Submit
+        $('#signatureForm').bind("submit", function(){
+            //capture de sendBtn
+            //let btnSendSign = $('#confirmarSign');
+            //let check = $("#terms");
+            //alert(check);
+            $.ajax({
+                type: $(this).attr("method"),
+                url:  $(this).attr("action"),
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    //console.log("ok")
+                },
+                success: function (data) {
+                    
+                    if(data['success'] === 'true'){
+                        $('#modalConfirmSign').modal('show');
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
                     $('#modalErrorServer').modal('show');
                 }
             });
@@ -1278,16 +1319,78 @@
 
 <script>
     $(document).ready(function(){
-        $('#btnVideo').on('click', function (){
+        // autoplay video
+        $('.playHomeVideo').on('click', function (){
             $('#modalVideo').modal('show');
             var video = document.getElementById("videoSocioSYD");
             video.play();
         });
-    // Modal hidden event fired
-    $('#modalVideo').on('hidden.bs.modal', function () {
-        var video = document.getElementById("videoSocioSYD");
-        video.pause();
-        video.currentTime = 0;
+        // Modal hidden event fired
+        $('#modalVideo').on('hidden.bs.modal', function () {
+            var video = document.getElementById("videoSocioSYD");
+            video.pause();
+            video.currentTime = 0;
+        });
+        // autoplay video
+        $('.playBenefits').on('click', function (){
+            var video = document.getElementById("videoBenefits");
+            video.play();
+        });
+        // Modal hidden event fired (benefits)
+        $('#modalVideoBenefits').on('hidden.bs.modal', function () {
+            var video = document.getElementById("videoBenefits");
+            video.pause();
+            video.currentTime = 0;
         });
     });
+</script>
+<script>
+    function playHomeVideo(videoName, isRemote) {
+        //isRemote: 1 is remote in aws, 0 is local
+        let element = document.getElementById('homeSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
+        
+        let source = document.createElement('source');
+        let hrefVideo = '';
+
+        if(isRemote == 0){
+            hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        }else{
+            hrefVideo = `https://syd-files.s3.amazonaws.com/${videoName}.mp4`;
+        }
+        
+        source.src = hrefVideo;
+        source.id = "homeSource";
+        source.type = 'video/mp4';
+
+        let video = document.getElementById('videoSocioSYD');
+        video.appendChild(source);
+        video.load();
+
+        $('#modalVideo').modal('show');
+    }
+</script>
+<script>
+    function playVideoBenefit(videoName) {
+        let element = document.getElementById('benefitSource');
+        if(element != null){
+            element.parentNode.removeChild(element);
+        }
+
+        let hrefVideo = `{{ asset('video/${videoName}.mp4') }}`;
+        let video = document.getElementById('videoBenefits');
+
+        let source = document.createElement('source');
+        source.id = "benefitSource";
+        source.src = hrefVideo;
+        source.type = "video/mp4";
+
+        video.appendChild(source);
+        video.load();
+
+        //console.log($('#videoBenefits')[0].outerHTML)
+        $("#modalVideoBenefits").modal('show');
+    }
 </script>

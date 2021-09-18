@@ -11,6 +11,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.restore.password')}}" method="GET" id="sendRestorePassword">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -282,6 +283,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -360,7 +362,7 @@
                 <div class="row">
                     <div class="div">
                         <video id="videoSocioSYD" class="videoInsert" controls>
-                            <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4">
+                            {{-- <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4"> --}}
                           Your browser does not support the video tag.
                           </video>
                     </div>
@@ -456,7 +458,15 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}"
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
+                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br>
+                            <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> 
+                        </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                         style="background-color: #143153"
+                         id="showVideoButton1"
+                         href="#modalSeguros"
+                         onclick="playVideoBenefit('perdidaOrganica')"
+                        >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"> <img class="py-2"
@@ -464,6 +474,12 @@
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br>
                             <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no
                                 <br> puedes realizar tu trabajo. </div> </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                            style="background-color: #143153"
+                            id="showVideoButton2"
+                            href="#modalSeguros"
+                            onclick="playVideoBenefit('invalidezTotal')"
+                            >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -471,6 +487,12 @@
                          <br><strong class="py-3"> MUERTE ACCIDENTAL   <br>
                             <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div>
                         </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                             style="background-color: #143153"
+                             id="showVideoButton1"
+                             href="#modalSeguros"
+                             onclick="playVideoBenefit('muerteAccidental')"
+                            >Ver video</a>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -478,6 +500,12 @@
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>
                             <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
                     </strong></h6>
+                    <a class="btn btn-outline-light btn-sm playBenefits"
+                         style="background-color: #143153"
+                         id="showVideoButton1"
+                         href="#modalSeguros"
+                         onclick="playVideoBenefit('gastosMedicos')"
+                        >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
@@ -499,6 +527,26 @@
 
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideoBenefits" tabindex="-1" role="dialog" aria-labelledby="modalVideoBenefits" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoBenefits" class="videoInsert" controls>
+                           
+                          Your browser does not support the video tag.
+                          </video>
+                    </div>
                 </div>
             </div>
         </div>
