@@ -280,8 +280,8 @@
                         <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
                         <h5 class="text-white"><strong>SERVICIOS<br>
                                 DE ASISTENCIA</strong></h5>
-                        <p>Asistencia Médica 24 horas/<br>
-                            Servicio de Grúa/Ambulancia<br>Terrestre/Servicio Funerario<br>
+                        <p>Asistencia Médica 24 horas /<br>
+                            Servicio de Grúa / Ambulancia<br>Terrestre / Servicio Funerario<br>
                             por hasta $10,000</p>
                     </div>
                 </div>
