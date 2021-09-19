@@ -14,7 +14,7 @@
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
                         <br>
-                        <a href="#" class="btn btn-lg playHomeVideo" 
+                        <a href="#" class="btn btn-lg playHomeVideo"
                         id="btnVideo"
                         onclick="playHomeVideo('socioSYD_video',0)"
                         style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
@@ -130,7 +130,7 @@
                         <br><br>
                     <span style="font-size:15px;">
                         Mínimo <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
-                        DAR Refaccionarias® <br> o canales autorizados
+                        DAR Refaccionarias®, <br> Centro de Atención Telefónico <br> o canales autorizados
                     </span>
                     </p>
                 </div>
@@ -206,7 +206,7 @@
                         </div>
 
                         <div> {{-- video negocio --}}
-                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                                     onclick="playHomeVideo('cuentaNegocios',1)">
                                 VER VIDEO
                             </button>
@@ -247,7 +247,7 @@
                         </div>
 
                         <div> {{-- video individual --}}
-                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                             onclick="playHomeVideo('cuentaIndividual',1)">
                                 VER VIDEO
                             </button>
