@@ -96,7 +96,7 @@
         <div class="p-5">
             <div class="row">
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
-                <div class="col-lg-6 py-3">
+                <div class="col-lg-6 py-3 title">
                     <h2 class="primary-color text-center">
                         <strong>CÓMO FUNCIONA SOCIO SyD®</strong>
                     </h2>

@@ -1821,3 +1821,13 @@ Label the data for the second TABLE
 	font-weight: normal;
 }
 
+@media only screen and (max-width: 570px) and (min-width: 475px)  {
+    #section2 .title {
+        width: 380px;
+    }
+
+    #section2 .row {
+        justify-content: center;
+    }
+}
+
