@@ -76,9 +76,12 @@
                 </a></p>
                 <hr class="bg-primary hrFooter">
             </div>
-            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter">
+            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter" style="display: flex; flex-direction: column; align-items: center;">
                 <img src="{{asset('img/logo_2.png')}}" alt="footerLogo" id="footerLogo">
-                <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                <div>
+                    <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                </div>
+
             </div>
         </div>
     </div>
