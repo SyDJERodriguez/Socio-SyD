@@ -101,7 +101,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">Por favor, registrate en el  formulario de Cadenas</h5>
+                        <h5 class="text-white">Por favor, regístrate en el  formulario de Cadenas</h5>
                         <a href="javascript:void(0)" onclick="abrirModalCadenas()" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
                 </div>
