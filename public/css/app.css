@@ -95,7 +95,7 @@ div input.btnBorder{
 
 @media (min-width: 893px){
     .whatsapp{
-        top: 565px;
+        top: 500px;
         right: 0px;
         position: fixed;
         z-index: 99;
@@ -103,7 +103,7 @@ div input.btnBorder{
     }
 
     .upButton{
-        top: 625px;
+        top: 565px;
         right: 0px;
         position: fixed;
         z-index: 99;
