@@ -187,9 +187,9 @@
                             <p class="my-2 text-white">
                                 <strong>
                                     • Seguro contra accidentes<br>
-                                    • Asistencia las 24 horas <br>
+                                    • Asistencia médica las 24 horas <br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                             </p>
                         </div>
@@ -228,7 +228,7 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                                 <br>
                             </p>
