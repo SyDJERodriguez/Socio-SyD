@@ -100,7 +100,12 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                      {{-- Modal ¿Olvidaste tu numero cliente --}}
-                     <div class="col-lg-12 py-2" style="display: flex">
+                     <div class="col-lg-12 py-2" style="display: flex; flex-direction: column;">
+                         <div style="display: flex;">
+                             <p style="color: red; margin: 0;">*&nbsp;</p>
+                             <p>Obligatorio llenar</p>
+                         </div>
+
                         <p style="padding-left: 1px">
                             <a href="#" data-toggle="modal" data-target="#modalForgotNum">
                                 ¿Olvidaste tu número de cliente?</a>

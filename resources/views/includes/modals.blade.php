@@ -399,7 +399,7 @@
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE</strong></h6>
+                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE <br> POR ACCIDENTE</strong></h6>
                 </div>
                 <div class="col-lg-3 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
@@ -407,7 +407,7 @@
                 </div>
                 <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2"> VIDEO CONSULTA <br>
-                        POR COVID 19 </strong></h6>
+                        POR COVID-19 </strong></h6>
                 </div>
                 <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
@@ -415,7 +415,7 @@
                         </strong></h6>
                 </div>
                         <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
-                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA <br> POR ACCIDENTE <br> (NIVEL ORO)</strong></h6>
                         </div>
 
             </div>
@@ -459,7 +459,7 @@
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}"
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br>
-                            <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> 
+                            <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div>
                         </strong></h6>
                         <a class="btn btn-outline-light btn-sm playBenefits"
                          style="background-color: #143153"
@@ -543,7 +543,7 @@
                 <div class="row">
                     <div class="div">
                         <video id="videoBenefits" class="videoInsert" controls>
-                           
+
                           Your browser does not support the video tag.
                           </video>
                     </div>

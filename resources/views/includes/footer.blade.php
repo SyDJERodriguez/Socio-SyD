@@ -69,16 +69,26 @@
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
-                <p><a href="https://www.refaccionarias-dar.com/" target="_blank" style="color:white">¿Dónde comprar?</a></p>
+                <p>
+                    @if(!Auth::check())
+                        <a href="#section6" style="color:white">¿Dónde comprar?</a>
+                    @endif
+                    @if(Auth::check())
+                        <a href="{{route('customer.home')}}/#section6" style="color:white">¿Dónde comprar?</a>
+                    @endif
+                </p>
                 <hr class="bg-primary hrFooter">
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto
                 </a></p>
                 <hr class="bg-primary hrFooter">
             </div>
-            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter">
+            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter" style="display: flex; flex-direction: column; align-items: center;">
                 <img src="{{asset('img/logo_2.png')}}" alt="footerLogo" id="footerLogo">
-                <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                <div>
+                    <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                </div>
+
             </div>
         </div>
     </div>

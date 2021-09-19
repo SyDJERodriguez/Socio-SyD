@@ -151,9 +151,12 @@
         aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <div class="container ">
+                <div class="modal-header d-flex flex-row-reverse">
+                    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+                </div>
+                <div class="container" style="display: flex; flex-direction: column; align-items: center;">
                     <div class="row mt-4 mx-2">
-                        <div class="col-10">
+                        <div class="col-12">
                             <span class="md2-heading" style="color: #143153;"><b>TIPO DE CLIENTE</b></span>
                         </div>
                     </div>
@@ -255,7 +258,7 @@ padding-bottom: 14px;">
                             <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal3"
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
                                 style="color:white;font-size: 14px;">
                                 ¡REGÍSTRATE!
                             </a>

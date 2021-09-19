@@ -14,7 +14,7 @@
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
                         <br>
-                        <a href="#" class="btn btn-lg playHomeVideo" 
+                        <a href="#" class="btn btn-lg playHomeVideo"
                         id="btnVideo"
                         onclick="playHomeVideo('socioSYD_video',0)"
                         style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
@@ -96,7 +96,7 @@
         <div class="p-5">
             <div class="row">
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
-                <div class="col-lg-6 py-3">
+                <div class="col-lg-6 py-3 title">
                     <h2 class="primary-color text-center">
                         <strong>CÓMO FUNCIONA SOCIO SyD®</strong>
                     </h2>
@@ -130,7 +130,7 @@
                         <br><br>
                     <span style="font-size:15px;">
                         Mínimo <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
-                        DAR Refaccionarias® <br> o canales autorizados
+                        DAR Refaccionarias®, <br> Centro de Atención Telefónico <br> o canales autorizados
                     </span>
                     </p>
                 </div>
@@ -187,9 +187,9 @@
                             <p class="my-2 text-white">
                                 <strong>
                                     • Seguro contra accidentes<br>
-                                    • Asistencia las 24 horas <br>
+                                    • Asistencia médica las 24 horas <br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                             </p>
                         </div>
@@ -206,7 +206,7 @@
                         </div>
 
                         <div> {{-- video negocio --}}
-                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                                     onclick="playHomeVideo('cuentaNegocios',1)">
                                 VER VIDEO
                             </button>
@@ -228,7 +228,7 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                                 <br>
                             </p>
@@ -247,7 +247,7 @@
                         </div>
 
                         <div> {{-- video individual --}}
-                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo" 
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                             onclick="playHomeVideo('cuentaIndividual',1)">
                                 VER VIDEO
                             </button>
@@ -280,8 +280,8 @@
                         <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
                         <h5 class="text-white"><strong>SERVICIOS<br>
                                 DE ASISTENCIA</strong></h5>
-                        <p>Asistencia Médica 24 horas/<br>
-                            Servicio de Grúa/Ambulancia<br>Terrestre/Servicio Funerario<br>
+                        <p>Asistencia Médica 24 horas /<br>
+                            Servicio de Grúa / Ambulancia<br>Terrestre / Servicio Funerario<br>
                             por hasta $10,000</p>
                     </div>
                 </div>
@@ -390,7 +390,7 @@
                                 <div class="col-9" >
                                     <div class="our-branches__content-address-location-result-item-body item_direccion sucursal text-wrap" style="padding-left: 15px">
                                         <div class="text-wrap">
-                                            Av. de los Maestros #804, Fraccionamiento Jardines de Sta.
+                                            Av. de los Maestros # 804, Fraccionamiento Jardines de Sta.
                                             Elena C.P. 20236, Aguascalientes, Aguascalientes.
                                         </div>
                                     </div>

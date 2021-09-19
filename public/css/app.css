@@ -95,7 +95,7 @@ div input.btnBorder{
 
 @media (min-width: 893px){
     .whatsapp{
-        top: 565px;
+        top: 500px;
         right: 0px;
         position: fixed;
         z-index: 99;
@@ -103,7 +103,7 @@ div input.btnBorder{
     }
 
     .upButton{
-        top: 625px;
+        top: 565px;
         right: 0px;
         position: fixed;
         z-index: 99;
@@ -354,7 +354,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 18px;
-        padding-right: 5%;
+        /*padding-right: 5%;*/
     }
     .our-branches__content-address-map{
         padding-top: 4.1%;
@@ -500,7 +500,7 @@ h5.footerTitle3{
 @media(max-width:1399px){
     div.contenedorFooter span.textFooter{
         font-size: 10px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
     div.contenedorIcon img.iconBene2{
         width: 20%;
@@ -523,7 +523,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
 }
 
@@ -556,7 +556,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 8px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
     h5.redesSociales{
         font-size: 18px;
@@ -600,7 +600,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 13px;
-        padding-right: 31%;
+        /*padding-right: 31%;*/
     }
     h5.footerTitle2{
         margin-bottom: 0;
@@ -648,7 +648,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 12px;
-        padding-right: 28%;
+        /*padding-right: 28%;*/
     }
 }
 
@@ -822,7 +822,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 12px;
-        padding-right: 25%;
+        /*padding-right: 25%;*/
     }
 }
 
@@ -833,7 +833,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 11px;
-        padding-right: 25%;
+        /*padding-right: 25%;*/
     }
 }
 
@@ -889,7 +889,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 26%;
+        /*padding-right: 26%;*/
     }
 }
 
@@ -939,7 +939,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 24%;
+        /*padding-right: 24%;*/
     }
 }
 
@@ -972,7 +972,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 16%;
+        /*padding-right: 16%;*/
     }
 }
 
@@ -1819,5 +1819,15 @@ Label the data for the second TABLE
 .asistencia h4{
 	font-family: "Akzidenz-Grotesk BQ Regular", "Helvetica", "Arial", "sans-serif";
 	font-weight: normal;
+}
+
+@media only screen and (max-width: 570px) and (min-width: 475px)  {
+    #section2 .title {
+        width: 380px;
+    }
+
+    #section2 .row {
+        justify-content: center;
+    }
 }
 
