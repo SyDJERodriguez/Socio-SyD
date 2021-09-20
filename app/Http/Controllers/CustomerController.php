@@ -1151,7 +1151,7 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
 
         try {
-            \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
+            \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
