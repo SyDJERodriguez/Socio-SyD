@@ -384,7 +384,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-2 mapIcon">
+                                <div class="col-2 mapIcon" 
+                                style="padding-right: 16px;">
                                     <svg aria-hidden="true"  width="30" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#00A1E3" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
                                 </div>
                                 <div class="col-9" >
@@ -396,7 +397,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-2 mapIcon">
+                                <div class="col-2 mapIcon" style="padding-right: 16px;">
                                     <svg aria-hidden="true"  width="30" focusable="false" data-prefix="far" data-icon="clock" class="svg-inline--fa fa-clock fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>
                                 </div>
                                 <div class="col-9">
@@ -418,9 +419,9 @@
                                 </div>
                                 <div class="col-9"
                                 style="display: flex;
-                                align-items: center;">
+                                align-items: center; padding-top: 6px">
                                     <div class="our-branches__content-address-location-result-item-body item_tel sucursal text-wrap" style="padding-left: 15px;">
-                                        <p> Tel: 44-9140-5442 <br> Tel: 44-9978-1196 </p>
+                                        <p> Tel: <a href="tel:4491405442">44-9140-5442</a> <br> Tel: <a href="tel:4499781196">44-9978-1196</a> </p>
                                     </div>
                                 </div>
 
@@ -429,7 +430,8 @@
                                 </div>
                                 <div class="col-9 py-1">
                                     <div class="our-branches__content-address-location-result-item-body item_whats sucursal text-wrap" style="padding-left: 15px; padding-top: 3%;">
-                                        <p> 55-1016-8974</p>
+                                        <p> <a href="https://api.whatsapp.com/send?phone=5510168974&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">
+                                            55-1016-8974</a> </p>
                                         <br>
                                     </div>
                                 </div>

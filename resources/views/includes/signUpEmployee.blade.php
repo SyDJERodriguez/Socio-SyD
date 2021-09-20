@@ -30,7 +30,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="name"
                                         placeholder="NOMBRE(S)"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑ\s]*"
                                         required maxlength="30">
 
                             </div>
@@ -38,7 +38,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="last_name"
                                         placeholder="APELLIDO PATERNO"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑ\s]*"
                                         required maxlength="30">
 
                             </div>
@@ -50,7 +50,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑ\s]*"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
@@ -80,7 +80,7 @@
                                         autocomplete="new-password"
                                         name="email"
                                         placeholder="CORREO ELECTRÓNICO"
-                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                        pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
                                         required>
 
                             </div>
