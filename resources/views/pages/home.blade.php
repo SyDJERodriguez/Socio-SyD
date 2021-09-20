@@ -430,7 +430,7 @@
                                 </div>
                                 <div class="col-9 py-1">
                                     <div class="our-branches__content-address-location-result-item-body item_whats sucursal text-wrap" style="padding-left: 15px; padding-top: 3%;">
-                                        <p> <a href="https://api.whatsapp.com/send?phone=5510168974&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">
+                                        <p> <a target="_blank" href="https://api.whatsapp.com/send?phone=5215510168974&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">
                                             55-1016-8974</a> </p>
                                         <br>
                                     </div>
