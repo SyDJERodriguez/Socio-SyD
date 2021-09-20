@@ -1191,9 +1191,9 @@
                     suc_whats="<p>";
                     for (var j = 0; j < whats.length; j++) {
                         if((whats.length-1)==j){
-                            suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
+                            suc_whats+='<a target="_blank" href="https://api.whatsapp.com/send?phone=521'+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
                         }else{
-                            suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+',</a>';
+                            suc_whats+='<a target="_blank" href="https://api.whatsapp.com/send?phone=521'+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+',</a>';
                         }
                     }
                     suc_whats+="</p>";
@@ -1249,9 +1249,9 @@
                         suc_whats="<p>";
                         for (var j = 0; j < whats.length; j++) {
                             if((whats.length-1)==j){
-                                suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
+                                suc_whats+='<a target="_blank" href="https://api.whatsapp.com/send?phone=521'+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
                             }else{
-                                suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
+                                suc_whats+='<a target="_blank" href="https://api.whatsapp.com/send?phone=521'+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
                             }
                         }
                         suc_whats+="</p>";
