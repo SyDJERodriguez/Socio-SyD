@@ -750,22 +750,22 @@
             '                            </div><div class="row inputsBeneficiary" id="inputsBeneficiary">\n' +
             '                                <div class="col-lg-6 py-2">\n' +
             '                                    <input type="text" class="form-control" name="name[]"  placeholder="NOMBRE"\n' +
-            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           pattern="[A-Za-zñÑ].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
             '                                <div class="col-lg-6 py-2">\n' +
             '                                    <input type="text" class="form-control" name="lastname[]" placeholder="PRIMER APELLIDO"\n' +
-            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           pattern="[A-Za-zñÑ].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
                 '                            <div class="col-lg-6 py-2">\n' +
             '                                    <input type="text" class="form-control" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"\n' +
-            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           pattern="[A-Za-zñÑ].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
             '                                <div class="col-lg-6 py-2">\n' +
             '                                    <input type="text" class="form-control" name="parent[]" placeholder="PARENTESCO"\n' +
-            '                                           pattern="[A-Za-z].{2,}"\n' +
+            '                                           pattern="[A-Za-zñÑ].{2,}"\n' +
             '                                           required maxlength="30">\n' +
             '                                </div>\n' +
             '                                <div class="col-lg-6 py-2">\n' +

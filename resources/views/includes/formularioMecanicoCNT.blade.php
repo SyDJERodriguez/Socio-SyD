@@ -41,17 +41,17 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameCNT"
-                        name="name" pattern="[a-zA-Z ]{2,}" required>
+                        name="name" pattern="[a-zA-ZñÑ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO"
-                        id="lastNameCNT" name="last_name" pattern="[a-zA-Z ]{2,}" required>
+                        id="lastNameCNT" name="last_name" pattern="[a-zA-ZñÑ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO"
-                        id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-Z ]{2,}" required>
+                        id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-ZñÑ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" id="mobile" style="display: flex">
@@ -87,7 +87,7 @@
 
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRÓNICO"
-                        id="emailCNT" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                        id="emailCNT" name="email" pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
