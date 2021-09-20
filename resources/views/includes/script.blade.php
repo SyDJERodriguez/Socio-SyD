@@ -1180,7 +1180,7 @@
                     suc_horario='<p>'+horarios[0]+'</p> <p>'+horarios[1]+'</p> ';
                     $(".item_horario.sucursal").html(suc_horario);
 
-                    telefonos= sucursales[i]['tel'].split("y");
+                    telefonos= sucursales[i]['tel'].replace(/,/g,"y").split("y");
                     suc_tel="";
                     for (var j = 0; j < telefonos.length; j++) {
                         suc_tel+='<p>Tel: <a href="tel:'+telefonos[j].replace(/-| /g,'')+'">'+telefonos[j]+'</a>'+'</p>';
@@ -1193,7 +1193,7 @@
                         if((whats.length-1)==j){
                             suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
                         }else{
-                            suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+'</a>';
+                            suc_whats+='<a href="https://api.whatsapp.com/send?phone='+ whats[j].replace(/-| /g,"") +'&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">'+whats[j]+',</a>';
                         }
                     }
                     suc_whats+="</p>";
@@ -1238,7 +1238,7 @@
                         suc_horario='<p>'+horarios[0]+'</p> <p>'+horarios[1]+'</p> ';
                         $(".item_horario.sucursal").html(suc_horario);
 
-                        telefonos= sucursales[i]['tel'].split("y");
+                        telefonos= sucursales[i]['tel'].replace(/,/g,"y").split("y");
                         suc_tel="";
                         for (var j = 0; j < telefonos.length; j++) {
                             suc_tel+='<p>Tel: <a href="tel:'+telefonos[j].replace(/-| /g,'')+'">'+telefonos[j]+'</a>'+'</p>';
