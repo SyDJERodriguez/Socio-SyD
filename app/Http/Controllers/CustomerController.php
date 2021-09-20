@@ -1152,7 +1152,7 @@ class CustomerController extends Controller
 
         try {
             \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1165,7 +1165,7 @@ class CustomerController extends Controller
      public function welcome_email_is_associate($data) {
         try {
             \Mail::send('emails.signUpInvitationWelcome',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1335,7 +1335,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
