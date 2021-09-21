@@ -351,26 +351,6 @@
     </div>
 </div>
 
-<!-- Modal VIDEO HOME-->
-<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content border-0 rounded-0">
-            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
-                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
-            </div>
-            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
-                <div class="row">
-                    <div class="div">
-                        <video id="videoSocioSYD" class="videoInsert" controls>
-                            {{-- <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4"> --}}
-                          Your browser does not support the video tag.
-                          </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal Asistencias -->
 <div class="modal fade" id="modalAsistencias" tabindex="-1" role="dialog" aria-labelledby="modalAsistencias" aria-hidden="true">
@@ -392,31 +372,38 @@
 
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
 
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
+                <div class="col-lg-4 text-center py-3">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-4 py-3 text-center">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-4 py-3 text-center">
                     <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE <br> POR ACCIDENTE</strong></h6>
                 </div>
-                <div class="col-lg-3 text-center py-3" style="cursor: pointer;">
+                <div class="col-lg-3 text-center py-3">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
                     </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-3 py-3 text-center">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2"> VIDEO CONSULTA <br>
                         POR COVID-19 </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-3 py-3 text-center">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
                         FUNERARIA
                         </strong></h6>
                 </div>
-                        <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
-                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA <br> POR ACCIDENTE <br> (NIVEL ORO)</strong></h6>
-                        </div>
+                <div class="col-lg-3 py-3 text-center">
+                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> 
+                        ENVÍO DE GRÚA <br> POR ACCIDENTE <br> (NIVEL ORO)</strong></h6>
+                </div>
+
+                <div class="col-lg-12 text-center playHomeVideo" onclick="playHomeVideo('usoDeGrua',1)">
+                    <button class="btn btn-lg" style="background-color: #143153">
+                        VER VIDEO
+                    </button>
+                </div>
 
             </div>
 
@@ -429,6 +416,27 @@
 
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoSocioSYD" class="videoInsert" controls>
+                            {{-- <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4"> --}}
+                          Your browser does not support the video tag.
+                          </video>
+                    </div>
                 </div>
             </div>
         </div>
