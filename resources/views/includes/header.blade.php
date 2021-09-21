@@ -1,5 +1,5 @@
 
-<a href="tel:+8007931010" class="clickToCall">
+<a href="tel:8007931010" class="clickToCall">
     <img src="{{asset('img/clickToCall.png')}}" alt="clickToCall" width="30%">
 </a>
 
