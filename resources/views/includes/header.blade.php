@@ -62,7 +62,8 @@
                                     </a>
                                 </div>
                                 <div class="col-sm-4">
-                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn adios"
+                                    <a href="#" class="btn adios playHomeVideo"
+                                    onclick="playHomeVideo('tutorialSYD',1)"
                                     style="background-color: #00a5e6;color:white;">
                                     VER VIDEO
                                     </a>
@@ -83,7 +84,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <a href="#" data-toggle="modal" data-target="" class="btn adios2"
-                                style="background-color: #143153;color:white;">
+                                style="background-color: #143153;color:white;visibility: hidden">
                                  invi
                                 </a>
                             </div>
@@ -273,7 +274,7 @@ padding-bottom: 14px;">
                                 style="background-color: #00a5e6;color:white;text-align:center;">
                                 ¡REGÍSTRATE!
                             </a>
-                            <a class="btn-sm adiosCel" href="#"
+                            <a class="btn-sm adiosCel playHomeVideo" href="#" onclick="playHomeVideo('tutorialSYD',1)"
                                 style="background-color: #00a5e6;color:white;text-align:center;">
                                 VER VIDEO
                             </a>
