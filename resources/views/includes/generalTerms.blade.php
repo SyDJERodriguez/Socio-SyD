@@ -170,11 +170,9 @@
                         href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>,
                     sección sucursales;
                     cualquiera de las DAR® Refaccionarias ubicadas en la República Mexicana; en el teléfono para venta
-                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 08:00 a 22:00 horas de lunes a
-                    viernes
-                    y sábado 8:00 a 16:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
-                    plataformas de comercio
-                    electrónico.<br><br>
+                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 09:00 a 21:00 horas de lunes a viernes y 
+                    sábado de 9:00 a 17:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
+                    plataformas de comercio electrónico.<br><br>
 
                     Todos los Clientes que deseen formar parte del Programa de Lealtad Socio SyD® podrán hacerlo
                     visitando el sitio web (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>) y
