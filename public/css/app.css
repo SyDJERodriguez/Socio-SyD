@@ -2,6 +2,15 @@
 /*resolve Boostrap bold problem */
 div.modal { overflow: auto !important; }
 
+a.adios2{
+    font-size: 11px;
+    width: 70px;
+}
+
+div.inputPass{
+    padding-top: 6px;
+}
+
 .videoInsert{
     position: absolute;
     right: 0px;
@@ -465,6 +474,15 @@ h5.footerTitle3{
     div.contenedorFooter span.textFooter{
         font-size: 12px;
     }
+
+    a.adios{
+        font-size: 12px; 
+        width: 95px;
+    }
+    a.adios2{
+        font-size: 5px;
+        width:90px
+    }
 }
 
 @media(max-width:1601px){
@@ -543,6 +561,20 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width: 1272px){
+    a.adios {
+        font-size: 9px;
+        width: 78px;
+    }
+    a.adios2{
+        display: none;
+    }
+
+    div.inputPass{
+        padding-top: 9px;
+    }
+}
+
 @media(max-width: 1258px){
     p.textBene{
         font-size: 16px;
@@ -576,6 +608,12 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width: 1102px){
+    b.noDown{
+        font-size: 9px;
+    }
+}
+
 @media(max-width:1100px){
     p.textBene{
         font-size: 13px;
@@ -605,6 +643,19 @@ h5.footerTitle3{
 @media(max-width:1030px){
     .textBene{
         font-size: 10px;
+    }
+}
+
+@media(max-width:1012px){
+    b.noDown {
+        font-size: 8px;
+    }
+    a.adios {
+        font-size: 7px;
+        width: 64px;
+    }
+    div.inputPass {
+        padding-top: 10px;
     }
 }
 
@@ -718,7 +769,7 @@ h5.footerTitle3{
     }
 }
 
-@media(max-width: 1337px){
+@media(max-width: 1368px){
     .noDown{
         font-size: 10px;
     }
@@ -737,7 +788,7 @@ h5.footerTitle3{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     .formLogin,
     #header,
     #backHeader{
@@ -786,9 +837,6 @@ h5.footerTitle3{
 }
 
 @media(max-width:1003px){
-    #lblNoAccount{
-        font-size: 11px;
-    }
     .jumbotron{
         height: 170px;
     }
@@ -960,6 +1008,16 @@ div.divImgDerecha2{
     }
 }
 
+@media(max-width: 420px){
+    p.noDownCel{
+        font-size: 11px;
+    }
+    a.adiosCel{
+        margin-top: 5px;
+        font-size: 11px;
+    }
+}
+
 @media(max-width:404px){
     div.jumbotron{
         width: auto;
@@ -973,6 +1031,15 @@ div.divImgDerecha2{
 @media(max-width:387px){
     .our-branches__content-address-location-result{
         height: 470px;
+    }
+}
+
+@media(max-width: 334px){
+    p.noDownCel{
+        font-size: 9px;
+    }
+    a.adiosCel{
+        font-size: 9px;
     }
 }
 
@@ -1009,7 +1076,7 @@ div.divImgDerecha2{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     #formLogin2{
         visibility: visible;
         display:unset;

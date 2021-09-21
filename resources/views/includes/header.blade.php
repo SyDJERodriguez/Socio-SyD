@@ -49,22 +49,29 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required style="margin-top: 7px; border-color: black">
                             <div class="row" style="margin-top: 3px">
-                                <div class="col-sm-7 " style="display: flex;">
+                                <div class="col-sm-5 " style="display: flex;">
                                     <p class="primary-color"
                                     style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-sm-3">
                                     <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn adios"
-                                    style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
+                                    style="background-color: #00a5e6;color:white;">
                                     ¡REGÍSTRATE!
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="#" class="btn adios playHomeVideo"
+                                    onclick="playHomeVideo('tutorialSYD',1)"
+                                    style="background-color: #00a5e6;color:white;">
+                                    VER VIDEO
                                     </a>
                                 </div>
                             </div>
 
                     </div>
-                    <div class="col-lg-4 my-2" style="padding-top:6px">
+                    <div class="col-lg-4 my-2 inputPass" >
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required style="border-color: black">
                         <div class="row " style="margin-top: 5px">
@@ -75,10 +82,10 @@
                                     <b class="noDown">¿Olvidaste tu contraseña?</b>
                                 </a>
                             </div>
-                            <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="" class="btn btn-sm p-0 adios"
-                                style="background-color: #143153;color:white;font-size: 11px; width: 70px;visibility:hidden">
-                                {{-- boton no visibile --}}
+                            <div class="col-sm-2">
+                                <a href="#" data-toggle="modal" data-target="" class="btn adios2"
+                                style="background-color: #143153;color:white;visibility: hidden">
+                                 invi
                                 </a>
                             </div>
                         </div>
@@ -260,12 +267,16 @@ padding-bottom: 14px;">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                         <div class="col-sm-12" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                            <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
+                            <p class="text-white pr-3 noDownCel" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modalClientType"
-                                style="color:white;font-size: 14px;">
+                            <a class="btn-sm adiosCel" href="#" data-toggle="modal" data-target="#modalClientType"
+                                style="background-color: #00a5e6;color:white;text-align:center;">
                                 ¡REGÍSTRATE!
+                            </a>
+                            <a class="btn-sm adiosCel playHomeVideo" href="#" onclick="playHomeVideo('tutorialSYD',1)"
+                                style="background-color: #00a5e6;color:white;text-align:center;">
+                                VER VIDEO
                             </a>
                         </div>
                     </div>
