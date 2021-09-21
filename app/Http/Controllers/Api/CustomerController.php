@@ -281,7 +281,7 @@ class CustomerController extends Controller
             ->selectRaw('transactions.client_number as client_number')
             ->selectRaw('SUM(transactions.amount) as total')
             ->whereMonth('transaction_date','=',$current_month)
-            ->whereNull('transactions.branch_number')
+            //->whereNull('transactions.branch_number')
             ->groupBy('transactions.client_number')
             ->get();
 
@@ -362,6 +362,7 @@ class CustomerController extends Controller
         $data = DB::table('customer_platforms')
                 ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
                 ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+                //->join('associates', 'associates.email', '=', 'customer_platforms.email')
                 ->whereMonth('transaction_date','=',$current_month)
                 ->selectRaw('customer_platforms.client_number as client_number')
                 ->selectRaw('customer_platforms.name as name')
@@ -372,6 +373,8 @@ class CustomerController extends Controller
                 ->selectRaw('customer_platforms.gender as gender')
                 ->selectRaw('customers_sessions.client_type as level')
                 ->selectRaw('SUM(transactions.amount) as total')
+                ->selectRaw('customers_sessions.is_associate as associateId')
+                ->selectRaw('customers_sessions.email as email')
                 ->groupBy('customer_platforms.email')
                 ->get();
 
@@ -380,9 +383,22 @@ class CustomerController extends Controller
             if( $this->seguroAsistencia( $value->level, $value->total ) == false ){
                 //true = ok; false borrar registro
                 $data->forget($key);
+
+            }else{
+                $associateId = DB::table('associates')
+                            ->select('number')
+                            ->where('email','=',$value->email)
+                            ->first();
+                
+                if( $associateId != null){
+                    $value->client_number = $value->client_number . '-' . ($associateId->number);
+                }
             }
+
             unset($value->level); //remove object property
             unset($value->total);
+            unset($value->associateId);
+            unset($value->email);
         }
         
         return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
