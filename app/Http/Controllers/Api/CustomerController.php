@@ -318,8 +318,14 @@ class CustomerController extends Controller
                     }
                 }
 
-                $customer_data = $transaction->client_number.'-'.$customer_info->id.'|'.$customer_info->name.'|'.$customer_info->last_name.'|'.
-                    $customer_info->second_last_name.'|'.$customer->email.'|'.$customer_info->birthday.'|'.$customer_info->mobile_number.'|'.
+                $customer_data = $transaction->client_number.'-'.
+                    $customer_info->id.'|'.
+                    $customer_info->name.'|'.
+                    $customer_info->last_name.'|'.
+                    $customer_info->second_last_name.'|'.
+                    $customer->email.'|'.
+                    $customer_info->birthday.'|'.
+                    $customer_info->mobile_number.'|'.
                     $customer_info->gender.'|'.$level;
 
 
@@ -364,28 +370,31 @@ class CustomerController extends Controller
                 ->selectRaw('customer_platforms.rfc as rfc')
                 ->selectRaw('customer_platforms.birthday as bday')
                 ->selectRaw('customer_platforms.gender as gender')
+                ->selectRaw('customers_sessions.client_type as level')
+                ->selectRaw('SUM(transactions.amount) as total')
                 ->groupBy('customer_platforms.email')
                 ->get();
-        
-        foreach( $data as $d ){
 
-            if( $this->seguroAsistencia( $d->level, $d->total ) ){
+        foreach ($data as $key => $value) {
+
+            if( $this->seguroAsistencia( $value->level, $value->total ) == false ){
                 //true = ok; false borrar registro
+                $data->forget($key);
             }
-            //TODO: terminar el reporte CHUB, corregir el de telasist y cambiar el nombre del archivo.txt
-            
+            unset($value->level); //remove object property
+            unset($value->total);
         }
         
         return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
     }
 
     public function seguroAsistencia($level,$total){
-        if($level != '2'){
-           return $total > 2500;
+        if( (int)$level != 2){
+           return ($total > 2500);
         }
 
-        if( $level == '2' ){
-            return $total > 200;
+        if( (int)$level == 2 ){
+            return ($total > 200);
         }
     }
 
