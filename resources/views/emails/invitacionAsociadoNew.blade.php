@@ -8,16 +8,30 @@
 <table id="Tabla_01" width="600" height="" border="0" cellpadding="0" cellspacing="0" align="center" style="display: block">
 	<tr>
 		<td colspan="3">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_3_01.jpg" width="600" height="595" alt="" border="0" style="display: block"></td>
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_17_01.jpg" width="600" height="310" alt="" border="0" style="display: block"></td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="{{url('account/verify/invitation/'.$data['email'])}}" >
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_3_02.jpg" width="600" height="75" alt="" border="0" style="display: block"></a></td>
+			<p style="font-family: Arial; font-size: 24px; text-align: center; padding: 10px; vertical-align: middle;">
+				Hola:<strong>{{ strtoupper($data['name']) }}</strong><br>
+				muy pronto serás <strong>SOCIO SyD</strong>®,<br>
+				{{ strtoupper($data['nameClient']) .' '. strtoupper($data['lastNameClient'])}} <br>
+				te dió de alta como beneficiario
+			</p>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="3">
-			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_3_03.jpg" width="600" height="108" alt="" border="0" style="display: block"></td>
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_17_02.jpg" width="600" height="565" alt="" border="0" style="display: block"></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<a href="{{url('invitation/'.$data['client_number'].'/'.$data['mobile_number'] )}}" >
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_17_03.jpg" width="600" height="100" alt="" border="0" style="display: block"></a></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_17_04.jpg" width="600" height="185" alt="" border="0" style="display: block"></td>
 	</tr>
 	<tr>
 		<td>

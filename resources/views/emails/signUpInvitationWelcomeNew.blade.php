@@ -12,7 +12,7 @@
 	</tr>
 	<tr>
 		<td colspan="3">
-			<a href="{{url('account/verify/invitation/'.$data['email'])}}" >
+			<a href="{{url('account/verify/' . $data['branch_number'] )}}" >
 			<img src="https://resources.quaxar.net/SyD/Socio_SyD/Socio_SyD_3_02.jpg" width="600" height="75" alt="" border="0" style="display: block"></a></td>
 	</tr>
 	<tr>

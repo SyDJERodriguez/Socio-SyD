@@ -1164,7 +1164,7 @@ class CustomerController extends Controller
     //Send welcome email
      public function welcome_email_is_associate($data) {
         try {
-            \Mail::send('emails.signUpInvitationWelcome',['data'=>$data], function($m) use ($data){
+            \Mail::send('emails.signUpInvitationWelcomeNew',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
@@ -2339,7 +2339,7 @@ class CustomerController extends Controller
     public function invitation($data){
         $email = $data['email'];
         try {
-            Mail::send('emails.invitacionAsociado',['data'=>$data], function($m) use ($email){
+            Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($email)->subject("Invitación a Socio SYD");
             });
