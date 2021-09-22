@@ -11,6 +11,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.restore.password')}}" method="GET" id="sendRestorePassword">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -87,6 +88,33 @@
         </div>
     </div>
 </div>
+
+{{-- Modal modalSignUpInCadenas --}}
+<div class="modal fade" id="modalSignUpInCadenas" tabindex="-1" role="dialog" aria-labelledby="modalSignUpInCadenas" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;background-color: #143153;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h5 class="text-white">Por favor, regístrate en el  formulario de Cadenas</h5>
+                        <a href="javascript:void(0)" onclick="abrirModalCadenas()" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function abrirModalCadenas() {
+        $('.modal').modal('hide');
+        $('#modalCadenas').modal('show');
+    }
+</script>
 
 <!-- Modal Error SERVER-->
 <div class="modal fade" id="modalErrorServer" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
@@ -211,7 +239,7 @@
                                 autocomplete="new-password" class="form-control-sm form-control"
                                 type="email" name="email"
                                 placeholder="CORREO ELECTRÓNICO"
-                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$">
                             </div>
                         </div>
                         <div class="row">
@@ -255,6 +283,7 @@
                 <h6 style="margin-top: -17px">Ingresa tu correo electrónico registrado</h6>
                 <br>
                 <form action="{{route('send.activate.account')}}" method="GET" id="sendRestoreAccount">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -322,26 +351,6 @@
     </div>
 </div>
 
-<!-- Modal VIDEO HOME-->
-<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content border-0 rounded-0">
-            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
-                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
-            </div>
-            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
-                <div class="row">
-                    <div class="div">
-                        <video id="videoSocioSYD" class="videoInsert" controls>
-                            <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4">
-                          Your browser does not support the video tag.
-                          </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal Asistencias -->
 <div class="modal fade" id="modalAsistencias" tabindex="-1" role="dialog" aria-labelledby="modalAsistencias" aria-hidden="true">
@@ -363,31 +372,38 @@
 
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
 
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
+                <div class="col-lg-4 text-center py-3">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-4 py-3 text-center">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
-                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE</strong></h6>
+                <div class="col-lg-4 py-3 text-center">
+                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE <br> POR ACCIDENTE</strong></h6>
                 </div>
-                <div class="col-lg-3 text-center py-3" style="cursor: pointer;">
+                <div class="col-lg-3 text-center py-3">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
                     </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-3 py-3 text-center">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2"> VIDEO CONSULTA <br>
-                        POR COVID 19 </strong></h6>
+                        POR COVID-19 </strong></h6>
                 </div>
-                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
+                <div class="col-lg-3 py-3 text-center">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA  <br>
                         FUNERARIA
                         </strong></h6>
                 </div>
-                        <div class="col-lg-3 py-3 text-center" style="cursor: pointer;">
-                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
-                        </div>
+                <div class="col-lg-3 py-3 text-center">
+                    <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> 
+                        ENVÍO DE GRÚA <br> POR ACCIDENTE <br> (NIVEL ORO)</strong></h6>
+                </div>
+
+                <div class="col-lg-12 text-center playHomeVideo" onclick="playHomeVideo('usoDeGrua',1)">
+                    <button class="btn btn-lg" style="background-color: #143153">
+                        VER VIDEO
+                    </button>
+                </div>
 
             </div>
 
@@ -400,6 +416,27 @@
 
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="modalVideo" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoSocioSYD" class="videoInsert" controls>
+                            {{-- <source src="{{asset('video/socioSYD_video.mp4')}}" type="video/mp4"> --}}
+                          Your browser does not support the video tag.
+                          </video>
+                    </div>
                 </div>
             </div>
         </div>
@@ -429,7 +466,15 @@
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}"
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br> <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div> </strong></h6>
+                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br>
+                            <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div>
+                        </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                         style="background-color: #143153"
+                         id="showVideoButton1"
+                         href="#modalSeguros"
+                         onclick="playVideoBenefit('perdidaOrganica')"
+                        >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"> <img class="py-2"
@@ -437,6 +482,12 @@
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br>
                             <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no
                                 <br> puedes realizar tu trabajo. </div> </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                            style="background-color: #143153"
+                            id="showVideoButton2"
+                            href="#modalSeguros"
+                            onclick="playVideoBenefit('invalidezTotal')"
+                            >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -444,6 +495,12 @@
                          <br><strong class="py-3"> MUERTE ACCIDENTAL   <br>
                             <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div>
                         </strong></h6>
+                        <a class="btn btn-outline-light btn-sm playBenefits"
+                             style="background-color: #143153"
+                             id="showVideoButton1"
+                             href="#modalSeguros"
+                             onclick="playVideoBenefit('muerteAccidental')"
+                            >Ver video</a>
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -451,6 +508,12 @@
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>
                             <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
                     </strong></h6>
+                    <a class="btn btn-outline-light btn-sm playBenefits"
+                         style="background-color: #143153"
+                         id="showVideoButton1"
+                         href="#modalSeguros"
+                         onclick="playVideoBenefit('gastosMedicos')"
+                        >Ver video</a>
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
@@ -472,6 +535,26 @@
 
             <div class="container-fluid">
                 <div style="background: #143153" class="p-3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal VIDEO HOME-->
+<div class="modal fade" id="modalVideoBenefits" tabindex="-1" role="dialog" aria-labelledby="modalVideoBenefits" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div class="modal-header d-flex flex-row-reverse" style="background-color: #ffffff;">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body " style="background-color: #143153;padding-top: 0px;padding-bottom: 0px;">
+                <div class="row">
+                    <div class="div">
+                        <video id="videoBenefits" class="videoInsert" controls>
+
+                          Your browser does not support the video tag.
+                          </video>
+                    </div>
                 </div>
             </div>
         </div>

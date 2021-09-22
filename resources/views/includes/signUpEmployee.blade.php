@@ -20,16 +20,17 @@
                     @method("PUT")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
-                    <input type="hidden" name="customer_id" value="{{Auth::user()->id}}">
+                    <input type="hidden" name="customer_id" value="{{$data->id}}">
                     <input type="hidden" name="nameClient" value="{{$data->name}}">
                     <input type="hidden" name="lastNameClient" value="{{$data->last_name}}">
+                    <input type="hidden" name="branch_number" value="{{ isset($data->branch_number) ? $data->branch_number : null }}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="name"
                                         placeholder="NOMBRE(S)"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                         required maxlength="30">
 
                             </div>
@@ -37,7 +38,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="last_name"
                                         placeholder="APELLIDO PATERNO"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                         required maxlength="30">
 
                             </div>
@@ -49,7 +50,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
-                                        pattern="[a-zA-Z\s]*"
+                                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
@@ -79,7 +80,7 @@
                                         autocomplete="new-password"
                                         name="email"
                                         placeholder="CORREO ELECTRÓNICO"
-                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
                                         required>
 
                             </div>

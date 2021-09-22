@@ -7,18 +7,20 @@
     <hr>
     <div class="col-md-12" style="display: flex;">
         <div style="padding-left: 10px !important;" class="col-md-3">
-            <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-               No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}</span><br>
-                @if ((int)Auth::user()->client_type == 1)
-                    Cuenta: Negocios
-                @else
-                    Cuenta: Individual
-                @endif
-            </h6>
-            <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+           
+            @include('includes.accountData')
+
+            @include('includes.opinionButton')
          </div>
         <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
-            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @if (Auth::user()->client_type === '1' || Auth::user()->client_type === 1)
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.
+                    Recuerda que tú eres el primer beneficiario de tu seguro. Puedes modificar eso en esta sección
+                </h5>
+            @else
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @endif
+            
         </div>
     </div>
     <hr>
@@ -91,7 +93,7 @@
                     </script>
                 @endif
 
-                @if ($validated === false)
+                @if ($data->limiteAsociados === true)
                     <script>
                         $(function() {
                             $('#limitAccount').modal('show');
@@ -148,7 +150,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-3 mx-auto">
                 <button class="btn btn-block text-white btn-alta"
-                @if ($validated === false)
+                @if ($data->validated === false)
                 disabled
                 @endif
                 style="background-color: #143153;"

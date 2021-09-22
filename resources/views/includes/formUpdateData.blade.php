@@ -42,19 +42,36 @@
                         value="{{substr($data->client_number,2)}}" readonly>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
+
+                    <input type="hidden" id="isBranch" name="is_branch" 
+                            value="{{ isset($data->is_branch) ? $data->is_branch : 0 }}">
+
+                    {{-- <div class="col-lg-6 py-2" style="display: flex">
+                        <select class="form-control btnBorder" id="branch_name" name="branch_number">
+                            @if ($data->branch_number != null)
+                                <option value="{{$data->branch_number}}" selected> 
+                                    {{ $data->branch_name }} 
+                                </option>
+                            @else
+                                <option disabled value="0">SUCURSAL</option>
+                            @endif
+                        </select>
+                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                    </div> --}}
+
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="nameUp" name="name"
-                        value="{{$data->name}}" pattern="[a-zA-Z ]{2,}" required>
+                        value="{{$data->name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNameUp" name="last_name"
-                        value="{{$data->last_name}}" pattern="[a-zA-Z ]{2,}" required>
+                        value="{{$data->last_name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex"> 
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name"
-                        value="{{$data->second_last_name}}" pattern="[a-zA-Z ]{2,}" required>
+                        value="{{$data->second_last_name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
@@ -69,11 +86,11 @@
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <select class="form-control btnBorder" name="gender" required>
-                            <option value="" disabled hidden>GÉNERO</option>
+                            <option selected="true" disabled="true" value="">GÉNERO</option>
                             <option value="F" {{(($data->gender) == 'F' ? 'selected' : '')}}>FEMENINO</option>
                             <option value="M" {{(($data->gender) == 'M' ? 'selected' : '')}}>MASCULINO</option>
                         </select>
-                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                        <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <div class="input-group mb-3">
@@ -91,7 +108,7 @@
                         <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO"
                         id="emailPro" name="email"
                         value="{{$data->email}}"
-                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" readonly>
+                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$" readonly>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
@@ -99,8 +116,8 @@
                 <div class="row ">
                       <div class="col-lg-6 py-2" style="display: flex">
                           <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc"
-                          value="{{$data->rfc}}" maxlength="10" required>
-                          <p style="color: red; margin: 0;">*</p>
+                          value="{{$data->rfc}}" maxlength="10">
+                          <p style="color: red; margin: 0;visibility: hidden">*</p>
                       </div>
                       <div class="col-lg-6 py-2" style="display: flex">
                           <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password">
@@ -115,7 +132,7 @@
                     <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
                 </div>
             
-                @if ((int)Auth::user()->client_type == 1)
+                @if ((int)Auth::user()->client_type != 2)
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex">
                         <h6 style="padding-left: 1px">Razón social</h6>

@@ -43,7 +43,7 @@
                     <li>
                         <p>Télefono:
                             <a href="tel:8007931010">
-                                800 SyD® (793) 1010</a>
+                                800 SyD (793) 1010</a>
                         </p>
                     </li>
                     <li>
@@ -167,14 +167,12 @@
 
                     Los puntos de venta autorizados por Plan SyD® para participar en el Programa de Lealtad Socio SyD®,
                     los podrá encontrar en el siguiente link: <a
-                        href="www.refaccionarias-dar.com">www.refaccionarias-dar.com</a>,
+                        href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>,
                     sección sucursales;
                     cualquiera de las DAR® Refaccionarias ubicadas en la República Mexicana; en el teléfono para venta
-                    <a href="tel:8007931010">800 SyD® (793) 1010</a> en horario de 08:00 a 22:00 horas de lunes a
-                    viernes
-                    y sábado 8:00 a 16:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
-                    plataformas de comercio
-                    electrónico.<br><br>
+                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 09:00 a 21:00 horas de lunes a viernes y 
+                    sábado de 9:00 a 17:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
+                    plataformas de comercio electrónico.<br><br>
 
                     Todos los Clientes que deseen formar parte del Programa de Lealtad Socio SyD® podrán hacerlo
                     visitando el sitio web (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>) y
@@ -183,8 +181,8 @@
                     la opción “Registrarse” o a través de nuestros canales de venta al público DAR® Refaccionarias venta
                     directa y/o en
                     las páginas de comercio electrónico <a
-                        href="www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
-                    y/o <a href="www.syd.com.mx">https://www.syd.com.mx</a>.<br><br>
+                        href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
+                    y/o <a href="https://www.syd.com.mx">https://www.syd.com.mx</a>.<br><br>
 
                     Plan SyD® no hace distinción alguna de Clientes que puedan registrarse en el Programa de Lealtad
                     Socio SyD® con base en la edad, sexo, etnia, posición económica, trabajo, religión, preferencia
@@ -273,7 +271,7 @@
                     Los formularios de las cuentas individuales y de negocios están disponibles en: <a
                         href="https://www.sociosyd.com">https://www.sociosyd.com</a> o
                     al teléfono <a href="tel:8007931010">
-                        800-SyD®-1010</a> en horario de 08:00 a 22:00 horas de
+                        800-SyD-1010</a> en horario de 08:00 a 22:00 horas de
                     lunes a viernes y sábado 8:00 a 16:00 horas.
                 </p>
 
@@ -361,7 +359,7 @@
                     Cada compra de productos SyD® dentro de las DAR® refaccionarias, del Centro de Atención Telefónica
                     (CAT) en
                     el número <a href="tel:8007931010">
-                        800-SyD®-1010</a>, mediante línea autorizada de Whatsapp cuyo link se encuentre en la
+                        800-SyD-1010</a>, mediante línea autorizada de Whatsapp cuyo link se encuentre en la
                     página, o en la tienda en línea de SyD® y DAR® Refaccionarias, venta directa sumará para alcanzar
                     los diferentes
                     beneficios dentro del Programa de Lealtad Socio SyD®. El monto de compra de cada Cliente se
@@ -411,9 +409,9 @@
                     participantes adquiridos a través de nuestras tiendas de DAR® Refaccionarias, canales de venta
                     directa SyD®,
                     nuestros canales digitales,
-                    (<a href="https://www.syd.com-mx">https://www.syd.com.mx</a> –
-                    <a href="https://www.refaccionariasdar.com.mx">https://www.refaccionariasdar.com.mx</a>)
-                    o llamando al número a <a href="tel:8007931010">800-SyD®-1010</a>.<br><br>
+                    (<a href="https://www.syd.com.mx">https://www.syd.com.mx</a> –
+                    <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>)
+                    o llamando al número a <a href="tel:8007931010">800-SyD-1010</a>.<br><br>
 
                     Las cuentas individuales tendrán acceso a cada uno de estos beneficios al alcanzar el monto de
                     compra
@@ -518,8 +516,8 @@
                     El seguro será aplicable para los beneficiarios designados dentro del Programa de Lealtad Socio
                     SyD®.<br><br>
 
-                    El Cliente podrá dar de alta dentro del sitio web del programa (<a href="https://www.sociosyd.com">
-                        https://www.sociosyd.com</a>), a las personas
+                    El Cliente podrá dar de alta dentro del sitio web del programa 
+                    (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>), a las personas
                     que permita el sistema del Programa de Lealtad Socio SyD® para este seguro de accidentes personales
                     a
                     quienes les asignará un porcentaje especificado dentro de la cobertura de este seguro a fin de que
@@ -649,7 +647,7 @@
                             contrato de seguro, podrá consultarlas; en las mismas podrá conocer las coberturas,
                             exclusiones
                             y restricciones de este seguro; en la página web: <a
-                                href="https://www.chubb.com/mx">www.chubb.com/mx</a></b>
+                                href="https://www.chubb.com">https://www.chubb.com</a></b>
 
                     </p>
 
@@ -1027,7 +1025,7 @@
 
                     <ul style="list-style-type:none">
                         <li>
-                            <h5>CONDICIONES Y EXCLUISONES GENERALES DE LAS ASISTENCIAS</h5>
+                            <h5>CONDICIONES Y EXCLUSIONES GENERALES DE LAS ASISTENCIAS</h5>
                         </li>
                         <li>
                             <p class="text-justify"><b>Exclusiones Generales Servicios de Asistencia de Grúa por Avería</b> <br>
@@ -1102,8 +1100,7 @@
                     Todo Cliente podrá darse de baja del programa al hacer click en el botón “eliminar mi cuenta” dentro
                     de
                     la sección mi cuenta de la página web del Programa de Lealtad Socio SyD® <a
-                        href="https://www.sociosyd.com">
-                        https://www.sociosyd.com</a>. La baja del
+                        href="https://www.sociosyd.com">https://www.sociosyd.com</a>. La baja del
                     programa se hará efectiva en un plazo no mayor de 5 días hábiles posteriores a la solicitud.
                 </p>
 

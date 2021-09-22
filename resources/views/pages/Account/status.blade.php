@@ -7,21 +7,10 @@
    <hr>
    <div>
       <div style="padding-left: 10px !important;">
-         <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
-            No. de Cliente 
-               <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}
-                  @if (Auth::user()->is_associate == 1)
-                      - {{$data->associate_number}}
-                  @endif
-               </span>
-            <br>
-            @if ((int)Auth::user()->client_type == 1)
-                Cuenta: Negocios
-            @else
-                Cuenta: Individual
-            @endif
-         </h6>
-          <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+
+         @include('includes.accountData')
+
+         @include('includes.opinionButton')
          <hr>
       </div>
       <div>
@@ -39,30 +28,37 @@
                <thead>
                   <tr>
                      <!-- <th scope="col">Pieza</th> -->
-                     <th scope="col">Familia</th>
+                     <th scope="col">Factura</th>
                      <th scope="col">Oficina de Venta</th>
                      <!-- <th scope="col">SKU</th> -->
                      <th scope="col">Método de pago</th>
-                     <th scope="col">Cantidad</th>
+                     <!--<th scope="col">Cantidad</th>-->
                      <th scope="col">Fecha</th>
                       <th scope="col">Monto</th>
                   </tr>
                </thead>
                <tbody>
                   @foreach ($tr as $trans)
-                     <tr>
-                        <th> {{ $trans->material_type }}</th>
+                  {{-- <p> {{VAR_DUMP($trans->client_number)}} </p> --}}
+                  {{-- compare fecha de trans (mismo mes y negativo) y fecha actual --}}
+                     <tr
+                        @if ( date('m', strtotime($trans->transaction_date) ) == date($data->mes->isoformat("MM"))
+                              && $trans->amount < 0 )
+                        style='color: rgb(185, 185, 185)'
+                        @endif
+                        >
+                        <th> {{ $trans->invoce }}</th>
                         <td> {{ $trans->sale_office }}</td>
                         <td> {{ $trans->payment_method }}</td>
-                        <td> {{ $trans->quantity }}</td>
+                       <!-- <td> </td>-->
                         <td> {{ date_format(date_create($trans->transaction_date),'d-m-Y') }}</td>
-                        <td>${{ number_format($trans->amount,2,'.',',') }}</td>
+                        <td>${{ $trans->amount }}</td>
                      </tr>
                   @endforeach
                </tbody>
                 <tfoot>
                 <tr>
-                    <th colspan="5" style="text-align:right">Total:</th>
+                    <th colspan="4" style="text-align:right">Total:</th>
                     <th></th>
                 </tr>
                 </tfoot>
@@ -138,33 +134,69 @@
         },
        "footerCallback": function ( row, data, start, end, display ) {
            var api = this.api(), data;
+           let today = new Date();
+           //today = today.getDate()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+today.getFullYear();
+           today = today.getFullYear()+'-'+String(today.getMonth() + 1).padStart(2, '0')+'-'+(today.getDate());
 
            // Remove the formatting to get integer data for summation
            var intVal = function ( i ) {
-               return typeof i === 'string' ?
-                   i.replace(/[\$,]/g, '')*1 :
-                   typeof i === 'number' ?
-                       i : 0;
+            if( typeof i === 'string' ){
+                  let e = i.replace(/[\$,]/g, '');
+                  //console.log(i);
+                  if( e.includes("-") ){
+                     return ("-" + e.replace("-",'') )*1;
+                  }
+                  //console.log(e);
+                  return e * 1;
+               }else if( typeof i === 'number' ){
+                  return i;
+               }else{
+                  return 0;
+               }
            };
 
+           //only the dates after de actual date
            // Total over all pages
            total = api
+               .data()//data[4] is date, data[5] is for price
+               /* .filter( function (data) {
+                     let fec = data[4].split('-');//get de date from colum 4
+                     var fecha = new Date( fec[2],fec[1]-1,fec[0] );//set date to parse a new date
+                     var hoy = new Date(today + " 00:00:00");
+
+                     //added two days to the transactions date, and compare with current time
+                     if( (new Date(fecha.getTime()) < (new Date(hoy.getTime()))) ){
+                        //console.log( new Date(fecha.getTime() + (2 * 86400000)) )
+                        console.log(hoy.getMonth() + 1)
+                        console.log(data[5]) //string
+                        return data
+                     }
+
+                  }) */
+               .map( x => x[4])
+               .reduce( function (a,b) {
+                     return intVal(a) + intVal(b);
+               },0 );
+               //console.log(total)
+
+               // Total over all pages (getted from another brach)
+               /* total = api
                .column( 5 )
                .data()
                .reduce( function (a, b) {
                    return intVal(a) + intVal(b);
-               }, 0 );
+               }, 0 ); */
 
            // Total over this page
-           pageTotal = api
+           /* pageTotal = api
                .column( 5, { page: 'current'} )
                .data()
                .reduce( function (a, b) {
                    return intVal(a) + intVal(b);
-               }, 0 );
+               }, 0 ); */
 
            // Update footer
-           $( api.column( 5 ).footer() ).html(
+           $( api.column( 4 ).footer() ).html(
                new Intl.NumberFormat('en-US',{ style: 'currency', currency: 'USD'}).format(total)
        );
        }

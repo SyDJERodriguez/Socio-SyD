@@ -52,10 +52,19 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item">
+                    
+                        <!--<li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
-                        </li>
+                        </li>-->
                     @else
+                    @if (Auth::user()->type_user==1)
+                    <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
+                        Log Sesiones
+                    </a>
+                    <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
+                        Log Busquedas
+                    </a>
+                    @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -109,3 +118,46 @@
 
 </body>
 </html>
+<script>
+    $.noConflict();
+jQuery(document).ready(function($){
+   $('#logsSessions').DataTable({
+    "order": [[ 2, "desc" ],[ 3, "desc" ]],  
+  dom: 'Bfrtip',
+  info: false,
+  searching:false,
+  scrollX:true,
+  oLanguage: {
+     paginate: {
+        previous: "Anterior",
+        next: "Siguiente"
+     }
+  },
+  buttons: [
+     {
+        extend: 'excel',
+        text: 'Excel',
+        className: 'excel',
+        exportOptions: {
+            modifier: {
+                page: 'current'
+            }
+        }
+    },
+    {
+        extend: 'print',
+        text: 'Imprimir',
+        className: 'print',
+        exportOptions: {
+            modifier: {
+                page: 'current'
+            }
+        }
+    }
+   ],
+   language: {
+       emptyTable: "No hay registros para mostrar"
+   }
+});
+});
+</script>

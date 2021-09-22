@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -47,7 +48,8 @@ class LoginController extends Controller
 			'password' => $request->password
 		], $request->remember)){
             //dd(Auth::check());
-			return redirect()->route('admin.customers.index');
+            
+			return redirect()->route('admin.insertLog');
 
 		}
 

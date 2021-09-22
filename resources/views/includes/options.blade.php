@@ -10,7 +10,7 @@
 
         </a>
       </div>
-      @if(Auth::user()->client_type === "1" )
+      @if(Auth::user()->client_type === "1" || Auth::user()->client_type === "4")
         <div class="col-lg-3 py-1 border-primary separadorBut">
             <a href="{{route('customer.employees')}}"
                 class="btn btn-md boton

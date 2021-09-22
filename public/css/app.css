@@ -2,6 +2,15 @@
 /*resolve Boostrap bold problem */
 div.modal { overflow: auto !important; }
 
+a.adios2{
+    font-size: 11px;
+    width: 70px;
+}
+
+div.inputPass{
+    padding-top: 6px;
+}
+
 .videoInsert{
     position: absolute;
     right: 0px;
@@ -94,8 +103,17 @@ div input.btnBorder{
 }
 
 @media (min-width: 893px){
+    .clickToCall{
+        top: 442px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+        width: 250px;
+    }
+
     .whatsapp{
-        top: 565px;
+        top: 500px;
         right: 0px;
         position: fixed;
         z-index: 99;
@@ -103,7 +121,7 @@ div input.btnBorder{
     }
 
     .upButton{
-        top: 625px;
+        top: 565px;
         right: 0px;
         position: fixed;
         z-index: 99;
@@ -111,6 +129,15 @@ div input.btnBorder{
     }
 }
 @media (max-width: 892px){
+    .clickToCall{
+        top: 387px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+        width: 250px;
+    }
+
     .whatsapp{
         top: 445px;
         right: 0px;
@@ -129,6 +156,15 @@ div input.btnBorder{
 }
 
 @media (min-width: 1600px) {
+    .clickToCall{
+        top: 660px;
+        right: 0px;
+        position: fixed;
+        z-index: 99;
+        text-align: right;
+        width: 250px;
+    }
+
     .whatsapp {
         top: 720px;
         right: 0px;
@@ -327,7 +363,7 @@ h5.footerTitle3{
         width: 17%;
     }
     div.divAzul{
-        height: 1130px;
+        height: 950px;
     }
     div.box_documents {
         height: auto;
@@ -354,7 +390,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 18px;
-        padding-right: 5%;
+        /*padding-right: 5%;*/
     }
     .our-branches__content-address-map{
         padding-top: 4.1%;
@@ -373,7 +409,7 @@ h5.footerTitle3{
         padding-top: 4.3%;
     }
     div.divAzul{
-        height: 745px;
+        height: 850px;
     }
 }
 
@@ -405,7 +441,7 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div.divAzul{
-        height: 660px !important;
+        height: 790px; /* !important */
     }
 
 }
@@ -438,6 +474,15 @@ h5.footerTitle3{
     div.contenedorFooter span.textFooter{
         font-size: 12px;
     }
+
+    a.adios{
+        font-size: 12px; 
+        width: 95px;
+    }
+    a.adios2{
+        font-size: 5px;
+        width:90px
+    }
 }
 
 @media(max-width:1601px){
@@ -460,7 +505,7 @@ h5.footerTitle3{
         padding-top: 6.6%;
     }
     div.divAzul{
-        height: 950px;
+        height: 790px;
     }
 }
 
@@ -500,19 +545,33 @@ h5.footerTitle3{
 @media(max-width:1399px){
     div.contenedorFooter span.textFooter{
         font-size: 10px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
     div.contenedorIcon img.iconBene2{
         width: 20%;
     }
     div.divAzul{
-        height: 900px;
+        height: 790px;
     }
 }
 
 @media(max-width:1319px){
     .textBene{
         font-size: 14px;
+    }
+}
+
+@media(max-width: 1272px){
+    a.adios {
+        font-size: 9px;
+        width: 78px;
+    }
+    a.adios2{
+        display: none;
+    }
+
+    div.inputPass{
+        padding-top: 9px;
     }
 }
 
@@ -523,7 +582,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
 }
 
@@ -545,7 +604,13 @@ h5.footerTitle3{
         font-size: 12px;
     }
     div.divAzul{
-        height: 730px;
+        height: 799px;
+    }
+}
+
+@media(max-width: 1102px){
+    b.noDown{
+        font-size: 9px;
     }
 }
 
@@ -556,7 +621,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 8px;
-        padding-right: 8%;
+        /*padding-right: 8%;*/
     }
     h5.redesSociales{
         font-size: 18px;
@@ -581,6 +646,19 @@ h5.footerTitle3{
     }
 }
 
+@media(max-width:1012px){
+    b.noDown {
+        font-size: 8px;
+    }
+    a.adios {
+        font-size: 7px;
+        width: 64px;
+    }
+    div.inputPass {
+        padding-top: 10px;
+    }
+}
+
 .iconSocial{
     justify-content: center;
 }
@@ -600,7 +678,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 13px;
-        padding-right: 31%;
+        /*padding-right: 31%;*/
     }
     h5.footerTitle2{
         margin-bottom: 0;
@@ -648,7 +726,7 @@ h5.footerTitle3{
     }
     div.contenedorFooter span.textFooter{
         font-size: 12px;
-        padding-right: 28%;
+        /*padding-right: 28%;*/
     }
 }
 
@@ -691,7 +769,7 @@ h5.footerTitle3{
     }
 }
 
-@media(max-width: 1337px){
+@media(max-width: 1368px){
     .noDown{
         font-size: 10px;
     }
@@ -710,7 +788,7 @@ h5.footerTitle3{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     .formLogin,
     #header,
     #backHeader{
@@ -726,6 +804,10 @@ h5.footerTitle3{
     }
     .iconInvalid{
         top: 0
+    }
+
+    div.divAzul{
+        margin-bottom: 12px;
     }
 }
 
@@ -755,9 +837,6 @@ h5.footerTitle3{
 }
 
 @media(max-width:1003px){
-    #lblNoAccount{
-        font-size: 11px;
-    }
     .jumbotron{
         height: 170px;
     }
@@ -818,7 +897,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 12px;
-        padding-right: 25%;
+        /*padding-right: 25%;*/
     }
 }
 
@@ -829,7 +908,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 11px;
-        padding-right: 25%;
+        /*padding-right: 25%;*/
     }
 }
 
@@ -885,7 +964,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 26%;
+        /*padding-right: 26%;*/
     }
 }
 
@@ -929,19 +1008,38 @@ div.divImgDerecha2{
     }
 }
 
+@media(max-width: 420px){
+    p.noDownCel{
+        font-size: 11px;
+    }
+    a.adiosCel{
+        margin-top: 5px;
+        font-size: 11px;
+    }
+}
+
 @media(max-width:404px){
     div.jumbotron{
         width: auto;
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 24%;
+        /*padding-right: 24%;*/
     }
 }
 
 @media(max-width:387px){
     .our-branches__content-address-location-result{
         height: 470px;
+    }
+}
+
+@media(max-width: 334px){
+    p.noDownCel{
+        font-size: 9px;
+    }
+    a.adiosCel{
+        font-size: 9px;
     }
 }
 
@@ -968,7 +1066,7 @@ div.divImgDerecha2{
     }
     div.contenedorFooter span.textFooter{
         font-size: 9px;
-        padding-right: 16%;
+        /*padding-right: 16%;*/
     }
 }
 
@@ -978,7 +1076,7 @@ div.divImgDerecha2{
     }
 }
 
-@media(max-width: 991px){
+@media(max-width: 991.5px){
     #formLogin2{
         visibility: visible;
         display:unset;
@@ -1253,6 +1351,11 @@ div hr.bg-primary{
         height: 300px;
     }
 }
+@media only screen and (max-width: 627px) {
+    div .divAzul{
+        height: 750px
+    }
+}
 
 /*mobile*/
 @media only screen and (max-width: 600px) {
@@ -1399,8 +1502,6 @@ input[type='checkbox'] {
 
 
 /* footer style */
-
-
 
 /* fix styles */
 
@@ -1795,3 +1896,32 @@ Label the data for the second TABLE
 .info-content:hover h5{
     color: #00a5e6 !important;
 }
+.asistencia{
+	text-align: center;
+	color: #FFF;
+	background-color: #002E52;
+	padding: 1rem 0rem;
+    font-family: 'Akzidenz-Grotesk BQ Bold', "Helvetica", "Arial", "sans-serif";
+	font-weight: bold;
+}
+
+.asistencia h3{
+	font-size: 60px;
+	color: #009BDC;
+}
+
+.asistencia h4{
+	font-family: "Akzidenz-Grotesk BQ Regular", "Helvetica", "Arial", "sans-serif";
+	font-weight: normal;
+}
+
+@media only screen and (max-width: 570px) and (min-width: 475px)  {
+    #section2 .title {
+        width: 380px;
+    }
+
+    #section2 .row {
+        justify-content: center;
+    }
+}
+

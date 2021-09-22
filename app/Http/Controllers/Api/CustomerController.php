@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
@@ -24,6 +25,150 @@ use App\Exports\SessionExport;
 use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends Controller
 {
+    /** Webservices for get registered clients in Pegaso platform **/
+
+    public function get_registered_clients() {
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                         'customer_platforms.name AS name',
+                         'customer_platforms.last_name AS last_name',
+                         'customer_platforms.second_last_name AS second_last_name',
+                         'customer_platforms.email AS email',
+                         'customers_sessions.mobile AS phone',
+                         'customer_platforms.birthday AS birthday',
+                         'customers_sessions.created_at AS fecha_registro',
+                         'customers_sessions.client_type AS type_user'
+            )
+            ->get();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        foreach ($registered_clients as $client){
+            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
+
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+
+            if($client->type_user === '3'){
+                $associate_data = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                $client->client_number = $client->client_number.'-'.$associate_data->number;
+            }
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
+
+            $xalapa_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'xalapa')
+                ->first();
+
+            $quality_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'calidad')
+                ->first();
+
+            $xalapa_survey ? $client->xalapa_survey = self::get_surveys($xalapa_survey) : $client->xalapa_survey = 'No tiene encuesta registrada';
+            $quality_survey ? $client->quality_survey = self::get_surveys($quality_survey) : $client->quality_survey = 'No tiene encuesta registrada';
+        }
+
+        return response()->json($registered_clients);
+    }
+
+    public function save_survey_typeform (Request $request) {
+        $request = $request->input();
+
+        $questions = [];
+        foreach ($request['questions'] as $question){
+            $question = array(
+                'label' => $question['label'],
+                'id'    => $question['id']
+            );
+
+            array_push($questions,$question);
+        }
+
+        $client = array(
+            'client_number' => $request['client_number'],
+            'survey' => $request['survey'],
+            'answers' => serialize($request['answer']),
+            'questions' => serialize($questions),
+        );
+        DB::table('surveys')->insert($client);
+        return response()->json($request);
+    }
+
     public function store(){
 
     }
@@ -444,5 +589,18 @@ class CustomerController extends Controller
             'created_at.required'  => 'La fecha de creación SAP es obligatoria',
             'pay_cond.required'         => 'El plazo de pago es obligatorio',
         ]);
+    }
+
+    private function get_surveys($query_response){
+        $questions = unserialize($query_response->questions);
+        $answers = unserialize($query_response->answers);
+
+        $final_answers = [];
+        foreach ($questions as $question){
+            if(isset($answers[$question['id']])){
+                array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
+            }
+        }
+        return $final_answers;
     }
 }

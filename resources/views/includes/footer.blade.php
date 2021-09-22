@@ -69,16 +69,26 @@
                     <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
                 </h6>
 
-                <p><a href="https://www.refaccionarias-dar.com/" target="_blank" style="color:white">¿Dónde comprar?</a></p>
+                <p>
+                    @if(!Auth::check())
+                        <a href="#section6" style="color:white">¿Dónde comprar?</a>
+                    @endif
+                    @if(Auth::check())
+                        <a href="{{route('customer.home')}}/#section6" style="color:white">¿Dónde comprar?</a>
+                    @endif
+                </p>
                 <hr class="bg-primary hrFooter">
                 <p><a href="#" class="primary-color" data-toggle="modal" data-target="#modalContacto" style="color:white">
                     Contacto
                 </a></p>
                 <hr class="bg-primary hrFooter">
             </div>
-            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter">
+            <div class="col-lg-3 text-white text-right pr-0 contenedorFooter" style="display: flex; flex-direction: column; align-items: center;">
                 <img src="{{asset('img/logo_2.png')}}" alt="footerLogo" id="footerLogo">
-                <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                <div>
+                    <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
+                </div>
+
             </div>
         </div>
     </div>
@@ -122,15 +132,15 @@
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput" id="name" name="name"
-                                  pattern="[A-Za-z ]{3,}" placeholder="NOMBRE" required >
+                                  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput"  id="lastname" name="lastName"
-                                  pattern="[A-Za-z ]{3,}" placeholder="APELLIDOS" required>
+                                  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="email" class="form-control" id="email" name="email" style="border: 1px solid black;"
-                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"
@@ -138,7 +148,7 @@
                                 </div>
                                 <div class="col-lg-12 py-2">
                                     <textarea class="form-control" name="comment"  id="contact-comment" style="border: 1px solid black;"
-                                    pattern="[A-Za-z0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
+                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                 </div>

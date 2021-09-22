@@ -1,4 +1,9 @@
-<a href="https://api.whatsapp.com/send?phone=8007931010&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
+
+<a href="tel:8007931010" class="clickToCall">
+    <img src="{{asset('img/clickToCall.png')}}" alt="clickToCall" width="30%">
+</a>
+
+<a href="https://api.whatsapp.com/send?phone=5215591859309&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
     class="whatsapp">
     <img src="{{asset('img/whatsIcon.png')}}" style="width: 30% !important;" alt="">
 </a>
@@ -44,37 +49,43 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required style="margin-top: 7px; border-color: black">
                             <div class="row" style="margin-top: 3px">
-                                <div class="col-sm-7 " style="display: flex;">
+                                <div class="col-sm-5 " style="display: flex;">
                                     <p class="primary-color"
                                     style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
                                     </p>
                                 </div>
-                                <div class="col-md-4">
-                                    <a href="#" data-toggle="modal" data-target="#modal3" class="btn adios"
-                                    style="background-color: #00a5e6;color:white;font-size: 11px; width: 100px;">
+                                <div class="col-sm-3">
+                                    <a href="#" data-toggle="modal" data-target="#modalClientType" class="btn adios"
+                                    style="background-color: #00a5e6;color:white;">
                                     ¡REGÍSTRATE!
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="#" class="btn adios playHomeVideo"
+                                    onclick="playHomeVideo('tutorialSYD',1)"
+                                    style="background-color: #00a5e6;color:white;">
+                                    VER VIDEO
                                     </a>
                                 </div>
                             </div>
 
                     </div>
-                    <div class="col-lg-4 my-2" style="padding-top:6px">
+                    <div class="col-lg-4 my-2 inputPass" >
                         <input type="password" class="form-control border-input" id="inlineFormInputGroupUsername"
                             placeholder="CONTRASEÑA" name="password" required style="border-color: black">
                         <div class="row " style="margin-top: 5px">
                             <div class="col-sm-10">
-                                {{-- luis futuro copia  pega el row de registro y No tienes cuenta aca e intenta replicarlo --}}
                                 <a href="#"
                                 style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
                                 class="primary-color" data-toggle="modal" data-target="#modal4">
                                     <b class="noDown">¿Olvidaste tu contraseña?</b>
                                 </a>
                             </div>
-                            <div class="col-md-2">
-                                <a href="#" data-toggle="modal" data-target="" class="btn btn-sm p-0 adios"
-                                style="background-color: #143153;color:white;font-size: 11px; width: 70px;visibility:hidden">
-                                {{-- boton no visibile --}}
+                            <div class="col-sm-2">
+                                <a href="#" data-toggle="modal" data-target="" class="btn adios2"
+                                style="background-color: #143153;color:white;visibility: hidden">
+                                 invi
                                 </a>
                             </div>
                         </div>
@@ -152,9 +163,12 @@
         aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <div class="container ">
+                <div class="modal-header d-flex flex-row-reverse">
+                    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+                </div>
+                <div class="container" style="display: flex; flex-direction: column; align-items: center;">
                     <div class="row mt-4 mx-2">
-                        <div class="col-10">
+                        <div class="col-12">
                             <span class="md2-heading" style="color: #143153;"><b>TIPO DE CLIENTE</b></span>
                         </div>
                     </div>
@@ -162,15 +176,22 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
-                                    style="width: 270px">DUEÑO DE NEGOCIO</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
+                                        style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
-                                    style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
+                                        style="width: 270px">DUEÑO DE NEGOCIO</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
+                                    style="width: 270px;">CADENAS</button>
                             </div>
                         </div>
                     </div>
@@ -246,12 +267,16 @@ padding-bottom: 14px;">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO" name="email" required>
                         <div class="col-sm-12" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                            <p class="text-white pr-3" style="margin-bottom: 7px; margin-left: -15px">
+                            <p class="text-white pr-3 noDownCel" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
                             </p>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal3"
-                                style="color:white;font-size: 14px;">
+                            <a class="btn-sm adiosCel" href="#" data-toggle="modal" data-target="#modalClientType"
+                                style="background-color: #00a5e6;color:white;text-align:center;">
                                 ¡REGÍSTRATE!
+                            </a>
+                            <a class="btn-sm adiosCel playHomeVideo" href="#" onclick="playHomeVideo('tutorialSYD',1)"
+                                style="background-color: #00a5e6;color:white;text-align:center;">
+                                VER VIDEO
                             </a>
                         </div>
                     </div>
@@ -346,11 +371,13 @@ padding-bottom: 14px;">
         <div class="bell2">
             <div class="btn-group" >
                 <button class="btn" data-toggle="modal" data-target="#modalNotifications">
-                    @if ($noti != false)
-                        @if ($noti->available == 1 && $noti->seen == 0)
-                        <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
-                            1
-                        </span>
+                    @if(isset($noti))
+                        @if ($noti != false)
+                            @if ($noti->available == 1 && $noti->seen == 0)
+                            <span class="badge badge-danger mr-1 rounded-circle" style="font-size:10px;">
+                                1
+                            </span>
+                            @endif
                         @endif
                     @endif
                     <i class="far fa-bell" style="color: white; font-size: 22px;"> </i>
@@ -370,6 +397,9 @@ padding-bottom: 14px;">
 
 <!-- Modal formulario Mecanico-->
 @include('includes.formularioMecanicoCNT')
+
+<!--Modal formulario Canales -->
+@include('includes.formularioCadenas')
 
 @if(Auth::check())
 {{-- Modal notifications --}}
@@ -426,7 +456,7 @@ padding-bottom: 14px;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <h5 class="text-white">ESTE ES TU NÚMERO DE CLIENTE</h5>
-                            <h5 class="text-white btn btn-lg" 
+                            <h5 class="text-white btn btn-lg"
                             style="background-color: #143153; border: 3px solid #00A5E6;">
                             {{ substr(Session::get('forgot'),2) }}
                             </h5>

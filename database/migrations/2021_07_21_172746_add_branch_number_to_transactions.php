@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterTableCustomersSessions extends Migration
+class AddBranchNumberToTransactions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AlterTableCustomersSessions extends Migration
      */
     public function up()
     {
-        Schema::table('customers_sessions', function (Blueprint $table) {
-            $table->bigInteger('signature_id')->nullable();
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->string('branch_number')->nullable()->default(null);
         });
-        
     }
 
     /**
@@ -26,6 +25,8 @@ class AlterTableCustomersSessions extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('transactions', function (Blueprint $table) {
+            //
+        });
     }
 }

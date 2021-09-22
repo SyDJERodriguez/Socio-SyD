@@ -35,8 +35,10 @@
 </div>
 
   <form>
+      @csrf
     <div class="row" class="" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;margin-right: 0px;margin-left: 0px;">
-        @if($level > 1)
+        {{-- SPECIAL WEEK --}}
+        @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
 
         <div class="row">
                 @if ($level === 3)
@@ -58,7 +60,7 @@
                 <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
             </div>
             <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
-                <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE POR EMERGENCIA</strong></h6>
+                <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE <br> POR ACCIDENTE</strong></h6>
             </div>
 
                 @if($level === 3)
@@ -70,7 +72,7 @@
                 <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
                         VIDEO CONSULTA <br>
-                        POR COVID 19 </strong></h6>
+                        POR COVID-19 </strong></h6>
                 </div>
                 <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                     <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
@@ -79,7 +81,7 @@
                 </div>
                 <div class="col-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modalTerms">
                         <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
-                            <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
+                            <br><strong class="py-2"> ENVÍO DE GRÚA POR ACCIDENTE</strong></h6>
                 </div>
                     {{-- <div class="col-lg-3 py-3 text-center" style="filter: grayscale(50%); opacity: 0.4;">
                         <h6 style="padding-top: 13px;color: #c4c4c4;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> ENVÍO DE GRÚA</strong></h6>
