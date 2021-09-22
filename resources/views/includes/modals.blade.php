@@ -239,7 +239,7 @@
                                 autocomplete="new-password" class="form-control-sm form-control"
                                 type="email" name="email"
                                 placeholder="CORREO ELECTRÓNICO"
-                                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$">
                             </div>
                         </div>
                         <div class="row">

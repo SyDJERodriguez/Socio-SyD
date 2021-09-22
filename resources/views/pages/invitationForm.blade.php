@@ -32,17 +32,17 @@
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameInv"
-                             name="name" value="{{$employee->name}}" pattern="[a-zA-ZñÑ\s]*" required>
+                             name="name" value="{{$employee->name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="text" class="form-control nameInput" placeholder="PRIMER APELLIDO"
-                             id="lastNameInv" value="{{$employee->last_name}}" name="last_name" pattern="[a-zA-ZñÑ\s]*" required>
+                             id="lastNameInv" value="{{$employee->last_name}}" name="last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="text" class="form-control nameInput" placeholder="SEGUNDO APELLIDO"
-                             id="secondLastNameInv" value="{{$employee->second_last_name}}" name="second_last_name" pattern="[a-zA-ZñÑ\s]*" required>
+                             id="secondLastNameInv" value="{{$employee->second_last_name}}" name="second_last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*" required>
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
@@ -64,16 +64,16 @@
                          <div class="col-lg-6 py-2" style="display: flex">
                              <select class="form-control" name="gender"
                              style="border: 1px solid black;" required>
-                                 <option>GÉNERO</option>
+                                 <option selected="true" disabled="true" value="">GÉNERO</option>
                                  <option value="F">FEMENINO</option>
                                  <option value="M">MASCULINO</option>
                                 </select>
-                                <p style="color: red; margin: 0;visibility:hidden">*</p>
+                                <p style="color: red; margin: 0;">*</p>
                          </div>
                          <div class="col-lg-6 py-2" style="display: flex">
                              <input type="email" class="form-control" value="{{$employee->email}}"
                              autocomplete="new-password" placeholder="CORREO ELECTRÓNICO" id="emailMec" name="email"
-                             pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
+                             pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
                              style="border: 1px solid black;" required readonly>
                              <p style="color: red; margin: 0;">*</p>
                          </div>

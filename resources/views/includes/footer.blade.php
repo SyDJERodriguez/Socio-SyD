@@ -132,15 +132,15 @@
                               <div class="form-row" style="padding: 0px  40px 40px 40px;">
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput" id="name" name="name"
-                                  pattern="[A-Za-zñÑ ]{3,}" placeholder="NOMBRE" required >
+                                  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}" placeholder="NOMBRE" required >
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control nameInput"  id="lastname" name="lastName"
-                                  pattern="[A-Za-zñÑ ]{3,}" placeholder="APELLIDOS" required>
+                                  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}" placeholder="APELLIDOS" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="email" class="form-control" id="email" name="email" style="border: 1px solid black;"
-                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
+                                   placeholder="CORREO ELECTRÓNICO" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <input type="text" class="form-control mobileInput"  id="mobileNum" name="mobile"
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="col-lg-12 py-2">
                                     <textarea class="form-control" name="comment"  id="contact-comment" style="border: 1px solid black;"
-                                    pattern="[A-Za-zñÑ0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
+                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
                                 <div class="col-lg-6 py-2">
                                 </div>
