@@ -117,4 +117,4 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
 //Reports for Telasist and Chubb
 Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
-Route::get('chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'report_chubb'])->name('report_chubb');
+Route::get('/chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'chubb_report'])->name('chubb_report');

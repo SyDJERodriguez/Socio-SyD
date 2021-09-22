@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\Collector;
 use App\CustomersSession;
+use App\CustomerPlatform;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
@@ -17,8 +18,11 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
-use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
+use App\Exports\SessionExport;
+use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends Controller
 {
     /** Webservices for get registered clients in Pegaso platform **/
@@ -422,24 +426,26 @@ class CustomerController extends Controller
             ->selectRaw('transactions.client_number as client_number')
             ->selectRaw('SUM(transactions.amount) as total')
             ->whereMonth('transaction_date','=',$current_month)
-            ->whereNull('transactions.branch_number')
+            //->whereNull('transactions.branch_number')
             ->groupBy('transactions.client_number')
             ->get();
 
+        //return response()->json($transactions);
+
         $data = [];
         foreach ($transactions as $transaction){
-            $customer_type = CustomersSession::where('client_number', '=', $transaction->client_number)
+           $customer_type = CustomersSession::where('client_number', $transaction->client_number)
                 ->select('client_type', 'email')
                 ->get();
             //dd($customer_type);
             foreach ($customer_type as $customer){
-                $customer_info = Customer::where('email', '=', $customer->email)
+                $customer_info = CustomerPlatform::where('email', $customer->email)
                     ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
                     ->first();
 
 
                 $level = '';
-                if ($customer->client_type === "1" || $customer->client_type === "3"){
+                if ($customer->client_type != "2"){
                     if ($transaction->total>4500 && $transaction->total<=7000) {
                         $level = 'plata';
                     }
@@ -457,8 +463,14 @@ class CustomerController extends Controller
                     }
                 }
 
-                $customer_data = $transaction->client_number.'-'.$customer_info->id.'|'.$customer_info->name.'|'.$customer_info->last_name.'|'.
-                    $customer_info->second_last_name.'|'.$customer->email.'|'.$customer_info->birthday.'|'.$customer_info->mobile_number.'|'.
+                $customer_data = $transaction->client_number.'-'.
+                    $customer_info->id.'|'.
+                    $customer_info->name.'|'.
+                    $customer_info->last_name.'|'.
+                    $customer_info->second_last_name.'|'.
+                    $customer->email.'|'.
+                    $customer_info->birthday.'|'.
+                    $customer_info->mobile_number.'|'.
                     $customer_info->gender.'|'.$level;
 
 
@@ -476,7 +488,8 @@ class CustomerController extends Controller
 
         $current_date = Carbon::now()->format('Y-m-d');
 
-        $fileName = 'Telasist-'.$current_date.'.txt';
+        $fileName = 'altas_syd_'.$current_date.'.txt';
+        $fileName = str_replace('','-',$fileName);
         $headers = [
             'Content-type' => 'text/plain',
             'Cache-Control' => 'no-store, no-cache',
@@ -488,9 +501,63 @@ class CustomerController extends Controller
     }
 
     //Report for Chubb
-    public function report_chubb(Request $request){
-        $response = "For chubb";
-        return response()->json($response);
+    public function chubb_report(){
+        //$response = "For chubb";
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $data = DB::table('customer_platforms')
+                ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
+                ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+                //->join('associates', 'associates.email', '=', 'customer_platforms.email')
+                ->whereMonth('transaction_date','=',$current_month)
+                ->selectRaw('customer_platforms.client_number as client_number')
+                ->selectRaw('customer_platforms.name as name')
+                ->selectRaw('customer_platforms.last_name as lastname')
+                ->selectRaw('customer_platforms.second_last_name as secondLastName')
+                ->selectRaw('customer_platforms.rfc as rfc')
+                ->selectRaw('customer_platforms.birthday as bday')
+                ->selectRaw('customer_platforms.gender as gender')
+                ->selectRaw('customers_sessions.client_type as level')
+                ->selectRaw('SUM(transactions.amount) as total')
+                ->selectRaw('customers_sessions.is_associate as associateId')
+                ->selectRaw('customers_sessions.email as email')
+                ->groupBy('customer_platforms.email')
+                ->get();
+
+        foreach ($data as $key => $value) {
+
+            if( $this->seguroAsistencia( $value->level, $value->total ) == false ){
+                //true = ok; false borrar registro
+                $data->forget($key);
+
+            }else{
+                $associateId = DB::table('associates')
+                            ->select('number')
+                            ->where('email','=',$value->email)
+                            ->first();
+                
+                if( $associateId != null){
+                    $value->client_number = $value->client_number . '-' . ($associateId->number);
+                }
+            }
+
+            unset($value->level); //remove object property
+            unset($value->total);
+            unset($value->associateId);
+            unset($value->email);
+        }
+        
+        return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
+    }
+
+    public function seguroAsistencia($level,$total){
+        if( (int)$level != 2){
+           return ($total > 2500);
+        }
+
+        if( (int)$level == 2 ){
+            return ($total > 200);
+        }
     }
 
     public function ws_verifacte_mobile_number(Request $request){
