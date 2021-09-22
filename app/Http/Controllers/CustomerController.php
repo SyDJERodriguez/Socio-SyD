@@ -1151,8 +1151,8 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
 
         try {
-            \Mail::send('emails.signUpWelcome',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+            \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1164,8 +1164,8 @@ class CustomerController extends Controller
     //Send welcome email
      public function welcome_email_is_associate($data) {
         try {
-            \Mail::send('emails.signUpInvitationWelcome',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+            \Mail::send('emails.signUpInvitationWelcomeNew',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1335,7 +1335,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"SOCIO SYD");
+                $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -2339,7 +2339,7 @@ class CustomerController extends Controller
     public function invitation($data){
         $email = $data['email'];
         try {
-            Mail::send('emails.invitacionAsociado',['data'=>$data], function($m) use ($email){
+            Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($email)->subject("Invitación a Socio SYD");
             });
