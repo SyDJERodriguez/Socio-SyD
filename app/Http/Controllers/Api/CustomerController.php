@@ -285,7 +285,7 @@ class CustomerController extends Controller
             ->groupBy('transactions.client_number')
             ->get();
 
-        return response()->json($transactions);
+        //return response()->json($transactions);
 
         $data = [];
         foreach ($transactions as $transaction){
@@ -343,7 +343,8 @@ class CustomerController extends Controller
 
         $current_date = Carbon::now()->format('Y-m-d');
 
-        $fileName = 'Telasist-'.$current_date.'.txt';
+        $fileName = 'altas_syd_'.$current_date.'.txt';
+        $fileName = str_replace('','-',$fileName);
         $headers = [
             'Content-type' => 'text/plain',
             'Cache-Control' => 'no-store, no-cache',
