@@ -108,22 +108,22 @@
 
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
@@ -151,22 +151,22 @@
                                         
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                                   pattern="[A-Za-zñÑ].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">

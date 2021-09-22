@@ -22,7 +22,7 @@
                                 <input class="form-control-sm form-control nameInput" type="text"
                                         name="name"   
                                         value="{{$employee->name}}"
-                                        pattern="[A-Za-zñÑ]{3,}"
+                                        pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -31,7 +31,7 @@
                                         name="last_name"       
                                         placeholder="APELLIDO PATERNO"
                                         value="{{$employee->last_name}}"
-                                        pattern="[A-Za-zñÑ]{3,}"
+                                        pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}"
                                         required maxlength="30">
 
                             </div>
@@ -44,7 +44,7 @@
                                         name="second_last_name"
                                         placeholder="APELLIDO MATERNO"
                                         value="{{$employee->second_last_name}}"
-                                        pattern="[A-Za-zñÑ]{3,}"
+                                        pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{3,}"
                                         required  maxlength="30">
                             </div>
                             <div class="col-6">
@@ -66,7 +66,7 @@
                                         autocomplete="new-password"
                                         name="email"
                                         value="{{$employee->email}}"
-                                        pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
+                                        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ 0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ 0-9.-]+\.[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}$"
                                         required>
 
                             </div>
