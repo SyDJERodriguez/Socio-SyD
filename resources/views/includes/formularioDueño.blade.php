@@ -44,17 +44,17 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="NOMBRE" id="namePro"
-                        name="name" pattern="[a-zA-ZñÑ ]{2,}" required>
+                        name="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="PRIMER APELLIDO" id="lastNamePro"
-                        name="last_name" pattern="[a-zA-ZñÑ ]{2,}" required>
+                        name="last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNamePro"
-                        name="second_last_name" pattern="[a-zA-ZñÑ ]{2,}" required>
+                        name="second_last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <select class="form-control btnBorder" name="gender" required>
-                            <option>GÉNERO</option>
+                            <option selected="true" disabled="true" value="">GÉNERO</option>
                             <option value="F">FEMENINO</option>
                             <option value="M">MASCULINO</option>
                         </select>
-                        <p style="color: red; margin: 0;visibility:hidden">*</p>
+                        <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <div class="input-group mb-3">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO"
-                        id="emailPro" name="email" pattern="[a-zA-ZñÑ0-9._%+-]+@[a-zA-ZñÑ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
+                        id="emailPro" name="email" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
