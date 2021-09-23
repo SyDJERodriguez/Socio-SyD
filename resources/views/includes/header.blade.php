@@ -90,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" id="buttonLogin" style="margin-top: -23px !important;">
+                    <div class="col-sm-2" id="buttonLogin">
                         <button type="submit" id="login-button" class="btn btn"
                             style="background-color: #143153;color:white; width: 150px">
                             INICIAR SESIÓN
@@ -289,7 +289,7 @@ padding-bottom: 14px;">
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-12" id="buttonLogin">
+                    <div class="col-sm-12" id="buttonLogin2">
                         <button type="submit" class="btn btn-sm btn-block"
                         style="background-color: #3cb3e7;color:white">
                             INICIAR SESIÓN
