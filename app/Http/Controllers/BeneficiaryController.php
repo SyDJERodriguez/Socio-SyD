@@ -84,23 +84,13 @@ class BeneficiaryController extends Controller
             }
         }
 
-        $valid = false;
-        foreach ($request['phone'] as $mobile) {
-            $valid = $this->phoneValidator($mobile);
-
-            if ($valid === false){
-                $error = 'Un número de teléfono ingresado no es válido';
-    
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 
-                    'signature', 'noti', 'total', 'number','owner'));
-            }
-        }
 
         foreach ($request['percent'] as $percent){
-            $count++;
-            //Sum the all percent
-            $total_percent += intval($percent);
+            if($percent != ""){
+                $count++;
+                //Sum the all percent
+                $total_percent += intval($percent);
+            }
         }
 
         //Verify if is one o two registers
@@ -113,6 +103,19 @@ class BeneficiaryController extends Controller
                     'error', 'data', 'request', 'level','is_cnt', 
                     'signature', 'noti', 'total', 'number','owner'));
                 //dd($total_percent);
+            }
+
+            $valid = false;
+            foreach ($request['phone'] as $mobile) {
+            $valid = $this->phoneValidator($mobile);
+
+            if ($valid === false){
+                $error = 'Un número de teléfono ingresado no es válido';
+    
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level','is_cnt', 
+                    'signature', 'noti', 'total', 'number','owner'));
+                }
             }
 
             try{
@@ -129,7 +132,7 @@ class BeneficiaryController extends Controller
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
                                 'customer_id'      => $data->id,
-                                'branch_number'    => $request['branch_number'][$i]
+                                'branch_number'    => $request['branch_number'][0]
                             ]);
                         }
                     }
@@ -168,6 +171,17 @@ class BeneficiaryController extends Controller
                     'signature', 'noti', 'total', 'number',
                     'owner','is_cnt'));
             }
+
+            $valid = false;
+            $valid = $this->phoneValidator($request['phone'][0]);
+            if ($valid === false){
+                $error = 'Un número de teléfono ingresado no es válido';
+            
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level','is_cnt', 
+                    'signature', 'noti', 'total', 'number','owner'));
+            }
+            
             $insertBeneficiary = DB::table('beneficiaries')->insert([
                 'name'             => $request['name'][0],
                 'last_name'        => $request['lastname'][0],
