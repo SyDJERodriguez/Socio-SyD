@@ -501,9 +501,9 @@ h5.footerTitle3{
     }
 }
 
-@media only screen and (max-width:1538px){
+@media only screen and (max-width:1564px){
     img.imgCarou{
-        height: 389px;
+        height: 391px;
     }
 }
 
@@ -567,11 +567,11 @@ h5.footerTitle3{
         font-size: 14px;
     }
     div#buttonLogin {
-        margin-top: -24px !important;
+        margin-top: -22px !important;
     }
 }
 
-@media only screen and (max-width: 1272px){
+@media only screen and (max-width: 1286px){
     a.adios {
         font-size: 9px;
         width: 78px;
@@ -618,7 +618,7 @@ h5.footerTitle3{
     }
 }
 
-@media only screen and (max-width: 1102px){
+@media only screen and (max-width: 1120px){
     b.noDown{
         font-size: 9px;
     }
@@ -644,9 +644,9 @@ h5.footerTitle3{
     }
 }
 
-@media only screen and (max-width:1084px){
+@media only screen and (max-width:1086px){
     img.imgCarou{
-        height: 389px;
+        height: 391px;
     }
 }
 
@@ -656,7 +656,7 @@ h5.footerTitle3{
     }
 }
 
-@media only screen and (max-width:1012px){
+@media only screen and (max-width:1030px){
     b.noDown {
         font-size: 8px;
     }
