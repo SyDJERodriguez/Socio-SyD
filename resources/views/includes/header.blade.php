@@ -423,7 +423,7 @@ padding-bottom: 14px;">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <p class="text-white" id="clientName">
-                                {{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}
+                                {{mb_strtoupper($data->name).' '.mb_strtoupper($data->last_name).' '.mb_strtoupper($data->second_last_name)}}
                             </p>
                             <p class="text-white" id="clientNumber">No. de cliente {{substr($data->client_number,2)}}</p>
                             <img src="{{asset('img/icon_check.png')}}">

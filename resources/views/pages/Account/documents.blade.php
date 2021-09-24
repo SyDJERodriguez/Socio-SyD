@@ -347,7 +347,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white" style="text-transform: uppercase">{{$data->name.' '.$data->last_nam.' '.$data->second_last_name}}</h5>
                         <p class="text-white">Recuerda imprimir y guardar tu certificado para cuando lo requieras</p>
                         <a href="{{route('customer.pdf')}}" target="_blank" onclick="$('.modal').modal('hide');" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                             CERRAR

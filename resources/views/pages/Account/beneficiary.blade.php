@@ -41,9 +41,9 @@
                                         <div class="text-white">
                                             @for ($i = 0; $i < count($beneficiary); $i++)
                                                 <p>Beneficiario {{$i+1}}:
-                                                    {{strtoupper($beneficiary[$i]->name)}}
-                                                    {{strtoupper($beneficiary[$i]->last_name)}}
-                                                    {{strtoupper($beneficiary[$i]->second_last_name)}}</p>
+                                                    {{mb_strtoupper($beneficiary[$i]->name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->last_name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
                                         <br>
