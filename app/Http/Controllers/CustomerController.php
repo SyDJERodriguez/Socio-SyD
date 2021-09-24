@@ -1156,15 +1156,15 @@ class CustomerController extends Controller
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
-        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $dataSession->branch_number)->update([
-            'active'   => 0
-        ]);
-
         try {
             \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
+
+            $update_customer = CustomersSession::where('branch_number', '=', $dataSession->branch_number)->update([
+                'active'   => 0
+            ]);
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {
             return response()->json(['success'=>'false','status' =>401]);
