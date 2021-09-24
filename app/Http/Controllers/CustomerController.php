@@ -20,6 +20,7 @@ use App\VueTables\EloquentVueTables;
 use Barryvdh\Reflection\DocBlock\Tag\AuthorTag;
 use DB;
 use Carbon\Carbon;
+use http\Url;
 use function GuzzleHttp\Psr7\get_message_body_summary;
 use Hash;
 use http\Env\Response;
@@ -1150,7 +1151,8 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $email)->first();
         $data->branch_number = $dataSession->branch_number;
 
-        $messsage = 'Binevenido a Socio SyD, por favor verifica tu cuenta dando clic en el siguiente enlace: ';
+        $url      = parse_url( url('account/verify/'.$dataSession->mobile));
+        $messsage = 'Binevenido a Socio SyD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
