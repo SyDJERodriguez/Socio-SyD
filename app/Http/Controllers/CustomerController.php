@@ -1156,7 +1156,7 @@ class CustomerController extends Controller
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
-        DB::table('customers_sessions')->where('branch_number', '=', $data->branch_number)->update([
+        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $dataSession->branch_number)->update([
             'active'   => 0
         ]);
 
