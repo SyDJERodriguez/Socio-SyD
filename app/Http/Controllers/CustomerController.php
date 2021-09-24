@@ -1150,6 +1150,10 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $email)->first();
         $data->branch_number = $dataSession->branch_number;
 
+        $messsage = 'Binevenido a Socio SyD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.url('account/verify/'.$data->branch_number);
+
+        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+
         try {
             \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SyD");
