@@ -1151,7 +1151,14 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $email)->first();
         $data->branch_number = $dataSession->branch_number;
 
-        $url      = 'http://sociosyd.quaxarpruebas.com/account/verify/'.$data->branch_number;
+        $url = '';
+        if(env('APP_ENV') === 'local') {
+            $url = 'http://sociosyd.test/account/verify/' . $data->branch_number;
+        }else if(env('APP_ENV') === 'staging') {
+            $url = 'http://sociosyd.quaxarpruebas.com/account/verify/' . $data->branch_number;
+        }else if(env('APP_ENV') === 'production') {
+            $url = 'https://sociosyd.com.mx/account/verify/' . $data->branch_number;
+        }
         $messsage = 'Binevenido a Socio SyD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
