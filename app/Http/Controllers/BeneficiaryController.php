@@ -216,25 +216,24 @@ class BeneficiaryController extends Controller
         $dataSession = DB::table('customers_sessions')
                         ->where('email','=', $email)->first(); 
         $now = Carbon::now();
-        $current_month = $now->month;
 
         $trans1 = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+           // ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $dataSession->client_number)
             ->where('transactions.branch_number','=', $dataSession->branch_number)
-            ->where('amount', '>', 0)
+            ->where('amount', 'not like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->month)
             ->get();
 
         $trans2 = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            //->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $dataSession->client_number)
             ->where('transactions.branch_number','=', $dataSession->branch_number)
-            ->where('amount', '<', 0)
+            ->where('amount', 'like', '%' . '-' . '%')
             ->whereMonth('transaction_date', $now->subMonth(1)->month)
             ->get();
 
