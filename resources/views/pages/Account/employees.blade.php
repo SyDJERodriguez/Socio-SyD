@@ -346,7 +346,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white">{{mb_strtoupper($data->name).' '.mb_strtoupper($data->last_name).' '.mb_strtoupper($data->second_last_name)}}</h5>
                         <p class="text-white">Has llegado al límite de usuarios dependientes</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
@@ -366,7 +366,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white">{{mb_strtoupper($data->name).' '.mb_strtoupper($data->last_name).' '.mb_strtoupper($data->second_last_name)}}</h5>
                         <div class="row">
                             <div class="col-8 py-2 text-center">
                                 <p class="text-white">El siguiente dependiente perderá los beneficios:</p>

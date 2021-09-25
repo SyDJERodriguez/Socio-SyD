@@ -13,9 +13,9 @@
 	<tr>
 		<td colspan="3">
 			<p style="font-family: Arial; font-size: 24px; text-align: center; padding: 10px; vertical-align: middle;">
-				Hola:<strong>{{ strtoupper($data['name']) }}</strong><br>
+				Hola:<strong>{{ mb_strtoupper($data['name']) }}</strong><br>
 				muy pronto serás <strong>SOCIO SyD</strong>®,<br>
-				{{ strtoupper($data['nameClient']) .' '. strtoupper($data['lastNameClient'])}} <br>
+				{{ mb_strtoupper($data['nameClient']) .' '. mb_strtoupper($data['lastNameClient'])}} <br>
 				te dió de alta como beneficiario
 			</p>
 		</td>
