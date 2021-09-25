@@ -1152,14 +1152,14 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
 
         $url = url('account/verify/' . $data->branch_number);
-        $messsage = 'Binevenido a Socio SyD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+        $messsage = 'Binevenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
         try {
             \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
-                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
             });
 
             $update_customer = CustomersSession::where('branch_number', '=', $dataSession->branch_number)->update([
@@ -1175,8 +1175,8 @@ class CustomerController extends Controller
      public function welcome_email_is_associate($data) {
         try {
             \Mail::send('emails.signUpInvitationWelcomeNew',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
-                $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {
@@ -1310,7 +1310,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $request['email'])->first();
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Reestablecer Contraseña Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1345,7 +1345,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -1376,7 +1376,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $request['email'])->first();
         try {
             \Mail::send('emails.activateAccount',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Activar cuenta Plataforma SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -2284,7 +2284,7 @@ class CustomerController extends Controller
 
     public function send_email($name, $email, $token){
     	\Mail::send('Collectors.email_customer',['name'=>$name,'token'=>$token], function($m) use ($email, $name){
-    		$m->from('sociosyd@syd.com.mx',"Socio SyD");
+    		$m->from('sociosyd@syd.com.mx',"Socio SYD");
     		$m->to($email, $name)->subject('Gracias por actualizar tus datos');
 	    });
     }
@@ -2336,7 +2336,7 @@ class CustomerController extends Controller
         try {
             foreach( $SYD_EMAILS as $emails){
                 Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
-                    $m->to($emails)->subject('Nuevo Registro de Socio SyD');
+                    $m->to($emails)->subject('Nuevo Registro de Socio SYD');
                 });
             }
             return redirect()->route('home');
@@ -2350,8 +2350,8 @@ class CustomerController extends Controller
         $email = $data['email'];
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
-                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
-                $m->to($email)->subject("Invitación a Socio SYD");
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($email)->subject("Da clic en el botón y activa tu cuenta de Socio SYD");
             });
         } catch (\Throwable $th) {
             //throw $th;
@@ -2363,7 +2363,7 @@ class CustomerController extends Controller
         $email = $data['email'];
         //try {
             Mail::send('emails.mechanicToDependent',['data'=>$data], function($m) use ($email){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($email)->subject("Invitación cuenta dependiente");
             });
         //} catch (\Throwable $th) {

@@ -337,7 +337,7 @@ class BeneficiaryController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         try {
             \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
-                $m->from('noreply@syd.com.mx',"Socio SyD");
+                $m->from('noreply@syd.com.mx',"Socio SYD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
