@@ -1158,7 +1158,7 @@ class CustomerController extends Controller
 
         try {
             \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
 
@@ -1175,7 +1175,7 @@ class CustomerController extends Controller
      public function welcome_email_is_associate($data) {
         try {
             \Mail::send('emails.signUpInvitationWelcomeNew',['data'=>$data], function($m) use ($data){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
@@ -2350,7 +2350,7 @@ class CustomerController extends Controller
         $email = $data['email'];
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
-                $m->from('sociosyd@syd.com.mx',"Socio SyD");
+                $m->from('sociosyd@syd.com.mx',"Da clic en el botón y activa tu cuenta de Socio SYD");
                 $m->to($email)->subject("Invitación a Socio SYD");
             });
         } catch (\Throwable $th) {
