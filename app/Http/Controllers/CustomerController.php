@@ -1163,7 +1163,7 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
 
         $url = url('account/verify/' . $data->branch_number);
-        $messsage = 'Binevenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+        $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
