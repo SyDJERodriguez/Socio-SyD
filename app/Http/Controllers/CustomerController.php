@@ -1120,9 +1120,20 @@ class CustomerController extends Controller
             'branch_number' => $request['client_number']
         ]);
 
+        //update Data in associate table
+        $update_associates =  DB::table('associates')->where('email','=',$request['email'])->update([
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'birthday'          => $request['birthday'],
+            'updated_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile'],
+            'email'             => $request['email']
+        ]);
+
         //Insert data in customers table
         $update_customer = DB::table('customer_platforms')->insert([
-            'client_number'    => null,
+            'client_number'    => $request['client_number'],
             'name'             => $request['name'],
             'last_name'        => $request['last_name'],
             'second_last_name' => $request['second_last_name'],
@@ -2351,7 +2362,7 @@ class CustomerController extends Controller
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
-                $m->to($email)->subject("Da clic en el botón y activa tu cuenta de Socio SYD");
+                $m->to($email)->subject("Te han invitado a ser parte del programa Socio SYD, haz clic en el botón para aceptar la invitación");
             });
         } catch (\Throwable $th) {
             //throw $th;
