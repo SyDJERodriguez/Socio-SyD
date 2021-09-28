@@ -21,4 +21,8 @@ Route::middleware('auth:api')->group(function (){
     /***************** Webservices BI *****************/
     Route::get('get_registered_clients',[\App\Http\Controllers\Api\CustomerController::class,'get_registered_clients'])->name('get.registered.clients');
     Route::post('save_typeform_survey',[\App\Http\Controllers\Api\CustomerController::class,'save_survey_typeform'])->name('save.typeform.survey');
+
+
+    /***************** To Send Certificates *****************/
+    Route::get('send_certificate', [\App\Http\Controllers\Api\CustomerController::class,'send_sms_certificate'])->name('send.sms.certificate');
 });
