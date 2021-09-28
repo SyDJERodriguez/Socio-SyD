@@ -12,6 +12,58 @@ use Carbon\Carbon;
 
 class BeneficiaryController extends Controller
 {
+    //Function to generate PDF by SMS
+    public function generatePDFSMS($client_number, $branch_number) {
+
+        $customer_session = DB::table('customers_sessions')
+            ->where('client_number','=', $client_number)
+            ->where('branch_number','=', $branch_number)
+            ->first();
+
+        $id = $customer_session->id;
+
+        $customer = DB::table('customer_platforms')
+            ->where('email', '=', $customer_session->email)
+            ->first();
+
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('customer_id', '=', $id)
+            ->first();
+
+        if ($customer_session->client_type === "3"){
+            $customer = DB::table('customer_platforms')
+                ->where('email', '=', $customer_session->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $id)
+                ->first();
+        }
+
+        $initDate = Carbon::createFromFormat('Y-m-d', '2021-10-01');
+
+        $finDate = Carbon::createFromFormat('Y-m-d', '2021-10-31');
+
+        $currentDate = Carbon::parse()->locale('es');
+        // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
+    }
+
     public function add_beneficiaries (Request $request) {
         $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
         $data->branch_number = Auth::user()->branch_number;
@@ -100,7 +152,7 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%';
 
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 
+                    'error', 'data', 'request', 'level','is_cnt',
                     'signature', 'noti', 'total', 'number','owner'));
                 //dd($total_percent);
             }
@@ -111,9 +163,9 @@ class BeneficiaryController extends Controller
 
             if ($valid === false){
                 $error = 'Un número de teléfono ingresado no es válido';
-    
+
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 
+                    'error', 'data', 'request', 'level','is_cnt',
                     'signature', 'noti', 'total', 'number','owner'));
                 }
             }
@@ -151,14 +203,14 @@ class BeneficiaryController extends Controller
                         $this->send_email_alta($data->email);
                     }
                     return view('pages.Account.beneficiary', compact(
-                        'success', 'data', 'beneficiary', 'level','is_cnt', 
+                        'success', 'data', 'beneficiary', 'level','is_cnt',
                         'signature', 'noti', 'total', 'number','owner'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'noti','level', 
+                    'error', 'data', 'request', 'noti','level',
                     'total','owner','total','number','is_cnt'));
             }
 
@@ -167,7 +219,7 @@ class BeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level', 
+                    'error', 'data', 'request', 'level',
                     'signature', 'noti', 'total', 'number',
                     'owner','is_cnt'));
             }
@@ -176,12 +228,12 @@ class BeneficiaryController extends Controller
             $valid = $this->phoneValidator($request['phone'][0]);
             if ($valid === false){
                 $error = 'Un número de teléfono ingresado no es válido';
-            
+
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 
+                    'error', 'data', 'request', 'level','is_cnt',
                     'signature', 'noti', 'total', 'number','owner'));
             }
-            
+
             $insertBeneficiary = DB::table('beneficiaries')->insert([
                 'name'             => $request['name'][0],
                 'last_name'        => $request['lastname'][0],
@@ -214,7 +266,7 @@ class BeneficiaryController extends Controller
     //get transactions by branch_number or client_number
     public function getTransCadena($email){
         $dataSession = DB::table('customers_sessions')
-                        ->where('email','=', $email)->first(); 
+                        ->where('email','=', $email)->first();
         $now = Carbon::now();
 
         $trans1 = DB::table('transactions')
@@ -239,7 +291,7 @@ class BeneficiaryController extends Controller
 
         $data = $trans1->merge($trans2);
         return $data;
-        
+
     }
 
     //validated a valid phone number

@@ -20,18 +20,84 @@ use Validator;
 use DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
 use App\Exports\SessionExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Helpers\Twilio\TwilioService;
+
 class CustomerController extends Controller
 {
-    /** Webservices for get registered clients in Pegaso platform **/
+    /** Functionality for send SMS with certificate **/
+    public function send_sms_certificate(Request $request) {
+        $request = $request->input();
 
+        $result = array('status'=>0, 'message'=>'Procesando registros...', 'certificados_enviados'=>0);
+
+        $from    = Carbon::createFromFormat('Y-m-d',$request['from']);
+        $to      = Carbon::createFromFormat('Y-m-d',$request['to']);
+
+        $customers = DB::table('customers_sessions')
+            ->whereBetween('created_at', [$from,$to])
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                'customers_sessions.branch_number AS branch_number',
+                'customers_sessions.client_type AS client_type',
+                'customers_sessions.mobile AS mobile',
+                'customers_sessions.email AS email',
+                'customers_sessions.created_at AS created_at',
+                'customers_sessions.active AS active'
+            )
+            ->get();
+
+        //return $customers;
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        foreach ($customers as $client){
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
+            $messsage = 'Descarga tu póliza del seguro contra accidentes del programa Socio SyD en el siguiente enlace: '.$url;
+
+            if($client->client_type === '2'){
+                if ($totalAmount>200){
+                    TwilioService::send_sms($messsage,'+52'.$client->mobile);
+                    $result['certificados_enviados']++;
+                }
+            }else if($client->client_type === '1' || $client->client_type === '3' || $client->client_type === '4'){
+                if ($totalAmount>2500){
+                    TwilioService::send_sms($messsage,'+52'.$client->mobile);
+                    $result['certificados_enviados']++;
+                }
+            }
+        }
+
+        $result['status'] = 200;
+        $result['message'] = 'Registros procesados correctamente';
+        $result['registros'] = $customers;
+        return response()->json($result);
+    }
+
+    /** Webservices for get registered clients in Pegaso platform **/
     public function get_registered_clients() {
         $registered_clients = DB::table('customers_sessions')
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
             ->select(
                 'customers_sessions.client_number AS client_number',
+                         'customers_sessions.branch_number AS branch_number',
                          'customer_platforms.name AS name',
                          'customer_platforms.last_name AS last_name',
                          'customer_platforms.second_last_name AS second_last_name',
@@ -52,6 +118,7 @@ class CustomerController extends Controller
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
                 ->whereMonth('transaction_date','=',$current_month)
                 ->whereYear('transaction_date', '=', $current_year )
                 ->get();
@@ -146,6 +213,7 @@ class CustomerController extends Controller
         return response()->json($registered_clients);
     }
 
+    /** Webservices for save survey of typeform **/
     public function save_survey_typeform (Request $request) {
         $request = $request->input();
 
@@ -178,6 +246,7 @@ class CustomerController extends Controller
         return response()->json($customers);
     }
 
+    /** Webservices for save client numbers of SAP **/
     public function insert_client_number(Request $request){
         \Log::channel('api')->info('===========================START PROCESS==================================================================================');
         $agent = new Agent();
@@ -220,6 +289,7 @@ class CustomerController extends Controller
 
     }
 
+    /** Webservices for sent clients numbers updated **/
     public function get_clients_updated(Request $request){
         \Log::channel('api')->info('=========================== START PROCESS TO GET REGISTERS ==================================');
         $agent = new Agent();
@@ -273,6 +343,7 @@ class CustomerController extends Controller
 
     }
 
+    /** Webservices for save survey of typeform **/
     public function get_client(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
@@ -535,7 +606,7 @@ class CustomerController extends Controller
                             ->select('number')
                             ->where('email','=',$value->email)
                             ->first();
-                
+
                 if( $associateId != null){
                     $value->client_number = $value->client_number . '-' . ($associateId->number);
                 }
@@ -546,7 +617,7 @@ class CustomerController extends Controller
             unset($value->associateId);
             unset($value->email);
         }
-        
+
         return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
     }
 
