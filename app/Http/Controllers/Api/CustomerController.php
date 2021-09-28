@@ -37,7 +37,18 @@ class CustomerController extends Controller
 
         $customers = DB::table('customers_sessions')
             ->whereBetween('created_at', [$from,$to])
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                'customers_sessions.branch_number AS branch_number',
+                'customers_sessions.client_type AS client_type',
+                'customers_sessions.mobile AS mobile',
+                'customers_sessions.email AS email',
+                'customers_sessions.created_at AS created_at',
+                'customers_sessions.active AS active'
+            )
             ->get();
+
+        //return $customers;
 
         $now = Carbon::now();
         $current_month = $now->month;
@@ -86,6 +97,7 @@ class CustomerController extends Controller
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
             ->select(
                 'customers_sessions.client_number AS client_number',
+                         'customers_sessions.branch_number AS branch_number',
                          'customer_platforms.name AS name',
                          'customer_platforms.last_name AS last_name',
                          'customer_platforms.second_last_name AS second_last_name',
@@ -126,7 +138,7 @@ class CustomerController extends Controller
             }
             $client->amount = $totalAmount;
 
-            if($client->client_type === '1'){
+            if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
@@ -140,7 +152,7 @@ class CustomerController extends Controller
                 if ($totalAmount == 0) {
                     $client->level= 'Sin beneficios';
                 }
-            }else if($client->client_type === '2'){
+            }else if($client->type_user === '2'){
                 $client->type_user = 'Mecánico Individual';
                 if ($totalAmount>200 && $totalAmount<=500) {
                     $client->level= 'Bronce';
@@ -154,7 +166,7 @@ class CustomerController extends Controller
                 if ($totalAmount == 0) {
                     $client->level= 'Sin beneficios';
                 }
-            }else if($client->client_type === '3'){
+            }else if($client->type_user === '3'){
                 $client->type_user = 'Empleado Dependiente';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
@@ -168,7 +180,7 @@ class CustomerController extends Controller
                 if ($totalAmount == 0) {
                     $client->level= 'Sin beneficios';
                 }
-            }else if($client->client_type === '4'){
+            }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
