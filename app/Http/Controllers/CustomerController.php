@@ -489,6 +489,7 @@ class CustomerController extends Controller
 
     //function to calculated number of associate
     public function getNumberAssociate($customer_id,$branch_number){
+        //aqui
         //$dataSession = CustomersSession::where('email','=', Auth::user()->email)->first();
         $number = DB::table('associates')
         ->where('customer_id','=', $customer_id)
@@ -2166,6 +2167,13 @@ class CustomerController extends Controller
                                 ['active_association', '=', 1]
                                 ])
                             ->get();
+        //Calculated the limit of employee
+        $response = $this->employeeLimit(
+                    Auth::user()->email,
+                    $data->id,
+                    Auth::user()->client_type);
+        $total = $this->totalAmount();
+        $noti = $this->getNotifications();
 
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('branches_clients')
@@ -2177,13 +2185,6 @@ class CustomerController extends Controller
             $data->branch_name = $query[0]->branch_name;//get branch name to the view
         }
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
-        //Calculated the limit of employee
-        $response = $this->employeeLimit(
-                            Auth::user()->email,
-                            Auth::user()->id,
-                            Auth::user()->client_type);
-        $total = $this->totalAmount();
-        $noti = $this->getNotifications();
 
         $data->limiteAsociados = $response->limiteAsociados;
         $data->validated = $response->validated;
@@ -2231,6 +2232,7 @@ class CustomerController extends Controller
 
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
+        $data->number = $numberEmployees;
 
         return $data;
     }
