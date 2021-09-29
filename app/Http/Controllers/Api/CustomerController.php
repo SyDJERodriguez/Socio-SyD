@@ -70,7 +70,7 @@ class CustomerController extends Controller
             $client->amount = $totalAmount;
 
             $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
-            $messsage = 'Descarga tu póliza del seguro contra accidentes del programa Socio SyD en el siguiente enlace: '.$url;
+            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con SOCIO SYD. Descarga y firma tu certificado aquí: '.$url;
 
             if($client->client_type === '2'){
                 if ($totalAmount>200){
