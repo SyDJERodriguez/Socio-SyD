@@ -101,7 +101,7 @@
                 </a></p>
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="100px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
         </div>
     </div>
 
@@ -438,7 +438,7 @@
             <img src="{{asset('img/chubb.png')}}" alt="CHUBB" style="position: relative;padding-left: 0px;">
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="100px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
         </div>
     </div>
 
