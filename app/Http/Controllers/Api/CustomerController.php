@@ -75,7 +75,7 @@ class CustomerController extends Controller
             $client->url = $url;
            /* if($client->client_type === '2'){
                 if ($totalAmount>200){*/
-                    try {
+                   // try {
                         TwilioService::send_sms($messsage,'+52'.$client->mobile);
                         $result['certificados_enviados']++;
 
@@ -83,12 +83,14 @@ class CustomerController extends Controller
                             $m->from('noreply@syd.com.mx','Socio SYD');
                             $m->to($client->email,'Socio')->subject('¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con SOCIO SYD. Descarga, llena y firma tu certificado aquí:');
                         });
-                        return response()->json(['success'=>'true','status'=>200]);
-                    } catch (\Throwable $th) {
+
+            $result['certificados_enviados']++;
+                    //    return response()->json(['success'=>'true','status'=>200]);
+                    //} catch (\Throwable $th) {
                         //throw $th;
-                        return response()->json(['success'=>'false','status' =>401]);
-                    }
-                    
+                     //   return response()->json(['success'=>'false','status' =>401]);
+                    //}
+
            /*     }
             }else if($client->client_type === '1' || $client->client_type === '3' || $client->client_type === '4'){
                 if ($totalAmount>2500){
