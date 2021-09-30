@@ -530,7 +530,7 @@ class CustomerController extends Controller
                         $level = 'plata';
                     }
                     if ($transaction->total>1300) {
-                        $level = 'plata';
+                        $level = 'oro';
                     }
                 }
 
