@@ -70,7 +70,7 @@ class CustomerController extends Controller
             $client->amount = $totalAmount;
 
             $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
-            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con SOCIO SYD. Descarga y firma tu certificado aquí: '.$url;
+            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con SOCIO SYD. Descarga, llena y firma tu certificado aquí: '.$url;
 
             $client->url = $url;
            /* if($client->client_type === '2'){
@@ -81,7 +81,7 @@ class CustomerController extends Controller
 
                         \Mail::send("emails.emailPoliza", ['client'=>$client], function($m) use ($client){
                             $m->from('noreply@syd.com.mx','Socio SYD');
-                            $m->to($client->email,'Socio')->subject('¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con Socio SYD. Descarga tu certificado aquí');
+                            $m->to($client->email,'Socio')->subject('¡Felicidades! Ya tienes SEGURO DE ACCIDENTES con SOCIO SYD. Descarga, llena y firma tu certificado aquí:');
                         });
                         return response()->json(['success'=>'true','status'=>200]);
                     } catch (\Throwable $th) {
