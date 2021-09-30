@@ -470,6 +470,10 @@ class CustomerController extends Controller
     public function deleteEmployee($id,$email){
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
         //update the employee with client number 00000000 and number = 0
+        if($email == Auth::user()->email){
+            //creo que es con redirect back y meterle un mensaje queno se puede eliminar su propia cuenta
+            return response()->json(['success'=>'false', 'update'=>'Error no se puede eliminar']);
+        }
         $update_associates ='';
         $update_associates = DB::table('associates')
                 ->where('id','=',$id)
