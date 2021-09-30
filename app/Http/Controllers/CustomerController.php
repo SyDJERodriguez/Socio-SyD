@@ -467,19 +467,24 @@ class CustomerController extends Controller
     }
 
     //Deactivate employees
-    public function deleteEmployee($employee){
+    public function deleteEmployee($id,$email){
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
         //update the employee with client number 00000000 and number = 0
         $update_associates ='';
         $update_associates = DB::table('associates')
-                ->where('id','=',$employee)
+                ->where('id','=',$id)
                 ->where('client_number','=',$data['client_number'])
                 ->update([
                     'number'            => 0,
                     'active_association'=> 0
                 ]);
+        $deletePlatform = '';
+        $deletePlatform = CustomerPlatform::where('email', $email)->delete();
 
-        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+        $deleteSession = '';
+        $deleteSession = CustomersSession::where('email', $email)->delete();
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0 && $deletePlatform == 1 && $deleteSession == 1){
             //return response()->json(['success'=>'true', 'update'=>$update_associates,'client_number'=>$request['client_number']]);
             return redirect()->route('customer.employees');
         }else{

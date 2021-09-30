@@ -130,7 +130,7 @@
                                         style="border: 0px"
                                         href="#"
                                         role="button" id="{{$as->id}}" 
-                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}')">
+                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}','{{$as->email}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -393,12 +393,13 @@
 
 <script>
 
-    function deleteEmployee(id,name){
+    function deleteEmployee(id,name,email){
         //console.log(id+" "+name)
         //$('.confirmDeleteButton').attr('id', id);
         document.getElementById('nameDependient').innerText=name;
-        let href_button = "{{ url('/customer/employees/{id}/delete') }}";
-        href_button = href_button.replace('{id}', id)
+        let href_button = "{{ url('/customer/employees/{id}/{email}/delete') }}";
+        href_button = href_button.replace('{id}', id);
+        href_button = href_button.replace('{email}', email);
         $('.confirmDeleteButton').attr('href', href_button)
         $('#deleteDependent').modal('show');
     }
