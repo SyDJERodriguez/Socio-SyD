@@ -83,7 +83,15 @@
                         $('#dnsNoValid').modal('show');
                     });
                 </script>
-            @endif
+                @endif
+
+                @if(session()->has('notDeletableAccount'))
+                <script>
+                    $(function() {
+                        $('#notDeletableAccount').modal('show');
+                    });
+                </script>
+                @endif
 
                 @if(session()->has('success'))
                     <script>
@@ -130,7 +138,7 @@
                                         style="border: 0px"
                                         href="#"
                                         role="button" id="{{$as->id}}" 
-                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}')">
+                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}','{{$as->email}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -336,6 +344,27 @@
     </div>
 </div>
 
+<!-- Dependent to other Owner Account Modal -->
+<div class="modal fade" id="notDeletableAccount" tabindex="-1" role="dialog" aria-labelledby="dependentOwner" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
+                        <h5 class="text-white">¡EL DEPENDIENTE ES EL DUEÑO DE LA CUENTA!</h5>
+                        <p class="text-white">El correo y/o número de teléfono es el mismo que el propietario de la cuenta</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Limit Account Modal -->
 <div class="modal fade" id="limitAccount" tabindex="-1" role="dialog" aria-labelledby="limitAccount" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -393,12 +422,13 @@
 
 <script>
 
-    function deleteEmployee(id,name){
+    function deleteEmployee(id,name,email){
         //console.log(id+" "+name)
         //$('.confirmDeleteButton').attr('id', id);
         document.getElementById('nameDependient').innerText=name;
-        let href_button = "{{ url('/customer/employees/{id}/delete') }}";
-        href_button = href_button.replace('{id}', id)
+        let href_button = "{{ url('/customer/employees/{id}/{email}/delete') }}";
+        href_button = href_button.replace('{id}', id);
+        href_button = href_button.replace('{email}', email);
         $('.confirmDeleteButton').attr('href', href_button)
         $('#deleteDependent').modal('show');
     }
