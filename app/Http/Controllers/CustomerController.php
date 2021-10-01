@@ -472,7 +472,8 @@ class CustomerController extends Controller
         //update the employee with client number 00000000 and number = 0
         if($email == Auth::user()->email){
             //creo que es con redirect back y meterle un mensaje queno se puede eliminar su propia cuenta
-            return response()->json(['success'=>'false', 'update'=>'Error no se puede eliminar']);
+            session()->flash('notDeletableAccount', 'the email is the same of the owner');
+            return redirect()->route('customer.employees');
         }
         $update_associates ='';
         $update_associates = DB::table('associates')
