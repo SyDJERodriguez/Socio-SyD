@@ -86,7 +86,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/', 'CustomerController@employees')->name('employees');
         Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
-        Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
+        Route::get('/employees/{id}/{email}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
         Route::get('/pdf', 'BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
