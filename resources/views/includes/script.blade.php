@@ -235,6 +235,11 @@
                         document.getElementById("form_alert_dns_br").innerHTML='El número de cliente y sucursal ya existen';
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
+
                     }else if (data['success']==='false'){
                         $('#modalCadenas').modal('hide');
                         $('#modalError').modal('show');
@@ -308,6 +313,11 @@
                     }else if(data['success']==='false' && data['verify_data_branch']==='false'){
                         $('#modalSignUpInCadenas').modal('show');
 
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
+
                     }else if (data['success']==='false'){
                         $('#modal3').modal('hide');
                         $('#modalError').modal('show');
@@ -379,6 +389,11 @@
 
                     }else if(data['success']==='false' && data['verify_data_branch']==='false'){
                         $('#modalSignUpInCadenas').modal('show');
+
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns_mec").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
                     }else if (data['success']==='false'){
                         $('#modal5').modal('hide');
