@@ -155,7 +155,9 @@
                                 <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">TÉRMINOS Y CONDICIONES</a></label>
                                 <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                             </div>
-                            <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;" id="btnSend4" value="Enviar">
+                            <input type="submit" class="btn btn" 
+                            style="background-color: #00A1E3;color: white;" 
+                            id="btnSend4" onclick="focusrfc()" value="Enviar">
                         </div>
                     </form>
                     <div class="alert alert-danger alert-dismissible" id="form_alert_br" role="alert" style="border-radius: 6px;" hidden>
@@ -176,6 +178,16 @@
         </div>
     </div>
 <script>
+    function focusrfc(event){
+            if( $('#rfcBr').val() == null ){
+                document.getElementById("rfcBr").focus();
+            }
+
+            if( $('#rfcBr').val().length <= 10 ){
+                document.getElementById("rfcBr").focus();
+            }
+        };
+
     document.getElementById('rfcBr').addEventListener('focus',function() {
         var rfc = document.getElementById('rfcBr');
         var fecha = $('#birthdayBr').val().split('-');
