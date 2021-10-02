@@ -288,6 +288,11 @@ class CustomerController extends Controller
         $request       = $request->input();
         $client_number = $request['client_number'];
 
+        if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
+            //name, last name or second last name is empty
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+        }
+
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile_number']);
         if ($valid == false){
@@ -936,6 +941,11 @@ class CustomerController extends Controller
         //For customer_session table
         $client_number = '00'.$request['client_number'];
 
+        if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
+            //name, last name or second last name is empty
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+        }
+        
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){

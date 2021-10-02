@@ -159,9 +159,9 @@ class BeneficiaryController extends Controller
 
             $valid = false;
             foreach ($request['phone'] as $mobile) {
-            $valid = $this->phoneValidator($mobile);
+                $valid = $this->phoneValidator($mobile);
 
-            if ($valid === false){
+                if ($valid === false){
                 $error = 'Un número de teléfono ingresado no es válido';
 
                 return view('pages.Account.beneficiary', compact(
@@ -173,6 +173,15 @@ class BeneficiaryController extends Controller
             try{
                 //Here insert each register of the form
                 for ($i = 0; $i<=1; $i++){
+                    //valid name,last,secondLast
+                    if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null 
+                        || $request['name'][$i] == null || $request['parent'][$i] == null){
+                    $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
+
+                    return view('pages.Account.beneficiary', compact(
+                        'error', 'data', 'request', 'level','is_cnt',
+                        'signature', 'noti', 'total', 'number','owner'));
+                    }
 
                     if (isset($request['name'][$i])){
                         if ($request['name'][$i] !== null){
@@ -222,6 +231,16 @@ class BeneficiaryController extends Controller
                     'error', 'data', 'request', 'level',
                     'signature', 'noti', 'total', 'number',
                     'owner','is_cnt'));
+            }
+
+             //valid name,last,secondLast
+             if($request['second_lastname'][0] == null || $request['lastname'][0] == null 
+                || $request['name'][0] == null || $request['parent'][0] == null){
+                $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
+
+                return view('pages.Account.beneficiary', compact(
+                    'error', 'data', 'request', 'level','is_cnt',
+                    'signature', 'noti', 'total', 'number','owner'));
             }
 
             $valid = false;

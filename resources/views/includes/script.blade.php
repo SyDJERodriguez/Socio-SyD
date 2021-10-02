@@ -548,6 +548,11 @@
                         document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">Por favor proporciona un email válido</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
+                        document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
+
                     }else{
                         window.location = "{{route('customer.employees')}}";
                     }
@@ -586,6 +591,11 @@
                         document.getElementById("form_alert_pass_UDF").innerHTML='Las contraseñas no coinciden, por favor verifica';
                         document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
                         setTimeout(function (){document.getElementById("form_alert_pass_UDF").hidden= true}, 3000);
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_pass_UDF").innerHTML=data['error'];
+                        document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_pass_UDF").hidden = true},3500)
+
                     }else{
                         window.location = "{{route('customer.benefits')}}"
                     }
