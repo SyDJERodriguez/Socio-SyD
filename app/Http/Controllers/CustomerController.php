@@ -1170,6 +1170,35 @@ class CustomerController extends Controller
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return redirect()->back()->with('msg', 'La fecha de nacimiento no es válida');
+        }
+
+        if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
+            //name, last name or second last name is empty
+            return redirect()->back()->with('msg', 'Un campo se encuentra vacío. Por favor ingresa tu nombre completo');
+        }
+
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile']);
+        if ($valid == false){
+            return redirect()->back()->with('msg', 'El número ingresado no es válido');
+        }
+
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return redirect()->back()->with('msg', 'Correo electrónico no válido');
+        }
 
         if ($passwordVerify !== $passwordConfirm){
             return redirect()->back()->with('msg', 'Las contraseñas no coinciden.');

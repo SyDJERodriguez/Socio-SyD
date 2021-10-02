@@ -130,7 +130,9 @@
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
                     <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;"
-                    id="btnSend" value="Enviar">
+                    id="btnSend"
+                    onclick="focusrfc()";
+                    value="Enviar">
                 </div>
             </form>
           </div>
@@ -140,6 +142,16 @@
     </div>
 
     <script>
+        function focusrfc(event){
+            if( $('#rfcMec').val() == null ){
+                document.getElementById("rfcMec").focus();
+            }
+
+            if( $('#rfcMec').val().length <= 10 ){
+                document.getElementById("rfcMec").focus();
+            }
+        };
+
         document.getElementById('rfcMec').addEventListener('focus',function() {
             var rfc = document.getElementById('rfc');
             var fecha = $('#birthdayMec').val().split('-');
