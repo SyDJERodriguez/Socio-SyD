@@ -240,6 +240,11 @@
                         document.getElementById("form_alert_dns_br").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
 
+                    }else if(data['success']==='false' && data['bday']==='false'){
+                        document.getElementById("form_alert_dns_br").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns_br").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_br").hidden = true},3500)
+
                     }else if (data['success']==='false'){
                         $('#modalCadenas').modal('hide');
                         $('#modalError').modal('show');
@@ -318,6 +323,11 @@
                         document.getElementById("form_alert_dns").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
 
+                    }else if(data['success']==='false' && data['bday']==='false'){
+                        document.getElementById("form_alert_dns").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns").hidden = true},3500)
+
                     }else if (data['success']==='false'){
                         $('#modal3').modal('hide');
                         $('#modalError').modal('show');
@@ -391,6 +401,11 @@
                         $('#modalSignUpInCadenas').modal('show');
 
                     }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns_mec").innerHTML=data['error'];
+                        document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
+
+                    }else if(data['success']==='false' && data['bday']==='false'){
                         document.getElementById("form_alert_dns_mec").innerHTML=data['error'];
                         document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
@@ -552,6 +567,10 @@
                         document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
                         document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['bday']==='false'){
+                        document.getElementById("form_alert_dns_AEF").innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
+                        document.getElementById("form_alert_dns_AEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_AEF").hidden = true},3500)
 
                     }else{
                         window.location = "{{route('customer.employees')}}";
@@ -596,11 +615,65 @@
                         document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
                         setTimeout(function(){document.getElementById("form_alert_pass_UDF").hidden = true},3500)
 
+                    }else if(data['success']==='false' && data['bday']==='false'){
+                        document.getElementById("form_alert_pass_UDF").innerHTML=data['error'];
+                        document.getElementById("form_alert_pass_UDF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_pass_UDF").hidden = true},3500)
+
                     }else{
                         window.location = "{{route('customer.benefits')}}"
                     }
                 },
                 error: function(data){
+                    $('#modalErrorServer').modal('show');
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+
+        //AddEmployeeForm's form
+        $("#editEmployeeForm").bind("submit",function(){
+            // We capture send button
+            let btnSend2 = $("#btnSendEditEmployee");
+            $.ajax({
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data:$(this).serialize(),
+                beforeSend: function(){
+                    btnSend2.html("Enviando");
+                    btnSend2.attr("disabled",true);
+                },
+                success: function(data){
+                    //console.log(data);
+                    btnSend2.html("Aceptar");
+                    btnSend2.attr("disabled",false);
+                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                        document.getElementById("form_alert_phone_EEF").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                        document.getElementById("form_alert_phone_EEF").removeAttribute("hidden");
+                        setTimeout(function (){document.getElementById("form_alert_phone_EEF").hidden= true}, 3500);
+                        document.getElementById("form_alert_phone_text_EEF").innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
+                        document.getElementById("form_alert_phone_text_EEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_phone_text_EEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                        document.getElementById("form_alert_dns_EEF").innerHTML='<p style="margin-bottom:0px">Por favor proporciona un email válido</p>';
+                        document.getElementById("form_alert_dns_EEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_EEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['other']==='false'){
+                        document.getElementById("form_alert_dns_EEF").innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
+                        document.getElementById("form_alert_dns_EEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_EEF").hidden = true},3500)
+                    }else if(data['success']==='false' && data['bday']==='false'){
+                        document.getElementById("form_alert_dns_EEF").innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
+                        document.getElementById("form_alert_dns_EEF").removeAttribute("hidden");
+                        setTimeout(function(){document.getElementById("form_alert_dns_EEF").hidden = true},3500)
+
+                    }else{
+                        window.location = "{{route('customer.employees')}}";
+                    }
+                },
+                error: function(data){
+                    console.log(data)
                     $('#modalErrorServer').modal('show');
                 }
             });

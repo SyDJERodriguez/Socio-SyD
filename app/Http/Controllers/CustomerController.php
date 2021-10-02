@@ -287,10 +287,20 @@ class CustomerController extends Controller
         $session = $request;
         $request       = $request->input();
         $client_number = $request['client_number'];
+        
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['bday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
 
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
             //name, last name or second last name is empty
-            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa tu nombre completo"]);
         }
 
         //validate mobile number
@@ -437,6 +447,36 @@ class CustomerController extends Controller
         $request       = $request->input();
         $client_number = $request['client_number'];
 
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['bday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
+            //name, last name or second last name is empty
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa tu nombre completo"]);
+        }
+
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile_number']);
+        if ($valid == false){
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        }
+
         //Verify is the email has not a relation with other client number
         $verify_mobile_number = CustomerPlatform::where('mobile_number', $request['mobile_number'])->first();
         if(!empty($verify_mobile_number)){
@@ -564,6 +604,16 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
         $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
         if($dataClient == null){
             //no exist clientNumber in clientNumbers table
@@ -572,7 +622,7 @@ class CustomerController extends Controller
 
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
             //name, last name or second last name is empty
-            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa tu nombre completo"]);
         }
 
         //validate mobile number
@@ -795,6 +845,10 @@ class CustomerController extends Controller
         $client_number = '00'.$request['client_number'];
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
 
         $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
         if($dataClient == null){
@@ -802,9 +856,14 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
         }
 
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
             //name, last name or second last name is empty
-            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa tu nombre completo"]);
         }
 
         //validate mobile number
@@ -941,11 +1000,21 @@ class CustomerController extends Controller
         //For customer_session table
         $client_number = '00'.$request['client_number'];
 
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
             //name, last name or second last name is empty
-            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacio. Por favor ingresa tu nombre completo"]);
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa tu nombre completo"]);
         }
-        
+
         //validate mobile number
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
