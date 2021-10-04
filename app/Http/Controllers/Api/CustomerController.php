@@ -120,7 +120,8 @@ class CustomerController extends Controller
                          'customers_sessions.mobile AS phone',
                          'customer_platforms.birthday AS birthday',
                          'customers_sessions.created_at AS fecha_registro',
-                         'customers_sessions.client_type AS type_user'
+                         'customers_sessions.client_type AS type_user',
+                         'customers_sessions.active'
             )
             ->get();
 
@@ -210,6 +211,9 @@ class CustomerController extends Controller
                     $client->level= 'Sin beneficios';
                 }
             }
+
+
+            $client->active === 0 ? $client->active = 'false' : $client->active = 'true';
 
             $xalapa_survey = DB::table('surveys')
                 ->where('client_number', '=', $client->client_number)
