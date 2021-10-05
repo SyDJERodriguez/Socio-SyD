@@ -161,7 +161,7 @@
                     </div>
                     <input type="submit" class="btn btn" 
                     style="background-color: #00A1E3;color: white;" 
-                    id="btnSend" onclick="focusrfc()" value="Enviar">
+                    id="btnSend" onclick="focusrfc('rfc')" value="Enviar">
                 </div>
             </form>
           </div>
@@ -170,16 +170,6 @@
       </div>
     </div>
 <script>
-    function focusrfc(event){
-            if( $('#rfc').val() == null ){
-                document.getElementById("rfc").focus();
-            }
-
-            if( $('#rfc').val().length <= 10 ){
-                document.getElementById("rfc").focus();
-            }
-        };
-
     document.getElementById('rfc').addEventListener('focus',function() {
         var rfc = document.getElementById('rfc');
         var fecha = $('#birthday').val().split('-');

@@ -118,7 +118,7 @@
                          </div>
                          <input type="submit" class="btn btn" 
                          style="background-color: #00A1E3;color: white;"
-                         id="btnSend" onclick="focusrfc()" value="Enviar">
+                         id="btnSend" onclick="focusrfc('rfcInv')" value="Enviar">
                      </div>
                  </form>
 
@@ -134,16 +134,6 @@
 </div>
 
 <script>
-    function focusrfc(event){
-            if( $('#rfcInv').val() == null ){
-                document.getElementById("rfcInv").focus();
-            }
-
-            if( $('#rfcInv').val().length <= 10 ){
-                document.getElementById("rfcInv").focus();
-            }
-    };
-
     document.getElementById('rfcInv').addEventListener('focus',function() {
 
         var rfc = document.getElementById('rfcInv');
