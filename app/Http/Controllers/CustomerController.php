@@ -1297,7 +1297,7 @@ class CustomerController extends Controller
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
 
         try {
-            \Mail::send('emails.signUpWelcomeNew',['data'=>$data], function($m) use ($data){
+            \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
             });
@@ -1314,7 +1314,7 @@ class CustomerController extends Controller
     //Send welcome email
      public function welcome_email_is_associate($data) {
         try {
-            \Mail::send('emails.signUpInvitationWelcomeNew',['data'=>$data], function($m) use ($data){
+            \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
             });
