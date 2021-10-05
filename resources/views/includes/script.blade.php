@@ -1492,3 +1492,14 @@
         $("#modalVideoBenefits").modal('show');
     }
 </script>
+<script>
+     function focusrfc(event){
+            if( $('#'+event).val() == null ){
+                document.getElementById(event).focus();
+            }
+
+            if( $('#'+event).val().length <= 10 ){
+                document.getElementById(event).focus();
+            }
+        };
+</script>
