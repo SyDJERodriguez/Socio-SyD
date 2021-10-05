@@ -82,8 +82,11 @@
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
-                            <input type="tel" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG" id="mobileBr"
-                            name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                            <input type="text" class="form-control btnBorder mobileInput col-3" placeholder="LADA"
+                            id="mobileBrLada" name="mobileLada" maxlength="3" pattern="[0-9]{2,3}" required
+                            style="text-align: center">
+                            <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 7-8 DIG"
+                            id="mobileBr" name="mobile" maxlength="8" pattern="[0-9]{7,8}" required>
                             <div class="input-group-append" id="form_alert_phone_br" hidden>
                             </div>
                         </div>
