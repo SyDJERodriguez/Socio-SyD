@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use DB;
 
-class EmailInvitationInsurance extends Command
+class InvitationInsuranceNegocio extends Command
 {
     /**
      * The name and signature of the console command.

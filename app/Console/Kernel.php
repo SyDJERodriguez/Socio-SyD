@@ -24,8 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('email:seguroNegocio')->monthlyOn(20, '10:00'); //20/mes
-        $schedule->command('email:seguroIndividual')->monthlyOn(20, '10:00'); //20/mes
+        $schedule->command('email:seguroNegocio')->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('email:seguroIndividual')->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('email:seguroIndividual30')->monthlyOn(30, '19:00'); //30/mes
+        $schedule->command('email:seguroNegocio30')->monthlyOn(30, '19:00'); //30/mes
+        
+        //testing
+        //$schedule->command('email:seguroNegocio')->everyFiveMinutes(); //20/mes
         //$schedule->command('email:seguroIndividual')->everyMinute(); 
     }
 
