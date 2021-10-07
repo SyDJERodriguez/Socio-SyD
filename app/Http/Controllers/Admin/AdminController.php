@@ -97,18 +97,34 @@ class AdminController extends Controller
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
 
-        $customerData = DB::table('customers')
-            ->where('client_number', '=', $client_number)
-            ->first();
+        $customerData = DB::table('customers_sessions')
+            ->where('branch_number', '=', $client_number)
+            ->get();
 
-        if (empty($customerData)){
+        if ( $customerData->isEmpty() ){
             $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
             return view('Admin.customer', compact('error'));
         }
 
-        $email = $customerData->email;
+        if( count($customerData) > 1 ){
+            $dependents = DB::table('customer_platforms')
+                            ->where('client_number','=', $client_number)
+                            ->get();
+            return view('Admin.dependents', compact('dependents'));
+        }
+
+        $email = $customerData[0]->email;
 
         $account = DB::table('customers_sessions')
+            ->where('email', '=', $email)
+            ->first();
+
+        if (empty($account)){
+            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+            return view('Admin.customer', compact('error'));
+        }
+
+        $customerData = DB::table('customer_platforms')
             ->where('email', '=', $email)
             ->first();
 
@@ -147,7 +163,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -155,14 +171,17 @@ class AdminController extends Controller
             'wanted_client' => $client_number,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
-        
-        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
+
+        //TODO: If tiene has($customerData) mas de  un registro, entonces mostrar su nombre y correo
+        return view('Admin.customer', 
+                    compact('client_number', 'account', 'transactions', 'totalAmount', 
+                            'customerData', 'level', 'associates'));
     }
 
     // Function for search by email
@@ -181,8 +200,8 @@ class AdminController extends Controller
 
         $client_number = $account->client_number;
 
-        $customerData = DB::table('customers')
-            ->where('client_number', '=', $client_number)
+        $customerData = DB::table('customer_platforms')
+            ->where('email', '=', $email)
             ->first();
 
         $transactions = $this->getTransactions($client_number);
@@ -214,7 +233,7 @@ class AdminController extends Controller
         }
         $now = Carbon::now();
         $user = Auth::user();
-        $nowDate = $now->toDateString(); 
+        $nowDate = $now->toDateString();
         $nowTime = $now->toTimeString();
         $insert_log = DB::table('log_admin_searches')->insert([
             'user' => $user->email,
@@ -222,7 +241,7 @@ class AdminController extends Controller
             'wanted_client' => $email,
             'date' => $nowDate,
             'time' => $nowTime
-    
+
         ]);
 
         $associates = DB::table('associates')
@@ -232,15 +251,80 @@ class AdminController extends Controller
         return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
     }
 
+    //function search by dependent
+    public function search_dependent($id){
+        $customerData = DB::table('customer_platforms')
+            ->where('id', '=', $id)
+            ->first();
+        $client_number = $customerData->client_number;
+        $email = $customerData->email;
+
+        $account = DB::table('customers_sessions')
+        ->where('email', '=', $email)
+        ->first();
+
+        $transactions = $this->getTransactions($client_number);
+        $totalAmount = $this->totalAmount($client_number);
+
+        $level = 0;
+        if ($account->client_type === "1" || $account->client_type === "3"){
+            if ($totalAmount<2500) {
+                $level = 0;
+            }
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $level = 1;
+            }
+            if ($totalAmount>4500 && $totalAmount<=7000) {
+                $level = 2;
+            }
+            if ($totalAmount>7000) {
+                $level = 3;
+            }
+        }
+
+        if ($account->client_type === "2"){
+            if ($totalAmount<200) {
+                $level = 0;
+            }
+            if ($totalAmount>200 && $totalAmount<=500) {
+                $level = 1;
+            }
+            if ($totalAmount>500 && $totalAmount<=1300) {
+                $level = 2;
+            }
+            if ($totalAmount>1300) {
+                $level = 3;
+            }
+        }
+        $now = Carbon::now();
+        $user = Auth::user();
+        $nowDate = $now->toDateString();
+        $nowTime = $now->toTimeString();
+        $insert_log = DB::table('log_admin_searches')->insert([
+            'user' => $user->email,
+            'name' => $user->name,
+            'wanted_client' => $client_number,
+            'date' => $nowDate,
+            'time' => $nowTime
+
+        ]);
+
+        $associates = DB::table('associates')
+            ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
+            ->get();
+
+        return view('Admin.customer', 
+        compact('client_number', 'account', 'transactions', 'totalAmount', 
+                'customerData', 'level', 'associates'));
+    }
+
     //calculated totalAmount
     public function totalAmount($client_number){
         $now = Carbon::now();
         $current_month = $now->month;
+        $current_year = $now->year;
 
-        $data_customer = DB::table('transactions')
-            ->where('client_number', $client_number)
-            ->whereMonth('transaction_date','=',$current_month)
-            ->get();
+        $data_customer = $this->getTransactions($client_number);
         $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $amount_customer = floatval($d->amount);
@@ -253,13 +337,28 @@ class AdminController extends Controller
     //Get transactions
     public function getTransactions($client_number){
         $now = Carbon::now();
-        $customer_trans = DB::table('transactions')
-            ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $trans1 = DB::table('transactions')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $client_number)
-            ->whereMonth('transaction_date','=',$now)
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'not like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $current_month)
             ->get();
+
+        $trans2 = DB::table('transactions')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $client_number)
+            ->where('transactions.branch_number','=', $client_number)
+            ->where('amount', 'like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $customer_trans = $trans1->merge($trans2);
         return $customer_trans;
     }
 }

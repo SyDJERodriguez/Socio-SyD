@@ -14,9 +14,11 @@
                         POR HACER LAS COMPRAS DE SIEMPRE
                         </span>
                         <br>
-                        <a href="#" class="btn btn-lg" data-toggle="modal" data-target="#modalVideo" id="btnVideo"
-                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px">
-                        VER VIDEO</a><br>
+                        <a href="#" class="btn btn-lg playHomeVideo"
+                        id="btnVideo"
+                        onclick="playHomeVideo('socioSYD_video',0)"
+                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
+                        >VER VIDEO</a><br>
                         <a href="https://syd-files.s3.amazonaws.com/Folleto.pdf" class="btn btn-lg" id="btnVideo"
                            style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank">
                             DESCARGAR FOLLETO INFORMATIVO</a>
@@ -94,7 +96,7 @@
         <div class="p-5">
             <div class="row">
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
-                <div class="col-lg-6 py-3">
+                <div class="col-lg-6 py-3 title">
                     <h2 class="primary-color text-center">
                         <strong>CÓMO FUNCIONA SOCIO SyD®</strong>
                     </h2>
@@ -128,7 +130,7 @@
                         <br><br>
                     <span style="font-size:15px;">
                         Mínimo <b>$200</b> pesos al mes <br> en cualquier sucursal <br>
-                        DAR Refaccionarias® <br> o canales autorizados
+                        DAR Refaccionarias®, <br> Centro de Atención Telefónico <br> o canales autorizados
                     </span>
                     </p>
                 </div>
@@ -174,20 +176,20 @@
         <div class="container-fluid pb-5">
             <div class="row background m-0">
 
-                <div class="col-lg-6 mx-auto text-center py-1">
+                <div class="col-lg-6 mx-auto text-center py-1 " id="divCuenta">
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>DUEÑO DE NEGOCIO</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
-                            <strong>Registrate y recibe beneficios para ti y hasta ocho colaboradores, como:</strong>
+                            <strong>Regístrate y recibe beneficios para ti y hasta ocho colaboradores, como:</strong>
                         </h6>
                         <img class="my-3" src="{{asset('img/car.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
                             <p class="my-2 text-white">
                                 <strong>
                                     • Seguro contra accidentes<br>
-                                    • Asistencia las 24 horas <br>
+                                    • Asistencia médica las 24 horas <br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                             </p>
                         </div>
@@ -202,6 +204,14 @@
                                 REGISTRARME
                             </button>
                         </div>
+
+                        <div> {{-- video negocio --}}
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
+                                    onclick="playHomeVideo('cuentaNegocios',1)">
+                                VER VIDEO
+                            </button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -209,7 +219,7 @@
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>MECÁNICO INDEPENDIENTE</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
-                            <strong>Registrate y recibe beneficios únicamente para ti, como:</strong>
+                            <strong>Regístrate y recibe beneficios únicamente para ti, como:</strong>
                         </h6>
                         <img class="my-3" src="{{asset('img/men_2.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
@@ -218,7 +228,7 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por COVID
+                                    • Video consulta por Covid-19
                                 </strong>
                                 <br>
                             </p>
@@ -226,13 +236,20 @@
 
                         <div>
                             <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla2.svg')}}" alt="tablaIndivuales"
-                            style="width: 50%; height: 10%; margin-bottom: 3px !important;">
+                            style="width: 47%; height: 10%; margin-bottom: 3px !important;">
                         </div>
 
 
-                        <div class="my-4 mb-5">
+                        <div class="my-3 mb-5">
                             <button class="btn btn blue-dark text-white btnBorder" data-toggle="modal" data-target="#modal5">
                                 REGISTRARME
+                            </button>
+                        </div>
+
+                        <div> {{-- video individual --}}
+                            <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
+                            onclick="playHomeVideo('cuentaIndividual',1)">
+                                VER VIDEO
                             </button>
                         </div>
                     </div>
@@ -263,8 +280,8 @@
                         <img src="{{asset('img/servicios.png')}}" class="pb-4" alt="">
                         <h5 class="text-white"><strong>SERVICIOS<br>
                                 DE ASISTENCIA</strong></h5>
-                        <p>Asistencia Médica 24 horas/<br>
-                            Servicio de Grúa/Ambulancia<br>Terrestre/Servicio Funerario<br>
+                        <p>Asistencia Médica 24 horas /<br>
+                            Servicio de Grúa / Ambulancia<br>Terrestre / Servicio Funerario<br>
                             por hasta $10,000</p>
                     </div>
                 </div>
@@ -367,19 +384,20 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-2 mapIcon">
+                                <div class="col-2 mapIcon" 
+                                style="padding-right: 16px;">
                                     <svg aria-hidden="true"  width="30" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#00A1E3" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg>
                                 </div>
                                 <div class="col-9" >
                                     <div class="our-branches__content-address-location-result-item-body item_direccion sucursal text-wrap" style="padding-left: 15px">
                                         <div class="text-wrap">
-                                            Av. de los Maestros #804, Fraccionamiento Jardines de Sta.
+                                            Av. de los Maestros # 804, Fraccionamiento Jardines de Sta.
                                             Elena C.P. 20236, Aguascalientes, Aguascalientes.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-2 mapIcon">
+                                <div class="col-2 mapIcon" style="padding-right: 16px;">
                                     <svg aria-hidden="true"  width="30" focusable="false" data-prefix="far" data-icon="clock" class="svg-inline--fa fa-clock fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#00A1E3" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>
                                 </div>
                                 <div class="col-9">
@@ -401,9 +419,9 @@
                                 </div>
                                 <div class="col-9"
                                 style="display: flex;
-                                align-items: center;">
+                                align-items: center; padding-top: 6px">
                                     <div class="our-branches__content-address-location-result-item-body item_tel sucursal text-wrap" style="padding-left: 15px;">
-                                        <p> Tel: 44-9140-5442 <br> Tel: 44-9978-1196 </p>
+                                        <p> Tel: <a href="tel:4491405442">44-9140-5442</a> <br> Tel: <a href="tel:4499781196">44-9978-1196</a> </p>
                                     </div>
                                 </div>
 
@@ -412,7 +430,8 @@
                                 </div>
                                 <div class="col-9 py-1">
                                     <div class="our-branches__content-address-location-result-item-body item_whats sucursal text-wrap" style="padding-left: 15px; padding-top: 3%;">
-                                        <p> 55-1016-8974</p>
+                                        <p> <a target="_blank" href="https://api.whatsapp.com/send?phone=5215510168974&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®">
+                                            55-1016-8974</a> </p>
                                         <br>
                                     </div>
                                 </div>

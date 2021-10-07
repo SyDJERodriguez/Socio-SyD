@@ -9,13 +9,24 @@
         </div>
         <div class="col-12" >
             <div style="padding-left: 16px !important;" >
-                
-                @include('includes.accountData')
-
-                <a href="#" class="btn btn btn-sm" style="background-color: #00A1E3;color: #FFF;" data-toggle="modal"
-                    data-target="#survey">
-                    <span style="font-size: 12px"> Nos interesa tu opinión</span>
-                </a>
+                <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
+                    No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}@if(Auth::user()->client_type == '3')-{{$number->number}} @endif</span><br>
+                    @if ((int)Auth::user()->client_type == 1)
+                        Cuenta: Negocios
+                    @elseif((int)Auth::user()->client_type == 2)
+                        Cuenta: Individual
+                    @elseif((int)Auth::user()->client_type == 3)
+                        Cuenta: Dependiente
+                    @endif
+                </h6>
+                <h5>
+                    
+                </h5>
+               
+                {{-- @if($level > 1)
+                    Level 1
+                @endif --}}
+                @include('includes.opinionButton')
 
             </div>
 
@@ -30,9 +41,11 @@
               </div>
         </div>
 
-        @if(count($beneficiaries) > 0)
+        {{-- SPECIAL WEEK --}}
+        @if(count($beneficiaries) > 0 && $level >= 1 || (count($beneficiaries) && (Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021"))))
             <div class="col-8 py-2 divImgDerecha">
                  <form>
+                     @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                        
@@ -54,56 +67,109 @@
                                 COBERTURA DEL SEGURO
                             </strong></h5>
                         </div>
-                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
-                    <h6 style="color: #143153;"><img class="py-2"   
-                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
-                         </strong></h6>
+
+                        {{-- Benefits icons and videos --}}
+                        @include('includes.Account.benefitsIcons')
+                        
+                        <div class="col-lg-12 py-3 text-center">
+                        <a href="#" data-toggle="modal" data-target="#modal14" 
+                                        target="_blank" class="btn btn py-2  text-white "
+                                        style="background-color: #143153;">
+                                        LISTADO DE DOCUMENTOS</a>  
                         </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
-                    <h6 style="color: #143153;"> <img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
-                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
-                            </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
-                        </strong></h6>
-                </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
+
+                        <div class="col-lg-12" style="color: #143153">
+                            <h5 class="text-center" style="padding-left: 15px">
+                                DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
+                            </h5>
+                        </div>
+                    
+                        <div class="col-lg-12 text-left">
+                            <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                                *Consulta términos y condiciones
+                            </p>
+                        </div>
+                    </div>
+
+                    @if ($level == 1)
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);
+                        padding: 30px;border-radius: 8px; margin-top:10px">
+                        <div class="col-lg-12" style="color: #143153;">
+                                <h5 class="text-center">
+                                    <strong> 
+                                    Incrementa tus compras para tener derecho a los beneficios de asistencias
+                                    </strong>
+                                </h5>
+                        </div>
+                    </div> 
+                    @endif
+
+                    {{-- SPECIAL WEEK --}}
+                    @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
+                <div class="form-row text-center box_documents"
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                    <div class="col-lg-12" style="color: #143153;">
+                        <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
+                        </strong></h5>
+                    </div>
+
+                    <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA</strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE POR EMERGENCIA</strong></h6>
+                    </div>
+                    @if($level === 3)
+                <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                        ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
                     </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center">
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                        VIDEO CONSULTA <br>
+                        POR COVID 19 </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                        POR ACCIDENTE
                         </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center">
+                <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
+                            <br><strong class="py-2"> ENVÍO DE <br> GRÚA</strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center">
-                <a href="#" data-toggle="modal" data-target="#modal14" 
-                                target="_blank" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                LISTADO DE DOCUMENTOS</a>  
+                @elseif($level === 2)
+                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                        ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                    </strong></h6>
                 </div>
-                <div class="col-lg-4 py-3 text-center">
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                        VIDEO CONSULTA <br>
+                        POR COVID 19 </strong></h6>
                 </div>
+                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                    <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                        POR ACCIDENTE
+                        </strong></h6>
+                </div>
+                @endif
                 <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
                     *Consulta términos y condiciones
                 </p>
-                    </div>
+                </div>
+                @endif
                 
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
             <form>
+                @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
                          
@@ -126,87 +192,105 @@
                             <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
                                 POR COBERTURA DEL SEGURO
                             </strong></h5>
-                            <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
-                    <h6 style="color: #143153;"><img class="py-2"   
-                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
-                         </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
-                    <h6 style="color: #143153;"> <img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
-                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
-                            </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
-                        </strong></h6>
-                </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
-                    </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
-                        </strong></h6>
-                </div>
+                            
                         </div>
-                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal9" >
-                    <h6 style="color: #143153;"><img class="py-2"   
-                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
-                         </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal10">
-                    <h6 style="color: #143153;"> <img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
-                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
-                            </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal11">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
-                        </strong></h6>
-                </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal12">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
-                    </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal13">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
-                        </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                <a href="#" data-toggle="modal" data-target="#modal14" 
-                                target="_blank" class="btn btn py-2  text-white "
-                                style="background-color: #143153;">
-                                LISTADO DE DOCUMENTOS</a>  
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                </div>
-                 
-                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
-                    *Consulta términos y condiciones
-                </p>
+
+                        {{-- Benefits icons and videos --}}
+                        @include('includes.Account.benefitsIcons')
+
+                        <div class="col-lg-4 py-3 text-center">
+                        <a href="#" data-toggle="modal" data-target="#modal14" 
+                                        target="_blank" class="btn btn py-2  text-white "
+                                        style="background-color: #143153;">
+                                        LISTADO DE DOCUMENTOS</a>  
+                        </div>
+                        <div class="col-lg-12" style="color: #143153">
+                            <h5 class="text-center" style="padding-left: 15px">
+                                DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
+                            </h5>
+                        </div>
+                    
+                        <div class="col-lg-12 text-left">
+                            <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                                *Consulta términos y condiciones
+                            </p>
+                        </div>
                     </div>
-                
+
+                     @if ($level == 1)
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);
+                        padding: 30px;border-radius: 8px; margin-top:10px">
+                        <div class="col-lg-12" style="color: #143153;">
+                                <h5 class="text-center">
+                                    <strong> 
+                                    Incrementa tus compras para tener derecho a los beneficios de asistencias
+                                    </strong>
+                                </h5>
+                        </div>
+                    </div> 
+                    @endif
+
+                    {{-- Special week for mobile --}}
+                    @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
+                    <div class="form-row text-center box_documents"
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                        <div class="col-lg-12" style="color: #143153;">
+                            <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
+                            </strong></h5>
+                        </div>
+    
+                        <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                            <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA</strong></h6>
+                        </div>
+                        <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                            <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon2.png')}}"><br><strong class="py-2"> ORIENTACIÓN EMOCIONAL <br> TELEFÓNICA </strong></h6>
+                        </div>
+                        <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                            <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon3.png')}}"> <br><strong class="py-2"> AMBULANCIA TERRESTRE POR EMERGENCIA</strong></h6>
+                        </div>
+                        @if($level === 3)
+                    <div class="col-lg-3 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                            ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                        </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                            VIDEO CONSULTA <br>
+                            POR COVID 19 </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                            POR ACCIDENTE
+                            </strong></h6>
+                    </div>
+                    <div class="col-lg-3 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                            <h6 style="padding-top: 13px;color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}">
+                                <br><strong class="py-2"> ENVÍO DE <br> GRÚA</strong></h6>
+                    </div>
+                    @elseif($level === 2)
+                    <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon4.png')}}"><br> <strong class="py-2">
+                            ORIENTACIÓN NUTRICIONAL <br> TELEFÓNICA
+                        </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="color: #143153;"> <img class="py-2" src="{{asset('img/icon5.png')}}"><br><strong class="py-2">
+                            VIDEO CONSULTA <br>
+                            POR COVID 19 </strong></h6>
+                    </div>
+                    <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
+                        <h6 style="padding-top: 15px;color: #143153;"><img class="py-2" src="{{asset('img/icon6.png')}}"> <br><strong class="py-2"> ASISTENCIA FUNERARIA<br>
+                            POR ACCIDENTE
+                            </strong></h6>
+                    </div>
+                    @endif
+                    <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
+                        *Consulta términos y condiciones
+                    </p>
+                    </div>
+                    @endif
             </div>
         @else
             <div class="col-8 py-2 divImgDerecha" >
@@ -215,8 +299,9 @@
                     <div class="modal-body " style="background-color: #143153; height: 30%">
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
                         </div>
@@ -229,8 +314,9 @@
                     <div class="modal-body " style="background-color: #143153; height: 30%">
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <p><i class="fas fa-times" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">¡Tus beneficiarios aún no han sido registrados!</h5>
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
                         </div>
@@ -261,9 +347,9 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white" style="text-transform: uppercase">{{$data->name.' '.$data->last_nam.' '.$data->second_last_name}}</h5>
                         <p class="text-white">Recuerda imprimir y guardar tu certificado para cuando lo requieras</p>
-                        <a href="{{route('customer.pdf')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                        <a href="{{route('customer.pdf')}}" target="_blank" onclick="$('.modal').modal('hide');" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                             CERRAR
                         </a>
                     </div>
@@ -272,5 +358,8 @@
         </div>
     </div>
 </div>
+
 @include('includes.modalsMyDocuments')
+@include('includes.termsAndConditions')
+
 @stop

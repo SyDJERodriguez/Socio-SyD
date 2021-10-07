@@ -7,18 +7,255 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\Collector;
 use App\CustomersSession;
+use App\CustomerPlatform;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use App\Exports\SessionExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Helpers\Twilio\TwilioService;
 
 class CustomerController extends Controller
 {
+    /** Functionality for send SMS with certificate **/
+    public function send_sms_certificate(Request $request) {
+        $request = $request->input();
+
+        $result = array('status'=>0, 'message'=>'Procesando registros...', 'certificados_enviados'=>0);
+
+        $from    = Carbon::createFromFormat('Y-m-d',$request['from']);
+        $to      = Carbon::createFromFormat('Y-m-d',$request['to']);
+
+        $customers = DB::table('customers_sessions')
+            ->whereBetween('created_at', [$from,$to])
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                'customers_sessions.branch_number AS branch_number',
+                'customers_sessions.client_type AS client_type',
+                'customers_sessions.mobile AS mobile',
+                'customers_sessions.email AS email',
+                'customers_sessions.created_at AS created_at',
+                'customers_sessions.active AS active'
+            )
+            ->get();
+
+        //return $customers;
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        foreach ($customers as $client){
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
+            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES como #SocioSyD. Descarga, llena y firma tu certificado aquí '.$url;
+
+            $client->url = $url;
+           /* if($client->client_type === '2'){
+                if ($totalAmount>200){*/
+                   // try {
+                        TwilioService::send_sms($messsage,'+52'.$client->mobile);
+                        $result['certificados_enviados']++;
+
+                        \Mail::send("emails.emailPoliza", ['client'=>$client], function($m) use ($client){
+                            $m->from('noreply@syd.com.mx','Socio SYD');
+                            $m->to($client->email,'Socio')->subject('¡Felicidades! Ya tienes SEGURO DE ACCIDENTES como #SocioSyD. Descarga, llena y firma tu certificado aquí');
+                        });
+
+            $result['certificados_enviados']++;
+                    //    return response()->json(['success'=>'true','status'=>200]);
+                    //} catch (\Throwable $th) {
+                        //throw $th;
+                     //   return response()->json(['success'=>'false','status' =>401]);
+                    //}
+
+           /*     }
+            }else if($client->client_type === '1' || $client->client_type === '3' || $client->client_type === '4'){
+                if ($totalAmount>2500){
+                    TwilioService::send_sms($messsage,'+52'.$client->mobile);
+                    $result['certificados_enviados']++;
+                }
+            }*/
+        }
+
+        $result['status'] = 200;
+        $result['message'] = 'Registros procesados correctamente';
+        $result['registros'] = $customers;
+        return response()->json($result);
+    }
+
+    /** Webservices for get registered clients in Pegaso platform **/
+    public function get_registered_clients() {
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.client_number AS client_number',
+                         'customers_sessions.branch_number AS branch_number',
+                         'customer_platforms.name AS name',
+                         'customer_platforms.last_name AS last_name',
+                         'customer_platforms.second_last_name AS second_last_name',
+                         'customer_platforms.email AS email',
+                         'customers_sessions.mobile AS phone',
+                         'customer_platforms.birthday AS birthday',
+                         'customers_sessions.created_at AS fecha_registro',
+                         'customers_sessions.client_type AS type_user',
+                         'customers_sessions.active'
+            )
+            ->get();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        foreach ($registered_clients as $client){
+            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
+
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+
+            if($client->type_user === '3'){
+                $associate_data = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                $client->client_number = $client->client_number.'-'.$associate_data->number;
+            }
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount == 0) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
+
+
+            $client->active === 0 ? $client->active = 'false' : $client->active = 'true';
+
+            $xalapa_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'xalapa')
+                ->first();
+
+            $quality_survey = DB::table('surveys')
+                ->where('client_number', '=', $client->client_number)
+                ->where('survey', '=', 'calidad')
+                ->first();
+
+            $xalapa_survey ? $client->xalapa_survey = self::get_surveys($xalapa_survey) : $client->xalapa_survey = 'No tiene encuesta registrada';
+            $quality_survey ? $client->quality_survey = self::get_surveys($quality_survey) : $client->quality_survey = 'No tiene encuesta registrada';
+        }
+
+        return response()->json($registered_clients);
+    }
+
+    /** Webservices for save survey of typeform **/
+    public function save_survey_typeform (Request $request) {
+        $request = $request->input();
+
+        $questions = [];
+        foreach ($request['questions'] as $question){
+            $question = array(
+                'label' => $question['label'],
+                'id'    => $question['id']
+            );
+
+            array_push($questions,$question);
+        }
+
+        $client = array(
+            'client_number' => $request['client_number'],
+            'survey' => $request['survey'],
+            'answers' => serialize($request['answer']),
+            'questions' => serialize($questions),
+        );
+        DB::table('surveys')->insert($client);
+        return response()->json($request);
+    }
+
     public function store(){
 
     }
@@ -28,6 +265,7 @@ class CustomerController extends Controller
         return response()->json($customers);
     }
 
+    /** Webservices for save client numbers of SAP **/
     public function insert_client_number(Request $request){
         \Log::channel('api')->info('===========================START PROCESS==================================================================================');
         $agent = new Agent();
@@ -70,6 +308,7 @@ class CustomerController extends Controller
 
     }
 
+    /** Webservices for sent clients numbers updated **/
     public function get_clients_updated(Request $request){
         \Log::channel('api')->info('=========================== START PROCESS TO GET REGISTERS ==================================');
         $agent = new Agent();
@@ -123,6 +362,7 @@ class CustomerController extends Controller
 
     }
 
+    /** Webservices for save survey of typeform **/
     public function get_client(Request $request){
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
@@ -276,24 +516,26 @@ class CustomerController extends Controller
             ->selectRaw('transactions.client_number as client_number')
             ->selectRaw('SUM(transactions.amount) as total')
             ->whereMonth('transaction_date','=',$current_month)
-            ->whereNull('transactions.branch_number')
+            //->whereNull('transactions.branch_number')
             ->groupBy('transactions.client_number')
             ->get();
 
+        //return response()->json($transactions);
+
         $data = [];
         foreach ($transactions as $transaction){
-            $customer_type = CustomersSession::where('client_number', '=', $transaction->client_number)
+           $customer_type = CustomersSession::where('client_number', $transaction->client_number)
                 ->select('client_type', 'email')
                 ->get();
             //dd($customer_type);
             foreach ($customer_type as $customer){
-                $customer_info = Customer::where('email', '=', $customer->email)
+                $customer_info = CustomerPlatform::where('email', $customer->email)
                     ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
                     ->first();
 
 
                 $level = '';
-                if ($customer->client_type === "1" || $customer->client_type === "3"){
+                if ($customer->client_type != "2"){
                     if ($transaction->total>4500 && $transaction->total<=7000) {
                         $level = 'plata';
                     }
@@ -307,12 +549,18 @@ class CustomerController extends Controller
                         $level = 'plata';
                     }
                     if ($transaction->total>1300) {
-                        $level = 'plata';
+                        $level = 'oro';
                     }
                 }
 
-                $customer_data = $transaction->client_number.'-'.$customer_info->id.'|'.$customer_info->name.'|'.$customer_info->last_name.'|'.
-                    $customer_info->second_last_name.'|'.$customer->email.'|'.$customer_info->birthday.'|'.$customer_info->mobile_number.'|'.
+                $customer_data = $transaction->client_number.'-'.
+                    $customer_info->id.'|'.
+                    $customer_info->name.'|'.
+                    $customer_info->last_name.'|'.
+                    $customer_info->second_last_name.'|'.
+                    $customer->email.'|'.
+                    $customer_info->birthday.'|'.
+                    $customer_info->mobile_number.'|'.
                     $customer_info->gender.'|'.$level;
 
 
@@ -330,7 +578,8 @@ class CustomerController extends Controller
 
         $current_date = Carbon::now()->format('Y-m-d');
 
-        $fileName = 'Telasist-'.$current_date.'.txt';
+        $fileName = 'altas_syd_'.$current_date.'.txt';
+        $fileName = str_replace('','-',$fileName);
         $headers = [
             'Content-type' => 'text/plain',
             'Cache-Control' => 'no-store, no-cache',
@@ -342,9 +591,63 @@ class CustomerController extends Controller
     }
 
     //Report for Chubb
-    public function report_chubb(Request $request){
-        $response = "For chubb";
-        return response()->json($response);
+    public function chubb_report(){
+        //$response = "For chubb";
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $data = DB::table('customer_platforms')
+                ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
+                ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+                //->join('associates', 'associates.email', '=', 'customer_platforms.email')
+                ->whereMonth('transaction_date','=',$current_month)
+                ->selectRaw('customer_platforms.client_number as client_number')
+                ->selectRaw('customer_platforms.name as name')
+                ->selectRaw('customer_platforms.last_name as lastname')
+                ->selectRaw('customer_platforms.second_last_name as secondLastName')
+                ->selectRaw('customer_platforms.rfc as rfc')
+                ->selectRaw('customer_platforms.birthday as bday')
+                ->selectRaw('customer_platforms.gender as gender')
+                ->selectRaw('customers_sessions.client_type as level')
+                ->selectRaw('SUM(transactions.amount) as total')
+                ->selectRaw('customers_sessions.is_associate as associateId')
+                ->selectRaw('customers_sessions.email as email')
+                ->groupBy('customer_platforms.email')
+                ->get();
+
+        foreach ($data as $key => $value) {
+
+            if( $this->seguroAsistencia( $value->level, $value->total ) == false ){
+                //true = ok; false borrar registro
+                $data->forget($key);
+
+            }else{
+                $associateId = DB::table('associates')
+                            ->select('number')
+                            ->where('email','=',$value->email)
+                            ->first();
+
+                if( $associateId != null){
+                    $value->client_number = $value->client_number . '-' . ($associateId->number);
+                }
+            }
+
+            unset($value->level); //remove object property
+            unset($value->total);
+            unset($value->associateId);
+            unset($value->email);
+        }
+
+        return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
+    }
+
+    public function seguroAsistencia($level,$total){
+        if( (int)$level != 2){
+           return ($total > 2500);
+        }
+
+        if( (int)$level == 2 ){
+            return ($total > 200);
+        }
     }
 
     public function ws_verifacte_mobile_number(Request $request){
@@ -376,5 +679,18 @@ class CustomerController extends Controller
             'created_at.required'  => 'La fecha de creación SAP es obligatoria',
             'pay_cond.required'         => 'El plazo de pago es obligatorio',
         ]);
+    }
+
+    private function get_surveys($query_response){
+        $questions = unserialize($query_response->questions);
+        $answers = unserialize($query_response->answers);
+
+        $final_answers = [];
+        foreach ($questions as $question){
+            if(isset($answers[$question['id']])){
+                array_push($final_answers, array($question['label']=>$answers[$question['id']]['value']));
+            }
+        }
+        return $final_answers;
     }
 }
