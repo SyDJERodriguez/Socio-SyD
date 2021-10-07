@@ -13,7 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\InvitationInsuranceNegocio::class
+        Commands\InvitationInsuranceNegocio::class,
+        Commands\InvitationInsuranceIndividual::class,
+        Commands\InvitationInsurance30Individual::class,
+        Commands\InvitationInsurance30Negocio::class,
+
     ];
 
     /**
@@ -24,14 +28,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('email:seguroNegocio')       ->monthlyOn(15, '10:00')->runInBackground(); //15/mes
-        $schedule->command('email:seguroIndividual')    ->monthlyOn(15, '10:00')->runInBackground(); //15/mes
-        $schedule->command('email:seguroIndividual30')  ->monthlyOn(30, '19:00')->runInBackground(); //30/mes
-        $schedule->command('email:seguroNegocio30')     ->monthlyOn(30, '19:00')->runInBackground(); //30/mes
+        $schedule->command('schedule:seguroNegocio')       ->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:seguroIndividual')    ->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:seguroIndividual30')  ->monthlyOn(30, '10:00'); //30/mes
+        $schedule->command('schedule:seguroNegocio30')     ->monthlyOn(30, '10:00'); //30/mes
         
         //testing
-        //$schedule->command('email:seguroNegocio')->everyFiveMinutes(); //20/mes
-        //$schedule->command('email:seguroIndividual')->everyMinute(); 
+        //$schedule->command('schedule:seguroIndividual')->everyMinute();
+        //$schedule->command('schedule:seguroNegocio')->everyMinute();
     }
 
     /**

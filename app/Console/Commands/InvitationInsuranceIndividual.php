@@ -15,7 +15,7 @@ class InvitationInsuranceIndividual extends Command
      *
      * @var string
      */
-    protected $signature = 'email:seguroIndividual';
+    protected $signature = 'schedule:seguroIndividual';
 
     /**
      * The console command description.
