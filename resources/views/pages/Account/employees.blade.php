@@ -10,10 +10,17 @@
            
             @include('includes.accountData')
 
-            <a href="#" class="btn btn" data-toggle="modal" data-target="#survey" style="background-color: #00A1E3;color: #FFF;">Nos interesa tu opinión</a>
+            @include('includes.opinionButton')
          </div>
         <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
-            <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @if (Auth::user()->client_type === '1' || Auth::user()->client_type === 1)
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro.
+                    Recuerda que tú eres el primer beneficiario de tu seguro. Puedes modificar eso en esta sección
+                </h5>
+            @else
+                <h5>Agrega a tus beneficiarios para darle los beneficios del seguro</h5>
+            @endif
+            
         </div>
     </div>
     <hr>
@@ -76,7 +83,15 @@
                         $('#dnsNoValid').modal('show');
                     });
                 </script>
-            @endif
+                @endif
+
+                @if(session()->has('notDeletableAccount'))
+                <script>
+                    $(function() {
+                        $('#notDeletableAccount').modal('show');
+                    });
+                </script>
+                @endif
 
                 @if(session()->has('success'))
                     <script>
@@ -123,7 +138,7 @@
                                         style="border: 0px"
                                         href="#"
                                         role="button" id="{{$as->id}}" 
-                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}')">
+                                        onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}','{{$as->email}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -329,6 +344,27 @@
     </div>
 </div>
 
+<!-- Dependent to other Owner Account Modal -->
+<div class="modal fade" id="notDeletableAccount" tabindex="-1" role="dialog" aria-labelledby="dependentOwner" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
+                        <h5 class="text-white">¡EL DEPENDIENTE ES EL DUEÑO DE LA CUENTA!</h5>
+                        <p class="text-white">El correo y/o número de teléfono es el mismo que el propietario de la cuenta</p>
+                        <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Limit Account Modal -->
 <div class="modal fade" id="limitAccount" tabindex="-1" role="dialog" aria-labelledby="limitAccount" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -339,7 +375,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white">{{mb_strtoupper($data->name).' '.mb_strtoupper($data->last_name).' '.mb_strtoupper($data->second_last_name)}}</h5>
                         <p class="text-white">Has llegado al límite de usuarios dependientes</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
@@ -359,7 +395,7 @@
             <div class="modal-body " style="background-color: #143153;">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h5 class="text-white">{{strtoupper($data->name).' '.strtoupper($data->last_name).' '.strtoupper($data->second_last_name)}}</h5>
+                        <h5 class="text-white">{{mb_strtoupper($data->name).' '.mb_strtoupper($data->last_name).' '.mb_strtoupper($data->second_last_name)}}</h5>
                         <div class="row">
                             <div class="col-8 py-2 text-center">
                                 <p class="text-white">El siguiente dependiente perderá los beneficios:</p>
@@ -386,12 +422,13 @@
 
 <script>
 
-    function deleteEmployee(id,name){
+    function deleteEmployee(id,name,email){
         //console.log(id+" "+name)
         //$('.confirmDeleteButton').attr('id', id);
         document.getElementById('nameDependient').innerText=name;
-        let href_button = "{{ url('/customer/employees/{id}/delete') }}";
-        href_button = href_button.replace('{id}', id)
+        let href_button = "{{ url('/customer/employees/{id}/{email}/delete') }}";
+        href_button = href_button.replace('{id}', id);
+        href_button = href_button.replace('{email}', email);
         $('.confirmDeleteButton').attr('href', href_button)
         $('#deleteDependent').modal('show');
     }

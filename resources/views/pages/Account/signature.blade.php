@@ -19,15 +19,15 @@
                         <img src="{{asset('img/mecanico-1.png')}}" class="imgBene">
                     </div>
                 </div>
-                @if ($imgData)
-                <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;">
-                    <div class="col-6 py-1 offset-4">
-                        <img src="{{$imgData->imgData}}" id="signCustomer" alt="signatureCustomer" width="225"
-                            height="190" style="display: block;">
-                    </div>
-                </div>
-                @else
-                <form method="POST" action="{{route('customer.efirm')}}">
+                {{-- @if ($imgData)
+                    <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 25px;border-radius: 8px;">
+                        <div class="col-6 py-1 offset-4">
+                            <img src="{{$imgData->imgData}}" id="signCustomer" alt="signatureCustomer" width="225"
+                                height="190" style="display: block;">
+                        </div>
+                    </div> 
+                @else--}}
+                <form method="POST" id="signatureForm" action="{{route('customer.efirm')}}">
                     @method('POST')
                     @csrf
                     <div class="row" id="contentCanvas"
@@ -35,11 +35,11 @@
                         <div class="py-1 ">
                             <h6 style="text-align: right">DIBUJE SU FIRMA:</h6>
                             <div class="py-5 offset-md-10" >
-                                <p class="btn btn-outline-dark btn-sm text-dark" id="limpiar">Limpiar</p>
+                                <p class="btn btn-outline-dark btn-sm " id="limpiar">Limpiar</p>
                             </div>
                         </div>
                         <div class="py-1 offset-md-3">
-                            <canvas id="efirm"></canvas>
+                                    <canvas id="efirm"></canvas>
                             <input type="hidden" id="imgData" name="imgData" required>
                         </div>
                         <br>
@@ -59,16 +59,18 @@
 
                         <div class="col-lg-12 py-4">
                             <input type="submit" class="btn btn text-white px-5 btn-block"
-                                style="background-color: #009CE0;"
-                                id="confirmar"
-                                value="FIRMAR">
+                                                style="background-color: #009CE0;"
+                                                id="confirmarSign"
+                                                value="FIRMAR">
                         </div>
                         <!-- <div>
                             <input type="hidden" name="googleResponseToken" id="googleResponseToken">
                         </div> -->
+
                     </div>
+
                 </form>
-                @endif
+                {{-- @endif --}}
 
             </div>
         </div>
@@ -82,10 +84,50 @@
     </div>
 </div>
 
+<!-- Modal Signature-->
+<div class="modal fade" id="modalConfirmSign" tabindex="-1" role="dialog" aria-labelledby="modalConfirmSign" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <div style="height: 34px;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h5 class="text-white">FIRMA REGISTRADA</h5>
+                        <p class="text-white">Tu firma se ha guardado correctamente</p>
+                        <a href="{{route('customer.benefits')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
+                            ACEPTAR
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if ($imgData)
+    <script>
+        let src = '<?=$imgData->imgData?>';
+        let canvasFirma = document.getElementById('efirm'),
+        context = canvasFirma.getContext('2d');
+
+        $(document).ready( function () {
+            base_img = new Image();
+            base_img.src = src;
+            base_img.onload = function () {
+                context.drawImage( base_img,0,0 )
+            }   
+        })
+    </script>
+@endif
 
 <script>
-    document.getElementById("confirmar")
-        .addEventListener("click", imgData); //click limpiar button to call imgData function
+    document.getElementById("confirmarSign")
+        .addEventListener("click", imgData); //click confirmar button to call imgData function
 
     function imgData() { //set format of canvas to pass in post as base64
         var canvas = document.getElementById("efirm");
@@ -107,6 +149,7 @@
     var ch = canvas.height = 190,
         cy = ch / 2;
 
+    var limpiarCanvas = false;
     var dibujar = false;
     var factorDeAlisamiento = 5;
     var Trazados = [];
@@ -114,6 +157,7 @@
     ctx.lineJoin = "round";
 
     limpiar.addEventListener('click', function (evt) { //clear the canvas
+        limpiarCanvas = true; //activamos el canvas para poder dibujar 
         dibujar = false;
         ctx.clearRect(0, 0, cw, ch);
         Trazados.length = 0;
@@ -181,7 +225,11 @@
 
     function redibujarTrazados() { //repaint
         dibujar = false;
-        ctx.clearRect(0, 0, cw, ch);
+        if(limpiarCanvas){
+            ctx.clearRect(0, 0, cw, ch);
+        }else if(typeof src == "undefined"){
+            ctx.clearRect(0, 0, cw, ch);
+        }
         reducirArray(factorDeAlisamiento, puntos);
         for (var i = 0; i < Trazados.length; i++)
             alisarTrazado(Trazados[i]);

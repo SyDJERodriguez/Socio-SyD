@@ -20,52 +20,30 @@
         </div>
        <!-- <form>-->
           <div class="row" style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 30px;border-radius: 8px;">
-          @if($level>0 || $is_cnt === 'true')
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8" >
-                    <h6 style="color: #143153;"><img class="py-2"   
-                        style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}" 
-                        ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA
-                         </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center iconInvalid" style="cursor: pointer" data-toggle="modal" data-target="#modal8">
-                    <h6 style="color: #143153;"> <img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
-                        <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br> 
-                            </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/muerte_accidental.png')}}">
-                         <br><strong class="py-3"> MUERTE ACCIDENTAL
-                        </strong></h6>
-                </div>
-                <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/reembolso.png')}}">
-                        <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>  
-                    </strong></h6>
-                </div>
-                <div class="col-lg-4 py-3 text-center">
-                </div>
-                <div class="col-lg-4 py-3 text-center" style="cursor: pointer;" data-toggle="modal" data-target="#modal8">
-                    <h6 style="color: #143153;"><img class="py-2"
-                        style="width:150px; height:150px;" src="{{asset('img/indemnización.png')}}"> <br>
-                        <strong class="py-3"> INDEMNIZACIÓN POR ACCIDENTE  
-                        </strong></h6>
-                </div>
-                <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
-                    *Consulta términos y condiciones
-                </p>
-          @else
-                  <div class="modal-body " style="background-color: #143153;">
-                      <div class="row">
-                          <div class="col-lg-12 text-center">
-                              <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
-                              <p class="text-white"></p>
-                          </div>
-                      </div>
-                  </div>
-          @endif
+            {{-- SPECIAL WEEK --}}
+            @if (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021"))
+                
+                {{-- Benefits icons and videos --}}
+                @include('includes.Account.benefitsIcons')
+
+            @else
+                @if($level>0 || $is_cnt === 'true')
+                    
+                    {{-- Benefits icons and videos --}}
+                    @include('includes.Account.benefitsIcons')
+
+                @else
+                        <div class="modal-body " style="background-color: #143153;">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
+                                    <p class="text-white"></p>
+                                </div>
+                            </div>
+                        </div>
+                @endif
+                
+            @endif
           </div>
        <!-- </form>-->
           @if(Auth::user()->client_type === "3")

@@ -101,7 +101,7 @@
                 </a></p>
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="100px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
         </div>
     </div>
 
@@ -113,7 +113,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
@@ -137,7 +137,7 @@
     <div>
         <p class="text">Por medio del presente documento otorgo mi consentimiento para ser asegurado en la Póliza de
             Seguro Colectivo<br>
-            ________________________ que el Contratante del Seguro tiene celebrada con Chubb Seguros México, S.A.</p>
+            <u>58828</u> que el Contratante del Seguro tiene celebrada con Chubb Seguros México, S.A.</p>
     </div>
     <div>
         <p class="text" style="background-color: #ecedee; padding: 2px 5px; margin: 0px"><strong>Datos del contratante y
@@ -438,7 +438,7 @@
             <img src="{{asset('img/chubb.png')}}" alt="CHUBB" style="position: relative;padding-left: 0px;">
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="100px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
         </div>
     </div>
 
@@ -451,7 +451,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">

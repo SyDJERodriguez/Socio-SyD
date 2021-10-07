@@ -26,9 +26,9 @@
                             <tr>
                                 <td><b>Usuario </b></td>
                                 <td><b>Nombre</b></td>
-                                <td><b>Cliente Buscado</b></td>
                                 <td><b>Fecha </b></td>
                                 <td><b>Hora </b></td>
+                                <td><b>Cliente Buscado</b></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,9 +36,9 @@
                                 <tr>
                                     <td>{{$as->user}}</td>
                                     <td>{{$as->name}}</td>
-                                    <td>{{$as->wanted_client}}</td>
                                     <td>{{$as->date}}</td>
                                     <td>{{$as->time}}</td>
+                                    <td>{{$as->wanted_client}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

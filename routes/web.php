@@ -24,6 +24,9 @@ Route::get('/privacy', function(){
 
 Route::post('/contact_us','CustomerController@contact_us');
 
+//Download PDF by SMS
+Route::get('/sms_pdf/{client_number}/{branch_number}', 'BeneficiaryController@generatePDFSMS')->name('sms.generate.pdf');
+
 //Password functions
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
@@ -83,7 +86,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::get('/employees/', 'CustomerController@employees')->name('employees');
         Route::get('/employees/{id}', 'CustomerController@editEmployee');
         Route::post('/employees/update', 'CustomerController@updateEmployee')->name('updateEmployee');
-        Route::get('/employees/{id}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
+        Route::get('/employees/{id}/{email}/delete', 'CustomerController@deleteEmployee')->name('deleteEmployee');
         Route::get('/pdf', 'BeneficiaryController@generatePDF')->name('pdf');
 
         //Logout
@@ -110,10 +113,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
         Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
+        Route::get('/{id}', 'Admin\AdminController@search_dependent')->name('search.dependent');
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });
 });
 
 //Reports for Telasist and Chubb
 Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
-Route::get('chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'report_chubb'])->name('report_chubb');
+Route::get('/chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'chubb_report'])->name('chubb_report');

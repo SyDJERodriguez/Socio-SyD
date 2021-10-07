@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <img src="{{asset('img/icon_check.png')}}">
-                                <h5 class="text-white">NO ES POSIBLE ASOCIARTE A {{ strtoupper($owner)}}</h5>
+                                <h5 class="text-white">NO ES POSIBLE ASOCIARTE A {{ mb_strtoupper($owner)}}</h5>
                                 <p class="text-white">La cuenta de negocio a la cual quieres asociarte ha alcanzado su limite de dependientes</p>
                                 <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                     style="background-color: #00A5E6;">INICIO</a>
@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <img src="{{asset('img/icon_check.png')}}">
-                                <h5 class="text-white">TE HAS ASOCIADO CORRECTAMENTE A {{ strtoupper($owner)}}</h5>
+                                <h5 class="text-white">TE HAS ASOCIADO CORRECTAMENTE A {{ mb_strtoupper($owner)}}</h5>
                                 <p class="text-white">Tu cuenta ahora es una cuenta dependiente</p>
                                 <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4"
                                    style="background-color: #00A5E6;">INICIO</a>

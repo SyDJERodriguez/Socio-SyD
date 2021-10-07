@@ -41,9 +41,9 @@
                                         <div class="text-white">
                                             @for ($i = 0; $i < count($beneficiary); $i++)
                                                 <p>Beneficiario {{$i+1}}:
-                                                    {{strtoupper($beneficiary[$i]->name)}}
-                                                    {{strtoupper($beneficiary[$i]->last_name)}}
-                                                    {{strtoupper($beneficiary[$i]->second_last_name)}}</p>
+                                                    {{mb_strtoupper($beneficiary[$i]->name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->last_name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
                                         <br>
@@ -63,7 +63,8 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                        {{-- SPECIAL WEEK --}}
+                    @elseif( $level != 0 || (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021")) )
                             {{-- Modal BeneficiarySignUp --}}
                             <div class="modal fade" id="modalBeneficiarySignUp" tabindex="-1" role="dialog" aria-labelledby="modalBeneficiarySignUp" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -107,22 +108,22 @@
 
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
@@ -146,26 +147,25 @@
                                         <div class="col-lg-12">
                                             <h6>BENEFICIARIO 2</h6>
                                         </div>
-                                        <input type="hidden" id="branch_number" name="branch_number[]" value="{{$data->branch_number}}">
                                         
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                                   pattern="[A-Za-z].{2,}"
+                                                   pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
                                         </div>
                                         <div class="col-lg-6 py-2">
@@ -192,6 +192,17 @@
                                            style="background-color: #009CE0;" value="CONFIRMAR">
                                 </div>
                             </form>
+                    @else
+
+                    <div class="modal-body " style="background-color: #143153;">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
+                                <p class="text-white"></p>
+                            </div>
+                        </div>
+                    </div>
+
                     @endif
                     </div>
 

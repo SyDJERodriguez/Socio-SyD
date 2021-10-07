@@ -46,7 +46,7 @@
                             <img src="{{asset('img/icon_check.png')}}">
                             <h5 class="text-white">REGISTRO REALIZADO CON ÉXITO</h5>
                             <p class="text-white">Sigue estos dos pasos para que empieces a disfrutar de los beneficios <br> que el programa <b>Socio SyD</b>® tiene para ti:</p>
-                            <ul>
+                            <ul style="list-style-type: none;">
                                 <li>
                                     <p class="text-white">Revisa tu bandeja de correo electrónico </p>
                                 </li>
