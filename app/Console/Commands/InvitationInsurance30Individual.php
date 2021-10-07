@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use DB;
 
 class InvitationInsurance30Individual extends Command
 {
@@ -11,7 +15,7 @@ class InvitationInsurance30Individual extends Command
      *
      * @var string
      */
-    protected $signature = 'email:seguroIndividual30';
+    protected $signature = 'schedule:seguroIndividual30';
 
     /**
      * The console command description.
