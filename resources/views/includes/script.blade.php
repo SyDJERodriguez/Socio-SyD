@@ -419,7 +419,7 @@
                 error: function(data){
                     $('#modalErrorServer').modal('show');
                     //console.log(data);
-                    //console.log(data['update']);
+
                 }
             });
             // Nos permite cancelar el envio del formulario
