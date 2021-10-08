@@ -26,6 +26,7 @@ use Hash;
 use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
@@ -307,6 +308,20 @@ class CustomerController extends Controller
         $valid = $this->phoneValidator($request['mobile_number']);
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
+        //validated email
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $client = new Client([
+            'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET');
+        $response = json_decode($response->getBody()->getContents());
+
+        if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
         }
 
         //Validate DNS email
@@ -632,6 +647,21 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
         }
 
+        //validated email
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $client = new Client([
+            'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET');
+        $response = json_decode($response->getBody()->getContents());
+
+        if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
+        }
+
+
         //Validate DNS email
         $domain = explode('@', $request['email']);
         $validate_dns = sizeof(dns_get_record($domain[1]));
@@ -872,6 +902,20 @@ class CustomerController extends Controller
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
+        //validated email
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $client = new Client([
+            'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET');
+        $response = json_decode($response->getBody()->getContents());
+
+        if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
         }
 
         //Validate DNS email
