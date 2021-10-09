@@ -71,5 +71,6 @@ class InvitationInsurance30Negocio extends Command
 
             throw $th;
         }
+        $this->info('Envio de invitacion a seguro cada 30 de Mes');
     }
 }
