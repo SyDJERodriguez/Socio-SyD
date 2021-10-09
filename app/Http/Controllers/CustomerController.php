@@ -288,7 +288,7 @@ class CustomerController extends Controller
         $session = $request;
         $request       = $request->input();
         $client_number = $request['client_number'];
-        
+
         $year = Carbon::now()->year;
         $clientYear = explode("-",$request['bday']);
         $clientYear = (int)$clientYear[0];
@@ -1403,6 +1403,11 @@ class CustomerController extends Controller
             'active'   => 1
         ]);
 
+        $url = url('password/edit/' . $data[0]->branch_number);
+        $messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
+
+        TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+
         if ($update_customer){
             $activated = false;
             return view('pages.activationPage', compact('activated'));
@@ -1513,15 +1518,15 @@ class CustomerController extends Controller
 
     //Update password
     public function update_password(Request $request) {
-
+        $data = CustomersSession::where('branch_number', $request['client_number'])->first();
         $request = $request->input();
         $password      = Hash::make($request['password']);
-        $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
+        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $request['client_number'])->update([
             'password' => $password,
         ]);
 
         if ($update_customer === 1){
-            $this->send_signUp_success($request['email']);
+            $this->send_signUp_success($data->email);
             return response()->json(['success'=>'true','status' =>200]);
         }
         return response()->json(['success'=>'false','status' =>401]);
