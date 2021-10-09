@@ -28,10 +28,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('schedule:seguroNegocio')       ->monthlyOn(15, '10:00'); //15/mes
-        $schedule->command('schedule:seguroIndividual')    ->monthlyOn(15, '10:00'); //15/mes
-        $schedule->command('schedule:seguroIndividual30')  ->monthlyOn(30, '10:00'); //30/mes
-        $schedule->command('schedule:seguroNegocio30')     ->monthlyOn(30, '10:00'); //30/mes
+        $schedule->command('schedule:seguroNegocio')            ->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:seguroIndividual')         ->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:invitationPlataNegocio')   ->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:invitationOroNegocio')     ->monthlyOn(15, '10:00'); //15/mes
+
+        $schedule->command('schedule:seguroIndividual30')       ->monthlyOn(30, '10:00'); //30/mes
+        $schedule->command('schedule:seguroNegocio30')          ->monthlyOn(30, '10:00'); //30/mes
+        $schedule->command('schedule:invitationPlataNegocio30') ->monthlyOn(30, '10:00'); //30/mes
+        $schedule->command('schedule:invitationOroNegocio30')   ->monthlyOn(30, '10:00'); //30/mes
         
         //testing
         //$schedule->command('schedule:seguroIndividual')->everyMinute();
