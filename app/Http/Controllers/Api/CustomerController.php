@@ -256,8 +256,112 @@ class CustomerController extends Controller
         return response()->json($request);
     }
 
-    public function store(){
+    /** Save customer in Socio SyD **/
+    public function store(Request $request){
+        $request = $request->input();
 
+        //For customer_session table
+        $client_number = '00'.$request['client_number'];
+        $password      = Hash::make($request['password']);
+
+        //Verify if the client number if in our database
+        $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
+        if($dataClient == null){
+            return response()->json(['status'=>'400', 'message'=>'El número de cliente no se encuentra en la base de datos']);
+        }
+
+        //Verify if the client number is registered in the platform
+        $verify_email = CustomersSession::where('client_number', $client_number)
+            ->where('branch_number', $client_number)
+            ->first();
+        if ($verify_email !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El número de cliente ya ha sido registrado previamente']);
+        }
+
+        //Verify if the email is registered in the platform
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+        if ($verify_email !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El email ya ha sido registrado previamente']);
+        }
+
+        //Verify if the mobile is registered in the platform
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        if ($verify_mobile_number !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El número de celular ya ha sido registrado previamente']);
+        }
+
+        $update_customer = DB::table('customer_platforms')
+            ->where('email', '=', $request['email'])
+            ->first();
+
+        if($update_customer == null){
+            //Insert data in customers table
+            $update_customer = DB::table('customer_platforms')->insert([
+                'client_number'    => $client_number,
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile'],
+                'company'          => isset($request['business_name']) ? $request['business_name'] : null,
+                'birthday'         => $request['birthday'],
+                'created_at'       => date('Y-m-d H:i:s'),
+                'updated_at'       => date('Y-m-d H:i:s'),
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                'work'             => isset($request['business_type']) ? $request['business_type'] : null,
+                'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
+            ]);
+        }else{
+            //u[date]
+            $update_customer = DB::table('customer_platforms')->where('email', '=', $request['email'])->update([
+                'client_number'    => $client_number,
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile'],
+                'company'          => isset($request['business_name']) ? $request['business_name'] : null,
+                'birthday'         => $request['birthday'],
+                'updated_at'       => date('Y-m-d H:i:s'),
+                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                'work'             => isset($request['business_type']) ? $request['business_type'] : null,
+                'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
+            ]);
+        }
+
+        $save_register = DB::table('customers_sessions')->insert([
+            'client_number' => $client_number,
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+            'email'         => $request['email'],
+            'mobile'        => $request['mobile'],
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
+            'active'        => 0,
+            'password'      => $password,
+            'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
+            'branch_number' => $client_number
+        ]);
+
+        //create data in notifications table
+        $update_notifications = DB::table('notifications')->insert([
+            'client_number'     => $client_number,
+            'name_id'           => 'SEGURO ASISTENCIAS',
+            'branch_number'     => $client_number
+        ]);
+
+        if ($update_customer === 1 && $save_register === true){
+            $this->send_welcome_email($request['email']);
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }elseif ($update_customer === true && $save_register === true){
+            $this->send_welcome_email($request['email']);
+            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+        }
+
+        return response()->json($request);
     }
 
     public function apiList(){
@@ -665,7 +769,31 @@ class CustomerController extends Controller
 
     }
 
+    //Send welcome email
+    public function send_welcome_email($email) {
+        $data = CustomerPlatform::where('email', $email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
+        $data->branch_number = $dataSession->branch_number;
 
+        $url = url('account/verify/' . $data->branch_number);
+        $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+
+        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+
+        try {
+            \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
+            });
+
+            $update_customer = CustomersSession::where('branch_number', '=', $dataSession->branch_number)->update([
+                'active'   => 0
+            ]);
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'false','status' =>401]);
+        }
+    }
 
     private function validator(array $data){
         return Validator::make($data,[
