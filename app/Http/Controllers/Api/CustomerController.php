@@ -14,10 +14,12 @@ use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Exports\SessionExport;
@@ -263,6 +265,7 @@ class CustomerController extends Controller
         //For customer_session table
         $client_number = '00'.$request['client_number'];
         $password      = Hash::make($request['password']);
+        $rfc           = '';
 
         //Verify if the client number if in our database
         $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
@@ -285,7 +288,7 @@ class CustomerController extends Controller
         }
 
         //Verify if the mobile is registered in the platform
-        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile'])->first();
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile_number'])->first();
         if ($verify_mobile_number !== null) {
             return response()->json(['status'=>'400', 'message'=>'El número de celular ya ha sido registrado previamente']);
         }
@@ -294,50 +297,43 @@ class CustomerController extends Controller
             ->where('email', '=', $request['email'])
             ->first();
 
+        $birthday = explode("-",$request['birthday']);
+
+        $year = substr($birthday[0],2,2);
+
+
+        $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+
+        $rfc = self::generate_rfc($request['name'],$request['last_name'],$request['second_last_name'],$birthday);
+
         if($update_customer == null){
             //Insert data in customers table
-            $update_customer = DB::table('customer_platforms')->insert([
+            $save_customer = DB::table('customer_platforms')->insert([
                 'client_number'    => $client_number,
                 'name'             => $request['name'],
                 'last_name'        => $request['last_name'],
                 'second_last_name' => $request['second_last_name'],
                 'email'            => $request['email'], //This is for customers_session table too
-                'mobile_number'    => $request['mobile'],
+                'mobile_number'    => $request['mobile_number'],
                 'company'          => isset($request['business_name']) ? $request['business_name'] : null,
                 'birthday'         => $request['birthday'],
                 'created_at'       => date('Y-m-d H:i:s'),
                 'updated_at'       => date('Y-m-d H:i:s'),
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
+                'rfc'              => $rfc,
                 'work'             => isset($request['business_type']) ? $request['business_type'] : null,
                 'gender'           => isset($request['gender']) ? $request['gender'] : null,
                 'collector_id'     => 6,
                 'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
             ]);
         }else{
-            //u[date]
-            $update_customer = DB::table('customer_platforms')->where('email', '=', $request['email'])->update([
-                'client_number'    => $client_number,
-                'name'             => $request['name'],
-                'last_name'        => $request['last_name'],
-                'second_last_name' => $request['second_last_name'],
-                'email'            => $request['email'], //This is for customers_session table too
-                'mobile_number'    => $request['mobile'],
-                'company'          => isset($request['business_name']) ? $request['business_name'] : null,
-                'birthday'         => $request['birthday'],
-                'updated_at'       => date('Y-m-d H:i:s'),
-                'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
-                'work'             => isset($request['business_type']) ? $request['business_type'] : null,
-                'gender'           => isset($request['gender']) ? $request['gender'] : null,
-                'collector_id'     => 6,
-                'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
-            ]);
+            return response()->json(['status'=>'400', 'message'=>'El email ya ha sido registrado previamente']);
         }
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
             'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
-            'mobile'        => $request['mobile'],
+            'mobile'        => $request['mobile_number'],
             'created_at'    => date('Y-m-d H:i:s'),
             'updated_at'    => date('Y-m-d H:i:s'),
             'active'        => 0,
@@ -353,12 +349,12 @@ class CustomerController extends Controller
             'branch_number'     => $client_number
         ]);
 
-        if ($update_customer === 1 && $save_register === true){
+        if ($save_customer === 1 && $save_register === true){
             $this->send_welcome_email($request['email']);
-            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
-        }elseif ($update_customer === true && $save_register === true){
+            return response()->json(['status'=>'200', 'message'=>'Los datos se han registrado correctamente']);
+        }elseif ($save_customer === true && $save_register === true){
             $this->send_welcome_email($request['email']);
-            return response()->json(['success'=>'true', 'update'=>$update_customer, 'save'=>$save_register, 'name'=>$name, 'client_number'=>$request['client_number']]);
+            return response()->json(['status'=>'200', 'message'=>'Los datos se han registrado correctamente']);
         }
 
         return response()->json($request);
@@ -820,5 +816,55 @@ class CustomerController extends Controller
             }
         }
         return $final_answers;
+    }
+
+    private function remove_article($word){
+        $correct_word = str_replace("DEL","", $word);
+        $correct_word = str_replace("LAS","", $word);
+        $correct_word = str_replace("DE","", $word);
+        $correct_word = str_replace("LA","", $word);
+        $correct_word = str_replace("Y","", $word);
+        $correct_word = str_replace("A","", $word);
+        $correct_word = str_replace("MC","", $word);
+        $correct_word = str_replace("LOS","", $word);
+        $correct_word = str_replace("VON","", $word);
+        $correct_word = str_replace("VAN","", $word);
+
+        return $correct_word;
+    }
+
+    private function is_vowel($letter){
+        if($letter === "A" || $letter === "E" || $letter === "I" || $letter === "O" || $letter === "U" || $letter === "a" || $letter === "e" || $letter === "i" || $letter === "o" || $letter === "u"){
+             return 1;
+         }else{
+            return 0;
+        }
+    }
+
+    private function generate_rfc($name, $last_name, $second_last_name, $birthday){
+        $name             = strtoupper((trim($name)));
+        $last_name        = strtoupper((trim($last_name)));
+        $second_last_name = strtoupper((trim($second_last_name)));
+
+        $rfc = '';
+
+        $last_name        = self::remove_article($last_name);
+        $second_last_name = self::remove_article($second_last_name);
+
+        $rfc = substr($last_name,0,1);
+
+        $first_vowel = strlen($last_name);
+        for ($i = 1; $i<$first_vowel; $i++){
+            $v = substr($last_name,$i,1);
+            if(self::is_vowel($v) === 1){
+                $rfc .= $v;
+                break;
+            }
+        }
+        $rfc .= substr($second_last_name, 0, 1);
+        $rfc .= substr($name, 0, 1);
+        $rfc .= substr($birthday, 6, 2).substr($birthday,3,2).substr($birthday,0,2);
+
+        return $rfc;
     }
 }
