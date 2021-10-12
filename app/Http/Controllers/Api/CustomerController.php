@@ -14,10 +14,12 @@ use App\Repositories\ClientNumberRepository;
 use App\Repositories\CustomersRepository;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use Validator;
 use DB;
+use Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Exports\SessionExport;
@@ -256,8 +258,106 @@ class CustomerController extends Controller
         return response()->json($request);
     }
 
-    public function store(){
+    /** Save customer in Socio SyD **/
+    public function store(Request $request){
+        $request = $request->input();
 
+        //For customer_session table
+        $client_number = '00'.$request['client_number'];
+        $password      = Hash::make($request['password']);
+        $rfc           = '';
+
+        //Verify if the client number if in our database
+        $dataClient = DB::table('client_numbers')->where('client_number','=',$client_number)->first();
+        if($dataClient == null){
+            return response()->json(['status'=>'400', 'message'=>'El número de cliente no se encuentra en la base de datos']);
+        }
+
+        //Verify if the client number is registered in the platform
+        $verify_email = CustomersSession::where('client_number', $client_number)
+            ->where('branch_number', $client_number)
+            ->first();
+        if ($verify_email !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El número de cliente ya ha sido registrado previamente']);
+        }
+
+        //Verify if the email is registered in the platform
+        $verify_email = CustomersSession::where('email', $request['email'])->first();
+        if ($verify_email !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El email ya ha sido registrado previamente']);
+        }
+
+        //Verify if the mobile is registered in the platform
+        $verify_mobile_number = CustomersSession::where('mobile', $request['mobile_number'])->first();
+        if ($verify_mobile_number !== null) {
+            return response()->json(['status'=>'400', 'message'=>'El número de celular ya ha sido registrado previamente']);
+        }
+
+        $update_customer = DB::table('customer_platforms')
+            ->where('email', '=', $request['email'])
+            ->first();
+
+        $birthday = explode("-",$request['birthday']);
+
+        $year = substr($birthday[0],2,2);
+
+
+        $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+
+        $rfc = self::generate_rfc($request['name'],$request['last_name'],$request['second_last_name'],$birthday);
+
+        if($update_customer == null){
+            //Insert data in customers table
+            $save_customer = DB::table('customer_platforms')->insert([
+                'client_number'    => $client_number,
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'email'            => $request['email'], //This is for customers_session table too
+                'mobile_number'    => $request['mobile_number'],
+                'company'          => isset($request['business_name']) ? $request['business_name'] : null,
+                'birthday'         => $request['birthday'],
+                'created_at'       => date('Y-m-d H:i:s'),
+                'updated_at'       => date('Y-m-d H:i:s'),
+                'rfc'              => $rfc,
+                'work'             => isset($request['business_type']) ? $request['business_type'] : null,
+                'gender'           => isset($request['gender']) ? $request['gender'] : null,
+                'collector_id'     => 6,
+                'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null
+            ]);
+        }else{
+            return response()->json(['status'=>'400', 'message'=>'El email ya ha sido registrado previamente']);
+        }
+
+        $save_register = DB::table('customers_sessions')->insert([
+            'client_number' => $client_number,
+            'client_type'   => $request['client_type'], //1 duenio; 2 independiente
+            'email'         => $request['email'],
+            'mobile'        => $request['mobile_number'],
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s'),
+            'active'        => 0,
+            'password'      => $password,
+            'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
+            'branch_number' => $client_number
+        ]);
+
+        //create data in notifications table
+        $update_notifications = DB::table('notifications')->insert([
+            'client_number'     => $client_number,
+            'name_id'           => 'SEGURO ASISTENCIAS',
+            'branch_number'     => $client_number
+        ]);
+
+        if ($save_customer === 1 && $save_register === true){
+            $this->send_welcome_email($request['email']);
+            return response()->json(['status'=>'200', 'message'=>'Los datos se han registrado correctamente']);
+        }elseif ($save_customer === true && $save_register === true){
+            $this->send_welcome_email($request['email']);
+            return response()->json(['status'=>'200', 'message'=>'Los datos se han registrado correctamente']);
+        }
+
+        return response()->json($request);
     }
 
     public function apiList(){
@@ -665,7 +765,31 @@ class CustomerController extends Controller
 
     }
 
+    //Send welcome email
+    public function send_welcome_email($email) {
+        $data = CustomerPlatform::where('email', $email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
+        $data->branch_number = $dataSession->branch_number;
 
+        $url = url('account/verify/' . $data->branch_number);
+        $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+
+        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+
+        try {
+            \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Da clic en el botón y activa tu cuenta de Socio SYD');
+            });
+
+            $update_customer = CustomersSession::where('branch_number', '=', $dataSession->branch_number)->update([
+                'active'   => 0
+            ]);
+            return response()->json(['success'=>'true','status' =>200]);
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'false','status' =>401]);
+        }
+    }
 
     private function validator(array $data){
         return Validator::make($data,[
@@ -692,5 +816,55 @@ class CustomerController extends Controller
             }
         }
         return $final_answers;
+    }
+
+    private function remove_article($word){
+        $correct_word = str_replace("DEL","", $word);
+        $correct_word = str_replace("LAS","", $word);
+        $correct_word = str_replace("DE","", $word);
+        $correct_word = str_replace("LA","", $word);
+        $correct_word = str_replace("Y","", $word);
+        $correct_word = str_replace("A","", $word);
+        $correct_word = str_replace("MC","", $word);
+        $correct_word = str_replace("LOS","", $word);
+        $correct_word = str_replace("VON","", $word);
+        $correct_word = str_replace("VAN","", $word);
+
+        return $correct_word;
+    }
+
+    private function is_vowel($letter){
+        if($letter === "A" || $letter === "E" || $letter === "I" || $letter === "O" || $letter === "U" || $letter === "a" || $letter === "e" || $letter === "i" || $letter === "o" || $letter === "u"){
+             return 1;
+         }else{
+            return 0;
+        }
+    }
+
+    private function generate_rfc($name, $last_name, $second_last_name, $birthday){
+        $name             = strtoupper((trim($name)));
+        $last_name        = strtoupper((trim($last_name)));
+        $second_last_name = strtoupper((trim($second_last_name)));
+
+        $rfc = '';
+
+        $last_name        = self::remove_article($last_name);
+        $second_last_name = self::remove_article($second_last_name);
+
+        $rfc = substr($last_name,0,1);
+
+        $first_vowel = strlen($last_name);
+        for ($i = 1; $i<$first_vowel; $i++){
+            $v = substr($last_name,$i,1);
+            if(self::is_vowel($v) === 1){
+                $rfc .= $v;
+                break;
+            }
+        }
+        $rfc .= substr($second_last_name, 0, 1);
+        $rfc .= substr($name, 0, 1);
+        $rfc .= substr($birthday, 6, 2).substr($birthday,3,2).substr($birthday,0,2);
+
+        return $rfc;
     }
 }
