@@ -167,7 +167,7 @@ class CustomerController extends Controller
                 if ($totalAmount>7000) {
                     $client->level= 'Oro';
                 }
-                if ($totalAmount == 0) {
+                if ($totalAmount<2500) {
                     $client->level= 'Sin beneficios';
                 }
             }else if($client->type_user === '2'){
@@ -181,7 +181,7 @@ class CustomerController extends Controller
                 if ($totalAmount>1300) {
                     $client->level= 'Oro';
                 }
-                if ($totalAmount == 0) {
+                if ($totalAmount<200) {
                     $client->level= 'Sin beneficios';
                 }
             }else if($client->type_user === '3'){
@@ -195,7 +195,7 @@ class CustomerController extends Controller
                 if ($totalAmount>7000) {
                     $client->level= 'Oro';
                 }
-                if ($totalAmount == 0) {
+                if ($totalAmount<2500) {
                     $client->level= 'Sin beneficios';
                 }
             }else if($client->type_user === '4'){
@@ -209,7 +209,7 @@ class CustomerController extends Controller
                 if ($totalAmount>7000) {
                     $client->level= 'Oro';
                 }
-                if ($totalAmount == 0) {
+                if ($totalAmount<2500) {
                     $client->level= 'Sin beneficios';
                 }
             }
