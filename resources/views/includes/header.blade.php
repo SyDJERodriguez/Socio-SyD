@@ -177,14 +177,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal5"
-                                        style="width: 270px;">MECÁNICO INDEPENDIENTE</button>
+                                        style="width: 270px;">MECÁNICO O DUEÑO DE NEGECIO PERSONAL</button>
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
-                                        style="width: 270px">DUEÑO DE NEGOCIO</button>
+                                        style="width: 270px">DUEÑO DE NEGOCIO CON 4 O MÁS EMPLEADOS</button>
                             </div>
                         </div>
                         <br>
