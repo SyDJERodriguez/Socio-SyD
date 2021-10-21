@@ -641,7 +641,7 @@ class CustomerController extends Controller
         }
 
         //validate mobile number
-        $request['mobile'] = $request['mobileLada'] . $request['mobile'];
+        //$request['mobile'] = $request['mobileLada'] . $request['mobile'];
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
@@ -898,7 +898,7 @@ class CustomerController extends Controller
         }
 
         //validate mobile number
-        $request['mobile'] = $request['mobileLada'] . $request['mobile'];
+       // $request['mobile'] = $request['mobileLada'] . $request['mobile'];
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
             return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
@@ -1062,7 +1062,7 @@ class CustomerController extends Controller
         }
 
         //validate mobile number
-        $request['mobile'] = $request['mobileLada'] . $request['mobile'];
+       // $request['mobile'] = $request['mobileLada'] . $request['mobile'];
         $valid = $this->phoneValidator($request['mobile']);
         if ($valid == false){
             return response()->json(['success' =>'false',  'verify_valid_mobile'=>'false']);

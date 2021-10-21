@@ -80,11 +80,8 @@
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
-                            <input type="text" class="form-control btnBorder mobileInput col-3" placeholder="LADA"
-                            id="mobileProLada" name="mobileLada" maxlength="3" pattern="[0-9]{2,3}" required
-                            style="text-align: center">
-                            <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 7-8 DIG"
-                            id="mobilePro" name="mobile" maxlength="8" pattern="[0-9]{7,8}" required>
+                            <input type="tel" class="form-control btnBorder mobileInput" placeholder="TELEFÓNO CELULAR 10 DIG" id="mobilePro"
+                                   name="mobile" maxlength="10" pattern="[0-9]{10}" required style="border-radius: 0 .25rem .25rem 0">
                             <div class="input-group-append" id="form_alert_phone" hidden>
                             </div>
                         </div>
@@ -159,8 +156,8 @@
                             <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">TÉRMINOS Y CONDICIONES</a></label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
-                    <input type="submit" class="btn btn" 
-                    style="background-color: #00A1E3;color: white;" 
+                    <input type="submit" class="btn btn"
+                    style="background-color: #00A1E3;color: white;"
                     id="btnSend" onclick="focusrfc('rfc')" value="Enviar">
                 </div>
             </form>

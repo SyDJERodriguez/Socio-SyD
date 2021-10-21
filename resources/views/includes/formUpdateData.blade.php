@@ -43,14 +43,14 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
 
-                    <input type="hidden" id="isBranch" name="is_branch" 
+                    <input type="hidden" id="isBranch" name="is_branch"
                             value="{{ isset($data->is_branch) ? $data->is_branch : 0 }}">
 
                     {{-- <div class="col-lg-6 py-2" style="display: flex">
                         <select class="form-control btnBorder" id="branch_name" name="branch_number">
                             @if ($data->branch_number != null)
-                                <option value="{{$data->branch_number}}" selected> 
-                                    {{ $data->branch_name }} 
+                                <option value="{{$data->branch_number}}" selected>
+                                    {{ $data->branch_name }}
                                 </option>
                             @else
                                 <option disabled value="0">SUCURSAL</option>
@@ -69,14 +69,14 @@
                         value="{{$data->last_name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex"> 
+                    <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder nameInput" placeholder="SEGUNDO APELLIDO" id="secondLastNameUp" name="second_last_name"
                         value="{{$data->second_last_name}}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
                 <div class="row">
-                
+
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-3" style="display: flex">
@@ -97,12 +97,8 @@
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
-                            <input type="text" class="form-control btnBorder mobileInput col-3" placeholder="LADA"
-                            id="mobileProLada" name="mobileLada" maxlength="3" pattern="[0-9]{2,3}" required
-                            style="text-align: center" value="{{substr($data->mobile_number,0,2)}}">
-                            <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 7-8 DIG"
-                            id="mobilePro" name="mobile" maxlength="8" pattern="[0-9]{7,8}"
-                            value="{{substr($data->mobile_number,2)}}" required>
+                            <input type="text" class="form-control btnBorder mobileInput" placeholder="TELEFÓNO CELULAR 10 DIG"
+                                   id="mobilePro" name="mobile" maxlength="10" pattern="[0-9]{10}" value="{{$data->mobile_number}}" required>
                             <div class="input-group-append" id="form_alert_phone_UDF" hidden>
                             </div>
                         </div>
@@ -116,7 +112,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
-            
+
                 <div class="row ">
                       <div class="col-lg-6 py-2" style="display: flex">
                           <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcUp" name="rfc"
@@ -131,11 +127,11 @@
                           <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                           <p style="color: red; margin: 0;">*</p>
                       </div>
-                  
-                  
+
+
                     <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
                 </div>
-            
+
                 @if ((int)Auth::user()->client_type != 2)
                 <div class="row">
                     <div class="col-lg-12 py-2" style="display: flex">
@@ -166,10 +162,10 @@
                     </div>
                 </div>
                 @endif
-            
+
                 <div class="modal-footer border-top-0">
-                    <input type="submit" class="btn btn" 
-                    style="background-color: #00A1E3;color: white;" 
+                    <input type="submit" class="btn btn"
+                    style="background-color: #00A1E3;color: white;"
                     id="btnSend3" onclick="focusrfc('rfcUp')" value="Enviar">
                 </div>
             </form>
