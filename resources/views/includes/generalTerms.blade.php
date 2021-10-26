@@ -170,7 +170,7 @@
                         href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>,
                     sección sucursales;
                     cualquiera de las DAR® Refaccionarias ubicadas en la República Mexicana; en el teléfono para venta
-                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 09:00 a 21:00 horas de lunes a viernes y 
+                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 09:00 a 21:00 horas de lunes a viernes y
                     sábado de 9:00 a 17:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
                     plataformas de comercio electrónico.<br><br>
 
@@ -222,7 +222,7 @@
                     <ol type="a">
                         <li>
                             <p class="text-justify">
-                                <b>Cuenta de Negocios</b>: Son personas físicas con actividad empresarial o personas
+                                <b>Cuenta con Colaboradores</b>: Son personas físicas con actividad empresarial o personas
                                 morales que tengan un
                                 taller o refaccionaria con empleados que pueden recibir tener la posibilidad de asignar
                                 como beneficiarios
@@ -248,7 +248,7 @@
                         </li>
                         <li>
                             <p class="text-justify">
-                                <b>Cliente Individual</b>: Se trata de un registro individual de compras cuyos
+                                <b>Cuenta Individual</b>: Se trata de un registro individual de compras cuyos
                                 beneficios serán entregados
                                 únicamente al titular de la cuenta siempre y cuando complete la información requerida en
                                 los formularios. Los datos que se solicitan dentro del formulario son:
@@ -311,7 +311,7 @@
                     <p class="text-justify">
                         Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SyD® con
                         <b>cuentas
-                            de negocios</b>, estarán divididos en 4 niveles de obtención de beneficios.
+                            con colaboradores</b>, estarán divididos en 4 niveles de obtención de beneficios.
                     </p>
 
                     <ul>
@@ -447,7 +447,7 @@
                         </li>
                     </ul>
 
-                    Cuentas de Negocios: <br><br>
+                    Cuentas con Colaboradores: <br><br>
 
                     <ul>
                         <li>
@@ -516,7 +516,7 @@
                     El seguro será aplicable para los beneficiarios designados dentro del Programa de Lealtad Socio
                     SyD®.<br><br>
 
-                    El Cliente podrá dar de alta dentro del sitio web del programa 
+                    El Cliente podrá dar de alta dentro del sitio web del programa
                     (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>), a las personas
                     que permita el sistema del Programa de Lealtad Socio SyD® para este seguro de accidentes personales
                     a
@@ -901,14 +901,14 @@
                                     El servicio no cubre ningún gasto médico generado. En ningún caso, el médico podrá dar
                                 un diagnóstico. El Cliente tendrá derecho a un (1) evento.
                                 </p>
-                                
+
                                 <img src="{{asset('img/ProcesoOperativoCabinaMedica.jpg')}}" alt="infoProceso"
                                     style="max-width: 100%;height: auto">
 
                                 <p class="text-justify">
                                     El prestador del servicio que se contrate para tal efecto no se hace responsable de la
                                     prestación del servicio en los siguientes casos:</p>
-                                
+
                                 <ul>
                                     <li style="font-weight: normal">Cuando el Cliente no cuente con conectividad adecuada y los medios electrónicos
                                         necesarios para descargar una video llamada: cámara frontal y conexión de datos
@@ -1009,7 +1009,7 @@
                         <li style="font-weight:bold">
                             <p class="text-justify">
                                 <b>CONDICIONES GENERALES ENVIO DE GRÚA POR AVERIA PROGRAMA ORO</b>:<br>
-                                El servicio es prestado por proveedores certificados, independientes, ajenos a los cuales cuentan con los seguros correspondientes para responder directamente ante el Cliente de cualquier daño directo imputable al proveedor que preste el servicio al vehículo trasladado, en el entendido, de que dicho proveedor será el único responsable ante el Cliente.  
+                                El servicio es prestado por proveedores certificados, independientes, ajenos a los cuales cuentan con los seguros correspondientes para responder directamente ante el Cliente de cualquier daño directo imputable al proveedor que preste el servicio al vehículo trasladado, en el entendido, de que dicho proveedor será el único responsable ante el Cliente.
                                 <br>El prestador del servicio no se hace responsable de la prestación del servicio en los siguientes casos:
                                 <ul>
                                     <li style="font-weight: normal">Cuando el Cliente  no proporcione información veraz y oportuna, que por su naturaleza no permita atender debidamente el asunto, o bien incurra en falsedad de declaraciones. </li>
@@ -1070,7 +1070,7 @@
                                             <li>Cuando el Cliente no se identifique como Cliente activo. </li>
                                             <li>Cuando el Cliente no proporcione información veraz y oportuna, que por su naturaleza no permita atender debidamente el asunto, o bien incurra en falsedad de declaraciones. </li>
                                             <li>Cuando el Cliente incumpla alguna de las obligaciones indicadas en estas condiciones generales</li>
-                                        </ul>    
+                                        </ul>
                                 </ul>
                             </p>
                         </li>

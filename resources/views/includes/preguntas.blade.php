@@ -36,7 +36,7 @@
                             <h5 class="text-white barTitle">2. ¿Cómo consigo mi número de cliente?</h5>
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
-                                    <p>Al comprar con cualquiera de nuestros representantes de venta, en nuestras tiendas de DAR® Refaccionarias o a través de nuestros canales digitales 
+                                    <p>Al comprar con cualquiera de nuestros representantes de venta, en nuestras tiendas de DAR® Refaccionarias o a través de nuestros canales digitales
                                     (
                                     <a href="https://www.syd.com.mx/" target="_blank">https://www.syd.com.mx/</a> – <a
                                         href="https://www.refaccionarias-dar.com"
@@ -212,7 +212,7 @@
                         <br>
 
                         <section>
-                            <h5><strong> CUENTAS NEGOCIOS </strong></h5>
+                            <h5><strong> CUENTAS CON COLABORADORES </strong></h5>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <table class="question">
@@ -339,7 +339,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Existen cuentas individuales y cuentas de negocio.
+                                        Existen cuentas individuales y cuentas con colaboradores.
                                     </p>
                                 </li>
                             </ol>
@@ -397,7 +397,7 @@
                         <br>
 
                         <section>
-                            <h5><strong> CUENTAS NEGOCIOS </strong></h5>
+                            <h5><strong> CUENTAS CON COLABORADORES </strong></h5>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <table class="question">
@@ -481,7 +481,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año.
                                     </p>
                                 </li>
                             </ol>
@@ -492,7 +492,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año.
                                     </p>
                                 </li>
                             </ol>
@@ -503,7 +503,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año. 
+                                        Comunícate al teléfono <a href="tel:5511052682">551 105 2682</a> las 24hrs los 7 días de la semana los 365 días del año.
                                     </p>
                                 </li>
                             </ol>
@@ -515,7 +515,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                    Para conocer en que casos NO aplica por favor consulta las condiciones generales dentro de tu cuenta asi como los términos y condiciones del programa.  
+                                    Para conocer en que casos NO aplica por favor consulta las condiciones generales dentro de tu cuenta asi como los términos y condiciones del programa.
                                     </p>
                                 </li>
                             </ol>

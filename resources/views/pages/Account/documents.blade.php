@@ -12,7 +12,7 @@
                 <h6>Hola {{$data->name.' '.$data->last_name.' '.$data->second_last_name}}<br>
                     No. de Cliente <span style="color:#009ce0">{{substr(Auth::user()->client_number, 2)}}@if(Auth::user()->client_type == '3')-{{$number->number}} @endif</span><br>
                     @if ((int)Auth::user()->client_type == 1)
-                        Cuenta: Negocios
+                        Cuenta: Con Colaboradores
                     @elseif((int)Auth::user()->client_type == 2)
                         Cuenta: Individual
                     @elseif((int)Auth::user()->client_type == 3)
@@ -20,9 +20,9 @@
                     @endif
                 </h6>
                 <h5>
-                    
+
                 </h5>
-               
+
                 {{-- @if($level > 1)
                     Level 1
                 @endif --}}
@@ -48,7 +48,7 @@
                      @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
-                       
+
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLIC EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
@@ -63,19 +63,19 @@
                     <div class="form-row text-center box_documents"
                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR <br> UNA RECLAMACIÓN POR 
+                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR <br> UNA RECLAMACIÓN POR
                                 COBERTURA DEL SEGURO
                             </strong></h5>
                         </div>
 
                         {{-- Benefits icons and videos --}}
                         @include('includes.Account.benefitsIcons')
-                        
+
                         <div class="col-lg-12 py-3 text-center">
-                        <a href="#" data-toggle="modal" data-target="#modal14" 
+                        <a href="#" data-toggle="modal" data-target="#modal14"
                                         target="_blank" class="btn btn py-2  text-white "
                                         style="background-color: #143153;">
-                                        LISTADO DE DOCUMENTOS</a>  
+                                        LISTADO DE DOCUMENTOS</a>
                         </div>
 
                         <div class="col-lg-12" style="color: #143153">
@@ -83,7 +83,7 @@
                                 DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
                             </h5>
                         </div>
-                    
+
                         <div class="col-lg-12 text-left">
                             <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
                                 *Consulta términos y condiciones
@@ -97,18 +97,18 @@
                         padding: 30px;border-radius: 8px; margin-top:10px">
                         <div class="col-lg-12" style="color: #143153;">
                                 <h5 class="text-center">
-                                    <strong> 
+                                    <strong>
                                     Incrementa tus compras para tener derecho a los beneficios de asistencias
                                     </strong>
                                 </h5>
                         </div>
-                    </div> 
+                    </div>
                     @endif
 
                     {{-- SPECIAL WEEK --}}
                     @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
                 <div class="form-row text-center box_documents"
-                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">
                     <div class="col-lg-12" style="color: #143153;">
                         <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
                         </strong></h5>
@@ -165,51 +165,51 @@
                 </p>
                 </div>
                 @endif
-                
+
             </div>
             <div class="col-12 py-2 divImgDerecha2" >
             <form>
                 @csrf
                     <div class="form-row text-center box_documents"
                         style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px;">
-                         
+
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> DA CLIC EN CADA SECCIÓN PARA VER O EDITAR TUS
                                     DOCUMENTOS</strong></h5>
                         </div>
                         <div class="col-lg-12 py-3 text-center">
                             <img src="{{asset('img/Asset9.png')}}" class="py-2"><br>
-                            <a href="#" data-toggle="modal" data-target="#modalRemember" 
+                            <a href="#" data-toggle="modal" data-target="#modalRemember"
                                 target="_blank" class="btn btn py-2  text-white "
                                 style="background-color: #143153;">
                                 CERTIFICADO DE PÓLIZA</a> </div>
                     </div>
                 </form>
                     <div class="form-row text-center box_documents"
-                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">      
-               
+                    style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">
+
                         <div class="col-lg-12" style="color: #143153;">
-                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR 
+                            <h5 class="text-center"> <strong> DA CLIC PARA SABER QUE HACER EN CASO DE NECESITAR UNA RECLAMACIÓN POR
                                 POR COBERTURA DEL SEGURO
                             </strong></h5>
-                            
+
                         </div>
 
                         {{-- Benefits icons and videos --}}
                         @include('includes.Account.benefitsIcons')
 
                         <div class="col-lg-4 py-3 text-center">
-                        <a href="#" data-toggle="modal" data-target="#modal14" 
+                        <a href="#" data-toggle="modal" data-target="#modal14"
                                         target="_blank" class="btn btn py-2  text-white "
                                         style="background-color: #143153;">
-                                        LISTADO DE DOCUMENTOS</a>  
+                                        LISTADO DE DOCUMENTOS</a>
                         </div>
                         <div class="col-lg-12" style="color: #143153">
                             <h5 class="text-center" style="padding-left: 15px">
                                 DESCARGA AQUÍ LOS DOCUMENTOS NECESARIOS PARA INICIAR TU RECLAMACIÓN
                             </h5>
                         </div>
-                    
+
                         <div class="col-lg-12 text-left">
                             <p style="color: #143153;font-size: 13px;margin-bottom: 0px;">
                                 *Consulta términos y condiciones
@@ -223,23 +223,23 @@
                         padding: 30px;border-radius: 8px; margin-top:10px">
                         <div class="col-lg-12" style="color: #143153;">
                                 <h5 class="text-center">
-                                    <strong> 
+                                    <strong>
                                     Incrementa tus compras para tener derecho a los beneficios de asistencias
                                     </strong>
                                 </h5>
                         </div>
-                    </div> 
+                    </div>
                     @endif
 
                     {{-- Special week for mobile --}}
                     @if($level > 1 && !(Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021")))
                     <div class="form-row text-center box_documents"
-                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px"> 
+                        style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 30px;border-radius: 8px; margin-top:10px">
                         <div class="col-lg-12" style="color: #143153;">
                             <h5 class="text-center"> <strong> SERVICIOS DE ASISTENCIA
                             </strong></h5>
                         </div>
-    
+
                         <div class="col-lg-4 text-center py-3" style="cursor: pointer;" data-toggle="modal" data-target="#modal15">
                             <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA</strong></h6>
                         </div>
@@ -300,7 +300,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5>
                                 <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
@@ -315,7 +315,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
-                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5> 
+                                <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5>
                                 <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
                                 <br>
                             </div>

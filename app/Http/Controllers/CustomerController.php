@@ -1616,7 +1616,7 @@ class CustomerController extends Controller
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
-                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->where('branch','=',$dataSession->branch_number)
                                 ->get();
         $query = json_decode($query);
         $query = (array)$query;
@@ -1697,7 +1697,7 @@ class CustomerController extends Controller
         //$data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
-                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->where('branch','=',$dataSession->branch_number)
                                 ->get();
         $query = json_decode($query);
         $query = (array)$query;
@@ -1824,7 +1824,7 @@ class CustomerController extends Controller
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
-                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->where('branch','=',$dataSession->branch_number)
                                 ->get();
         //$data->branch_name = $branch_name[0]->branch_name;
         $query = json_decode($query);
@@ -1903,7 +1903,7 @@ class CustomerController extends Controller
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
                                 ->where('client_number','=',$data->client_number)
-                                ->where('branch_number','=',$dataSession->branch_number)
+                                ->where('branch','=',$dataSession->branch_number)
                                 ->get();
         $query = json_decode($query);
         $query = (array)$query;
@@ -2165,7 +2165,7 @@ class CustomerController extends Controller
         $data->is_branch = $dataSession->is_branch;
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
-                    ->where('branch_number','=',$dataSession->branch_number)
+                    ->where('branch','=',$dataSession->branch_number)
                     ->get();
         $query = json_decode($query);
         $query = (array)$query;
@@ -2356,8 +2356,8 @@ class CustomerController extends Controller
         $noti = $this->getNotifications();
 
         $data->branch_number = $dataSession->branch_number;
-        $query = DB::table('client_numnbers')
-                                ->where('branch_number','=',$dataSession->branch_number)
+        $query = DB::table('client_numbers')
+                                ->where('branch','=',$dataSession->branch_number)
                                 ->get();
         $query = json_decode($query);
         $query = (array)$query;
