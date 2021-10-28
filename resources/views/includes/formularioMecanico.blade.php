@@ -10,7 +10,7 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-lg-7 pt-2 pb-5">
-                    <h2>REGISTRO MECÁNICO </h2>
+                    <h2>CUENTA INDIVIDUAL </h2>
                     <div class="line1">
                         <img src="{{asset('img/line2.png')}}" alt="">
                     </div>
