@@ -28,6 +28,12 @@
               </div>
               <div class="alert alert-danger" id="form_alert_dns_mec" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-success" id="alertSuccessCodeMec" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha enviado un código de verificación al telefóno celular indicado</p>
+              </div>
+              <div class="alert alert-danger" id="error_code" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form autocomplete="off" id="mechanicForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
@@ -54,7 +60,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-3" id="mobile" style="display: flex">
+                    <div class="col-lg-6 py-3" id="mobile" style="display: flex; flex-direction: column;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
@@ -63,8 +69,15 @@
                                    id="mobileMec" name="mobile" maxlength="10" pattern="[0-9]{10}" required style="border-radius: 0 .25rem .25rem 0">
                             <div class="input-group-append" id="form_alert_phone_mec" hidden>
                             </div>
+                            <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <p style="color: red; margin: 0;">*</p>
+                        <div class="input-group mb-3" style="margin-top: 1rem">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeMec" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeMecConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <p style="color: red; margin: 0;" hidden id="requiredSignal">*</p>
+                        </div>
                     </div>
                     <div class="col-lg-6 py-3" style="display: flex">
                         <label for="" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>

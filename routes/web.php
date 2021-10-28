@@ -121,3 +121,4 @@ Route::prefix('admin')->name('admin.')->group(function (){
 //Reports for Telasist and Chubb
 Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
 Route::get('/chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'chubb_report'])->name('chubb_report');
+Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verification')->name('send.sms.verification');

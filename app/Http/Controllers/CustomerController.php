@@ -2473,6 +2473,20 @@ class CustomerController extends Controller
 
     }
 
+    public function sms_verification($mobile){
+        $code = rand(111111,999999);
+        $messsage = 'Este es el código de verificación que debes ingresar para completar tu registro en Socio SYD: '.$code;
+
+        $response = TwilioService::send_sms($messsage,'+52'.$mobile);
+
+        if($response){
+            return response()->json($code);
+        }else{
+            return response()->json(000000);
+        }
+
+    }
+
 
 
     public function send_email($name, $email, $token){
