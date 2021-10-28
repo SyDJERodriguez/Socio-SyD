@@ -311,7 +311,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+       /* $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -322,7 +322,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -648,7 +648,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -659,7 +659,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
 
         //Validate DNS email
@@ -700,7 +700,7 @@ class CustomerController extends Controller
                 $data = CustomersSession::where('email', $request['email'])->first();
             }
 
-            $data_branch = DB::table('client_numbers')
+            $data_branch = DB::table('branches_clients')
                                 ->where('client_number','=', $client_number)
                                 ->first();
         } catch (\Throwable $th) {
@@ -905,7 +905,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+       /* $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -916,7 +916,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -2469,6 +2469,20 @@ class CustomerController extends Controller
         }catch(\Exception $e){
             //Utils::set_log(0,'Error de sistema '.$e->getCode().' '.$e->getMessage(),null,$request);
             return redirect()->back()->withInput()->with('error','Ocurrio un error verifique sus datos e intentelo de nuevo  '.$e->getMessage());
+        }
+
+    }
+
+    public function sms_verification($mobile){
+        $code = rand(111111,999999);
+        $messsage = 'Este es el código de verificación que debes ingresar para completar tu registro en Socio SYD: '.$code;
+
+        $response = TwilioService::send_sms($messsage,'+52'.$mobile);
+
+        if($response){
+            return response()->json($code);
+        }else{
+            return response()->json(000000);
         }
 
     }

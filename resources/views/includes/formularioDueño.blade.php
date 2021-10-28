@@ -10,7 +10,7 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-lg-8 pt-2 pb-5">
-                    <h2>REGISTRO DUEÑO DE NEGOCIO</h2>
+                    <h2>CUENTA CON COLABORADORES</h2>
                     <div class="line1">
                         <img src="{{asset('img/line2.png')}}" alt="">
                     </div>
@@ -29,7 +29,12 @@
               </div>
               <div class="alert alert-danger" id="form_alert_dns" role="alert" style="border-radius: 6px;" hidden>
               </div>
-
+              <div class="alert alert-success" id="alertSuccessCodeOw" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha enviado un código de verificación al telefóno celular indicado</p>
+              </div>
+              <div class="alert alert-danger" id="error_code_ow" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form autocomplete="off" id="ownerForm" method="POST" action="{{route('customer.update')}}">
                 @method('PUT')
                 @csrf
@@ -75,7 +80,7 @@
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 py-2" style="display: flex; flex-direction: column;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
@@ -84,8 +89,16 @@
                                    name="mobile" maxlength="10" pattern="[0-9]{10}" required style="border-radius: 0 .25rem .25rem 0">
                             <div class="input-group-append" id="form_alert_phone" hidden>
                             </div>
+                            <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <p style="color: red; margin: 0;">*</p>
+
+                        <div class="input-group mb-3" style="margin-top: 1rem">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeOw" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeOwConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <p style="color: red; margin: 0;" hidden id="requiredSignalOw">*</p>
+                        </div>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="email" class="form-control btnBorder" placeholder="CORREO ELECTRONICO"
