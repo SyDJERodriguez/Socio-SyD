@@ -52,18 +52,22 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                    
+
                         <!--<li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
                         </li>-->
                     @else
                     @if (Auth::user()->type_user==1)
-                    <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
-                        Log Sesiones
-                    </a>
-                    <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
-                        Log Busquedas
-                    </a>
+                        <a class="nav-link " href="{{ route('admin.total.registers') }}">
+                            Registros
+                        </a>
+                        <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
+                            Log Sesiones
+                        </a>
+                        <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
+                            Log Busquedas
+                        </a>
+
                     @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -122,7 +126,7 @@
     $.noConflict();
 jQuery(document).ready(function($){
    $('#logsSessions').DataTable({
-    "order": [[ 2, "desc" ],[ 3, "desc" ]],  
+    "order": [[ 2, "desc" ],[ 3, "desc" ]],
   dom: 'Bfrtip',
   info: false,
   searching:false,

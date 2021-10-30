@@ -47,7 +47,7 @@
                 <div class="form-row align-items-center">
                     <div class="col-lg-6 my-2" style="padding-top:4px">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
-                            placeholder="CORREO" name="email" required style="margin-top: 7px; border-color: black">
+                            placeholder="CORREO O NÚMERO CELULAR" name="email" required style="margin-top: 7px; border-color: black">
                             <div class="row" style="margin-top: 3px">
                                 <div class="col-sm-5 " style="display: flex;">
                                     <p class="primary-color"
