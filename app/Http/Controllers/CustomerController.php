@@ -1435,45 +1435,89 @@ class CustomerController extends Controller
 
     //Login function
     public function login(Request $request){
-        $is_register = $is_activate = DB::table('customers_sessions')
+        $is_register_by_email = $is_activate = DB::table('customers_sessions')
             ->select('email')
             ->where('email', '=', $request->email)
             ->first();
 
-        if ($is_register === null){
-            return back()->with('register','');
-        }
+        if ($is_register_by_email !== null){
+            //Login by email
+            $is_activate = DB::table('customers_sessions')
+                ->select('active')
+                ->where('email', '=', $request->email)
+                ->first();
 
-        $is_activate = DB::table('customers_sessions')
-            ->select('active')
-            ->where('email', '=', $request->email)
-            ->first();
+            if ($is_activate->active === 0){
+                return back()->with('deactivate','');
+            }
 
-        if ($is_activate->active === 0){
-            return back()->with('deactivate','');
-        }
+            //Validando
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required'
+            ],[
+                'password.min' => 'El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.'
+            ]);
 
-        //Validando
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ],[
-            'password.min' => 'El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.'
-        ]);
-
-        //Login
-        if(Auth::guard('customer')->attempt([
-            'email'    => $request->email,
-            'password' => $request->password])
+            if(Auth::guard('customer')->attempt([
+                'email'    => $request->email,
+                'password' => $request->password])
             ){
-            //update notifications each login
-            $notification = $this->updateNotifications($request->email);
+                //update notifications each login
+                $notification = $this->updateNotifications($request->email);
 
-            return redirect()->route('customer.benefits');
+                return redirect()->route('customer.benefits');
 
+            }else{
+                return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
+            }
         }else{
-            return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
+            $is_register_by_phone = $is_activate = DB::table('customers_sessions')
+                ->select('mobile')
+                ->where('mobile', '=', $request->email)
+                ->first();
+
+            if($is_register_by_phone !== null){
+                //Login by mobile
+                $is_activate = DB::table('customers_sessions')
+                    ->select('active')
+                    ->where('mobile', '=', $request->email)
+                    ->first();
+
+                if ($is_activate->active === 0){
+                    return back()->with('deactivate','');
+                }
+
+                //Validando
+                $this->validate($request, [
+                    'email' => 'required',
+                    'password' => 'required'
+                ],[
+                    'password.min' => 'El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.'
+                ]);
+
+                if(Auth::guard('customer')->attempt([
+                    'mobile'    => $request->email,
+                    'password' => $request->password])
+                ){
+                    //update notifications each login
+                    $notification = $this->updateNotificationsbyphone($request->email);
+
+                    return redirect()->route('customer.benefits');
+
+                }else{
+                    return back()->withInput($request->only('email', 'remember'))->with('error','El usuario y/o contraseña son incorrecto(s), por favor verifique sus datos.');
+                }
+            }else{
+                return back()->with('register','');
+            }
+
         }
+
+
+
+
+
     }
 
     //update table notifications to seen
@@ -1791,6 +1835,45 @@ class CustomerController extends Controller
 
         $trans1 = DB::table('transactions')
            // ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', 'not like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $now->month)
+            ->get();
+
+        $trans2 = DB::table('transactions')
+            //->join('material_type', 'transactions.tmat', '=', 'material_type.code')
+            ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
+            ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
+            ->where('transactions.client_number','=', $dataSession->client_number)
+            ->where('transactions.branch_number','=', $dataSession->branch_number)
+            ->where('amount', 'like', '%' . '-' . '%')
+            ->whereMonth('transaction_date', $now->subMonth(1)->month)
+            ->get();
+
+        $data = $trans1->merge($trans2);
+
+        return $data;
+    }
+
+    public function getTransCadenaByPhone($phone){
+        $dataSession = DB::table('customers_sessions')
+            ->where('mobile','=', $phone)->first();
+        $now = Carbon::now();
+        //$current_month = $now->month;
+        //$last_month = $now->subMonth();
+
+        /*  $data= DB::table('transactions')
+                     ->where('client_number','=', $dataSession->client_number)
+                     ->where('branch_number','=', $dataSession->branch_number)
+                     ->whereMonth('transaction_date', '=' ,$now)
+                     //->whereMonth('transaction_date', '=' ,$last_month) TODO
+                     ->get(); */
+
+        $trans1 = DB::table('transactions')
+            // ->join('material_type', 'transactions.tmat', '=', 'material_type.code')
             ->join('sale_office', 'transactions.sale_office', '=', 'sale_office.code')
             ->join('payment_method', 'transactions.payment_method', '=', 'payment_method.code')
             ->where('transactions.client_number','=', $dataSession->client_number)
@@ -2255,6 +2338,23 @@ class CustomerController extends Controller
         return $totalAmount;
     }
 
+    //get the total amount by passing client number as a parameter
+    public function totalAmountByPhone($client_number,$phone){
+        //$now = Carbon::now();
+        //$current_month = $now->month;
+
+        $data_customer = $this->getTransCadenaByPhone($phone);
+        $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            //}
+        }
+
+        return $totalAmount;
+    }
+
     //get the data from notifications table
     public function getNotifications(){
         $data = DB::table('notifications')
@@ -2321,6 +2421,45 @@ class CustomerController extends Controller
                                     ->update([
                                         'available' => 1
                                     ]);
+        }
+
+        return $update_notifications;
+
+    }
+
+    public function updateNotificationsbyphone($phone){
+        //get client number by email
+        $data = DB::table('customers_sessions')
+            ->where('mobile','=',$phone)
+            ->get();
+        $data = json_decode($data);
+        $data = (array)$data;
+        //calcular el total amount
+        $total = $this->totalAmountByPhone($data[0]->client_number, $phone);
+        //update en tabla notifications
+        $update_notifications = 'No matches';
+        if($data[0]->client_type != 2 && $total > 2500.01){
+            $update_notifications = DB::table('notifications')
+                ->where('branch_number','=',$data[0]->branch_number)
+                ->update([
+                    'available' => 1
+                ]);
+        }
+
+        if($data[0]->client_type == 2 && $total > 200.02){
+            $update_notifications = DB::table('notifications')
+                ->where('branch_number','=',$data[0]->branch_number)
+                ->update([
+                    'available' => 1
+                ]);
+        }
+
+        if($data[0]->created_at >= Carbon::createFromFormat('Y-m-d', '2021-08-15') && $data[0]->created_at <= Carbon::createFromFormat('Y-m-d', '2021-08-30')){
+            $update_notifications = DB::table('notifications')
+                ->where('branch_number','=',$data[0]->branch_number)
+                ->update([
+                    'available' => 1
+                ]);
         }
 
         return $update_notifications;
