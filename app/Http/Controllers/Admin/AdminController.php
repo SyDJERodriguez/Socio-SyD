@@ -179,8 +179,8 @@ class AdminController extends Controller
             ->get();
 
         //TODO: If tiene has($customerData) mas de  un registro, entonces mostrar su nombre y correo
-        return view('Admin.customer', 
-                    compact('client_number', 'account', 'transactions', 'totalAmount', 
+        return view('Admin.customer',
+                    compact('client_number', 'account', 'transactions', 'totalAmount',
                             'customerData', 'level', 'associates'));
     }
 
@@ -313,8 +313,8 @@ class AdminController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customer', 
-        compact('client_number', 'account', 'transactions', 'totalAmount', 
+        return view('Admin.customer',
+        compact('client_number', 'account', 'transactions', 'totalAmount',
                 'customerData', 'level', 'associates'));
     }
 
@@ -360,5 +360,119 @@ class AdminController extends Controller
 
         $customer_trans = $trans1->merge($trans2);
         return $customer_trans;
+    }
+
+    // Get all customers register in Pegaso
+    public function total_registers() {
+        $data =  DB::table ('customers_sessions')
+            ->join('customer_platforms', 'customers_sessions.email','=','customer_platforms.email')
+            ->select(
+                'customers_sessions.client_number',
+                        'customers_sessions.branch_number',
+                        'customer_platforms.name',
+                        'customer_platforms.last_name',
+                        'customer_platforms.second_last_name',
+                        'customer_platforms.gender',
+                        'customer_platforms.birthday',
+                        'customers_sessions.email',
+                        'customers_sessions.mobile AS phone',
+                        'customers_sessions.created_at AS fecha_registro',
+                        'customers_sessions.client_type AS type_user',
+                        'customers_sessions.active'
+            )
+            ->get();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+        foreach ($data as $client){
+            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
+
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+
+            if($client->type_user === '3'){
+                $associate_data = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                $client->client_number = $client->client_number.'-'.$associate_data->number;
+            }
+
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+
+            if($client->type_user === '1'){
+                $client->type_user = 'Dueño de Negocio';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount<2500) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '2'){
+                $client->type_user = 'Mecánico Individual';
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount<200) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '3'){
+                $client->type_user = 'Empleado Dependiente';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount<2500) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '4'){
+                $client->type_user = 'Cadenas';
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>7000) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount<2500) {
+                    $client->level= 'Sin beneficios';
+                }
+            }
+
+
+            $client->active === 0 ? $client->active = 'No Activado' : $client->active = 'Activado';
+        }
+
+        //return response()->json($data);
+        return view('Admin.registers', compact('data'));
     }
 }
