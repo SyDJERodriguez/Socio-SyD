@@ -1789,7 +1789,7 @@ class CustomerController extends Controller
         } */
 
         $level = 0;
-        if (Auth::user()->client_type != "2"){
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type != "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1801,7 +1801,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -1936,7 +1936,7 @@ class CustomerController extends Controller
         $totalAmount = $this->totalAmount();
 
         $level = 0;
-        if (Auth::user()->client_type !== "2"){
+        if (Auth::user()->client_type !== "2" || Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -1948,7 +1948,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -2022,7 +2022,7 @@ class CustomerController extends Controller
         } */
 
         $level = 0;
-        if (Auth::user()->client_type != "2"){
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -2034,7 +2034,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -2089,7 +2089,7 @@ class CustomerController extends Controller
         } */
 
         $level = 0;
-        if (Auth::user()->client_type != "2"){
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -2101,7 +2101,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -2147,7 +2147,7 @@ class CustomerController extends Controller
         }
  */
         $level = 0;
-        if (Auth::user()->client_type != "2"){
+        if (Auth::user()->client_type != "2"|| Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -2159,7 +2159,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -2275,7 +2275,7 @@ class CustomerController extends Controller
         } */
 
         $level = 0;
-        if (Auth::user()->client_type != "2"){
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
                 $level = 1;
             }
@@ -2287,7 +2287,7 @@ class CustomerController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"){
+        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "5"){
             if ($totalAmount>200 && $totalAmount<=500) {
                 $level = 1;
             }
@@ -2399,7 +2399,7 @@ class CustomerController extends Controller
         $total = $this->totalAmountById($data[0]->client_number, $email);
         //update en tabla notifications
         $update_notifications = 'No matches';
-        if($data[0]->client_type != 2 && $total > 2500.01){
+        if(($data[0]->client_type != 2 || $data[0]->client_type != 5) && $total > 2500.01){
             $update_notifications = DB::table('notifications')
                                     ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
@@ -2407,7 +2407,7 @@ class CustomerController extends Controller
                                     ]);
         }
 
-        if($data[0]->client_type == 2 && $total > 200.02){
+        if(($data[0]->client_type == 2 ||$data[0]->client_type == 5) && $total > 200.02){
             $update_notifications = DB::table('notifications')
                                     ->where('branch_number','=',$data[0]->branch_number)
                                     ->update([
@@ -2438,7 +2438,7 @@ class CustomerController extends Controller
         $total = $this->totalAmountByPhone($data[0]->client_number, $phone);
         //update en tabla notifications
         $update_notifications = 'No matches';
-        if($data[0]->client_type != 2 && $total > 2500.01){
+        if(($data[0]->client_type != 2 || $data[0]->client_type != 5) && $total > 2500.01){
             $update_notifications = DB::table('notifications')
                 ->where('branch_number','=',$data[0]->branch_number)
                 ->update([
@@ -2446,7 +2446,7 @@ class CustomerController extends Controller
                 ]);
         }
 
-        if($data[0]->client_type == 2 && $total > 200.02){
+        if(($data[0]->client_type == 2 || $data[0]->client_type === 5) && $total > 200.02){
             $update_notifications = DB::table('notifications')
                 ->where('branch_number','=',$data[0]->branch_number)
                 ->update([

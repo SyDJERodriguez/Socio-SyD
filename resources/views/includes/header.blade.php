@@ -190,8 +190,15 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
-                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
                                     style="width: 270px; font-size: 12px;">CADENAS</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalGeneral"
+                                        style="width: 270px; font-size: 12px;">PÚBLICO EN GENERAL</button>
                             </div>
                         </div>
                     </div>
@@ -400,6 +407,9 @@ padding-bottom: 14px;">
 
 <!--Modal formulario Canales -->
 @include('includes.formularioCadenas')
+
+<!--Modal formulario Publico General -->
+@include('includes.formularioPublicoGeneral')
 
 @if(Auth::check())
 {{-- Modal notifications --}}

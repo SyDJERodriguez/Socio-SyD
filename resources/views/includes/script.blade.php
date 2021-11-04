@@ -149,6 +149,39 @@
             }
         });
 
+        //Get the general public client number
+        $("#client_number_gen").keyup(function(){
+            let client_number_gen = $('input[id=client_number_gen]').val();
+            console.log('here')
+            console.log(client_number_gen.length)
+            if(client_number_gen.length===8){
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('customer.information')}}",
+                    data: {'client_number': client_number_gen},
+                    success: function (data) {
+                        console.log(data);
+                        if (data['success']==='false' && data['verify_client_number']==='false') {
+                            document.getElementById("form_alert_gen")
+                                .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
+                            document.getElementById("form_alert_gen").removeAttribute("hidden");
+                            $(".alertClose").on("click", function (){document.getElementById("form_alert_gen").hidden= true});
+                            setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
+                        }
+                        /*$('input[id=nameMec]').val(data['name']);
+                        $('input[id=lastNameMec]').val(data['last_name']);
+                        $('input[id=secondLastNameMec]').val(data['second_last_name']);
+                        $('input[id=mobileMec]').val(data['mobile_number']);
+                        $('input[id=emailMec]').val(data['email']);
+                        $('input[id=birthday]').val(data['birthday']);*/
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            }
+        });
+
         //Get the employee's client number
         $("#client_number_employee").keyup(function(){
             let client_number_employee = $('input[id=client_number_employee]').val();
@@ -578,6 +611,100 @@
             });
             // Nos permite cancelar el envio del formulario
             return false;
+        });
+
+        //General Public form
+        $("#generalForm").bind("submit",function(){
+            let codeVerification = document.querySelector('#codeGen');
+            let codeConfirm      = document.querySelector('#codeGenConfirm');
+            let error_code       = document.querySelector('#error_code');
+
+            if(codeConfirm.value === codeVerification.value){
+                // We capture send button
+                let btnSend = $("#btnSend");
+                $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr("action"),
+                    data:$(this).serialize(),
+
+                    success: function(data){
+                        //console.log(data);
+                        if(data['success']==='true'){
+                            $('#modalGeneral').modal('hide');
+                            $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
+                            $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                            $('#clientMessage').text('En breve recibirás un email de activación.');
+                            $('#modalSuccess').modal('show');
+                        }else if (data['success']==='false' && data['verify_email']==='false') {
+                            document.getElementById("form_alert_gen_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
+                            document.getElementById("form_alert_gen_email").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_gen_email").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                            document.getElementById("form_alert_gen").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
+                            document.getElementById("form_alert_gen").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_password']==='false') {
+                            document.getElementById("form_alert_gen_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
+                            document.getElementById("form_alert_gen_pass").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_gen_pass").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                            document.getElementById("form_alert_gen_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente ';
+                            document.getElementById("form_alert_gen_mobile").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_gen_mobile").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                            document.getElementById("form_alert_gen").innerHTML='El email ya se encuentra asociado a otro cliente ';
+                            document.getElementById("form_alert_gen").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 3000);
+                        }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                            document.getElementById("form_alert_phone_gen").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
+                            document.getElementById("form_alert_phone_gen").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_phone_gen").hidden= true}, 3500);
+                            document.getElementById("form_alert_phone_text_gen").innerHTML='El número telefónico no es válido. Verifica tus datos';
+                            document.getElementById("form_alert_phone_text_gen").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_phone_text_gen").hidden = true},3500)
+                        }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                            document.getElementById("form_alert_dns_gen").innerHTML='Por favor proporciona un email válido';
+                            document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
+
+                        }else if(data['success']==='false' && data['verify_client']==='false'){
+                            document.getElementById("form_alert_dns_gen").innerHTML='El número de cliente ya está en uso';
+                            document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
+
+                        }else if(data['success']==='false' && data['verify_data_branch']==='false'){
+                            $('#modalSignUpInCadenas').modal('show');
+
+                        }else if(data['success']==='false' && data['other']==='false'){
+                            document.getElementById("form_alert_dns_gen").innerHTML=data['error'];
+                            document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
+
+                        }else if(data['success']==='false' && data['bday']==='false'){
+                            document.getElementById("form_alert_dns_gen").innerHTML=data['error'];
+                            document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
+
+                        }else if (data['success']==='false'){
+                            $('#modalGeneral').modal('hide');
+                            $('#modalError').modal('show');
+                            //console.log(data);
+                        }
+                    },
+                    error: function(data){
+                        $('#modalErrorServer').modal('show');
+
+                    }
+                });
+                // Nos permite cancelar el envio del formulario
+                return false;
+            }else{
+                console.log('Not are the same code');
+                error_code.innerHTML = 'El código de verificación es incorrecto';
+                error_code.hidden    = false;
+                setTimeout(() =>{error_code.hidden = true},3500);
+                return false;
+            }
         });
 
         //Signature Submit
@@ -1655,5 +1782,33 @@
         requiredCodeOw.hidden = false;
         setTimeout(() =>{alertCodeBr.hidden = true},3500);
         inputCodeBr.type = 'text';
+    });
+
+    /* this for General Public */
+    let mobileGen  = document.querySelector('#mobileGen');
+    let inputCodeGen = document.querySelector('#codeGen');
+    let alertCodeGen    = document.querySelector('#alertSuccessCodeGen');
+    let requiredCodeGen = document.querySelector('#requiredSignalGen');
+    let codeConfirmGen  = document.querySelector('#codeGenConfirm');
+
+    mobileGen.addEventListener('input', function (){
+        length = mobileGen.value.length;
+        if ( length < 10 ) return null;
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                codeConfirmGen.value = this.response;
+            }
+        };
+
+        let url = hostName+mobileGen.value;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        alertCodeGen.hidden    = false;
+        requiredCodeGen.hidden = false;
+        setTimeout(() =>{alertCodeGen.hidden = true},3500);
+        inputCodeGen.type = 'text';
     });
 </script>
