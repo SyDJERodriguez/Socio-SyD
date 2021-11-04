@@ -21,6 +21,9 @@
          @case(4)
          Cuenta: Sucursal ({{ $data->branch_name }})
              @break
+        @case(5)
+            Cuenta: Público General
+            @break
          @default
              Cuenta:
      @endswitch
