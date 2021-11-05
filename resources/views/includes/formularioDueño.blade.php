@@ -139,7 +139,8 @@
                             <option value="3">MECANICO INDEPENDIENTE</option>
                             <option value="4">REFACCIONARIA</option>
                             <option value="5">MAYORISTA</option>
-                            <option value="6">OTRO</option>
+                            <option value="6">LLANTERA</option>
+                            <option value="7">OTRO</option>
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>

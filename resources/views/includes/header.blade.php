@@ -79,7 +79,7 @@
                                 <a href="#"
                                 style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
                                 class="primary-color" data-toggle="modal" data-target="#modal4">
-                                    <b class="noDown">¿Olvidaste tu contraseña?</b>
+                                    <b class="noDown">Recuperar contraseña</b>
                                 </a>
                             </div>
                             <div class="col-sm-2">
@@ -272,7 +272,7 @@ padding-bottom: 14px;">
                 <div class="form-row align-items-center">
                     <div class="col-sm-12 my-1">
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
-                            placeholder="CORREO" name="email" required>
+                            placeholder="CORREO O NÚMERO CELULAR" name="email" required>
                         <div class="col-sm-12" style="display: flex; justify-content: space-between; align-items: flex-end;">
                             <p class="text-white pr-3 noDownCel" style="margin-bottom: 7px; margin-left: -15px">
                                 <b>¿No tienes una cuenta?</b>
@@ -292,7 +292,7 @@ padding-bottom: 14px;">
                             placeholder="CONTRASEÑA" name="password" required>
                         <div class="col-sm-12" style="display: flex; justify-content: center; align-items: flex-end;">
                             <a href="#" class="text-white" data-toggle="modal" data-target="#modal4">
-                                <b>¿Olvidaste tu contraseña?</b>
+                                <b>Recuperar contraseña</b>
                             </a>
                         </div>
                     </div>

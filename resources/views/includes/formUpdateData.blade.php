@@ -151,7 +151,8 @@
                             <option value="3" {{(($data->work) == '3' ? 'selected' : '')}} >MECANICO INDEPENDIENTE</option>
                             <option value="4" {{(($data->work) == '4' ? 'selected' : '')}} >REFACCIONARIA</option>
                             <option value="5" {{(($data->work) == '5' ? 'selected' : '')}} >MAYORISTA</option>
-                            <option value="6" {{(($data->work) == '6' ? 'selected' : '')}} >OTRO</option>
+                            <option value="5" {{(($data->work) == '6' ? 'selected' : '')}} >LLANTERA</option>
+                            <option value="6" {{(($data->work) == '7' ? 'selected' : '')}} >OTRO</option>
                         </select>
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>

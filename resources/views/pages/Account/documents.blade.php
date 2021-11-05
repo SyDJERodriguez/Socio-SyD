@@ -292,7 +292,7 @@
                     </div>
                     @endif
             </div>
-        @else
+        @elseif(count($beneficiaries) === 0 && !in_array($level,[1,2,3]))
             <div class="col-8 py-2 divImgDerecha" >
                 <div class="form-row text-center box_documents"
                      style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
@@ -301,7 +301,7 @@
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
                                 <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5>
-                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
+                                <h5 class="text-white">a tus beneficiarios y que alcances el mínimo de compra</h5>
                                 <br>
                             </div>
                         </div>
@@ -316,7 +316,69 @@
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
                                 <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres</h5>
-                                <h5 class="text-white">a tus beneficiarios o que alcances el mínimo de compra</h5>
+                                <h5 class="text-white">a tus beneficiarios y que alcances el mínimo de compra</h5>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @elseif(count($beneficiaries) === 0)
+            <div class="col-8 py-2 divImgDerecha" >
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                 <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres a tus beneficiarios</h5>
+                                <br>
+                                    <a href="{{route('customer.register.beneficiary')}}" class="btn btn-secondary" style="background-color: #00A5E6; border: #00A5E6;">Registrar beneficiarios</a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 py-2 divImgDerecha2" >
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                    <h5 class="text-white">Para tener acceso a tus documentos, es necesario que registres a tus beneficiarios</h5>
+                                    <br>
+                                    <a href="{{route('customer.register.beneficiary')}}" class="btn btn-secondary" style="background-color: #00A5E6; border: #00A5E6;">Registrar beneficiarios</a>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @elseif(!in_array($level,[1,2,3]))
+            <div class="col-8 py-2 divImgDerecha" >
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                    <h5 class="text-white">Para tener acceso a tus documentos, es necesario que alcances el mínimo de compra mensual</h5>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 py-2 divImgDerecha2" >
+                <div class="form-row text-center box_documents"
+                     style="border: 1px solid rgba(128, 128, 128, 0.664);padding: 40px;border-radius: 10px;">
+                    <div class="modal-body " style="background-color: #143153; height: 30%">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
+                                    <h5 class="text-white">Para tener acceso a tus documentos, es necesario que alcances el mínimo de compra mensual</h5>
                                 <br>
                             </div>
                         </div>
