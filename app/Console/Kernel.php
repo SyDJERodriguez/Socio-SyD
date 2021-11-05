@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
         Commands\InvitationInsuranceIndividual::class,
         Commands\InvitationInsurance30Individual::class,
         Commands\InvitationInsurance30Negocio::class,
+        Commands\SmsTest::class,
+        //'App\Console\Commands\SmsTest'
 
     ];
 
@@ -37,7 +39,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('schedule:seguroNegocio30')          ->monthlyOn(30, '10:00'); //30/mes
         $schedule->command('schedule:invitationPlataNegocio30') ->monthlyOn(30, '10:00'); //30/mes
         $schedule->command('schedule:invitationOroNegocio30')   ->monthlyOn(30, '10:00'); //30/mes
-        
+        $schedule->command('schedule:sms')->everyFiveMinutes();
+
         //testing
         //$schedule->command('schedule:seguroIndividual')->everyMinute();
         //$schedule->command('schedule:seguroNegocio')->everyMinute();
