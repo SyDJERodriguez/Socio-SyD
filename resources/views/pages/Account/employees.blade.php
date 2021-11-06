@@ -355,8 +355,8 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         {{-- <img src="{{asset('img/icon_check.png')}}"> --}}
-                        <h5 class="text-white">¡EL DEPENDIENTE ES EL DUEÑO DE LA CUENTA!</h5>
-                        <p class="text-white">El correo y/o número de teléfono es el mismo que el propietario de la cuenta</p>
+                        <h5 class="text-white">¡EL COLABORADOR ES EL DUEÑO LA CUENTA!</h5>
+                        <p class="text-white">Agrega a tus colaboradores para darles los beneficios del seguro</p>
                         <button data-dismiss="modal" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</button>
                     </div>
                 </div>
