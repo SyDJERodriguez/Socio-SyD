@@ -9,6 +9,12 @@
             this.className += " active";
         });
     }
+    //popover for buttons modal 
+    $('#popoverDataindividual').popover();
+    $('#popoverDatacolaboradores').popover();
+    $('#popoverDatacadenas').popover();
+    $('#popoverDatageneral').popover();
+    $('#popoverOption').popover({ trigger: "hover" });
 
     $('#element').toast('show');
 
