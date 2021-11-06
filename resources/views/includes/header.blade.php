@@ -180,7 +180,7 @@
                                 id="popoverDataindividual" data-content="¿Quieres recibir los beneficios de Seguro de Accidentes
                                 Personales y Servicios de Asistencia únicamente para ti? Solo debes de realizar un mínimo 
                                 de compra mensual desde $200 pesos" rel="popover" data-placement="top"  data-trigger="hover"
-                                    style="width: 270px; font-size: 12px;">CUENTA INDIVIDUAL</button>
+                                     style="width: 270px; font-size: 12px;">CUENTA INDIVIDUAL</button>
                             </div>
                         </div>
                         <br>
@@ -190,7 +190,7 @@
                                 id="popoverDatacolaboradores" data-content="¿Tienes empleados en tu negocio y quieres que reciban 
                                 los beneficios del programa? Solo debes realizar compras mensuales desde $2,500 pesos 
                                 y estos se asignarán a ti y hasta 7 colaboradores" rel="popover" data-placement="top"  data-trigger="hover"
-                                    style="width: 270px; font-size: 12px;">CUENTA CON COLABORADORES</button>
+                                     style="width: 270px; font-size: 12px;">CUENTA CON COLABORADORES</button>
                             </div>
                         </div>
                         <br>
@@ -199,7 +199,7 @@
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalCadenas"
                                  id="popoverDatacadenas" data-content="¿Tienes varias sucursales y estas se manejan de manera independiente? Te recomendamos
                                  registrarte como Cadena para otorgarle los beneficios por cada sucursal a tus colaboradores" rel="popover" data-placement="top"  data-trigger="hover"
-                                    style="width: 270px; font-size: 12px;">CADENAS</button>
+                                     style="width: 270px; font-size: 12px;">CADENAS</button>
                             </div>
                         </div>
                         <br>
@@ -208,7 +208,7 @@
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modalGeneral"
                                 id="popoverDatageneral" data-content="¿Has comprado piezas SyD® para tu auto particular en cualquier de nuestras sucursales de DAR® Refaccionarias? Esta cuenta es para ti,
                                 no necesariamente tienes que ser un mecánico para obtener los beneficios del programa" rel="popover" data-placement="top"  data-trigger="hover"
-                                    style="width: 270px; font-size: 12px;">PÚBLICO EN GENERAL</button>
+                                     style="width: 270px; font-size: 12px;">PÚBLICO EN GENERAL</button>
                             </div>
                         </div>
                     </div>
