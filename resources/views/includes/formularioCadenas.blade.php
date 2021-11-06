@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="passwordBr" required>
+                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="passwordBr" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])(?=\w*[!#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])\S{8,16}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
