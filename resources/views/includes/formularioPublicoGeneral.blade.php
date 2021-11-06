@@ -105,7 +105,7 @@
                             <p style="color: red; margin: 0;visibility: hidden">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])(?=\w*[!#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])\S{8,16}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
+                            <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])(?=\w*[!#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])\S{9,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         <div class="col-lg-6 offset-lg-6 py-2" style="display: flex">
