@@ -24,9 +24,12 @@ Route::get('/privacy', function(){
 
 Route::post('/contact_us','CustomerController@contact_us');
 
-//Download PDF by SMS
+// Routes without login
+/**  Download PDF by SMS **/
 Route::get('/sms_pdf/{client_number}/{branch_number}', 'BeneficiaryController@generatePDFSMS')->name('sms.generate.pdf');
-
+Route::get('/register/beneficiaries', function (){
+    return view('pages.registerBeneficiaries');
+})->name('register.beneficiaries');
 //Password functions
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');

@@ -54,7 +54,8 @@ class DailyJobForCheckInsurance extends Command
                 'customers_sessions.created_at AS fecha_registro',
                 'customers_sessions.client_type AS type_user',
                 'customers_sessions.active',
-                'customer_platforms.id as customer_platform_id'
+                'customer_platforms.id as customer_platform_id',
+                'customers_sessions.sms_insurance'
             )
             ->get();
 
@@ -93,46 +94,60 @@ class DailyJobForCheckInsurance extends Command
             }
 
             $client->amount = $totalAmount;
-
+            $level = '';
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
-                    $client->level= 'Bronce';
+                if ($totalAmount>2500) {
+                    $level= 'Bronce';
                 }
             }else if($client->type_user === '2'){
                 $client->type_user = 'Mecánico Individual';
-                if ($totalAmount>200 && $totalAmount<=500) {
-                    $client->level= 'Bronce';
+                if ($totalAmount>200) {
+                    $level= 'Bronce';
                 }
             }else if($client->type_user === '3'){
                 $client->type_user = 'Empleado Dependiente';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
-                    $client->level= 'Bronce';
+                if ($totalAmount>2500) {
+                    $level= 'Bronce';
                 }
             }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
-                    $client->level= 'Bronce';
+                if ($totalAmount>2500) {
+                    $level= 'Bronce';
                 }
             }else if($client->type_user === '5'){
                 $client->type_user = 'Publico General';
-                if ($totalAmount>200 && $totalAmount<=500) {
-                    $client->level= 'Bronce';
+                if ($totalAmount>200) {
+                    $level= 'Bronce';
                 }
             }
 
-            if($client->level === 'Bronce' && count($beneficiaries) > 0){
-                $url = url('account/verify/000000001');
-                $messsage = 'Descarga el certificado: '.$url.'Desde el jon';
-                return TwilioService::send_sms($messsage,'+529211400440');
-            }else if($client->level === 'Bronce' && count($beneficiaries) <= 0 ){
-                $url = url('account/verify/000000001');
-                $messsage = 'Registra beneficiarios: '.$url.'Desde el jon';
-                return TwilioService::send_sms($messsage,'+529211400440');
+            if(!$client->sms_insurance){
+                if($level === 'Bronce'){
+                    if(count($beneficiaries) > 0){
+                        $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
+                        $messsage = '¡Felicidades! Ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aquí  '.$url;
+                        $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                        if($send_sms){
+                            DB::table('customers_sessions')
+                                ->where('client_number','=',$client->client_number)
+                                ->update(['sms_insurance' => true]);
+                        }
+                    }else{
+                        $url = url('account/verify/000000001');
+                        $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aquí '.$url;
+                        $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                        if($send_sms){
+                            DB::table('customers_sessions')
+                                ->where('client_number','=',$client->client_number)
+                                ->update(['sms_insurance' => true]);
+                        }
+                    }
+
+                }
             }
-
             $client->active === 0 ? $client->active = 'false' : $client->active = 'true';
-
         }
+        return response()->json('success');
     }
 }
