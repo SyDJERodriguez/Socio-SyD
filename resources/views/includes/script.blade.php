@@ -15,6 +15,7 @@
     $('#popoverDatacadenas').popover();
     $('#popoverDatageneral').popover();
     $('#popoverOption').popover({ trigger: "hover" });
+    
     $('#element').toast('show');
 
     $(document).ready(function(){
