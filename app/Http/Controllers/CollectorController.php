@@ -19,7 +19,7 @@ class CollectorController extends Controller
 
     public function index(){
         return view('Collectors.index');
-    }
+    } 
 
     public function stage_one(){
     	$branchs = Branch::all();

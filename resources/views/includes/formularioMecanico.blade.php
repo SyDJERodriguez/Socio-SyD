@@ -110,12 +110,21 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select autocomplete="new-password" class="form-control btnBorder" name="password" required>
-                            <option>Large select</option>
+                            <option selected>CANAL DE COMPRA</option>
+                            <option>SUCURSAL</option>
+                            <option>CAT</option>
+                            <option>TIENDA EN LINEA</option>
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <select autocomplete="new-password" class="form-control btnBorder" name="password" required>
+                            <option selected>SELECCIONE LA SUCURSAL</option>
+                        </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                      {{-- Modal ¿Olvidaste tu numero cliente --}}
