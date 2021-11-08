@@ -30,6 +30,8 @@ Route::get('/sms_pdf/{client_number}/{branch_number}', 'BeneficiaryController@ge
 Route::get('/register/beneficiaries', function (){
     return view('pages.registerBeneficiaries');
 })->name('register.beneficiaries');
+Route::post('/add_beneficiaries', 'BeneficiaryController@addBeneficiaries')->name('add.beneficiaries');
+
 //Password functions
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');
 Route::get('password/edit/{client_number}', 'CustomerController@edit_password')->name('edit.password');
