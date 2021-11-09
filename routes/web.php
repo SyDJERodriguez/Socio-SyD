@@ -24,8 +24,28 @@ Route::get('/privacy', function(){
 
 Route::post('/contact_us','CustomerController@contact_us');
 
-//Download PDF by SMS
+// Routes without login
+/**  Download PDF by SMS **/
 Route::get('/sms_pdf/{client_number}/{branch_number}', 'BeneficiaryController@generatePDFSMS')->name('sms.generate.pdf');
+Route::get('/register/beneficiaries/{email}', function ($email){
+    $data = DB::table('customer_platforms')->where('email', $email)->first();
+    $data_session = DB::table('customers_sessions')->where('email', $email)->first();
+
+    $client_number = $data_session->client_number;
+    $branch_number = $data_session->branch_number;
+    $beneficiaries = DB::table('beneficiaries')
+        ->where('customer_id','=', $data->id)
+        ->get();
+    $beneficiaries = json_decode($beneficiaries);
+    $beneficiary = (array)$beneficiaries;//convert to array
+
+    if($beneficiary){
+        return view('pages.registerBeneficiaries', compact('data', 'beneficiary', 'client_number', 'branch_number'));
+    }
+
+    return view('pages.registerBeneficiaries', ['email' => $email]);
+})->name('register.beneficiaries');
+Route::post('/add_beneficiaries', 'BeneficiaryController@addBeneficiaries')->name('add.beneficiaries');
 
 //Password functions
 Route::get('/send_restore_password', 'CustomerController@send_restore_password')->name('send.restore.password');

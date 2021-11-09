@@ -1571,7 +1571,7 @@ class CustomerController extends Controller
         ]);
 
         if ($update_customer === 1){
-            $this->send_signUp_success($data->email);
+            //$this->send_signUp_success($data->email);
             return response()->json(['success'=>'true','status' =>200]);
         }
         return response()->json(['success'=>'false','status' =>401]);
