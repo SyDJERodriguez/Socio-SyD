@@ -174,7 +174,7 @@ class BeneficiaryController extends Controller
                 //Here insert each register of the form
                 for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
-                    if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null 
+                    if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
                         || $request['name'][$i] == null || $request['parent'][$i] == null){
                     $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
@@ -234,7 +234,7 @@ class BeneficiaryController extends Controller
             }
 
              //valid name,last,secondLast
-             if($request['second_lastname'][0] == null || $request['lastname'][0] == null 
+             if($request['second_lastname'][0] == null || $request['lastname'][0] == null
                 || $request['name'][0] == null || $request['parent'][0] == null){
                 $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
@@ -336,6 +336,226 @@ class BeneficiaryController extends Controller
             throw $e;
         }
         return false;
+    }
+
+    //Register beneficiaries without Auth
+    public function addBeneficiaries (Request $request) {
+        $request = $request->input();
+
+        $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
+        $data_session = DB::table('customers_sessions')->where('email', $request['email'])->first();
+        $data->branch_number = $data_session->branch_number;
+
+        $number = '';
+        if ($data_session->client_type === "3"){
+            $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
+            $data->branch_number =  $data_session->branch_number;
+            $number = DB::table('associates')
+                ->select('number')
+                ->where('email', $request['email'])
+                ->first();
+        }
+
+        $email = $request['email'];
+
+
+        //dd($request['name'][1]);
+        $count = 0;
+        $total_percent = 0;
+
+        /*$signature = DB::table('customers_sessions')
+            ->select('signature_id')
+            ->where('id', '=', $data_session->id)
+            ->first();
+        $signature = $signature->signature_id;*/
+
+        //$now = Carbon::now();
+        //$current_month = $now->month;
+
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
+        //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
+        /*$data_customer = $this->getTransCadena($request['email']);
+        $total_amount = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $total_amount -= $amount_customer : $total_amount += $amount_customer ;
+            //}
+        }
+
+        $cnt = intval($data_session->client_number);
+        $is_cnt = 'false';
+        if( ($cnt > 90000000) && ($cnt < 90020000)) {
+            $is_cnt = 'true';
+        }
+
+        //$noti = $this->getNotifications();
+        $total = $total_amount;
+
+        $level = 0;
+        if ($data_session->client_type === "1" || $data_session->client_type === "4"){
+            if ($total_amount>2500 && $total_amount<=4500) {
+                $level = 1;
+            }
+            if ($total_amount>4500 && $total_amount<=7000) {
+                $level = 2;
+            }
+            if ($total_amount>7000) {
+                $level = 3;
+            }
+        }
+
+        if ($data_session->client_type === "2" || $data_session->client_type === "3"){
+            if ($total_amount>200 && $total_amount<=500) {
+                $level = 1;
+            }
+            if ($total_amount>500 && $total_amount<=1300) {
+                $level = 2;
+            }
+            if ($total_amount>1300) {
+                $level = 3;
+            }
+        }*/
+
+
+        foreach ($request['percent'] as $percent){
+            if($percent != ""){
+                $count++;
+                //Sum the all percent
+                $total_percent += intval($percent);
+            }
+        }
+
+        //Verify if is one o two registers
+        $client_number = $data_session->client_number;
+        $branch_number = $data_session->branch_number;
+        if ($count == 2){
+            if ($total_percent !== 100){
+                //Here the response if total percent of beneficiaries is not 100
+                $error = 'El porcentaje total debe ser de 100%';
+
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
+                //dd($total_percent);
+            }
+
+            $valid = false;
+            foreach ($request['phone'] as $mobile) {
+                $valid = $this->phoneValidator($mobile);
+
+                if ($valid === false){
+                    $error = 'Un número de teléfono ingresado no es válido';
+
+                    return view('pages.registerBeneficiaries', compact(
+                        'error', 'data', 'request', 'number','owner', 'email'));
+                }
+            }
+
+            try{
+                //Here insert each register of the form
+                for ($i = 0; $i<=1; $i++){
+                    //valid name,last,secondLast
+                    if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
+                        || $request['name'][$i] == null || $request['parent'][$i] == null){
+                        $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
+
+                        return view('pages.registerBeneficiaries', compact(
+                            'error', 'data', 'request', 'number','owner', 'email'));
+                    }
+
+                    if (isset($request['name'][$i])){
+                        if ($request['name'][$i] !== null){
+                            $insert = DB::table('beneficiaries')->insert([
+                                'name'             => $request['name'][$i],
+                                'last_name'        => $request['lastname'][$i],
+                                'second_last_name' => $request['second_lastname'][$i],
+                                'relationship'     => $request['parent'][$i],
+                                'mobile_number'    => $request['phone'][$i],
+                                'percent'          => $request['percent'][$i],
+                                'customer_id'      => $data->id,
+                                'branch_number'    => $request['branch_number'][0]
+                            ]);
+                        }
+                    }
+                }
+
+                //$generatePDF = $this->generatePDF();
+                //if ($generatePDF === 'success') {
+                $success = 'Los beneficiarios han sido agregados correctamente.';
+                $beneficiaries = DB::table('beneficiaries')
+                    ->where('customer_id','=', $data->id)
+                    ->get();
+                $beneficiaries = json_decode($beneficiaries);
+                $beneficiary = (array)$beneficiaries;//convert to array
+                //send email if individual account added a beneficiary
+                if($data_session->client_type === "2"){
+                    $this->send_email_alta($data->email);
+                }
+                return view('pages.registerBeneficiaries', compact(
+                    'success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
+                //}
+
+            }catch(\Exception $e){
+                $error = $e;
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'owner','number', 'email'));
+            }
+
+        }elseif ($count == 1){
+            if (intval($request['percent'][0]) !== 100){
+                //Here the response if total percent of beneficiaries is not 100
+                $error = 'El porcentaje total debe ser de 100%';
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request','number',
+                    'owner', 'email'));
+            }
+
+            //valid name,last,secondLast
+            if($request['second_lastname'][0] == null || $request['lastname'][0] == null
+                || $request['name'][0] == null || $request['parent'][0] == null){
+                $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
+
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
+            }
+
+            $valid = false;
+            $valid = $this->phoneValidator($request['phone'][0]);
+            if ($valid === false){
+                $error = 'Un número de teléfono ingresado no es válido';
+
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
+            }
+
+            $insertBeneficiary = DB::table('beneficiaries')->insert([
+                'name'             => $request['name'][0],
+                'last_name'        => $request['lastname'][0],
+                'second_last_name' => $request['second_lastname'][0],
+                'relationship'     => $request['parent'][0],
+                'mobile_number'    => $request['phone'][0],
+                'percent'          => $request['percent'][0],
+                'customer_id'      => $data->id,
+                'branch_number'    => $request['branch_number'][0]
+            ]);
+
+            //$generatePDF = $this->generatePDF();
+
+            //if ($generatePDF === 'success'){
+            $success = 'El beneficiario ha sido agregado correctamente.';
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id','=', $data->id)
+                ->get();
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
+            //send email if individual account added a beneficiary
+            if($data_session->client_type === "2"){
+                $this->send_email_alta($data->email);
+            }
+
+            return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
+            // }
+        }
     }
 
     //Function to generate PDF and upload AWS's S3
