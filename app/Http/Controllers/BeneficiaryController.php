@@ -343,14 +343,15 @@ class BeneficiaryController extends Controller
         $request = $request->input();
 
         $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
-        $data->branch_number = Auth::user()->branch_number;
+        $data_session = DB::table('customers_sessions')->where('email', $request['email'])->first();
+        $data->branch_number = $data_session->branch_number;
         $number = '';
-        if (Auth::user()->client_type === "3"){
-            $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
-            $data->branch_number = Auth::user()->branch_number;
+        if ($data_session->client_type === "3"){
+            $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
+            $data->branch_number =  $data_session->branch_number;
             $number = DB::table('associates')
                 ->select('number')
-                ->where('email', Auth::user()->email)
+                ->where('email', $request['email'])
                 ->first();
         }
 
@@ -359,18 +360,18 @@ class BeneficiaryController extends Controller
         $count = 0;
         $total_percent = 0;
 
-        $signature = DB::table('customers_sessions')
+        /*$signature = DB::table('customers_sessions')
             ->select('signature_id')
-            ->where('id', '=', Auth::user()->id)
+            ->where('id', '=', $data_session->id)
             ->first();
-        $signature = $signature->signature_id;
+        $signature = $signature->signature_id;*/
 
         //$now = Carbon::now();
         //$current_month = $now->month;
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
-        $data_customer = $this->getTransCadena(Auth::user()->email);
+        $data_customer = $this->getTransCadena($request['email']);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
             //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
@@ -379,17 +380,17 @@ class BeneficiaryController extends Controller
             //}
         }
 
-        $cnt = intval(Auth::user()->client_number);
+        $cnt = intval($data_session->client_number);
         $is_cnt = 'false';
         if( ($cnt > 90000000) && ($cnt < 90020000)) {
             $is_cnt = 'true';
         }
 
-        $noti = $this->getNotifications();
+        //$noti = $this->getNotifications();
         $total = $total_amount;
 
         $level = 0;
-        if (Auth::user()->client_type === "1" || Auth::user()->client_type === "4"){
+        if ($data_session->client_type === "1" || $data_session->client_type === "4"){
             if ($total_amount>2500 && $total_amount<=4500) {
                 $level = 1;
             }
@@ -401,7 +402,7 @@ class BeneficiaryController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2" || Auth::user()->client_type === "3"){
+        if ($data_session->client_type === "2" || $data_session->client_type === "3"){
             if ($total_amount>200 && $total_amount<=500) {
                 $level = 1;
             }
@@ -429,8 +430,7 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%';
 
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
                 //dd($total_percent);
             }
 
@@ -442,8 +442,7 @@ class BeneficiaryController extends Controller
                     $error = 'Un número de teléfono ingresado no es válido';
 
                     return view('pages.Account.beneficiary', compact(
-                        'error', 'data', 'request', 'level','is_cnt',
-                        'signature', 'noti', 'total', 'number','owner'));
+                        'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
                 }
             }
 
@@ -456,8 +455,7 @@ class BeneficiaryController extends Controller
                         $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
                         return view('pages.Account.beneficiary', compact(
-                            'error', 'data', 'request', 'level','is_cnt',
-                            'signature', 'noti', 'total', 'number','owner'));
+                            'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
                     }
 
                     if (isset($request['name'][$i])){
@@ -485,18 +483,17 @@ class BeneficiaryController extends Controller
                 $beneficiaries = json_decode($beneficiaries);
                 $beneficiary = (array)$beneficiaries;//convert to array
                 //send email if individual account added a beneficiary
-                if(Auth::user()->client_type === "2"){
+                if($data_session->client_type === "2"){
                     $this->send_email_alta($data->email);
                 }
                 return view('pages.Account.beneficiary', compact(
-                    'success', 'data', 'beneficiary', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'success', 'data', 'beneficiary', 'level','is_cnt', 'total', 'number','owner'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'noti','level',
+                    'error', 'data', 'request', 'level',
                     'total','owner','total','number','is_cnt'));
             }
 
@@ -505,8 +502,7 @@ class BeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level',
-                    'signature', 'noti', 'total', 'number',
+                    'error', 'data', 'request', 'level', 'total', 'number',
                     'owner','is_cnt'));
             }
 
@@ -516,8 +512,7 @@ class BeneficiaryController extends Controller
                 $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
             }
 
             $valid = false;
@@ -526,8 +521,7 @@ class BeneficiaryController extends Controller
                 $error = 'Un número de teléfono ingresado no es válido';
 
                 return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
             }
 
             $insertBeneficiary = DB::table('beneficiaries')->insert([
@@ -551,7 +545,7 @@ class BeneficiaryController extends Controller
             $beneficiaries = json_decode($beneficiaries);
             $beneficiary = (array)$beneficiaries;//convert to array
             //send email if individual account added a beneficiary
-            if(Auth::user()->client_type === "2"){
+            if($data_session->client_type === "2"){
                 $this->send_email_alta($data->email);
             }
             return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
