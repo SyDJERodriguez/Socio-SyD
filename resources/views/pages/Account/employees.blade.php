@@ -14,7 +14,7 @@
          </div>
         <div class="col-md-6" style="display: flex; justify-content: center; align-items: center">
             @if (Auth::user()->client_type === '1' || Auth::user()->client_type === 1)
-                <h5>Agrega a tus colaboradores para darle los beneficios del seguro.
+                <h5>Agrega a tus colaboradores para darles los beneficios del seguro.
                     Recuerda que tú eres el primer beneficiario de tu seguro. Puedes modificar eso en esta sección
                 </h5>
             @else
