@@ -16,6 +16,7 @@ use App\Helpers\Twilio\TwilioService;
 use App\Helpers\Utils;
 use App\LogRegisters;
 use App\Mail\contactMail;
+use App\Office;
 use App\VueTables\EloquentVueTables;
 use Barryvdh\Reflection\DocBlock\Tag\AuthorTag;
 use DB;
@@ -37,6 +38,7 @@ use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use PDF;
+use app\Sale_office;
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -2743,4 +2745,10 @@ class CustomerController extends Controller
 
         return view('pages.invitationForm', compact('employee','total','noti'));
     }
+    public function formularioMecanico(){
+     //   $sale_office = DB::table('sale_office')->select('code','sale_office')->get(); 
+        $sale_office = Sale_office::all();
+    // $sale_office= DB::table('sale_office')->get();
+        return view('includes.formularioMecanico',compact('sale_office'));
+    } 
 }

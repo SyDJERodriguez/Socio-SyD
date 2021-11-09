@@ -124,6 +124,9 @@
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select autocomplete="new-password" class="form-control btnBorder" name="password" required>
                             <option selected>SELECCIONE LA SUCURSAL</option>
+                            @foreach ($sale_office as $branch)
+                            <option value="{{$branch->code}}">{{$branch->sale_office}}</option>
+                            @endforeach
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
