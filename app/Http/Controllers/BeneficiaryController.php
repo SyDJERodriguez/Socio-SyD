@@ -345,6 +345,7 @@ class BeneficiaryController extends Controller
         $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
         $data_session = DB::table('customers_sessions')->where('email', $request['email'])->first();
         $data->branch_number = $data_session->branch_number;
+
         $number = '';
         if ($data_session->client_type === "3"){
             $data = DB::table('customer_platforms')->where('email', $request['email'])->first();
@@ -354,6 +355,8 @@ class BeneficiaryController extends Controller
                 ->where('email', $request['email'])
                 ->first();
         }
+
+        $email = $request['email'];
 
 
         //dd($request['name'][1]);
@@ -371,7 +374,7 @@ class BeneficiaryController extends Controller
 
         $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //$data_session = CustomersSession::where('email', Auth::user()->email)->first();
-        $data_customer = $this->getTransCadena($request['email']);
+        /*$data_customer = $this->getTransCadena($request['email']);
         $total_amount = 0.0;
         foreach ($data_customer as $d){
             //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
@@ -412,7 +415,7 @@ class BeneficiaryController extends Controller
             if ($total_amount>1300) {
                 $level = 3;
             }
-        }
+        }*/
 
 
         foreach ($request['percent'] as $percent){
@@ -424,13 +427,15 @@ class BeneficiaryController extends Controller
         }
 
         //Verify if is one o two registers
+        $client_number = $data_session->client_number;
+        $branch_number = $data_session->branch_number;
         if ($count == 2){
             if ($total_percent !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
 
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
                 //dd($total_percent);
             }
 
@@ -441,8 +446,8 @@ class BeneficiaryController extends Controller
                 if ($valid === false){
                     $error = 'Un número de teléfono ingresado no es válido';
 
-                    return view('pages.Account.beneficiary', compact(
-                        'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
+                    return view('pages.registerBeneficiaries', compact(
+                        'error', 'data', 'request', 'number','owner', 'email'));
                 }
             }
 
@@ -454,8 +459,8 @@ class BeneficiaryController extends Controller
                         || $request['name'][$i] == null || $request['parent'][$i] == null){
                         $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
-                        return view('pages.Account.beneficiary', compact(
-                            'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
+                        return view('pages.registerBeneficiaries', compact(
+                            'error', 'data', 'request', 'number','owner', 'email'));
                     }
 
                     if (isset($request['name'][$i])){
@@ -486,24 +491,23 @@ class BeneficiaryController extends Controller
                 if($data_session->client_type === "2"){
                     $this->send_email_alta($data->email);
                 }
-                return view('pages.Account.beneficiary', compact(
-                    'success', 'data', 'beneficiary', 'level','is_cnt', 'total', 'number','owner'));
+                return view('pages.registerBeneficiaries', compact(
+                    'success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level',
-                    'total','owner','total','number','is_cnt'));
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'owner','number', 'email'));
             }
 
         }elseif ($count == 1){
             if (intval($request['percent'][0]) !== 100){
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level', 'total', 'number',
-                    'owner','is_cnt'));
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request','number',
+                    'owner', 'email'));
             }
 
             //valid name,last,secondLast
@@ -511,8 +515,8 @@ class BeneficiaryController extends Controller
                 || $request['name'][0] == null || $request['parent'][0] == null){
                 $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
             }
 
             $valid = false;
@@ -520,8 +524,8 @@ class BeneficiaryController extends Controller
             if ($valid === false){
                 $error = 'Un número de teléfono ingresado no es válido';
 
-                return view('pages.Account.beneficiary', compact(
-                    'error', 'data', 'request', 'level','is_cnt', 'total', 'number','owner'));
+                return view('pages.registerBeneficiaries', compact(
+                    'error', 'data', 'request', 'number','owner', 'email'));
             }
 
             $insertBeneficiary = DB::table('beneficiaries')->insert([
@@ -548,7 +552,8 @@ class BeneficiaryController extends Controller
             if($data_session->client_type === "2"){
                 $this->send_email_alta($data->email);
             }
-            return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
+
+            return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
             // }
         }
     }

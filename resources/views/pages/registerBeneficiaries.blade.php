@@ -36,107 +36,142 @@
 
     <!-- Content Start -->
     <div class="container-fluid" style="display: flex; justify-content: center; padding: 100px 0;">
-        <div class="card border-secondary mb-3" style="max-width: 40rem; ">
-            <div class="card-header" style="background-color: #143153; color: #ffffff;">REGISTRO DE BENEFICIARIOS</div>
-            <div class="card-body text-secondary">
-                <form autocomplete="off" method="POST" action="{{route('customer.benefits.add.beneficiary')}}">
-                    @csrf
-                    <div id="beneficiaryParent">
-
-                        <div class="row inputsBeneficiary" id="inputsBeneficiary">
-                            <div class="col-lg-12">
-                                <h6>BENEFICIARIO 1</h6>
-                            </div>
-                            <input type="hidden" id="branch_number1" name="branch_number[]" value="">
-
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">%</div>
-                                    </div>
-                                    <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
-                                           pattern="[0-9].{1,2}"
-                                           required maxlength="3" value="{{ isset($request) ? $request['percent'][0] : null  }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
-                                       pattern="[0-9]{10}"
-                                       required  maxlength="10" value="{{ isset($request) ? $request['phone'][0] : null  }}">
-                            </div>
+        @if(isset($beneficiary))
+            <div class="modal-body " style="background-color: #143153;">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{asset('img/icon_check.png')}}">
+                        <h5 class="text-white">¡Tus beneficiarios ya han sido registrados!</h5>
+                        <br>
+                        <div class="text-white">
+                            @for ($i = 0; $i < count($beneficiary); $i++)
+                                <p>Beneficiario {{$i+1}}:
+                                    {{mb_strtoupper($beneficiary[$i]->name)}}
+                                    {{mb_strtoupper($beneficiary[$i]->last_name)}}
+                                    {{mb_strtoupper($beneficiary[$i]->second_last_name)}}</p>
+                            @endfor
                         </div>
-
-                        <div class="row inputsBeneficiary" id="inputsBeneficiary">
-                            <div class="col-lg-12">
-                                <h6>BENEFICIARIO 2</h6>
-                            </div>
-
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
-                                       pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
-                                       maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">%</div>
-                                    </div>
-                                    <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
-                                           pattern="[0-9].{1,2}"
-                                           maxlength="3" value="{{ isset($request) ? $request['percent'][1] : null  }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 py-2">
-                                <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
-                                       pattern="[0-9]{10}"
-                                       maxlength="10" value="{{ isset($request) ? $request['phone'][1] : null  }}">
-                            </div>
-                        </div>
-
+                        <br>
+                        <h5 class="text-white">¡Recuerda agregar tu firma al certificado!</h5>
+                        <br>
+                        <a href="{{route('sms.generate.pdf', ['client_number' => $client_number, 'branch_number' => $branch_number])}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
+                        <p class="text-white"></p>
                     </div>
-
-                    <div class="col-lg-12 py-2">
-                        <input type="submit" class="btn btn float-right text-white px-5"
-                               style="background-color: #009CE0;" value="CONFIRMAR">
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
+        @else
+            <div class="card border-secondary mb-3" style="max-width: 40rem; ">
+                <div class="card-header" style="background-color: #143153; color: #ffffff;">REGISTRO DE BENEFICIARIOS</div>
+                <div class="card-body text-secondary">
+                    @if(isset($error))
+                        <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
+                            <strong>{{$error}}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                        </div>
+                    @endif
+                    <form autocomplete="off" method="POST" action="{{route('add.beneficiaries')}}">
+                        @csrf
+                        <div id="beneficiaryParent">
+
+                            <div class="row inputsBeneficiary" id="inputsBeneficiary">
+                                <div class="col-lg-12">
+                                    <h6>BENEFICIARIO 1</h6>
+                                </div>
+                                <input type="hidden" id="branch_number1" name="branch_number[]" value="">
+
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">%</div>
+                                        </div>
+                                        <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
+                                               pattern="[0-9].{1,2}"
+                                               required maxlength="3" value="{{ isset($request) ? $request['percent'][0] : null  }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                                           pattern="[0-9]{10}"
+                                           required  maxlength="10" value="{{ isset($request) ? $request['phone'][0] : null  }}">
+                                </div>
+                            </div>
+
+                            <div class="row inputsBeneficiary" id="inputsBeneficiary">
+                                <div class="col-lg-12">
+                                    <h6>BENEFICIARIO 2</h6>
+                                </div>
+
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
+                                           pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
+                                           maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">%</div>
+                                        </div>
+                                        <input type="text" class="form-control mobileInput" name="percent[]" placeholder="PORCENTAJE DESTINADO"
+                                               pattern="[0-9].{1,2}"
+                                               maxlength="3" value="{{ isset($request) ? $request['percent'][1] : null  }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 py-2">
+                                    <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
+                                           pattern="[0-9]{10}"
+                                           maxlength="10" value="{{ isset($request) ? $request['phone'][1] : null  }}">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @if(isset($email))
+                            <input type="hidden" value="{{$email}}" name="email">
+                        @endif
+
+                        <div class="col-lg-12 py-2">
+                            <input type="submit" class="btn btn float-right text-white px-5"
+                                   style="background-color: #009CE0;" value="CONFIRMAR">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 <!-- Content End -->
