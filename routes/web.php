@@ -22,7 +22,10 @@ Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
 })->name('noticePrivacy');
 
+//Route::get('/', 'CustomerController@formularioMecanico');
+
 Route::post('/contact_us','CustomerController@contact_us');
+
 
 // Routes without login
 /**  Download PDF by SMS **/
@@ -117,6 +120,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
+       
     });
 });
 
