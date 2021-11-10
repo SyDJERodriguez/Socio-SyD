@@ -185,7 +185,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal3"
-                                id="popoverDatacolaboradores" data-content="Recibe los beneficios para 4 y hasta 8 colaboradores" rel="popover" data-placement="top"  data-trigger="hover"
+                                id="popoverDatacolaboradores" data-content="Recibe los beneficios para ti y hasta 7 colaboradores" rel="popover" data-placement="top"  data-trigger="hover"
                                      style="width: 270px; font-size: 12px;">CUENTA CON COLABORADORES</button>
                             </div>
                         </div>
