@@ -9,7 +9,7 @@
             this.className += " active";
         });
     }
-    //sucursales ocultas
+    //sucursales ocultas se muestran en select
     function mostrar(){
        
     let canal = document.getElementById('canal');
