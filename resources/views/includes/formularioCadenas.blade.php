@@ -114,6 +114,26 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
 
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canalBr" onchange="mostrarBr()" required>
+                            <option selected>CANAL DE COMPRA</option>
+                            <option value="1" >SUCURSAL</option>
+                            <option value="2">CAT</option>
+                            <option value="3">TIENDA EN LINEA</option>
+                        </select>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+
+                    <div class="col-lg-6 py-2" style="display: none" id="muestraBr">
+                        <select class="form-control btnBorder" id="sucursal" name="sucursal" required>
+                            <option selected>SELECCIONE LA SUCURSAL</option>
+                           {{-- @foreach ($branches as $branch) 
+                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                            @endforeach--}}
+                        </select>
+                        <p style="color: red; margin: 0;">*</p>
+                    </div>
+
                     <input type="hidden" id="client_type" name="client_type" value="4">
                 </div>
 

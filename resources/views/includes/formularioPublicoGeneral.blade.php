@@ -108,8 +108,26 @@
                             <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <div class="col-lg-6 offset-lg-6 py-2" style="display: flex">
+                        <div class="col-lg-6 py-2" style="display: flex">
+                            <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canalGen" onchange="mostrarGen()" required>
+                                <option selected>CANAL DE COMPRA</option>
+                                <option value="1" >SUCURSAL</option>
+                                <option value="2">CAT</option>
+                                <option value="3">TIENDA EN LINEA</option>
+                            </select>
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
+                        <div class="col-lg-6 py-2" style="display: flex">
                             <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
+                        <div class="col-lg-6 py-2" style="display: none" id="muestraGen">
+                            <select class="form-control btnBorder" id="sucursal" name="sucursal" required>
+                                <option selected>SELECCIONE LA SUCURSAL</option>
+                               {{-- @foreach ($branches as $branch) 
+                                <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @endforeach--}}
+                            </select>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         {{-- Modal ¿Olvidaste tu numero cliente --}}

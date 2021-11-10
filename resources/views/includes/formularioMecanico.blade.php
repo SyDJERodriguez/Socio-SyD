@@ -109,7 +109,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canal" onchange="mostrar()" required>
+                        <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canalMec" onchange="mostrarMec()" required>
                             <option selected>CANAL DE COMPRA</option>
                             <option value="1" >SUCURSAL</option>
                             <option value="2">CAT</option>
@@ -121,7 +121,7 @@
                         <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: none" id="muestra">
+                    <div class="col-lg-6 py-2" style="display: none" id="muestraMec">
                         <select class="form-control btnBorder" id="sucursal" name="sucursal" required>
                             <option selected>SELECCIONE LA SUCURSAL</option>
                            {{-- @foreach ($branches as $branch) 

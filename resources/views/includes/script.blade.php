@@ -10,8 +10,7 @@
         });
     }
     //sucursales ocultas se muestran en select
-    function mostrar(){
-       
+    function mostrar(){   
     let canal = document.getElementById('canal');
     let verdadero = canal.value;
     if (verdadero==1) {
@@ -19,6 +18,36 @@
     }else {
         document.getElementById('muestra').style.display = 'none';
     } 
+    }
+
+    function mostrarMec() {
+        let canal = document.getElementById('canalMec');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraMec').style.display = 'flex';
+    }else {
+        document.getElementById('muestraMec').style.display = 'none';
+    } 
+    }
+    
+    function mostrarGen() {
+        let canal = document.getElementById('canalGen');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraGen').style.display = 'flex';
+    }else {
+        document.getElementById('muestraGen').style.display = 'none';
+    }  
+    }
+
+    function mostrarBr() {
+        let canal = document.getElementById('canalBr');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraBr').style.display = 'flex';
+    }else {
+        document.getElementById('muestraBr').style.display = 'none';
+    }  
     }
 
     //popover for buttons modal 
