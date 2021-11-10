@@ -435,7 +435,7 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%';
 
                 return view('pages.registerBeneficiaries', compact(
-                    'error', 'data', 'request', 'number','owner', 'email'));
+                    'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
                 //dd($total_percent);
             }
 
@@ -447,7 +447,7 @@ class BeneficiaryController extends Controller
                     $error = 'Un número de teléfono ingresado no es válido';
 
                     return view('pages.registerBeneficiaries', compact(
-                        'error', 'data', 'request', 'number','owner', 'email'));
+                        'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
                 }
             }
 
@@ -460,7 +460,7 @@ class BeneficiaryController extends Controller
                         $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
                         return view('pages.registerBeneficiaries', compact(
-                            'error', 'data', 'request', 'number','owner', 'email'));
+                            'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
                     }
 
                     if (isset($request['name'][$i])){
@@ -473,7 +473,7 @@ class BeneficiaryController extends Controller
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
                                 'customer_id'      => $data->id,
-                                'branch_number'    => $request['branch_number'][0]
+                                'branch_number'    => $request['branch_number']
                             ]);
                         }
                     }
@@ -498,7 +498,7 @@ class BeneficiaryController extends Controller
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.registerBeneficiaries', compact(
-                    'error', 'data', 'request', 'owner','number', 'email'));
+                    'error', 'data', 'request', 'owner','number', 'email', 'branch_number'));
             }
 
         }elseif ($count == 1){
@@ -507,7 +507,7 @@ class BeneficiaryController extends Controller
                 $error = 'El porcentaje total debe ser de 100%';
                 return view('pages.registerBeneficiaries', compact(
                     'error', 'data', 'request','number',
-                    'owner', 'email'));
+                    'owner', 'email', 'branch_number'));
             }
 
             //valid name,last,secondLast
@@ -516,7 +516,7 @@ class BeneficiaryController extends Controller
                 $error = 'Un campo se encuentra vacío. Por favor de corroborar datos';
 
                 return view('pages.registerBeneficiaries', compact(
-                    'error', 'data', 'request', 'number','owner', 'email'));
+                    'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
             }
 
             $valid = false;
@@ -525,7 +525,7 @@ class BeneficiaryController extends Controller
                 $error = 'Un número de teléfono ingresado no es válido';
 
                 return view('pages.registerBeneficiaries', compact(
-                    'error', 'data', 'request', 'number','owner', 'email'));
+                    'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
             }
 
             $insertBeneficiary = DB::table('beneficiaries')->insert([
@@ -536,7 +536,7 @@ class BeneficiaryController extends Controller
                 'mobile_number'    => $request['phone'][0],
                 'percent'          => $request['percent'][0],
                 'customer_id'      => $data->id,
-                'branch_number'    => $request['branch_number'][0]
+                'branch_number'    => $request['branch_number']
             ]);
 
             //$generatePDF = $this->generatePDF();
