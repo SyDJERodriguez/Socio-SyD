@@ -9,6 +9,18 @@
             this.className += " active";
         });
     }
+    //sucursales ocultas
+    function mostrar(){
+       
+    let canal = document.getElementById('canal');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestra').style.display = 'flex';
+    }else {
+        document.getElementById('muestra').style.display = 'none';
+    } 
+    }
+
     //popover for buttons modal 
     $('#popoverDataindividual').popover();
     $('#popoverDatacolaboradores').popover();
