@@ -164,6 +164,10 @@
                             <input type="hidden" value="{{$email}}" name="email">
                         @endif
 
+                        @if(isset($branch_number))
+                            <input type="hidden" value="{{$branch_number}}" name="branch_number">
+                        @endif
+
                         <div class="col-lg-12 py-2">
                             <input type="submit" class="btn btn float-right text-white px-5"
                                    style="background-color: #009CE0;" value="CONFIRMAR">

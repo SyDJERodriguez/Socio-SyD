@@ -46,7 +46,7 @@ Route::get('/register/beneficiaries/{email}', function ($email){
         return view('pages.registerBeneficiaries', compact('data', 'beneficiary', 'client_number', 'branch_number'));
     }
 
-    return view('pages.registerBeneficiaries', ['email' => $email]);
+    return view('pages.registerBeneficiaries', ['email' => $email, 'branch_number' => $branch_number]);
 })->name('register.beneficiaries');
 Route::post('/add_beneficiaries', 'BeneficiaryController@addBeneficiaries')->name('add.beneficiaries');
 

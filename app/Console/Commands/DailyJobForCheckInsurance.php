@@ -125,7 +125,7 @@ class DailyJobForCheckInsurance extends Command
             if(!$client->sms_insurance){
                 if($level === 'Bronce'){
                     if(count($beneficiaries) > 0){
-                        $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
+                        $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                         $messsage = '¡Felicidades! Ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aquí  '.$url;
                         $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
                         if($send_sms){
@@ -134,7 +134,7 @@ class DailyJobForCheckInsurance extends Command
                                 ->update(['sms_insurance' => true]);
                         }
                     }else{
-                        $url = url('account/verify/000000001');
+                        $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                         $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aquí '.$url;
                         $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
                         if($send_sms){
