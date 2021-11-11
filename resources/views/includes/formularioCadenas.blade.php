@@ -126,7 +126,7 @@
 
                     <div class="col-lg-6 py-2" style="display: none" id="muestraBr">
                         <select class="form-control btnBorder" id="sucursal" name="sucursal" required>
-                            <option selected>SELECCIONE LA SUCURSAL</option>
+                            <option selected>SUCURSAL DE COMPRA</option>
                            {{-- @foreach ($branches as $branch) 
                             <option value="{{$branch->id}}">{{$branch->name}}</option>
                             @endforeach--}}
