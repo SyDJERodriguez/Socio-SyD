@@ -2746,7 +2746,7 @@ class CustomerController extends Controller
     }
     public function formularioMecanico(){
      // $branches = DB::table('branches')->select('id','name')->get(); 
-         $branches = Branch::all();
+        $branches = Branch::all();
         return view('includes.formularioMecanico',compact('branches'));
     } 
 }

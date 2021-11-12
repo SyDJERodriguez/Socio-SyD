@@ -22,7 +22,7 @@ Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
 })->name('noticePrivacy');
 
-//Route::get('/', 'CustomerController@formularioMecanico');
+Route::get('/home', 'CustomerController@formularioMecanico');
 
 Route::post('/contact_us','CustomerController@contact_us');
 
