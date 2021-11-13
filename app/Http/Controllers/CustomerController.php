@@ -1119,7 +1119,7 @@ class CustomerController extends Controller
                     'gender'           => isset($request['gender']) ? $request['gender'] : '',
                     'collector_id'     => 6,
                     'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : '',
-                    'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
+                    'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : ''
                  ]);
 
                 if(isset($password)) {
@@ -1149,7 +1149,7 @@ class CustomerController extends Controller
                     'gender'           => isset($request['gender']) ? $request['gender'] : '',
                     'collector_id'     => 6,
                     'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : '',
-                    'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
+                    'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : ''
                 ]);
 
                 if(isset($password)) {
@@ -1328,7 +1328,7 @@ class CustomerController extends Controller
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
             'work'             => isset($request['work']) ? $request['work'] : null,
             'gender'           => isset($request['gender']) ? $request['gender'] : null,
-            'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
+           // 'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
         ]);
 
         if ( $save_register === true){
