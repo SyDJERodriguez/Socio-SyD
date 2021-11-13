@@ -451,6 +451,24 @@ class CustomerController extends Controller
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
+            $email = $request['email_auth'];
+            //$data = CustomerPlatform::where('email', Auth::user()->email)->first();
+            $response = $this->employeeLimit(
+                $request['email_auth'],
+                $request['customer_id'],
+                $request['client_type']);
+
+            if ($response->validated === false){
+
+                $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
+
+                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                Mail::send('emails.allEmployees',[], function($m) use ($email){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                    $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
+                });
+            }
+
             $session->session()->flash('success','the email/mobile number its already in db');
 
             return response()->json(['success'=>'true']);
@@ -2565,7 +2583,17 @@ class CustomerController extends Controller
                     ->sum('amount');
         */
         //round the number with only 2 decimals
-        $limit = $this->totalAmount();
+        //$limit = $this->totalAmount();
+
+        $data_customer = $this->getTransCadena($email);
+        $limit = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $limit -= $amount_customer : $limit += $amount_customer ;
+            //}
+        }
+
         $validated = false; //var for button validated
 
         //get number of employees registrados

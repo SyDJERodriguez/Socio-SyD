@@ -20,6 +20,9 @@
                     @method("PUT")
                     @csrf
                     <input type="hidden" name="client_number" value="{{Auth::user()->client_number}}">
+                    <input type="hidden" name="email_auth" value="{{Auth::user()->email}}">
+                    <input type="hidden" name="client_type" value="{{Auth::user()->client_type}}">
+                    <input type="hidden" name="mobile_auth" value="{{Auth::user()->mobile}}">
                     <input type="hidden" name="customer_id" value="{{$data->id}}">
                     <input type="hidden" name="nameClient" value="{{$data->name}}">
                     <input type="hidden" name="lastNameClient" value="{{$data->last_name}}">
@@ -58,11 +61,11 @@
                                     <div class="input-group-prepend">
                                         <div style="border: 1px solid black" class="input-group-text">+52</div>
                                     </div>
-                                    <input type="text" class="form-control-sm form-control btnBorder mobileInput" 
+                                    <input type="text" class="form-control-sm form-control btnBorder mobileInput"
                                     placeholder="NO. TELEFÓNICO 10 DIG"
-                                    name="mobile_number" 
-                                    maxlength="10" 
-                                    pattern="[0-9]{10}" 
+                                    name="mobile_number"
+                                    maxlength="10"
+                                    pattern="[0-9]{10}"
                                     required>
                                     <div class="input-group-append" id="form_alert_phone_AEF" hidden>
                                     </div>
