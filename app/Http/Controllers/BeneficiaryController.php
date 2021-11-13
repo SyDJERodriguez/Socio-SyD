@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomersSession;
+use App\Helpers\Twilio\TwilioService;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\CustomerPlatform;
@@ -47,9 +49,9 @@ class BeneficiaryController extends Controller
                 ->first();
         }
 
-        $initDate = Carbon::createFromFormat('Y-m-d', '2021-10-01');
+        $initDate = new Carbon('first day of next month');
 
-        $finDate = Carbon::createFromFormat('Y-m-d', '2021-10-31');
+        $finDate = new Carbon('last day of next month');
 
         $currentDate = Carbon::parse()->locale('es');
         // $currentDate->diffForHumans();
@@ -208,9 +210,9 @@ class BeneficiaryController extends Controller
                         $beneficiaries = json_decode($beneficiaries);
                         $beneficiary = (array)$beneficiaries;//convert to array
                      //send email if individual account added a beneficiary
-                     if(Auth::user()->client_type === "2"){
+                     //if(Auth::user()->client_type === "2"){
                         $this->send_email_alta($data->email);
-                    }
+                    //}
                     return view('pages.Account.beneficiary', compact(
                         'success', 'data', 'beneficiary', 'level','is_cnt',
                         'signature', 'noti', 'total', 'number','owner'));
@@ -274,9 +276,9 @@ class BeneficiaryController extends Controller
                     $beneficiaries = json_decode($beneficiaries);
                     $beneficiary = (array)$beneficiaries;//convert to array
                     //send email if individual account added a beneficiary
-                    if(Auth::user()->client_type === "2"){
+                   //if(Auth::user()->client_type === "2"){
                         $this->send_email_alta($data->email);
-                    }
+                    //}
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
            // }
         }
@@ -488,9 +490,9 @@ class BeneficiaryController extends Controller
                 $beneficiaries = json_decode($beneficiaries);
                 $beneficiary = (array)$beneficiaries;//convert to array
                 //send email if individual account added a beneficiary
-                if($data_session->client_type === "2"){
+                //if($data_session->client_type === "2"){
                     $this->send_email_alta($data->email);
-                }
+                //}
                 return view('pages.registerBeneficiaries', compact(
                     'success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
                 //}
@@ -549,9 +551,9 @@ class BeneficiaryController extends Controller
             $beneficiaries = json_decode($beneficiaries);
             $beneficiary = (array)$beneficiaries;//convert to array
             //send email if individual account added a beneficiary
-            if($data_session->client_type === "2"){
+            //if($data_session->client_type === "2"){
                 $this->send_email_alta($data->email);
-            }
+            //}
 
             return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
             // }
@@ -626,10 +628,17 @@ class BeneficiaryController extends Controller
 
     public function send_email_alta($email){
         $data = CustomerPlatform::where('email', $email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
+
+        $route = "/sms_pdf/{$dataSession->client_number}/{$dataSession->branch_number}";
+        $url = url($route);
+        $messsage = 'Ya estás asegurado con el programa Socio SYD. Descarga tu póliza de Seguro de Accidentes Personales aquí: '.$url;
+
         try {
-            \Mail::send('emails.altaBeneficiarioIndividual',['data'=>$data], function($m) use ($data){
+            TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+            \Mail::send('emails.beneficiariesAdded',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"Socio SYD");
-                $m->to($data['email'], $data['name'].' '.$data['last_name'])->subject('Bienvenido al programa de lealtad SYD');
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Haz registrado exitosamente a tus beneficiarios en el programa de lealtad SYD');
             });
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {

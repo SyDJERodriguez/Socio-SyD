@@ -16,7 +16,7 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 
 Route::get('/', function () {
     $branches = DB::table('branches')->get();
-    
+
     return view('pages.home', compact('branches'));
 })->name('home');
 
@@ -122,7 +122,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
-       
+
     });
 });
 
