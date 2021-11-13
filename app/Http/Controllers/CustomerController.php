@@ -1369,6 +1369,14 @@ class CustomerController extends Controller
 
     //Send welcome email
      public function welcome_email_is_associate($data) {
+         $information = CustomerPlatform::where('email', $data['email'])->first();
+         $dataSession = CustomersSession::where('email', $data['email'])->first();
+         $information->branch_number = $dataSession->branch_number;
+
+         $url = url('account/verify/' . $information->branch_number);
+         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+
+         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1413,13 +1421,24 @@ class CustomerController extends Controller
         ]);
 
         $url = url('password/edit/' . $data[0]->branch_number);
-        $messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
+        //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
 
-        TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
 
-        if ($update_customer){
-            $activated = false;
-            return view('pages.activationPage', compact('activated'));
+
+        try {
+            TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+            $data = CustomerPlatform::where('email', $email)->first();
+            \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            if ($update_customer){
+                $activated = false;
+                return view('pages.activationPage', compact('activated'));
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401, 'error'=>$th]);
         }
     }
 
@@ -1588,7 +1607,9 @@ class CustomerController extends Controller
     //Send signUp success email
     public function send_signUp_success($email) {
         $data = CustomerPlatform::where('email', $email)->first();
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
         try {
+            TwilioService::send_sms($messsage,'+52'.$data->mobile_number);
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
@@ -2703,6 +2724,10 @@ class CustomerController extends Controller
     //invitation email associate
     public function invitation($data){
         $email = $data['email'];
+
+        $messsage = 'Te han invitado a ser parte del programa Socio SYD como colaborador de un negocio.';
+
+        TwilioService::send_sms($messsage,'+52'.$data['mobile_number']);
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
