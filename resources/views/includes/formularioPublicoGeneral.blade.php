@@ -109,7 +109,7 @@
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canalGen" onchange="mostrarGen()" required>
+                            <select autocomplete="new-password" class="form-control btnBorder" name="channel" id="channelGen" onchange="mostrarGen()" required>
                                 <option selected>CANAL DE COMPRA</option>
                                 <option value="1" >SUCURSAL</option>
                                 <option value="2">CAT</option>
