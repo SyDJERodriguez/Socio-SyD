@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('schedule:seguroNegocio')->monthlyOn(15, '10:00'); //15/mes
-        $schedule->command('schedule:seguroIndividual')->monthlyOn(15, '10:00'); //15/mes
+        $schedule->command('schedule:seguroNegocio20')->monthlyOn(20, '10:00'); //15/mes
+        $schedule->command('schedule:seguroIndividual20')->monthlyOn(20, '10:00'); //15/mes
         $schedule->command('schedule:invitationPlataNegocio')->monthlyOn(15, '10:00'); //15/mes
         $schedule->command('schedule:invitationOroNegocio')->monthlyOn(15, '10:00'); //15/mes
 
