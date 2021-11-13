@@ -15,7 +15,7 @@ class InvitationInsuranceIndividual extends Command
      *
      * @var string
      */
-    protected $signature = 'schedule:seguroIndividual';
+    protected $signature = 'schedule:seguroIndividual20';
 
     /**
      * The console command description.
@@ -57,7 +57,7 @@ class InvitationInsuranceIndividual extends Command
             $destinataries = (array)$destinataries;
 
             if(empty($destinataries) == false){
-                
+
                 foreach ($destinataries as $recipient) {
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($recipient) {
                         $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');

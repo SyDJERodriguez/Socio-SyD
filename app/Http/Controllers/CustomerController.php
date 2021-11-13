@@ -313,7 +313,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-       /* $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -324,7 +324,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }*/
+        }
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -451,6 +451,24 @@ class CustomerController extends Controller
 
         if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
             $this->invitation($request);
+            $email = $request['email_auth'];
+            //$data = CustomerPlatform::where('email', Auth::user()->email)->first();
+            $response = $this->employeeLimit(
+                $request['email_auth'],
+                $request['customer_id'],
+                $request['client_type']);
+
+            if ($response->validated === false){
+
+                $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
+
+                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                Mail::send('emails.allEmployees',[], function($m) use ($email){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                    $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
+                });
+            }
+
             $session->session()->flash('success','the email/mobile number its already in db');
 
             return response()->json(['success'=>'true']);
@@ -650,7 +668,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -661,7 +679,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }*/
+        }
 
 
         //Validate DNS email
@@ -909,7 +927,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-       /* $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -920,7 +938,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }*/
+        }
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -1369,6 +1387,14 @@ class CustomerController extends Controller
 
     //Send welcome email
      public function welcome_email_is_associate($data) {
+         $information = CustomerPlatform::where('email', $data['email'])->first();
+         $dataSession = CustomersSession::where('email', $data['email'])->first();
+         $information->branch_number = $dataSession->branch_number;
+
+         $url = url('account/verify/' . $information->branch_number);
+         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
+
+         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1413,13 +1439,24 @@ class CustomerController extends Controller
         ]);
 
         $url = url('password/edit/' . $data[0]->branch_number);
-        $messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
+        //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
 
-        TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
 
-        if ($update_customer){
-            $activated = false;
-            return view('pages.activationPage', compact('activated'));
+
+        try {
+            TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+            $data = CustomerPlatform::where('email', $email)->first();
+            \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            if ($update_customer){
+                $activated = false;
+                return view('pages.activationPage', compact('activated'));
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['success'=>'true','status' =>401, 'error'=>$th]);
         }
     }
 
@@ -1588,7 +1625,9 @@ class CustomerController extends Controller
     //Send signUp success email
     public function send_signUp_success($email) {
         $data = CustomerPlatform::where('email', $email)->first();
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
         try {
+            TwilioService::send_sms($messsage,'+52'.$data->mobile_number);
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
@@ -1609,8 +1648,19 @@ class CustomerController extends Controller
             return view('pages.Account.status');
         }
 
+        $data = CustomerPlatform::where('email', Auth::user()->email)->first();
+        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinión, puedes reactivar tu cuenta.';
+
+        TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
+        \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
+            $m->from('sociosyd@syd.com.mx',"Socio SYD");
+            $m->to($data->email, $data->name.' '.$data->last_name)->subject('Tu cuenta ha sido dada de baja del programa Socio SYD');
+        });
+
         $this->guard()->logout();
         $request->session()->invalidate();
+
+
         return $this->loggedOut($request) ?: redirect('/');
     }
 
@@ -2533,7 +2583,17 @@ class CustomerController extends Controller
                     ->sum('amount');
         */
         //round the number with only 2 decimals
-        $limit = $this->totalAmount();
+        //$limit = $this->totalAmount();
+
+        $data_customer = $this->getTransCadena($email);
+        $limit = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $limit -= $amount_customer : $limit += $amount_customer ;
+            //}
+        }
+
         $validated = false; //var for button validated
 
         //get number of employees registrados
@@ -2703,6 +2763,10 @@ class CustomerController extends Controller
     //invitation email associate
     public function invitation($data){
         $email = $data['email'];
+
+        $messsage = 'Te han invitado a ser parte del programa Socio SYD como colaborador de un negocio.';
+
+        TwilioService::send_sms($messsage,'+52'.$data['mobile_number']);
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
