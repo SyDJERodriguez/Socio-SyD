@@ -11,7 +11,7 @@
     }
     //sucursales ocultas se muestran en select
     function mostrar(){   
-    let canal = document.getElementById('canal');
+    let canal = document.getElementById('channel');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestra').style.display = 'flex';
@@ -21,7 +21,7 @@
     }
 
     function mostrarMec() {
-        let canal = document.getElementById('canalMec');
+        let canal = document.getElementById('channelMec');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraMec').style.display = 'flex';
@@ -31,7 +31,7 @@
     }
     
     function mostrarGen() {
-        let canal = document.getElementById('canalGen');
+        let canal = document.getElementById('channelGen');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraGen').style.display = 'flex';
@@ -41,7 +41,7 @@
     }
 
     function mostrarBr() {
-        let canal = document.getElementById('canalBr');
+        let canal = document.getElementById('channelBr');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraBr').style.display = 'flex';

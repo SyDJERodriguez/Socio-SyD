@@ -115,7 +115,7 @@
                     </div>
 
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <select autocomplete="new-password" class="form-control btnBorder" name="canal" id="canalBr" onchange="mostrarBr()" required>
+                        <select autocomplete="new-passwor" class="form-control btnBorder" name="channel" id="channelBr" onchange="mostrarBr()" required>
                             <option selected>CANAL DE COMPRA</option>
                             <option value="1" >SUCURSAL</option>
                             <option value="2">CAT</option>
