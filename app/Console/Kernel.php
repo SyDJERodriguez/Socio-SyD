@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
         Commands\InvitationInsurance30Negocio::class,
         Commands\DailyJobForCheckInsurance::class,*/
         Commands\ResetFlagSmsInsurance::class,
-        Commands\EmailsMonthly20::class
+        Commands\EmailsMonthly20::class,
+        Commands\EmailsEndMonthly::class
     ];
 
     /**
@@ -46,6 +47,9 @@ class Kernel extends ConsoleKernel
 
         //For dispatch emails and sms on 20 every month
         $schedule->command('schedule:monthly_20')->monthlyOn(20, '10:00');
+
+        //For dispatch emails and sms end of the month
+        $schedule->command('schedule:end_monthly')->monthly();
 
         //Reset flag on 1th every month
         $schedule->command('schedule:reset_flag_sms_insurance')->monthlyOn(1,'00:00');
