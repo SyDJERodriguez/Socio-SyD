@@ -7,7 +7,7 @@
     <hr>
     <div class="col-md-12" style="display: flex;">
         <div style="padding-left: 10px !important;" class="col-md-3">
-           
+
             @include('includes.accountData')
 
             @include('includes.opinionButton')
@@ -19,7 +19,7 @@
             @else
                 <h5>Agrega a tus colaboradores para darle los beneficios del seguro</h5>
             @endif
-            
+
         </div>
     </div>
     <hr>
@@ -136,7 +136,7 @@
                                 <a class="btn btn-outline-dark btn-sm btn-block delete"
                                         style="border: 0px"
                                         href="#"
-                                        role="button" id="{{$as->id}}" 
+                                        role="button" id="{{$as->id}}"
                                         onclick="deleteEmployee('{{$as->id}}','{{$as->name .' '.$data->last_name.' '.$as->second_last_name}}','{{$as->email}}')">
                                     <i class="fa fa-trash"></i>
                                 </a>
@@ -161,7 +161,7 @@
                 disabled
                 @endif
                 style="background-color: #143153;"
-                data-toggle="modal" data-target="#modalSignUpEmployee">Agregar Dependiente</button>
+                data-toggle="modal" data-target="#modalSignUpEmployee">Agregar Colaboradores</button>
             </div>
         </div>
     </div>
