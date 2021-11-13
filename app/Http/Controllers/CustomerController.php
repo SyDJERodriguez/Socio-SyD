@@ -1630,8 +1630,19 @@ class CustomerController extends Controller
             return view('pages.Account.status');
         }
 
+        $data = CustomerPlatform::where('email', Auth::user()->email)->first();
+        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinión, puedes reactivar tu cuenta.';
+
+        TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
+        \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
+            $m->from('sociosyd@syd.com.mx',"Socio SYD");
+            $m->to($data->email, $data->name.' '.$data->last_name)->subject('Tu cuenta ha sido dada de baja del programa Socio SYD');
+        });
+
         $this->guard()->logout();
         $request->session()->invalidate();
+
+
         return $this->loggedOut($request) ?: redirect('/');
     }
 
