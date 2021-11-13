@@ -15,14 +15,16 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    $branches = DB::table('branches')->get();
+    
+    return view('pages.home', compact('branches'));
 })->name('home');
 
 Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
 })->name('noticePrivacy');
 
-Route::get('/home', 'CustomerController@formularioMecanico');
+
 
 Route::post('/contact_us','CustomerController@contact_us');
 
