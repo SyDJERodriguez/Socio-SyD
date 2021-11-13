@@ -97,27 +97,27 @@ class DailyJobForCheckInsurance extends Command
             $level = '';
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
-                if ($totalAmount>2500) {
+                if ($totalAmount>=2500) {
                     $level= 'Bronce';
                 }
             }else if($client->type_user === '2'){
                 $client->type_user = 'Mecánico Individual';
-                if ($totalAmount>200) {
+                if ($totalAmount>=200) {
                     $level= 'Bronce';
                 }
             }else if($client->type_user === '3'){
                 $client->type_user = 'Empleado Dependiente';
-                if ($totalAmount>2500) {
+                if ($totalAmount>=2500) {
                     $level= 'Bronce';
                 }
             }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
-                if ($totalAmount>2500) {
+                if ($totalAmount>=2500) {
                     $level= 'Bronce';
                 }
             }else if($client->type_user === '5'){
                 $client->type_user = 'Publico General';
-                if ($totalAmount>200) {
+                if ($totalAmount>=200) {
                     $level= 'Bronce';
                 }
             }

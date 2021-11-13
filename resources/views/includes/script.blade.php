@@ -9,6 +9,47 @@
             this.className += " active";
         });
     }
+    //sucursales ocultas se muestran en select
+    function mostrar(){   
+    let canal = document.getElementById('channel');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestra').style.display = 'flex';
+    }else {
+        document.getElementById('muestra').style.display = 'none';
+    } 
+    }
+
+    function mostrarMec() {
+        let canal = document.getElementById('channelMec');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraMec').style.display = 'flex';
+    }else {
+        document.getElementById('muestraMec').style.display = 'none';
+    } 
+    }
+    
+    function mostrarGen() {
+        let canal = document.getElementById('channelGen');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraGen').style.display = 'flex';
+    }else {
+        document.getElementById('muestraGen').style.display = 'none';
+    }  
+    }
+
+    function mostrarBr() {
+        let canal = document.getElementById('channelBr');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraBr').style.display = 'flex';
+    }else {
+        document.getElementById('muestraBr').style.display = 'none';
+    }  
+    }
+
     //popover for buttons modal 
     $('#popoverDataindividual').popover();
     $('#popoverDatacolaboradores').popover();

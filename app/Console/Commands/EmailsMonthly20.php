@@ -3,27 +3,25 @@
 namespace App\Console\Commands;
 
 use App\Helpers\Twilio\TwilioService;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
-class InvitationInsuranceNegocio extends Command
+class EmailsMonthly20 extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'schedule:seguroNegocio20';
+    protected $signature = 'schedule:monthly_20';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Envio de invitacion a seguro cada 20 de Mes';
+    protected $description = 'This job execute on Monthly 20';
 
     /**
      * Create a new command instance.
@@ -40,7 +38,8 @@ class InvitationInsuranceNegocio extends Command
      *
      * @return mixed
      */
-    public function handle(){
+    public function handle()
+    {
         $now = Carbon::now();
         $registered_clients = DB::table('customers_sessions')
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
@@ -92,32 +91,82 @@ class InvitationInsuranceNegocio extends Command
 
             $client->amount = $totalAmount;
             $level = '';
-            $messsage = 'Aun estas a tiempo de alcanzar el monto minimo de compra en este mes, para obtener tu seguro de accidentes personales de Socio SYD.';
+            $message_one   = 'Aun estas a tiempo de alcanzar el monto minimo de compra en este mes, para obtener tu seguro de accidentes personales de Socio SYD.';
+            $message_two   = 'Este mes no has alcanzado el monto mínimo de compra para obtener los beneficios de asistencia Nivel Plata de Socio SYD.';
+            $message_three = 'Este mes no has alcanzado el monto mínimo de compra para obtener los beneficios de asistencia Nivel Oro de Socio SYD.';
             if($client->type_user === '1'){
                 if ($totalAmount<2500) {
-                    TwilioService::send_sms($messsage,'+52'.$client->phone);
+                    TwilioService::send_sms($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
+                if ($totalAmount>=2500 && $totalAmount<=4500) {
+                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    Mail::send('emails.seguroInvitacionPlataDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
+                    });
+                }
+                if ($totalAmount>4500 && $totalAmount<=7500) {
+                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    Mail::send('emails.plataInvitacionOroDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
+                    });
+                }
             }else if($client->type_user === '2'){
                 if ($totalAmount<200) {
-                    TwilioService::send_sms($messsage,'+52'.$client->phone);
+                    TwilioService::send_sms($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
+                    });
+                }
+                if ($totalAmount>=200 && $totalAmount<=500) {
+                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    Mail::send('emails.individualPlata20', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
+                    });
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    Mail::send('emails.individualOro20', [] ,function($m) use ($client) {
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
             }else if($client->type_user === '4'){
                 if ($totalAmount<2500) {
-                    TwilioService::send_sms($messsage,'+52'.$client->phone);
+                    TwilioService::send_sms($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
+                if ($totalAmount>=2500 && $totalAmount<=4500) {
+                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    Mail::send('emails.seguroInvitacionPlataDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
+                    });
+                }
+                if ($totalAmount>4500 && $totalAmount<=7500) {
+                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    Mail::send('emails.plataInvitacionOroDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
+                    });
+                }
             }else if($client->type_user === '5'){
                 if ($totalAmount<200) {
-                    TwilioService::send_sms($messsage,'+52'.$client->phone);
+                    TwilioService::send_sms($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
+                    });
+                }
+                if ($totalAmount>=200 && $totalAmount<=500) {
+                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    Mail::send('emails.individualPlata20', [] ,function($m) use ($client) {
+                        $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
+                    });
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    Mail::send('emails.individualOro20', [] ,function($m) use ($client) {
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }

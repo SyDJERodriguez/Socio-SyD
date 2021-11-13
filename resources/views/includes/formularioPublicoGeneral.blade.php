@@ -105,11 +105,31 @@
                             <p style="color: red; margin: 0;visibility: hidden">*</p>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
-                            <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
+                            <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <div class="col-lg-6 offset-lg-6 py-2" style="display: flex">
+                        <div class="col-lg-6 py-2" style="display: flex">
+                            <select autocomplete="new-password" class="form-control btnBorder" name="channel" id="channelGen" onchange="mostrarGen()" required>
+                                <option selected>CANAL DE COMPRA</option>
+                                <option value="1" >SUCURSAL</option>
+                                <option value="2">CAT</option>
+                                <option value="3">TIENDA EN LINEA</option>
+                            </select>
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
+                        <div class="col-lg-6 py-2" style="display: flex">
                             <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
+                        <div class="col-lg-6 py-2" style="display: none" id="muestraGen">
+                            <select class="form-control btnBorder"  id="branch_idGen" name="branch_id" required>
+                                <option selected>SUCURSAL DE COMPRA</option>
+                                @if(isset($branches))
+                                   @foreach ($branches as $branch) 
+                                      <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                   @endforeach
+                                @endif
+                            </select>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
                         {{-- Modal ¿Olvidaste tu numero cliente --}}

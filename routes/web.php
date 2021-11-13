@@ -15,14 +15,19 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    $branches = DB::table('branches')->get();
+
+    return view('pages.home', compact('branches'));
 })->name('home');
 
 Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
 })->name('noticePrivacy');
 
+
+
 Route::post('/contact_us','CustomerController@contact_us');
+
 
 // Routes without login
 /**  Download PDF by SMS **/
@@ -117,6 +122,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
+
     });
 });
 

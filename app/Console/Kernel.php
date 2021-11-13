@@ -14,13 +14,14 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\InvitationInsuranceNegocio::class,
+        /*Commands\InvitationInsuranceNegocio::class,
         Commands\InvitationInsuranceIndividual::class,
         Commands\InvitationInsurance30Individual::class,
         Commands\InvitationInsurance30Negocio::class,
-        Commands\SmsTest::class,
-        Commands\DailyJobForCheckInsurance::class,
-        Commands\ResetFlagSmsInsurance::class
+        Commands\DailyJobForCheckInsurance::class,*/
+        Commands\ResetFlagSmsInsurance::class,
+        Commands\EmailsMonthly20::class,
+        Commands\EmailsEndMonthly::class
     ];
 
     /**
@@ -31,17 +32,26 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('schedule:seguroNegocio')->monthlyOn(15, '10:00'); //15/mes
-        $schedule->command('schedule:seguroIndividual')->monthlyOn(15, '10:00'); //15/mes
+        /*$schedule->command('schedule:seguroNegocio20')->monthlyOn(20, '10:00'); //15/mes
+        $schedule->command('schedule:seguroIndividual20')->monthlyOn(20, '10:00'); //15/mes
         $schedule->command('schedule:invitationPlataNegocio')->monthlyOn(15, '10:00'); //15/mes
         $schedule->command('schedule:invitationOroNegocio')->monthlyOn(15, '10:00'); //15/mes
 
         $schedule->command('schedule:seguroIndividual30')->monthlyOn(30, '10:00'); //30/mes
         $schedule->command('schedule:seguroNegocio30')->monthlyOn(30, '10:00'); //30/mes
         $schedule->command('schedule:invitationPlataNegocio30')->monthlyOn(30, '10:00'); //30/mes
-        $schedule->command('schedule:invitationOroNegocio30')->monthlyOn(30, '10:00'); //30/mes
-        $schedule->command('schedule:sms')->everyFiveMinutes();
+        $schedule->command('schedule:invitationOroNegocio30')->monthlyOn(30, '10:00'); //30/mes*/
+
+        //For check daily if customer has minimum amount for insurance benefit
         $schedule->command('schedule:daily_check_insurance')->dailyAt('10:00');
+
+        //For dispatch emails and sms on 20 every month
+        $schedule->command('schedule:monthly_20')->monthlyOn(20, '10:00');
+
+        //For dispatch emails and sms end of the month
+        $schedule->command('schedule:end_monthly')->monthly();
+
+        //Reset flag on 1th every month
         $schedule->command('schedule:reset_flag_sms_insurance')->monthlyOn(1,'00:00');
 
         //testing
