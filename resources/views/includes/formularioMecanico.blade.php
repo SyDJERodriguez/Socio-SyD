@@ -121,12 +121,15 @@
                         <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: " id="muestraMec">
-                        <select class="form-control btnBorder" id="sucursal" name="sucursal" required>
+                    <div class="col-lg-6 py-2" style="display:none " id="muestraMec">
+                        <select class="form-control btnBorder" id="branch_idMec" name="branch_id" required>
                             <option selected>SUCURSAL DE COMPRA</option>
-                          {{--  @foreach ($branches as $branch) 
-                            <option value="{{$branch->id}}">{{$branch->name}}</option>
-                            @endforeach--}}
+                            @if(isset($branches))
+                                @foreach ($branches as $branch) 
+                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @endforeach
+                            @endif
+                            
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
