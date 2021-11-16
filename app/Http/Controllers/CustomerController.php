@@ -1446,16 +1446,35 @@ class CustomerController extends Controller
         $url = url('password/edit/' . $data[0]->branch_number);
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
+        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
+        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
 
+        $client_type = $data[0]->client_type;
+        $mobile = $data[0]->mobile;
 
 
         try {
             TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+
             $data = CustomerPlatform::where('email', $email)->first();
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
             });
+
+            if($client_type === '1' || $client_type === '4'){
+                TwilioService::send_sms($messsage_three,'+52'.$mobile);
+                \Mail::send('emails.companyBenefits',['data'=>$data], function($m) use ($data){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                    $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta con Colaboradores en Socio SyD');
+                });
+            }elseif ($client_type === '2' || $client_type === '5'){
+                TwilioService::send_sms($messsage_two,'+52'.$mobile);
+                \Mail::send('emails.individualBenefits',['data'=>$data], function($m) use ($data){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                    $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta Individual en Socio SyD');
+                });
+            }
             if ($update_customer){
                 $activated = false;
                 return view('pages.activationPage', compact('activated'));
