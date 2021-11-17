@@ -108,7 +108,7 @@ class CustomerController extends Controller
         //$fullname = $data->name.' '.$data->last_name.' '.$data->second_last_name;
         //dd($data->email);
         \Mail::send('Branches.Customers.email',['data'=>$data], function($m) use ($data){
-            $m->from('noreply@quaxar.info',"Club Dar");
+            $m->from('sociosyd@syd.com.mx',"Socio SYD");
             $m->to($data->email, $data->name.' '.$data->last_name.' '.$data->second_last_name)->subject('Tu seguro de accidentes ha sido activado.');
         });
     }
