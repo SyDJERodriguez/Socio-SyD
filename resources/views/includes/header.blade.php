@@ -49,7 +49,7 @@
                         <input type="text" class="form-control border-input" id="inlineFormInputName"
                             placeholder="CORREO O NÚMERO CELULAR" name="email" required style="margin-top: 7px; border-color: black">
                             <div class="row" style="margin-top: 3px">
-                                <div class="col-sm-5 " style="display: flex;">
+                                <div class="col-sm-5 " style="display: flex; padding-right: 0">
                                     <p class="primary-color"
                                     style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px">
                                         <b id="lblNoAccount" class="noDown">¿No tienes una cuenta?</b>
