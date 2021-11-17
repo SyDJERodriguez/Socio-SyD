@@ -1620,6 +1620,12 @@ class CustomerController extends Controller
         $request = $request->input();
         //$data_session = CustomersSession::where('email', $request['email'])->first();
         $data = CustomerPlatform::where('email', $request['email'])->first();
+        $dataSession = CustomersSession::where('email', $data['email'])->first();
+
+        $url = url('password/edit/'.$data['client_number']);
+        $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
+
+        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
