@@ -1443,9 +1443,11 @@ class CustomerController extends Controller
             'active'   => 1
         ]);
 
-        $url = url('password/edit/' . $data[0]->branch_number);
+       // $url = url('password/edit/' . $data[0]->branch_number);
+        $url= asset('files/Diploma_Socio_SyD.pdf');
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
-        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
+
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
         $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
         $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
 
@@ -1460,6 +1462,10 @@ class CustomerController extends Controller
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            \Mail::send('emails.Diploma',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Felicidades, ya eres parte de Socio SYD');
             });
 
             if($client_type === '1' || $client_type === '4'){
@@ -1614,6 +1620,12 @@ class CustomerController extends Controller
         $request = $request->input();
         //$data_session = CustomersSession::where('email', $request['email'])->first();
         $data = CustomerPlatform::where('email', $request['email'])->first();
+        $dataSession = CustomersSession::where('email', $data['email'])->first();
+
+        $url = url('password/edit/'.$dataSession['email']);
+        $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
+
+        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1632,10 +1644,9 @@ class CustomerController extends Controller
 
     //Update password
     public function update_password(Request $request) {
-        $data = CustomersSession::where('branch_number', $request['client_number'])->first();
         $request = $request->input();
         $password      = Hash::make($request['password']);
-        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $request['client_number'])->update([
+        $update_customer = DB::table('customers_sessions')->where('email', '=', $request['client_number'])->update([
             'password' => $password,
         ]);
 
