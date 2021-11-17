@@ -57,9 +57,10 @@ class InsuranceInvitationToPlataNegocio extends Command
             $destinataries = (array)$destinataries;
 
             if(empty($destinataries) == false){
-                
+
                 foreach ($destinataries as $recipient) {
                     Mail::send('emails.seguroInvitacionPlataDuenio15Mes', [] ,function($m) use ($recipient) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }

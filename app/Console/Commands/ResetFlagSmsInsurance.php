@@ -41,7 +41,9 @@ class ResetFlagSmsInsurance extends Command
     {
         //Update method for put false value
         $reset = DB::table('customers_sessions')->update([
-            'sms_insurance' => false
+            'sms_insurance' => false,
+            'silver_sms'    => false,
+            'gold_sms'      => false
         ]);
     }
 }
