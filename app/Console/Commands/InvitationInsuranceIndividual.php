@@ -60,6 +60,7 @@ class InvitationInsuranceIndividual extends Command
 
                 foreach ($destinataries as $recipient) {
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($recipient) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($recipient->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
