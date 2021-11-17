@@ -1622,7 +1622,7 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $request['email'])->first();
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
-        $url = url('password/edit/'.$data['client_number']);
+        $url = url('password/edit/'.$dataSession['email']);
         $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
@@ -1644,10 +1644,9 @@ class CustomerController extends Controller
 
     //Update password
     public function update_password(Request $request) {
-        $data = CustomersSession::where('branch_number', $request['client_number'])->first();
         $request = $request->input();
         $password      = Hash::make($request['password']);
-        $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $request['client_number'])->update([
+        $update_customer = DB::table('customers_sessions')->where('email', '=', $request['client_number'])->update([
             'password' => $password,
         ]);
 
