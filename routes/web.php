@@ -15,7 +15,9 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 */
 
 Route::get('/', function () {
-    $branches = DB::table('branches')->get();
+    $branches = DB::table('branches')
+                ->orderBy('name','ASC')
+                ->get();
 
     return view('pages.home', compact('branches'));
 })->name('home');

@@ -126,7 +126,9 @@
                             <option selected>SUCURSAL DE COMPRA</option>
                             @if(isset($branches))
                                 @foreach ($branches as $branch) 
-                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                    @if ( $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47)
+                                        <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
+                                    @endif 
                                 @endforeach
                             @endif
                             
