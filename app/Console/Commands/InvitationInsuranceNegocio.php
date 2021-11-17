@@ -97,6 +97,7 @@ class InvitationInsuranceNegocio extends Command
                 if ($totalAmount<2500) {
                     TwilioService::send_sms($messsage,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
@@ -104,6 +105,7 @@ class InvitationInsuranceNegocio extends Command
                 if ($totalAmount<200) {
                     TwilioService::send_sms($messsage,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
@@ -111,6 +113,7 @@ class InvitationInsuranceNegocio extends Command
                 if ($totalAmount<2500) {
                     TwilioService::send_sms($messsage,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
@@ -118,6 +121,7 @@ class InvitationInsuranceNegocio extends Command
                 if ($totalAmount<200) {
                     TwilioService::send_sms($messsage,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }

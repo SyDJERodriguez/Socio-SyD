@@ -2775,6 +2775,7 @@ class CustomerController extends Controller
         try {
             foreach( $SYD_EMAILS as $emails){
                 Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($emails)->subject('Nuevo Registro de Socio SYD');
                 });
             }
