@@ -128,8 +128,10 @@
                         <select class="form-control btnBorder"  id="branch_idBr" name="branch_id" required>
                             <option selected>SUCURSAL DE COMPRA</option>
                             @if(isset($branches))
-                                @foreach ($branches as $branch) 
-                                  <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @foreach ($branches as $branch)
+                                  @if ( $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47)
+                                     <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
+                                  @endif 
                                 @endforeach
                             @endif
                         </select>
