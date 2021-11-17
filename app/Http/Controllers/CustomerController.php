@@ -1443,9 +1443,11 @@ class CustomerController extends Controller
             'active'   => 1
         ]);
 
-        $url = url('password/edit/' . $data[0]->branch_number);
+       // $url = url('password/edit/' . $data[0]->branch_number);
+        $url= asset('files/Diploma_Socio_SyD.pdf');
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
-        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
+        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
+
 
 
 
@@ -1455,6 +1457,10 @@ class CustomerController extends Controller
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
+            });
+            \Mail::send('emails.Diploma',['data'=>$data], function($m) use ($data){
+                $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                $m->to($data->email, $data->name.' '.$data->last_name)->subject('Felicidades, ya eres parte de Socio SYD');
             });
             if ($update_customer){
                 $activated = false;
