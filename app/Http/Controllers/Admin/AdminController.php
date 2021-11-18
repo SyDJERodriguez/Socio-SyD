@@ -96,6 +96,7 @@ class AdminController extends Controller
     {
         $request = $request->input();
         $client_number = '00'.$request['client_number'];
+        $branch_number = '00'.$request['client_number'];
 
         $customerData = DB::table('customers_sessions')
             ->where('branch_number', '=', $client_number)
@@ -128,8 +129,31 @@ class AdminController extends Controller
             ->where('email', '=', $email)
             ->first();
 
-        $transactions = $this->getTransactions($client_number);
-        $totalAmount = $this->totalAmount($client_number);
+        //$transactions = $this->getTransactions($client_number);
+        //$totalAmount = $this->totalAmount($client_number);
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $transactions = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->where('branch_number', $branch_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($transactions as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if ($account->client_type === "1" || $account->client_type === "3"){
@@ -199,13 +223,39 @@ class AdminController extends Controller
         }
 
         $client_number = $account->client_number;
+        $branch_number = $account->branch_number;
 
         $customerData = DB::table('customer_platforms')
             ->where('email', '=', $email)
             ->first();
 
-        $transactions = $this->getTransactions($client_number);
-        $totalAmount = $this->totalAmount($client_number);
+        //$transactions = $this->getTransactions($client_number);
+        //$totalAmount = $this->totalAmount($client_number);
+
+
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $transactions = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->where('branch_number', $branch_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($transactions as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if ($account->client_type === "1" || $account->client_type === "3"){

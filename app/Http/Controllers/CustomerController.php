@@ -1741,10 +1741,31 @@ class CustomerController extends Controller
         //dd(Auth::user()->client_number);
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
         $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
-        $tr = $this->get_trans(
-                    $dataSession['client_number'],
-                    $dataSession['branch_number']);
-        $total = $this->totalAmount();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $tr = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $total = 0.0;
+        //$total = $this->totalAmount();
+
+        foreach ($tr as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $total -= $amount_customer : $total += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
+
         $noti = $this->getNotifications();
 
         $mes = Carbon::parse()->locale('es');
@@ -2026,8 +2047,31 @@ class CustomerController extends Controller
         $noti = $this->getNotifications();
         $is_cnt = 'true';
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = $this->totalAmount();
+        //$data_customer = $this->getTransCadena(Auth::user()->email);
+        //$totalAmount = $this->totalAmount();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if (Auth::user()->client_type !== "2" || Auth::user()->client_type !== "5"){
@@ -2107,13 +2151,37 @@ class CustomerController extends Controller
         //$now = Carbon::now();
         //$current_month = $now->month;
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = $this->totalAmount();
+        //$data_customer = $this->getTransCadena(Auth::user()->email);
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        //$totalAmount = $this->totalAmount();
         /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         } */
+
+        $totalAmount = 0.0;
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
@@ -2169,18 +2237,41 @@ class CustomerController extends Controller
         if(empty($query) === false){
             $imgData = $query[0];
         }
-        $totalAmount = $this->totalAmount();
+        //$totalAmount = $this->totalAmount();
         $noti = $this->getNotifications();
 
         //$now = Carbon::now();
         //$current_month = $now->month;
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
+        //$data_customer = $this->getTransCadena(Auth::user()->email);
         /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         } */
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
@@ -2232,14 +2323,38 @@ class CustomerController extends Controller
         //$now = Carbon::now();
         //$current_month = $now->month;
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = $this->totalAmount();
+        //$data_customer = $this->getTransCadena(Auth::user()->email);
+        //$totalAmount = $this->totalAmount();
         /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         }
  */
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
+
         $level = 0;
         if (Auth::user()->client_type != "2"|| Auth::user()->client_type !== "5"){
             if ($totalAmount>2500 && $totalAmount<=4500) {
@@ -2360,13 +2475,36 @@ class CustomerController extends Controller
         //$now = Carbon::now();
         //$current_month = $now->month;
 
-        $data_customer = $this->getTransCadena(Auth::user()->email);
-        $totalAmount = $this->totalAmount();
+        //$data_customer = $this->getTransCadena(Auth::user()->email);
+        //$totalAmount = $this->totalAmount();
         /*$totalAmount =  0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         } */
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $totalAmount = 0.0;
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         $level = 0;
         if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
@@ -2420,13 +2558,29 @@ class CustomerController extends Controller
         //$now = Carbon::now();
         //$current_month = $now->month;
 
-        $data_customer = $this->getTransCadena($email);
+        $dataSession = CustomersSession::where('email', $email)->first();
+
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
         $totalAmount = 0.0;
-        foreach ($data_customer as $d){
-            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
-                $amount_customer = floatval($d->amount);
-                strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-            //}
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
         }
 
         return $totalAmount;
@@ -2434,16 +2588,29 @@ class CustomerController extends Controller
 
     //get the total amount by passing client number as a parameter
     public function totalAmountByPhone($client_number,$phone){
-        //$now = Carbon::now();
-        //$current_month = $now->month;
+        $dataSession = CustomersSession::where('mobile', $phone)->first();
 
-        $data_customer = $this->getTransCadenaByPhone($phone);
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
         $totalAmount = 0.0;
-        foreach ($data_customer as $d){
-            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
-            $amount_customer = floatval($d->amount);
-            strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-            //}
+
+        foreach ($data_customer as $transaction){
+            $amount_customer = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
         }
 
         return $totalAmount;
