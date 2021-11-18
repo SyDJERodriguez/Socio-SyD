@@ -180,7 +180,7 @@
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
                         <h4 class="primary-color mt-5 mb-2"><strong>CUENTA CON COLABORADORES</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
-                            <strong>Regístrate y recibe beneficios para ti y hasta ocho colaboradores, como:</strong>
+                            <strong>Regístrate y recibe beneficios para ti y hasta siete colaboradores, como:</strong>
                         </h6>
                         <img class="my-3" src="{{asset('img/car.png')}}" width="160px" alt="">
                         <div style="text-align: left; display: flex; align-items: center; flex-direction: column; justify-content: flex-start;">
