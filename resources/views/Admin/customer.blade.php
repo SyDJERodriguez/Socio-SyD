@@ -14,9 +14,9 @@
                     @if(isset($client_number))
                         <div style="display: flex; justify-content: space-between;">
                             <div class="col-md-8">
-                                <h3>Datos del usuario con 
+                                <h3>Datos del usuario con
                                     @if ($account->client_type === '4')
-                                    número de destinatario    
+                                    número de destinatario
                                     @else
                                     número de cliente
                                     @endif
@@ -71,17 +71,17 @@
                             @if($level === 0)
                                 <b> Aún no cuenta con beneficios </b>
                             @elseif($level === 1 && $account->client_type != "2")
-                                <b> Seguro de accidentes para 4 colaboradores </b>
+                                <b> Seguro de accidentes para 3 colaboradores </b>
                             @elseif($level === 1 && $account->client_type === "2")
                                 <b> Seguro de accidentes </b>
 
                             @elseif($level === 2 && $account->client_type != "2")
-                                <b> Seguro de accidentes y asistencias plata para 4 colaboradores </b>
+                                <b> Seguro de accidentes y asistencias plata para 3 colaboradores </b>
                             @elseif($level === 2 && $account->client_type === "2")
                                 <b> Seguro de accidentes y asistencias plata </b>
 
                             @elseif($level === 3 && $account->client_type != "2")
-                                <b> Seguro de accidentes y asistencias oro para 8 colaboradores </b>
+                                <b> Seguro de accidentes y asistencias oro para 7 colaboradores </b>
                             @elseif($level === 3 && $account->client_type === "2")
                                 <b> Seguro de accidentes y asistencias oro </b>
                             @endif
