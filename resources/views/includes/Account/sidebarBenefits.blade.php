@@ -5,11 +5,11 @@
     <div style="padding-left: 10px !important;">
 
         @include('includes.accountData')
-        
+
         <a href="#" class="btn btn-sm" data-toggle="modal" data-target="#modalUpdateData"
         style="background-color: #143153;color: #FFF;margin-bottom: 2px">Actualizar datos</a>
         <br>
-        
+
         @include('includes.opinionButton')
 
         <p style="font-size: 13px">
@@ -38,7 +38,7 @@
         <div class="card card-body border-0">
             <a href="{{route('customer.benefits')}}" class="<?php if($active === 1 ){echo 'active_sb';}?>">
                 <span style="font-size: 13px">- Coberturas principales del seguro</span></a>
-            <a href="{{route('customer.register.beneficiary')}}" 
+            <a href="{{route('customer.register.beneficiary')}}"
             class="<?php if($active === 2 ){echo 'active_sb';}?>"
             title="Recuerda que las personas dadas de alta en esta sección recibirán los beneficios del seguro en caso de que no estés">
                 <span style="font-size: 13px"> - Registra tus beneficiarios <b>AQUÍ</b></span></a>
@@ -56,7 +56,7 @@
             @if ($level === 'oro' || $level === 'plata' || $level >0)
             <a href="{{route('customer.myDocuments')}}" class="btn"
                     style="color: #143153;border:8px solid #009CE0;border-radius: 10px;
-                    width: 100%;font-size: 20px;"  
+                    width: 100%;font-size: 20px;"
                     id="assistanceCall">
                     <b>TUVE UN ACCIDENTE</b> </a>
             <p style="font-size: 13px">

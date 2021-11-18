@@ -158,7 +158,7 @@ class CustomerController extends Controller
 
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
+                if ($totalAmount>=2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
                 if ($totalAmount>4500 && $totalAmount<=7000) {
@@ -172,7 +172,7 @@ class CustomerController extends Controller
                 }
             }else if($client->type_user === '2'){
                 $client->type_user = 'Mecánico Individual';
-                if ($totalAmount>200 && $totalAmount<=500) {
+                if ($totalAmount>=200 && $totalAmount<=500) {
                     $client->level= 'Bronce';
                 }
                 if ($totalAmount>500 && $totalAmount<=1300) {
@@ -186,7 +186,7 @@ class CustomerController extends Controller
                 }
             }else if($client->type_user === '3'){
                 $client->type_user = 'Empleado Dependiente';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
+                if ($totalAmount>=2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
                 if ($totalAmount>4500 && $totalAmount<=7000) {
@@ -200,7 +200,7 @@ class CustomerController extends Controller
                 }
             }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
-                if ($totalAmount>2500 && $totalAmount<=4500) {
+                if ($totalAmount>=2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
                 if ($totalAmount>4500 && $totalAmount<=7000) {
@@ -210,6 +210,20 @@ class CustomerController extends Controller
                     $client->level= 'Oro';
                 }
                 if ($totalAmount<2500) {
+                    $client->level= 'Sin beneficios';
+                }
+            }else if($client->type_user === '5'){
+                $client->type_user = 'Publico en general';
+                if ($totalAmount>=200 && $totalAmount<=500) {
+                    $client->level= 'Bronce';
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $client->level= 'Plata';
+                }
+                if ($totalAmount>1300) {
+                    $client->level= 'Oro';
+                }
+                if ($totalAmount<200) {
                     $client->level= 'Sin beneficios';
                 }
             }
@@ -609,66 +623,97 @@ class CustomerController extends Controller
     public function report_telasist(Request $request){
         $response = "For telasis";
 
+        $users = DB::table('customers_sessions')->orderBy('id', 'DESC')->get();
         $now = Carbon::now();
         $current_month = $now->month;
-        $transactions = DB::table('transactions')
-            //->select('transactions.client_number','transactions.amount', 'transactions.branch_number')
-            ->selectRaw('transactions.client_number as client_number')
-            ->selectRaw('SUM(transactions.amount) as total')
-            ->whereMonth('transaction_date','=',$current_month)
-            //->whereNull('transactions.branch_number')
-            ->groupBy('transactions.client_number')
-            ->get();
-
-        //return response()->json($transactions);
-
+        $current_year = $now->year;
         $data = [];
-        foreach ($transactions as $transaction){
-           $customer_type = CustomersSession::where('client_number', $transaction->client_number)
-                ->select('client_type', 'email')
+        $total = 0.0;
+
+        foreach ($users as $user){
+
+            $transactions = DB::table('transactions')
+                ->where('client_number', $user->client_number)
+                ->where('branch_number', $user->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
                 ->get();
-            //dd($customer_type);
-            foreach ($customer_type as $customer){
-                $customer_info = CustomerPlatform::where('email', $customer->email)
-                    ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
-                    ->first();
 
+            $customer_info = CustomerPlatform::where('email', $user->email)
+                ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
+                ->first();
 
-                $level = '';
-                if ($customer->client_type != "2"){
-                    if ($transaction->total>4500 && $transaction->total<=7000) {
-                        $level = 'plata';
-                    }
-                    if ($transaction->total>7000) {
-                        $level = 'oro';
-                    }
+            foreach ($transactions as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $total -= $amount_customer : $total += $amount_customer ;
+            }
+
+            //dd($total);
+
+            $level = '';
+            if ($user->client_type === '1'){
+                if ($total>4500 && $total<=7000) {
+                    $level = 'plata';
                 }
-
-                if ($customer->client_type === "2"){
-                    if ($transaction->total>500 && $transaction->total<=1300) {
-                        $level = 'plata';
-                    }
-                    if ($transaction->total>1300) {
-                        $level = 'oro';
-                    }
-                }
-
-                $customer_data = $transaction->client_number.'-'.
-                    $customer_info->id.'|'.
-                    $customer_info->name.'|'.
-                    $customer_info->last_name.'|'.
-                    $customer_info->second_last_name.'|'.
-                    $customer->email.'|'.
-                    $customer_info->birthday.'|'.
-                    $customer_info->mobile_number.'|'.
-                    $customer_info->gender.'|'.$level;
-
-
-                if ($level === 'plata' || $level === 'oro'){
-                    array_push($data,$customer_data);
+                if ($total>7000) {
+                    $level = 'oro';
                 }
             }
+
+            if ($user->client_type === '2'){
+                if ($total>500 && $total<=1300) {
+                    $level = 'plata';
+                }
+                if ($total>1300) {
+                    $level = 'oro';
+                }
+            }
+
+            if ($user->client_type === '3'){
+                if ($total>4500 && $total<=7000) {
+                    $level = 'plata';
+                }
+                if ($total>7000) {
+                    $level = 'oro';
+                }
+            }
+
+            if ($user->client_type === '4'){
+                if ($total>4500 && $total<=7000) {
+                    $level = 'plata';
+                }
+                if ($total>7000) {
+                    $level = 'oro';
+                }
+            }
+
+            if ($user->client_type === '5'){
+                if ($total>500 && $total<=1300) {
+                    $level = 'plata';
+                }
+                if ($total>1300) {
+                    $level = 'oro';
+                }
+            }
+
+            //dd($level);
+
+            $customer_data = $transaction->client_number.'-'.
+                $customer_info->id.'|'.
+                $customer_info->name.'|'.
+                $customer_info->last_name.'|'.
+                $customer_info->second_last_name.'|'.
+                $user->email.'|'.
+                $customer_info->birthday.'|'.
+                $customer_info->mobile_number.'|'.
+                $customer_info->gender.'|'.$level;
+
+
+            if ($level === 'plata' || $level === 'oro'){
+                array_push($data,$customer_data);
+            }
         }
+
         $array_num = count($data);
         $content = '';
         for ($i = 0; $i < $array_num; $i++){
@@ -695,26 +740,114 @@ class CustomerController extends Controller
         //$response = "For chubb";
         $now = Carbon::now();
         $current_month = $now->month;
-        $data = DB::table('customer_platforms')
-                ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
-                ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+        $current_year = $now->year;
+        $data_group = [];
+        $total = 0.0;
+
+        $data = DB::table('customers_sessions')
+                ->join('customer_platforms', 'customers_sessions.email', '=', 'customer_platforms.email')
+                //->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
                 //->join('associates', 'associates.email', '=', 'customer_platforms.email')
-                ->whereMonth('transaction_date','=',$current_month)
-                ->selectRaw('customer_platforms.client_number as client_number')
+                //->whereMonth('transaction_date','=',$current_month)
+                ->selectRaw('customers_sessions.client_number as client_number')
+                ->selectRaw('customers_sessions.branch_number as branch_number')
+                ->selectRaw('customers_sessions.client_type as client_type')
                 ->selectRaw('customer_platforms.name as name')
                 ->selectRaw('customer_platforms.last_name as lastname')
                 ->selectRaw('customer_platforms.second_last_name as secondLastName')
                 ->selectRaw('customer_platforms.rfc as rfc')
                 ->selectRaw('customer_platforms.birthday as bday')
                 ->selectRaw('customer_platforms.gender as gender')
-                ->selectRaw('customers_sessions.client_type as level')
-                ->selectRaw('SUM(transactions.amount) as total')
+                //->selectRaw('customers_sessions.client_type as level')
+               // ->selectRaw('SUM(transactions.amount) as total')
                 ->selectRaw('customers_sessions.is_associate as associateId')
                 ->selectRaw('customers_sessions.email as email')
                 ->groupBy('customer_platforms.email')
+                ->orderBy('customers_sessions.id', 'ASC')
                 ->get();
 
-        foreach ($data as $key => $value) {
+        //dd($data);
+
+
+        foreach ($data as $user){
+            $transactions = DB::table('transactions')
+                ->where('client_number', $user->client_number)
+                ->where('branch_number', $user->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+
+            $customer_info = CustomerPlatform::where('email', $user->email)
+                ->select('id', 'name', 'last_name', 'second_last_name', 'birthday', 'mobile_number', 'gender')
+                ->first();
+
+            foreach ($transactions as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $total -= $amount_customer : $total += $amount_customer ;
+            }
+
+            //dd($total);
+            $level = '';
+            if ($user->client_type === '1'){
+                if ($total>=2500) {
+                    $level = 'bronce';
+                }
+            }
+
+            if ($user->client_type === '2'){
+                if ($total>=200) {
+                    $level = 'bronce';
+                }
+            }
+
+            if ($user->client_type === '3'){
+                if ($total>=2500) {
+                    $level = 'bronce';
+                }
+            }
+
+            if ($user->client_type === '4'){
+                if ($total>=2500) {
+                    $level = 'bronce';
+                }
+            }
+
+            if ($user->client_type === '5'){
+                if ($total>=200) {
+                    $level = 'bronce';
+                }
+            }
+
+            $associateId = DB::table('associates')
+                ->select('number')
+                ->where('email','=',$user->email)
+                ->first();
+
+            if( $associateId != null){
+                $user->client_number = $user->client_number . '-' . ($associateId->number);
+            }
+            $final_data = [
+                'client_number'    => $user->client_number,
+                'name'             => $user->name,
+                'last_name'        => $user->lastname,
+                'second_last_name' => $user->secondLastName,
+                'rfc'              => $user->rfc,
+                'birthday'         => $user->bday,
+                'gender'           => $user->gender
+            ];
+
+            //dd($level);
+
+            if($level === 'bronce'){
+                array_push($data_group,$final_data);
+            }
+        }
+
+
+
+
+
+        /*foreach ($data as $key => $value) {
 
             if( $this->seguroAsistencia( $value->level, $value->total ) == false ){
                 //true = ok; false borrar registro
@@ -735,9 +868,9 @@ class CustomerController extends Controller
             unset($value->total);
             unset($value->associateId);
             unset($value->email);
-        }
+        }*/
 
-        return Excel::download( new SessionExport( $data ), 'reporteChubb.xlsx' );
+        return Excel::download( new SessionExport( $data_group ), 'reporteChubb.xlsx' );
     }
 
     public function seguroAsistencia($level,$total){
