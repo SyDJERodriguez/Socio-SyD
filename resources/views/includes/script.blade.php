@@ -1509,7 +1509,7 @@
             select=$(this).val();
             for (var i = 0; i < sucursales.length; i++) {
                 if(select==sucursales[i]['dar']){
-                    suc_direccion='<p>'+sucursales[i]['direccion']+'</p> <p>C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
+                    suc_direccion='<p>'+sucursales[i]['direccion']+', C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
                     $(".item_direccion.sucursal").html(suc_direccion);
 
                     horarios= sucursales[i]['horario'].split("y");
@@ -1564,7 +1564,7 @@
                 if(estado_seleccionado==sucursales[i]['estado']){
                     html+='<option value="'+sucursales[i]['dar']+'">'+sucursales[i]['dar']+'</option>';
                     if(cont==0){
-                        suc_direccion='<p>'+sucursales[i]['direccion']+'</p> <p>C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
+                        suc_direccion='<p>'+sucursales[i]['direccion']+', C.P. '+sucursales[i]['cp']+', '+sucursales[i]['municipio']+', '+sucursales[i]['estado']+'</p> ';
                         $(".item_direccion.sucursal").html(suc_direccion);
 
                         horarios= sucursales[i]['horario'].split("y");
