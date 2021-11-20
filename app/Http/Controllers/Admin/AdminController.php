@@ -103,11 +103,12 @@ class AdminController extends Controller
             ->get();
 
         if ( $customerData->isEmpty() ){
-            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-            return view('Admin.customer', compact('error'));
+            return view('Admin.indexbranch');
+           // $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+           // return view('Admin.customer', compact('error'));
         }
 
-        if( count($customerData) > 1 ){
+        elseif( count($customerData) > 1 ){
             $dependents = DB::table('customer_platforms')
                             ->where('client_number','=', $client_number)
                             ->get();
