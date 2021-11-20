@@ -6,6 +6,7 @@ use App\Helpers\Twilio\TwilioService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
+use DB;
 
 class EmailsMonthly20 extends Command
 {
