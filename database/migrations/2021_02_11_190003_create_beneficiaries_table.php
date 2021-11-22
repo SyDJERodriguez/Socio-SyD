@@ -25,7 +25,7 @@ class CreateBeneficiariesTable extends Migration
             $table->string('relationship',100)->nullable();
             $table->boolean('is_subbeneficiaries')->nullable();
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customer_platforms');
+            //$table->foreign('customer_id')->references('id')->on('customer_platforms');
             //$table->foreign('associate_id')->references('id')->on('associates');
         });
     }
