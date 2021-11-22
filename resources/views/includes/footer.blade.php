@@ -150,11 +150,16 @@
                                     <textarea class="form-control" name="comment"  id="contact-comment" style="border: 1px solid black;"
                                     pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
+                                <div class="col-lg-6 py-2" >
+                                  <!--First key recaptcha in data-sitekey -->
+                                  <div class="g-recaptcha" data-sitekey="6LeH1EkdAAAAAIDhVZ4uaO0vC_Er2pRNmP8ybda1"></div>
+                                <br/>
+                                </div>
                                 <div class="col-lg-6 py-2">
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <button type="submit" id="contact_us_button" class="btn btn text-white float-right"
-                                  style="background-color: #00A1E3;" value="Enviar">Enviar</button>
+                                  style="background-color: #00A1E3; " value="Enviar">Enviar</button>
                                 </div>
                               </div>
                             </form>
