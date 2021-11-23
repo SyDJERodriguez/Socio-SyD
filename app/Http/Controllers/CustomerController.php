@@ -38,6 +38,8 @@ use GuzzleHttp\Client;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use PDF;
+use Sabberworm\CSS\CSSList\Document;
+
 class CustomerController extends Controller
 {
     use AuthenticatesUsers;
@@ -2950,17 +2952,24 @@ class CustomerController extends Controller
                      "sociosyd@syd.com"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
-        try {
-            foreach( $SYD_EMAILS as $emails){
-                Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
-                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
-                    $m->to("sociosyd@syd.com")->subject('Nuevo Registro de Socio SYD');
-                });
+        $captcha = $request->input('g-recaptcha-response');
+        //Second secret key
+        $secretKey = '6LeH1EkdAAAAADN7v5hr5VOcCbcT0A4X9z1u5Geq';
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha");
+        $atributos = json_decode($response, TRUE);
+        if ($atributos['success']) {
+            try {
+                foreach( $SYD_EMAILS as $emails){
+                    Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
+                        $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                        $m->to("sociosyd@syd.com")->subject('Nuevo Registro de Socio SYD');
+                    });
+                }
+                return redirect()->route('home');
+            } catch (\Throwable $th) {
+                return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
             }
-            return redirect()->route('home');
-        } catch (\Throwable $th) {
-            return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
-        }
+        }       
     }
 
     //invitation email associate

@@ -49,6 +49,17 @@
         document.getElementById('muestraBr').style.display = 'none';
     }  
     }
+    //Do not send without recaptcha
+    window.onload = function() {
+    var $recaptcha = document.querySelector('#g-recaptcha-response');
+
+    if($recaptcha) {
+        $recaptcha.setAttribute("required", "required");
+        button=document.querySelector("#contact_us_button");button.disabled = false;
+    }
+   };
+       
+
 
     //popover for buttons modal 
     $('#popoverDataindividual').popover();
