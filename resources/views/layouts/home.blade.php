@@ -4,6 +4,8 @@
         <!-- <meta name="robots" content="noindex" />
          Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HT0Q835B2"></script>
+         <!-- Recaptcha -->
+         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
