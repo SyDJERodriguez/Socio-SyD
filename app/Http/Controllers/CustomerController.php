@@ -2946,10 +2946,10 @@ class CustomerController extends Controller
     //Contact form
     public function contact_us(Request $request){
         $SYD_EMAILS = ["rguerrero@syd.com.mx",
-        "nebratt@syd.com.mx",
-        "ecommerce@syd.com.mx",
-        "equezada@syd.com.mx",
-        "sociosyd@syd.com"];
+                     "nebratt@syd.com.mx",
+                     "ecommerce@syd.com.mx",
+                     "equezada@syd.com.mx",
+                     "sociosyd@syd.com"];
         //$to = explode(',',$SYD_EMAILS);
         $data = $request->all();
         $captcha = $request->input('g-recaptcha-response');
@@ -2962,7 +2962,7 @@ class CustomerController extends Controller
                 foreach( $SYD_EMAILS as $emails){
                     Mail::send('emails.messageContact', ['data'=>$data] ,function($m) use ($emails){
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
-                        $m->to($emails)->subject('Nuevo Registro de Socio SYD');
+                        $m->to("sociosyd@syd.com")->subject('Nuevo Registro de Socio SYD');
                     });
                 }
                 return redirect()->route('home');

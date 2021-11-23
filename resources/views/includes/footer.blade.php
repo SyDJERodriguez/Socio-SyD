@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-lg-6 py-2">
                                   <button type="submit" id="contact_us_button" class="btn btn text-white float-right"
-                                  style="background-color: #00A1E3; " value="Enviar">Enviar</button>
+                                  style="background-color: #00A1E3;" value="Enviar">Enviar</button>
                                 </div>
                               </div>
                             </form>
