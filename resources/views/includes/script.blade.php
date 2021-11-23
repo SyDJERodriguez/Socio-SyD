@@ -60,10 +60,6 @@
     if($recaptcha) {
         $recaptcha.setAttribute("required", "required");
     }
-    const $form = document.querySelector('form');
-    $form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    });
     };
 
     //popover for buttons modal 
