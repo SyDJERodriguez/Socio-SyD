@@ -124,7 +124,7 @@
                       </div>
                       <div class="col-lg-9 p-0 my-4" style="border: 1px solid rgba(128, 128, 128, 0.719);">
                           <div class="text-center" style="background-color: #143153;padding: 20px;">
-                            <img src="{{asset('img/logo.png')}}" alt="logo"></div>
+                            <img src="{{asset('img/logo.png')}}" alt="logo" class="img-logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
                           <form method="POST" action="{{action('CustomerController@contact_us')}}" id="form-contact-us">
@@ -150,14 +150,14 @@
                                     <textarea class="form-control" name="comment"  id="contact-comment" style="border: 1px solid black;"
                                     pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{8,}" placeholder="COMENTARIO:" id="" cols="103" rows="8" required></textarea>
                                 </div>
-                                <div class="col-lg-12 py-2 d-flex justify-content-center">
-                                  <div class="col-lg-6 py-2 align-self-center">
-                                    <button type="submit" id="contact_us_button" class="btn btn text-white float-right"
-                                    style="background-color: #00A1E3;" value="Enviar" disabled>Enviar</button>
-                                  </div>
+                                <div class="col-lg-12 py-2 justify-content-center captcha-button">
                                    <!--First key recaptcha in data-sitekey -->
-                                  <div class="g-recaptcha col-lg-6 py-2" data-sitekey="6LeH1EkdAAAAAIDhVZ4uaO0vC_Er2pRNmP8ybda1"></div>
-                                  <br/>
+                                   <div class="g-recaptcha col-lg-6 py-2" data-sitekey="6LeH1EkdAAAAAIDhVZ4uaO0vC_Er2pRNmP8ybda1"></div>
+                                   <br/>
+                                  <div class="col-lg-6 py-2 align-self-center text-center">
+                                    <button type="submit" id="contact_us_button" class="btn btn text-white"
+                                    style="background-color: #00A1E3;" value="Enviar">Enviar</button>
+                                  </div>
                                 </div>
                               </div>
                             </form>

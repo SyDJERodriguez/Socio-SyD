@@ -687,7 +687,20 @@ h5.footerTitle3{
     justify-content: center;
 }
 
+.captcha-button{
+    display: flex;
+}
+
 @media only screen and (max-width:991px){
+    .g-recaptcha{
+        margin-left: -20px;
+    }
+    .img-logo{
+        width:70% ;
+    }
+    .captcha-button{
+        display: block;
+    }
     img.imgTipo{
 
         height: 10%;
@@ -1055,6 +1068,9 @@ div.divImgDerecha2{
 @media only screen and (max-width:387px){
     .our-branches__content-address-location-result{
         height: 470px;
+    }
+    .g-recaptcha{
+        margin-left: -40px;
     }
 }
 
