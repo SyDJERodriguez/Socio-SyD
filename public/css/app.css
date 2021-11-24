@@ -2,6 +2,20 @@
 /*resolve Boostrap bold problem */
 div.modal { overflow: auto !important; }
 
+.wrapper {
+  padding: 100px;
+}
+
+#g-recaptcha-response {
+    display: block !important;
+    position: absolute;
+    margin: -78px 0 0 0 !important;
+    width: 302px !important;
+    height: 76px !important;
+    z-index: -999999;
+    opacity: 0;
+}
+
 a.adios2{
     font-size: 11px;
     width: 70px;
