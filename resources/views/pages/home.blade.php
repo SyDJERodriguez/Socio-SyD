@@ -178,7 +178,7 @@
 
                 <div class="col-lg-6 mx-auto text-center py-1 " id="divCuenta">
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
-                        <h4 class="primary-color mt-5 mb-2"><strong>CUENTA CON COLABORADORES</strong></h4>
+                        <h4 class="primary-color mt-5 mb-2"><strong>CUENTA CON COLABORADORES Y CADENAS</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
                             <strong>Regístrate y recibe beneficios para ti y hasta siete colaboradores, como:</strong>
                         </h6>
@@ -217,7 +217,7 @@
 
                 <div class="col-lg-6 mx-auto text-center py-1">
                     <div class="bg-primary py-1 divAzul" style="background-color: #00a5e6 !important;">
-                        <h4 class="primary-color mt-5 mb-2"><strong>CUENTA INDIVIDUAL</strong></h4>
+                        <h4 class="primary-color mt-5 mb-2"><strong>CUENTA INDIVIDUAL O PUBLICO EN GENERAL</strong></h4>
                         <h6 class="text-white mt-5 mb-2">
                             <strong>Regístrate y recibe beneficios únicamente para ti, como:</strong>
                         </h6>
