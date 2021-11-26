@@ -15,8 +15,10 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestra').style.display = 'flex';
+        document.getElementById('branch_id').required = true;
     }else {
         document.getElementById('muestra').style.display = 'none';
+        document.getElementById('branch_id').required = false;
     } 
     }
 
@@ -25,8 +27,10 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraMec').style.display = 'flex';
+        document.getElementById('branch_idMec').required = true;
     }else {
         document.getElementById('muestraMec').style.display = 'none';
+        document.getElementById('branch_idMec').required = false;
     } 
     }
     
@@ -35,8 +39,10 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraGen').style.display = 'flex';
+        document.getElementById('branch_idGen').required = true;
     }else {
         document.getElementById('muestraGen').style.display = 'none';
+        document.getElementById('branch_idGen').required = false;
     }  
     }
 
@@ -45,8 +51,10 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraBr').style.display = 'flex';
+        document.getElementById('branch_idBr').required = true;
     }else {
         document.getElementById('muestraBr').style.display = 'none';
+        document.getElementById('branch_idBr').required = false;
     }  
     }
    
