@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <select autocomplete="new-password" class="form-control btnBorder" name="channel" id="channel" onchange="mostrar()" required>
-                            <option selected>CANAL DE COMPRA</option>
+                            <option value="">CANAL DE COMPRA</option>
                             <option value="1" >SUCURSAL</option>
                             <option value="2">CAT</option>
                             <option value="3">TIENDA EN LINEA</option>
@@ -130,8 +130,8 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: none" id="muestra">
-                        <select class="form-control btnBorder"  id="branch_id" name="branch_id" required>
-                            <option selected>SUCURSAL DE COMPRA</option>
+                        <select class="form-control btnBorder"  id="branch_id" name="branch_id">
+                            <option value="">SUCURSAL DE COMPRA</option>
                             @if(isset($branches))
                                 @foreach ($branches as $branch) 
                                   @if ( $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47)
