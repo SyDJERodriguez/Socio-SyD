@@ -10,7 +10,7 @@
         });
     }
     //sucursales ocultas se muestran en select
-    function mostrar(){   
+    function mostrar(){
     let canal = document.getElementById('channel');
     let verdadero = canal.value;
     if (verdadero==1) {
@@ -19,7 +19,7 @@
     }else {
         document.getElementById('muestra').style.display = 'none';
         document.getElementById('branch_id').required = false;
-    } 
+    }
     }
 
     function mostrarMec() {
@@ -31,9 +31,9 @@
     }else {
         document.getElementById('muestraMec').style.display = 'none';
         document.getElementById('branch_idMec').required = false;
-    } 
     }
-    
+    }
+
     function mostrarGen() {
         let canal = document.getElementById('channelGen');
     let verdadero = canal.value;
@@ -43,7 +43,7 @@
     }else {
         document.getElementById('muestraGen').style.display = 'none';
         document.getElementById('branch_idGen').required = false;
-    }  
+    }
     }
 
     function mostrarBr() {
@@ -55,9 +55,9 @@
     }else {
         document.getElementById('muestraBr').style.display = 'none';
         document.getElementById('branch_idBr').required = false;
-    }  
     }
-   
+    }
+
     //Do not send without recaptcha
     window.onload = function() {
     var $recaptcha = document.querySelector('#g-recaptcha-response');
@@ -67,13 +67,13 @@
     }
     };
 
-    //popover for buttons modal 
+    //popover for buttons modal
     $('#popoverDataindividual').popover();
     $('#popoverDatacolaboradores').popover();
     $('#popoverDatacadenas').popover();
     $('#popoverDatageneral').popover();
     $('#popoverOption').popover({ trigger: "hover" });
-    
+
     $('#element').toast('show');
 
     $(document).ready(function(){
@@ -101,7 +101,11 @@
 
                             if(typeof data.length == "number" && data.length > 0){
                                 data.forEach(element => {
-                                    select.options.add(new Option(element['branch_name'],element['branch_number']));
+                                    //select.options.add(new Option(element['branch_name'],element['branch_number']));
+                                    let option =  document.createElement('option');
+                                    option.value = element['branch'];
+                                    option.innerHTML = element['branch_name'];
+                                    select.appendChild(option);
                                 });
                             }else{
                                 select.innerHTML = '<option disabled selected value=""> SUCURSAL</option>';
