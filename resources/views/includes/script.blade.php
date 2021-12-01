@@ -57,6 +57,18 @@
         document.getElementById('branch_idBr').required = false;
     }  
     }
+
+    function mostrarCNT() {
+        let canal = document.getElementById('channelCNT');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraCNT').style.display = 'flex';
+        document.getElementById('branch_idCNT').required = true;
+    }else {
+        document.getElementById('muestraCNT').style.display = 'none';
+        document.getElementById('branch_idCNT').required = false;
+    }  
+    }
    
     //Do not send without recaptcha
     window.onload = function() {
