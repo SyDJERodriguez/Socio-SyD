@@ -132,6 +132,7 @@ class CustomerController extends Controller
         $current_year = $now->year;
 
         foreach ($registered_clients as $client){
+            set_time_limit(60);
             $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
             $client_transaction = DB::table('transactions')
