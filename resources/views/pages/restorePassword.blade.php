@@ -45,7 +45,7 @@
                     <div class="row ">
                         <div class="col-lg-12 py-3" style="width: 400px !important;">
                             <label for="password">NUEVA CONTRASEÑA:</label>
-                            <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial "  required>
+                            <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$"  title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial "  required>
                             <input type="hidden" value="{{$client_number}}" name="client_number">
                         </div>
                     </div>

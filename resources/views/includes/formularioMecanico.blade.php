@@ -101,11 +101,11 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcMec" name="rfc">
-                        <p style="color: red; margin: 0;visibility: hidden">*</p>
+                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial "  required>
+                        <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial "  required>
+                        <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
@@ -115,10 +115,6 @@
                             <option value="2">CAT</option>
                             <option value="3">TIENDA EN LINEA</option>
                         </select>
-                        <p style="color: red; margin: 0;">*</p>
-                    </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display:none " id="muestraMec">
@@ -134,6 +130,10 @@
                             
                         </select>
                         <p style="color: red; margin: 0;">*</p>
+                    </div>
+                    <div class="col-lg-6 py-2" style="display: flex">
+                        <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcMec" name="rfc">
+                        <p style="color: red; margin: 0;visibility: hidden">*</p>
                     </div>
                      {{-- Modal ¿Olvidaste tu numero cliente --}}
                      <div class="col-lg-12 py-2" style="display: flex; flex-direction: column;">
