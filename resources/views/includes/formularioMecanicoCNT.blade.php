@@ -26,6 +26,12 @@
               </div>
               <div class="alert alert-danger" id="form_alert_dns_cnt" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-success" id="alertSuccessCodeCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha enviado un código de verificación al telefóno celular indicado</p>
+              </div>
+              <div class="alert alert-danger" id="error_code_CNT" role="alert" style="border-radius: 6px;" hidden>
+              </div>
             <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
@@ -54,17 +60,25 @@
                         id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" id="mobile" style="display: flex">
+                    <div class="col-lg-6 py-2" id="mobile" style="display: flex; flex-direction: column;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
                             <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
-                            id="mobileCNT" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                            id="mobileCNT" name="mobile" maxlength="10" pattern="[0-9]{10}" required style="border-radius: 0 .25rem .25rem 0">
                             <div class="input-group-append" id="form_alert_phone" hidden>
                             </div>
+                            <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <p style="color: red; margin: 0;">*</p>
+
+                        <div class="input-group mb-3" style="margin-top: 1rem">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeCNT" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeCNTConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <p style="color: red; margin: 0;" hidden id="requiredSignalCNT">*</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -119,13 +133,13 @@
                     <select class="form-control btnBorder" id="branch_idCNT" name="branch_id">
                         <option value="">SUCURSAL DE COMPRA</option>
                         @if(isset($branches))
-                            @foreach ($branches as $branch) 
+                            @foreach ($branches as $branch)
                                 @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47 )
-                                    <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
-                                @endif 
+                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @endif
                             @endforeach
                         @endif
-                        
+
                     </select>
                     <p style="color: red; margin: 0;">*</p>
                 </div>
