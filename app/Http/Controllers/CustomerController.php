@@ -547,6 +547,287 @@ class CustomerController extends Controller
         }
 
     }
+      //update data in beneficiaries table
+      public function addEmployeebranch(Request $request){
+        $session = $request;
+        $request       = $request->input();
+        $client_number = $request['client_number'];
+
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['bday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
+            //name, last name or second last name is empty
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>"Un campo se encuentra vacío. Por favor ingresa             tu nombre completo"]);
+        }
+
+        //validate mobile number
+        $valid = $this->phoneValidator($request['mobile_number']);
+        if ($valid == false){
+            return response()->json(['success'=>'false', 'verify_valid_mobile'=>'false']);
+        }
+
+        //validated email
+        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        $client = new Client([
+            'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET');
+        $response = json_decode($response->getBody()->getContents());
+
+        if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable.             Corroborar datos' ]);
+        }
+
+        //Validate DNS email
+        $domain = explode('@', $request['email']);
+        $validate_dns = sizeof(dns_get_record($domain[1]));
+
+        // return $validate_dns;
+        if ($validate_dns <= 0){
+            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        }
+
+        //Verify is the email has not a relation with other client number
+        //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
+
+        //Verify if the guest has an account
+        $verify_mobile_email = DB::table('customers_sessions')
+            ->where('mobile', '=', $request['mobile_number'])
+            ->orWhere('email', '=', $request['email'])
+            ->get();
+
+        $verify_mobile_email = json_decode($verify_mobile_email);
+        $verify_mobile_email = (array)$verify_mobile_email;
+
+        //dd(!empty($verify_mobile_email));
+        //Check if the account is a mechanic account
+        if(!empty($verify_mobile_email)){
+            if($verify_mobile_email[0]->client_type == '2'){
+                $owner = DB::table('customer_platforms')
+                    ->where('client_number', '=', $request['client_number'])
+                    ->first();
+                $ownerName = $owner->name.' '.$owner->last_name.' '.$owner->second_last_name;
+
+                $data = DB::table('customer_platforms')
+                    ->where('email', '=', $request['email'])
+                    ->first();
+                $information = [
+                    'test'=> 'Datos',
+                    'customer_id'=> $request['customer_id'],
+                    'client_number'=> $request['client_number'],
+                    'name' => $data->name,
+                    'last_name' => $data->last_name,
+                    'second_last_name' => $data->second_last_name,
+                    'birthday' => $data->birthday,
+                    'mobile' => $data->mobile_number,
+                    'email' => $request['email'],
+                    'owner' => $ownerName
+                ];
+                //dd($information);
+                $this->inviteMechanicToDependent($information);
+                return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+
+            }
+        }
+
+        //Check if th account is an owner account
+        if(!empty($verify_mobile_email)){
+            if ($verify_mobile_email[0]->client_type == '1' || $verify_mobile_email[0]->client_type == '4'){
+                return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+            }
+        }
+
+        //Check if th account is an owner account
+        if(!empty($verify_mobile_email)){
+            if ($verify_mobile_email[0]->client_type == '3'){
+                return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+
+            }
+        }
+
+        //Verify if the email is associates with other owner
+        $query = DB::table('associates')
+                    ->where('mobile_number','=',$request['mobile_number'])
+                    ->orWhere('email','=',$request['email'])
+                    ->where('active_association','=',1)
+                    ->get();
+        $query = json_decode($query);
+        $query = (array)$query;//convert to array
+
+        if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 1){ //check if response exist
+            if($query[0]->mobile_number === $request['mobile_number'] || $query[0]->email === $request['email']){
+                return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+
+            }
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+
+        }
+        
+        //Verify if the email is deactive association with the current owner
+        $deactivate = DB::table('associates')
+            ->where('mobile_number','=',$request['mobile_number'])
+            ->orWhere('email','=',$request['email'])
+            ->where('active_association','=',0)
+            ->get();
+        $deactivate = json_decode($deactivate);
+        $deactivate = (array)$deactivate;//convert to array
+
+        if (is_array($query) == true && empty($query) === false && $query[0]->active_association == 0){ //check if response exist
+            return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
+
+        }
+        //calculated number in associates table
+        $number = $this->getNumberAssociate($request['customer_id'],$request['branch_number']);
+        ++$number; //plus one bc 0 don't exists
+
+        //insert data in associates table
+        $update_associates ='';
+        //insert data in associates table
+        $update_associates = DB::table('associates')->insert([
+            'customer_id'       => $request['customer_id'],
+            'client_number'     => $client_number,
+            'name'              => $request['name'],
+            'last_name'         => $request['last_name'],
+            'second_last_name'  => $request['second_last_name'],
+            'role'              => isset($request['role']) ? $request['role'] : "",
+            'active_association'=> 1,
+            'number'            => $number,
+            'birthday'          => $request['bday'],
+            'created_at'        => date('Y-m-d H:i:s'),
+            'mobile_number'     => $request['mobile_number'],
+            'email'             => $request['email'],
+            'branch_number'     => isset($request['branch_number']) ? $request['branch_number'] : null
+        ]); //debo buscar el associado de aqui en la DB(pasar en lra url el numero de telefono tambien)
+       // return redirect()->route('exito');
+
+        if ($update_associates === 1 || $update_associates === true || $update_associates === 0){
+            $this->invitation($request);
+            $email = $request['email_auth'];
+            //$data = CustomerPlatform::where('email', Auth::user()->email)->first();
+            $response = $this->employeeLimit(
+                $request['email_auth'],
+                $request['customer_id'],
+                $request['client_type']);
+
+            if ($response->validated === false){
+
+                $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
+
+                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                Mail::send('emails.allEmployees',[], function($m) use ($email){
+                    $m->from('sociosyd@syd.com.mx',"Socio SYD");
+                    $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
+                });
+            }
+
+            $session->session()->flash('success','the email/mobile number its already in db');
+            return response()->json(['success'=>'true']);
+            
+        }else{
+           return response()->json(['success'=>'false', 'update'=>$update_associates]);
+        }
+        
+    }
+
+//load data from associates AQUI
+    public function employeesbranch ($email) {
+        $dataSession = DB::table('customers_sessions')->where('email', $email)->first();
+        $data = DB:: table ('customer_platforms')-> where('email', $email)->first();
+        $branch_number=$dataSession->branch_number;
+        $client_number= $dataSession->client_number;
+        $client_type=$dataSession->client_type;
+        $id=$dataSession->client_number;
+       //$branch_number = $data_session->branch_number;
+       // $data = CustomerPlatform::where('email', Auth::user()->email)->first();
+       // $dataSession = CustomersSession::where('email', Auth::user()->email)->first();
+        $associates = DB::table('associates')
+                            ->where([
+                                ['client_number','=',$data->client_number],
+                                ['branch_number','=',$dataSession->branch_number],
+                                ['active_association', '=', 1]
+                                ])
+                            ->get();
+        //Calculated the limit of employee
+        $data = CustomerPlatform::where('email', $email)->first();
+      //  $dataSession = CustomersSession::where('email', $email)->first();    
+        $now = Carbon::now();
+        $id=$data->client_number;
+        $branch_number=$dataSession->branch_number;          
+        $data_customer = $this->getTransCadena($email);
+        $limit = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $limit -= $amount_customer : $limit += $amount_customer ;
+            //}
+        }
+
+        $validated = false; //var for button validated
+
+        //get number of employees registrados
+        $numberEmployees =  $number = DB::table('associates')
+        ->where('client_number','=', $client_number)
+        ->where('branch_number','=', $branch_number)
+        ->where('active_association','=',1)
+        ->count();
+
+        $validated = false;
+        $limiteAsociados = false;
+        //calculated the limit of employees
+        if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
+            $validated = true;
+        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
+            $validated = true;
+        }else if($limit > 7000 && $numberEmployees < 8){ //oro
+            $validated = true;
+        }
+
+        if( $limit > 2500 && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+            $limiteAsociados = true;
+        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
+            $limiteAsociados = true;
+        }else if($limit > 7000 && $numberEmployees == 8){ //oro
+            $limiteAsociados = true;
+        }
+
+        $data->validated = $validated;
+        $data->limiteAsociados = $limiteAsociados;
+        $data->number = $numberEmployees;
+       
+
+      //  return $data;
+       // $response = $this->employeeLimit(
+       //             Auth::user()->email,
+       //             $data->id,
+       //             Auth::user()->client_type);
+       $total = $this->totalAmountById($client_number,$email);
+       // $noti = $this->getNotifications();
+   
+
+        $data->branch_number = $dataSession->branch_number;
+        $query = DB::table('client_numbers')
+                                ->where('branch','=',$dataSession->branch_number)
+                                ->get();
+        $query = json_decode($query);
+        $query = (array)$query;
+        if(empty($query) == false){
+            $data->branch_name = $query[0]->branch_name;//get branch name to the view
+        }
+        $owner = $data->name.' '.$data->last_name.' '.$data->second_last_name;
+
+        return view('pages.registerBeneficiariebranch', compact('data','associates','total','owner','client_type'));
+    }
+    
 
     //Deactivate employees
     public function deleteEmployee($id,$email){
