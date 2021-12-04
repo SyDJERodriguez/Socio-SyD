@@ -104,6 +104,8 @@
                         <div class="col-lg-6 py-2" style="display: flex">
                             <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
+                            <label class="labelgre py-2" style="top: 38px; font-size:11px;">* Debe contener mayúsculas, minúsculas, números y caracteres especiales</label>
+                        <br><br>
                         </div>
                         <div class="col-lg-6 py-2" style="display: flex">
                             <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>

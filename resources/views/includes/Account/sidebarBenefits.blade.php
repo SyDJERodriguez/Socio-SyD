@@ -143,7 +143,7 @@
     @elseif($level_before === 'bronce' || $level_before === 1)
     Seguro de accidentes
     @else
-    Ninguna
+    Ninguno
     @endif
     @endif
 </h6>
