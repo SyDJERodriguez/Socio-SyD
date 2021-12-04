@@ -18,7 +18,6 @@
         </p>
         <hr>
      </div>
-    <br>
     <button class="btn btn-lg text-white btnSideBenefits"
             type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
             aria-controls="collapseExample">
@@ -126,7 +125,30 @@
         </div>
         @endif
     @endif
-<br><br>
+    <button class="btn btn-lg text-white btnSideBenefits"
+    type="button" ><span style="padding-top: 10px" class="textSeguro">
+    <b style="font-size: 13px">BENEFICIOS DEL MES ANTERIOR</b>
+    </span>
+    </button>
+    <div>
+     <br>
+     <h6>-
+    @if ( Auth::user()->created_at >= new DateTime("15-08-2021") && Auth::user()->created_at <= new DateTime("30-08-2021") )
+    Ninguna
+    @else
+    @if ($level_before === 'oro' || $level_before === 3)
+    Seguro de accidentes y asistencias oro
+    @elseif($level_before === 'plata' || $level_before === 2)
+    Seguro de accidentes y asistencias plata
+    @elseif($level_before === 'bronce' || $level_before === 1)
+    Seguro de accidentes
+    @else
+    Ninguna
+    @endif
+    @endif
+</h6>
+    </div>
+<br>
     <!--<button class="btn btn-lg text-white px-5" style="background-color: #143153;width: 100%;" type="button"
             data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false"
             aria-controls="collapseExample">
