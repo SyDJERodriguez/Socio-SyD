@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 py-3" style="display: flex">
+                    <div class="col-lg-6  py-3" style="display: flex">
                         <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
                         <input class="form-control btnBorder" type="date" id="birthday" name="birthday" value="<?php echo date('Y-m-d');?>" required>
                         <p style="color: red; margin: 0;">*</p>
@@ -108,15 +108,19 @@
                 </div>
 
                 <div class="row ">
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 order-0 order-lg-0 py-2" style="display: flex">
                         <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfc" name="rfc">
                         <p style="color: red; margin: 0;visibility:hidden">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+
+                    <div class="col-lg-6 order-1 order-lg-1 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                         <p style="color: red; margin: 0;">*</p>
+                        <label class="labelgre py-2" style="top: 35px; font-size:10.2px;">* Debe contener mayúsculas, minúsculas, números y caracteres especiales</label>
+                        <br><br>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+
+                    <div class="col-lg-6 order-3 order-lg-2 py-2" style="display: flex">
                         <select autocomplete="new-password" class="form-control btnBorder" name="channel" id="channel" onchange="mostrar()" required>
                             <option value="">CANAL DE COMPRA</option>
                             <option value="1" >SUCURSAL</option>
@@ -125,11 +129,13 @@
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+
+                    <div class="col-lg-6 order-2 order-lg-3 py-2" style="display: flex">
                         <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: none" id="muestra">
+                                       
+                    <div class="col-lg-6 order-4 order-lg-4 py-2" style="display: none" id="muestra">
                         <select class="form-control btnBorder"  id="branch_id" name="branch_id">
                             <option value="">SUCURSAL DE COMPRA</option>
                             @if(isset($branches))
@@ -142,7 +148,7 @@
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-
+                    
                     <input type="hidden" id="client_type" name="client_type" value="1">
                 </div>
 

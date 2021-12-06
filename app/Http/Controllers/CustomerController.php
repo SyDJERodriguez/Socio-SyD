@@ -1450,8 +1450,8 @@ class CustomerController extends Controller
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
-        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
-        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
+        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
+        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
         $client_type = $data[0]->client_type;
         $mobile = $data[0]->mobile;
@@ -1625,7 +1625,7 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
+        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
@@ -1686,7 +1686,7 @@ class CustomerController extends Controller
         }
 
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
-        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinión, puedes reactivar tu cuenta.';
+        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinion, puedes reactivar tu cuenta.';
 
         TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
         \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
@@ -2158,6 +2158,14 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', $dataSession['client_number'])
+        ->where('branch_number', $dataSession['branch_number'])
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -2172,8 +2180,18 @@ class CustomerController extends Controller
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         } */
-
+        $totalAmount_before = 0.0;
         $totalAmount = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($data_customer as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -2183,6 +2201,31 @@ class CustomerController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -2211,7 +2254,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number', 'owner'));
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number', 'owner','level_before'));
     }
 
     //Go to signature section in benefits
@@ -2887,7 +2930,7 @@ class CustomerController extends Controller
 
     public function sms_verification($mobile){
         $code = rand(111111,999999);
-        $messsage = 'Este es el código de verificación que debes ingresar para completar tu registro en Socio SYD: '.$code;
+        $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
         $response = TwilioService::send_sms($messsage,'+52'.$mobile);
 
