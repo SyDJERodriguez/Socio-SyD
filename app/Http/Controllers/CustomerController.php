@@ -1450,8 +1450,8 @@ class CustomerController extends Controller
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
-        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
-        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
+        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
+        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
         $client_type = $data[0]->client_type;
         $mobile = $data[0]->mobile;
@@ -1625,7 +1625,7 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
+        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
@@ -1686,7 +1686,7 @@ class CustomerController extends Controller
         }
 
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
-        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinión, puedes reactivar tu cuenta.';
+        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinion, puedes reactivar tu cuenta.';
 
         TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
         \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
@@ -2930,7 +2930,7 @@ class CustomerController extends Controller
 
     public function sms_verification($mobile){
         $code = rand(111111,999999);
-        $messsage = 'Este es el código de verificación que debes ingresar para completar tu registro en Socio SYD: '.$code;
+        $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
         $response = TwilioService::send_sms($messsage,'+52'.$mobile);
 
