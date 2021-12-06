@@ -100,18 +100,20 @@
                         </div>
                     </div>
                     <div class="row">
+
+                        <div class="col-lg-6 order-0 order-0 py-2" style="display: flex">
+                            <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcGen" name="rfc">
+                            <p style="color: red; margin: 0;visibility: hidden">*</p>
+                        </div>
                         
-                        <div class="col-lg-6 py-2" style="display: flex">
+                        <div class="col-lg-6 order-1 order-lg-1 py-2" style="display: flex">
                             <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
-                            <label class="labelgre py-2" style="top: 38px; font-size:11px;">* Debe contener mayúsculas, minúsculas, números y caracteres especiales</label>
-                        <br><br>
+                            <label class="labelgre py-2" style="top: 35px; font-size:10.2px;">* Debe contener mayúsculas, minúsculas, números y caracteres especiales</label>
+                            <br><br>
                         </div>
-                        <div class="col-lg-6 py-2" style="display: flex">
-                            <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
-                            <p style="color: red; margin: 0;">*</p>
-                        </div>
-                        <div class="col-lg-6 py-2" style="display: flex">
+
+                        <div class="col-lg-6 order-3 order-lg-2 py-2" style="display: flex">
                             <select autocomplete="new-password" class="form-control btnBorder" name="channel" id="channelGen" onchange="mostrarGen()" required>
                                 <option value="">CANAL DE COMPRA</option>
                                 <option value="1" >SUCURSAL</option>
@@ -120,8 +122,14 @@
                             </select>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
+
+                        <div class="col-lg-6 order-2 order-lg-3 py-2" style="display: flex">
+                            <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
+                            <p style="color: red; margin: 0;">*</p>
+                        </div>
                         
-                        <div class="col-lg-6 py-2" style="display: none" id="muestraGen">
+                        
+                        <div class="col-lg-6 order-4 order-lg-4 py-2" style="display: none" id="muestraGen">
                             <select class="form-control btnBorder"  id="branch_idGen" name="branch_id">
                                 <option value="">SUCURSAL DE COMPRA</option>
                                 @if(isset($branches))
@@ -135,13 +143,10 @@
                             <p style="color: red; margin: 0;">*</p>
                         </div>
         
-                        <div class="col-lg-6 py-2" style="display: flex">
-                            <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcGen" name="rfc">
-                            <p style="color: red; margin: 0;visibility: hidden">*</p>
-                        </div>
+                       
                         
                         {{-- Modal ¿Olvidaste tu numero cliente --}}
-                        <div class="col-lg-12 py-2" style="display: flex; flex-direction: column;">
+                        <div class="col-lg-12 order-5 order-lg-5 py-2" style="display: flex; flex-direction: column;">
                             <div style="display: flex;">
                                 <p style="color: red; margin: 0;">*&nbsp;</p>
                                 <p>Obligatorio llenar</p>
