@@ -72,7 +72,7 @@ class CustomerController extends Controller
             $client->amount = $totalAmount;
 
             $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
-            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES como #SocioSyD. Descarga, llena y firma tu certificado aquí '.$url;
+            $messsage = 'Felicidades, Ya tienes SEGURO DE ACCIDENTES como SocioSyD. Descarga, llena y firma tu certificado aqui '.$url;
 
             $client->url = $url;
            /* if($client->client_type === '2'){

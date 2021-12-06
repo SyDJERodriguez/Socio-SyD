@@ -93,8 +93,8 @@ class EmailsMonthly20 extends Command
             $client->amount = $totalAmount;
             $level = '';
             $message_one   = 'Aun estas a tiempo de alcanzar el monto minimo de compra en este mes, para obtener tu seguro de accidentes personales de Socio SYD.';
-            $message_two   = 'Este mes no has alcanzado el monto mínimo de compra para obtener los beneficios de asistencia Nivel Plata de Socio SYD.';
-            $message_three = 'Este mes no has alcanzado el monto mínimo de compra para obtener los beneficios de asistencia Nivel Oro de Socio SYD.';
+            $message_two   = 'Este mes no has alcanzado el monto minimo de compra para obtener los beneficios de asistencia Nivel Plata de Socio SYD.';
+            $message_three = 'Este mes no has alcanzado el monto minimo de compra para obtener los beneficios de asistencia Nivel Oro de Socio SYD.';
             if($client->type_user === '1'){
                 if ($totalAmount<2500) {
                     TwilioService::send_sms($message_one,'+52'.$client->phone);
