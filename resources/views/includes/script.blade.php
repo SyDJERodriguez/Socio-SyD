@@ -58,6 +58,18 @@
     }
     }
 
+    function mostrarCNT() {
+        let canal = document.getElementById('channelCNT');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('muestraCNT').style.display = 'flex';
+        document.getElementById('branch_idCNT').required = true;
+    }else {
+        document.getElementById('muestraCNT').style.display = 'none';
+        document.getElementById('branch_idCNT').required = false;
+    }
+    }
+
     //Do not send without recaptcha
     window.onload = function() {
     var $recaptcha = document.querySelector('#g-recaptcha-response');
@@ -629,54 +641,70 @@
 
         //CNT's form
         $("#cntForm").bind("submit",function(){
-            // We capture send button
-            let btnSend = $("#btnSend");
-            $.ajax({
-                type: $(this).attr("method"),
-                url: $(this).attr("action"),
-                data:$(this).serialize(),
+            let codeVerification = document.querySelector('#codeCNT');
+            let codeConfirm      = document.querySelector('#codeCNTConfirm');
+            let error_code       = document.querySelector('#error_code_CNT');
 
-                success: function(data){
-                    if(data['success']==='true'){
-                        $('#modal5').modal('hide');
-                        $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
-                        $('#clientNumber').text('No. de Cliente '+data['client_number']);
-                        $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
-                        $('#modalSuccess').modal('show');
-                    }else if (data['success']==='false' && data['verify_email']==='false') {
-                        document.getElementById("form_alert_cnt_email").innerHTML='El email ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_cnt_email").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_cnt_email").hidden= true}, 3000);
-                    }else if (data['success']==='false' && data['verify_password']==='false') {
-                        document.getElementById("form_alert_cnt_pass").innerHTML='Las contraseñas no coinciden, por favor verifica <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_cnt_pass").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_cnt_pass").hidden= true}, 3000);
-                    }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
-                        document.getElementById("form_alert_cnt_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_cnt_mobile").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_cnt_mobile").hidden= true}, 3000);
-                    }else if (data['success']==='false' && data['verify_email_number']==='false') {
-                        document.getElementById("form_alert_cnt").innerHTML='El email ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_cnt").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
-                    }else if (data['success']==='false' && data['cnt_number']==='false') {
-                        document.getElementById("form_alert_cnt_ncnt").innerHTML='Número CNT incorrecto <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
-                        document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
-                        setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
-                    }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        document.getElementById("form_alert_dns_cnt").innerHTML='Por favor proporciona un email válido';
-                        document.getElementById("form_alert_dns_cnt").removeAttribute("hidden");
-                        setTimeout(function(){document.getElementById("form_alert_dns_cnt").hidden = true},3500)
+            if(codeConfirm.value === codeVerification.value){
+                // We capture send button
+                let btnSend = $("#btnSend");
+                $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr("action"),
+                    data:$(this).serialize(),
 
-                    }else if (data['success']==='false'){
-                        $('#modal5').modal('hide');
-                        $('#modalError').modal('show');
+                    success: function(data){
+                        console.log(data);
+                        if(data['success']==='true'){
+                            $('#modal5').modal('hide');
+                            $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
+                            $('#clientNumber').text('No. de Cliente '+data['client_number']);
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
+                            $('#modalSuccess').modal('show');
+                        }else if (data['success']==='false' && data['count_number']==='false') {
+                            let limitCNT = document.querySelector('#alertLimitCNT');
+                            limitCNT.hidden = false;
+                            setTimeout(function (){ limitCNT.hidden= true }, 3000);
+                        }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                            let cnCNT = document.querySelector('#alertErrorCNCNT');
+                            cnCNT.hidden = false;
+                            setTimeout(function (){ cnCNT.hidden= true }, 3000);
+                        }else if (data['success']==='false' && data['verify_email']==='false') {
+                            document.getElementById("form_alert_cnt_email").innerHTML='El email ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt_email").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_cnt_email").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_password']==='false') {
+                            document.getElementById("form_alert_cnt_pass").innerHTML='Las contraseñas no coinciden, por favor verifica <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt_pass").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_cnt_pass").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                            document.getElementById("form_alert_cnt_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt_mobile").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_cnt_mobile").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                            document.getElementById("form_alert_cnt").innerHTML='El email ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_cnt").hidden= true}, 3000);
+                        }else if (data['success']==='false' && data['cnt_number']==='false') {
+                            document.getElementById("form_alert_cnt_ncnt").innerHTML='Número CNT incorrecto <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
+                            document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
+                            setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
+                        }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                            document.getElementById("form_alert_dns_cnt").innerHTML='Por favor proporciona un email válido';
+                            document.getElementById("form_alert_dns_cnt").removeAttribute("hidden");
+                            setTimeout(function(){document.getElementById("form_alert_dns_cnt").hidden = true},3500)
+
+                        }else if (data['success']==='false'){
+                            $('#modal5').modal('hide');
+                            $('#modalError').modal('show');
+                        }
+                    },
+                    error: function(data){
+                        $('#modalErrorServer').modal('show');
                     }
-                },
-                error: function(data){
-                    $('#modalErrorServer').modal('show');
-                }
-            });
+                });
+            }
+
             // Nos permite cancelar el envio del formulario
             return false;
         });
@@ -1878,5 +1906,45 @@
         requiredCodeGen.hidden = false;
         setTimeout(() =>{alertCodeGen.hidden = true},3500);
         inputCodeGen.type = 'text';
+    });
+
+    /* this for CNT */
+    let mobileCNT  = document.querySelector('#mobileCNT');
+    let inputCodeCNT = document.querySelector('#codeCNT');
+    let alertCodeCNT    = document.querySelector('#alertSuccessCodeCNT');
+    let requiredCodeCNT = document.querySelector('#requiredSignalCNT');
+    let codeConfirmCNT  = document.querySelector('#codeCNTConfirm');
+
+    mobileCNT.addEventListener('input', function (){
+        length = mobileCNT.value.length;
+        if ( length < 10 ) return null;
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                codeConfirmCNT.value = this.response;
+            }
+        };
+
+        let url = hostName+mobileCNT.value;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        alertCodeCNT.hidden    = false;
+        requiredCodeCNT.hidden = false;
+        setTimeout(() =>{alertCodeCNT.hidden = true},3500);
+        inputCodeCNT.type = 'text';
+    });
+
+    let cntNumber = document.querySelector('#cnt_number');
+    let errorCNT  = document.querySelector('#alertErrorCodeCNT');
+    cntNumber.addEventListener('input', function (){
+        if ( cntNumber.value.length < 7 ) return null;
+
+        if(cntNumber.value !== 'CNT2021') {
+            errorCNT.hidden = false;
+            setTimeout( function () { errorCNT.hidden = true }, 3500)
+        }
+
     });
 </script>

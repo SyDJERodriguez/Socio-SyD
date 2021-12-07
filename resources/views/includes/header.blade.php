@@ -212,7 +212,31 @@
     </div>
 
 </div>
+    <!-- Modal CLIENT TYPE-->
+    <div class="modal fade" id="modalCNTimg" tabindex="-1" role="dialog" aria-labelledby="modalCNTimg"
+        aria-hidden="true" style="background-color:rgba(255, 255, 255, 0.0) !important; margin-top: 100px">
+        <div class="modal-dialog modal-sm" >
+        <div class="modal-content container bg-transparent" style="border: none !important;" >
+            <div class="border-0 rounded-0" style="background-color: #143153; width: 130%" id="header_cnt">
+                <div class="d-flex flex-row-reverse">
+                    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+                </div>
+            </div>
 
+                <a href="#" data-toggle="modal" data-target="#modalCNT" class="cnt_img">
+                    <img src="{{asset('img/CNT.JPG')}}" style="width: 130%" alt="" >
+                </a>
+
+        </div>
+    </div>
+    </div>
+    @if(isset($popup))
+<script>
+    $( document ).ready(function() {
+    $('#modalCNTimg').modal('toggle')
+    });
+</script>
+@endif
 <!--menu-->
 <nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection" style="padding-top: 14px;
 padding-bottom: 14px;">
