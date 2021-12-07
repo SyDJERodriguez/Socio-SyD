@@ -90,6 +90,52 @@ class BeneficiaryController extends Controller
             ->first();
         $signature = $signature->signature_id;
 
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', Auth::user()->client_number)
+        ->where('branch_number', Auth::user()->branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
+        $totalAmount_before = 0.0;
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
+        }
+
         //$now = Carbon::now();
         //$current_month = $now->month;
 
@@ -155,7 +201,7 @@ class BeneficiaryController extends Controller
 
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'signature', 'noti', 'total', 'number','owner','level_before'));
                 //dd($total_percent);
             }
 
@@ -168,7 +214,7 @@ class BeneficiaryController extends Controller
 
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'signature', 'noti', 'total', 'number','owner','level_before'));
                 }
             }
 
@@ -182,7 +228,7 @@ class BeneficiaryController extends Controller
 
                     return view('pages.Account.beneficiary', compact(
                         'error', 'data', 'request', 'level','is_cnt',
-                        'signature', 'noti', 'total', 'number','owner'));
+                        'signature', 'noti', 'total', 'number','owner','level_before'));
                     }
 
                     if (isset($request['name'][$i])){
@@ -215,14 +261,14 @@ class BeneficiaryController extends Controller
                     //}
                     return view('pages.Account.beneficiary', compact(
                         'success', 'data', 'beneficiary', 'level','is_cnt',
-                        'signature', 'noti', 'total', 'number','owner'));
+                        'signature', 'noti', 'total', 'number','owner','level_before'));
                 //}
 
             }catch(\Exception $e){
                 $error = $e;
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'noti','level',
-                    'total','owner','total','number','is_cnt'));
+                    'total','owner','total','number','is_cnt','level_before'));
             }
 
         }elseif ($count == 1){
@@ -232,7 +278,7 @@ class BeneficiaryController extends Controller
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'level',
                     'signature', 'noti', 'total', 'number',
-                    'owner','is_cnt'));
+                    'owner','is_cnt','level_before'));
             }
 
              //valid name,last,secondLast
@@ -242,7 +288,7 @@ class BeneficiaryController extends Controller
 
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'signature', 'noti', 'total', 'number','owner','level_before'));
             }
 
             $valid = false;
@@ -252,7 +298,7 @@ class BeneficiaryController extends Controller
 
                 return view('pages.Account.beneficiary', compact(
                     'error', 'data', 'request', 'level','is_cnt',
-                    'signature', 'noti', 'total', 'number','owner'));
+                    'signature', 'noti', 'total', 'number','owner','level_before'));
             }
 
             $insertBeneficiary = DB::table('beneficiaries')->insert([
@@ -279,7 +325,7 @@ class BeneficiaryController extends Controller
                    //if(Auth::user()->client_type === "2"){
                         $this->send_email_alta($data->email);
                     //}
-                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt'));
+                return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt','level_before'));
            // }
         }
     }
