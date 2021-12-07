@@ -32,18 +32,26 @@
               </div>
               <div class="alert alert-danger" id="error_code_CNT" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-danger" id="alertErrorCodeCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Número CNT incorrecto, favor de verificar</p>
+              </div>
+              <div class="alert alert-danger" id="alertErrorCNCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">El número de cliente ingresado es incorrecto, favor de verificar</p>
+              </div>
             <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO CNT"
-                               id="cnt_number" name="cnt_number" maxlength="4" required>
+                        <input type="text" class="form-control" placeholder="CÓDIGO CNT"
+                               id="cnt_number" name="cnt_number" maxlength="7" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE"
-                        id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8">
-                        <p style="color: red; margin: 0;">*</p>
+                        id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8" style="width: 98%">
+                        <p style="color: red; margin: 0;"> &nbsp; </p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameCNT"
@@ -181,7 +189,6 @@
     </div>
     <script>
         document.getElementById('rfcCNT').addEventListener('focus',function() {
-            console.log("hola");
             var rfc = document.getElementById('rfcCNT');
             var fecha = $('#birthdayCNT').val().split('-');
 

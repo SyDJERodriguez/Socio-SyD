@@ -50,6 +50,7 @@ class CustomerController extends Controller
     public function insertCNTNumber() {
         $client_number = 90000000;
         for ($i = 0; $i<20; $i++) {
+            set_time_limit(30);
             $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
             DB::table('cnt_numbers')->insert([
@@ -82,6 +83,10 @@ class CustomerController extends Controller
         $client_number= '';
         if (!empty($request['client_number'])){
             $client_number = '00'.$request['client_number'];
+            $verify_client_number = DB::table('client_numbers')->where('client_number', '=', $client_number)->first();
+            if ($verify_client_number == null) {
+                return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+            }
         }else{
             $number = DB::table('cnt_numbers')
                 ->where('registered', '=',1)
@@ -114,9 +119,9 @@ class CustomerController extends Controller
         }
 
       //  if (empty($request['cnt_number'])){
-            if($request['cnt_number'] !== '1000'){
-                return response()->json(['success'=>'false', 'cnt_number'=>'false']);
-            }
+           //if($request['cnt_number'] !== '1000'){
+             //   return response()->json(['success'=>'false', 'cnt_number'=>'false']);
+           // }
         //}
 
         //Insert data in customers table
@@ -132,7 +137,8 @@ class CustomerController extends Controller
             'gender'           => isset($request['gender']) ? $request['gender'] : '',
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
             'collector_id'     => 6,
-            'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
+            'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : '',
+            'channel'          => isset($request['channel']) ? $request['channel'] : ''
         ]);
 
         //create data in notifications table
@@ -143,6 +149,7 @@ class CustomerController extends Controller
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
+            'branch_number'     => $client_number,
             'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
@@ -3012,7 +3019,7 @@ class CustomerController extends Controller
             } catch (\Throwable $th) {
                 return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
             }
-        }       
+        }
     }
 
     //invitation email associate

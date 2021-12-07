@@ -658,8 +658,12 @@
                             $('#modal5').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente '+data['client_number']);
-                            $('#clientMessage').text('En breve recibirás un email de activación');
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
+                        }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                            let cnCNT = document.querySelector('#alertErrorCNCNT');
+                            cnCNT.hidden = false;
+                            setTimeout(function (){ cnCNT.hidden= true }, 3000);
                         }else if (data['success']==='false' && data['verify_email']==='false') {
                             document.getElementById("form_alert_cnt_email").innerHTML='El email ya se encuentra asociado a otro cliente <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                             document.getElementById("form_alert_cnt_email").removeAttribute("hidden");
@@ -1925,5 +1929,17 @@
         requiredCodeCNT.hidden = false;
         setTimeout(() =>{alertCodeCNT.hidden = true},3500);
         inputCodeCNT.type = 'text';
+    });
+
+    let cntNumber = document.querySelector('#cnt_number');
+    let errorCNT  = document.querySelector('#alertErrorCodeCNT');
+    cntNumber.addEventListener('input', function (){
+        if ( cntNumber.value.length < 7 ) return null;
+
+        if(cntNumber.value !== 'CNT2021') {
+            errorCNT.hidden = false;
+            setTimeout( function () { errorCNT.hidden = true }, 3500)
+        }
+
     });
 </script>
