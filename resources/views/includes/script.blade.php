@@ -313,7 +313,7 @@
                             $('#modalCadenas').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! ' + data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente ' + data['client_number']);
-                            $('#clientMessage').text('En breve recibirás un email de activación.');
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         } else if (data['success'] === 'false' && data['verify_email'] === 'false') {
                             document.getElementById("form_alert_email_br").innerHTML = 'El email ya se encuentra asociado a otro cliente';
@@ -422,7 +422,7 @@
                             $('#modal3').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! ' + data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente ' + data['client_number']);
-                            $('#clientMessage').text('En breve recibirás un email de activación.');
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         } else if (data['success'] === 'false' && data['verify_client_number'] === 'false') {
                             document.getElementById("form_alert").innerHTML = 'Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
@@ -539,7 +539,7 @@
                             $('#modal5').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente '+data['client_number']);
-                            $('#clientMessage').text('En breve recibirás un email de activación.');
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         }else if (data['success']==='false' && data['verify_email']==='false') {
                             document.getElementById("form_alert_mec_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
@@ -720,7 +720,7 @@
                             $('#modalGeneral').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente '+data['client_number']);
-                            $('#clientMessage').text('En breve recibirás un email de activación.');
+                            $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         }else if (data['success']==='false' && data['verify_email']==='false') {
                             document.getElementById("form_alert_gen_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
