@@ -9,7 +9,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-10 py-2" style="padding-left: 33px">
-                            <label><b>Selecciona un socio por su nombre o por su correo electrónico</b></label>
+                            <label><b>Selecciona un socio por su correo electrónico</b></label>
                         </div>
                         <div class="col-md-2 py-2" style="justify-content: flex-end;">
                             <a href="javascript:history.back()"
