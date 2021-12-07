@@ -224,7 +224,7 @@
             </div>
 
                 <a href="#" data-toggle="modal" data-target="#modalCNT" class="cnt_img">
-                    <img src="{{asset('img/CNT.JPG')}}" style="width: 130%" alt="" >
+                    <img src="{{asset('img/CNT.jpg')}}" style="width: 130%" alt="" >
                 </a>
 
         </div>
