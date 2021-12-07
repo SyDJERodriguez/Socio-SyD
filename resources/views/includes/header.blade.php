@@ -231,12 +231,14 @@
     </div>
     </div>
     @if(isset($popup))
-<script>
-    $( document ).ready(function() {
-    $('#modalCNTimg').modal('toggle')
-    });
-</script>
-@endif
+        @if(($popup))
+            <script>
+                $( document ).ready(function() {
+                $('#modalCNTimg').modal('toggle')
+                });
+            </script>
+        @endif
+    @endif
 <!--menu-->
 <nav class="navbar navbar-expand-lg navbar blue-dark top-bar" id="oneSection" style="padding-top: 14px;
 padding-bottom: 14px;">
