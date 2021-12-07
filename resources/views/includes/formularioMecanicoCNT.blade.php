@@ -53,7 +53,7 @@
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE"
+                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE (EN CASO DE TENER)"
                         id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8" style="width: 98%">
                         <p style="color: red; margin: 0;"> &nbsp; </p>
                     </div>
