@@ -99,7 +99,7 @@ class AdminController extends Controller
         $branch_number = '00'.$request['client_number'];
 
         $customerData = DB::table('customers_sessions')
-            ->where('branch_number', '=', $client_number)
+            ->where('client_number', '=', $client_number)
             ->get();
 
         if ( $customerData->isEmpty() ){
@@ -109,10 +109,10 @@ class AdminController extends Controller
         }
 
         if( count($customerData) > 1 ){
-            $dependents = DB::table('customer_platforms')
+            $clients = DB::table('customers_sessions')
                             ->where('client_number','=', $client_number)
                             ->get();
-            return view('Admin.dependents', compact('dependents'));
+            return view('Admin.indexbranch', compact('clients'));
         }
 
         $email = $customerData[0]->email;
