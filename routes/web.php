@@ -18,7 +18,7 @@ Route::get('/', function () {
     $branches = DB::table('branches')
                 ->orderBy('name','ASC')
                 ->get();
-    $popup= true;
+    $popup= false;
 
     return view('pages.home', compact('branches','popup'));
 })->name('home');
