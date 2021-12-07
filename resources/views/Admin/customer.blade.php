@@ -157,6 +157,28 @@
                 </div>
             @endif
 
+            <div class="col-md-12">
+                <p>Beneficios del mes anterior:
+                    @if($level_before === 0)
+                        <b> Ninguno </b>
+                    @elseif($level_before === 1 && $account->client_type != "2")
+                        <b> Seguro de accidentes para 3 colaboradores </b>
+                    @elseif($level_before === 1 && $account->client_type === "2")
+                        <b> Seguro de accidentes </b>
+
+                    @elseif($level_before === 2 && $account->client_type != "2")
+                        <b> Seguro de accidentes y asistencias plata para 3 colaboradores </b>
+                    @elseif($level_before === 2 && $account->client_type === "2")
+                        <b> Seguro de accidentes y asistencias plata </b>
+
+                    @elseif($level_before === 3 && $account->client_type != "2")
+                        <b> Seguro de accidentes y asistencias oro para 7 colaboradores </b>
+                    @elseif($level_before === 3 && $account->client_type === "2")
+                        <b> Seguro de accidentes y asistencias oro </b>
+                    @endif
+                </p>
+            </div>
+
             @if(Auth::user()->type_user == '1')
                 <div class="row justify-content-center">
                     <div class="col-md-12">
