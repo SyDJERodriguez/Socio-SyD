@@ -661,6 +661,10 @@
                             $('#clientNumber').text('No. de Cliente '+data['client_number']);
                             $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
+                        }else if (data['success']==='false' && data['cnt_number']==='false') {
+                            let errorCNT  = document.querySelector('#alertErrorCodeCNT');
+                            errorCNT.hidden = false;
+                            setTimeout( function () { errorCNT.hidden = true }, 3500)
                         }else if (data['success']==='false' && data['count_number']==='false') {
                             let limitCNT = document.querySelector('#alertLimitCNT');
                             limitCNT.hidden = false;
