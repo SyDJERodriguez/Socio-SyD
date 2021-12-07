@@ -5,7 +5,7 @@
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <div class="modal-header d-flex flex-row-reverse">
               <span class="times" data-dismiss="modal" aria-label="Close">X</span>
-          </div>
+            </div>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -132,13 +132,13 @@
                         <select class="form-control btnBorder" id="branch_idMec" name="branch_id">
                             <option value="">SUCURSAL DE COMPRA</option>
                             @if(isset($branches))
-                                @foreach ($branches as $branch) 
+                                @foreach ($branches as $branch)
                                     @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47 )
-                                        <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
-                                    @endif 
+                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                    @endif
                                 @endforeach
                             @endif
-                            
+
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
