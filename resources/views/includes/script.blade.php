@@ -654,12 +654,17 @@
                     data:$(this).serialize(),
 
                     success: function(data){
+                        console.log(data);
                         if(data['success']==='true'){
                             $('#modal5').modal('hide');
                             $('#clientName').text('¡BIENVENIDO! '+data['name'].toUpperCase());
                             $('#clientNumber').text('No. de Cliente '+data['client_number']);
                             $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
+                        }else if (data['success']==='false' && data['count_number']==='false') {
+                            let limitCNT = document.querySelector('#alertLimitCNT');
+                            limitCNT.hidden = false;
+                            setTimeout(function (){ limitCNT.hidden= true }, 3000);
                         }else if (data['success']==='false' && data['verify_client_number']==='false') {
                             let cnCNT = document.querySelector('#alertErrorCNCNT');
                             cnCNT.hidden = false;

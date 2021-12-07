@@ -40,6 +40,10 @@
                   <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
                   <p style="margin-bottom: 0;">El número de cliente ingresado es incorrecto, favor de verificar</p>
               </div>
+              <div class="alert alert-danger" id="alertLimitCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha llegado al límite de registros permitidos</p>
+              </div>
             <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
