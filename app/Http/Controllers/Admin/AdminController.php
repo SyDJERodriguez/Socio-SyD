@@ -112,7 +112,8 @@ class AdminController extends Controller
             $clients = DB::table('customers_sessions')
                             ->where('client_number','=', $client_number)
                             ->get();
-            return view('Admin.indexbranch', compact('clients'));
+                            //aquí es indexbranch para el select
+            return view('Admin.dependents', compact('clients'));
         }
 
         $email = $customerData[0]->email;
@@ -136,6 +137,14 @@ class AdminController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month =$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', $client_number)
+        ->where('branch_number', $branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $transactions = DB::table('transactions')
             ->where('client_number', $client_number)
@@ -145,6 +154,17 @@ class AdminController extends Controller
             ->get();
 
         $totalAmount = 0.0;
+        $totalAmount_before = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($transactions as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -154,6 +174,31 @@ class AdminController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -206,7 +251,7 @@ class AdminController extends Controller
         //TODO: If tiene has($customerData) mas de  un registro, entonces mostrar su nombre y correo
         return view('Admin.customer',
                     compact('client_number', 'account', 'transactions', 'totalAmount',
-                            'customerData', 'level', 'associates'));
+                            'customerData', 'level', 'associates','level_before'));
     }
 
     // Function for search by email
@@ -238,6 +283,14 @@ class AdminController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month =$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', $client_number)
+        ->where('branch_number', $branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $transactions = DB::table('transactions')
             ->where('client_number', $client_number)
@@ -247,6 +300,17 @@ class AdminController extends Controller
             ->get();
 
         $totalAmount = 0.0;
+        $totalAmount_before = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($transactions as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -257,6 +321,32 @@ class AdminController extends Controller
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
         }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
+        }
+
 
         $level = 0;
         if ($account->client_type === "1" || $account->client_type === "3"){
@@ -299,7 +389,7 @@ class AdminController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates'));
+        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
     }
 
     //function search by dependent
