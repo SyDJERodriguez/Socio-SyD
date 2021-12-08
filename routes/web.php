@@ -20,7 +20,7 @@ Route::get('/', function () {
                 ->get();
     $popup= false;
 
-return view('pages.home', compact('branches'/*,'popup'*/));
+return view('pages.home', compact('branches','popup'));
 })->name('home');
 
 Route::get('/privacy', function(){
