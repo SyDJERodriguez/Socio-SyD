@@ -72,7 +72,7 @@ class CustomerController extends Controller
             $client->amount = $totalAmount;
 
             $url = url('/sms_pdf/'.$client->client_number.'/'.$client->branch_number);
-            $messsage = '¡Felicidades! Ya tienes SEGURO DE ACCIDENTES como #SocioSyD. Descarga, llena y firma tu certificado aquí '.$url;
+            $messsage = 'Felicidades, Ya tienes SEGURO DE ACCIDENTES como SocioSyD. Descarga, llena y firma tu certificado aqui '.$url;
 
             $client->url = $url;
            /* if($client->client_type === '2'){
@@ -132,6 +132,7 @@ class CustomerController extends Controller
         $current_year = $now->year;
 
         foreach ($registered_clients as $client){
+            set_time_limit(60);
             $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
             $client_transaction = DB::table('transactions')

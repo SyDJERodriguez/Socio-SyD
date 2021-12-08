@@ -859,6 +859,11 @@ h5.footerTitle3{
 }
 
 @media only screen and (max-width:755px){
+    .cnt_img > img,
+    #header_cnt {
+        width: 100% !important;
+    }
+
     div .jumbotron{
         height: 130px;
     }

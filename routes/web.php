@@ -18,8 +18,9 @@ Route::get('/', function () {
     $branches = DB::table('branches')
                 ->orderBy('name','ASC')
                 ->get();
+    $popup= false;
 
-    return view('pages.home', compact('branches'));
+    return view('pages.home', compact('branches','popup'));
 })->name('home');
 
 Route::get('/privacy', function(){

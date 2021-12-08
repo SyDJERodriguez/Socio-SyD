@@ -26,18 +26,36 @@
               </div>
               <div class="alert alert-danger" id="form_alert_dns_cnt" role="alert" style="border-radius: 6px;" hidden>
               </div>
+              <div class="alert alert-success" id="alertSuccessCodeCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha enviado un código de verificación al telefóno celular indicado</p>
+              </div>
+              <div class="alert alert-danger" id="error_code_CNT" role="alert" style="border-radius: 6px;" hidden>
+              </div>
+              <div class="alert alert-danger" id="alertErrorCodeCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Número CNT incorrecto, favor de verificar</p>
+              </div>
+              <div class="alert alert-danger" id="alertErrorCNCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">El número de cliente ingresado es incorrecto, favor de verificar</p>
+              </div>
+              <div class="alert alert-danger" id="alertLimitCNT" role="alert" style="border-radius: 6px;" hidden>
+                  <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                  <p style="margin-bottom: 0;">Se ha llegado al límite de registros permitidos</p>
+              </div>
             <form autocomplete="off" id="cntForm" method="POST" action="{{route('cnt.register')}}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO CNT"
-                               id="cnt_number" name="cnt_number" maxlength="4" required>
+                        <input type="text" class="form-control" placeholder="CÓDIGO CNT"
+                               id="cnt_number" name="cnt_number" maxlength="7" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
-                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE"
-                        id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8">
-                        <p style="color: red; margin: 0;">*</p>
+                        <input type="text" class="form-control mobileInput" placeholder="NÚMERO DE CLIENTE (EN CASO DE TENER)"
+                        id="client_number_cnt" name="client_number" pattern="[0-9]{8}" maxlength="8" style="width: 98%">
+                        <p style="color: red; margin: 0;"> &nbsp; </p>
                     </div>
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input type="text" class="form-control nameInput" placeholder="NOMBRE" id="nameCNT"
@@ -54,17 +72,25 @@
                         id="secondLastNameCNT" name="second_last_name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{2,}" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" id="mobile" style="display: flex">
+                    <div class="col-lg-6 py-2" id="mobile" style="display: flex; flex-direction: column;">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
                             </div>
                             <input type="text" class="form-control btnBorder mobileInput" placeholder="NO. TELEFÓNICO 10 DIG"
-                            id="mobileCNT" name="mobile" maxlength="10" pattern="[0-9]{10}" required>
+                            id="mobileCNT" name="mobile" maxlength="10" pattern="[0-9]{10}" required style="border-radius: 0 .25rem .25rem 0">
                             <div class="input-group-append" id="form_alert_phone" hidden>
                             </div>
+                            <p style="color: red; margin: 0;">*</p>
                         </div>
-                        <p style="color: red; margin: 0;">*</p>
+
+                        <div class="input-group mb-3" style="margin-top: 1rem">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeCNT" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                   id="codeCNTConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                            <p style="color: red; margin: 0;" hidden id="requiredSignalCNT">*</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -93,18 +119,45 @@
                     <div class="col-lg-6 py-2" style="display: flex">
                         <input autocomplete="new-password" type="password" class="form-control" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                         <p style="color: red; margin: 0;">*</p>
+                        <label class="labelgre py-2" style="top: 38px; font-size:11px;">* Debe contener mayúsculas, minúsculas, números y caracteres especiales</label>
+                        <br><br>
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 order-1 order-lg-0 py-2" style="display: flex">
                         <input type="text" class="form-control" placeholder="R.F.C" id="rfcCNT" name="rfc">
                         <p style="color: red; margin: 0;visibility: hidden">*</p>
                     </div>
-                    <div class="col-lg-6 py-2" style="display: flex">
+                    <div class="col-lg-6 order-0 order-lg-1 py-2" style="display: flex">
                         <input type="password" class="form-control" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
                 </div>
+                <div class="row">
+                <div class="col-lg-6 py-2" style="display: flex">
+                    <select  class="form-control btnBorder" name="channel" id="channelCNT" onchange="mostrarCNT()" required>
+                        <option value="">CANAL DE COMPRA</option>
+                        <option value="1" >SUCURSAL</option>
+                        <option value="2">CAT</option>
+                        <option value="3">TIENDA EN LINEA</option>
+                    </select>
+                    <p style="color: red; margin: 0;">*</p>
+                </div>
+                <div class="col-lg-6 py-2" style="display:none " id="muestraCNT">
+                    <select class="form-control btnBorder" id="branch_idCNT" name="branch_id">
+                        <option value="">SUCURSAL DE COMPRA</option>
+                        @if(isset($branches))
+                            @foreach ($branches as $branch)
+                                @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47 and $branch->id != 1 )
+                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                @endif
+                            @endforeach
+                        @endif
+
+                    </select>
+                    <p style="color: red; margin: 0;">*</p>
+                </div>
+            </div>
                 <input type="hidden" id="client_type" name="client_type" value="2">
 
                  {{-- Modal ¿Olvidaste tu numero cliente --}}
@@ -140,7 +193,6 @@
     </div>
     <script>
         document.getElementById('rfcCNT').addEventListener('focus',function() {
-            console.log("hola");
             var rfc = document.getElementById('rfcCNT');
             var fecha = $('#birthdayCNT').val().split('-');
 
