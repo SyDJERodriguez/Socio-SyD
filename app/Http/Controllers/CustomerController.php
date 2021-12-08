@@ -49,7 +49,7 @@ class CustomerController extends Controller
 
     public function insertCNTNumber() {
         $client_number = 90000000;
-        for ($i = 0; $i<20000; $i++) {
+        for ($i = 0; $i<10000; $i++) {
             set_time_limit(30);
             $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
@@ -64,6 +64,10 @@ class CustomerController extends Controller
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
+
+        if( 'CNT2021' !== $request['cnt_number'] ){
+            return response()->json(['success'=>'false', 'cnt_number'=>'false']);
+        }
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -85,7 +89,7 @@ class CustomerController extends Controller
             ->where('registered', '=',1)
             ->pluck('client_number')->toArray();
         $counter = count($number);
-        $counter_limit = 20000;
+        $counter_limit = 10000;
         $counter_total = $counter - $counter_limit;
 
         if (!empty($request['client_number'])){
@@ -169,6 +173,16 @@ class CustomerController extends Controller
             'mobile'        => $request['mobile'],
             'active'        => 0,
             'password'      => $password
+        ]);
+
+        $save_transaction = DB::table('transactions')->insert([
+            'client_number' => $client_number,
+            'branch_number'     => $client_number,
+            'amount'            => '250',
+            'sale_office'       => '0000',
+            'transaction_date'  => Carbon::now()->format('Y-m-d'),
+            'payment_method'    => '0',
+            'invoce'           => 'CNT2021'
         ]);
 
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
@@ -2079,7 +2093,7 @@ class CustomerController extends Controller
         $current_month = $now->month;
         $current_year = $now->year;
         $previus_month=$now->month - 1;
-        
+
         $data_customer_before = DB::table('transactions')
         ->where('client_number', $dataSession['client_number'])
         ->where('branch_number', $dataSession['branch_number'])
