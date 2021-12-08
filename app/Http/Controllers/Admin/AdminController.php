@@ -109,17 +109,11 @@ class AdminController extends Controller
         }
 
         if( count($customerData) > 1 ){
-            $clients = DB::table('customers_sessions')
-                            ->where('client_number','=', $client_number)
-                            ->get();
-
-            //$branch_number=$clients->branch_number;
-            
             $branches = DB::table('client_numbers')
                             ->where('client_number','=', $branch_number)
                             ->get();
                             //aquí es indexbranch para el select
-            return view('Admin.indexbranch', compact('clients','branches'));
+            return view('Admin.indexbranch', compact('branches'));
         }
 
         $email = $customerData[0]->email;

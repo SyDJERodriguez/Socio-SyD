@@ -16,11 +16,9 @@
                                     <div class="col-md-12">
                                         <select class="form-control" name="email" required>
                                             <option value="">Seleccione la sucursal</option>
-                                            @if(isset($clients))
-                                            @foreach ($branches as $client)
-                                           
-                                                 <option value="{{$client->branch}}">{{$client->branch_name}}</option>                                     
-                                          
+                                            @if(isset($branches))
+                                            @foreach ($branches as $branch)
+                                                 <option value="{{$branch->branch}}">{{$branch->branch_name}}</option>                                     
                                             @endforeach
                                         @endif
                                         </select>
