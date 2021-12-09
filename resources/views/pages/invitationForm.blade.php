@@ -21,7 +21,13 @@
                         <h5>Error: Número de cliente o número de teléfono no existe.</h5>
                     </div>
                  @else
-                 <form id="mechanicForm" method="POST" action="{{route('signUpInvitation')}}">
+                 <div class="alert alert-success" id="alertSuccessCodeinv" role="alert" style="border-radius: 6px;" hidden>
+                    <button type="button" class="close alertClose" aria-hidden="true" >&times;</button>
+                    <p style="margin-bottom: 0;">Se ha enviado un código de verificación al telefóno celular indicado</p>
+                </div>
+                <div class="alert alert-danger" id="error_code_inv" role="alert" style="border-radius: 6px;" hidden>
+                </div>
+                 <form id="mechanicForm" method="POST" action="{{route('signUpInvitation')}}" >
                      @method('POST')
                      @csrf
                      <div class="row">
@@ -47,8 +53,8 @@
                          </div>
                      </div>
                      <div class="row">
-                         <div class="col-lg-6 py-3" id="mobile" style="display: flex">
-                            <div class="input-group">
+                        <div class="col-lg-6 py-3" id="mobile" style="display: flex; flex-direction: column;">
+                            <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div style="border: 1px solid black" class="input-group-text">+52</div>
                                 </div>
@@ -56,8 +62,16 @@
                                 id="mobileInv" name="mobile" value="{{$employee->mobile_number}}" maxlength="10" pattern="[0-9]{10}" required>
                                 <div class="input-group-append" id="form_alert_phone_inv" hidden>
                                 </div>
+                                <p style="color: red; margin: 0;">*</p>
                             </div>
-                            <p style="color: red; margin: 0;">*</p>
+                           
+                            <div class="input-group mb-3" style="margin-top: 1rem">
+                                <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                       id="codeinv" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                                <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE VERIFICACIÓN 6 DIG"
+                                       id="codeConfirminv" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                                <p style="color: red; margin: 0;" hidden id="requiredSignalinv">*</p>
+                            </div>
                          </div>
                          <div class="col-lg-6 py-3" style="display: flex">
                              <label for="birthday" class="labelgre py-2" style="top: -10px;padding-left: 4px">Fecha de Nacimiento</label>
@@ -67,6 +81,7 @@
                              <p style="color: red; margin: 0;">*</p>
                          </div>
                      </div>
+                     
                      <div class="row">
                          <div class="col-lg-6 py-2" style="display: flex">
                              <select class="form-control" name="gender"
@@ -157,6 +172,68 @@
 </div>
 
 <script>
+        /* this for mechanic */
+    let length       = 0;
+    let hostName     = window.location.origin+"/send_sms_verification/";
+    let mobileInputinv  = document.querySelector('#mobileInv');
+    let inputCodeMecinv = document.querySelector('#codeinv');
+    let alertCodeinv    = document.querySelector('#alertSuccessCodeinv');
+    let requiredCodeinv = document.querySelector('#requiredSignalinv');
+    let codeConfirminv  = document.querySelector('#codeConfirminv');
+
+    window.addEventListener("load", function(){
+        length = mobileInputinv.value.length;
+        if ( length < 10 ) return null;
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this.response)
+            if (this.readyState == 4 && this.status == 200) {
+                codeConfirminv.value = this.response;
+            }
+        };
+
+        let url = hostName+mobileInputinv.value;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        alertCodeinv.hidden    = false;
+        requiredCodeinv.hidden = false;
+        setTimeout(() =>{alertCodeinv.hidden = true},3500);
+        inputCodeMecinv.type = 'text';
+        
+    });
+
+     /* this for invitation */
+    let mobileInputinvn  = document.querySelector('#mobileInv');
+    let inputCodeMecinvn = document.querySelector('#codeinv');
+    let alertCodeinvn    = document.querySelector('#alertSuccessCodeinv');
+    let requiredCodeinvn = document.querySelector('#requiredSignalinv');
+    let codeConfirminvn  = document.querySelector('#codeConfirminv');
+
+    mobileInputinvn.addEventListener('input', function (){
+        length = mobileInputinvn.value.length;
+        if ( length < 10 ) return null;
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this.response)
+            if (this.readyState == 4 && this.status == 200) {
+                codeConfirminvn.value = this.response;
+            }
+        };
+
+        let url = hostName+mobileInputinvn.value;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        alertCodeinvn.hidden    = false;
+        requiredCodeinvn.hidden = false;
+        setTimeout(() =>{alertCodeinvn.hidden = true},3500);
+        inputCodeMecinvn.type = 'text';
+        
+    }); 
+
     document.getElementById('rfcInv').addEventListener('focus',function() {
 
         var rfc = document.getElementById('rfcInv');
