@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="row">
-                <div class="col-lg-6 py-2" style="display: flex">
+                <!--<div class="col-lg-6 py-2" style="display: flex">
                     <select  class="form-control btnBorder" name="channel" id="channelCNT" onchange="mostrarCNT()" required>
                         <option value="">CANAL DE COMPRA</option>
                         <option value="1" >SUCURSAL</option>
@@ -142,7 +142,7 @@
                         <option value="3">TIENDA EN LINEA</option>
                     </select>
                     <p style="color: red; margin: 0;">*</p>
-                </div>
+                </div>-->
                 <div class="col-lg-6 py-2" style="display:none " id="muestraCNT">
                     <select class="form-control btnBorder" id="branch_idCNT" name="branch_id">
                         <option value="">SUCURSAL DE COMPRA</option>
