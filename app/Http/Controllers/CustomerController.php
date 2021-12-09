@@ -155,8 +155,8 @@ class CustomerController extends Controller
             'gender'           => isset($request['gender']) ? $request['gender'] : '',
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
             'collector_id'     => 6,
-            'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : '',
-            'channel'          => isset($request['channel']) ? $request['channel'] : ''
+            //'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : '',
+            //'channel'          => isset($request['channel']) ? $request['channel'] : ''
         ]);
 
         //create data in notifications table
