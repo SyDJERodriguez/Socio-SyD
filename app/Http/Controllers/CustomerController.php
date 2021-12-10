@@ -3270,6 +3270,8 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         $dataSession = CustomersSession::where('email', $email)->first();
         $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
 
         /* $query = DB::table('transactions')
                     ->where('client_number','=', $data['client_number'])
@@ -3280,7 +3282,13 @@ class CustomerController extends Controller
         //round the number with only 2 decimals
         //$limit = $this->totalAmount();
 
-        $data_customer = $this->getTransCadena($email);
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
         $limit = 0.0;
         foreach ($data_customer as $d){
             //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
