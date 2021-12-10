@@ -110,8 +110,19 @@ class CustomerController extends Controller
 
     /** Webservices for get registered clients in Pegaso platform **/
     public function get_registered_clients() {
+
+
         $registered_clients = DB::table('customers_sessions')
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            /*->join('transactions', function($join){
+                $now = Carbon::now();
+                $current_month = $now->month;
+                $current_year = $now->year;
+                $join->on('transactions.client_number', '=', 'customers_sessions.client_number')
+                    ->where('transactions.branch_number', '=', 'customers_sessions.branch_number')
+                    ->whereMonth( 'transaction_date', '=', $current_month )
+                    ->whereYear( 'transaction_date', '=', $current_year );
+            })*/
             ->select(
                 'customers_sessions.client_number AS client_number',
                          'customers_sessions.branch_number AS branch_number',
@@ -123,10 +134,12 @@ class CustomerController extends Controller
                          'customer_platforms.birthday AS birthday',
                          'customers_sessions.created_at AS fecha_registro',
                          'customers_sessions.client_type AS type_user',
-                         'customers_sessions.active'
+                         'customers_sessions.active',
+                            'SELECT amount FROM transactions WHERE transaction.branch_number = customers_sessions.branch_number'
             )
             ->get();
 
+        return response()->json($registered_clients);
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
