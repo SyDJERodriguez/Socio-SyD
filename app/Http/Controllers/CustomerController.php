@@ -49,7 +49,8 @@ class CustomerController extends Controller
 
     public function insertCNTNumber() {
         $client_number = 90000000;
-        for ($i = 0; $i<20; $i++) {
+        for ($i = 0; $i<10000; $i++) {
+            set_time_limit(30);
             $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
             DB::table('cnt_numbers')->insert([
@@ -63,6 +64,10 @@ class CustomerController extends Controller
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
+
+        if( 'CNT2021' !== $request['cnt_number'] ){
+            return response()->json(['success'=>'false', 'cnt_number'=>'false']);
+        }
 
         //Validate DNS email
         $domain = explode('@', $request['email']);
@@ -80,8 +85,24 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
 
         $client_number= '';
+        $number = DB::table('cnt_numbers')
+            ->where('registered', '=',1)
+            ->pluck('client_number')->toArray();
+        $counter = count($number);
+        $counter_limit = 10000;
+        $counter_total = $counter - $counter_limit;
+
         if (!empty($request['client_number'])){
+
+            if (0 === $counter_total){
+                return response()->json(['success'=>'false', 'count_number'=>'false']);
+            }
+
             $client_number = '00'.$request['client_number'];
+            $verify_client_number = DB::table('client_numbers')->where('client_number', '=', $client_number)->first();
+            if ($verify_client_number == null) {
+                return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
+            }
         }else{
             $number = DB::table('cnt_numbers')
                 ->where('registered', '=',1)
@@ -89,7 +110,9 @@ class CustomerController extends Controller
             if (empty($number)){
                 $client_number ='0090000001';
             }else{
-                $counter = count($number);
+                if (0 === $counter_total){
+                    return response()->json(['success'=>'false', 'count_number'=>'false']);
+                }
                 $counter = $counter-1;
                 $client_number = intval($number[$counter])+1;
                 $client_number = strval($client_number);
@@ -114,9 +137,9 @@ class CustomerController extends Controller
         }
 
       //  if (empty($request['cnt_number'])){
-            if($request['cnt_number'] !== '1000'){
-                return response()->json(['success'=>'false', 'cnt_number'=>'false']);
-            }
+           //if($request['cnt_number'] !== '1000'){
+             //   return response()->json(['success'=>'false', 'cnt_number'=>'false']);
+           // }
         //}
 
         //Insert data in customers table
@@ -132,7 +155,8 @@ class CustomerController extends Controller
             'gender'           => isset($request['gender']) ? $request['gender'] : '',
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : '',
             'collector_id'     => 6,
-            'branch_id'         => isset($request['branch_id']) ? $request['branch_id'] : ''
+            //'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : '',
+            //'channel'          => isset($request['channel']) ? $request['channel'] : ''
         ]);
 
         //create data in notifications table
@@ -143,11 +167,22 @@ class CustomerController extends Controller
 
         $save_register = DB::table('customers_sessions')->insert([
             'client_number' => $client_number,
+            'branch_number'     => $client_number,
             'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
             'active'        => 0,
             'password'      => $password
+        ]);
+
+        $save_transaction = DB::table('transactions')->insert([
+            'client_number' => $client_number,
+            'branch_number'     => $client_number,
+            'amount'            => '250',
+            'sale_office'       => '0000',
+            'transaction_date'  => Carbon::now()->format('Y-m-d'),
+            'payment_method'    => '0',
+            'invoce'           => 'CNT2021'
         ]);
 
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
@@ -1731,8 +1766,8 @@ class CustomerController extends Controller
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
-        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
-        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aquí para mas informacion: www.sociosyd.com.mx';
+        $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
+        $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
         $client_type = $data[0]->client_type;
         $mobile = $data[0]->mobile;
@@ -1906,7 +1941,7 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Hola '.$data['name'].' '.$data['last_name'].'. Has solicitado reestablecer tu contraseña de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar: ' .$url;
+        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
 
         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
         try {
@@ -1967,7 +2002,7 @@ class CustomerController extends Controller
         }
 
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
-        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinión, puedes reactivar tu cuenta.';
+        $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinion, puedes reactivar tu cuenta.';
 
         TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
         \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
@@ -2336,6 +2371,14 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', $dataSession['client_number'])
+        ->where('branch_number', $dataSession['branch_number'])
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -2345,6 +2388,17 @@ class CustomerController extends Controller
             ->get();
 
         $totalAmount = 0.0;
+        $totalAmount_before = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($data_customer as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -2354,6 +2408,31 @@ class CustomerController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -2390,12 +2469,12 @@ class CustomerController extends Controller
         $total = $totalAmount;
 
         if(empty($beneficiaries) == false){
-            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number', 'owner'));
+            return view('pages.Account.beneficiary', compact('data', 'beneficiary', 'noti', 'total', 'level', 'number', 'owner','level_before'));
         }
 
         $signature = $signature->signature_id;
 
-        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt', 'number', 'owner'));
+        return view('pages.Account.beneficiary', compact('data', 'signature', 'level','total','noti', 'is_cnt', 'number', 'owner','level_before'));
     }
 
     //Go to benefits of Safe
@@ -2439,6 +2518,14 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', $dataSession['client_number'])
+        ->where('branch_number', $dataSession['branch_number'])
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -2453,8 +2540,18 @@ class CustomerController extends Controller
             $MALOamount_customer = floatval($d->amount);
             strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
         } */
-
+        $totalAmount_before = 0.0;
         $totalAmount = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($data_customer as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -2464,6 +2561,31 @@ class CustomerController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -2492,7 +2614,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
         $noti = $this->getNotifications();
-        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number', 'owner'));
+        return view('pages.Account.benefitSafe', compact('data', 'level','total','noti', 'is_cnt', 'number', 'owner','level_before'));
     }
 
     //Go to signature section in benefits
@@ -2536,6 +2658,14 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', Auth::user()->client_number)
+        ->where('branch_number', Auth::user()->branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
@@ -2545,6 +2675,17 @@ class CustomerController extends Controller
             ->get();
 
         $totalAmount = 0.0;
+        $totalAmount_before = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($data_customer as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -2554,6 +2695,31 @@ class CustomerController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -2582,7 +2748,7 @@ class CustomerController extends Controller
         }
         $total = $totalAmount;
 
-        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number', 'owner'));
+        return view('pages.Account.signature', compact('data', 'imgData','total','noti', 'level', 'number', 'owner','level_before'));
     }
 
     //Create signature
@@ -2769,6 +2935,14 @@ class CustomerController extends Controller
         $now = Carbon::now();
         $current_month = $now->month;
         $current_year = $now->year;
+        $previus_month=$now->month - 1;
+
+        $data_customer_before = DB::table('transactions')
+        ->where('client_number', Auth::user()->client_number)
+        ->where('branch_number', Auth::user()->branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
 
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
@@ -2778,6 +2952,17 @@ class CustomerController extends Controller
             ->get();
 
         $totalAmount = 0.0;
+        $totalAmount_before = 0.0;
+
+        foreach ($data_customer_before as $transaction){
+            $amount_customer_before = floatval($transaction->amount);
+            strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+            $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+            $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+            $transaction->payment_method = $payment_method->payment_method;
+            $transaction->sale_office    = $sale_office->sale_office;
+        }
 
         foreach ($data_customer as $transaction){
             $amount_customer = floatval($transaction->amount);
@@ -2787,6 +2972,31 @@ class CustomerController extends Controller
             $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
             $transaction->payment_method = $payment_method->payment_method;
             $transaction->sale_office    = $sale_office->sale_office;
+        }
+
+        $level_before = 0;
+        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>7000) {
+                $level_before = 3;
+            }
+        }
+
+        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                $level_before = 1;
+            }
+            if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                $level_before = 2;
+            }
+            if ($totalAmount_before>1300) {
+                $level_before = 3;
+            }
         }
 
         $level = 0;
@@ -2816,7 +3026,7 @@ class CustomerController extends Controller
         $total = $totalAmount;
         $noti = $this->getNotifications();
         ///
-        return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number', 'owner'));
+        return view('pages.Account.assistance', compact('data', 'level','total','noti', 'number', 'owner','level_before'));
     }
 
     //calculated totalAmount
@@ -3168,7 +3378,7 @@ class CustomerController extends Controller
 
     public function sms_verification($mobile){
         $code = rand(111111,999999);
-        $messsage = 'Este es el código de verificación que debes ingresar para completar tu registro en Socio SYD: '.$code;
+        $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
         $response = TwilioService::send_sms($messsage,'+52'.$mobile);
 
@@ -3250,7 +3460,7 @@ class CustomerController extends Controller
             } catch (\Throwable $th) {
                 return response()->json(['error'=>'algo salio mal','status' =>401, 'desc'=>$th->getMessage()]);
             }
-        }       
+        }
     }
 
     //invitation email associate

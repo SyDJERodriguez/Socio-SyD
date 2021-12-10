@@ -7,19 +7,18 @@
                 <div class="card">
                     <div class="card-header text-white bg-dark">Buscar Sucursal</div>
                     <div class="col-md-12" style="padding-top: 15px;">
-                        <label><b>Seleccione la sucursal</b></label>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-12" style="display: flex; justify-content: center;">
-                                <form method="GET" action="{{route('admin.search.client.number')}}">
+                                <form method="GET" action="{{route('admin.search.email')}}">
                                     @csrf
-
                                     <div class="col-md-12">
-                                        <select class="form-control" name="" >
-                                            @if(isset($branches))
-                                            @foreach ($branches as $branch)
-                                                 <option value="{{$branch->id}}">{{$branch->branch_name}}</option>                                     
+                                        <select class="form-control" name="email" required>
+                                            <option value="">Seleccione la sucursal</option>
+                                            @if(isset($clients))
+                                            @foreach ($clients as $d)
+                                                 <option value="{{$d->email}}">{{$d->branch_number}}</option>                                     
                                             @endforeach
                                         @endif
                                         </select>
