@@ -102,13 +102,16 @@ class AdminController extends Controller
             ->where('client_number', '=', $client_number)
             ->get();
 
-        if ( $customerData->isEmpty() ){
-           // return view('Admin.indexbranch');
+        $customerDatabranch = DB::table('client_numbers')
+            ->where('client_number', '=', $client_number)
+            ->get();
+
+        if ( $customerDatabranch->isEmpty() ){
            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
            return view('Admin.customer', compact('error'));
         }
 
-        if( count($customerData) > 1 ){
+        if( count($customerDatabranch) > 1 ){
             $branches = DB::table('client_numbers')
                             ->where('client_number','=', $branch_number)
                             ->get();
