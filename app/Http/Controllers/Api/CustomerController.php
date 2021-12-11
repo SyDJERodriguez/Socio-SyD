@@ -114,15 +114,15 @@ class CustomerController extends Controller
 
         $registered_clients = DB::table('customers_sessions')
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
-            /*->join('transactions', function($join){
+            //->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+            ->join('transactions', function($join){
                 $now = Carbon::now();
                 $current_month = $now->month;
                 $current_year = $now->year;
-                $join->on('transactions.client_number', '=', 'customers_sessions.client_number')
-                    ->where('transactions.branch_number', '=', 'customers_sessions.branch_number')
+                $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                     ->whereMonth( 'transaction_date', '=', $current_month )
                     ->whereYear( 'transaction_date', '=', $current_year );
-            })*/
+            })
             ->select(
                 'customers_sessions.client_number AS client_number',
                          'customers_sessions.branch_number AS branch_number',
@@ -135,26 +135,32 @@ class CustomerController extends Controller
                          'customers_sessions.created_at AS fecha_registro',
                          'customers_sessions.client_type AS type_user',
                          'customers_sessions.active',
-                            'SELECT amount FROM transactions WHERE transaction.branch_number = customers_sessions.branch_number'
+                        //DB::raw('(SELECT SUM(amount FROM transactions WHERE transactions.branch_number = customers_sessions.branch_number)')
+                         //'transactions.amount',
+                //'transactions.total'
+                         DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )AS amount')
             )
+            //->selectRaw(DB::raw('(SUM(transactions.amount)'))
+            //->groupBy('customers_sessions.branch_number')
+                //->where('customers_sessions.client_number', '=', '0000000001')
+                ->groupBy('customers_sessions.branch_number')
+            //->sum('transactions.amount');
             ->get();
 
-        return response()->json($registered_clients);
-        $now = Carbon::now();
+        //return response()->json($registered_clients);
+        /*$now = Carbon::now();
         $current_month = $now->month;
-        $current_year = $now->year;
+        $current_year = $now->year;*/
 
+        //$contador = 0;
         foreach ($registered_clients as $client){
-            set_time_limit(60);
+            //$contador += 1;
+
+            //return $contador;
+           // set_time_limit(10);
             $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
-            $client_transaction = DB::table('transactions')
-                ->where('client_number', $client->client_number)
-                ->where('branch_number', $client->branch_number)
-                ->whereMonth('transaction_date','=',$current_month)
-                ->whereYear('transaction_date', '=', $current_year )
-                ->get();
-            $totalAmount = 0.0;
+            //$totalAmount = 0.0;
 
             if($client->type_user === '3'){
                 $associate_data = DB::table('associates')
@@ -164,11 +170,11 @@ class CustomerController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            foreach ($client_transaction as $transaction){
-                $amount_customer = floatval($transaction->amount);
-                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
-            }
-            $client->amount = $totalAmount;
+           //foreach ($client_transaction as $transaction){
+               // $amount_customer = floatval($client->amount);
+                //strpos($client->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            //}
+            $totalAmount = $client->amount;
 
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
