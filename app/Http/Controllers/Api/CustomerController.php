@@ -144,6 +144,7 @@ class CustomerController extends Controller
             //->groupBy('customers_sessions.branch_number')
                 //->where('customers_sessions.client_number', '=', '0000000001')
                 ->groupBy('customers_sessions.branch_number')
+                //->whereBetween('customers_sessions.created_at',['2021-09-20','2021-12-10'])
             //->sum('transactions.amount');
             ->get();
 
