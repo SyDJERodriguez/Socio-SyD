@@ -139,7 +139,7 @@
                             </p>
                         </div>
                         <div class="col-3">
-                            <button type="submit" id="btnSend2" class="btn btn-info">ACEPTAR</button>
+                            <button type="submit" id="btnSend2" class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">ACEPTAR</button>
                         </div>
                     </div>
                 </div>
