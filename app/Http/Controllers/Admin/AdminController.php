@@ -102,18 +102,21 @@ class AdminController extends Controller
             ->where('client_number', '=', $client_number)
             ->get();
 
-        if ( $customerData->isEmpty() ){
-           // return view('Admin.indexbranch');
+        $customerDatabranch = DB::table('client_numbers')
+            ->where('client_number', '=', $client_number)
+            ->get();
+
+        if ( $customerDatabranch->isEmpty() ){
            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
            return view('Admin.customer', compact('error'));
         }
 
-        if( count($customerData) > 1 ){
-            $clients = DB::table('customers_sessions')
-                            ->where('client_number','=', $client_number)
+        if( count($customerDatabranch) > 1 ){
+            $branches = DB::table('client_numbers')
+                            ->where('client_number','=', $branch_number)
                             ->get();
                             //aquí es indexbranch para el select
-            return view('Admin.dependents', compact('clients'));
+            return view('Admin.indexbranch', compact('branches'));
         }
 
         $email = $customerData[0]->email;
@@ -253,6 +256,148 @@ class AdminController extends Controller
                     compact('client_number', 'account', 'transactions', 'totalAmount',
                             'customerData', 'level', 'associates','level_before'));
     }
+
+        // Function for search by email
+        public function search_by_branch(Request $request)
+        {
+            $request = $request->input();
+            $email = $request['email'];
+
+            $account= DB::table('customers_sessions')
+            ->where('branch_number', '=', $email)
+            ->first();
+
+
+
+            if (empty($account)){
+                $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+                return view('Admin.customer', compact('error'));
+            }
+
+            $client_number = $account->client_number;
+            $branch_number = $account->branch_number;
+            $email = $account->email;
+
+            $customerData = DB::table('customer_platforms')
+                ->where('email', '=', $email)
+                ->first();
+
+            //$transactions = $this->getTransactions($client_number);
+            //$totalAmount = $this->totalAmount($client_number);
+
+
+
+            $now = Carbon::now();
+            $current_month = $now->month;
+            $current_year = $now->year;
+            $previus_month =$now->month - 1;
+
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', $client_number)
+            ->where('branch_number', $branch_number)
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+            $transactions = DB::table('transactions')
+                ->where('client_number', $client_number)
+                ->where('branch_number', $branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+
+            $totalAmount = 0.0;
+            $totalAmount_before = 0.0;
+
+            foreach ($data_customer_before as $transaction){
+                $amount_customer_before = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount_before -= $amount_customer_before : $totalAmount_before += $amount_customer_before ;
+
+                $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+                $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+                $transaction->payment_method = $payment_method->payment_method;
+                $transaction->sale_office    = $sale_office->sale_office;
+            }
+
+            foreach ($transactions as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+
+                $payment_method = DB::table('payment_method')->select('payment_method')->where('code', $transaction->payment_method)->first();
+                $sale_office = DB::table('sale_office')->select('sale_office')->where('code', $transaction->sale_office)->first();
+                $transaction->payment_method = $payment_method->payment_method;
+                $transaction->sale_office    = $sale_office->sale_office;
+            }
+
+            $level_before = 0;
+            if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+                if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
+                    $level_before = 1;
+                }
+                if ($totalAmount_before>4500 && $totalAmount_before<=7000) {
+                    $level_before = 2;
+                }
+                if ($totalAmount_before>7000) {
+                    $level_before = 3;
+                }
+            }
+
+            if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+                if ($totalAmount_before>200 && $totalAmount_before<=500) {
+                    $level_before = 1;
+                }
+                if ($totalAmount_before>500 && $totalAmount_before<=1300) {
+                    $level_before = 2;
+                }
+                if ($totalAmount_before>1300) {
+                    $level_before = 3;
+                }
+            }
+
+
+            $level = 0;
+            if ($account->client_type === "1" || $account->client_type === "3"){
+                if ($totalAmount>2500 && $totalAmount<=4500) {
+                    $level = 1;
+                }
+                if ($totalAmount>4500 && $totalAmount<=7000) {
+                    $level = 2;
+                }
+                if ($totalAmount>7000) {
+                    $level = 3;
+                }
+            }
+
+            if ($account->client_type === "2"){
+                if ($totalAmount>200 && $totalAmount<=500) {
+                    $level = 1;
+                }
+                if ($totalAmount>500 && $totalAmount<=1300) {
+                    $level = 2;
+                }
+                if ($totalAmount>1300) {
+                    $level = 3;
+                }
+            }
+            $now = Carbon::now();
+            $user = Auth::user();
+            $nowDate = $now->toDateString();
+            $nowTime = $now->toTimeString();
+            $insert_log = DB::table('log_admin_searches')->insert([
+                'user' => $user->email,
+                'name' => $user->name,
+                'wanted_client' => $email,
+                'date' => $nowDate,
+                'time' => $nowTime
+
+            ]);
+
+            $associates = DB::table('associates')
+                ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
+                ->get();
+
+            return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+        }
 
     // Function for search by email
     public function search_by_email(Request $request)
@@ -505,10 +650,36 @@ class AdminController extends Controller
 
     // Get all customers register in Pegaso
     public function total_registers() {
+        //Get the clients with benefits in current month of the current year
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->join('transactions', function($join){
+                $now = Carbon::now();
+                $current_month = $now->month;
+                $current_year = $now->year;
+                $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
+                    ->whereMonth( 'transaction_date', '=', $current_month )
+                    ->whereYear( 'transaction_date', '=', $current_year );
+            })
+            ->select(
+                'customers_sessions.id AS id',
+                DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+                DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Plata", "Sin beneficios")))))) AS level')
+
+            )
+            ->groupBy(['customers_sessions.branch_number','customers_sessions.client_type'])
+            ->get()->toArray();
+
         $data =  DB::table ('customers_sessions')
             ->join('customer_platforms', 'customers_sessions.email','=','customer_platforms.email')
             ->select(
-                'customers_sessions.client_number',
+                'customers_sessions.id AS id',
+                        'customers_sessions.client_number',
                         'customers_sessions.branch_number',
                         'customer_platforms.name',
                         'customer_platforms.last_name',
@@ -517,17 +688,24 @@ class AdminController extends Controller
                         'customer_platforms.birthday',
                         'customers_sessions.email',
                         'customers_sessions.mobile AS phone',
-                        'customers_sessions.created_at AS fecha_registro',
-                        'customers_sessions.client_type AS type_user',
-                        'customers_sessions.active'
+                        DB::raw('DATE_FORMAT(customers_sessions.created_at, "%Y-%m-%d") AS fecha_registro'),
+                        DB::raw('IF(customers_sessions.client_type = 1, "Dueño de Negocio",
+                                                            IF(customers_sessions.client_type = 2,"Mecánico Individual",
+                                                                IF(customers_sessions.client_type = 3, "Empleado Dependiente",
+                                                                    IF(customers_sessions.client_type = 4, "Cadenas",
+                                                                        IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS type_user'),
+                        DB::raw('IF(customers_sessions.active = 0, "No Activado", "Activado") AS active')
             )
-            ->get();
+            ->get()->toArray();
 
-        $now = Carbon::now();
+        /*$now = Carbon::now();
         $current_month = $now->month;
-        $current_year = $now->year;
+        $current_year = $now->year;*/
+
+        //Get all the client´s id with benefits in the current month
+        $ids = array_column($registered_clients, 'id');
         foreach ($data as $client){
-            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
+           /* $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
@@ -535,9 +713,24 @@ class AdminController extends Controller
                 ->whereMonth('transaction_date','=',$current_month)
                 ->whereYear('transaction_date', '=', $current_year )
                 ->get();
-            $totalAmount = 0.0;
+            $totalAmount = 0.0;*/
 
-            if($client->type_user === '3'){
+            //Set amount and benefits level
+            $client->amount = 0;
+            $client->level  = 'Sin beneficios';
+
+            //Search if the client has benefits in the current month
+            $in_clients = array_search($client->id, $ids);
+
+            //If the client has benefits, set the amount and the level of the current month
+            if($in_clients !== false){
+                $client->amount = $registered_clients[$in_clients]->amount;
+                $client->level  = $registered_clients[$in_clients]->level;
+            }
+
+            //Check if the client is an employee of a company account
+
+            if($client->type_user === 'Empleado Dependiente'){
                 $associate_data = DB::table('associates')
                     ->where('email', '=', $client->email)
                     ->first();
@@ -545,14 +738,14 @@ class AdminController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            foreach ($client_transaction as $transaction){
+            /*foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }
             $client->amount = $totalAmount;
 
             if($client->type_user === '1'){
-                $client->type_user = 'Dueño de Negocio';
+                $client->type_user = 'Cuenta con Colaboradores';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
@@ -566,7 +759,7 @@ class AdminController extends Controller
                     $client->level= 'Sin beneficios';
                 }
             }else if($client->type_user === '2'){
-                $client->type_user = 'Mecánico Individual';
+                $client->type_user = 'Cuenta Individual';
                 if ($totalAmount>200 && $totalAmount<=500) {
                     $client->level= 'Bronce';
                 }
@@ -610,7 +803,9 @@ class AdminController extends Controller
             }
 
 
-            $client->active === 0 ? $client->active = 'No Activado' : $client->active = 'Activado';
+            $client->active === 0 ? $client->active = 'No Activado' : $client->active = 'Activado';*/
+            //Remove the key id of the json
+            unset($client->id);
         }
 
         //return response()->json($data);
