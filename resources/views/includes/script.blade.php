@@ -70,6 +70,17 @@
     }
     }
 
+    function showselect(){
+       let canal = document.getElementById('channelinv');
+    let verdadero = canal.value;
+    if (verdadero==1) {
+        document.getElementById('showbranch').style.display = 'flex';
+        document.getElementById('branch_idinv').required = true;
+    }else {
+        document.getElementById('showbranch').style.display = 'none';
+        document.getElementById('branch_idinv').required = false;
+    }
+    }
     //Do not send without recaptcha
     window.onload = function() {
     var $recaptcha = document.querySelector('#g-recaptcha-response');

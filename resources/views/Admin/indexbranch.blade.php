@@ -11,14 +11,14 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-12" style="display: flex; justify-content: center;">
-                                <form method="GET" action="{{route('admin.search.email')}}">
+                                <form method="GET" action="{{route('admin.search.branch')}}">
                                     @csrf
                                     <div class="col-md-12">
                                         <select class="form-control" name="email" required>
                                             <option value="">Seleccione la sucursal</option>
-                                            @if(isset($clients))
-                                            @foreach ($clients as $d)
-                                                 <option value="{{$d->email}}">{{$d->branch_number}}</option>                                     
+                                            @if(isset($branches))
+                                            @foreach ($branches as $branch)
+                                                 <option value="{{$branch->branch}}">{{$branch->branch_name}}</option>                                     
                                             @endforeach
                                         @endif
                                         </select>
