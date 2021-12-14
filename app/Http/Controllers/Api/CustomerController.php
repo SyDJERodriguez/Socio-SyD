@@ -134,7 +134,7 @@ class CustomerController extends Controller
                                                             IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Plata", "Sin beneficios")))))) AS level')
 
             )
-            ->groupBy('customers_sessions.branch_number')
+            ->groupBy(['customers_sessions.branch_number','customers_sessions.client_type'])
             ->get()->toArray();
 
         //Get all the clients registered in Socio Syd
