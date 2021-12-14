@@ -552,7 +552,7 @@ class AdminController extends Controller
             $client->amount = $totalAmount;
 
             if($client->type_user === '1'){
-                $client->type_user = 'Dueño de Negocio';
+                $client->type_user = 'Cuenta con Colaboradores';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
                 }
@@ -566,7 +566,7 @@ class AdminController extends Controller
                     $client->level= 'Sin beneficios';
                 }
             }else if($client->type_user === '2'){
-                $client->type_user = 'Mecánico Individual';
+                $client->type_user = 'Cuenta Individual';
                 if ($totalAmount>200 && $totalAmount<=500) {
                     $client->level= 'Bronce';
                 }

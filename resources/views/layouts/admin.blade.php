@@ -17,7 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     <style>
@@ -123,21 +123,15 @@
 </body>
 </html>
 <script>
-    $.noConflict();
+$.noConflict();
 jQuery(document).ready(function($){
    $('#logsSessions').DataTable({
-    "order": [[ 2, "desc" ],[ 3, "desc" ]],
-  dom: 'Bfrtip',
-  info: false,
-  searching:false,
-  scrollX:true,
-  oLanguage: {
-     paginate: {
-        previous: "Anterior",
-        next: "Siguiente"
-     }
-  },
-  buttons: [
+       "order": [[ 2, "desc" ],[ 3, "desc" ]],
+       dom: 'Bfrtip',
+       info: false,
+       searching:true,
+       scrollX:true,
+        buttons: [
      {
         extend: 'excel',
         text: 'Excel',
@@ -159,9 +153,19 @@ jQuery(document).ready(function($){
         }
     }
    ],
-   language: {
-       emptyTable: "No hay registros para mostrar"
-   }
-});
+   "language":
+        {
+            "zeroRecords":"No hay registros para mostrar",
+            "infoEmpty": "No hay registros para mostrar",
+            "emptyTable": "No hay registros para mostrar",
+            "search":"Buscar:",
+            "paginate":
+            {
+              'previous': "Anterior",
+              'next': "Siguiente"
+            },
+        }
+
+    });
 });
 </script>
