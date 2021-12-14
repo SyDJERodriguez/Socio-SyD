@@ -20,7 +20,7 @@ Route::get('/', function () {
                 ->get();
     $popup= true;
 
-    return view('pages.home', compact('branches','popup'));
+return view('pages.home', compact('branches','popup'));
 })->name('home');
 
 Route::get('/privacy', function(){
@@ -143,6 +143,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
         Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
+        Route::get('/branch', 'Admin\AdminController@search_by_branch')->name('search.branch');
         Route::get('/{id}', 'Admin\AdminController@search_dependent')->name('search.dependent');
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });

@@ -1388,7 +1388,9 @@ class CustomerController extends Controller
             'birthday'         => $request['birthday'],
             'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
             'work'             => isset($request['work']) ? $request['work'] : null,
-            'gender'           => isset($request['gender']) ? $request['gender'] : null
+            'gender'           => isset($request['gender']) ? $request['gender'] : null,
+            'branch_id'     => isset($request['branch_id']) ? $request['branch_id'] : '',
+            'channel'       => isset($request['channel']) ? $request['channel'] : ''
         ]);
 
         if ( $save_register === true){
@@ -3244,7 +3246,11 @@ class CustomerController extends Controller
         $total = 0;
         $noti = 0;
 
-        return view('pages.invitationForm', compact('employee','total','noti'));
+        $branches = DB::table('branches')
+        ->orderBy('name','ASC')
+        ->get();
+
+        return view('pages.invitationForm', compact('employee','total','noti','branches'));
     }
 
 }
