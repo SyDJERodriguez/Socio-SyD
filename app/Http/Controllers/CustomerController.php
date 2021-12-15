@@ -353,7 +353,7 @@ class CustomerController extends Controller
         $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
-            'timeout'  => 2.0,
+            'timeout'  => 3.0,
         ]);
 
         $response = $client->request('GET');
@@ -613,7 +613,7 @@ class CustomerController extends Controller
         $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
-            'timeout'  => 2.0,
+            'timeout'  => 3.0,
         ]);
 
         $response = $client->request('GET');
