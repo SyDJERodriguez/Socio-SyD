@@ -30,7 +30,12 @@ Route::get('/privacy', function(){
 
 
 Route::post('/contact_us','CustomerController@contact_us');
-
+Route::get('/register/beneficiariebranch/{email}', 'CustomerController@employeesbranch')->name('employeesbranch');
+Route::get('/addsuccess', function () {
+      return view('pages.success');
+})->name('addsuccess');
+Route::put('/addEmployeebranch', 'CustomerController@addEmployeebranch')->name('addEmployeebranch');
+//Route::post('/add_beneficiariebranch', 'BeneficiaryController@addBeneficiariebranch')->name('add.beneficiariebranch'
 
 // Routes without login
 /**  Download PDF by SMS **/
