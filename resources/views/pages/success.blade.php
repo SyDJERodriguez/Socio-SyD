@@ -42,7 +42,7 @@
                     <img src="{{asset('img/icon_check.png')}}">
                     <br>
                     <br>
-                    <h5 class="text-white">¡Cliente agregado exitosamente!</h5>
+                    <h5 class="text-white">¡El colaborador ha sido agregado exitosamente!</h5>
                     <br>
                   <a href="{{url()->previous()}}"><button class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">Aceptar</button></a>  
                     <p class="text-white"></p>
