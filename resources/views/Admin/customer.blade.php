@@ -41,7 +41,7 @@
                         <p>Tipo de cuenta:
                             @switch($account->client_type)
                                 @case(1)
-                                    <b> Negocio </b>
+                                    <b> Cuenta con colaboradores </b>
                                     @break
                                 @case(2)
                                     <b> Individual </b>
@@ -53,7 +53,7 @@
                                     <b> Sucursal </b>
                                     @break
                                 @default
-                                    <b> Otro </b>
+                                    <b> Público en general </b>
                             @endswitch
                         </p>
                     </div>

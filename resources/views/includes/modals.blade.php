@@ -196,7 +196,7 @@
                     <div class="col-lg-12 text-center">
                         <img src="{{asset('img/icon_check.png')}}">
                         <h5 class="text-white">SE HA ENVIADO UN MENSAJE A TU CORREO O TELÉFONO PARA QUE PUEDAS <br>RESTABLECER TU CONTRASEÑA</h5>
-                        <p class="text-white">En un momento recibirás un correo <br>con los pasos para que puedas restablecer tu contraseña</p>
+                        <p class="text-white">En un momento recibirás un correo y un SMS<br>con los pasos para que puedas restablecer tu contraseña</p>
                         <p class="text-white"></p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >ACEPTAR</a>
                     </div>
