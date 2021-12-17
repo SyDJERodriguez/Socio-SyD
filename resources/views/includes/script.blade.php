@@ -399,7 +399,7 @@
                         }
                     },
                     error: function (data) {
-                        $('#modalErrorServer').modal('show');
+                        $('#modalErrorSession').modal('show');
                     }
                 });
                 // Nos permite cancelar el envio del formulario
@@ -516,7 +516,7 @@
                     error: function (data) {
                         //console.log(data);
                         //console.log(data['update']);
-                        $('#modalErrorServer').modal('show');
+                        $('#modalErrorSession').modal('show');
                     }
                 });
                 // Nos permite cancelar el envio del formulario
@@ -609,7 +609,7 @@
                         }
                     },
                     error: function(data){
-                        $('#modalErrorServer').modal('show');
+                        $('#modalErrorSession').modal('show');
 
                     }
                 });
@@ -715,7 +715,7 @@
                         }
                     },
                     error: function(data){
-                        $('#modalErrorServer').modal('show');
+                        $('#modalErrorSession').modal('show');
                     }
                 });
             }
@@ -803,7 +803,7 @@
                         }
                     },
                     error: function(data){
-                        $('#modalErrorServer').modal('show');
+                        $('#modalErrorSession').modal('show');
 
                     }
                 });
