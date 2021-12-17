@@ -139,7 +139,7 @@
     </div>
 </div>
 
-<!-- Modal Error SERVER-->
+<!-- Modal Error SESSION-->
 <div class="modal fade" id="modalErrorSession" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 rounded-0">
@@ -155,6 +155,43 @@
                         <h5 class="text-white">La sesión ha expirado</h5>
                         <p class="text-white">Su sesión ha expirado debido a inactividad, por favor cierre esta ventana y actualice la página</p>
                         <a href="{{route('home')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;" >CERRAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Error SESSION-->
+<div class="modal fade" id="modalprofessions" tabindex="-1" role="dialog" aria-labelledby="modalSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 rounded-0"  style="background-color: #143153;">
+            <div style="height: 34px;">
+                <button type="button" class="close" style="padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"  data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body " style="background-color: #ffffff;">
+                <div class="row">
+                    <div class="col-lg-7 pt-2 pb-5">
+                        <h5>PROFESIONES CUBIERTAS POR EL SEGURO</h5>
+                        <div class="line1">
+                            <img src="{{asset('img/line2.png')}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p class="text-justify">El programa no cubre las siguientes profesiones: actores, agricultores, 
+                            agrupaciones para mantener la paz, bailarines profesionales, bomberos, campesinos, 
+                            cantantes profesionales, comediantes, deportistas, fuerzas armadas, médicos, paramédicos y 
+                            choferes de ambulancia, medios de comunicación, minería, extracción de recursos naturales, 
+                            personal en plataformas petroleras, músicos, operadores de embarcaciones y ferries, 
+                            personal de seguridad, personal laborando en dependencias de impartición o procuración de justicia,
+                            personas políticamente expuestas, personas públicas, personas que por su trabajo manejen químicos y
+                            explosivos, pilotos, policías, reporteros y rescatistas. Al registrarme manifiesto que no practico ni
+                            pertenezco a ningún grupo de las profesiones antes señaladas.</p>
+                        <a href="#" class="text-white btn btn btn-sm px-4" data-dismiss="modal">Cerrar</a>
                     </div>
                 </div>
             </div>

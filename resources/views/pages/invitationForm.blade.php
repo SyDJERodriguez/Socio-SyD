@@ -1,5 +1,6 @@
 @extends('layouts.application')
 @section('content')
+@include('includes.modals')
 
 <div style="padding-left: 3rem !important;
     padding-right: 3rem !important;">
@@ -152,6 +153,9 @@
                                  <br>
                                  <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">
                                      TÉRMINOS Y CONDICIONES</a>
+                                 <br>
+                                <a href="#" data-toggle="modal" data-target="#modalprofessions">
+                                     PROFESIONES CUBIERTAS POR EL SEGURO</a>
                                  </label>
                              <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                          </div>
