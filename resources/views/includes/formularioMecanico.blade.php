@@ -172,7 +172,7 @@
                                 TÉRMINOS Y CONDICIONES</a>
                                 <br>
                             <a href="#" data-toggle="modal" data-target="#modalprofessions">
-                                PROFESIONES CUBIERTAS POR EL SEGURO</a>
+                                EXCLUSIONES DEL SEGURO</a>
                             </label>
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
