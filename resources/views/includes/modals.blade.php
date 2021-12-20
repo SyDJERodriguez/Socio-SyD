@@ -190,7 +190,7 @@
                             personal de seguridad, personal laborando en dependencias de impartición o procuración de justicia,
                             personas políticamente expuestas, personas públicas, personas que por su trabajo manejen químicos y
                             explosivos, pilotos, policías, reporteros y rescatistas. Al registrarme manifiesto que no practico ni
-                            pertenezco a ningún grupo de las profesiones antes señaladas.</p>
+                            pertenezco a ningún grupo de las profesiones antes señaladas</p>
                         <a href="#" class="text-white btn btn btn-sm px-4" data-dismiss="modal">Cerrar</a>
                     </div>
                 </div>
