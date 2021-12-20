@@ -127,7 +127,14 @@
                           <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                           <p style="color: red; margin: 0;">*</p>
                       </div>
-
+                      @if(isset($data->branch_id))
+                      <input type="hidden" class="form-control btnBorder" id="branch_id" name="branch_id"
+                      value="{{$data->branch_id}}"
+                      required>
+                      @endif
+                      <input type="hidden" class="form-control btnBorder" id="channel" name="channel"
+                      value="{{$data->channel}}"
+                      required>
 
                     <input type="hidden" id="client_type" name="client_type" value="{{Auth::user()->client_type}}">
                 </div>
