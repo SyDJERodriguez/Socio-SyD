@@ -174,7 +174,7 @@
             <div class="modal-body " style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-7 pt-2 pb-5">
-                        <h5>PROFESIONES CUBIERTAS POR EL SEGURO</h5>
+                        <h5>PROFESIONES NO CUBIERTAS POR EL SEGURO</h5>
                         <div class="line1">
                             <img src="{{asset('img/line2.png')}}" alt="">
                         </div>
