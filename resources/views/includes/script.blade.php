@@ -1975,6 +1975,7 @@
     let alertCodeCNT    = document.querySelector('#alertSuccessCodeCNT');
     let requiredCodeCNT = document.querySelector('#requiredSignalCNT');
     let codeConfirmCNT  = document.querySelector('#codeCNTConfirm');
+    let codeHidden = document.querySelector('#code_hidden')
 
     mobileCNT.addEventListener('input', function (){
         length = mobileCNT.value.length;
@@ -1994,7 +1995,9 @@
         alertCodeCNT.hidden    = false;
         requiredCodeCNT.hidden = false;
         setTimeout(() =>{alertCodeCNT.hidden = true},3500);
+        codeHidden.style.paddingTop = "1rem";
         inputCodeCNT.type = 'text';
+
     });
 
     let cntNumber = document.querySelector('#cnt_number');
@@ -2002,7 +2005,7 @@
     cntNumber.addEventListener('input', function (){
         if ( cntNumber.value.length < 7 ) return null;
 
-        if(cntNumber.value !== 'CNT2021') {
+        if(cntNumber.value !== 'INA2021') {
             errorCNT.hidden = false;
             setTimeout( function () { errorCNT.hidden = true }, 3500)
         }
