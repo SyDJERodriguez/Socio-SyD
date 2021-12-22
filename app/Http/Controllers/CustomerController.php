@@ -179,10 +179,10 @@ class CustomerController extends Controller
             'client_number' => $client_number,
             'branch_number'     => $client_number,
             'amount'            => '250',
-            'sale_office'       => '0000',
+            'sale_office'       => '0001',
             'transaction_date'  => Carbon::now()->format('Y-m-d'),
             'payment_method'    => '0',
-            'invoce'           => 'CNT2021'
+            'invoce'           => 'INA2021'
         ]);
 
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
