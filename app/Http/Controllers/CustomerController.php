@@ -65,7 +65,7 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
-        if( 'CNT2021' !== $request['cnt_number'] ){
+        if( 'INA2021' !== $request['cnt_number'] ){
             return response()->json(['success'=>'false', 'cnt_number'=>'false']);
         }
 
@@ -89,7 +89,7 @@ class CustomerController extends Controller
             ->where('registered', '=',1)
             ->pluck('client_number')->toArray();
         $counter = count($number);
-        $counter_limit = 10000;
+        $counter_limit = 1055;
         $counter_total = $counter - $counter_limit;
 
         if (!empty($request['client_number'])){
@@ -707,7 +707,7 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email y/o télefono ya está registrado en nuestro programa Socio SYD. Corroborar datos' ]);
 
         }
-        
+
         //Verify if the email is deactive association with the current owner
         $deactivate = DB::table('associates')
             ->where('mobile_number','=',$request['mobile_number'])
@@ -767,11 +767,11 @@ class CustomerController extends Controller
 
             $session->session()->flash('success','the email/mobile number its already in db');
             return response()->json(['success'=>'true']);
-            
+
         }else{
            return response()->json(['success'=>'false', 'update'=>$update_associates]);
         }
-        
+
     }
 
 //load data from associates AQUI
@@ -794,10 +794,10 @@ class CustomerController extends Controller
                             ->get();
         //Calculated the limit of employee
         $data = CustomerPlatform::where('email', $email)->first();
-      //  $dataSession = CustomersSession::where('email', $email)->first();    
+      //  $dataSession = CustomersSession::where('email', $email)->first();
         $now = Carbon::now();
         $id=$data->client_number;
-        $branch_number=$dataSession->branch_number;          
+        $branch_number=$dataSession->branch_number;
         $data_customer = $this->getTransCadena($email);
         $limit = 0.0;
         foreach ($data_customer as $d){
@@ -838,7 +838,7 @@ class CustomerController extends Controller
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
         $data->number = $numberEmployees;
-       
+
 
       //  return $data;
        // $response = $this->employeeLimit(
@@ -847,7 +847,7 @@ class CustomerController extends Controller
        //             Auth::user()->client_type);
        $total = $this->totalAmountById($client_number,$email);
        // $noti = $this->getNotifications();
-   
+
 
         $data->branch_number = $dataSession->branch_number;
         $query = DB::table('client_numbers')
@@ -862,7 +862,7 @@ class CustomerController extends Controller
 
         return view('pages.registerBeneficiariebranch', compact('data','associates','total','owner','client_type'));
     }
-    
+
 
     //Deactivate employees
     public function deleteEmployee($id,$email){
