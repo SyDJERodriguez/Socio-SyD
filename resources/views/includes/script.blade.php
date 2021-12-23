@@ -15,58 +15,97 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestra').style.display = 'flex';
-        document.getElementById('branch_id').required = true;
-    }else {
+        document.getElementById('branch_id').value = '';
+    }
+    else if (verdadero==2) {
         document.getElementById('muestra').style.display = 'none';
-        document.getElementById('branch_id').required = false;
+        document.getElementById('branch_id').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('muestra').style.display = 'none';
+        document.getElementById('branch_id').value = 47;
+    }
+    else{
+        document.getElementById('muestra').style.display = 'none';
     }
     }
 
     function mostrarMec() {
-        let canal = document.getElementById('channelMec');
+    let canal = document.getElementById('channelMec');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraMec').style.display = 'flex';
-        document.getElementById('branch_idMec').required = true;
-    }else {
+        document.getElementById('branch_idMec').value = '';
+    }else if (verdadero==2) {
         document.getElementById('muestraMec').style.display = 'none';
-        document.getElementById('branch_idMec').required = false;
+        document.getElementById('branch_idMec').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('muestraMec').style.display = 'none';
+        document.getElementById('branch_idMec').value = 47;
+    }
+    else{
+        document.getElementById('muestraMec').style.display = 'none';
     }
     }
 
     function mostrarGen() {
-        let canal = document.getElementById('channelGen');
+    let canal = document.getElementById('channelGen');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraGen').style.display = 'flex';
-        document.getElementById('branch_idGen').required = true;
-    }else {
+        document.getElementById('branch_idGen').value = '';
+    }
+    else if (verdadero==2) {
         document.getElementById('muestraGen').style.display = 'none';
-        document.getElementById('branch_idGen').required = false;
+        document.getElementById('branch_idGen').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('muestraGen').style.display = 'none';
+        document.getElementById('branch_idGen').value = 47;
+    }
+    else{
+        document.getElementById('muestraGen').style.display = 'none';
     }
     }
 
     function mostrarBr() {
-        let canal = document.getElementById('channelBr');
+    let canal = document.getElementById('channelBr');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraBr').style.display = 'flex';
-        document.getElementById('branch_idBr').required = true;
-    }else {
+        document.getElementById('branch_idBr').value = '';
+    }
+    else if (verdadero==2) {
         document.getElementById('muestraBr').style.display = 'none';
-        document.getElementById('branch_idBr').required = false;
+        document.getElementById('branch_idBr').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('muestraBr').style.display = 'none';
+        document.getElementById('branch_idBr').value = 47;
+    }
+    else{
+        document.getElementById('muestraBr').style.display = 'none';
     }
     }
 
     function mostrarCNT() {
-        let canal = document.getElementById('channelCNT');
+    let canal = document.getElementById('channelCNT');
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('muestraCNT').style.display = 'flex';
-        document.getElementById('branch_idCNT').required = true;
-    }else {
+        document.getElementById('branch_idCNT').value = '';
+    }
+    else if (verdadero==2) {
         document.getElementById('muestraCNT').style.display = 'none';
-        document.getElementById('branch_idCNT').required = false;
+        document.getElementById('branch_idCNT').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('muestraCNT').style.display = 'none';
+        document.getElementById('branch_idCNT').value = 47;
+    }
+    else{
+        document.getElementById('muestraCNT').style.display = 'none';
     }
     }
 
@@ -75,10 +114,18 @@
     let verdadero = canal.value;
     if (verdadero==1) {
         document.getElementById('showbranch').style.display = 'flex';
-        document.getElementById('branch_idinv').required = true;
-    }else {
+        document.getElementById('branch_idinv').value = '';
+    }
+    else if (verdadero==2) {
         document.getElementById('showbranch').style.display = 'none';
-        document.getElementById('branch_idinv').required = false;
+        document.getElementById('branch_idinv').value = 2;
+    }
+    else if (verdadero==3) {
+        document.getElementById('showbranch').style.display = 'none';
+        document.getElementById('branch_idinv').value = 47;
+    }
+    else{
+        document.getElementById('showbranch').style.display = 'none';
     }
     }
     //Do not send without recaptcha
