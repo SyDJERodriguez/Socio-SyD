@@ -137,7 +137,7 @@
                     <p style="color: red; margin: 0;">*</p>
                 </div>-->
                 <div class="col-lg-6 py-2" style="display:none " id="muestraCNT">
-                    <select class="form-control btnBorder" id="branch_idCNT" name="branch_id" required>
+                    <select class="form-control btnBorder" id="branch_idCNT" name="branch_id">
                         <option value="">SUCURSAL DE COMPRA</option>
                         <option value="2" style="display: none;"></option>
                         <option value="47" style="display: none;"></option>
