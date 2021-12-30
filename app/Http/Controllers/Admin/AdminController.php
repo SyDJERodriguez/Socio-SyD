@@ -180,7 +180,7 @@ class AdminController extends Controller
         }
 
         $level_before = 0;
-        if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+        if ($account->client_type != "2" || $account->client_type !== "5"){
             if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
                 $level_before = 1;
             }
@@ -192,7 +192,7 @@ class AdminController extends Controller
             }
         }
 
-        if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+        if ($account->client_type === "2"|| $account->client_type === "5"){
             if ($totalAmount_before>200 && $totalAmount_before<=500) {
                 $level_before = 1;
             }
@@ -205,7 +205,7 @@ class AdminController extends Controller
         }
 
         $level = 0;
-        if ($account->client_type === "1" || $account->client_type === "3"){
+        if ($account->client_type === "1" || $account->client_type === "3" || $account->client_type === "4"){
             if ($totalAmount<2500) {
                 $level = 0;
             }
@@ -330,7 +330,7 @@ class AdminController extends Controller
             }
 
             $level_before = 0;
-            if (Auth::user()->client_type != "2" || Auth::user()->client_type !== "5"){
+            if ($account->client_type != "2" || $account->client_type !== "5"){
                 if ($totalAmount_before>2500 && $totalAmount_before<=4500) {
                     $level_before = 1;
                 }
@@ -342,7 +342,7 @@ class AdminController extends Controller
                 }
             }
 
-            if (Auth::user()->client_type === "2"|| Auth::user()->client_type === "5"){
+            if ($account->client_type === "2"|| $account->client_type === "5"){
                 if ($totalAmount_before>200 && $totalAmount_before<=500) {
                     $level_before = 1;
                 }
@@ -356,7 +356,7 @@ class AdminController extends Controller
 
 
             $level = 0;
-            if ($account->client_type === "1" || $account->client_type === "3"){
+            if ($account->client_type === "1" || $account->client_type === "3" || $account->client_type === "4"){
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $level = 1;
                 }
