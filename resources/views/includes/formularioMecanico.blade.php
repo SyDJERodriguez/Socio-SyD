@@ -129,8 +129,10 @@
                     </div>   
 
                     <div class="col-lg-6 order-4 order-lg-4 py-2" style="display:none " id="muestraMec">
-                        <select class="form-control btnBorder" id="branch_idMec" name="branch_id">
+                        <select class="form-control btnBorder" id="branch_idMec" name="branch_id" required>
                             <option value="">SUCURSAL DE COMPRA</option>
+                            <option value="2" style="display: none;"></option>
+                            <option value="47" style="display: none;"></option>
                             @if(isset($branches))
                                 @foreach ($branches as $branch)
                                     @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47 )
