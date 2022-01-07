@@ -974,9 +974,9 @@ class CustomerController extends Controller
                     $branch = DB::table('branches')
                         ->select('name')
                         ->where('id', '=', $client->branch_id)
-                        ->get();
+                        ->first();
 
-                    Storage::put('public/polizas/'.$branch[0]->name.'/'.$client->client_number.'-'.$branch[0]->name.'.pdf', $pdf->output());
+                    Storage::put('public/polizas/'.$branch->name.'/'.$client->client_number.'-'.$branch->name.'.pdf', $pdf->output());
                 }else{
                     Storage::put('public/polizas/sin_definir/'.$client->client_number.'.pdf', $pdf->output());
                 }
