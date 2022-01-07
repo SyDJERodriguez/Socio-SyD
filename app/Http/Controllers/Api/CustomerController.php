@@ -976,7 +976,14 @@ class CustomerController extends Controller
                         ->where('id', '=', $client->branch_id)
                         ->first();
 
-                    Storage::put('public/polizas/'.$branch->name.'/'.$client->client_number.'-'.$branch->name.'.pdf', $pdf->output());
+
+                    //return response()->json($branch);
+                    if($branch){
+                        Storage::put('public/polizas/'.$branch->name.'/'.$client->client_number.'-'.$branch->name.'.pdf', $pdf->output());
+                    }else{
+                        Storage::put('public/polizas/sin_definir/'.$client->client_number.'.pdf', $pdf->output());
+                    }
+
                 }else{
                     Storage::put('public/polizas/sin_definir/'.$client->client_number.'.pdf', $pdf->output());
                 }
