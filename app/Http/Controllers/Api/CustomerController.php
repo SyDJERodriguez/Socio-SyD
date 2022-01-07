@@ -26,6 +26,10 @@ use App\Exports\SessionExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Helpers\Twilio\TwilioService;
 use function GuzzleHttp\Promise\all;
+use PDF;
+use Illuminate\Support\Facades\Storage;
+use Zipper;
+
 
 class CustomerController extends Controller
 {
@@ -835,6 +839,152 @@ class CustomerController extends Controller
 
         return Excel::download( new SessionExport( $data_group ), 'reporteChubb.xlsx' );
     }
+
+    /******** Get certificates of beneficiaries ********/
+    public function get_certificates() {
+        $registered_clients = DB::table('customers_sessions')
+        ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+        ->join('transactions', function($join){
+            $now = Carbon::now();
+            $current_month = $now->month;
+            $current_year = $now->year;
+            $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
+                ->whereMonth( 'transaction_date', '=', '12' )
+                ->whereYear( 'transaction_date', '=', '2021' );
+        })
+        ->select(
+            'customers_sessions.id AS id',
+            'customers_sessions.client_number AS client_number',
+            'customer_platforms.id AS id',
+            'customer_platforms.name AS name',
+            'customer_platforms.last_name AS last_name',
+            'customer_platforms.second_last_name AS second_last_name',
+            'customer_platforms.gender AS gender',
+            'customer_platforms.birthday AS birthday',
+            'customer_platforms.email AS email',
+            DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active'),
+            DB::raw('IF(customers_sessions.client_type = 1, "Dueño de Negocio",
+                                                    IF(customers_sessions.client_type = 2,"Mecánico Individual",
+                                                        IF(customers_sessions.client_type = 3, "Empleado Dependiente",
+                                                            IF(customers_sessions.client_type = 4, "Cadenas",
+                                                                IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS type_user'),
+            DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+            DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Plata", "Sin beneficios")))))) AS level')
+
+        )
+        ->groupBy(['customers_sessions.branch_number','customers_sessions.client_type'])
+        ->get();
+
+        //Get all the clients registered in Socio Syd
+        /*$all_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.id AS id',
+                'customers_sessions.client_number AS client_number',
+                'customers_sessions.branch_number AS branch_number',
+                'customer_platforms.name AS name',
+                'customer_platforms.last_name AS last_name',
+                'customer_platforms.second_last_name AS second_last_name',
+                'customer_platforms.email AS email',
+                'customers_sessions.mobile AS phone',
+                'customer_platforms.birthday AS birthday',
+                DB::raw('DATE_FORMAT(customers_sessions.created_at, "%Y-%m-%d") AS fecha_registro'),
+                DB::raw('IF(customers_sessions.client_type = 1, "Dueño de Negocio",
+                                                    IF(customers_sessions.client_type = 2,"Mecánico Individual",
+                                                        IF(customers_sessions.client_type = 3, "Empleado Dependiente",
+                                                            IF(customers_sessions.client_type = 4, "Cadenas",
+                                                                IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS type_user'),
+                DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active')
+            )
+            ->get()->toArray();*/
+
+        //Get all the client´s id with benefits in the current month
+        //$ids = array_column($registered_clients, 'id');
+
+        //Loop for all clients registered in Socio SyD
+        $count = 0;
+
+        //return response()->json($registered_clients);
+        foreach ($registered_clients as $client){
+            set_time_limit(60);
+                $beneficiaries = DB::table('beneficiaries')
+                    ->select(
+                        'beneficiaries.name',
+                        'beneficiaries.last_name',
+                        'beneficiaries.second_last_name',
+                        'beneficiaries.relationship',
+                        'beneficiaries.percent'
+                    )
+                    ->where('customer_id', '=', $client->id)
+                    ->get();
+                $client->beneficiaries = $beneficiaries;
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $client->id)
+                ->first();
+
+
+
+            //Set amount and benefits level
+            /*$client->amount = 0;
+            $client->level  = 'Sin beneficios';
+
+            //Search if the client has benefits in the current month
+            $in_clients = array_search($client->id, $ids);
+
+            //If the client has benefits, set the amount and the level of the current month
+            if($in_clients !== false){
+                $client->amount = $registered_clients[$in_clients]->amount;
+                $client->level  = $registered_clients[$in_clients]->level;
+            }*/
+
+            //Check if the client is an employee of a company account
+            if($client->type_user === 'Empleado Dependiente'){
+                $associateData = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+
+                //Concatenate the number of employee to the client number
+                $client->client_number = $client->client_number.'-'.$associateData->number;
+            }
+
+            $customer = $client;
+            $initDate = new Carbon('first day of this month');
+            $finDate = new Carbon('last day of this month');
+            $currentDate = Carbon::parse()->locale('es');
+
+            $pdf =  PDF::loadView('layouts.Policies.safePolicy', [
+                'beneficiary'=>$beneficiaries,
+                'signature'=>$signature,
+                'customer'=>$customer,
+                'initDate'=>$initDate,
+                'finDate'=>$finDate,
+                'currentDate' => $currentDate
+            ]);
+
+            Storage::put('public/polizas/'.$client->client_number.'.pdf', $pdf->output());
+
+
+
+            //Remove the key id of the json
+            unset($client->id);
+            unset($client->email);
+            unset($client->type_user);
+            unset($client->client_number);
+        }
+
+        //Response
+        $files = glob(storage_path('app/public/polizas*'));
+        Zipper::make(storage_path('app/public/polizas.zip'))->add($files)->close();
+
+        return response()->download(storage_path('app/public/polizas.zip'));
+    }
+
 
     public function seguroAsistencia($level,$total){
         if( (int)$level != 2){
