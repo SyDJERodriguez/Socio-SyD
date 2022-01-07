@@ -28,4 +28,7 @@ Route::middleware('auth:api')->group(function (){
 
     /***************** To Save Register of Ecommerce *****************/
     Route::post('insert_customer', [\App\Http\Controllers\Api\CustomerController::class,'store'])->name('save.customer');
+
+    /*********************** GET insurance certificate *********************/
+    Route::get('get_certificates', [\App\Http\Controllers\Api\CustomerController::class,'get_certificates'])->name('send.sms.certificate');
 });
