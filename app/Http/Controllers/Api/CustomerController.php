@@ -1024,21 +1024,22 @@ class CustomerController extends Controller
             ->select(
         'customers_sessions.client_number AS numero_cliente',
                  'customers_sessions.branch_number AS numero_destinatario',
-                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con colaboradores",
-                                                    IF(customers_sessions.client_type = 2,"Mecánico Individual",
-                                                        IF(customers_sessions.client_type = 3, "Empleado Dependiente",
-                                                            IF(customers_sessions.client_type = 4, "Cadenas",
-                                                                IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS tipo_cliente'),
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Publico en General", null))))) AS tipo_cliente'),
                 'customer_platforms.name AS nombre',
                 'customer_platforms.last_name AS apellido_paterno',
                 'customer_platforms.second_last_name AS apellido_materno',
                 'customer_platforms.gender AS genero',
-                'customer_platforms.birthday AS fecha_nacimiento',
+                DB::raw('(DATE_FORMAT(customer_platforms.birthday, "%d/%m/%Y")) AS fecha_nacimiento'),
+                //'customer_platforms.birthday AS fecha_nacimiento',
                 'customer_platforms.rfc AS rfc',
                 'customer_platforms.company AS razon_social',
                 'customer_platforms.RFC_Company AS rfc_compania',
                 'customers_sessions.email AS email',
-                'customers_sessions.created_at AS fecha_registro',
+                DB::raw('(DATE_FORMAT(customers_sessions.created_at, "%d/%m/%Y %H:%i")) AS fecha_registro'),
                 DB::raw('IF(customers_sessions.active = 0, "0", "1") AS active'),
                 'customers_sessions.mobile AS telefono',
                 DB::raw('(SELECT branches.name FROM branches WHERE branches.id = customer_platforms.branch_id) AS sucursal'),
@@ -1047,6 +1048,15 @@ class CustomerController extends Controller
             //->whereBetween('customers_sessions.created_at', [$from, $to])
             ->orderBy('customers_sessions.created_at', 'DESC')
             ->get();
+
+        /*foreach ($registered_clients as $client){
+            if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === ''){
+                $birthday = explode("-",$client->fecha_nacimiento);
+                $year = substr($birthday[0],2,2);
+                $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+                $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
+            }
+        }*/
 
         return Excel::download( new DailyReport( $registered_clients ), 'daily_report.xlsx' );
     }
