@@ -73,6 +73,10 @@ class DailyJobForCheckInsurance extends Command
                 ->where('customer_id', '=', $client->customer_platform_id)
                 ->get();
 
+            $numberEmployees =  $number = DB::table('associates')
+            ->where('client_number','=', $client->client_number)
+            ->where('branch_number','=', $client->branch_number)
+            ->get();
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
@@ -102,6 +106,11 @@ class DailyJobForCheckInsurance extends Command
             $gold_messsage = 'Felicidades, ya cuentas con las asistencias de nivel Oro dentro de Socio SYD. Descubre los beneficios que tienes aqui: www.sociosyd.com.mx';
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
+                if(count($numberEmployees) <= 1 && $totalAmount>=2500){
+                    $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
+                    $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                    $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
                     if(!$client->sms_insurance){
                         if(count($beneficiaries) > 0){
@@ -274,6 +283,11 @@ class DailyJobForCheckInsurance extends Command
                 }
             }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
+                if(count($numberEmployees) === 0 && $totalAmount>=2500){
+                    $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
+                    $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                    $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
                     if(!$client->sms_insurance){
                         if(count($beneficiaries) > 0){
