@@ -8,6 +8,7 @@ use App\Customer;
 use App\Collector;
 use App\CustomersSession;
 use App\CustomerPlatform;
+use App\Exports\DailyReport;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
@@ -1012,35 +1013,42 @@ class CustomerController extends Controller
      *************************************/
 
     public function daily_report(){
-        $from = Carbon::createFromFormat('Y-m-d','2021-09-20');
-        $to   = Carbon::createFromFormat('Y-m-d','2022-01-07');
+
+        //$request = $request->input();
+        //$from = Carbon::createFromFormat('Y-m-d','2021-09-20');
+        //$to   = Carbon::createFromFormat('Y-m-d',$request['to']);
 
         //Get the clients with benefits in current month of the current year
         $registered_clients = DB::table('customers_sessions')
-            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->join('customer_platforms', 'customers_sessions.email', '=', 'customer_platforms.email')
             ->select(
         'customers_sessions.client_number AS numero_cliente',
                  'customers_sessions.branch_number AS numero_destinatario',
-                'customers_sessions.client_type AS tipo_cliente',
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Mecánico Individual",
+                                                        IF(customers_sessions.client_type = 3, "Empleado Dependiente",
+                                                            IF(customers_sessions.client_type = 4, "Cadenas",
+                                                                IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS tipo_cliente'),
                 'customer_platforms.name AS nombre',
                 'customer_platforms.last_name AS apellido_paterno',
                 'customer_platforms.second_last_name AS apellido_materno',
                 'customer_platforms.gender AS genero',
                 'customer_platforms.birthday AS fecha_nacimiento',
                 'customer_platforms.rfc AS rfc',
-                'customer_platforms.company AS razon_socil',
+                'customer_platforms.company AS razon_social',
                 'customer_platforms.RFC_Company AS rfc_compania',
                 'customers_sessions.email AS email',
                 'customers_sessions.created_at AS fecha_registro',
-                'customers_sessions.active AS activado',
+                DB::raw('IF(customers_sessions.active = 0, "0", "1") AS active'),
                 'customers_sessions.mobile AS telefono',
+                DB::raw('(SELECT branches.name FROM branches WHERE branches.id = customer_platforms.branch_id) AS sucursal'),
                 'customer_platforms.cnt AS CNT'
             )
-            ->whereBetween('customers_sessions.created_at', [$from, $to])
+            //->whereBetween('customers_sessions.created_at', [$from, $to])
             ->orderBy('customers_sessions.created_at', 'DESC')
             ->get();
 
-        return Excel::download( new SessionExport( $registered_clients ), 'daily_report.xlsx' );
+        return Excel::download( new DailyReport( $registered_clients ), 'daily_report.xlsx' );
     }
 
     public function seguroAsistencia($level,$total){
