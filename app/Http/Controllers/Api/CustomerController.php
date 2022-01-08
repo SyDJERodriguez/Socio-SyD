@@ -1007,6 +1007,42 @@ class CustomerController extends Controller
     }
 
 
+    /************************************
+            Reports for anlytics
+     *************************************/
+
+    public function daily_report(){
+        $from = Carbon::createFromFormat('Y-m-d','2021-09-20');
+        $to   = Carbon::createFromFormat('Y-m-d','2022-01-07');
+
+        //Get the clients with benefits in current month of the current year
+        $registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+        'customers_sessions.client_number AS numero_cliente',
+                 'customers_sessions.branch_number AS numero_destinatario',
+                'customers_sessions.client_type AS tipo_cliente',
+                'customer_platforms.name AS nombre',
+                'customer_platforms.last_name AS apellido_paterno',
+                'customer_platforms.second_last_name AS apellido_materno',
+                'customer_platforms.gender AS genero',
+                'customer_platforms.birthday AS fecha_nacimiento',
+                'customer_platforms.rfc AS rfc',
+                'customer_platforms.company AS razon_socil',
+                'customer_platforms.RFC_Company AS rfc_compania',
+                'customers_sessions.email AS email',
+                'customers_sessions.created_at AS fecha_registro',
+                'customers_sessions.active AS activado',
+                'customers_sessions.mobile AS telefono',
+                'customer_platforms.cnt AS CNT'
+            )
+            ->whereBetween('customers_sessions.created_at', [$from, $to])
+            ->orderBy('customers_sessions.created_at', 'DESC')
+            ->get();
+
+        return Excel::download( new SessionExport( $registered_clients ), 'daily_report.xlsx' );
+    }
+
     public function seguroAsistencia($level,$total){
         if( (int)$level != 2){
            return ($total > 2500);
