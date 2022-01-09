@@ -2052,7 +2052,7 @@
     cntNumber.addEventListener('input', function (){
         if ( cntNumber.value.length < 7 ) return null;
 
-        if(cntNumber.value !== 'INA2021') {
+        if(cntNumber.value !== 'INA2022') {
             errorCNT.hidden = false;
             setTimeout( function () { errorCNT.hidden = true }, 3500)
         }

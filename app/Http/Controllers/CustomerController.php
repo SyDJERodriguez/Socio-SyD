@@ -65,7 +65,7 @@ class CustomerController extends Controller
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
 
-        if( 'INA2021' !== $request['cnt_number'] ){
+        if( 'INA2022' !== $request['cnt_number'] ){
             return response()->json(['success'=>'false', 'cnt_number'=>'false']);
         }
 
@@ -89,7 +89,7 @@ class CustomerController extends Controller
             ->where('registered', '=',1)
             ->pluck('client_number')->toArray();
         $counter = count($number);
-        $counter_limit = 1055;
+        $counter_limit = 90001025;
         $counter_total = $counter - $counter_limit;
 
         if (!empty($request['client_number'])){
@@ -182,7 +182,7 @@ class CustomerController extends Controller
             'sale_office'       => '0001',
             'transaction_date'  => Carbon::now()->format('Y-m-d'),
             'payment_method'    => '0',
-            'invoce'           => 'INA2021'
+            'invoce'           => 'INA2022'
         ]);
 
         $name = $request['name'].' '.$request['last_name'].' '.$request['second_last_name'];
