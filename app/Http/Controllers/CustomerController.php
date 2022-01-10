@@ -89,7 +89,7 @@ class CustomerController extends Controller
             ->where('registered', '=',1)
             ->pluck('client_number')->toArray();
         $counter = count($number);
-        $counter_limit = 90001025;
+        $counter_limit = 1059;
         $counter_total = $counter - $counter_limit;
 
         if (!empty($request['client_number'])){
