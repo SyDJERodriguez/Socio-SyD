@@ -1033,8 +1033,8 @@ class CustomerController extends Controller
                 'customer_platforms.last_name AS apellido_paterno',
                 'customer_platforms.second_last_name AS apellido_materno',
                 'customer_platforms.gender AS genero',
-                DB::raw('(DATE_FORMAT(customer_platforms.birthday, "%d/%m/%Y")) AS fecha_nacimiento'),
-                //'customer_platforms.birthday AS fecha_nacimiento',
+                //DB::raw('(DATE_FORMAT(customer_platforms.birthday, "%d/%m/%Y")) AS fecha_nacimiento'),
+                'customer_platforms.birthday AS fecha_nacimiento',
                 'customer_platforms.rfc AS rfc',
                 'customer_platforms.company AS razon_social',
                 'customer_platforms.RFC_Company AS rfc_compania',
@@ -1046,17 +1046,21 @@ class CustomerController extends Controller
                 'customer_platforms.cnt AS CNT'
             )
             //->whereBetween('customers_sessions.created_at', [$from, $to])
-            ->orderBy('customers_sessions.created_at', 'DESC')
+            ->orderBy('customers_sessions.created_at', 'ASC')
             ->get();
 
-        /*foreach ($registered_clients as $client){
-            if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === ''){
-                $birthday = explode("-",$client->fecha_nacimiento);
-                $year = substr($birthday[0],2,2);
-                $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+        foreach ($registered_clients as $client){
+            $characters_rfc = strlen($client->rfc);
+            $birthday = explode("-",$client->fecha_nacimiento);
+            $year = substr($birthday[0],2,2);
+            $client->fecha_nacimiento = $birthday[2]."/".$birthday[1]."/".$birthday[0];
+            $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+
+            if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === '' || $characters_rfc<10){
                 $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
             }
-        }*/
+
+        }
 
         return Excel::download( new DailyReport( $registered_clients ), 'daily_report.xlsx' );
     }
