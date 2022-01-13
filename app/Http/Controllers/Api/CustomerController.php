@@ -10,6 +10,7 @@ use App\CustomersSession;
 use App\CustomerPlatform;
 use App\Exports\DailyReport;
 use App\Exports\WithoutBenefitsReport;
+use App\Exports\BeneficiariesReport;
 use App\Helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\Repositories\ClientNumberRepository;
@@ -1170,6 +1171,69 @@ class CustomerController extends Controller
 
         //Response
         return Excel::download( new WithoutBenefitsReport( $all_clients ), 'benefits_report.xlsx' );
+    }
+
+    public function beneficiaries_report(){
+        $beneficiaries = DB::table('beneficiaries')
+            ->join('customer_platforms', 'customer_platforms.id', '=', 'beneficiaries.customer_id')
+            ->join('customers_sessions', 'customers_sessions.email', '=', 'customer_platforms.email')
+            ->select(
+                'customers_sessions.client_number AS numero_cliente',
+                'customers_sessions.branch_number AS numero_destinatario',
+                'customer_platforms.name AS nombre',
+                'customer_platforms.last_name AS apellido_paterno',
+                'customer_platforms.second_last_name AS apellido_materno',
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS tipo_cliente'),
+                'customers_sessions.mobile AS telefono',
+                'customers_sessions.email AS email',
+                'beneficiaries.name AS b_nombre',
+                'beneficiaries.last_name AS b_apellido_paterno',
+                'beneficiaries.second_last_name AS b_apellido_materno',
+                'beneficiaries.percent AS porcentaje',
+                'beneficiaries.relationship AS relacion',
+                'beneficiaries.mobile_number AS b_telefono'
+            )
+            ->get();
+
+        /*$registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customers_sessions.email', '=', 'customer_platforms.email')
+            ->select(
+                'customers_sessions.client_number AS numero_cliente',
+                'customers_sessions.branch_number AS numero_destinatario',
+                'customer_platforms.name AS nombre',
+                'customer_platforms.last_name AS apellido_paterno',
+                'customer_platforms.second_last_name AS apellido_materno',
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS tipo_cliente'),
+                'customers_sessions.mobile AS telefono',
+                'customers_sessions.email AS email',
+                DB::raw('(SELECT beneficiaries.name AS nombre_beneficiario, beneficiaries.name AS nombre_beneficiario,  FROM branches WHERE beneficiaries.customer_id = customer_platforms.id) AS sucursal')
+            )
+            //->whereBetween('customers_sessions.created_at', [$from, $to])
+            ->orderBy('customers_sessions.created_at', 'ASC')
+            ->get();
+
+        foreach ($registered_clients as $client){
+            $characters_rfc = strlen($client->rfc);
+            $birthday = explode("-",$client->fecha_nacimiento);
+            $year = substr($birthday[0],2,2);
+            $client->fecha_nacimiento = $birthday[2]."/".$birthday[1]."/".$birthday[0];
+            $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+
+            if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === '' || $characters_rfc<10){
+                $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
+            }
+
+        }*/
+
+        return Excel::download( new BeneficiariesReport( $beneficiaries ), 'beneficiaries_report.xlsx' );
     }
 
     public function seguroAsistencia($level,$total){
