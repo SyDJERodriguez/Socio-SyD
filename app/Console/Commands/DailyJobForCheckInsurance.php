@@ -106,13 +106,13 @@ class DailyJobForCheckInsurance extends Command
             $gold_messsage = 'Felicidades, ya cuentas con las asistencias de nivel Oro dentro de Socio SYD. Descubre los beneficios que tienes aqui: www.sociosyd.com.mx';
             if($client->type_user === '1'){
                 $client->type_user = 'Dueño de Negocio';
-                if(count($numberEmployees) <= 1 && $totalAmount>=2500){
-                    $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
-                    $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
-                    $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
-                }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
                     if(!$client->sms_insurance){
+                        if(count($numberEmployees) <= 1){
+                            $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
+                            $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                        }
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
@@ -283,13 +283,13 @@ class DailyJobForCheckInsurance extends Command
                 }
             }else if($client->type_user === '4'){
                 $client->type_user = 'Cadenas';
-                if(count($numberEmployees) === 0 && $totalAmount>=2500){
-                    $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
-                    $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
-                    $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
-                }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
                     if(!$client->sms_insurance){
+                        if(count($numberEmployees) === 0){
+                            $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
+                            $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                        }
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
@@ -346,7 +346,7 @@ class DailyJobForCheckInsurance extends Command
             }else if($client->type_user === '5'){
                 $client->type_user = 'Publico General';
                 if ($totalAmount>=200 && $totalAmount<=500) {
-                    if(!$client->sms_insurance){
+                    if(!$client->sms_insurance){                        
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
