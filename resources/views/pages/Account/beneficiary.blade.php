@@ -147,7 +147,7 @@
                                         <div class="col-lg-12">
                                             <h6>BENEFICIARIO 2</h6>
                                         </div>
-                                        
+
                                         <div class="col-lg-6 py-2">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
@@ -192,8 +192,8 @@
                                            style="background-color: #009CE0;" value="CONFIRMAR">
                                 </div>
                             </form>
-                    @else
 
+                    @else
                     <div class="modal-body " style="background-color: #143153;">
                         <div class="row">
                             <div class="col-lg-12 text-center">
