@@ -25,7 +25,7 @@
                     <div class="row"
                     style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px">
                         @if(isset($error))
-                            <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
+                            <div class="alert alert-danger col-12" id="form_alert" role="alert" style="border-radius: 6px;" >
                                 <strong>{{$error}}</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
                             </div>
@@ -54,15 +54,14 @@
                                     </div>
                                 </div>
                             </div>
-                    @elseif($level <= 0 && $is_cnt !== 'true')
-                        <div class="modal-body " style="background-color: #143153;">
+                     <!--   <div class="modal-body " style="background-color: #143153;">
                             <div class="row">
                                 <div class="col-lg-12 text-center">
                                     <h5 class="text-white">¡AÚN NO TIENES DERECHO A LOS BENEFICIOS DEL SEGURO!</h5>
                                     <p class="text-white"></p>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         {{-- SPECIAL WEEK --}}
                     @else( /*$level != 0 || (Auth::user()->created_at >= new Datetime("15-08-2021") && Auth::user()->created_at <= new Datetime("30-08-2021"))*/ )
                             {{-- Modal BeneficiarySignUp --}}
