@@ -162,3 +162,4 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 
 //Reports analytics
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
+Route::get('without_benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('without_benefits_report');
