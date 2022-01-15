@@ -2375,12 +2375,24 @@ class CustomerController extends Controller
         $current_year = $now->year;
         $previus_month=$now->month - 1;
 
-        $data_customer_before = DB::table('transactions')
-        ->where('client_number', $dataSession['client_number'])
-        ->where('branch_number', $dataSession['branch_number'])
-        ->whereMonth('transaction_date','=',$previus_month)
-        ->whereYear('transaction_date', '=', $current_year )
-        ->get();
+        if ($previus_month == 0) {
+            $current_year = $now->year-1;
+            $previus_month =$now->month + 11;
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
+        else{
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        } 
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -2522,12 +2534,24 @@ class CustomerController extends Controller
         $current_year = $now->year;
         $previus_month=$now->month - 1;
 
-        $data_customer_before = DB::table('transactions')
-        ->where('client_number', $dataSession['client_number'])
-        ->where('branch_number', $dataSession['branch_number'])
-        ->whereMonth('transaction_date','=',$previus_month)
-        ->whereYear('transaction_date', '=', $current_year )
-        ->get();
+        if ($previus_month == 0) {
+            $current_year = $now->year-1;
+            $previus_month =$now->month + 11;
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
+        else{
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
 
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -2662,12 +2686,24 @@ class CustomerController extends Controller
         $current_year = $now->year;
         $previus_month=$now->month - 1;
 
-        $data_customer_before = DB::table('transactions')
-        ->where('client_number', Auth::user()->client_number)
-        ->where('branch_number', Auth::user()->branch_number)
-        ->whereMonth('transaction_date','=',$previus_month)
-        ->whereYear('transaction_date', '=', $current_year )
-        ->get();
+        if ($previus_month == 0) {
+            $current_year = $now->year-1;
+            $previus_month =$now->month + 11;
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
+        else{
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
 
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
@@ -2939,12 +2975,24 @@ class CustomerController extends Controller
         $current_year = $now->year;
         $previus_month=$now->month - 1;
 
-        $data_customer_before = DB::table('transactions')
-        ->where('client_number', Auth::user()->client_number)
-        ->where('branch_number', Auth::user()->branch_number)
-        ->whereMonth('transaction_date','=',$previus_month)
-        ->whereYear('transaction_date', '=', $current_year )
-        ->get();
+        if ($previus_month == 0) {
+            $current_year = $now->year-1;
+            $previus_month =$now->month + 11;
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
+        else{
+            $data_customer_before = DB::table('transactions')
+            ->where('client_number', Auth::user()->client_number)
+            ->where('branch_number', Auth::user()->branch_number)
+            ->whereMonth('transaction_date','=',$previus_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+        }
 
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
