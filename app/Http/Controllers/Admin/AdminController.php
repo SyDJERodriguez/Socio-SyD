@@ -160,7 +160,7 @@ class AdminController extends Controller
            ->whereYear('transaction_date', '=', $current_year )
            ->get();
         }
-
+        $current_year = $now->year;
         $transactions = DB::table('transactions')
             ->where('client_number', $client_number)
             ->where('branch_number', $branch_number)
@@ -323,7 +323,7 @@ class AdminController extends Controller
                ->get();
             }
 
-
+            $current_year = $now->year;
             $transactions = DB::table('transactions')
                 ->where('client_number', $client_number)
                 ->where('branch_number', $branch_number)
@@ -473,7 +473,7 @@ class AdminController extends Controller
            ->whereYear('transaction_date', '=', $current_year )
            ->get();
         }
-
+        $current_year = $now->year;
         $transactions = DB::table('transactions')
             ->where('client_number', $client_number)
             ->where('branch_number', $branch_number)

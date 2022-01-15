@@ -2393,7 +2393,7 @@ class CustomerController extends Controller
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
         } 
-
+        $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
             ->where('branch_number', $dataSession['branch_number'])
@@ -2552,7 +2552,7 @@ class CustomerController extends Controller
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
         }
-
+        $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
             ->where('branch_number', $dataSession['branch_number'])
@@ -2704,7 +2704,7 @@ class CustomerController extends Controller
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
         }
-
+        $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
             ->where('branch_number', Auth::user()->branch_number)
@@ -2993,7 +2993,7 @@ class CustomerController extends Controller
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
         }
-
+        $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', Auth::user()->client_number)
             ->where('branch_number', Auth::user()->branch_number)

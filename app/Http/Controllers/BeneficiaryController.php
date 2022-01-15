@@ -113,6 +113,7 @@ class BeneficiaryController extends Controller
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
         }
+        $current_year = $now->year;
         $totalAmount_before = 0.0;
         foreach ($data_customer_before as $transaction){
             $amount_customer_before = floatval($transaction->amount);
