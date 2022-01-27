@@ -364,7 +364,8 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <p><i class="fas fa-exclamation" style="font-size: 28px;color: #00A1E3"></i></p>
-                                    <h5 class="text-white">Para tener acceso a tus documentos, es necesario que alcances el mínimo de compra mensual</h5>
+                                    <h5 class="text-white">Las compras realizadas el mes de {{sprintf($last_month)}} no fueron suficientes para obtener tus beneficios y ver tu póliza.</h5>
+                                    <h5 class="text-white">Recuerda que tus compras del mes de {{$this_month}} te darán tu seguro y beneficios de asistencias para el mes de {{$next_month}}</h5>
                                 <br>
                             </div>
                         </div>

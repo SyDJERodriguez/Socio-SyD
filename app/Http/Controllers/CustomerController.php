@@ -2210,13 +2210,38 @@ class CustomerController extends Controller
                 ->where('customer_id', '=', $customer->id)
                 ->get();
         }
-        $now = Carbon::now();
-        $current_month = $now->month;
+        $now = Carbon::now()->locale('es');
+        $current_year = $now->year;
+        $previus_month =$now->month -1;
+        $this_month=$now->monthName;
+        $name_next_month = new Carbon('next month');
+        $next_month=$name_next_month->monthName;
+        $name_last_month = new Carbon('last month');
+        $last_month=$name_last_month->monthName;
+       // $current_month = $now->month;
+       if ($previus_month == 0) {
+        $current_year = $now->year-1;
+        $previus_month =$now->month + 11;
         $data_customer = DB::table('transactions')
         ->where('branch_number', '=', Auth::user()->branch_number)
-        ->whereMonth('transaction_date','=',$current_month)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
         ->get();
-        $totalAmount = $this->totalAmount();
+       }
+       else {
+        $data_customer = DB::table('transactions')
+        ->where('branch_number', '=', Auth::user()->branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
+       }
+        $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            //}
+        }
         /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
@@ -2250,7 +2275,7 @@ class CustomerController extends Controller
         $total = $totalAmount;
         //dd($beneficiaries);
 
-        return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries'));
+        return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries','data_customer','last_month','this_month','next_month'));
     }
 
     //get transactions by branch_number or client_number
