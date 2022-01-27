@@ -3582,4 +3582,23 @@ class CustomerController extends Controller
         return view('pages.invitationForm', compact('employee','total','noti','branches'));
     }
 
+    public function unsuscribe(Request $request){
+        $updated = DB::table('customers_sessions')
+            ->where('id', '=', Auth::user()->id)
+            ->update(['unsuscribe' => 1,
+                      'date_unsuscribe' => date('Y-m-d H:i:s')
+            ]);
+
+        if (!$updated){
+            return view('pages.Account.status');
+        }
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+
+        return $this->loggedOut($request) ?: redirect('/');
+
+    }
+
 }
