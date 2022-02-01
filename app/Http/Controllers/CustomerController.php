@@ -819,21 +819,23 @@ class CustomerController extends Controller
         $validated = false;
         $limiteAsociados = false;
         //calculated the limit of employees
-        if( $limit >= 0 /*2500*/ && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees < 8 ){ //bronce
             $validated = true;
-        }else if($limit >= 0 /*4500*/ && $limit <= 7000 && $numberEmployees < 4){ //plata
+        }
+         /*else if($limit >= 0 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
-        }
+        }*/
 
-        if( $limit >= 0 /*2500*/ && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500 */ && $numberEmployees == 8 ){ //bronce
             $limiteAsociados = true;
-        }else if($limit >= 0 /*4500*/ && $limit <= 7000 && $numberEmployees == 4){ //plata
+        }
+       /* else if($limit >= 0 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
             $limiteAsociados = true;
         }else if($limit > 7000 && $numberEmployees == 8){ //oro
             $limiteAsociados = true;
-        }
+        }*/
 
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
@@ -3355,21 +3357,25 @@ class CustomerController extends Controller
         $validated = false;
         $limiteAsociados = false;
         //calculated the limit of employees
-        if( $limit >= 0 /*2500*/ && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees < 8 ){ //bronce
             $validated = true;
-        }else if($limit >= 0 /* 4500*/ && $limit <= 7000 && $numberEmployees < 4){ //plata
+        }
+        /*else if($limit >=   4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
         }
+        */
 
-        if( $limit >= 0 /*2500*/ && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees == 8 ){ //bronce
             $limiteAsociados = true;
-        }else if($limit >= 0 /*4500*/ && $limit <= 7000 && $numberEmployees == 4){ //plata
+        }
+        /*else if($limit >=  4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
             $limiteAsociados = true;
         }else if($limit > 7000 && $numberEmployees == 8){ //oro
             $limiteAsociados = true;
         }
+        */
 
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
