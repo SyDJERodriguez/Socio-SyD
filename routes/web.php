@@ -18,7 +18,7 @@ Route::get('/', function () {
     $branches = DB::table('branches')
                 ->orderBy('name','ASC')
                 ->get();
-    $popup= true;
+    $popup= false;
 
 return view('pages.home', compact('branches','popup'));
 })->name('home');
@@ -162,3 +162,5 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 
 //Reports analytics
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
+Route::get('benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('benefits_report');
+Route::get('beneficiaries_report', [\App\Http\Controllers\Api\CustomerController::class,'beneficiaries_report'])->name('beneficiaries_report');
