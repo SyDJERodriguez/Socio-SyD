@@ -58,6 +58,9 @@
                         </li>-->
                     @else
                     @if (Auth::user()->type_user==1)
+                        <a class="nav-link " href="{{ route('admin.search.index') }}">
+                        Registrar dependientes
+                        </a>
                         <a class="nav-link " href="{{ route('admin.total.registers') }}">
                             Registros
                         </a>

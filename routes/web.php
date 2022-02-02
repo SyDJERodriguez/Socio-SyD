@@ -146,6 +146,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/logSesiones', 'Admin\InsertLogController@logSessions')->name('consultLogSessions');
         Route::get('/logBusquedas', 'Admin\InsertLogController@logSearches')->name('consultLogSearches');
         Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
+        Route::get('/search', 'Admin\AdminControllersearch@index')->name('search.index');
         Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
         Route::get('/branch', 'Admin\AdminController@search_by_branch')->name('search.branch');
