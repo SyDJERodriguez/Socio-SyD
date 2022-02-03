@@ -192,14 +192,14 @@
         <form autocomplete="off" id="addEmployeeFormbranch" method="POST" action="{{route('addEmployeebranch')}}">
             @method("PUT")
             @csrf
-            <input type="text" name="client_number" value="{{ isset($client_number) ? $client_number : null }}"> 
-            <input type="text" name="email_auth" value="{{$customerData->email}}"> 
-            <input type="text" name="client_type" value="{{$account->client_type}}">
-            <input type="text" name="mobile_auth" value="{{$customerData->mobile_number}}">
-            <input type="text" name="customer_id" value="{{$customerData->id}}">
-            <input type="text" name="nameClient" value="{{$customerData->name}}">
-            <input type="text" name="lastNameClient" value="{{$customerData->last_name}}">
-            <input type="text" name="branch_number" value="{{ isset($client_number) ? $client_number : null }}">
+            <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}"> 
+            <input type="hidden" name="email_auth" value="{{$customerData->email}}"> 
+            <input type="hidden" name="client_type" value="{{$account->client_type}}">
+            <input type="hidden" name="mobile_auth" value="{{$customerData->mobile_number}}">
+            <input type="hidden" name="customer_id" value="{{$customerData->id}}">
+            <input type="hidden" name="nameClient" value="{{$customerData->name}}">
+            <input type="hidden" name="lastNameClient" value="{{$customerData->last_name}}">
+            <input type="hidden" name="branch_number" value="{{ isset($client_number) ? $client_number : null }}">
             <div class="form-group">
                 <div class="row">
                     <div class="col-6">
@@ -277,7 +277,7 @@
                 <img src="{{asset('img/icon_check.png')}}">
                 <br>
                 <br>
-                <h5 class="text-white">¡Aún no cuentas con los beneficios de Socio SYD o llegaste al límite de usuarios!</h5>
+                <h5 class="text-white">¡Llegaste al límite de usuarios!</h5>
                 <br>
                 <p class="text-white"></p>
             </div>
