@@ -108,7 +108,7 @@ class AdminControllersearch extends Controller
 
         if ( $customerDatabranch->isEmpty() ){
            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-           return view('Admin.customer', compact('error'));
+           return view('Admin.customersearch', compact('error'));
         }
 
         if( count($customerDatabranch) > 1 ){
@@ -116,7 +116,7 @@ class AdminControllersearch extends Controller
                             ->where('client_number','=', $branch_number)
                             ->get();
                             //aquí es indexbranch para el select
-            return view('Admin.indexbranch', compact('branches'));
+            return view('Admin.indexbranchtwo', compact('branches'));
         }
 
         $email = $customerData[0]->email;
@@ -127,7 +127,7 @@ class AdminControllersearch extends Controller
 
         if (empty($account)){
             $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-            return view('Admin.customer', compact('error'));
+            return view('Admin.customersearch', compact('error'));
         }
 
         $customerData = DB::table('customer_platforms')
@@ -262,10 +262,16 @@ class AdminControllersearch extends Controller
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
+        
+            $numberEmployees =  $number = DB::table('associates')
+            ->where('client_number','=', $client_number)
+            ->where('branch_number','=', $branch_number)
+            ->where('active_association','=',1)
+            ->count();
 
         //TODO: If tiene has($customerData) mas de  un registro, entonces mostrar su nombre y correo
-        return view('Admin.customer',
-                    compact('client_number', 'account', 'transactions', 'totalAmount',
+        return view('Admin.customersearch',
+                    compact('numberEmployees','client_number', 'account', 'transactions', 'totalAmount',
                             'customerData', 'level', 'associates','level_before'));
     }
 
@@ -283,7 +289,7 @@ class AdminControllersearch extends Controller
 
             if (empty($account)){
                 $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-                return view('Admin.customer', compact('error'));
+                return view('Admin.customersearch', compact('error'));
             }
 
             $client_number = $account->client_number;
@@ -421,7 +427,13 @@ class AdminControllersearch extends Controller
                 ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
                 ->get();
 
-            return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+                $numberEmployees =  $number = DB::table('associates')
+                ->where('client_number','=', $client_number)
+                ->where('branch_number','=', $branch_number)
+                ->where('active_association','=',1)
+                ->count();
+
+            return view('Admin.customersearch', compact('numberEmployees','client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
         }
 
     // Function for search by email
@@ -435,7 +447,7 @@ class AdminControllersearch extends Controller
 
         if (empty($account)){
             $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-            return view('Admin.customer', compact('error'));
+            return view('Admin.customersearch', compact('error'));
         }
 
         $client_number = $account->client_number;
@@ -571,7 +583,13 @@ class AdminControllersearch extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customer', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+            $numberEmployees =  $number = DB::table('associates')
+            ->where('client_number','=', $client_number)
+            ->where('branch_number','=', $branch_number)
+            ->where('active_association','=',1)
+            ->count();
+
+        return view('Admin.customersearch', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before','numberEmployees'));
     }
 
     //function search by dependent
@@ -636,7 +654,7 @@ class AdminControllersearch extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customer',
+        return view('Admin.customersearch',
         compact('client_number', 'account', 'transactions', 'totalAmount',
                 'customerData', 'level', 'associates'));
     }

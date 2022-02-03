@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-12" style="display: flex; justify-content: center;">
-                                <form method="GET" action="{{route('admin.search.client.number')}}">
+                                <form method="GET" action="{{route('admin.search.client.numbertwo')}}">
                                     @csrf
                                     <label for="client_number" class="col-form-label text-md-right">No. de cliente o Número de destinatario</label>
 
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12" style="display: flex; justify-content: center;">
-                                <form method="GET" action="{{route('admin.search.email')}}">
+                                <form method="GET" action="{{route('admin.search.emailtwo')}}">
                                     @csrf
                                     <label for="email" class="col-md-8 col-form-label text-md-right">Email</label>
                                     <div class="col-md-12">
