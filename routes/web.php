@@ -162,7 +162,7 @@ Route::get('/searchBeneficiary', 'Admin\SearchBeneficiaryController@index')->nam
 Route::get('/BeneficiaryClient_number', 'Admin\SearchBeneficiaryController@search_by_number')->name('beneficiary.search.client.number');
 Route::get('/BeneficiaryEmail', 'Admin\SearchBeneficiaryController@search_by_email')->name('beneficiary.search.email');
 Route::get('/BeneficiaryBranch', 'Admin\SearchBeneficiaryController@search_by_branch')->name('beneficiary.search.branch');
-Route::post('add/beneficiaries', 'CustomerBeneficiaryController@add_beneficiaries')->name('beneficiary.add');
+Route::post('add/beneficiaries', 'Admin\CustomerBeneficiaryController@add_beneficiaries')->name('beneficiary.add');
 });
 //Reports for Telasist and Chubb
 Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');

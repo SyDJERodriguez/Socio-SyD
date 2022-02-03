@@ -421,7 +421,12 @@ class SearchBeneficiaryController extends Controller
                 ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
                 ->get();
 
-            return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+                $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id','=',  $id)
+                ->get();
+               
+
+            return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before','beneficiaries'));
         }
 
     // Function for search by email
@@ -571,7 +576,12 @@ class SearchBeneficiaryController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id','=', $id )
+            ->get();
+        
+
+        return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before' , 'beneficiary'));
     }
 
     //function search by dependent
