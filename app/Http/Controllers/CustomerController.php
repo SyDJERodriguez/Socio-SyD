@@ -12,7 +12,7 @@ use App\CustomerCollectorDetail;
 use App\Collector;
 use App\CustomerStage;
 use App\Helpers\CustomersService;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use App\Helpers\Utils;
 use App\LogRegisters;
 use App\Mail\contactMail;
@@ -499,7 +499,8 @@ class CustomerController extends Controller
 
                 $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
 
-                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage,'+52'.$request['mobile_auth']);
                 Mail::send('emails.allEmployees',[], function($m) use ($email){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
@@ -758,7 +759,8 @@ class CustomerController extends Controller
 
                 $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
 
-                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage,'+52'.$request['mobile_auth']);
                 Mail::send('emails.allEmployees',[], function($m) use ($email){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
@@ -1693,7 +1695,8 @@ class CustomerController extends Controller
         $url = url('account/verify/' . $data->branch_number);
         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
-        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
 
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
@@ -1719,7 +1722,8 @@ class CustomerController extends Controller
          $url = url('account/verify/' . $information->branch_number);
          $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
-         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        //  TwilioService::send_sms
+         C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1776,7 +1780,8 @@ class CustomerController extends Controller
 
 
         try {
-            TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$data[0]->mobile);
 
             $data = CustomerPlatform::where('email', $email)->first();
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
@@ -1789,13 +1794,15 @@ class CustomerController extends Controller
             });
 
             if($client_type === '1' || $client_type === '4'){
-                TwilioService::send_sms($messsage_three,'+52'.$mobile);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage_three,'+52'.$mobile);
                 \Mail::send('emails.companyBenefits',['data'=>$data], function($m) use ($data){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta con Colaboradores en Socio SyD');
                 });
             }elseif ($client_type === '2' || $client_type === '5'){
-                TwilioService::send_sms($messsage_two,'+52'.$mobile);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage_two,'+52'.$mobile);
                 \Mail::send('emails.individualBenefits',['data'=>$data], function($m) use ($data){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta Individual en Socio SyD');
@@ -1945,7 +1952,8 @@ class CustomerController extends Controller
         $url = url('password/edit/'.$dataSession['email']);
         $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
 
-        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1982,7 +1990,8 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
         try {
-            TwilioService::send_sms($messsage,'+52'.$data->mobile_number);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$data->mobile_number);
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
@@ -2006,7 +2015,8 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
         $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinion, puedes reactivar tu cuenta.';
 
-        TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.Auth::user()->mobile);
         \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
             $m->from('sociosyd@syd.com.mx',"Socio SYD");
             $m->to($data->email, $data->name.' '.$data->last_name)->subject('Tu cuenta ha sido dada de baja del programa Socio SYD');
@@ -3438,8 +3448,9 @@ class CustomerController extends Controller
         $code = rand(111111,999999);
         $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
-        $response = TwilioService::send_sms($messsage,'+52'.$mobile);
-
+        //$response = TwilioService::send_sms($messsage,'+52'.$mobile);        
+        $response = C3ntroService::sendSMS($messsage, '+52'.$mobile);
+       
         if($response){
             return response()->json($code);
         }else{
@@ -3527,7 +3538,8 @@ class CustomerController extends Controller
 
         $messsage = 'Te han invitado a ser parte del programa Socio SYD como colaborador de un negocio.';
 
-        TwilioService::send_sms($messsage,'+52'.$data['mobile_number']);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$data['mobile_number']);
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");

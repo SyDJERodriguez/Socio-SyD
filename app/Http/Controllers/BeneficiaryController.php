@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CustomersSession;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\CustomerPlatform;
@@ -694,7 +694,8 @@ class BeneficiaryController extends Controller
         $messsage = 'Ya estas asegurado con el programa Socio SYD. Descarga tu poliza de Seguro de Accidentes Personales aqui: '.$url;
 
         try {
-            TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
             \Mail::send('emails.beneficiariesAdded',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Haz registrado exitosamente a tus beneficiarios en el programa de lealtad SYD');

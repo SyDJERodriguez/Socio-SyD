@@ -27,7 +27,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\Exports\SessionExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use function GuzzleHttp\Promise\all;
 use PDF;
 use Illuminate\Support\Facades\Storage;
@@ -86,7 +86,8 @@ class CustomerController extends Controller
            /* if($client->client_type === '2'){
                 if ($totalAmount>200){*/
                    // try {
-                        TwilioService::send_sms($messsage,'+52'.$client->mobile);
+                        // TwilioService::send_sms
+                        C3ntroService::sendSMS($messsage,'+52'.$client->mobile);
                         $result['certificados_enviados']++;
 
                         \Mail::send("emails.emailPoliza", ['client'=>$client], function($m) use ($client){
@@ -1270,7 +1271,8 @@ class CustomerController extends Controller
         $url = url('account/verify/' . $data->branch_number);
         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
-        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
 
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
