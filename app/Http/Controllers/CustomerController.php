@@ -70,13 +70,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        //$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
-        if ($validate_dns <= 0){
+        /*if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
@@ -364,13 +364,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
@@ -541,13 +541,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         $verify_mobile_number = CustomerPlatform::where('mobile_number', $request['mobile_number'])->first();
@@ -624,13 +624,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
@@ -1001,13 +1001,13 @@ class CustomerController extends Controller
 
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
        // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
 
         if ($passwordVerify !== $passwordConfirm){
@@ -1261,13 +1261,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
+       /* $domain = explode('@', $request['email']);
         $validate_dns = sizeof(dns_get_record($domain[1]));
 
        // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
@@ -1589,13 +1589,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
+        /*$domain = explode('@', $request['email']);
         $validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return redirect()->back()->with('msg', 'Correo electrónico no válido');
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return redirect()->back()->with('msg', 'Las contraseñas no coinciden.');
@@ -2392,7 +2392,7 @@ class CustomerController extends Controller
             ->whereMonth('transaction_date','=',$previus_month)
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
-        } 
+        }
         $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
