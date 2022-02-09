@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Illuminate\Console\Command;
 
 class SmsTest extends Command
@@ -40,6 +40,6 @@ class SmsTest extends Command
     {
         $url = url('account/verify/000000001');
         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url.'Desde el jon';
-        return TwilioService::send_sms($messsage,'+529211400440');
+        return C3ntroService::sendSMS($messsage,'+529211400440');
     }
 }
