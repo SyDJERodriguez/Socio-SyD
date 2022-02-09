@@ -66,6 +66,57 @@ class BeneficiaryController extends Controller
         ])->stream($customer->id.'.pdf');
     }
 
+    //Function to generate PDF by Email
+    public function generatePDFEmail($email) {
+
+        $customer_session = DB::table('customers_sessions')
+            ->where('email','=', $email)
+            ->first();
+
+        $id = $customer_session->id;
+
+        $customer = DB::table('customer_platforms')
+            ->where('email', '=', $customer_session->email)
+            ->first();
+
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('customer_id', '=', $id)
+            ->first();
+
+        if ($customer_session->client_type === "3"){
+            $customer = DB::table('customer_platforms')
+                ->where('email', '=', $customer_session->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $id)
+                ->first();
+        }
+
+        $initDate = new Carbon('first day of this month');
+
+        $finDate = new Carbon('last day of this month');
+
+        $currentDate = Carbon::parse()->locale('es');
+        // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
+    }
+
     public function add_beneficiaries (Request $request) {
         $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
         $data->branch_number = Auth::user()->branch_number;
