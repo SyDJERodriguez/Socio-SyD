@@ -156,6 +156,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/two/branch', 'Admin\AdminControllersearch@search_by_branch')->name('search.branchtwo');
         Route::get('/two/{id}', 'Admin\AdminControllersearch@search_dependent')->name('search.dependenttwo');
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
+        Route::put('/addEmployesearch', 'CustomerController@addEmployesearch')->name('addEmployesearch');
+        Route::get('/addsuccessearch', function () {
+            return view('pages.success');
+      })->name('addsuccessearch');
+
     });
 });
 

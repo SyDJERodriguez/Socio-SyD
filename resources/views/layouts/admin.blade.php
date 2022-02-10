@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -125,6 +125,37 @@
 
 </body>
 </html>
+<script>
+    
+    let button  = document.querySelector('#buttonconf');
+    let mobileInput  = document.querySelector('#mobileuser');
+    let inputCodeMec = document.querySelector('#codeMec');
+    let requiredCode = document.querySelector('#requiredSignal');
+   // let hostName     = window.location.origin+"/send_sms_verification/";
+    let codeConfirm  = document.querySelector('#codeMecConfirm');
+
+        button.addEventListener('click', function (){
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            console.log(this.response)
+            if (this.readyState == 4 && this.status == 200) {
+                codeConfirm.value = this.response;
+            }
+        };
+
+     //   let url = hostName+mobileInput.value;
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        requiredCode.hidden = false;
+       // setTimeout(() =>{alertCode.hidden = true},3500);
+        inputCodeMec.type = 'text';
+    });
+    
+    
+    
+</script>
 <script>
 $.noConflict();
 jQuery(document).ready(function($){

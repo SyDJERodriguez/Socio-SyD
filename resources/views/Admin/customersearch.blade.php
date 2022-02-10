@@ -92,15 +92,15 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12" style="display: flex;">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <p>Nombre: <b>{{$customerData->name.' '.$customerData->last_name.' '.$customerData->second_last_name}}</b></p>
                 </div>
                 @if(Auth::user()->type_user == '1' || Auth::user()->type_user == '2')
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <p>Email: <b>{{$customerData->email}}</b></p>
                     </div>
-                    <div class="col-md-4">
-                        <p>Número telefónico: <b>{{$customerData->mobile_number}}</b></p>
+                    <div class="col-sm-4">
+                        <p>Telefónico: <b>{{$customerData->mobile_number}}</b></p>
                     </div>
                 @endif
             </div>
@@ -184,18 +184,18 @@
     @if ($numberEmployees <8)
     <div class="container">
         <h5 class="text-uppercase" id="title">ALTA EMPLEADO</h5>
-        <div class="alert alert-danger" id="form_alert_phone_text_AEF" role="alert" style="border-radius: 6px;" hidden>
+        <div class="alert alert-danger" id="form_alert_phone_text_search" role="alert" style="border-radius: 6px;" hidden>
         </div>
-        <div class="alert alert-danger" id="form_alert_dns_AEF" role="alert" style="border-radius: 6px;" hidden>
+        <div class="alert alert-danger" id="form_alert_dns_search" role="alert" style="border-radius: 6px;" hidden>
         </div>
         <br>
-        <form autocomplete="off" id="addEmployeeFormbranch" method="POST" action="{{route('addEmployeebranch')}}">
+        <form autocomplete="off" id="addEmployeeFormsearch" method="POST" action="{{route('admin.addEmployesearch')}}">
             @method("PUT")
             @csrf
             <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}"> 
             <input type="hidden" name="email_auth" value="{{$customerData->email}}"> 
             <input type="hidden" name="client_type" value="{{$account->client_type}}">
-            <input type="hidden" name="mobile_auth" value="{{$customerData->mobile_number}}">
+            <input id="mobileuser" type="hidden" name="mobile_auth" value="{{$customerData->mobile_number}}">
             <input type="hidden" name="customer_id" value="{{$customerData->id}}">
             <input type="hidden" name="nameClient" value="{{$customerData->name}}">
             <input type="hidden" name="lastNameClient" value="{{$customerData->last_name}}">
@@ -265,11 +265,47 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-3">  
+            </div>
                 <div class="row" style="justify-content: center">
-                        <button type="submit" id="btnSend2" class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">ACEPTAR</button>
+                        <button  class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;" id="buttonconf" data-toggle="modal" data-target="#modalClientType">ACEPTAR</button>
                 </div>
-        </form>
-    </div>
+             <!-- Modal Confirm-->
+             <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType"
+                  aria-hidden="true" >
+                  <div class="modal-dialog modal-sm" role="document" >
+                     <div class="modal-content" >
+                        <div class="modal-header d-flex flex-row-reverse" style="padding: -0px">
+                          <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+                        </div>
+                     <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+                       <div class="row mt-4 mx-2">
+                          <div class="col-12">
+                           <h5 class="md2-heading" style="color: #143153;"><b>Código de confirmación</b></h5>
+                          </div>
+                       </div>
+                     <div class="form-group" style="justify-content: center;">
+                        <br>
+                      <div class="input-group mb-3" style="margin-top: 1rem">
+                         <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
+                             id="codeMec" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                         <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
+                             id="codeMecConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                         <p style="color: red; margin: 0;" hidden id="requiredSignal">*</p>
+                       </div> 
+                       <button type="submit" class="btn btn-info" id="Sendbtn"
+                       style="width: 180px; font-size: 12px; ">Aceptar</button>          
+                        <br>
+                     </div>
+                   </div>
+                  </div>
+                 </div>
+            </div>
+            <!--modal end -->
+
+       </form>
+</div>
+
     @else 
     <div class="modal-body " style="background-color: #143153;">
         <div class="row">
@@ -287,6 +323,7 @@
 </div>
 </div>
 <!-- Content End -->
+
             
         @else
         <h2>Esta cuenta no puede registrar colaboradores porque es individual</h2>  
@@ -295,5 +332,7 @@
            
 
         @endif
+        
     </div>
+
 @endsection
