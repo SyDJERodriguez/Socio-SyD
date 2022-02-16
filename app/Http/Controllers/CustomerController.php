@@ -593,6 +593,11 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
+        if($request['verification_code'] != $request['confirm_code']){
+            //name, last name or second last name is empty
+            return response()->json(['success'=>'false', 'other'=>'false', 'error'=>'Código de verificación incorrecto']);
+        }
+
         if( $age < 14 == true || $age > 120 == true){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
@@ -758,7 +763,7 @@ class CustomerController extends Controller
 
                 $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
 
-                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                C3ntroService::sendSMS($messsage,'+52'.$request['mobile_auth']);
                 Mail::send('emails.allEmployees',[], function($m) use ($email){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");

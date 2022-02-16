@@ -180,95 +180,94 @@
             </p>
         </div>
          <!-- Content Start -->
-<div class="container-fluid" style="display: flex; justify-content: center; padding: 50px 0;">
-    @if ($numberEmployees <8)
-    <div class="container">
-        <h5 class="text-uppercase" id="title">ALTA EMPLEADO</h5>
-        <div class="alert alert-danger" id="form_alert_phone_text_search" role="alert" style="border-radius: 6px;" hidden>
-        </div>
-        <div class="alert alert-danger" id="form_alert_dns_search" role="alert" style="border-radius: 6px;" hidden>
-        </div>
-        <br>
-        <form autocomplete="off" id="addEmployeeFormsearch" method="POST" action="{{route('admin.addEmployesearch')}}">
-            @method("PUT")
-            @csrf
-            <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}"> 
-            <input type="hidden" name="email_auth" value="{{$customerData->email}}"> 
-            <input type="hidden" name="client_type" value="{{$account->client_type}}">
-            <input id="mobileuser" type="hidden" name="mobile_auth" value="{{$customerData->mobile_number}}">
-            <input type="hidden" name="customer_id" value="{{$customerData->id}}">
-            <input type="hidden" name="nameClient" value="{{$customerData->name}}">
-            <input type="hidden" name="lastNameClient" value="{{$customerData->last_name}}">
-            <input type="hidden" name="branch_number" value="{{ isset($client_number) ? $client_number : null }}">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
-                        <input class="form-control-sm form-control nameInput" type="text"
+    <div class="container-fluid" style="display: flex; justify-content: center; padding: 50px 0;">
+      @if ($numberEmployees <8)
+         <div class="container">
+           <h5 class="text-uppercase" id="title">ALTA EMPLEADO</h5>
+           <div class="alert alert-danger" id="form_alert_phone_text_search" role="alert" style="border-radius: 6px;" hidden>
+           </div>
+           <div class="alert alert-danger" id="form_alert_dns_search" role="alert" style="border-radius: 6px;" hidden>
+           </div>
+           <div class="alert alert-danger" id="error_code_br" role="alert" style="border-radius: 6px;" hidden></div>
+           <br>
+         <form autocomplete="off" id="addEmployesearch" method="POST" action="{{route('admin.addEmployesearch')}}">
+              @method("PUT")
+              @csrf
+              <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}"> 
+              <input type="hidden" name="email_auth" value="{{$customerData->email}}"> 
+              <input type="hidden" name="client_type" value="{{$account->client_type}}">
+              <input id="mobileuser" type="hidden" name="mobile_auth" value="{{$customerData->mobile_number}}">
+              <input type="hidden" name="customer_id" value="{{$customerData->id}}">
+              <input type="hidden" name="nameClient" value="{{$customerData->name}}">
+              <input type="hidden" name="lastNameClient" value="{{$customerData->last_name}}">
+              <input type="hidden" name="branch_number" value="{{ isset($client_number) ? $client_number : null }}">
+              <div class="form-group">
+                 <div class="row">
+                     <div class="col-6">
+                          <input class="form-control-sm form-control nameInput" type="text"
                                 name="name"
                                 placeholder="NOMBRE(S)"
                                 pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                 required maxlength="30" style="border: 1px solid black">
-
-                    </div>
-                    <div class="col-6">
-                        <input class="form-control-sm form-control nameInput" type="text"
+                     </div>
+                      <div class="col-6">
+                          <input class="form-control-sm form-control nameInput" type="text"
                                 name="last_name"
                                 placeholder="APELLIDO PATERNO"
                                 pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                 required maxlength="30" style="border: 1px solid black">
-
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-6">
-                        <input class="form-control-sm form-control nameInput" type="text"
+                      </div>
+                 </div>
+             </div>
+             <div class="form-group">
+                  <div class="row">
+                      <div class="col-6">
+                          <input class="form-control-sm form-control nameInput" type="text"
                                 name="second_last_name"
                                 placeholder="APELLIDO MATERNO"
                                 pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"
                                 required  maxlength="30" style="border: 1px solid black">
-                    </div>
-                    <div class="col-6">
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <div style="border: 1px solid black" class="input-group-text">+52</div>
-                            </div>
-                            <input type="text" class="form-control-sm form-control btnBorder mobileInput"
-                            placeholder="NO. TELEFÓNICO 10 DIG"
-                            name="mobile_number"
-                            maxlength="10"
-                            pattern="[0-9]{10}"
-                            required style="border: 1px solid black">
-                            <div class="input-group-append" id="form_alert_phone_AEF" hidden>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="text-muted sml p-0 m-0" style="font-size: 10px">FECHA DE NACIMIENTO</label>
-                        <input class="form-control-sm form-control btnBorder" type="date"
+                     </div>
+                     <div class="col-6">
+                         <div class="input-group input-group-sm mb-3">
+                             <div class="input-group-prepend">
+                                 <div style="border: 1px solid black" class="input-group-text">+52</div>
+                             </div>
+                              <input type="text" class="form-control-sm form-control btnBorder mobileInput"
+                               placeholder="NO. TELEFÓNICO 10 DIG"
+                               name="mobile_number"
+                               maxlength="10"
+                               pattern="[0-9]{10}"
+                               required style="border: 1px solid black">
+                               <div class="input-group-append" id="form_alert_phone_AEF" hidden>
+                               </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row">
+                        <div class="col-6">
+                          <label class="text-muted sml p-0 m-0" style="font-size: 10px">FECHA DE NACIMIENTO</label>
+                           <input class="form-control-sm form-control btnBorder" type="date"
                                         name="bday"
                                         placeholder="FECHA DE NACIMIENTO"
                                         required style="border: 1px solid black">
-                    </div>
-                    <div class="col-6">
-                        <br>
-                        <input class="form-control-sm form-control btnBorder"
+                      </div>
+                       <div class="col-6">
+                            <br>
+                            <input class="form-control-sm form-control btnBorder"
                                 type="email"
                                 autocomplete="new-password"
                                 name="email"
                                 placeholder="CORREO ELECTRÓNICO"
                                 pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9._%+-]+@[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9.-]+\.[a-zA-ZñÑ]{2,}$"
                                 style="border: 1px solid black">
-                    </div>
+                       </div>
+                  </div>
+             </div>
+               <div class="col-sm-3">  
                 </div>
-            </div>
-            <div class="col-sm-3">  
-            </div>
                 <div class="row" style="justify-content: center">
-                        <button  class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;" id="buttonconf" data-toggle="modal" data-target="#modalClientType">ACEPTAR</button>
+                        <button type="submit" class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;"  id="buttonconf" data-toggle="modal" data-target="#modalClientType" >ACEPTAR</button>
                 </div>
              <!-- Modal Confirm-->
              <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType"
@@ -288,9 +287,9 @@
                         <br>
                       <div class="input-group mb-3" style="margin-top: 1rem">
                          <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
-                             id="codeMec" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                             id="codes" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
                          <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
-                             id="codeMecConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                             id="codesConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
                          <p style="color: red; margin: 0;" hidden id="requiredSignal">*</p>
                        </div> 
                        <button type="submit" class="btn btn-info" id="Sendbtn"
@@ -300,13 +299,11 @@
                    </div>
                   </div>
                  </div>
-            </div>
-            <!--modal end -->
-
-       </form>
-</div>
-
-    @else 
+             </div>
+             <!--modal end -->
+        </form>
+ </div>
+     @else 
     <div class="modal-body " style="background-color: #143153;">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -321,7 +318,6 @@
     </div>
     @endif
 </div>
-</div>
 <!-- Content End -->
 
             
@@ -333,6 +329,5 @@
 
         @endif
         
-    </div>
 
 @endsection

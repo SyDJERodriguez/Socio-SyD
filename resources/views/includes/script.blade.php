@@ -985,54 +985,6 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
-        $("#addEmployeeFormsearch").bind("submit",function(){
-            // We capture send button
-            let Sendbtn = $("#Sendbtn");
-            let alerterrortext  = document.querySelector('#form_alert_phone_text_search');
-            let alerterrordns  = document.querySelector('#form_alert_dns_search');
-            $.ajax({
-                type: $(this).attr("method"),
-                url: $(this).attr("action"),
-                data:$(this).serialize(),
-                beforeSend: function(){
-                    Sendbtn.html("Enviando");
-                    Sendbtn.attr("disabled",true);
-                },
-                success: function(data){
-                    console.log(data);
-                    Sendbtn.html("Aceptar");
-                    Sendbtn.attr("disabled",false);
-                    if(data['success']==='false' && data['verify_valid_mobile']==='false'){
-                        alerterrortext.innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
-                        alerterrortext.removeAttribute("hidden");
-                        setTimeout(function (){alerterrortext.hidden= true}, 3500);
-                        alerterrortext.innerHTML='<p style="margin-bottom:0px">El número telefónico no es válido. Verifica tus datos</p>';
-                        alerterrortext.removeAttribute("hidden");
-                        setTimeout(function(){alerterrortext.hidden = true},3500)
-                    }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
-                        alerterrordns.innerHTML='<p style="margin-bottom:0px">Por favor proporciona un email válido</p>';
-                        alerterrordns.removeAttribute("hidden");
-                        setTimeout(function(){alerterrordns.hidden = true},3500)
-                    }else if(data['success']==='false' && data['other']==='false'){
-                        alerterrordns.innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
-                        alerterrordns.removeAttribute("hidden");
-                        setTimeout(function(){alerterrordns.hidden = true},3500)
-                    }else if(data['success']==='false' && data['bday']==='false'){
-                        alerterrordns.innerHTML='<p style="margin-bottom:0px">'+data['error']+'</p>';
-                        alerterrordns.removeAttribute("hidden");
-                        setTimeout(function(){alerterrordns.hidden = true},3500)
-
-                    }else{
-                        window.location = "{{route('admin.addsuccessearch')}}";
-                    }
-                },
-                error: function(data){
-                    $('#modalErrorServer').modal('show');
-                }
-            });
-            // Nos permite cancelar el envio del formulario
-            return false;
-        });
 
 
         //UpdateDataForm's form
