@@ -73,8 +73,6 @@ class BeneficiaryController extends Controller
             ->where('email','=', $email)
             ->first();
 
-        $id = $customer_session->id;
-
         $customer = DB::table('customer_platforms')
             ->where('email', '=', $customer_session->email)
             ->first();
@@ -84,7 +82,7 @@ class BeneficiaryController extends Controller
             ->get();
 
         $signature = DB::table('signatures')
-            ->where('customer_id', '=', $id)
+            ->where('customer_id', '=', $customer_session->id)
             ->first();
 
         if ($customer_session->client_type === "3"){
@@ -96,7 +94,7 @@ class BeneficiaryController extends Controller
                 ->get();
 
             $signature = DB::table('signatures')
-                ->where('customer_id', '=', $id)
+                ->where('customer_id', '=', $customer_session->id)
                 ->first();
         }
 
