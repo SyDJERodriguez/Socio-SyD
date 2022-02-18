@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Consentimiento Póliza de Seguro</title>
-    
+
     <style>
         /* CSS Document */
         header {
@@ -18,19 +18,19 @@
         hr{
         	width: 100%;
         	margin: 0px;
-        } 
-        
+        }
+
         a {
         	text-decoration: none;
         	color: #000;
         }
-        
+
         .text{
         	font-family: Arial;
         	font-size: 12px;
         }
         .monto{
-        	padding: 0px; 
+        	padding: 0px;
         	margin: 0px;
         }
         .header{
@@ -55,12 +55,12 @@
         	padding: 0 10px;
         	vertical-align: top;
         }
-        
+
         .contenedor {
         	width: 100%;
         	display: flex;
         }
-        
+
         .firma {
         	width: 30%;
         	padding: 5px 5px 5px 50px;
@@ -82,7 +82,7 @@
             bottom:50px;
             left:50px;
             right:50px;
-        }       
+        }
     </style>
 </head>
 
@@ -117,10 +117,10 @@
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
-				    <strong>Vigencia:</strong> Del 
-                    {{date_format(date_create($initDate),'d-m-Y')}} 
-                    12:00 horas al 
-                    {{date_format(date_create($finDate),'d-m-Y')}} 
+				    <strong>Vigencia:</strong> Del
+                    {{date_format(date_create($initDate),'d-m-Y')}}
+                    12:00 horas al
+                    {{date_format(date_create($finDate),'d-m-Y')}}
                     12:00 horas
                 </p>
             </td>
@@ -455,10 +455,10 @@
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
-				    <strong>Vigencia:</strong> Del 
-                    {{date_format(date_create($initDate),'d-m-Y')}} 
-                    12:00 horas al 
-                    {{date_format(date_create($finDate),'d-m-Y')}} 
+				    <strong>Vigencia:</strong> Del
+                    {{date_format(date_create($initDate),'d-m-Y')}}
+                    12:00 horas al
+                    {{date_format(date_create($finDate),'d-m-Y')}}
                     12:00 horas
                 </p>
             </td>
@@ -541,35 +541,35 @@
     </div> --}}
     <div class="contenedor" style="width: 100%;display: flex">
         @if (isset($signature))
-        <div class="fecha" align="left" style="width: 60%;padding-top:24px">
-            <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
-			<hr style="width: 60%">
-			<p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
-		</div>
-        <div style="width: 700px;"></div>
-		<div class="firma" align="right"style="width: 100%;padding-left: 400px;"> 
-            <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 50px;">
-			<hr>
-			<p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
-		</div>
+            <div class="fecha" align="left" style="width: 60%;padding-top:24px">
+                <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
+                <hr style="width: 60%">
+                <p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
+            </div>
+            <div style="width: 700px;"></div>
+            <div class="firma" align="right" style="width: 100%;padding-left: 400px;">
+                <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 50px;" alt="">
+                <hr>
+                <p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
+            </div>
         @else
-        <div class="fecha" align="left" style="width: 60%;">
-            <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
-			<hr style="width: 60%">
-			<p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
-		</div>
-        <div style="width: 700px;"></div>
-		<div class="firma" align="right"style="width: 100%;padding-left: 400px;padding-top:38px"> 
-			<hr>
-			<p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
-		</div>
+            <div class="fecha" align="left" style="width: 60%;">
+                <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
+                <hr style="width: 60%">
+                <p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
+            </div>
+            <div style="width: 700px;"></div>
+            <div class="firma" align="right" style="width: 100%;padding-left: 400px;padding-top:38px">
+                <hr>
+                <p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
+            </div>
         @endif
-		
+
 	</div>
 
     <div class="fix-bot">
         <footer>
-     
+
             <table border="1" bordercolor="#A0A0A0" width="100%" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td colspan="3">
