@@ -1740,6 +1740,8 @@ class CustomerController extends Controller
         }
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
+            
+
         ]);
 
         if ($update_customer){
@@ -2050,7 +2052,9 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
-            'active'   => 1
+            'active'   => 1,
+            'unsuscribe' => 0,
+            'date_reactive' => date('Y-m-d H:i:s')
         ]);
 
         if ($update_customer === 1){
