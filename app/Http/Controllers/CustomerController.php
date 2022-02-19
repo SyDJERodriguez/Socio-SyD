@@ -2054,7 +2054,7 @@ class CustomerController extends Controller
             'password' => $password,
             'active'   => 1,
             'unsuscribe' => 0,
-            'date_reactive' => date('Y-m-d H:i:s')
+            'date_reactivate' => date('Y-m-d H:i:s')
         ]);
 
         if ($update_customer === 1){

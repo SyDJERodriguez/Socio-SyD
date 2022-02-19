@@ -16,7 +16,7 @@ class AddUnsuscribeToCustomersSessionsTable extends Migration
         Schema::table('customers_sessions', function (Blueprint $table) {
             $table->boolean('unsuscribe')->default(false);
             $table->timestamp('date_unsuscribe')->nullable();
-            $table->timestamp('date_reactive')->nulleable();
+            $table->timestamp('date_reactivate')->nulleable();
         });
     }
 
