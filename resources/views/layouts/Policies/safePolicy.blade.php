@@ -51,7 +51,7 @@
         	vertical-align: top;
         }
         .logo-aba{
-        	width: 100%;
+        	width: 90%;
         	padding: 0 10px;
         	vertical-align: top;
         }
@@ -59,11 +59,12 @@
         .contenedor {
         	width: 100%;
         	display: flex;
+            justify-content: space-around;
         }
 
         .firma {
         	width: 30%;
-        	padding: 5px 5px 5px 50px;
+        	
         }
         td.borderRight{
             border-right: 1px solid #808080;
@@ -82,6 +83,16 @@
             bottom:50px;
             left:50px;
             right:50px;
+        }      
+        
+        .container{
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .item{
+            height:40px;
+            
         }
     </style>
 </head>
@@ -101,7 +112,7 @@
                 </a></p>
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" alt="ABA" style="position: relative; width: 200px;">
         </div>
     </div>
 
@@ -438,7 +449,7 @@
             <img src="{{asset('img/chubb.png')}}" alt="CHUBB" style="position: relative;padding-left: 0px;">
         </div>
         <div class="logo-aba" align="right" style="position: absolute;top: 0px;padding-right: 0px;">
-            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative;">
+            <img src="{{asset('img/aba.png')}}" width="160px" alt="ABA" style="position: relative; width: 200px;">
         </div>
     </div>
 
@@ -521,50 +532,25 @@
             contenidas en él, las he hecho personalmente y que son verídicas.</p><br><br>
 
     </div>
-    {{-- <div class="contenedor">
-        <div class="fecha" align="left">
-            <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
-            <p class="text" style="padding-top: 31px">_______________________________________</p>
-            <p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
-        </div>
-        <div style="width: 700px;"></div>
-        <div class="firma" align="right" style="width: 100%">
-            @if(isset($signature))
-            <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 70px;">
-            <p class="text">_______________________________________</p>
-            <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
-            @else
-            <p class="text" style="margin-top: 30px">_______________________________________</p>
-            <p class="text" style=" padding: 0 70px;">Firma del solicitante</p>
-            @endif
-        </div>
-    </div> --}}
-    <div class="contenedor" style="width: 100%;display: flex">
-        @if (isset($signature))
-            <div class="fecha" align="left" style="width: 60%;padding-top:24px">
-                <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
-                <hr style="width: 60%">
-                <p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
-            </div>
-            <div style="width: 700px;"></div>
-            <div class="firma" align="right" style="width: 100%;padding-left: 400px;">
-                <img src="{{$signature->imgData}}" style="width: 100px; padding: 0 50px;" alt="">
-                <hr>
-                <p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
-            </div>
-        @else
-            <div class="fecha" align="left" style="width: 60%;">
-                <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
-                <hr style="width: 60%">
-                <p class="text" style="text-align: left;margin-top: 2px;">Lugar y fecha</p>
-            </div>
-            <div style="width: 700px;"></div>
-            <div class="firma" align="right" style="width: 100%;padding-left: 400px;padding-top:38px">
-                <hr>
-                <p class="text" style="text-align: right;margin-top: 2px;">Firma del solicitante</p>
-            </div>
-        @endif
 
+    <div class="container">
+            <div class="item">
+                    <p class="text">México a {{$currentDate->isoFormat('dddd D MMMM YYYY')}}</p>
+                <p class="text">_______________________________________</p>
+                    <p class="text">Lugar y fecha</p>
+            </div>
+            
+            <div class="item" align="right" style="position:absolute; top: 658px;; left:415px ;" >
+                @if(isset($signature))
+                    <img src="{{$signature->imgData}}" style="width: 100px; padding: 0px 70px;" >
+                    <p class="text">_______________________________________</p>
+                    <p class="text">Firma del solicitante</p>
+                @else
+                    <p class="text">_______________________________________</p>
+                    <p class="text">Firma del solicitante</p>
+                @endif
+            </div>
+      
 	</div>
 
     <div class="fix-bot">
@@ -602,7 +588,6 @@
             </table>
         </footer>
      </div>
-
 
     {{-- <p class="text" style="padding: 20px 5px; margin: 0px; text-align: right">Pagina 2 de 2</p> --}}
 </body>

@@ -1744,6 +1744,8 @@ class CustomerController extends Controller
         }
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
+            
+
         ]);
 
         if ($update_customer){
@@ -2006,7 +2008,10 @@ class CustomerController extends Controller
     public function deactivate_account(Request $request){
         $updated = DB::table('customers_sessions')
             ->where('id', '=', Auth::user()->id)
-            ->update(['active'=> 0]);
+            ->update(['active'=> 0,
+                      'unsuscribe' => 1,
+                      'date_unsuscribe' => date('Y-m-d H:i:s')
+        ]);
 
         if (!$updated){
             return view('pages.Account.status');
@@ -2057,7 +2062,9 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
-            'active'   => 1
+            'active'   => 1,
+            'unsuscribe' => 0,
+            'date_reactivate' => date('Y-m-d H:i:s')
         ]);
 
         if ($update_customer === 1){
