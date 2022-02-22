@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Carbon\Carbon;
 use DB;
 
@@ -111,12 +111,12 @@ class DailyJobForCheckInsurance extends Command
                         if(count($numberEmployees) <= 1){
                             $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
                             $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                         }
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -125,7 +125,7 @@ class DailyJobForCheckInsurance extends Command
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                             $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -140,7 +140,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>4500 && $totalAmount<=7500) {
                     if (!$client->silver_sms){
-                        $send_sms = TwilioService::send_sms($silver_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($silver_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelPlata', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Plata dentro de Socio SYD');
@@ -154,7 +154,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>7500) {
                     if (!$client->gold_sms){
-                        $send_sms = TwilioService::send_sms($gold_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($gold_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelGold', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Oro dentro de Socio SYD');
@@ -173,7 +173,7 @@ class DailyJobForCheckInsurance extends Command
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -182,7 +182,7 @@ class DailyJobForCheckInsurance extends Command
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                             $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -197,7 +197,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>500 && $totalAmount<=1300) {
                     if (!$client->silver_sms){
-                        $send_sms = TwilioService::send_sms($silver_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($silver_messsage,'+52'.$client->phone);
                         Mail::send('emails.individualLevelPlata', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Plata dentro de Socio SYD');
@@ -211,7 +211,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>1300) {
                     if (!$client->gold_sms){
-                        $send_sms = TwilioService::send_sms($gold_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($gold_messsage,'+52'.$client->phone);
                         Mail::send('emails.individualLevelGold', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Oro dentro de Socio SYD');
@@ -231,7 +231,7 @@ class DailyJobForCheckInsurance extends Command
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -240,7 +240,7 @@ class DailyJobForCheckInsurance extends Command
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                             $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -255,7 +255,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>4500 && $totalAmount<=7500) {
                     if (!$client->silver_sms){
-                        $send_sms = TwilioService::send_sms($silver_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($silver_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelPlata', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Plata dentro de Socio SYD');
@@ -269,7 +269,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>7500) {
                     if (!$client->gold_sms){
-                        $send_sms = TwilioService::send_sms($gold_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($gold_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelGold', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Oro dentro de Socio SYD');
@@ -288,12 +288,12 @@ class DailyJobForCheckInsurance extends Command
                         if(count($numberEmployees) === 0){
                             $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
                             $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                         }
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -302,7 +302,7 @@ class DailyJobForCheckInsurance extends Command
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                             $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -317,7 +317,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>4500 && $totalAmount<=7500) {
                     if (!$client->silver_sms){
-                        $send_sms = TwilioService::send_sms($silver_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($silver_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelPlata', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Plata dentro de Socio SYD');
@@ -331,7 +331,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>7500) {
                     if (!$client->gold_sms){
-                        $send_sms = TwilioService::send_sms($gold_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($gold_messsage,'+52'.$client->phone);
                         Mail::send('emails.companyLevelGold', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Oro dentro de Socio SYD');
@@ -350,7 +350,7 @@ class DailyJobForCheckInsurance extends Command
                         if(count($beneficiaries) > 0){
                             $url = 'https://sociosyd.com.mx/sms_pdf/'.$client->client_number.'/'.$client->branch_number;
                             $messsage = 'Felicidades, ya tienes Seguro de Accidentes con Socio SyD. Descarga, llena y firma tu certificado aqui  '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -359,7 +359,7 @@ class DailyJobForCheckInsurance extends Command
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
                             $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
-                            $send_sms = TwilioService::send_sms($messsage,'+52'.$client->phone);
+                            $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
                                     ->where('client_number','=',$client->client_number)
@@ -375,7 +375,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>500 && $totalAmount<=1300) {
                     if (!$client->silver_sms){
-                        $send_sms = TwilioService::send_sms($silver_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($silver_messsage,'+52'.$client->phone);
                         Mail::send('emails.individualLevelPlata', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Plata dentro de Socio SYD');
@@ -389,7 +389,7 @@ class DailyJobForCheckInsurance extends Command
                 }
                 if ($totalAmount>1300) {
                     if (!$client->gold_sms){
-                        $send_sms = TwilioService::send_sms($gold_messsage,'+52'.$client->phone);
+                        $send_sms = C3ntroService::sendSMS($gold_messsage,'+52'.$client->phone);
                         Mail::send('emails.individualLevelGold', [] ,function($m) use ($client) {
                             $m->from('sociosyd@syd.com.mx',"Socio SYD");
                             $m->to($client->email)->subject('Ya cuentas con las asistencias de nivel Oro dentro de Socio SYD');

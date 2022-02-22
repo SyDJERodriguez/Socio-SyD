@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CustomersSession;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\CustomerPlatform;
@@ -52,6 +52,55 @@ class BeneficiaryController extends Controller
         $initDate = new Carbon('first day of next month');
 
         $finDate = new Carbon('last day of next month');
+
+        $currentDate = Carbon::parse()->locale('es');
+        // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
+    }
+
+    //Function to generate PDF by Email
+    public function generatePDFEmail($email) {
+
+        $customer_session = DB::table('customers_sessions')
+            ->where('email','=', $email)
+            ->first();
+
+        $customer = DB::table('customer_platforms')
+            ->where('email', '=', $customer_session->email)
+            ->first();
+
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('customer_id', '=', $customer_session->id)
+            ->first();
+
+        if ($customer_session->client_type === "3"){
+            $customer = DB::table('customer_platforms')
+                ->where('email', '=', $customer_session->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $customer_session->id)
+                ->first();
+        }
+
+        $initDate = new Carbon('first day of this month');
+
+        $finDate = new Carbon('last day of this month');
 
         $currentDate = Carbon::parse()->locale('es');
         // $currentDate->diffForHumans();
@@ -751,7 +800,8 @@ class BeneficiaryController extends Controller
         $messsage = 'Ya estas asegurado con el programa Socio SYD. Descarga tu poliza de Seguro de Accidentes Personales aqui: '.$url;
 
         try {
-            TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
             \Mail::send('emails.beneficiariesAdded',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Haz registrado exitosamente a tus beneficiarios en el programa de lealtad SYD');
