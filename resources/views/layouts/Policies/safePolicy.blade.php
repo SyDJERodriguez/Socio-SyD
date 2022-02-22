@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Consentimiento Póliza de Seguro</title>
-    
+
     <style>
         /* CSS Document */
         header {
@@ -18,19 +18,19 @@
         hr{
         	width: 100%;
         	margin: 0px;
-        } 
-        
+        }
+
         a {
         	text-decoration: none;
         	color: #000;
         }
-        
+
         .text{
         	font-family: Arial;
         	font-size: 12px;
         }
         .monto{
-        	padding: 0px; 
+        	padding: 0px;
         	margin: 0px;
         }
         .header{
@@ -55,13 +55,13 @@
         	padding: 0 10px;
         	vertical-align: top;
         }
-        
+
         .contenedor {
         	width: 100%;
         	display: flex;
             justify-content: space-around;
         }
-        
+
         .firma {
         	width: 30%;
         	
@@ -128,10 +128,10 @@
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
-				    <strong>Vigencia:</strong> Del 
-                    {{date_format(date_create($initDate),'d-m-Y')}} 
-                    12:00 horas al 
-                    {{date_format(date_create($finDate),'d-m-Y')}} 
+				    <strong>Vigencia:</strong> Del
+                    {{date_format(date_create($initDate),'d-m-Y')}}
+                    12:00 horas al
+                    {{date_format(date_create($finDate),'d-m-Y')}}
                     12:00 horas
                 </p>
             </td>
@@ -466,10 +466,10 @@
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
-				    <strong>Vigencia:</strong> Del 
-                    {{date_format(date_create($initDate),'d-m-Y')}} 
-                    12:00 horas al 
-                    {{date_format(date_create($finDate),'d-m-Y')}} 
+				    <strong>Vigencia:</strong> Del
+                    {{date_format(date_create($initDate),'d-m-Y')}}
+                    12:00 horas al
+                    {{date_format(date_create($finDate),'d-m-Y')}}
                     12:00 horas
                 </p>
             </td>
@@ -555,7 +555,7 @@
 
     <div class="fix-bot">
         <footer>
-     
+
             <table border="1" bordercolor="#A0A0A0" width="100%" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                     <td colspan="3">
