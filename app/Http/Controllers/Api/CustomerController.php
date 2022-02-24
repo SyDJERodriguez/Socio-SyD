@@ -164,7 +164,10 @@ class CustomerController extends Controller
                                                         IF(customers_sessions.client_type = 3, "Empleado Dependiente",
                                                             IF(customers_sessions.client_type = 4, "Cadenas",
                                                                 IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS type_user'),
-                DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active')
+                DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active'),
+                DB::raw('IF(customers_sessions.unsuscribe = 0, "NO",
+                                    IF(customers_sessions.unsuscribe = 1, "YES", null)) AS unsuscribe'),
+                DB::raw('DATE_FORMAT(customers_sessions.date_unsuscribe, "%Y-%m-%d") AS date_unsuscribe')
             )
             ->get()->toArray();
 
