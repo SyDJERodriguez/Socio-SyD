@@ -61,6 +61,15 @@ class CustomerController extends Controller
 
     public function cntRegister(Request $request) {
         $request = $request->input();
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
