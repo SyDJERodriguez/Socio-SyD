@@ -751,6 +751,13 @@
                             document.getElementById("form_alert_cnt_ncnt").innerHTML='Número CNT incorrecto <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>';
                             document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_cnt_ncnt").hidden= true}, 3000);
+                        }else if (data['success'] === 'false' && data['bday'] === 'false') {
+                            document.getElementById("form_alert_cnt_ncnt").innerHTML = data['error'];
+                            document.getElementById("form_alert_cnt_ncnt").removeAttribute("hidden");
+                            setTimeout(function () {
+                                document.getElementById("form_alert_cnt_ncnt").hidden = true
+                            }, 3500)
+
                         }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
                             document.getElementById("form_alert_dns_cnt").innerHTML='Por favor proporciona un email válido';
                             document.getElementById("form_alert_dns_cnt").removeAttribute("hidden");
