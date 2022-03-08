@@ -110,7 +110,7 @@ class DailyJobForCheckInsurance extends Command
                     if(!$client->sms_insurance){
                         if(count($numberEmployees) <= 1){
                             $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
-                            $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                            $messsage = 'Estimado socio, ya puedes dar de alta a tus colaboradores aqui  '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                         }
                         if(count($beneficiaries) > 0){
@@ -124,7 +124,7 @@ class DailyJobForCheckInsurance extends Command
                             }
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
-                            $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
+                            $messsage = 'Ya tienes tu seguro de accidentes de Socio SyD registra a tus beneficiarios aqui '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
@@ -181,7 +181,7 @@ class DailyJobForCheckInsurance extends Command
                             }
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
-                            $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
+                            $messsage = 'Ya tienes tu seguro de accidentes de Socio SyD registra a tus beneficiarios aqui '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
@@ -239,7 +239,7 @@ class DailyJobForCheckInsurance extends Command
                             }
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
-                            $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
+                            $messsage = 'Ya tienes tu seguro de accidentes de Socio SyD registra a tus beneficiarios aqui '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
@@ -287,7 +287,7 @@ class DailyJobForCheckInsurance extends Command
                     if(!$client->sms_insurance){
                         if(count($numberEmployees) === 0){
                             $url = 'https://sociosyd.com.mx/register/beneficiariebranch/'.$client->email;
-                            $messsage = 'Estimado Socio SyD, ahora que has alcanzado beneficios en tu cuenta, puedes dar de alta a tus colaboradores. Hazlo aqui  '.$url;
+                            $messsage = 'Estimado socio, ya puedes dar de alta a tus colaboradores aqui  '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                         }
                         if(count($beneficiaries) > 0){
@@ -301,7 +301,7 @@ class DailyJobForCheckInsurance extends Command
                             }
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
-                            $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
+                            $messsage = 'Ya tienes tu seguro de accidentes de Socio SyD registra a tus beneficiarios aqui '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')
@@ -358,7 +358,7 @@ class DailyJobForCheckInsurance extends Command
                             }
                         }else{
                             $url = 'https://sociosyd.com.mx/register/beneficiaries/'.$client->email;
-                            $messsage = 'Ya tienes derecho a tu seguro de accidentes de Socio SyD, registra a tus beneficiarios y descarga tu certificado aqui '.$url;
+                            $messsage = 'Ya tienes tu seguro de accidentes de Socio SyD registra a tus beneficiarios aqui '.$url;
                             $send_sms = C3ntroService::sendSMS($messsage,'+52'.$client->phone);
                             if($send_sms){
                                 DB::table('customers_sessions')

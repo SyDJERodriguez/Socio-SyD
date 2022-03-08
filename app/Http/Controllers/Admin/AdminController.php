@@ -740,14 +740,14 @@ class AdminController extends Controller
             )
             ->get()->toArray();
 
-        /*$now = Carbon::now();
+        $now = Carbon::now();
         $current_month = $now->month;
-        $current_year = $now->year;*/
+        $current_year = $now->year;
 
         //Get all the client´s id with benefits in the current month
         $ids = array_column($registered_clients, 'id');
         foreach ($data as $client){
-           /* $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
+            $client->fecha_registro = date_format(date_create($client->fecha_registro), "Y-m-d");
 
             $client_transaction = DB::table('transactions')
                 ->where('client_number', $client->client_number)
@@ -755,7 +755,7 @@ class AdminController extends Controller
                 ->whereMonth('transaction_date','=',$current_month)
                 ->whereYear('transaction_date', '=', $current_year )
                 ->get();
-            $totalAmount = 0.0;*/
+            $totalAmount = 0.0;
 
             //Set amount and benefits level
             $client->amount = 0;
@@ -780,13 +780,13 @@ class AdminController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            /*foreach ($client_transaction as $transaction){
+            foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }
             $client->amount = $totalAmount;
 
-            if($client->type_user === '1'){
+          /*  if($client->type_user === '1'){
                 $client->type_user = 'Cuenta con Colaboradores';
                 if ($totalAmount>2500 && $totalAmount<=4500) {
                     $client->level= 'Bronce';
@@ -842,10 +842,10 @@ class AdminController extends Controller
                 if ($totalAmount<2500) {
                     $client->level= 'Sin beneficios';
                 }
-            }
+            }*/
 
 
-            $client->active === 0 ? $client->active = 'No Activado' : $client->active = 'Activado';*/
+            $client->active === 0 ? $client->active = 'No Activado' : $client->active = 'Activado';
             //Remove the key id of the json
             unset($client->id);
         }
