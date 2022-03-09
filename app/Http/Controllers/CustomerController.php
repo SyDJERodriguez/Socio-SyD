@@ -1782,7 +1782,7 @@ class CustomerController extends Controller
         $url= asset('files/Diploma_Socio_SyD.pdf');
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
-        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
+        $messsage = 'Te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro aqui: '.$url;
         $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
         $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
@@ -1961,7 +1961,7 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
+        $messsage = 'Solicitaste reestablecer tu clave de acceso a Socio SYD, haz clic aqui para hacerlo:  ' .$url;
 
         // TwilioService::send_sms
         C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
