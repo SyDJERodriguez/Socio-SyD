@@ -797,7 +797,7 @@ class BeneficiaryController extends Controller
 
         $route = "/sms_pdf/{$dataSession->client_number}/{$dataSession->branch_number}";
         $url = url($route);
-        $messsage = 'Ya estas asegurado con el programa Socio SYD. Descarga tu poliza de Seguro de Accidentes Personales aqui: '.$url;
+        $messsage = 'Ya estas asegurado con Socio SYD. Descarga tu poliza de Accidentes Personales aqui: '.$url;
 
         try {
             // TwilioService::send_sms
