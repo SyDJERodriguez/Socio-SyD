@@ -56,29 +56,7 @@
 
                             <td>{{date_format(date_create($d->birthday),'d-m-Y')}}</td>
                             <td>{{'$ '.$d->amount}}</td>
-                            @if($d->type_user === 'Dueño de Negocio' || $d->type_user === 'Empleado Dependiente' || $d->type_user === 'Cadenas' )
-                            @if ($d->amount>2500 && $d->amount<=4500)
-                            <td>Bronce</td>
-                            @elseif($d->amount>4500 && $d->amount<=7000)
-                            <td>Plata</td>
-                            @elseif($d->amount>7000)
-                            <td>Oro</td>
-                            @elseif($d->amount<2500)
-                            <td>Sin beneficios</td>
-                            @endif
-                            @elseif($d->type_user === 'Mecánico Individual' || $d->type_user === 'Publico en general')
-                            @if ($d->amount>200 && $d->amount<=500)
-                            <td>Bronce</td>
-                            @elseif($d->amount>500 && $d->amount<=1300)
-                            <td>Plata</td>
-                            @elseif($d->amount>1300)
-                            <td>Oro</td>
-                            @elseif($d->amount<200)
-                            <td>Sin beneficios</td>
-                            @endif
-                            @else
-                            <td>N/A</td>
-                            @endif
+                            <td>{{$d->level}}</td>
                         </tr>
                     @endforeach
                     </tbody>
