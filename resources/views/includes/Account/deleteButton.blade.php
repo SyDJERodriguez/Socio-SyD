@@ -131,8 +131,8 @@
                             </label>
                         </div>
                         <div class="form-check">
-                                <input class="form-check-input" type="radio" value="1" id="radio5" name="grupo1" onchange="message()" required>
-                            <input type="text" placeholder="Otro" id="otro" value="">
+                                <input class="form-check-input" type="radio" value="1" id="radio5" name="grupo1" required>
+                            <input type="text" placeholder="Otro" id="otro" value="" onkeypress="message()" name="grupo1">
                           </div>                          
                     <div class="col-lg-12 text-center">
                        <button type="submit" class="text-white btn btn bg-primary btn-sm my-2"
@@ -153,9 +153,11 @@
     let radio = document.querySelector('#radio5');
     let radio5 = radio.value;
     let otro = document.querySelector('#otro');
-    let otrotext = canal.value;
+    let otrotext = otro.value;
     if (radio5==1) {
         otro.required=true;
         radio5.value=otrotext;
+        console.log(radio5);
     }
+}
 </script>
