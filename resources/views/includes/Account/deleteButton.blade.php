@@ -170,9 +170,9 @@
     }else if (radio3.checked) {
         otro.removeAttribute("required");
     }else if (radio2.checked) {
-        otro.setAttribute("required", "false");
+        otro.removeAttribute("required");
     }else if (radio1.checked) {
-        otroremoveAttribute("required");
+        otro.removeAttribute("required");
     }
    
   }
