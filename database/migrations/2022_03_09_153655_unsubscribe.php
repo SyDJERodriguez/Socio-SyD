@@ -15,13 +15,16 @@ class Unsubscribe extends Migration
     {
         Schema::create('unsubscribe_form', function(Blueprint $table){
             $table->bigIncrements('id');
+            $table->string('email');
             $table->string('message');
             $table->timestamps();
+            $table->foreign('email')->references('email')->on('customers_sessions');
+
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations        .
      *
      * @return void
      */
