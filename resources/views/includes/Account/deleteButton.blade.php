@@ -106,6 +106,7 @@
                     <form class="container" method="POST" action="{{route('customer.deactivate')}}" id="deleteForm">
                         @method('POST')
                         @csrf
+                        <div class="cheks" onchange="message()">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="Nunca me inscribí a Socio SyD" id="radio1" name="grupo1">
                             <label class="form-check-label" for="radio1">
@@ -125,15 +126,16 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Recibo demasiada información" id="radio3" name="grupo1">
+                            <input class="form-check-input" type="radio" value="Recibo demasiada información" id="radio4" name="grupo1">
                             <label class="form-check-label" for="radio1">
                                 Recibo demasiada información
                             </label>
                         </div>
                         <div class="form-check">
                                 <input class="form-check-input" type="radio" value="1" id="radio5" name="grupo1" required>
-                            <input type="text" placeholder="Otro" id="otro" value="" onkeypress="message()" name="grupo">
-                          </div>                          
+                            <input type="text" placeholder="Otro" id="otro" value=""  name="grupo">
+                          </div>
+                        </div>                          
                     <div class="col-lg-12 text-center">
                        <button type="submit" class="text-white btn btn bg-primary btn-sm my-2"
                        style=""> 
@@ -148,16 +150,30 @@
         </div>
     </div>
 </div>
-<script>
-    var radios = document.querySelectorAll('input[type="radio"]:checked');
-    var value = radios.length>0? radios[0].value: null;
+<script>   
+  
     function message(){
-    let radio = document.querySelector('#radio5');
-    let radio5 = radio.value;
+ 
+    let radio1 = document.querySelector('#radio1');
+    let radio2 = document.querySelector('#radio2');
+    let radio3 = document.querySelector('#radio3');
+    let radio4 = document.querySelector('#radio4');
+    let radio5 = document.querySelector('#radio5');
+  //  let radio5 = radio.value;
     let otro = document.querySelector('#otro');
     let otrotext = otro.value;
-    radio5=otrotext;
-    console.log(otrotext);
-    
-}
+ 
+    if(radio5.checked) {
+        otro.setAttribute("required", "");
+    }else if (radio4.checked) {
+        otro.removeAttribute("required");
+    }else if (radio3.checked) {
+        otro.removeAttribute("required");
+    }else if (radio2.checked) {
+        otro.setAttribute("required", "false");
+    }else if (radio1.checked) {
+        otroremoveAttribute("required");
+    }
+   
+  }
 </script>
