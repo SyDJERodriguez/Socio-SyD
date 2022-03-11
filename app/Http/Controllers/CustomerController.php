@@ -2016,10 +2016,21 @@ class CustomerController extends Controller
     //Deactivate account
     public function deactivate_account(Request $request){
 
-        $updated = DB::table('unsubscribe_form')
-            ->insert(['message'=> $request['grupo1'],
+        if (($request['grupo1'] == 1)){
+            $updated = DB::table('unsubscribe_form')
+            ->insert(['email' => Auth::user()->email,                    
+                      'message'=> $request['grupo'],
+                      'created_at'=> date('Y-m-d H:i:s')
+        ]); 
+
+        }
+        else {
+            $updated = DB::table('unsubscribe_form')
+            ->insert(['email' => Auth::user()->email,                    
+                      'message'=> $request['grupo1'],
                       'created_at'=> date('Y-m-d H:i:s')
         ]);
+        }      
 
         $updated = DB::table('customers_sessions')
             ->where('id', '=', Auth::user()->id)

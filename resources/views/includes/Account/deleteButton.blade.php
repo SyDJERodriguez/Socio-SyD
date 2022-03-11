@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-check">
                                 <input class="form-check-input" type="radio" value="1" id="radio5" name="grupo1" required>
-                            <input type="text" placeholder="Otro" id="otro" value="" onkeypress="message()" name="grupo1">
+                            <input type="text" placeholder="Otro" id="otro" value="" onkeypress="message()" name="grupo">
                           </div>                          
                     <div class="col-lg-12 text-center">
                        <button type="submit" class="text-white btn btn bg-primary btn-sm my-2"
@@ -149,15 +149,15 @@
     </div>
 </div>
 <script>
+    var radios = document.querySelectorAll('input[type="radio"]:checked');
+    var value = radios.length>0? radios[0].value: null;
     function message(){
     let radio = document.querySelector('#radio5');
     let radio5 = radio.value;
     let otro = document.querySelector('#otro');
     let otrotext = otro.value;
-    if (radio5==1) {
-        otro.required=true;
-        radio5.value=otrotext;
-        console.log(radio5);
-    }
+    radio5=otrotext;
+    console.log(otrotext);
+    
 }
 </script>
