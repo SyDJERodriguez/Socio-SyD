@@ -2016,21 +2016,44 @@ class CustomerController extends Controller
     //Deactivate account
     public function deactivate_account(Request $request){
 
-        if (($request['grupo1'] == 1)){
-            $updated = DB::table('unsubscribe_form')
-            ->insert(['email' => Auth::user()->email,                    
-                      'message'=> $request['grupo'],
-                      'created_at'=> date('Y-m-d H:i:s')
-        ]); 
+        $consult = DB::table('unsubscribe_form')
+                    ->where('email','=', Auth::user()->email)
+                    ->first();
 
+        if ( isset($consult)){
+            if (($request['grupo1'] == 1)){
+
+                $updated = DB::table('unsubscribe_form')
+                          ->where('email', '=', Auth::user()->email)                    
+                          ->update(['message'=> $request['grupo'],
+                                  'updated_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                         ->where('email', '=', Auth::user()->email)                        
+                         ->update(['message'=> $request['grupo1'],
+                                 'updated_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
+        }else{
+            if (($request['grupo1'] == 1)){
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo1'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
         }
-        else {
-            $updated = DB::table('unsubscribe_form')
-            ->insert(['email' => Auth::user()->email,                    
-                      'message'=> $request['grupo1'],
-                      'created_at'=> date('Y-m-d H:i:s')
-        ]);
-        }      
 
         $updated = DB::table('customers_sessions')
             ->where('id', '=', Auth::user()->id)
