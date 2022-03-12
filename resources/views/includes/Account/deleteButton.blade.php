@@ -71,16 +71,10 @@
                 
                     <div class="col-lg-12 text-center">
                         <a href="#" class="text-white btn btn bg-primary btn-sm my-2"
-                        onclick="event.preventDefault();document.getElementById('deleteForm').submit();" 
-                           style="">
+                           style=""  data-toggle="modal" data-target="#modalform" data-dismiss="modal">
                             ACEPTAR
                         </a>
                         <br>
-                            <form method="POST" action="{{route('customer.deactivate')}}" id="deleteForm"
-                                  style="display: none;">
-                                @method("PUT")
-                                @csrf
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -89,3 +83,97 @@
         </div>
     </div>
 </div>
+
+<!-- Modal form-->
+<div class="modal fade" id="modalform" tabindex="-1" role="dialog" aria-labelledby="modalform"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
+        <div class="modal-content border-0 rounded-0" style="background:transparent">
+            <div class="modal-header" style="height: 35px; background-color: #fff !important;">
+                <button type="button" class="close"
+                        style="margin: 0rem 0rem -1rem auto;padding: 0.1rem 1rem 0.5rem;background-color: #00A5E6;"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body blue-dark">
+                <div class="col-lg-12 py-2 text-center">
+                    <img src="{{asset('img/logo.png')}}" alt="logo" width="50%"></div>
+                <div>
+                    <h5 class="text-white"><b>Tu cuenta será eliminada pero antes de que te vayas nos gustaría conocer porqué te das de baja:</b></h5>
+                </div>
+                <div class="row" style="color: white">
+                    <form class="container" method="POST" action="{{route('customer.deactivate')}}" id="deleteForm">
+                        @method('POST')
+                        @csrf
+                        <div class="cheks" onchange="message()">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Nunca me inscribí a Socio SyD" id="radio1" name="grupo1">
+                            <label class="form-check-label" for="radio1">
+                                Nunca me inscribí a Socio SyD
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="No me parecen atractivos los beneficios" id="radio2" name="grupo1">
+                            <label class="form-check-label" for="radio2">
+                                No me parecen atractivos los beneficios
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="No me interesa el programa" id="radio3" name="grupo1">
+                            <label class="form-check-label" for="radio1">
+                                No me interesa el programa
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="Recibo demasiada información" id="radio4" name="grupo1">
+                            <label class="form-check-label" for="radio1">
+                                Recibo demasiada información
+                            </label>
+                        </div>
+                        <div class="form-check">
+                                <input class="form-check-input" type="radio" value="1" id="radio5" name="grupo1" required>
+                            <input type="text" placeholder="Otro" id="otro" value=""  name="grupo">
+                          </div>
+                        </div>                          
+                    <div class="col-lg-12 text-center">
+                       <button type="submit" class="text-white btn btn bg-primary btn-sm my-2"
+                       style=""> 
+                            ACEPTAR
+                      </button> 
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script>   
+  
+    function message(){
+ 
+    let radio1 = document.querySelector('#radio1');
+    let radio2 = document.querySelector('#radio2');
+    let radio3 = document.querySelector('#radio3');
+    let radio4 = document.querySelector('#radio4');
+    let radio5 = document.querySelector('#radio5');
+  //  let radio5 = radio.value;
+    let otro = document.querySelector('#otro');
+    let otrotext = otro.value;
+ 
+    if(radio5.checked) {
+        otro.setAttribute("required", "");
+    }else if (radio4.checked) {
+        otro.removeAttribute("required");
+    }else if (radio3.checked) {
+        otro.removeAttribute("required");
+    }else if (radio2.checked) {
+        otro.removeAttribute("required");
+    }else if (radio1.checked) {
+        otro.removeAttribute("required");
+    }
+   
+  }
+</script>
