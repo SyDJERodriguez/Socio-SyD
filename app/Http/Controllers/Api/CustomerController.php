@@ -1153,8 +1153,41 @@ class CustomerController extends Controller
                     ->where('email', '=', $client->email)
                     ->first();
 
-                //Concatenate the number of employee to the client number
-                $client->client_number = $client->client_number.'-'.$associateData->number;
+            $now = Carbon::now();
+            $current_month = $now->month;
+            $current_year = $now->year;
+
+            $client_transaction = DB::table('transactions')
+                ->where('client_number', $client->client_number)
+                ->where('branch_number', $client->branch_number)
+                ->whereMonth('transaction_date','=',$current_month)
+                ->whereYear('transaction_date', '=', $current_year )
+                ->get();
+            $totalAmount = 0.0;
+            
+             
+             
+            foreach ($client_transaction as $transaction){
+                $amount_customer = floatval($transaction->amount);
+                strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            }
+            $client->amount = $totalAmount;
+            
+            if ($totalAmount>2500 && $totalAmount<=4500) {
+                $client->level= 'Bronce';
+            }
+            if ($totalAmount>4500 && $totalAmount<=7000) {
+                $client->level= 'Plata';
+            }
+            if ($totalAmount>7000) {
+                $client->level= 'Oro';
+            }
+            if ($totalAmount<2500) {
+                $client->level= 'Sin beneficios';
+            }
+
+            //Concatenate the number of employee to the client number
+            $client->client_number = $client->client_number.'-'.$associateData->number;
             }
 
             $characters_rfc = strlen($client->rfc);
