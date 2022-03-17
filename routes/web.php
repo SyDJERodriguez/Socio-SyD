@@ -165,3 +165,4 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
 Route::get('benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('benefits_report');
 Route::get('beneficiaries_report', [\App\Http\Controllers\Api\CustomerController::class,'beneficiaries_report'])->name('beneficiaries_report');
+Route::get('sales_monthly', [\App\Http\Controllers\Api\CustomerController::class,'sales_monthly'])->name('sales_monthly');
