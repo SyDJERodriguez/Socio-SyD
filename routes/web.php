@@ -127,7 +127,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
         Route::post('/logout', 'CustomerController@logout')->name('logout');
 
         //Deactivate
-        Route::put('/delete', 'CustomerController@deactivate_account')->name('deactivate');
+        Route::post('/delete', 'CustomerController@deactivate_account')->name('deactivate');
 
         //Change employee to mechanic
         Route::put('/upEmployee', 'CustomerController@employeeToMechanic')->name('update.employee');
@@ -165,3 +165,4 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
 Route::get('benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('benefits_report');
 Route::get('beneficiaries_report', [\App\Http\Controllers\Api\CustomerController::class,'beneficiaries_report'])->name('beneficiaries_report');
+Route::get('sales_monthly', [\App\Http\Controllers\Api\CustomerController::class,'sales_monthly'])->name('sales_monthly');
