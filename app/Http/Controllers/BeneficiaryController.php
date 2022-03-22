@@ -73,8 +73,6 @@ class BeneficiaryController extends Controller
             ->where('email','=', $email)
             ->first();
 
-        $id = $customer_session->id;
-
         $customer = DB::table('customer_platforms')
             ->where('email', '=', $customer_session->email)
             ->first();
@@ -84,7 +82,7 @@ class BeneficiaryController extends Controller
             ->get();
 
         $signature = DB::table('signatures')
-            ->where('customer_id', '=', $id)
+            ->where('customer_id', '=', $customer_session->id)
             ->first();
 
         if ($customer_session->client_type === "3"){
@@ -96,7 +94,7 @@ class BeneficiaryController extends Controller
                 ->get();
 
             $signature = DB::table('signatures')
-                ->where('customer_id', '=', $id)
+                ->where('customer_id', '=', $customer_session->id)
                 ->first();
         }
 
@@ -284,7 +282,11 @@ class BeneficiaryController extends Controller
 
             try{
                 //Here insert each register of the form
-                for ($i = 0; $i<=1; $i++){
+                $beneficiaries = DB::table('beneficiaries')
+                            ->where('customer_id', '=', $data->id)
+                            ->first();
+                if (empty($beneficiaries)) {
+                  for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
                     if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
                         || $request['name'][$i] == null || $request['parent'][$i] == null){
@@ -294,7 +296,7 @@ class BeneficiaryController extends Controller
                         'error', 'data', 'request', 'level','is_cnt',
                         'signature', 'noti', 'total', 'number','owner','level_before'));
                     }
-
+                    
                     if (isset($request['name'][$i])){
                         if ($request['name'][$i] !== null){
                             $insert = DB::table('beneficiaries')->insert([
@@ -307,6 +309,7 @@ class BeneficiaryController extends Controller
                                 'customer_id'      => $data->id,
                                 'branch_number'    => $request['branch_number'][0]
                             ]);
+                          }
                         }
                     }
                 }
@@ -365,20 +368,38 @@ class BeneficiaryController extends Controller
                     'signature', 'noti', 'total', 'number','owner','level_before'));
             }
 
-            $insertBeneficiary = DB::table('beneficiaries')->insert([
-                'name'             => $request['name'][0],
-                'last_name'        => $request['lastname'][0],
-                'second_last_name' => $request['second_lastname'][0],
-                'relationship'     => $request['parent'][0],
-                'mobile_number'    => $request['phone'][0],
-                'percent'          => $request['percent'][0],
-                'customer_id'      => $data->id,
-                'branch_number'    => $request['branch_number'][0]
-            ]);
+            $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $data->id)
+            ->first();
 
-            //$generatePDF = $this->generatePDF();
-
-            //if ($generatePDF === 'success'){
+            if (empty($beneficiaries)) {
+                $insertBeneficiary = DB::table('beneficiaries')->insert([
+                    'name'             => $request['name'][0],
+                    'last_name'        => $request['lastname'][0],
+                    'second_last_name' => $request['second_lastname'][0],
+                    'relationship'     => $request['parent'][0],
+                    'mobile_number'    => $request['phone'][0],
+                    'percent'          => $request['percent'][0],
+                    'customer_id'      => $data->id,
+                    'branch_number'    => $request['branch_number'][0]
+                ]);
+    
+                //$generatePDF = $this->generatePDF();
+    
+                //if ($generatePDF === 'success'){
+                    $success = 'El beneficiario ha sido agregado correctamente.';
+                    $beneficiaries = DB::table('beneficiaries')
+                                    ->where('customer_id','=', $data->id)
+                                    ->get();
+                        $beneficiaries = json_decode($beneficiaries);
+                        $beneficiary = (array)$beneficiaries;//convert to array
+                        //send email if individual account added a beneficiary
+                       //if(Auth::user()->client_type === "2"){
+                            $this->send_email_alta($data->email);
+                        //}
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt','level_before'));
+            }
+            else{
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiaries = DB::table('beneficiaries')
                                 ->where('customer_id','=', $data->id)
@@ -390,6 +411,12 @@ class BeneficiaryController extends Controller
                         $this->send_email_alta($data->email);
                     //}
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt','level_before'));
+            }
+
+            //$generatePDF = $this->generatePDF();
+
+            //if ($generatePDF === 'success'){
+                
            // }
         }
     }
@@ -565,6 +592,11 @@ class BeneficiaryController extends Controller
 
             try{
                 //Here insert each register of the form
+                $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $data->id)
+                ->first();
+                
+                if (empty($beneficiaries)) {
                 for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
                     if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
@@ -590,6 +622,7 @@ class BeneficiaryController extends Controller
                         }
                     }
                 }
+            }
 
                 //$generatePDF = $this->generatePDF();
                 //if ($generatePDF === 'success') {
@@ -639,7 +672,11 @@ class BeneficiaryController extends Controller
                 return view('pages.registerBeneficiaries', compact(
                     'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
             }
-
+            $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $data->id)
+            ->first();
+            
+            if (empty($beneficiaries)) {
             $insertBeneficiary = DB::table('beneficiaries')->insert([
                 'name'             => $request['name'][0],
                 'last_name'        => $request['lastname'][0],
@@ -667,7 +704,25 @@ class BeneficiaryController extends Controller
 
             return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
             // }
+
         }
+        else {
+            $success = 'El beneficiario ha sido agregado correctamente.';
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id','=', $data->id)
+                ->get();
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
+            //send email if individual account added a beneficiary
+            //if($data_session->client_type === "2"){
+                $this->send_email_alta($data->email);
+            //}
+
+            return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
+            // }
+        }
+    }
+
     }
 
     //Function to generate PDF and upload AWS's S3
@@ -742,7 +797,7 @@ class BeneficiaryController extends Controller
 
         $route = "/sms_pdf/{$dataSession->client_number}/{$dataSession->branch_number}";
         $url = url($route);
-        $messsage = 'Ya estas asegurado con el programa Socio SYD. Descarga tu poliza de Seguro de Accidentes Personales aqui: '.$url;
+        $messsage = 'Ya estas asegurado con Socio SYD. Descarga tu poliza de Accidentes Personales aqui: '.$url;
 
         try {
             // TwilioService::send_sms

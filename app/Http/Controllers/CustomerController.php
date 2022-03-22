@@ -61,6 +61,15 @@ class CustomerController extends Controller
 
     public function cntRegister(Request $request) {
         $request = $request->input();
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
@@ -1939,6 +1948,8 @@ class CustomerController extends Controller
         }
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
+            
+
         ]);
 
         if ($update_customer){
@@ -1966,7 +1977,7 @@ class CustomerController extends Controller
         $url= asset('files/Diploma_Socio_SyD.pdf');
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
-        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
+        $messsage = 'Te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro aqui: '.$url;
         $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
         $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
@@ -2145,7 +2156,7 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
+        $messsage = 'Solicitaste reestablecer tu clave de acceso a Socio SYD, haz clic aqui para hacerlo:  ' .$url;
 
         // TwilioService::send_sms
         C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
@@ -2199,9 +2210,52 @@ class CustomerController extends Controller
 
     //Deactivate account
     public function deactivate_account(Request $request){
+
+        $consult = DB::table('unsubscribe_form')
+                    ->where('email','=', Auth::user()->email)
+                    ->first();
+
+        if ( isset($consult)){
+            if (($request['grupo1'] == 1)){
+
+                $updated = DB::table('unsubscribe_form')
+                          ->where('email', '=', Auth::user()->email)                    
+                          ->update(['message'=> $request['grupo'],
+                                  'updated_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                         ->where('email', '=', Auth::user()->email)                        
+                         ->update(['message'=> $request['grupo1'],
+                                 'updated_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
+        }else{
+            if (($request['grupo1'] == 1)){
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo1'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
+        }
+
         $updated = DB::table('customers_sessions')
             ->where('id', '=', Auth::user()->id)
-            ->update(['active'=> 0]);
+            ->update(['active'=> 0,
+                      'unsuscribe' => 1,
+                      'date_unsuscribe' => date('Y-m-d H:i:s')
+        ]);
 
         if (!$updated){
             return view('pages.Account.status');
@@ -2252,7 +2306,9 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
-            'active'   => 1
+            'active'   => 1,
+            'unsuscribe' => 0,
+            'date_reactivate' => date('Y-m-d H:i:s')
         ]);
 
         if ($update_customer === 1){

@@ -9,6 +9,7 @@ use App\Collector;
 use App\CustomersSession;
 use App\CustomerPlatform;
 use App\Exports\DailyReport;
+use App\Exports\SalesMonthlyExport;
 use App\Exports\WithoutBenefitsReport;
 use App\Exports\BeneficiariesReport;
 use App\Helpers\Utils;
@@ -164,7 +165,10 @@ class CustomerController extends Controller
                                                         IF(customers_sessions.client_type = 3, "Empleado Dependiente",
                                                             IF(customers_sessions.client_type = 4, "Cadenas",
                                                                 IF(customers_sessions.client_type = 5, "Publico en general", null))))) AS type_user'),
-                DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active')
+                DB::raw('IF(customers_sessions.active = 0, "false", "true") AS active'),
+                DB::raw('IF(customers_sessions.unsuscribe = 0, "NO",
+                                    IF(customers_sessions.unsuscribe = 1, "YES", null)) AS unsuscribe'),
+                DB::raw('DATE_FORMAT(customers_sessions.date_unsuscribe, "%Y-%m-%d") AS date_unsuscribe')
             )
             ->get()->toArray();
 
@@ -1235,6 +1239,66 @@ class CustomerController extends Controller
         }*/
 
         return Excel::download( new BeneficiariesReport( $beneficiaries ), 'beneficiaries_report.xlsx' );
+    }
+
+    public function sales_monthly(){
+        //Get the clients with theirs total sales by month
+        $registered_clients = DB::table('customers_sessions')
+            ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+            ->select(
+                'customers_sessions.client_number AS numero_cliente',
+                'customers_sessions.branch_number AS numero_destinatario',
+                DB::raw("DATE_FORMAT(transactions.transaction_date, '%M-%Y') AS month"),
+                DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+                DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Oro", "Ninguno")))))) AS level'),
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS type_user'),
+                'customers_sessions.email'
+            )
+            ->where('customers_sessions.client_type','!=','3')
+            ->orderBy('transactions.transaction_date', 'ASC')
+            ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
+            ->get();
+
+        $associates = DB::table('customers_sessions')
+            ->join('transactions', 'customers_sessions.branch_number', '=', 'transactions.branch_number')
+            ->select(
+                'customers_sessions.client_number AS numero_cliente',
+                'customers_sessions.branch_number AS numero_destinatario',
+                DB::raw("DATE_FORMAT(transactions.transaction_date, '%M-%Y') AS month"),
+                DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+                DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Oro", "Ninguno")))))) AS level'),
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS type_user'),
+                'customers_sessions.email'
+            )
+            ->where('customers_sessions.client_type','=','3')
+            ->orderBy('transactions.transaction_date', 'ASC')
+            ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
+            ->get();
+
+        $merged = $registered_clients->merge($associates);
+
+        $registers = $merged->all();
+
+        //return response()->json($registers);
+        return Excel::download( new SalesMonthlyExport( $registers ), 'sales_by_month.xlsx' );
     }
 
     public function seguroAsistencia($level,$total){

@@ -780,7 +780,7 @@ class AdminController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            /*foreach ($client_transaction as $transaction){
+           /* foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }
