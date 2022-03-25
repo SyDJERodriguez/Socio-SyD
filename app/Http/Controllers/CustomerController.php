@@ -763,7 +763,7 @@ class CustomerController extends Controller
             $this->invitation($request);
             $email = $request['email_auth'];
             //$data = CustomerPlatform::where('email', Auth::user()->email)->first();
-            $response = $this->employeeLimit(
+            $response = $this->newemployeeLimit(
                 $request['email_auth'],
                 $request['customer_id'],
                 $request['client_type']);
@@ -3629,6 +3629,60 @@ class CustomerController extends Controller
         }else if($limit > 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
             $limiteAsociados = true;
         }else if($limit > 7000 && $numberEmployees == 8){ //oro
+            $limiteAsociados = true;
+        }
+
+        $data->validated = $validated;
+        $data->limiteAsociados = $limiteAsociados;
+        $data->number = $numberEmployees;
+
+        return $data;
+    }
+    
+    public function newemployeeLimit($email, $id, $client_type){
+        $data = CustomerPlatform::where('email', $email)->first();
+        $dataSession = CustomersSession::where('email', $email)->first();
+        $now = Carbon::now();
+        $current_month = $now->month;
+        $current_year = $now->year;
+
+        /* $query = DB::table('transactions')
+                    ->where('client_number','=', $data['client_number'])
+                    ->where('branch_number','=', $dataSession['branch_number'])
+                    ->whereMonth('transaction_date','=',$now)
+                    ->sum('amount');
+        */
+        //round the number with only 2 decimals
+        //$limit = $this->totalAmount();
+
+        $data_customer = DB::table('transactions')
+            ->where('client_number', $dataSession['client_number'])
+            ->where('branch_number', $dataSession['branch_number'])
+            ->whereMonth('transaction_date','=',$current_month)
+            ->whereYear('transaction_date', '=', $current_year )
+            ->get();
+
+        $limit = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+            $amount_customer = floatval($d->amount);
+            strpos($d->amount, '-') ? $limit -= $amount_customer : $limit += $amount_customer ;
+            //}
+        }
+
+        $validated = false; //var for button validated
+
+        //get number of employees registrados
+        $numberEmployees = $this->getNumberAssociate($id,$dataSession['branch_number']);
+
+        $validated = false;
+        $limiteAsociados = false;
+        //calculated the limit of employees
+        if($numberEmployees < 8){ //oro
+            $validated = true;
+        }
+
+        if($numberEmployees == 8){ //oro
             $limiteAsociados = true;
         }
 

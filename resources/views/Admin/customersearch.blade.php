@@ -267,7 +267,7 @@
                <div class="col-sm-3">  
                 </div>
                 <div class="row" style="justify-content: center">
-                        <button type="submit" class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;"  id="buttonconf" data-toggle="modal" data-target="#modalClientType" >ACEPTAR</button>
+                        <input class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3; color:white; cursor:pointer "  id="buttonconf" data-toggle="modal" data-target="#modalClientType" value="VALIDAR " readonly>
                 </div>
              <!-- Modal Confirm-->
              <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType"
@@ -287,7 +287,7 @@
                         <br>
                       <div class="input-group mb-3" style="margin-top: 1rem">
                          <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
-                             id="codes" name="verification_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
+                             id="codes" name="verification_code" maxlength="6" pattern="[0-9]{6}" style="border-radius: .25rem;">
                          <input type="hidden" class="form-control btnBorder" placeholder="CÓDIGO DE 6 DIGITOS"
                              id="codesConfirm" name="confirm_code" maxlength="6" pattern="[0-9]{6}" required style="border-radius: .25rem;">
                          <p style="color: red; margin: 0;" hidden id="requiredSignal">*</p>
