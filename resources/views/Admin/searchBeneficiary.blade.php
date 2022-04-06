@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="container">
+        <div class="col-md-12" style="display: flex; ">
+            <a href="{{route('admin.customers.index')}}"
+               class="btn btn-lg"
+               style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Regresar</a>
+        </div>
         <div class="row justify-content-center">
+            
             <div class="col-md-8">
-            <div class="col-md-4" style="display: flex; justify-content: flex-end;">
-                                <a href="{{route('admin.customers.index')}}"
-                                   class="btn btn-lg"
-                                   style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Regresar</a>
-                            </div>
                 <div class="card">
                     <div class="card-header text-white bg-dark">Registar beneficiarios</div>
                     <div class="col-md-12" style="padding-top: 15px;">

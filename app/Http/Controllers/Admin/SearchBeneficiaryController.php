@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\CustomerPlatform;
 use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -101,7 +101,7 @@ class SearchBeneficiaryController extends Controller
         $customerData = DB::table('customers_sessions')
             ->where('client_number', '=', $client_number)
             ->get();
-
+        
         $customerDatabranch = DB::table('client_numbers')
             ->where('client_number', '=', $client_number)
             ->get();
@@ -111,12 +111,14 @@ class SearchBeneficiaryController extends Controller
            return view('Admin.customerBeneficiary', compact('error'));
         }
 
+        $data = CustomerPlatform::where('client_number', '=', $client_number)->first();
+
         if( count($customerDatabranch) > 1 ){
             $branches = DB::table('client_numbers')
                             ->where('client_number','=', $branch_number)
                             ->get();
                             //aquí es indexbranch para el select
-            return view('Admin.indexbranch', compact('branches'));
+            return view('Admin.indexbranchbeneficiary', compact('branches'));
         }
 
         $email = $customerData[0]->email;
@@ -263,6 +265,20 @@ class SearchBeneficiaryController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
+      
+
+        $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data->id)
+                        ->get();
+        $beneficiaries = json_decode($beneficiaries);
+        $beneficiary = (array)$beneficiaries;//convert to array
+
+         if(empty($beneficiaries) == false){
+            return view('Admin.customerBeneficiary', compact('beneficiary','client_number', 'account', 'transactions', 'totalAmount',
+            'customerData', 'level', 'associates','level_before'));
+        }
+
+
         //TODO: If tiene has($customerData) mas de  un registro, entonces mostrar su nombre y correo
         return view('Admin.customerBeneficiary',
                     compact('client_number', 'account', 'transactions', 'totalAmount',
@@ -278,13 +294,13 @@ class SearchBeneficiaryController extends Controller
             $account= DB::table('customers_sessions')
             ->where('branch_number', '=', $email)
             ->first();
-
-
+            
 
             if (empty($account)){
                 $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
                 return view('Admin.customerBeneficiary', compact('error'));
             }
+            $data = CustomerPlatform::where('email', '=', $account->email)->first();
 
             $client_number = $account->client_number;
             $branch_number = $account->branch_number;
@@ -421,9 +437,15 @@ class SearchBeneficiaryController extends Controller
                 ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
                 ->get();
 
-                $beneficiaries = DB::table('beneficiaries')
-                ->where('customer_id','=',  $id)
-                ->get();
+            $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data->id)
+                        ->get();
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
+
+            if(empty($beneficiaries) == false){
+            return view('Admin.customerBeneficiary', compact('beneficiary','client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before','beneficiaries'));
+        }
                
 
             return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before','beneficiaries'));
@@ -431,7 +453,7 @@ class SearchBeneficiaryController extends Controller
 
     // Function for search by email
     public function search_by_email(Request $request)
-    {
+    {   
         $request = $request->input();
         $email = $request['email'];
         $account = DB::table('customers_sessions')
@@ -440,8 +462,9 @@ class SearchBeneficiaryController extends Controller
 
         if (empty($account)){
             $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
-            return view('Admin.customer', compact('error'));
+            return view('Admin.customerBeneficiary', compact('error'));
         }
+        $data = CustomerPlatform::where('email', '=', $email)->first();
 
         $client_number = $account->client_number;
         $branch_number = $account->branch_number;
@@ -576,12 +599,19 @@ class SearchBeneficiaryController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        $beneficiaries = DB::table('beneficiaries')
-            ->where('customer_id','=', $id )
-            ->get();
+         $beneficiaries = DB::table('beneficiaries')
+                        ->where('customer_id','=', $data->id)
+                        ->get();
+        $beneficiaries = json_decode($beneficiaries);
+        $beneficiary = (array)$beneficiaries;//convert to array
+
+         if(empty($beneficiaries) == false){
+            return view('Admin.customerBeneficiary', compact('beneficiary','client_number', 'account', 'transactions', 'totalAmount',
+            'customerData', 'level', 'associates','level_before'));
+        }
         
 
-        return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before' , 'beneficiary'));
+        return view('Admin.customerBeneficiary', compact('client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
     }
 
     //function search by dependent
@@ -646,7 +676,7 @@ class SearchBeneficiaryController extends Controller
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
 
-        return view('Admin.customer',
+        return view('Admin.customerBeneficiary',
         compact('client_number', 'account', 'transactions', 'totalAmount',
                 'customerData', 'level', 'associates'));
     }

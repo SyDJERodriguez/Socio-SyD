@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if(isset($error))
+        @if(isset($errorn))
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <h2>{{$error}}</h2>
@@ -179,56 +179,29 @@
                 </p>
             </div>
 
-           
-
-            @if($account->client_type === '1')
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <h4>Dependientes</h4>
-                        <table class="table table-striped table-bordered" id="tableEmployees" style="width:100%">
-                            <thead>
-                            <tr>
-                                <td><b>Nombre </b></td>
-                                <td><b>Correo electrónico</b></td>
-                                <td><b>Teléfono </b></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($associates as $as)
-                                <tr>
-                                    <td>{{$as->name}} {{$as->last_name}} {{$as->second_last_name}}</td>
-                                    <td>{{$as->email}}</td>
-                                    <td>{{$as->mobile_number}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            @endif
+            @if(isset($error)) 
+                             <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
+                                 <strong>{{$error}}</strong>
+                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+                             </div>
+                         @endif
             <div>
                     <div class="row"
                     style="border: 1px solid rgba(128, 128, 128, 0.637);padding: 20px;border-radius: 8px">
-                    @if(isset($error))
-                            <div class="alert alert-danger" id="form_alert" role="alert" style="border-radius: 6px;" >
-                                <strong>{{$error}}</strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
-                            </div>
-                        @endif
 
-                    @if(isset($beneficiaries))
+                    @if(isset($beneficiary))
                             <div class="modal-body " style="background-color: #143153;">
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
-                                        <h5 class="text-white">¡Tus beneficiarios ya han sido registrados!</h5>
+                                        <h5 class="text-white">¡Los beneficiarios ya han sido registrados!</h5>
                                         <br>
                                         <div class="text-white">
-                                            @for ($i = 0; $i < count($be); $i++)
+                                            @for ($i = 0; $i < count($beneficiary); $i++)
                                                 <p>Beneficiario {{$i+1}}:
-                                                    {{mb_strtoupper($beneficiaries[$i]->name)}}
-                                                    {{mb_strtoupper($beneficiaries[$i]->last_name)}}
-                                                    {{mb_strtoupper($beneficiaries[$i]->second_last_name)}}</p>
+                                                    {{mb_strtoupper($beneficiary[$i]->name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->last_name)}}
+                                                    {{mb_strtoupper($beneficiary[$i]->second_last_name)}}</p>
                                             @endfor
                                         </div>
                                         <br>
@@ -246,38 +219,41 @@
                                     $('#modalBeneficiarySignUp').modal('show');
                                 });
                             </script>
-
                             <form autocomplete="off" method="POST" action="{{route('beneficiary.add')}}">
                                 @csrf
-                                <div id="beneficiaryParent">
+                                <div id="beneficiaryParent" >
 
-                                    <div class="row inputsBeneficiary" id="inputsBeneficiary">
-                                        <div class="col-2">
+                                    <div class="inputsBeneficiary" id="inputsBeneficiary">
+                                        
                                             <h6>BENEFICIARIO 1</h6>
-                                        </div>
                                         <input type="hidden" id="branch_number1" name="branch_number[0]" value="{{$account->branch_number}}">
                                         <input type="hidden" id="id" name="id[0]" value="{{$account->id}}">
-                                        <div class="col-lg-2">
+                                        <input type="hidden" id="email" name="email[0]" value="{{$customerData->email}}">
+                                        <div class="row">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['name'][0] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['lastname'][0] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['second_lastname'][0] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                    </div>
+                                    <br>
+                                       <div class="row">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                    required maxlength="30" value="{{ isset($request) ? $request['parent'][0] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">%</div>
@@ -287,39 +263,41 @@
                                                        required maxlength="3" value="{{ isset($request) ? $request['percent'][0] : null  }}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
                                                    pattern="[0-9]{10}"
                                                    required  maxlength="10" value="{{ isset($request) ? $request['phone'][0] : null  }}">
                                         </div>
                                     </div>
-
-                                    <div class="row inputsBeneficiary" id="inputsBeneficiary">
-                                        <div class="col-lg-2">
+                                    </div>
+                                    
+                                    <div class="inputsBeneficiary" id="inputsBeneficiary">
                                             <h6>BENEFICIARIO 2</h6>
-                                        </div>
-
-                                        <div class="col-lg-2">
+                                        <div class="row">
+                                        <div class="col-lg-6">
                                             <input type="text" class="form-control nameInput" name="name[]"  placeholder="NOMBRE"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['name'][1] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-6">
                                             <input type="text" class="form-control nameInput" name="lastname[]" placeholder="PRIMER APELLIDO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['lastname'][1] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-6">
                                             <input type="text" class="form-control nameInput" name="second_lastname[]" placeholder="SEGUNDO APELLIDO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['second_lastname'][1] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-6">
                                             <input type="text" class="form-control nameInput" name="parent[]" placeholder="PARENTESCO"
                                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ].{2,}"
                                                     maxlength="30" value="{{ isset($request) ? $request['parent'][1] : null  }}">
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-6">
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">%</div>
@@ -329,19 +307,20 @@
                                                         maxlength="3" value="{{ isset($request) ? $request['percent'][1] : null  }}">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-6">
                                             <input type="text" class="form-control mobileInput" name="phone[]" placeholder="No. TELEFÓNICO 10 DÍGITOS"
                                                    pattern="[0-9]{10}"
                                                      maxlength="10" value="{{ isset($request) ? $request['phone'][1] : null  }}">
                                         </div>
                                     </div>
+                                 </div>
 
                                 </div>
 
-                                <div class="col-lg-2">
+                               <br>
                                     <input type="submit" class="btn btn float-right text-white px-5"
                                            style="background-color: #009CE0;" value="CONFIRMAR">
-                                </div>
+                               
                             </form>
 
             

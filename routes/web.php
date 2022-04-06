@@ -161,7 +161,7 @@ Route::group(['middleware' => ['auth:admin']], function() {
 Route::get('/searchBeneficiary', 'Admin\SearchBeneficiaryController@index')->name('beneficiary.index');
 Route::get('/BeneficiaryClient_number', 'Admin\SearchBeneficiaryController@search_by_number')->name('beneficiary.search.client.number');
 Route::get('/BeneficiaryEmail', 'Admin\SearchBeneficiaryController@search_by_email')->name('beneficiary.search.email');
-Route::get('/BeneficiaryBranch', 'Admin\SearchBeneficiaryController@search_by_branch')->name('beneficiary.search.branch');
+Route::get('/BeneficiaryBranch', 'Admin\SearchBeneficiaryController@search_by_branch')->name('search.branchBeneficiary');
 Route::post('add/beneficiaries', 'Admin\CustomerBeneficiaryController@add_beneficiaries')->name('beneficiary.add');
 });
 //Reports for Telasist and Chubb
