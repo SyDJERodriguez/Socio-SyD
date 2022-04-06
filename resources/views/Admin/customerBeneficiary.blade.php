@@ -194,6 +194,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <img src="{{asset('img/icon_check.png')}}">
+                                        <br>
                                         <h5 class="text-white">¡Los beneficiarios ya han sido registrados!</h5>
                                         <br>
                                         <div class="text-white">
@@ -205,10 +206,6 @@
                                             @endfor
                                         </div>
                                         <br>
-                                        <h5 class="text-white">¡Recuerda agregar tu firma al certificado!</h5>
-                                        <br>
-                                        <a href="{{route('customer.myDocuments')}}" class="btn btn" style="background-color: #00A1E3;color: #FFF;">VER CERTIFICADO</a>
-                                        <p class="text-white"></p>
                                     </div>
                                 </div>
                             </div>
