@@ -19,7 +19,7 @@
                         onclick="playHomeVideo('socioSYD_video',0)"
                         style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
                         >VER VIDEO</a><br>
-                        <a href="https://syd-files.s3.amazonaws.com/Folleto.pdf" class="btn btn-lg" id="btnVideo"
+                        <a href="https://www.syd.com.mx/folletosociosyd/Folleto.pdf" class="btn btn-lg" id="btnVideo"
                            style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank">
                             DESCARGAR FOLLETO INFORMATIVO</a>
                     </p>
