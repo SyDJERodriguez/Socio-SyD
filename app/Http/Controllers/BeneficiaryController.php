@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CustomersSession;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\CustomerPlatform;
@@ -52,6 +52,55 @@ class BeneficiaryController extends Controller
         $initDate = new Carbon('first day of next month');
 
         $finDate = new Carbon('last day of next month');
+
+        $currentDate = Carbon::parse()->locale('es');
+        // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
+    }
+
+    //Function to generate PDF by Email
+    public function generatePDFEmail($email) {
+
+        $customer_session = DB::table('customers_sessions')
+            ->where('email','=', $email)
+            ->first();
+
+        $customer = DB::table('customer_platforms')
+            ->where('email', '=', $customer_session->email)
+            ->first();
+
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('customer_id', '=', $customer_session->id)
+            ->first();
+
+        if ($customer_session->client_type === "3"){
+            $customer = DB::table('customer_platforms')
+                ->where('email', '=', $customer_session->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $customer_session->id)
+                ->first();
+        }
+
+        $initDate = new Carbon('first day of this month');
+
+        $finDate = new Carbon('last day of this month');
 
         $currentDate = Carbon::parse()->locale('es');
         // $currentDate->diffForHumans();
@@ -233,7 +282,11 @@ class BeneficiaryController extends Controller
 
             try{
                 //Here insert each register of the form
-                for ($i = 0; $i<=1; $i++){
+                $beneficiaries = DB::table('beneficiaries')
+                            ->where('customer_id', '=', $data->id)
+                            ->first();
+                if (empty($beneficiaries)) {
+                  for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
                     if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
                         || $request['name'][$i] == null || $request['parent'][$i] == null){
@@ -243,7 +296,7 @@ class BeneficiaryController extends Controller
                         'error', 'data', 'request', 'level','is_cnt',
                         'signature', 'noti', 'total', 'number','owner','level_before'));
                     }
-
+                    
                     if (isset($request['name'][$i])){
                         if ($request['name'][$i] !== null){
                             $insert = DB::table('beneficiaries')->insert([
@@ -256,6 +309,7 @@ class BeneficiaryController extends Controller
                                 'customer_id'      => $data->id,
                                 'branch_number'    => $request['branch_number'][0]
                             ]);
+                          }
                         }
                     }
                 }
@@ -314,20 +368,38 @@ class BeneficiaryController extends Controller
                     'signature', 'noti', 'total', 'number','owner','level_before'));
             }
 
-            $insertBeneficiary = DB::table('beneficiaries')->insert([
-                'name'             => $request['name'][0],
-                'last_name'        => $request['lastname'][0],
-                'second_last_name' => $request['second_lastname'][0],
-                'relationship'     => $request['parent'][0],
-                'mobile_number'    => $request['phone'][0],
-                'percent'          => $request['percent'][0],
-                'customer_id'      => $data->id,
-                'branch_number'    => $request['branch_number'][0]
-            ]);
+            $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $data->id)
+            ->first();
 
-            //$generatePDF = $this->generatePDF();
-
-            //if ($generatePDF === 'success'){
+            if (empty($beneficiaries)) {
+                $insertBeneficiary = DB::table('beneficiaries')->insert([
+                    'name'             => $request['name'][0],
+                    'last_name'        => $request['lastname'][0],
+                    'second_last_name' => $request['second_lastname'][0],
+                    'relationship'     => $request['parent'][0],
+                    'mobile_number'    => $request['phone'][0],
+                    'percent'          => $request['percent'][0],
+                    'customer_id'      => $data->id,
+                    'branch_number'    => $request['branch_number'][0]
+                ]);
+    
+                //$generatePDF = $this->generatePDF();
+    
+                //if ($generatePDF === 'success'){
+                    $success = 'El beneficiario ha sido agregado correctamente.';
+                    $beneficiaries = DB::table('beneficiaries')
+                                    ->where('customer_id','=', $data->id)
+                                    ->get();
+                        $beneficiaries = json_decode($beneficiaries);
+                        $beneficiary = (array)$beneficiaries;//convert to array
+                        //send email if individual account added a beneficiary
+                       //if(Auth::user()->client_type === "2"){
+                            $this->send_email_alta($data->email);
+                        //}
+                    return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt','level_before'));
+            }
+            else{
                 $success = 'El beneficiario ha sido agregado correctamente.';
                 $beneficiaries = DB::table('beneficiaries')
                                 ->where('customer_id','=', $data->id)
@@ -339,6 +411,12 @@ class BeneficiaryController extends Controller
                         $this->send_email_alta($data->email);
                     //}
                 return view('pages.Account.beneficiary', compact('success', 'data', 'beneficiary', 'level', 'signature', 'noti', 'total', 'number','owner','is_cnt','level_before'));
+            }
+
+            //$generatePDF = $this->generatePDF();
+
+            //if ($generatePDF === 'success'){
+                
            // }
         }
     }
@@ -514,6 +592,11 @@ class BeneficiaryController extends Controller
 
             try{
                 //Here insert each register of the form
+                $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $data->id)
+                ->first();
+                
+                if (empty($beneficiaries)) {
                 for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
                     if($request['second_lastname'][$i] == null || $request['lastname'][$i] == null
@@ -539,6 +622,7 @@ class BeneficiaryController extends Controller
                         }
                     }
                 }
+            }
 
                 //$generatePDF = $this->generatePDF();
                 //if ($generatePDF === 'success') {
@@ -588,7 +672,11 @@ class BeneficiaryController extends Controller
                 return view('pages.registerBeneficiaries', compact(
                     'error', 'data', 'request', 'number','owner', 'email', 'branch_number'));
             }
-
+            $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $data->id)
+            ->first();
+            
+            if (empty($beneficiaries)) {
             $insertBeneficiary = DB::table('beneficiaries')->insert([
                 'name'             => $request['name'][0],
                 'last_name'        => $request['lastname'][0],
@@ -616,7 +704,25 @@ class BeneficiaryController extends Controller
 
             return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
             // }
+
         }
+        else {
+            $success = 'El beneficiario ha sido agregado correctamente.';
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id','=', $data->id)
+                ->get();
+            $beneficiaries = json_decode($beneficiaries);
+            $beneficiary = (array)$beneficiaries;//convert to array
+            //send email if individual account added a beneficiary
+            //if($data_session->client_type === "2"){
+                $this->send_email_alta($data->email);
+            //}
+
+            return view('pages.registerBeneficiaries', compact('success', 'data', 'beneficiary', 'number','owner', 'email', 'client_number', 'branch_number'));
+            // }
+        }
+    }
+
     }
 
     //Function to generate PDF and upload AWS's S3
@@ -691,10 +797,11 @@ class BeneficiaryController extends Controller
 
         $route = "/sms_pdf/{$dataSession->client_number}/{$dataSession->branch_number}";
         $url = url($route);
-        $messsage = 'Ya estas asegurado con el programa Socio SYD. Descarga tu poliza de Seguro de Accidentes Personales aqui: '.$url;
+        $messsage = 'Ya estas asegurado con Socio SYD. Descarga tu poliza de Accidentes Personales aqui: '.$url;
 
         try {
-            TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
             \Mail::send('emails.beneficiariesAdded',['data'=>$data], function($m) use ($data){
                 $m->from('noreply@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Haz registrado exitosamente a tus beneficiarios en el programa de lealtad SYD');
