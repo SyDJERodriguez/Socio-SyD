@@ -98,8 +98,8 @@
                         <p class="text-justify">El Titular podrá manifestar su negativa al tratamiento de sus datos con
                             las finalidades
                             secundarias, a través del envío de un correo electrónico en dicho sentido a
-                            <a href="mailto:protecciondatos@syd.com.mx">
-                                protecciondatos@syd.com.mx</a> el cual deberá contener su información de contacto y
+                            <a href="mailto:datos.personales@syd.com.mx">
+                                datos.personales@syd.com.mx</a> el cual deberá contener su información de contacto y
                             cualquier otra
                             información que permita dar respuesta a dicho informe, absteniéndose de proporcionar
                             información confidencial de la que no sea Titular o de la que no tenga autorización para
@@ -119,8 +119,8 @@
                         <p class="text-justify">SyD® asume que la información proporcionada por el Titular le pertenece a
                             este último. En caso de que no sea así, el Titular deberá informar dicha circunstancia
                             inmediatamente a SyD®, a través del envío de un correo electrónico a
-                            <a href="mailto:protecciondatos@syd.com.mx">
-                                protecciondatos@syd.com.mx</a> el cual deberá contener su información de contacto y
+                            <a href="mailto:datos.personales@syd.com.mx">
+                                datos.personales@syd.com.mx</a> el cual deberá contener su información de contacto y
                             cualquier
                             otra información que permita dar respuesta a dicho informe, absteniéndose de proporcionar
                             información adicional de la que no sea Titular o de la que no tenga autorización para
@@ -129,16 +129,16 @@
                         <p class="text-justify">El Titular podrá revocar el consentimiento antes referido en todo
                             momento. Para revocar el consentimiento proporcionado, el Titular deberá comunicar dicha
                             circunstancia a SyD® por medio de un correo electrónico enviado a <a
-                                href="mailto:protecciondatos@syd.com.mx">
-                                protecciondatos@syd.com.mx</a>
+                                href="mailto:datos.personales@syd.com.mx">
+                                datos.personales@syd.com.mx</a>
                             indicando las causas que lo motivan a comunicar la revocación, así como la información que
                             permita a SyD® responder y dar seguimiento a dicha revocación.
                         </p>
                         <p class="text-justify">En caso de que el Titular desee limitar el uso o la divulgación de
                             alguno de sus datos personales, podrá en cualquier momento enviar la manifestación de dicha
                             limitación a través de un correo electrónico dirigido a <a
-                                href="mailto:protecciondatos@syd.com.mx">
-                                protecciondatos@syd.com.mx</a> en el
+                                href="mailto:datos.personales@syd.com.mx">
+                                datos.personales@syd.com.mx</a> en el
                             cual incluirá los datos personales cuyo tratamiento desea limitar, los motivos por los
                             cuales desea limitarlos, así como la información que permita a SyD® dar seguimiento a dicha
                             solicitud. En caso de ser procedente la solicitud del Titular, SyD® registrará al Titular en
@@ -156,8 +156,8 @@
                             a oposición) (en su conjunto, los derechos “ARCO”)
                         </p>
                         <p class="text-justify">Los derechos ARCO pueden ser ejercidos en cualquier momento a través del
-                            envío de un correo electrónico dirigido a <a href="mailto:protecciondatos@syd.com.mx">
-                                protecciondatos@syd.com.mx</a> la solicitud de
+                            envío de un correo electrónico dirigido a <a href="mailto:datos.personales@syd.com.mx">
+                                datos.personales@syd.com.mx</a> la solicitud de
                             cualquiera de los derechos ARCO deberá ir acompañada de lo siguiente:
                         </p>
 
