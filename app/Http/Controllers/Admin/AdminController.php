@@ -102,6 +102,11 @@ class AdminController extends Controller
             ->where('client_number', '=', $client_number)
             ->get();
 
+        if ( $customerData->isEmpty() ){
+            $error = 'El usuario solicitado no se encuentra registrado en el programa Socio SyD';
+            return view('Admin.customer', compact('error'));
+        }
+
         $customerDatabranch = DB::table('client_numbers')
             ->where('client_number', '=', $client_number)
             ->get();
@@ -141,7 +146,7 @@ class AdminController extends Controller
         $current_month = $now->month;
         $current_year = $now->year;
         $previus_month =$now->month - 1;
-        
+
         if ($previus_month == 0) {
             $current_year = $now->year-1;
             $previus_month =$now->month + 11;
@@ -775,7 +780,7 @@ class AdminController extends Controller
                 $client->client_number = $client->client_number.'-'.$associate_data->number;
             }
 
-            /*foreach ($client_transaction as $transaction){
+           /* foreach ($client_transaction as $transaction){
                 $amount_customer = floatval($transaction->amount);
                 strpos($transaction->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
             }

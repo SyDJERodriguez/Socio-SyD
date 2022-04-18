@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -97,21 +97,21 @@ class EmailsMonthly20 extends Command
             $message_three = 'Este mes no has alcanzado el monto minimo de compra para obtener los beneficios de asistencia Nivel Oro de Socio SYD.';
             if($client->type_user === '1'){
                 if ($totalAmount<2500) {
-                    TwilioService::send_sms($message_one,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
-                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_two,'+52'.$client->phone);
                     Mail::send('emails.seguroInvitacionPlataDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
                     });
                 }
                 if ($totalAmount>4500 && $totalAmount<=7500) {
-                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_three,'+52'.$client->phone);
                     Mail::send('emails.plataInvitacionOroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
@@ -119,21 +119,21 @@ class EmailsMonthly20 extends Command
                 }
             }else if($client->type_user === '2'){
                 if ($totalAmount<200) {
-                    TwilioService::send_sms($message_one,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>=200 && $totalAmount<=500) {
-                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_two,'+52'.$client->phone);
                     Mail::send('emails.individualPlata20', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>500 && $totalAmount<=1300) {
-                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_three,'+52'.$client->phone);
                     Mail::send('emails.individualOro20', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
@@ -141,21 +141,21 @@ class EmailsMonthly20 extends Command
                 }
             }else if($client->type_user === '4'){
                 if ($totalAmount<2500) {
-                    TwilioService::send_sms($message_one,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>=2500 && $totalAmount<=4500) {
-                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_two,'+52'.$client->phone);
                     Mail::send('emails.seguroInvitacionPlataDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
                     });
                 }
                 if ($totalAmount>4500 && $totalAmount<=7500) {
-                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_three,'+52'.$client->phone);
                     Mail::send('emails.plataInvitacionOroDuenio15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Asistencia Plata Socio SyD');
@@ -163,21 +163,21 @@ class EmailsMonthly20 extends Command
                 }
             }else if($client->type_user === '5'){
                 if ($totalAmount<200) {
-                    TwilioService::send_sms($message_one,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_one,'+52'.$client->phone);
                     Mail::send('emails.sinSeguroInvitacionSeguroIndividual15Mes', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>=200 && $totalAmount<=500) {
-                    TwilioService::send_sms($message_two,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_two,'+52'.$client->phone);
                     Mail::send('emails.individualPlata20', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
                     });
                 }
                 if ($totalAmount>500 && $totalAmount<=1300) {
-                    TwilioService::send_sms($message_three,'+52'.$client->phone);
+                    C3ntroService::sendSMS($message_three,'+52'.$client->phone);
                     Mail::send('emails.individualOro20', [] ,function($m) use ($client) {
                         $m->from('sociosyd@syd.com.mx',"Socio SYD");
                         $m->to($client->email)->subject('Invitacion a Seguro Socio SyD');
