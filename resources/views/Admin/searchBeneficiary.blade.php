@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="col-md-12" style="display: flex; ">
+        <div class="col-md-12 " style="display: flex; ">
             <a href="{{route('admin.customers.index')}}"
                class="btn btn-lg"
-               style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Regresar</a>
+               style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255); position: absolute; top: 8px; right: 16px; ">Regresar</a>
         </div>
         <div class="row justify-content-center">
             
