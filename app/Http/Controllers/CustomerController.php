@@ -1029,9 +1029,17 @@ class CustomerController extends Controller
 
         //Check if the email already has an account
 
-        $verify_email = CustomersSession::where('email', $request['email'])->first();
+       $verify_email = CustomersSession::where('email', $request['email'])->first();
 
         if ($verify_email !== null) {
+            return response()->json(['success'=>'false', 'verify_email'=>'false']);
+        }
+
+        $verify_emailtwo= DB::table('customer_platforms')
+                                    ->where('email', '=', $request['email'])
+                                    ->first();
+
+        if ($verify_emailtwo !== null) {
             return response()->json(['success'=>'false', 'verify_email'=>'false']);
         }
 
@@ -1041,6 +1049,7 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_mobile_number'=>'false']);
         }
 
+        
         //Check if the client number is already in the DB
         try {
             if($request['client_type'] !== 3){
@@ -1101,25 +1110,7 @@ class CustomerController extends Controller
                     'channel'          => isset($request['channel']) ? $request['channel'] : ''
                 ]);
             }else{
-                //u[date]
-                $update_customer = DB::table('customer_platforms')->where('email', '=', $request['email'])->update([
-                    'client_number'    => $client_number,
-                    'name'             => $request['name'],
-                    'last_name'        => $request['last_name'],
-                    'second_last_name' => $request['second_last_name'],
-                    'email'            => $request['email'], //This is for customers_session table too
-                    'mobile_number'    => $request['mobile'],
-                    'company'          => isset($request['company']) ? $request['company'] : null,
-                    'birthday'         => $request['birthday'],
-                    'created_at'       => date('Y-m-d H:i:s'),
-                    'rfc'              => isset($request['rfc']) ? $request['rfc'] : null,
-                    'work'             => isset($request['work']) ? $request['work'] : null,
-                    'gender'           => isset($request['gender']) ? $request['gender'] : null,
-                    'collector_id'     => 6,
-                    'RFC_Company'      => isset($request['RFC_Company']) ? $request['RFC_Company'] : null,
-                    'branch_id'        => isset($request['branch_id']) ? $request['branch_id'] : '',
-                    'channel'          => isset($request['channel']) ? $request['channel'] : ''
-                ]);
+                return response()->json(['success'=>'false', 'verify_email'=>'false']);
             }
 
 
