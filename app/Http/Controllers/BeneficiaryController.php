@@ -752,9 +752,9 @@ class BeneficiaryController extends Controller
                 ->first();
         }
 
-        $initDate = new Carbon('first day of next month');
+        $initDate = new Carbon('first day of this month');
 
-        $finDate = new Carbon('last day of next month');
+        $finDate = new Carbon('last day of this month');
 
         $currentDate = Carbon::parse()->locale('es');
        // $currentDate->diffForHumans();
