@@ -245,6 +245,7 @@ class CustomerBeneficiaryController extends Controller
             $user = Auth::user();
             $nowDate = $now->toDateString();
             $nowTime = $now->toTimeString();
+            $nowDateTime = $now->toDateTimeString();
             $insert_log = DB::table('log_admin_searches')->insert([
                 'user' => $user->email,
                 'name' => $user->name,
@@ -294,7 +295,7 @@ class CustomerBeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
                 return view('Admin.customerBeneficiary', compact(
-                    'error', 'client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+                    'error','request', 'client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
                 //dd($total_percent);
             }
 
@@ -332,7 +333,9 @@ class CustomerBeneficiaryController extends Controller
                                 'mobile_number'    => $request['phone'][$i],
                                 'percent'          => $request['percent'][$i],
                                 'customer_id'      => $data->id,
-                                'branch_number'    => $request['branch_number'][0]
+                                'branch_number'    => $request['branch_number'][0],
+                                'created_at'       => $nowDateTime,
+                                'updated_at'       => $nowDateTime
                             ]);
                         }
                     }
@@ -364,7 +367,7 @@ class CustomerBeneficiaryController extends Controller
                 //Here the response if total percent of beneficiaries is not 100
                 $error = 'El porcentaje total debe ser de 100%';
                 return view('Admin.customerBeneficiary', compact(
-                    'error', 'client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
+                    'error','request', 'client_number', 'account', 'transactions', 'totalAmount', 'customerData', 'level', 'associates','level_before'));
             }
 
             //valid name,last,secondLast
@@ -393,7 +396,9 @@ class CustomerBeneficiaryController extends Controller
                 'mobile_number'    => $request['phone'][0],
                 'percent'          => $request['percent'][0],
                 'customer_id'      => $data->id,
-                'branch_number'    => $request['branch_number'][0]
+                'branch_number'    => $request['branch_number'][0],
+                'created_at'       => $nowDateTime,
+                'updated_at'       => $nowDateTime
             ]);
 
             //$generatePDF = $this->generatePDF();
