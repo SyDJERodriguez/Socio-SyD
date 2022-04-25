@@ -12,7 +12,7 @@ use App\CustomerCollectorDetail;
 use App\Collector;
 use App\CustomerStage;
 use App\Helpers\CustomersService;
-use App\Helpers\Twilio\TwilioService;
+use App\Helpers\C3ntroService;
 use App\Helpers\Utils;
 use App\LogRegisters;
 use App\Mail\contactMail;
@@ -61,6 +61,15 @@ class CustomerController extends Controller
 
     public function cntRegister(Request $request) {
         $request = $request->input();
+        $year = Carbon::now()->year;
+        $clientYear = explode("-",$request['birthday']);
+        $clientYear = (int)$clientYear[0];
+        $age = $year - $clientYear;
+
+        if( $age < 14 == true || $age > 120 == true){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
@@ -70,13 +79,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        //$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
-        if ($validate_dns <= 0){
+        /*if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
@@ -364,13 +373,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
@@ -499,7 +508,8 @@ class CustomerController extends Controller
 
                 $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
 
-                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage,'+52'.$request['mobile_auth']);
                 Mail::send('emails.allEmployees',[], function($m) use ($email){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
@@ -541,13 +551,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         $verify_mobile_number = CustomerPlatform::where('mobile_number', $request['mobile_number'])->first();
@@ -624,13 +634,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
@@ -758,7 +768,8 @@ class CustomerController extends Controller
 
                 $messsage = 'Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD.';
 
-                TwilioService::send_sms($messsage,'+52'.$request['mobile_auth']);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage,'+52'.$request['mobile_auth']);
                 Mail::send('emails.allEmployees',[], function($m) use ($email){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($email)->subject("Ya diste de alta exitosamente a todos tus colaboradores en Socio SYD");
@@ -819,21 +830,23 @@ class CustomerController extends Controller
         $validated = false;
         $limiteAsociados = false;
         //calculated the limit of employees
-        if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees < 8 ){ //bronce
             $validated = true;
-        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
+        }
+         /*else if($limit >= 0 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
-        }
+        }*/
 
-        if( $limit > 2500 && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500 */ && $numberEmployees == 8 ){ //bronce
             $limiteAsociados = true;
-        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
+        }
+       /* else if($limit >= 0 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
             $limiteAsociados = true;
         }else if($limit > 7000 && $numberEmployees == 8){ //oro
             $limiteAsociados = true;
-        }
+        }*/
 
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
@@ -1001,13 +1014,13 @@ class CustomerController extends Controller
 
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        /*$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
        // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
 
         if ($passwordVerify !== $passwordConfirm){
@@ -1261,13 +1274,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
+       /* $domain = explode('@', $request['email']);
         $validate_dns = sizeof(dns_get_record($domain[1]));
 
        // return $validate_dns;
         if ($validate_dns <= 0){
             return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return response()->json(['success'=>'false', 'verify_password'=>'false']);
@@ -1589,13 +1602,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
+        /*$domain = explode('@', $request['email']);
         $validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
         if ($validate_dns <= 0){
             return redirect()->back()->with('msg', 'Correo electrónico no válido');
-        }
+        }*/
 
         if ($passwordVerify !== $passwordConfirm){
             return redirect()->back()->with('msg', 'Las contraseñas no coinciden.');
@@ -1693,7 +1706,8 @@ class CustomerController extends Controller
         $url = url('account/verify/' . $data->branch_number);
         $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
-        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
 
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
@@ -1719,7 +1733,8 @@ class CustomerController extends Controller
          $url = url('account/verify/' . $information->branch_number);
          $messsage = 'Bienvenido a Socio SYD, por favor verifica tu cuenta dando clic en el siguiente enlace: '.$url;
 
-         TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        //  TwilioService::send_sms
+         C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.signUpWelcomeNewVersion',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1740,6 +1755,8 @@ class CustomerController extends Controller
         }
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
+            
+
         ]);
 
         if ($update_customer){
@@ -1767,7 +1784,7 @@ class CustomerController extends Controller
         $url= asset('files/Diploma_Socio_SyD.pdf');
         //$messsage = 'Por seguridad, le pedimos que cambie su contraseña registrada inicialmente dando clic en el siguiente enlace: '.$url;
 
-        $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro en el siguiente enlace: '.$url;
+        $messsage = 'Te has registrado exitosamente en el programa Socio SYD. Descarga tu diploma de registro aqui: '.$url;
         $messsage_two = 'Descubre todos los beneficios que tienes en tu cuenta individual por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
         $messsage_three = 'Descubre todos los beneficios que tienes en tu cuenta de negocios por ser Socio SYD. Ingresa aqui para mas informacion: www.sociosyd.com.mx';
 
@@ -1776,7 +1793,8 @@ class CustomerController extends Controller
 
 
         try {
-            TwilioService::send_sms($messsage,'+52'.$data[0]->mobile);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$data[0]->mobile);
 
             $data = CustomerPlatform::where('email', $email)->first();
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
@@ -1789,13 +1807,15 @@ class CustomerController extends Controller
             });
 
             if($client_type === '1' || $client_type === '4'){
-                TwilioService::send_sms($messsage_three,'+52'.$mobile);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage_three,'+52'.$mobile);
                 \Mail::send('emails.companyBenefits',['data'=>$data], function($m) use ($data){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta con Colaboradores en Socio SyD');
                 });
             }elseif ($client_type === '2' || $client_type === '5'){
-                TwilioService::send_sms($messsage_two,'+52'.$mobile);
+                // TwilioService::send_sms
+                C3ntroService::sendSMS($messsage_two,'+52'.$mobile);
                 \Mail::send('emails.individualBenefits',['data'=>$data], function($m) use ($data){
                     $m->from('sociosyd@syd.com.mx',"Socio SYD");
                     $m->to($data->email, $data->name.' '.$data->last_name)->subject('Beneficios de tu cuenta Individual en Socio SyD');
@@ -1943,9 +1963,10 @@ class CustomerController extends Controller
         $dataSession = CustomersSession::where('email', $data['email'])->first();
 
         $url = url('password/edit/'.$dataSession['email']);
-        $messsage = 'Has solicitado reestablecer tu clave de acceso a la plataforma SYD, has clic en el siguiente enlace para continuar:  ' .$url;
+        $messsage = 'Solicitaste reestablecer tu clave de acceso a Socio SYD, haz clic aqui para hacerlo:  ' .$url;
 
-        TwilioService::send_sms($messsage,'+52'.$dataSession->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$dataSession->mobile);
         try {
             \Mail::send('emails.restorePassword',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
@@ -1982,7 +2003,8 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', $email)->first();
         $messsage = 'Felicidades, te has registrado exitosamente en el programa Socio SYD.';
         try {
-            TwilioService::send_sms($messsage,'+52'.$data->mobile_number);
+            // TwilioService::send_sms
+            C3ntroService::sendSMS($messsage,'+52'.$data->mobile_number);
             \Mail::send('emails.registroExitoso',['data'=>$data], function($m) use ($data){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
                 $m->to($data->email, $data->name.' '.$data->last_name)->subject('Bienvenido al programa de lealtad SYD');
@@ -1995,9 +2017,52 @@ class CustomerController extends Controller
 
     //Deactivate account
     public function deactivate_account(Request $request){
+
+        $consult = DB::table('unsubscribe_form')
+                    ->where('email','=', Auth::user()->email)
+                    ->first();
+
+        if ( isset($consult)){
+            if (($request['grupo1'] == 1)){
+
+                $updated = DB::table('unsubscribe_form')
+                          ->where('email', '=', Auth::user()->email)                    
+                          ->update(['message'=> $request['grupo'],
+                                  'updated_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                         ->where('email', '=', Auth::user()->email)                        
+                         ->update(['message'=> $request['grupo1'],
+                                 'updated_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
+        }else{
+            if (($request['grupo1'] == 1)){
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]); 
+    
+            }
+            else {
+                $updated = DB::table('unsubscribe_form')
+                ->insert(['email' => Auth::user()->email,                    
+                          'message'=> $request['grupo1'],
+                          'created_at'=> date('Y-m-d H:i:s')
+            ]);
+            } 
+        }
+
         $updated = DB::table('customers_sessions')
             ->where('id', '=', Auth::user()->id)
-            ->update(['active'=> 0]);
+            ->update(['active'=> 0,
+                      'unsuscribe' => 1,
+                      'date_unsuscribe' => date('Y-m-d H:i:s')
+        ]);
 
         if (!$updated){
             return view('pages.Account.status');
@@ -2006,7 +2071,8 @@ class CustomerController extends Controller
         $data = CustomerPlatform::where('email', Auth::user()->email)->first();
         $messsage = 'Tu cuenta ha sido dada de baja del programa Socio SYD. Si cambias de opinion, puedes reactivar tu cuenta.';
 
-        TwilioService::send_sms($messsage,'+52'.Auth::user()->mobile);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.Auth::user()->mobile);
         \Mail::send('emails.deactivatedAccount',['data'=>$data], function($m) use ($data){
             $m->from('sociosyd@syd.com.mx',"Socio SYD");
             $m->to($data->email, $data->name.' '.$data->last_name)->subject('Tu cuenta ha sido dada de baja del programa Socio SYD');
@@ -2047,7 +2113,9 @@ class CustomerController extends Controller
         $password      = Hash::make($request['password']);
         $update_customer = DB::table('customers_sessions')->where('client_number', '=', $request['client_number'])->update([
             'password' => $password,
-            'active'   => 1
+            'active'   => 1,
+            'unsuscribe' => 0,
+            'date_reactivate' => date('Y-m-d H:i:s')
         ]);
 
         if ($update_customer === 1){
@@ -2210,13 +2278,38 @@ class CustomerController extends Controller
                 ->where('customer_id', '=', $customer->id)
                 ->get();
         }
-        $now = Carbon::now();
-        $current_month = $now->month;
+        $now = Carbon::now()->locale('es');
+        $current_year = $now->year;
+        $previus_month =$now->month -1;
+        $this_month=$now->monthName;
+        $name_next_month = new Carbon('next month');
+        $next_month=$name_next_month->monthName;
+        $name_last_month = new Carbon('last month');
+        $last_month=$name_last_month->monthName;
+       // $current_month = $now->month;
+       if ($previus_month == 0) {
+        $current_year = $now->year-1;
+        $previus_month =$now->month + 11;
         $data_customer = DB::table('transactions')
         ->where('branch_number', '=', Auth::user()->branch_number)
-        ->whereMonth('transaction_date','=',$current_month)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
         ->get();
-        $totalAmount = $this->totalAmount();
+       }
+       else {
+        $data_customer = DB::table('transactions')
+        ->where('branch_number', '=', Auth::user()->branch_number)
+        ->whereMonth('transaction_date','=',$previus_month)
+        ->whereYear('transaction_date', '=', $current_year )
+        ->get();
+       }
+        $totalAmount = 0.0;
+        foreach ($data_customer as $d){
+            //if( date_format(date_create($d->transaction_date)->modify('+2 day'), 'Y-m-d') < date($now->isoformat("Y-MM-D")) ){
+                $amount_customer = floatval($d->amount);
+                strpos($d->amount, '-') ? $totalAmount -= $amount_customer : $totalAmount += $amount_customer ;
+            //}
+        }
         /* $totalAmount = 0.0;
         foreach ($data_customer as $d){
             $MALOamount_customer = floatval($d->amount);
@@ -2250,7 +2343,7 @@ class CustomerController extends Controller
         $total = $totalAmount;
         //dd($beneficiaries);
 
-        return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries'));
+        return view('pages.Account.documents', compact('data','level','total','noti', 'number', 'owner', 'beneficiaries','data_customer','last_month','this_month','next_month'));
     }
 
     //get transactions by branch_number or client_number
@@ -2392,7 +2485,7 @@ class CustomerController extends Controller
             ->whereMonth('transaction_date','=',$previus_month)
             ->whereYear('transaction_date', '=', $current_year )
             ->get();
-        } 
+        }
         $current_year = $now->year;
         $data_customer = DB::table('transactions')
             ->where('client_number', $dataSession['client_number'])
@@ -3355,21 +3448,25 @@ class CustomerController extends Controller
         $validated = false;
         $limiteAsociados = false;
         //calculated the limit of employees
-        if( $limit > 2500 && $limit <= 4500 && $numberEmployees < 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees < 8 ){ //bronce
             $validated = true;
-        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
+        }
+        /*else if($limit >=   4500 && $limit <= 7000 && $numberEmployees < 4){ //plata
             $validated = true;
         }else if($limit > 7000 && $numberEmployees < 8){ //oro
             $validated = true;
         }
+        */
 
-        if( $limit > 2500 && $limit <= 4500 && $numberEmployees == 4 ){ //bronce
+        if( $limit >= 0 /*2500 && $limit <= 4500*/ && $numberEmployees == 8 ){ //bronce
             $limiteAsociados = true;
-        }else if($limit > 4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
+        }
+        /*else if($limit >=  4500 && $limit <= 7000 && $numberEmployees == 4){ //plata
             $limiteAsociados = true;
         }else if($limit > 7000 && $numberEmployees == 8){ //oro
             $limiteAsociados = true;
         }
+        */
 
         $data->validated = $validated;
         $data->limiteAsociados = $limiteAsociados;
@@ -3438,8 +3535,9 @@ class CustomerController extends Controller
         $code = rand(111111,999999);
         $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
-        $response = TwilioService::send_sms($messsage,'+52'.$mobile);
-
+        //$response = TwilioService::send_sms($messsage,'+52'.$mobile);        
+        $response = C3ntroService::sendSMS($messsage, '+52'.$mobile);
+       
         if($response){
             return response()->json($code);
         }else{
@@ -3527,7 +3625,8 @@ class CustomerController extends Controller
 
         $messsage = 'Te han invitado a ser parte del programa Socio SYD como colaborador de un negocio.';
 
-        TwilioService::send_sms($messsage,'+52'.$data['mobile_number']);
+        // TwilioService::send_sms
+        C3ntroService::sendSMS($messsage,'+52'.$data['mobile_number']);
         try {
             Mail::send('emails.invitacionAsociadoNew',['data'=>$data], function($m) use ($email){
                 $m->from('sociosyd@syd.com.mx',"Socio SYD");
