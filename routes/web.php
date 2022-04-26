@@ -151,10 +151,20 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
         Route::get('/branch', 'Admin\AdminController@search_by_branch')->name('search.branch');
         Route::get('/{id}', 'Admin\AdminController@search_dependent')->name('search.dependent');
+
+        
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     });
+    
 });
 
+Route::group(['middleware' => ['auth:admin']], function() {
+Route::get('/searchBeneficiary', 'Admin\SearchBeneficiaryController@index')->name('beneficiary.index');
+Route::get('/BeneficiaryClient_number', 'Admin\SearchBeneficiaryController@search_by_number')->name('beneficiary.search.client.number');
+Route::get('/BeneficiaryEmail', 'Admin\SearchBeneficiaryController@search_by_email')->name('beneficiary.search.email');
+Route::get('/BeneficiaryBranch', 'Admin\SearchBeneficiaryController@search_by_branch')->name('search.branchBeneficiary');
+Route::post('add/beneficiaries', 'Admin\CustomerBeneficiaryController@add_beneficiaries')->name('beneficiary.add');
+});
 //Reports for Telasist and Chubb
 Route::get('telasist_report', [\App\Http\Controllers\Api\CustomerController::class,'report_telasist'])->name('report_telasist');
 Route::get('/chubb_report', [\App\Http\Controllers\Api\CustomerController::class,'chubb_report'])->name('chubb_report');
