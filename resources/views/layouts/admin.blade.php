@@ -57,6 +57,11 @@
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
                         </li>-->
                     @else
+                    @if (Auth::user()->type_user == 1 || Auth::user()->type_user == 2 )
+                    <a class="nav-link " href="{{ route('beneficiary.index') }}">
+                            Registrar Beneficiarios
+                        </a>
+                    @endif
                     @if (Auth::user()->type_user==1)
                         <a class="nav-link " href="{{ route('admin.search.index') }}">
                         Registrar dependientes
