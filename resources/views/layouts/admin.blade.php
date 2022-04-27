@@ -60,12 +60,12 @@
                     @if (Auth::user()->type_user == 1 || Auth::user()->type_user == 2 )
                     <a class="nav-link " href="{{ route('beneficiary.index') }}">
                             Registrar Beneficiarios
-                        </a>
+                    </a>
+                    <a class="nav-link " href="{{ route('admin.search.index') }}">
+                            Registrar Dependientes
+                    </a>
                     @endif
                     @if (Auth::user()->type_user==1)
-                        <a class="nav-link " href="{{ route('admin.search.index') }}">
-                        Registrar dependientes
-                        </a>
                         <a class="nav-link " href="{{ route('admin.total.registers') }}">
                             Registros
                         </a>
@@ -75,14 +75,8 @@
                         <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
                             Log Busquedas
                         </a>
-
                     @endif
                     
-                    @if (Auth::user()->type_user==2)
-                    <a class="nav-link " href="{{ route('admin.search.index') }}">
-                    Registrar dependientes
-                    </a>
-                    @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
