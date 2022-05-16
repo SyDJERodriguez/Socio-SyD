@@ -267,7 +267,7 @@
                <div class="col-sm-3">  
                 </div>
                 <div class="row" style="justify-content: center">
-                        <input class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3; color:white; cursor:pointer "  id="buttonconf" data-toggle="modal" data-target="#modalClientType" value="VALIDAR " readonly>
+                        <input class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3; color:white; cursor:pointer "  id="buttonconf" data-toggle="modal" data-target="#modalClientType" value="Agregar" readonly>
                 </div>
              <!-- Modal Confirm-->
              <div class="modal fade" id="modalClientType" tabindex="-1" role="dialog" aria-labelledby="modalClientType"
