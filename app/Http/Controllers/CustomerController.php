@@ -638,13 +638,13 @@ class CustomerController extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+       // $domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
-        if ($validate_dns <= 0){
-            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        //if ($validate_dns <= 0){
+          //  return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        //}
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
@@ -1950,7 +1950,7 @@ class CustomerController extends Controller
         }
         $update_customer = DB::table('customers_sessions')->where('branch_number', '=', $branch_number)->update([
             'active'   => 1
-            
+
 
         ]);
 
@@ -2221,35 +2221,35 @@ class CustomerController extends Controller
             if (($request['grupo1'] == 1)){
 
                 $updated = DB::table('unsubscribe_form')
-                          ->where('email', '=', Auth::user()->email)                    
+                          ->where('email', '=', Auth::user()->email)
                           ->update(['message'=> $request['grupo'],
                                   'updated_at'=> date('Y-m-d H:i:s')
-            ]); 
-    
+            ]);
+
             }
             else {
                 $updated = DB::table('unsubscribe_form')
-                         ->where('email', '=', Auth::user()->email)                        
+                         ->where('email', '=', Auth::user()->email)
                          ->update(['message'=> $request['grupo1'],
                                  'updated_at'=> date('Y-m-d H:i:s')
             ]);
-            } 
+            }
         }else{
             if (($request['grupo1'] == 1)){
                 $updated = DB::table('unsubscribe_form')
-                ->insert(['email' => Auth::user()->email,                    
+                ->insert(['email' => Auth::user()->email,
                           'message'=> $request['grupo'],
                           'created_at'=> date('Y-m-d H:i:s')
-            ]); 
-    
+            ]);
+
             }
             else {
                 $updated = DB::table('unsubscribe_form')
-                ->insert(['email' => Auth::user()->email,                    
+                ->insert(['email' => Auth::user()->email,
                           'message'=> $request['grupo1'],
                           'created_at'=> date('Y-m-d H:i:s')
             ]);
-            } 
+            }
         }
 
         $updated = DB::table('customers_sessions')
@@ -3669,7 +3669,7 @@ class CustomerController extends Controller
 
         return $data;
     }
-    
+
     public function newemployeeLimit($email, $id, $client_type){
         $data = CustomerPlatform::where('email', $email)->first();
         $dataSession = CustomersSession::where('email', $email)->first();
@@ -3784,9 +3784,9 @@ class CustomerController extends Controller
         $code = rand(111111,999999);
         $messsage = 'Este es el codigo de verificacion que debes ingresar para completar tu registro en Socio SYD: '.$code;
 
-        //$response = TwilioService::send_sms($messsage,'+52'.$mobile);        
+        //$response = TwilioService::send_sms($messsage,'+52'.$mobile);
         $response = C3ntroService::sendSMS($messsage, '+52'.$mobile);
-       
+
         if($response){
             return response()->json($code);
         }else{

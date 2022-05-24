@@ -26,7 +26,7 @@ class AdminControllersearch extends Controller
         return view('Admin.search');
     }
 
-    /** 
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -142,7 +142,7 @@ class AdminControllersearch extends Controller
         $current_month = $now->month;
         $current_year = $now->year;
         $previus_month =$now->month - 1;
-        
+
         if ($previus_month == 0) {
             $current_year = $now->year-1;
             $previus_month =$now->month + 11;
@@ -263,7 +263,7 @@ class AdminControllersearch extends Controller
         $associates = DB::table('associates')
             ->where([['client_number','=',$client_number], ['active_association', '=', 1]])
             ->get();
-        
+
             $numberEmployees =  $number = DB::table('associates')
             ->where('client_number','=', $client_number)
             ->where('branch_number','=', $branch_number)
@@ -744,13 +744,13 @@ class AdminControllersearch extends Controller
         }
 
         //Validate DNS email
-        $domain = explode('@', $request['email']);
-        $validate_dns = sizeof(dns_get_record($domain[1]));
+        //$domain = explode('@', $request['email']);
+        //$validate_dns = sizeof(dns_get_record($domain[1]));
 
         // return $validate_dns;
-        if ($validate_dns <= 0){
-            return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
-        }
+        //if ($validate_dns <= 0){
+         //   return response()->json(['success'=>'false', 'verify_valid_dns'=>'false']);
+        //}
 
         //Verify is the email has not a relation with other client number
         //$verify_mobile_number = CustomersSession::where('mobile_number', $request['mobile_number'])->first();
