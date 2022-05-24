@@ -44,7 +44,8 @@
                     <br>
                     <h5 class="text-white">¡El colaborador ha sido agregado exitosamente!</h5>
                     <br>
-                  <a href="{{url()->previous()}}"><button class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">Aceptar</button></a>  
+                  <a href="{{url()->previous()}}"><button class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">Registrar otro</button></a>
+                  <a href="{{url('/')}}"><button class="btn btn-info" style="background-color: #00A1E3; border-color: #00a1e3;">Finalizar</button></a>    
                     <p class="text-white"></p>
                 </div>
             </div>

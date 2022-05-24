@@ -993,6 +993,7 @@
             return false;
         });
 
+
         //UpdateDataForm's form
         $("#updateDataForm").bind("submit",function(){
             // We capture send button
