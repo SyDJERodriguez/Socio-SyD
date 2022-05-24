@@ -147,13 +147,18 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::get('/logSesiones', 'Admin\InsertLogController@logSessions')->name('consultLogSessions');
         Route::get('/logBusquedas', 'Admin\InsertLogController@logSearches')->name('consultLogSearches');
         Route::get('/index', 'Admin\AdminController@index')->name('customers.index');
+        Route::get('/search', 'Admin\AdminControllersearch@index')->name('search.index');
         Route::get('/client_number', 'Admin\AdminController@search_by_number')->name('search.client.number');
         Route::get('/email', 'Admin\AdminController@search_by_email')->name('search.email');
         Route::get('/branch', 'Admin\AdminController@search_by_branch')->name('search.branch');
         Route::get('/{id}', 'Admin\AdminController@search_dependent')->name('search.dependent');
-
-        
+        Route::get('/two/client_number', 'Admin\AdminControllersearch@search_by_number')->name('search.client.numbertwo');
+        Route::get('/two/email', 'Admin\AdminControllersearch@search_by_email')->name('search.emailtwo');
+        Route::get('/two/branch', 'Admin\AdminControllersearch@search_by_branch')->name('search.branchtwo');
+        Route::get('/two/{id}', 'Admin\AdminControllersearch@search_dependent')->name('search.dependenttwo');
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
+        Route::put('/addEmployesearch', 'CustomerController@addEmployesearch')->name('addEmployesearch');
+
     });
     
 });
