@@ -25,7 +25,7 @@
                             <img src="{{$imgData->imgData}}" id="signCustomer" alt="signatureCustomer" width="225"
                                 height="190" style="display: block;">
                         </div>
-                    </div> 
+                    </div>
                 @else--}}
                 <form method="POST" id="signatureForm" action="{{route('customer.efirm')}}">
                     @method('POST')
@@ -43,17 +43,26 @@
                             <input type="hidden" id="imgData" name="imgData" required>
                         </div>
                         <br>
-                        <div class="row">
+                        <div class="row" style="width: 75%; display: flex; text-align: right;">
                             <div class="col-7 py-1 offset-2">
-                                <label for="terms">
-                                    <p style="color: #143153;font-size:20px; line-height:90%">
-                                        <b> ACEPTO LOS TÉRMINOS Y CONDICIONES DEL PROGRAMA DE LEALTAD SOCIO SyD®</b>
-                                    </p>
+                                <label class="form-check-label pr-2" for="inlineCheckbox1"
+                                       style="color: grey;font-size: 12px;">
+                                    <strong>ACEPTAR</strong>
+
+                                    <br>
+                                    <a href="#" data-toggle="modal" data-target="#modalAviso">
+                                        AVISO DE PRIVACIDAD</a>
+                                    <br>
+                                    <a href="#" data-toggle="modal" data-target="#modalGeneralTerms">
+                                        TÉRMINOS Y CONDICIONES</a>
+                                    <br>
+                                    <a href="#" data-toggle="modal" data-target="#modalprofessions">
+                                        EXCLUSIONES DEL SEGURO</a>
                                 </label>
                             </div>
                             <div class="col-1 py-1">
                                 <input class="form-check-input" type="checkbox" value="" id="terms"
-                                    style="height: 18px;width: 18px;" required>
+                                    style="height: 30px;width: 30px;" required>
                             </div>
                         </div>
 
@@ -101,7 +110,7 @@
                         <a href="{{route('customer.benefits')}}" class="text-white btn btn btn-sm px-4" style="background-color: #00A5E6;">
                             ACEPTAR
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -120,7 +129,7 @@
             base_img.src = src;
             base_img.onload = function () {
                 context.drawImage( base_img,0,0 )
-            }   
+            }
         })
     </script>
 @endif
@@ -157,7 +166,7 @@
     ctx.lineJoin = "round";
 
     limpiar.addEventListener('click', function (evt) { //clear the canvas
-        limpiarCanvas = true; //activamos el canvas para poder dibujar 
+        limpiarCanvas = true; //activamos el canvas para poder dibujar
         dibujar = false;
         ctx.clearRect(0, 0, cw, ch);
         Trazados.length = 0;
