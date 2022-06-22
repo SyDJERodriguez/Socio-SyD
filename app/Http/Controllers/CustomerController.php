@@ -48,15 +48,22 @@ class CustomerController extends Controller
     //REGISTER CNT THIS IS TEMPORARY
 
     public function insertCNTNumber() {
-        $client_number = 90000000;
-        for ($i = 0; $i<10000; $i++) {
+        $client_number = 90000099;
+        for ($i = 0; $i<9901; $i++) {
             set_time_limit(30);
             $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
-            DB::table('cnt_numbers')->insert([
+            DB::table('client_numbers')->insert([
                 'client_number'    => $client_number,
+                'flags' =>'new_client',
+                'creacion_sap'=>'2022-06-21',
+                'plazo'=>'C01',
+                'source'=>'custom',
+                'branch'=>$client_number,
+                'branch_name'=>'Mayorista'
             ]);
         }
+        return response()->json('Success');
     }
 
     public function cntRegister(Request $request) {
