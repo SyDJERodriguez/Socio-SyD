@@ -1177,7 +1177,7 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 == true || $age > 120 == true){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
