@@ -150,7 +150,7 @@ class BeneficiaryController extends Controller
         $initDate = new Carbon('first day of this month');
 
         $finDate = new Carbon('last day of this month');
-        $finDate = $finDate->addMonths(3);
+        $finDate = $finDate->addMonthsNoOverflow(2);
 
         $currentDate = Carbon::parse()->locale('es');
         // $currentDate->diffForHumans();
