@@ -64,7 +64,7 @@
 
         .firma {
         	width: 30%;
-        	
+
         }
         td.borderRight{
             border-right: 1px solid #808080;
@@ -83,8 +83,8 @@
             bottom:50px;
             left:50px;
             right:50px;
-        }      
-        
+        }
+
         .container{
             display: flex;
             flex-direction: row-reverse;
@@ -92,7 +92,7 @@
 
         .item{
             height:40px;
-            
+
         }
     </style>
 </head>
@@ -462,7 +462,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 70912</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
@@ -539,7 +539,7 @@
                 <p class="text">_______________________________________</p>
                     <p class="text">Lugar y fecha</p>
             </div>
-            
+
             <div class="item" align="right" style="position:absolute; top: 658px;; left:415px ;" >
                 @if(isset($signature))
                     <img src="{{$signature->imgData}}" style="width: 100px; padding: 0px 70px;" >
@@ -550,7 +550,7 @@
                     <p class="text">Firma del solicitante</p>
                 @endif
             </div>
-      
+
 	</div>
 
     <div class="fix-bot">
