@@ -124,7 +124,7 @@
     <table width="100%" align="center" border="1" cellpadding="0" cellspacing="0">
         <tr>
             <td rowspan="2" align="center">
-                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 58828</strong></p>
+                <p class="text" style="font-size: 16px"><strong>PÓLIZA: 70912</strong></p>
             </td>
             <td colspan="2">
                 <p class="text" align="left" style="padding: 2px 5px; margin: 0px">
