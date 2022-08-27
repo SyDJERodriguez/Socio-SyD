@@ -18,29 +18,60 @@ class CustomersRepository
         try {
             $data = "";
             $count = 0;
-            $query = DB::table('customers')->whereDate('updated_at',Carbon::yesterday())->get();
+            $from    = Carbon::createFromFormat('Y-m-d','2021-11-25');
+            $to      = Carbon::createFromFormat('Y-m-d','2021-11-29');
+            //$query = DB::table('customer_platforms')->whereBetween('updated_at', [$from,$to])->get();
             //$query = DB::table('customers')->whereDate('updated_at','<=',Carbon::yesterday())->get();
-            foreach ($query as $row){
+
+            //$query = DB::table('customers')->get();
+            $query_two = DB::table('customers_sessions')->get();
+
+            //$final_query = array_merge($query,$query_two);
+
+            //Get all the client´s id with benefits in the current month
+            //$ids = array_column($query_two, 'id');
+
+            //dd($query_two);
+            /*foreach ($query as $row){
                 if($row->client_number != null || $row->client_number != ''){
                     $verify = DB::table('clients_updated_sent')
                         ->where('client_number', '=', $row->client_number)
                         ->first();
-                    if($verify === null){
+                    /*if($verify === null){
                         $new_register_sent = DB::table('clients_updated_sent')->insert(['client_number'=>$row->client_number, 'updated_date'=>$row->updated_at]);
+                    }*/
+            /*++$count;
+            $client_number = substr($row->client_number, 2, 8);
+            $date = substr($row->updated_at, 0, 10);
+            $obj = $client_number."|".$date;
+            $data = $data.$obj.",";
+        }
+    }*/
+
+            foreach ($query_two as $row){
+                if($row->client_number != null || $row->client_number != ''){
+                    $verify = DB::table('clients_updated_sent')
+                        ->where('client_number', '=', $row->client_number)
+                        ->first();
+
+                    $date = $row->created_at;
+                    if($verify === null){
+                        $new_register_sent = DB::table('clients_updated_sent')->insert(['client_number'=>$row->client_number, 'updated_date'=>$row->created_at]);
+
+                        if($new_register_sent){
+                            ++$count;
+                            $client_number = substr($row->client_number, 2, 8);
+                            $date = substr($date, 0, 10);
+                            $obj = $client_number."|".$date;
+                            $data = $data.$obj.",";
+                        }
                     }
-                    ++$count;
-                    $client_number = substr($row->client_number, 2, 8);
-                    $date = substr($row->updated_at, 0, 10);
-                    $obj = $client_number."|".$date;
-                    $data = $data.$obj.",";
                 }
             }
-
             $registers = [
                 'data'=>$data,
                 'registers_sent'=>$count
             ];
-
             return $registers;
         } catch (\Exception $e) {
             return  ['code'=>0, 'msg'=>$e->getMessage()];
@@ -51,10 +82,14 @@ class CustomersRepository
         try {
             $data = "";
             $count = 0;
-            $query = DB::table('customers')->whereDate('updated_at',$date)
+            /*$query = DB::table('customers')->whereDate('updated_at',$date)
                 ->whereNotNull('client_number')
-                ->get();
+                ->get();*/
             //$query = DB::table('customers')->whereDate('updated_at','<=',Carbon::yesterday())->get();
+            /*$query = DB::table('customers_sessions')->whereDate('created_at',$date)
+                ->get();*/
+            $query = DB::table('customers_sessions')->whereDate('created_at',$date)->get();
+            //dd($query);
             foreach ($query as $row){
                 if($row->client_number != null || $row->client_number != ''){
                     $verify = DB::table('clients_updated_sent')
@@ -62,14 +97,16 @@ class CustomersRepository
                         ->first();
 
                     if($verify === null){
-                        $new_register_sent = DB::table('clients_updated_sent')->insert(['client_number'=>$row->client_number, 'updated_date'=>$row->updated_at]);
-                    }
+                        $new_register_sent = DB::table('clients_updated_sent')->insert(['client_number'=>$row->client_number, 'updated_date'=>$row->created_at]);
 
-                    ++$count;
-                    $client_number = substr($row->client_number, 2, 8);
-                    $date = substr($row->updated_at, 0, 10);
-                    $obj = $client_number."|".$date;
-                    $data = $data.$obj.",";
+                        if($new_register_sent){
+                            ++$count;
+                            $client_number = substr($row->client_number, 2, 8);
+                            $date = substr($row->created_at, 0, 10);
+                            $obj = $client_number."|".$date;
+                            $data = $data.$obj.",";
+                        }
+                    }
                 }
             }
             $registers = [
@@ -78,6 +115,7 @@ class CustomersRepository
             ];
             return $registers;
         } catch (\Exception $e) {
+            //dd($e->getMessage());
             return  ['code'=>0, 'msg'=>$e->getMessage()];
         }
     }
