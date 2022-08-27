@@ -363,6 +363,8 @@ class CustomerController extends Controller
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         \Log::channel('api')->info('Procesando datos:  '.json_encode($request));
+        //$client_number = explode("-", $request['client_number'] );
+        // $request->branch = $client_number[1];
 
         $validator = $this->validator($request);
         if($validator->fails()){
@@ -372,27 +374,29 @@ class CustomerController extends Controller
                 'errors' => $validator->errors()
             ), 400);
         }
-       try{
-           $client = array(
-               'client_number' => '00'.$request['client_number'],
-               'flags' => 'new_client',
-               'creacion_sap' =>$request['created_at'] ,
-               'plazo' => $request['pay_cond'],
-               'source' => 'api'
-           );
-           $res = ClientNumberRepository::save_client_number($client);
-           $return['status'] = 1;
-           $return['msg'] = 'Registro almacenado correctamente';
-           \Log::channel('api')->info('Procesado correctamente :  '.json_encode($res));
-           \Log::channel('api')->info('=====================================END PROCESS========================================================================');
-           return response()->json($return,200);
-       }catch (\Exception $e){
-           \Log::channel('api')->info(' Ocurrio un error al procesar la petición '.$e->getMessage().' File '.$e->getFile().' Line '.$e->getLine());
-           $return['status'] = 0;
-           $return['msg'] = 'Ocurrio un error al guardar el registro: '.$e->getMessage();
-           \Log::channel('api')->info('=====================================END PROCESS========================================================================');
-           return response()->json($return,400);
-       }
+        try{
+            $client = array(
+                'client_number' => '00'.$request['client_number'],
+                'branch'      => '00'.$request['branch'],
+                'branch_name' => $request['branch_name'],
+                'creacion_sap' =>$request['created_at'] ,
+                'plazo' => $request['pay_cond'],
+                'flags' => 'new_client',
+                'source' => 'api'
+            );
+            $res = ClientNumberRepository::save_client_number($client);
+            $return['status'] = 1;
+            $return['msg'] = 'Registro almacenado correctamente';
+            \Log::channel('api')->info('Procesado correctamente :  '.json_encode($res));
+            \Log::channel('api')->info('=====================================END PROCESS========================================================================');
+            return response()->json($return,200);
+        }catch (\Exception $e){
+            \Log::channel('api')->info(' Ocurrio un error al procesar la petición '.$e->getMessage().' File '.$e->getFile().' Line '.$e->getLine());
+            $return['status'] = 0;
+            $return['msg'] = 'Ocurrio un error al guardar el registro: '.$e->getMessage();
+            \Log::channel('api')->info('=====================================END PROCESS========================================================================');
+            return response()->json($return,400);
+        }
 
 
     }
@@ -406,7 +410,8 @@ class CustomerController extends Controller
         $return = array('status'=>0, 'msg'=>'Error desconocido');
         $request = $request->input();
         \Log::channel('api')->info('Procesando datos:  '.json_encode($request));
-        if($request['date'] === null || $request['date'] === '""' || $request['date'] === ''){
+
+        if(!isset($request['date']) || $request['date'] === null || $request['date'] === '""' || $request['date'] === ''){
             try{
                 $res = CustomersRepository::get_clients_today();
                 $return['status'] = 1;
@@ -1125,7 +1130,7 @@ class CustomerController extends Controller
             ->orderBy('transactions.transaction_date', 'ASC')
             ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
             ->get();
-            
+
 
         //Get all the clients registered in Socio Syd
         $all_clients = DB::table('customers_sessions')

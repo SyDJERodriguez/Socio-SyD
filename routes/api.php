@@ -31,4 +31,9 @@ Route::middleware('auth:api')->group(function (){
 
     /*********************** GET insurance certificate *********************/
     Route::get('get_certificates', [\App\Http\Controllers\Api\CustomerController::class,'get_certificates'])->name('send.sms.certificate');
+
+    /*********************** Webservices SAP *********************/
+    Route::post('client_number/store',[\App\Http\Controllers\Api\CustomerController::class,'insert_client_number'])->name('client_number_insert');
+    Route::get('registers_updated', [\App\Http\Controllers\Api\CustomerController::class,'get_clients_updated'])->name('get_registers_updated');
+    Route::post('client/transactions',[\App\Http\Controllers\Api\TransactionsController::class,'insert_transaction'])->name('insert_transactions_clients');
 });
