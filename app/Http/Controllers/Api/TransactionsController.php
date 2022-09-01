@@ -25,6 +25,8 @@ class TransactionsController extends Controller
         try{
             foreach ($request['data'] as $transaction){
                 ++$registers_received;
+                // $client_number = explode("-",$transaction['client_number']);
+                //$transaction->branch = $client_number[1];
                 $validator = $this->validator($transaction);
                 if($validator->fails()){
                     ++$registers_unsaved;
@@ -38,14 +40,14 @@ class TransactionsController extends Controller
 
 
             //if($query['code'] === 1){
-                $return['status'] = 200;
-                $return['msg'] = 'Las transacciones han sido procesadas';
-                \Log::channel('api')->info('Prcesamiento de datos finalizado');
-                \Log::channel('api')->info('Registros recibidos: '.$registers_received);
-                \Log::channel('api')->info('Registros guardados: '.$registers_saved);
-                \Log::channel('api')->info('Registros no guardados: '.$registers_unsaved);
-                \Log::channel('api')->info('============ END PROCESS INSERT TRANSACTION ============');
-                return response()->json($return, 200);
+            $return['status'] = 200;
+            $return['msg'] = 'Las transacciones han sido procesadas';
+            \Log::channel('api')->info('Prcesamiento de datos finalizado');
+            \Log::channel('api')->info('Registros recibidos: '.$registers_received);
+            \Log::channel('api')->info('Registros guardados: '.$registers_saved);
+            \Log::channel('api')->info('Registros no guardados: '.$registers_unsaved);
+            \Log::channel('api')->info('============ END PROCESS INSERT TRANSACTION ============');
+            return response()->json($return, 200);
             /*}elseif ($query['code'] === 0){
                 \Log::channel('api')->info("Ocurrio un error al procesar la petición".$query['msg']);
                 $return['status'] = 400;
@@ -65,20 +67,18 @@ class TransactionsController extends Controller
 
     private function validator(array $data){
         return Validator::make($data, [
-            'client_number'    => 'required|digits:8',
-            'tmat'             => 'required',
-            'quantity'         => 'required',
-            'amount'           => 'required',
-            'sale_office'      => 'required',
-            'transaction_date' => 'required',
-            'pay_method'       => 'required'
+            'client_number'     => 'required|digits:8',
+            'invoce'            => 'required',
+            'amount'            => 'required',
+            'branch'            => 'required',
+            'transaction_date'  => 'required',
+            'pay_method'        => 'required'
         ],[
             'client_number.required'    => 'El número de cliente es obligatorio',
             'client_number.digits'      => 'El número de cliente debe ser de 8 digitos',
-            'tmat.required'             => 'El tipo de material es obligatorio',
-            'quantity.required'         => 'La cantidad facturada es obligatoria',
-            'amount.required'           => 'El importe es obligatorio',
-            'sale_office.required'      => 'El número de oficina de venta es requerido',
+            'invoce.required'           => 'La factura es obligatorio',
+            'amount.required'           => 'El importe total es obligatorio',
+            'branch.required'           => 'La sucursal es obligatorio',
             'transaction_date.required' => 'La fecha de transacción es requerida',
             'pay_method.required'       => 'El tipo de vía de pago es requerido'
         ]);
