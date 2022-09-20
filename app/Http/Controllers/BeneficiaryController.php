@@ -115,6 +115,56 @@ class BeneficiaryController extends Controller
         ])->stream($customer->id.'.pdf');
     }
 
+    //Function to generate PDF by Email for Wholesale
+    public function generatePDFEmailWholesale($email) {
+
+        $customer_session = DB::table('customers_sessions')
+            ->where('email','=', $email)
+            ->first();
+
+        $customer = DB::table('customer_platforms')
+            ->where('email', '=', $customer_session->email)
+            ->first();
+
+        $beneficiaries = DB::table('beneficiaries')
+            ->where('customer_id', '=', $customer->id)
+            ->get();
+
+        $signature = DB::table('signatures')
+            ->where('customer_id', '=', $customer_session->id)
+            ->first();
+
+        if ($customer_session->client_type === "3"){
+            $customer = DB::table('customer_platforms')
+                ->where('email', '=', $customer_session->email)
+                ->first();
+            $beneficiaries = DB::table('beneficiaries')
+                ->where('customer_id', '=', $customer->id)
+                ->get();
+
+            $signature = DB::table('signatures')
+                ->where('customer_id', '=', $customer_session->id)
+                ->first();
+        }
+
+        $initDate = new Carbon('first day of this month');
+
+        $finDate = new Carbon('last day of this month');
+        $finDate = $finDate->addMonthsNoOverflow(2);
+
+        $currentDate = Carbon::parse()->locale('es');
+        // $currentDate->diffForHumans();
+
+        return PDF::loadView('layouts.Policies.safePolicy', [
+            'beneficiary'=>$beneficiaries,
+            'signature'=>$signature,
+            'customer'=>$customer,
+            'initDate'=>$initDate,
+            'finDate'=>$finDate,
+            'currentDate' => $currentDate
+        ])->stream($customer->id.'.pdf');
+    }
+
     public function add_beneficiaries (Request $request) {
         $data = DB::table('customer_platforms')->where('email', Auth::user()->email)->first();
         $data->branch_number = Auth::user()->branch_number;
@@ -296,7 +346,7 @@ class BeneficiaryController extends Controller
                         'error', 'data', 'request', 'level','is_cnt',
                         'signature', 'noti', 'total', 'number','owner','level_before'));
                     }
-                    
+
                     if (isset($request['name'][$i])){
                         if ($request['name'][$i] !== null){
                             $insert = DB::table('beneficiaries')->insert([
@@ -383,9 +433,9 @@ class BeneficiaryController extends Controller
                     'customer_id'      => $data->id,
                     'branch_number'    => $request['branch_number'][0]
                 ]);
-    
+
                 //$generatePDF = $this->generatePDF();
-    
+
                 //if ($generatePDF === 'success'){
                     $success = 'El beneficiario ha sido agregado correctamente.';
                     $beneficiaries = DB::table('beneficiaries')
@@ -416,7 +466,7 @@ class BeneficiaryController extends Controller
             //$generatePDF = $this->generatePDF();
 
             //if ($generatePDF === 'success'){
-                
+
            // }
         }
     }
@@ -595,7 +645,7 @@ class BeneficiaryController extends Controller
                 $beneficiaries = DB::table('beneficiaries')
                 ->where('customer_id', '=', $data->id)
                 ->first();
-                
+
                 if (empty($beneficiaries)) {
                 for ($i = 0; $i<=1; $i++){
                     //valid name,last,secondLast
@@ -675,7 +725,7 @@ class BeneficiaryController extends Controller
             $beneficiaries = DB::table('beneficiaries')
             ->where('customer_id', '=', $data->id)
             ->first();
-            
+
             if (empty($beneficiaries)) {
             $insertBeneficiary = DB::table('beneficiaries')->insert([
                 'name'             => $request['name'][0],

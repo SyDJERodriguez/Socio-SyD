@@ -43,7 +43,7 @@
                                         target="_blank">https://www.refaccionarias-dar.com</a>)
                                     </p></li>
                                 <li class="text-justify" style="width:99%">
-                                    <p>También lo puedes conseguir a través a tu asesor de venta o llamando al número 800 SYD (793) 1010 en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas y solicita que te asignen tu número de cliente.
+                                    <p>También lo puedes conseguir a través a tu asesor de venta o llamando al número 800 SYD (793) 1010 en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas y solicita que te asignen tu número de cliente.
                                     </p></li>
                                 <li class="text-justify" style="width:99%">
                                 	<p>A través del representante de venta directa que atiende a tu negocio.
@@ -59,7 +59,7 @@
                                     <p>
                                     Solicítalo en la sucursal de tu preferencia o
                                     llama al número <b>800 SyD® (793)
-                                        1010</b> en un horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
+                                        1010</b> en un horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -107,7 +107,7 @@
                                         de nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>), venta directa o llamando al
-                                        número: <b>800 SyD® (793) 1010</b> en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
+                                        número: <b>800 SyD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
                             </ol>
@@ -290,7 +290,7 @@
                                     <p>
                                     Si tienes algún problema o duda a la hora de tu registro,
                                     puedes contactarnos a través de nuestro chat de whatsApp disponible en el sitio web o llamando al  número
-                                    <b>800 SyD® (793) 1010</b> en horario de atención de 08:00 a 22:00 horas, de lunes a viernes y sábado 8:00 a 16:00 horas.
+                                    <b>800 SyD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">

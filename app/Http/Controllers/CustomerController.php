@@ -48,15 +48,22 @@ class CustomerController extends Controller
     //REGISTER CNT THIS IS TEMPORARY
 
     public function insertCNTNumber() {
-        $client_number = 90000000;
-        for ($i = 0; $i<10000; $i++) {
+        $client_number = 90000099;
+        for ($i = 0; $i<9901; $i++) {
             set_time_limit(30);
             $client_number = strval(++$client_number);
             $client_number = '00'.$client_number;
-            DB::table('cnt_numbers')->insert([
+            DB::table('client_numbers')->insert([
                 'client_number'    => $client_number,
+                'flags' =>'new_client',
+                'creacion_sap'=>'2022-06-21',
+                'plazo'=>'C01',
+                'source'=>'custom',
+                'branch'=>$client_number,
+                'branch_name'=>'Mayorista'
             ]);
         }
+        return response()->json('Success');
     }
 
     public function cntRegister(Request $request) {
@@ -66,10 +73,16 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
+
+        if( $age > 70 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
         //For customer_session table
         $passwordVerify = $request['password'];
         $passwordConfirm = $request['confirmPassword'];
@@ -342,7 +355,12 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -534,7 +552,12 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -607,7 +630,12 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'other'=>'false', 'error'=>'Código de verificación incorrecto']);
         }
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -798,10 +826,15 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
+
+          if( $age > 70 ){
+              //bday validation
+              return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+          }
 
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){
             //name, last name or second last name is empty
@@ -1170,7 +1203,12 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -1437,7 +1475,12 @@ class CustomerController extends Controller
             return response()->json(['success'=>'false', 'verify_client_number'=>'false']);
         }
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -1605,7 +1648,12 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
+        }
+
+        if( $age > 70 ){
             //bday validation
             return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
@@ -1780,9 +1828,14 @@ class CustomerController extends Controller
         $clientYear = (int)$clientYear[0];
         $age = $year - $clientYear;
 
-        if( $age < 14 == true || $age > 120 == true){
+        if( $age < 18 ){
             //bday validation
             return redirect()->back()->with('msg', 'La fecha de nacimiento no es válida');
+        }
+
+        if( $age > 70 ){
+            //bday validation
+            return response()->json(['success'=>'false', 'bday'=>'false', 'error'=>'La fecha de nacimiento no es válida']);
         }
 
         if($request['second_last_name'] == null || $request['last_name'] == null || $request['name'] == null){

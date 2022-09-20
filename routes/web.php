@@ -41,6 +41,7 @@ Route::put('/addEmployeebranch', 'CustomerController@addEmployeebranch')->name('
 /**  Download PDF by SMS **/
 Route::get('/sms_pdf/{client_number}/{branch_number}', 'BeneficiaryController@generatePDFSMS')->name('sms.generate.pdf');
 Route::get('/pdf/{email}/', 'BeneficiaryController@generatePDFEmail')->name('email.generate.pdf');
+Route::get('/pdf_wholesale/{email}/', 'BeneficiaryController@generatePDFEmailWholesale')->name('email.generate.pdf.wholesale');
 Route::get('/register/beneficiaries/{email}', function ($email){
     $data = DB::table('customer_platforms')->where('email', $email)->first();
     $data_session = DB::table('customers_sessions')->where('email', $email)->first();
@@ -160,7 +161,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::put('/addEmployesearch', 'CustomerController@addEmployesearch')->name('addEmployesearch');
 
     });
-    
+
 });
 
 Route::group(['middleware' => ['auth:admin']], function() {
@@ -179,5 +180,6 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 //Reports analytics
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
 Route::get('benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('benefits_report');
+Route::get('benefits_report_last_month', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report_last_month'])->name('benefits_report_last_month');
 Route::get('beneficiaries_report', [\App\Http\Controllers\Api\CustomerController::class,'beneficiaries_report'])->name('beneficiaries_report');
 Route::get('sales_monthly', [\App\Http\Controllers\Api\CustomerController::class,'sales_monthly'])->name('sales_monthly');
