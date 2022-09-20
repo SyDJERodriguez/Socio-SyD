@@ -159,6 +159,7 @@ class CustomerController extends Controller
                 'customer_platforms.email AS email',
                 'customers_sessions.mobile AS phone',
                 'customer_platforms.birthday AS birthday',
+                 DB::raw('(SELECT name FROM branches WHERE id = customer_platforms.branch_id) AS sucursal'),
                  DB::raw('DATE_FORMAT(customers_sessions.created_at, "%Y-%m-%d") AS fecha_registro'),
                  DB::raw('IF(customers_sessions.client_type = 1, "Dueño de Negocio",
                                                     IF(customers_sessions.client_type = 2,"Mecánico Individual",
