@@ -462,6 +462,8 @@
 
         //Owner's form
         $("#ownerForm").bind("submit",function(){
+            let btn_owner = document.querySelector('#btnSend_owner');
+            btn_owner.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeOw');
             let codeConfirm      = document.querySelector('#codeOwConfirm');
             let error_code       = document.querySelector('#error_code_ow');
@@ -483,6 +485,7 @@
                             $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         } else if (data['success'] === 'false' && data['verify_client_number'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert").innerHTML = 'Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             setTimeout(function () {
@@ -490,30 +493,35 @@
                             }, 3000);
 
                         } else if (data['success'] === 'false' && data['verify_email'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_email").innerHTML = 'El email ya se encuentra asociado a otro cliente';
                             document.getElementById("form_alert_email").removeAttribute("hidden");
                             setTimeout(function () {
                                 document.getElementById("form_alert_email").hidden = true
                             }, 3000);
                         } else if (data['success'] === 'false' && data['verify_password'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_pass_pro").innerHTML = 'Las contraseñas no coinciden, por favor verifica ';
                             document.getElementById("form_alert_pass_pro").removeAttribute("hidden");
                             setTimeout(function () {
                                 document.getElementById("form_alert_pass_pro").hidden = true
                             }, 3000);
                         } else if (data['success'] === 'false' && data['verify_mobile_number'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_mobile").innerHTML = 'El número telefónico ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_mobile").removeAttribute("hidden");
                             setTimeout(function () {
                                 document.getElementById("form_alert_mobile").hidden = true
                             }, 3000);
                         } else if (data['success'] === 'false' && data['verify_email_number'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert").innerHTML = 'El email ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert").removeAttribute("hidden");
                             setTimeout(function () {
                                 document.getElementById("form_alert").hidden = true
                             }, 3000);
                         } else if (data['success'] === 'false' && data['verify_valid_mobile'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_phone").innerHTML = '<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                             document.getElementById("form_alert_phone").removeAttribute("hidden");
                             setTimeout(function () {
@@ -525,6 +533,7 @@
                                 document.getElementById("form_alert_phone_text").hidden = true
                             }, 3500)
                         } else if (data['success'] === 'false' && data['verify_valid_dns'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_dns").innerHTML = 'Por favor proporciona un email válido';
                             document.getElementById("form_alert_dns").removeAttribute("hidden");
                             setTimeout(function () {
@@ -532,6 +541,7 @@
                             }, 3500)
 
                         } else if (data['success'] === 'false' && data['verify_client'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_dns").innerHTML = 'El número de cliente ya está en uso';
                             document.getElementById("form_alert_dns").removeAttribute("hidden");
                             setTimeout(function () {
@@ -542,6 +552,7 @@
                             $('#modalSignUpInCadenas').modal('show');
 
                         } else if (data['success'] === 'false' && data['other'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_dns").innerHTML = data['error'];
                             document.getElementById("form_alert_dns").removeAttribute("hidden");
                             setTimeout(function () {
@@ -549,6 +560,7 @@
                             }, 3500)
 
                         } else if (data['success'] === 'false' && data['bday'] === 'false') {
+                            btn_owner.removeAttribute('disabled');
                             document.getElementById("form_alert_dns").innerHTML = data['error'];
                             document.getElementById("form_alert_dns").removeAttribute("hidden");
                             setTimeout(function () {
@@ -579,13 +591,15 @@
 
         //Mechanic's form
         $("#mechanicForm").bind("submit",function(){
+            let btn_mechanic = document.querySelector('#btnSend_mechanic');
+            btn_mechanic.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeMec');
             let codeConfirm      = document.querySelector('#codeMecConfirm');
             let error_code       = document.querySelector('#error_code');
 
             if(codeConfirm.value === codeVerification.value){
                 // We capture send button
-                let btnSend = $("#btnSend");
+                //let btnSend = $("#btnSend").prop('disabled', true);
                 $.ajax({
                     type: $(this).attr("method"),
                     url: $(this).attr("action"),
@@ -600,26 +614,32 @@
                             $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         }else if (data['success']==='false' && data['verify_email']==='false') {
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_mec_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_mec_email").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec_email").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_mec").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_password']==='false') {
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_mec_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                             document.getElementById("form_alert_mec_pass").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec_pass").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_mec_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_mec_mobile").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec_mobile").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_mec").innerHTML='El email ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_mec").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_mec").hidden= true}, 3000);
                         }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_phone_mec").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                             document.getElementById("form_alert_phone_mec").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_phone_mec").hidden= true}, 3500);
@@ -627,11 +647,13 @@
                             document.getElementById("form_alert_phone_text_mec").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_phone_text_mec").hidden = true},3500)
                         }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_mec").innerHTML='Por favor proporciona un email válido';
                             document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
                         }else if(data['success']==='false' && data['verify_client']==='false'){
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_mec").innerHTML='El número de cliente ya está en uso';
                             document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
@@ -640,11 +662,13 @@
                             $('#modalSignUpInCadenas').modal('show');
 
                         }else if(data['success']==='false' && data['other']==='false'){
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_mec").innerHTML=data['error'];
                             document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
 
                         }else if(data['success']==='false' && data['bday']==='false'){
+                            btn_mechanic.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_mec").innerHTML=data['error'];
                             document.getElementById("form_alert_dns_mec").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_mec").hidden = true},3500)
@@ -780,6 +804,8 @@
 
         //General Public form
         $("#generalForm").bind("submit",function(){
+            let btn_public = document.querySelector('#btnSend_public');
+            btn_public.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeGen');
             let codeConfirm      = document.querySelector('#codeGenConfirm');
             let error_code       = document.querySelector('#error_code');
@@ -801,26 +827,32 @@
                             $('#clientMessage').text('En breve recibirás un correo y un mensaje SMS de activación');
                             $('#modalSuccess').modal('show');
                         }else if (data['success']==='false' && data['verify_email']==='false') {
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_gen_email").innerHTML='El email ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_gen_email").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_gen_email").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_client_number']==='false') {
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_gen").innerHTML='Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR <a href="#" data-toggle="modal" data-target="#modalForgotNum">¿Olvidaste tu número de cliente?</a>';
                             document.getElementById("form_alert_gen").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_password']==='false') {
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_gen_pass").innerHTML='Las contraseñas no coinciden, por favor verifica ';
                             document.getElementById("form_alert_gen_pass").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_gen_pass").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_mobile_number']==='false') {
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_gen_mobile").innerHTML='El número telefónico ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_gen_mobile").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_gen_mobile").hidden= true}, 3000);
                         }else if (data['success']==='false' && data['verify_email_number']==='false') {
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_gen").innerHTML='El email ya se encuentra asociado a otro cliente ';
                             document.getElementById("form_alert_gen").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 3000);
                         }else if(data['success']==='false' && data['verify_valid_mobile']==='false'){
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_phone_gen").innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                             document.getElementById("form_alert_phone_gen").removeAttribute("hidden");
                             setTimeout(function (){document.getElementById("form_alert_phone_gen").hidden= true}, 3500);
@@ -828,11 +860,13 @@
                             document.getElementById("form_alert_phone_text_gen").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_phone_text_gen").hidden = true},3500)
                         }else if(data['success']==='false' && data['verify_valid_dns']==='false'){
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_gen").innerHTML='Por favor proporciona un email válido';
                             document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
 
                         }else if(data['success']==='false' && data['verify_client']==='false'){
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_gen").innerHTML='El número de cliente ya está en uso';
                             document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
@@ -841,11 +875,13 @@
                             $('#modalSignUpInCadenas').modal('show');
 
                         }else if(data['success']==='false' && data['other']==='false'){
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_gen").innerHTML=data['error'];
                             document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)
 
                         }else if(data['success']==='false' && data['bday']==='false'){
+                            btn_public.removeAttribute('disabled');
                             document.getElementById("form_alert_dns_gen").innerHTML=data['error'];
                             document.getElementById("form_alert_dns_gen").removeAttribute("hidden");
                             setTimeout(function(){document.getElementById("form_alert_dns_gen").hidden = true},3500)

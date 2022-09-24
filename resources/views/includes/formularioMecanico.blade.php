@@ -126,7 +126,7 @@
                     <div class="col-lg-6 order-2 order-lg-3 py-2" style="display: flex">
                         <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
-                    </div>   
+                    </div>
 
                     <div class="col-lg-6 order-4 order-lg-4 py-2" style="display:none " id="muestraMec">
                         <select class="form-control btnBorder" id="branch_idMec" name="branch_id" required>
@@ -144,7 +144,7 @@
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                   
+
                      {{-- Modal ¿Olvidaste tu numero cliente --}}
                      <div class="col-lg-12 order-5 order-lg-5 py-2" style="display: flex; flex-direction: column;">
                          <div style="display: flex;">
@@ -179,7 +179,7 @@
                         <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                     </div>
                     <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;"
-                    id="btnSend"
+                    id="btnSend_mechanic"
                     onclick="focusrfc('rfcMec')";
                     value="Enviar">
                 </div>

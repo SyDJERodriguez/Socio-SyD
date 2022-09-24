@@ -105,7 +105,7 @@
                             <input type="text" class="form-control btnBorder" placeholder="R.F.C" id="rfcGen" name="rfc">
                             <p style="color: red; margin: 0;visibility: hidden">*</p>
                         </div>
-                        
+
                         <div class="col-lg-6 order-1 order-lg-1 py-2" style="display: flex">
                             <input autocomplete="new-password" type="password" class="form-control btnBorder" placeholder="CONTRASEÑA" name="password" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-¡!$%^&*()_+|~=`{}\[\]:@;'<>¿?,.\/]).{8,20}$" title="La contraseña debe tener más de 8 caracteres, una mayúscula, un número y un caracter especial " required>
                             <p style="color: red; margin: 0;">*</p>
@@ -127,26 +127,26 @@
                             <input type="password" class="form-control btnBorder" placeholder="CONFIRMAR CONTRASEÑA" name="confirmPassword" id="confirmPassword" required>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
-                        
-                        
+
+
                         <div class="col-lg-6 order-4 order-lg-4 py-2" style="display: none" id="muestraGen">
                             <select class="form-control btnBorder"  id="branch_idGen" name="branch_id" required>
                                 <option value="">SUCURSAL DE COMPRA</option>
                                 <option value="2" style="display: none;"></option>
                                 <option value="47" style="display: none;"></option>
                                 @if(isset($branches))
-                                   @foreach ($branches as $branch) 
+                                   @foreach ($branches as $branch)
                                       @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47)
-                                         <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
-                                      @endif 
+                                         <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                      @endif
                                    @endforeach
                                 @endif
                             </select>
                             <p style="color: red; margin: 0;">*</p>
                         </div>
-        
-                       
-                        
+
+
+
                         {{-- Modal ¿Olvidaste tu numero cliente --}}
                         <div class="col-lg-12 order-5 order-lg-5 py-2" style="display: flex; flex-direction: column;">
                             <div style="display: flex;">
@@ -181,7 +181,7 @@
                             <input class="form-check-input " style="width: 30px;height: 30px;" type="checkbox" id="inlineCheckbox1" value="option1" required>
                         </div>
                         <input type="submit" class="btn btn" style="background-color: #00A1E3;color: white;"
-                               id="btnSend"
+                               id="btnSend_public"
                                onclick="focusrfc('rfcMec')";
                                value="Enviar">
                     </div>

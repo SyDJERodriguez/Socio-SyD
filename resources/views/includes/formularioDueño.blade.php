@@ -134,23 +134,23 @@
                         <input type="password" class="form-control btnBorder" name="confirmPassword" placeholder="CONFIRMAR CONTRASEÑA" id="confirmPassword" required>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                                       
+
                     <div class="col-lg-6 order-4 order-lg-4 py-2" style="display: none" id="muestra">
                         <select class="form-control btnBorder"  id="branch_id" name="branch_id" required>
                             <option value="">SUCURSAL DE COMPRA</option>
                             <option value="2" style="display: none;"></option>
                             <option value="47" style="display: none;"></option>
                             @if(isset($branches))
-                                @foreach ($branches as $branch) 
+                                @foreach ($branches as $branch)
                                   @if ( $branch->id != 0 and $branch->id != 2 and $branch->id != 24 and $branch->id != 45 and $branch->id != 47)
-                                     <option value="{{$branch->id}}">{{$branch->name}}</option>                                     
-                                  @endif 
+                                     <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                  @endif
                                 @endforeach
                             @endif
                         </select>
                         <p style="color: red; margin: 0;">*</p>
                     </div>
-                    
+
                     <input type="hidden" id="client_type" name="client_type" value="1">
                 </div>
 
@@ -206,7 +206,7 @@
                     </div>
                     <input type="submit" class="btn btn"
                     style="background-color: #00A1E3;color: white;"
-                    id="btnSend" onclick="focusrfc('rfc')" value="Enviar">
+                    id="btnSend_owner" onclick="focusrfc('rfc')" value="Enviar">
                 </div>
             </form>
           </div>
