@@ -14,18 +14,18 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 |
 */
 
-/*Route::get('/', function () {
-    return view('pages.maintenance');
-})->name('home');*/
-
 Route::get('/', function () {
+    return view('pages.maintenance');
+})->name('home');
+
+/*Route::get('/', function () {
     $branches = DB::table('branches')
                 ->orderBy('name','ASC')
                 ->get();
     $popup= false;
 
 return view('pages.home', compact('branches','popup'));
-})->name('home');
+})->name('home');*/
 
 Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
