@@ -37,8 +37,8 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+        <div class="container" style="max-width: 1200px; padding: 0">
+            <a class="navbar-brand" href="{{ url('/admin/index') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -57,26 +57,31 @@
                             <a class="nav-link" href="{{ route('admin.register.form') }}">Registro</a>
                         </li>-->
                     @else
-                    @if (Auth::user()->type_user == 1 || Auth::user()->type_user == 2 )
-                    <a class="nav-link " href="{{ route('beneficiary.index') }}">
-                            Registrar Beneficiarios
-                    </a>
-                    <a class="nav-link " href="{{ route('admin.search.index') }}">
-                            Registrar Dependientes
-                    </a>
-                    @endif
-                    @if (Auth::user()->type_user==1)
-                        <a class="nav-link " href="{{ route('admin.total.registers') }}">
-                            Registros
+                        @if (Auth::user()->type_user==1)
+                            <a class="nav-link " href="{{ route('admin.reports.index') }}">
+                                Reportes
+                            </a>
+                        @endif
+                        @if (Auth::user()->type_user == 1 || Auth::user()->type_user == 2 )
+                        <a class="nav-link " href="{{ route('beneficiary.index') }}">
+                                Registrar Beneficiarios
                         </a>
-                        <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
-                            Log Sesiones
+                        <a class="nav-link " href="{{ route('admin.search.index') }}">
+                                Registrar Dependientes
                         </a>
-                        <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
-                            Log Busquedas
-                        </a>
-                    @endif
-                    
+                        @endif
+                        @if (Auth::user()->type_user==1)
+                            <a class="nav-link " href="{{ route('admin.total.registers') }}">
+                                Registros
+                            </a>
+                            <a class="nav-link " href="{{ route('admin.consultLogSessions') }}">
+                                Log Sesiones
+                            </a>
+                            <a class="nav-link " href="{{ route('admin.consultLogSearches') }}">
+                                Log Busquedas
+                            </a>
+                        @endif
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -124,7 +129,7 @@
             ]
         });
     });*/
-    
+
     let buttons  = document.querySelector('#buttonconf');
     let mobileInput  = document.querySelector('#mobileuser');
     let inputCodes = document.querySelector('#codes');
@@ -202,6 +207,28 @@ jQuery(document).ready(function($){
         }
 
     });
+
+    $('#logsReports').DataTable({
+        "order": [[ 2, "desc" ],[ 3, "desc" ]],
+        dom: 'Bfrtip',
+        info: false,
+        searching:true,
+        scrollX:true,
+        buttons: [],
+        "language":
+            {
+                "zeroRecords":"No hay registros para mostrar",
+                "infoEmpty": "No hay registros para mostrar",
+                "emptyTable": "No hay registros para mostrar",
+                "search":"Buscar:",
+                "paginate":
+                    {
+                        'previous': "Anterior",
+                        'next': "Siguiente"
+                    },
+            }
+
+    });
     $("#addEmployesearch").bind("submit",function(){
             // We capture send button
             let Sendbtn = $("#Sendbtn");
@@ -222,7 +249,7 @@ jQuery(document).ready(function($){
                    // console.log(data);
                     Sendbtn.html("Aceptar");
                     Sendbtn.attr("disabled",false);
-                    if(codeConfir.value === codes.value) { 
+                    if(codeConfir.value === codes.value) {
                     if(data['success']==='false' && data['verify_valid_mobile']==='false'){
                         alerterrortext.innerHTML='<div style="border: 1px solid black" class="input-group-text bg-danger text-white"> X </div>';
                         alerterrortext.removeAttribute("hidden");
@@ -257,11 +284,11 @@ jQuery(document).ready(function($){
                 error: function(data){
                     $('#modalErrorServer').modal('show');
                 }
-            
+
             });
             // Nos permite cancelar el envio del formulario
             return false;
         });
-    
+
 });
 </script>
