@@ -15,13 +15,13 @@ class CreateBenefitsReportsTable extends Migration
     {
         Schema::create('benefits_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('created_date');
-            $table->string('status');
-            $table->string('created_by');
-            $table->string('approved_by');
-            $table->string('approved_date');
-            $table->string('report_id');
-            $table->string('type_report');
+            $table->string('created_date')->nullable();
+            $table->string('status')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('approved_by')->nullable();
+            $table->string('approved_date')->nullable();
+            $table->string('report_id')->nullable();
+            $table->string('type_report')->nullable();
             $table->timestamps();
         });
     }

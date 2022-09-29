@@ -15,14 +15,14 @@ class CreateChubbBeneficiariesTable extends Migration
     {
         Schema::create('chubb_beneficiaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('client_number');
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('second_last_name');
-            $table->string('rfc');
-            $table->string('birthday');
-            $table->string('gender');
-            $table->string('report_id');
+            $table->string('client_number')->nullable();
+            $table->string('name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('second_last_name')->nullable();
+            $table->string('rfc')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('report_id')->nullable();
             $table->timestamps();
         });
     }

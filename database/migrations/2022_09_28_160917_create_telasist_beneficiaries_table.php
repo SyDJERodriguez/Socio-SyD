@@ -15,18 +15,18 @@ class CreateTelasistBeneficiariesTable extends Migration
     {
         Schema::create('telasist_beneficiaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('client_number');
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('second_last_name');
-            $table->string('email');
-            $table->string('birthday');
-            $table->string('phone');
-            $table->string('gender');
-            $table->string('benefit');
-            $table->string('start_date');
-            $table->string('end_date');
-            $table->string('report_id');
+            $table->string('client_number')->nullable();
+            $table->string('name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('second_last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('benefit')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
+            $table->string('report_id')->nullable();
             $table->timestamps();
         });
     }

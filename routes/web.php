@@ -166,6 +166,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
         Route::prefix('reports')->name('reports.')->group(function (){
             Route::get('/search', 'Admin\ReportsController@index')->name('index');
+            Route::get('/createTelasistReport', 'Admin\ReportsController@create_telasist_report')->name('create.telasist');
         });
     });
 

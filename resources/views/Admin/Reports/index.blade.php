@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-md-8" style="display: flex; justify-content: flex-end;">
                         <div class="col-md-4">
-                            <a href="#"
+                            <a href="{{route('admin.reports.create.telasist')}}"
                                class="btn"
                                style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Generar reporte Telasist</a>
                         </div>
