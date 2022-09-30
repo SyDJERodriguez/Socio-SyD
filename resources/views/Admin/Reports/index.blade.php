@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container" style="max-width: 1150px">
+    <div class="container" style="max-width: 90%">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div style="display: flex; justify-content: space-between;">
-                    <div class="col-md-4">
-                        <h2>Registro de sesiones</h2>
+                    <div class="col-md-6">
+                        <h2>Reportes Asistencias y Seguros</h2>
                     </div>
-                    <div class="col-md-8" style="display: flex; justify-content: flex-end;">
-                        <div class="col-md-4" style="max-width: 30%">
+                    <div class="col-md-6" style="display: flex; justify-content: flex-end;">
+                        <div class="col-md-6" style="max-width: 30%">
                             <a href="{{route('admin.reports.create.telasist')}}"
                                class="btn"
                                style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Generar reporte Telasist</a>
                         </div>
-                        <div class="col-md-4" style="max-width: 30%">
+                        <div class="col-md-6" style="max-width: 30%">
                             <a href="#"
                                class="btn"
                                style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Generar reporte Chubb</a>
@@ -59,7 +59,7 @@
                                         <td>{{$report->created_by}}</td>
                                         <td>{{$report->approved_date}}</td>
                                         <td>{{$report->approved_by}}</td>
-                                        <td style="width: 27%">
+                                        <td>
                                             <a href="{{url('admin/reports/detailReport/'.$report->report_id)}}" class="btn btn-warning btn-sm">Detalle</a>
                                             @if( '1' === $report->status || '2' === $report->status )
                                                 <a href="#" class="btn btn-success btn-sm">Aprobar</a>

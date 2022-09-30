@@ -171,6 +171,9 @@ class ReportsController extends Controller
     }
 
     public function report_detail ($report_id) {
+        DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
+            'status' => '2'
+        ]);
         $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
         return view('Admin.Reports.report_detail', compact('beneficiaries'));
     }
