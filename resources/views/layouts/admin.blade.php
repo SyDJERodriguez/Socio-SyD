@@ -229,6 +229,29 @@ jQuery(document).ready(function($){
             }
 
     });
+
+    $('#detailReport').DataTable({
+        dom: 'Bfrtip',
+        info: false,
+        searching:true,
+        buttons: [],
+        scrollY: '700px',
+        scrollCollapse: true,
+        paging: false,
+        "language":
+            {
+                "zeroRecords":"No hay registros para mostrar",
+                "infoEmpty": "No hay registros para mostrar",
+                "emptyTable": "No hay registros para mostrar",
+                "search":"Buscar:",
+                "paginate":
+                    {
+                        'previous': "Anterior",
+                        'next': "Siguiente"
+                    },
+            }
+
+    });
     $("#addEmployesearch").bind("submit",function(){
             // We capture send button
             let Sendbtn = $("#Sendbtn");

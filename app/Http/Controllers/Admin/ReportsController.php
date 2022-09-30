@@ -139,13 +139,15 @@ class ReportsController extends Controller
                     $client->level = $registers[$in_clients]->level;
                 }
 
+                $flag_birthday = Carbon::parse( $client->fecha_nacimiento )->age;
+
                 $birthday = explode("-", $client->fecha_nacimiento);
                 $client->fecha_nacimiento = $birthday[2] . "/" . $birthday[1] . "/" . $birthday[0];
 
                 //Remove the key id of the json
                 unset($client->id);
 
-                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level ) {
+                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && $flag_birthday >= 18 ) {
                     $new_register = DB::table('telasist_beneficiaries')->insert([
                         'client_number'    => $client->client_number,
                         'name'             => $client->nombre,
@@ -166,6 +168,11 @@ class ReportsController extends Controller
 
         $reports = DB::table('benefits_reports')->get();
         return view('Admin.Reports.index', compact('reports'));
+    }
+
+    public function report_detail ($report_id) {
+        $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
+        return view('Admin.Reports.report_detail', compact('beneficiaries'));
     }
 
     /**
