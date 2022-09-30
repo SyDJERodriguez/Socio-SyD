@@ -21,12 +21,12 @@ class ReportsController extends Controller
         return view('Admin.Reports.index', compact('reports'));
     }
 
-    public function create_telasist_report()
+    public function create_report($type_report)
     {
         $today = Carbon::now()->format('d-m-Y');
         $last_register =  DB::table('benefits_reports')->orderBy('id', 'desc')->first();
         $last_id = $last_register ? $last_register->id+1 : 1;
-        $report_id = 'TELASIST_'.Carbon::now()->format('dmY').'_'.$last_id;
+        $report_id = $type_report.'_'.Carbon::now()->format('dmY').'_'.$last_id;
 
         $start_date = new Carbon('first day of next month');
         $start_date = $start_date->format('d/m/Y');
@@ -41,7 +41,7 @@ class ReportsController extends Controller
             'approved_by'   => '',
             'approved_date' => '',
             'report_id'     => $report_id,
-            'type_report'   => 'TELASIST'
+            'type_report'   => $type_report
         ]);
 
         if ($new_report) {
@@ -142,13 +142,14 @@ class ReportsController extends Controller
                 $flag_birthday = Carbon::parse( $client->fecha_nacimiento )->age;
 
                 $birthday = explode("-", $client->fecha_nacimiento);
+                $year = substr($birthday[0],2,2);
                 $client->fecha_nacimiento = $birthday[2] . "/" . $birthday[1] . "/" . $birthday[0];
 
                 //Remove the key id of the json
                 unset($client->id);
 
-                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && $flag_birthday >= 18 ) {
-                    $new_register = DB::table('telasist_beneficiaries')->insert([
+                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && $flag_birthday >= 18 && 'TELASIST' === $type_report ) {
+                    DB::table('telasist_beneficiaries')->insert([
                         'client_number'    => $client->client_number,
                         'name'             => $client->nombre,
                         'last_name'        => $client->apellido_paterno,
@@ -163,19 +164,85 @@ class ReportsController extends Controller
                         'report_id'        => $report_id
                     ]);
                 }
+
+                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && ( $flag_birthday >= 18 && $flag_birthday <= 70 ) && 'CHUBB' === $type_report ) {
+                    $birthday = $birthday[2]."/".$birthday[1]."/".$year;
+
+                    $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
+
+                    DB::table('chubb_beneficiaries')->insert([
+                        'client_number'    => $client->client_number,
+                        'rfc'              => $client->rfc,
+                        'name'             => $client->nombre,
+                        'last_name'        => $client->apellido_paterno,
+                        'second_last_name' => $client->apellido_materno,
+                        'birthday'         => $client->fecha_nacimiento,
+                        'gender'           => $client->gender,
+                        'report_id'        => $report_id
+                    ]);
+                }
             }
         }
 
         $reports = DB::table('benefits_reports')->get();
-        return view('Admin.Reports.index', compact('reports'));
+        return redirect()->route('admin.reports.index');
     }
 
-    public function report_detail ($report_id) {
+    public function report_detail ($report_id, $type_report, $status) {
+        if( "TELASIST" === $type_report ){
+            DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
+                'status' => '2'
+            ]);
+            $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
+            return view('Admin.Reports.report_detail', compact('beneficiaries','type_report', 'status'));
+        }
+
         DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
             'status' => '2'
         ]);
-        $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
-        return view('Admin.Reports.report_detail', compact('beneficiaries'));
+        $beneficiaries  = DB::table('chubb_beneficiaries')->where('report_id','=',$report_id)->get();
+        return view('Admin.Reports.report_detail', compact('beneficiaries','type_report', 'status'));
+    }
+
+    public function delete_register ($register_id, $report_id){
+
+        $register_deleted = DB::table('telasist_beneficiaries')->where('id','=',$register_id)->delete();
+
+        return redirect()->route('admin.reports.detail.report', $report_id);
+    }
+
+    public function update_register (Request $request){
+        $request  = $request->input();
+        $repor_id = $request['report_id'];
+
+        $register_updated = DB::table('telasist_beneficiaries')->where('id','=',$request['id'])->update([
+            'client_number'    => $request['client_number'],
+            'name'             => $request['name'],
+            'last_name'        => $request['last_name'],
+            'second_last_name' => $request['second_last_name'],
+            'birthday'         => $request['birthday'],
+            'email'            => $request['email'],
+            'gender'           => $request['gender'],
+            'benefit'          => $request['benefit'],
+            'phone'            => $request['phone']
+        ]);
+
+        return redirect()->route('admin.reports.detail.report', $repor_id);
+    }
+
+    public function approve_report ($report_id){
+        $today = Carbon::now()->format('d-m-Y');
+
+        DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
+            'status'         => '3',
+            'approved_by'    => Auth::user()->name,
+            'approved_date'  => $today
+        ]);
+        return redirect()->route('admin.reports.index');
+    }
+
+    public function download_report( $report_id, $type_report ){
+
     }
 
     /**

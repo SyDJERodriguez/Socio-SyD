@@ -165,6 +165,46 @@
 <script>
 $.noConflict();
 jQuery(document).ready(function($){
+
+    $(document).ready(function () {
+        $('body').on('click', '#edit_beneficiary', function (event) {
+
+            event.preventDefault();
+            let id = $(this).data('id');
+            let client_number = $(this).data('client_number_r');
+            let name = $(this).data('name');
+            let last_name = $(this).data('last_name_r');
+            let second_last_name = $(this).data('second_last_name_r');
+            let email = $(this).data('email');
+            let phone = $(this).data('phone');
+            let gender = $(this).data('gender');
+            let birthday = $(this).data('birthday');
+            let benefit = $(this).data('benefit');
+            let report_id = $(this).data('report_id_r');
+            let rfc_r = $(this).data('rfc_r');
+
+            $('#client_number_r').val(client_number);
+            $('#name_r').val(name);
+            $('#last_name_r').val(last_name);
+            $('#second_last_name_r').val(second_last_name);
+            $('#email_r').val(email);
+            $('#phone_r').val(phone);
+            $('#gender_r').val(gender);
+            $('#birthday_r').val(birthday);
+            $('#benefit_r').val(benefit);
+            $('#id_r').val(id);
+            $('#report_id_r').val(report_id);
+            $('#rfc_r').val(rfc_r);
+            /*$.get('color/' + id + '/edit', function (data) {
+                $('#userCrudModal').html("Edit category");
+                $('#submit').val("Edit category");
+                $('#practice_modal').modal('show');
+                $('#color_id').val(data.data.id);
+                $('#name').val(data.data.name);
+            })*/
+        });
+    });
+
    $('#logsSessions').DataTable({
        "order": [[ 2, "desc" ],[ 3, "desc" ]],
        dom: 'Bfrtip',

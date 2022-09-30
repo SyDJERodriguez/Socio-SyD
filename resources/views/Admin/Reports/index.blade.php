@@ -10,12 +10,12 @@
                     </div>
                     <div class="col-md-6" style="display: flex; justify-content: flex-end;">
                         <div class="col-md-6" style="max-width: 30%">
-                            <a href="{{route('admin.reports.create.telasist')}}"
+                            <a href="{{url('admin/reports/createReport/TELASIST')}}"
                                class="btn"
                                style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Generar reporte Telasist</a>
                         </div>
                         <div class="col-md-6" style="max-width: 30%">
-                            <a href="#"
+                            <a href="{{url('admin/reports/createReport/CHUBB')}}"
                                class="btn"
                                style="background-color: rgb(0, 165, 230); color: rgb(255, 255, 255);">Generar reporte Chubb</a>
                         </div>
@@ -60,9 +60,9 @@
                                         <td>{{$report->approved_date}}</td>
                                         <td>{{$report->approved_by}}</td>
                                         <td>
-                                            <a href="{{url('admin/reports/detailReport/'.$report->report_id)}}" class="btn btn-warning btn-sm">Detalle</a>
+                                            <a href="{{url('admin/reports/detailReport/'.$report->report_id.'/'.$report->type_report.'/'.$report->status)}}" class="btn btn-warning btn-sm">Detalle</a>
                                             @if( '1' === $report->status || '2' === $report->status )
-                                                <a href="#" class="btn btn-success btn-sm">Aprobar</a>
+                                                <a href="{{url('admin/reports/approveReport/'.$report->report_id)}}" class="btn btn-success btn-sm">Aprobar</a>
                                             @else
                                                 <button href="#" class="btn btn-success btn-sm" disabled>Aprobar</button>
                                             @endif
@@ -72,7 +72,7 @@
                                             @else
                                                 <a href="#" class="btn btn-primary btn-sm">Descargar</a>
                                             @endif
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                                            <!--<a href="#" class="btn btn-danger btn-sm">Eliminar</a>-->
 
                                         </td>
                                     </tr>

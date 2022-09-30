@@ -166,8 +166,11 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
         Route::prefix('reports')->name('reports.')->group(function (){
             Route::get('/search', 'Admin\ReportsController@index')->name('index');
-            Route::get('/createTelasistReport', 'Admin\ReportsController@create_telasist_report')->name('create.telasist');
-            Route::get('/detailReport/{report_id}', 'Admin\ReportsController@report_detail')->name('detail.report');
+            Route::get('/createReport/{type_report}', 'Admin\ReportsController@create_report')->name('create');
+            Route::get('/detailReport/{report_id}/{type_report}/{status}', 'Admin\ReportsController@report_detail')->name('detail.report');
+            Route::get('/delete_register/{register_id}/{report_id}', 'Admin\ReportsController@delete_register')->name('delete.register');
+            Route::put('/update_register', 'Admin\ReportsController@update_register')->name('update.register');
+            Route::get('/approveReport/{report_id}', 'Admin\ReportsController@approve_report')->name('approve.report');
         });
     });
 
