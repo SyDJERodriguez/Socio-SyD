@@ -106,6 +106,11 @@ class ReportsController extends Controller
                 ->select(
                     'customers_sessions.id AS id',
                     'customers_sessions.client_number AS client_number',
+                    DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS type_user'),
                     'customer_platforms.name AS nombre',
                     'customer_platforms.last_name AS apellido_paterno',
                     'customer_platforms.second_last_name AS apellido_materno',
@@ -139,6 +144,15 @@ class ReportsController extends Controller
                 //If the client has benefits, set the amount and the level of the current month
                 if ($in_clients !== false) {
                     $client->level = $registers[$in_clients]->level;
+                }
+
+                //Check if the client is an employee of a company account
+                if($client->type_user === 'Dependiente de Negocio'){
+                    $associateData = DB::table('associates')
+                        ->where('email', '=', $client->email)
+                        ->first();
+                    //Concatenate the number of employee to the client number
+                    $client->client_number = $client->client_number.'-'.$associateData->number;
                 }
 
                 $flag_birthday = Carbon::parse( $client->fecha_nacimiento )->age;
