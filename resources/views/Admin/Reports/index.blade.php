@@ -70,7 +70,7 @@
                                             @if( '1' === $report->status || '2' === $report->status )
                                                 <button class="btn btn-primary btn-sm" disabled>Descargar</button>
                                             @else
-                                                <a href="#" class="btn btn-primary btn-sm">Descargar</a>
+                                                <a href="{{url('admin/reports/downloadReport/'.$report->report_id.'/'.$report->type_report)}}" class="btn btn-primary btn-sm">Descargar</a>
                                             @endif
                                             <!--<a href="#" class="btn btn-danger btn-sm">Eliminar</a>-->
 

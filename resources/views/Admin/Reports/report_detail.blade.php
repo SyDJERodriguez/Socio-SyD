@@ -172,7 +172,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 py-2" style="display: flex">
                                             <input type="text" class="form-control btnBorder mobileInput" placeholder="NÚMERO DE CLIENTE"
-                                                   id="client_number_r" name="client_number" maxlength="8"required>
+                                                   id="client_number_r" name="client_number" required>
                                             <p style="color: red; margin: 0;">*</p>
                                         </div>
                                         <div class="col-lg-6 py-2" style="display: flex">
@@ -184,7 +184,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 py-2" style="display: flex">
                                             <input type="text" class="form-control btnBorder mobileInput" placeholder="APELLIDO PATERNO"
-                                                   id="last_name_r" name="last_name" maxlength="8"required>
+                                                   id="last_name_r" name="last_name" required>
                                             <p style="color: red; margin: 0;">*</p>
                                         </div>
                                         <div class="col-lg-6 py-2" style="display: flex">
@@ -197,7 +197,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 py-2" style="display: flex">
                                                 <input type="text" class="form-control btnBorder mobileInput" placeholder="RFC"
-                                                       id="rfc_r" name="rfc" maxlength="8"required>
+                                                       id="rfc_r" name="rfc" required>
                                                 <p style="color: red; margin: 0;">*</p>
                                             </div>
                                             <div class="col-lg-6 py-2" style="display: flex">
@@ -212,7 +212,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 py-2" style="display: flex">
                                                 <input type="text" class="form-control btnBorder mobileInput" placeholder="EMAIL"
-                                                       id="email_r" name="email" maxlength="8"required>
+                                                       id="email_r" name="email" required>
                                                 <p style="color: red; margin: 0;">*</p>
                                             </div>
                                             <div class="col-lg-6 py-2" style="display: flex">
@@ -237,7 +237,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 py-2" style="display: flex">
                                                 <input type="text" class="form-control btnBorder mobileInput" placeholder="TELÉFONO"
-                                                       id="phone_r" name="phone" maxlength="8"required>
+                                                       id="phone_r" name="phone" required>
                                                 <p style="color: red; margin: 0;">*</p>
                                             </div>
                                             <div class="col-lg-6 py-2" style="display: flex">
@@ -249,7 +249,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 py-2" style="display: flex">
                                                 <input type="text" class="form-control btnBorder mobileInput" placeholder="BENEFICIO"
-                                                       id="benefit_r" name="benefit" maxlength="8"required>
+                                                       id="benefit_r" name="benefit" required>
                                                 <p style="color: red; margin: 0;">*</p>
                                             </div>
                                         </div>
@@ -261,6 +261,9 @@
                                            id="id_r" name="id">
                                     <input type="hidden" class="form-control btnBorder mobileInput"
                                            id="report_id_r" name="report_id">
+
+                                    <input type="hidden" class="form-control btnBorder mobileInput"
+                                           id="type_report_r" name="type_report" value="{{$type_report}}">
 
                                     <input type="hidden" id="client_type" name="client_type" value="2">
                                     <div class="modal-footer border-top-0">

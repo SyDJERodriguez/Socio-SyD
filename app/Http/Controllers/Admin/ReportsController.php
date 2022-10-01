@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\SessionExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportsController extends Controller
 {
@@ -165,7 +167,7 @@ class ReportsController extends Controller
                     ]);
                 }
 
-                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && ( $flag_birthday >= 18 && $flag_birthday <= 70 ) && 'CHUBB' === $type_report ) {
+                if( 'Ninguno' !== $client->level && ( $flag_birthday >= 18 && $flag_birthday <= 70 ) && 'CHUBB' === $type_report ) {
                     $birthday = $birthday[2]."/".$birthday[1]."/".$year;
 
                     $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
@@ -189,17 +191,27 @@ class ReportsController extends Controller
     }
 
     public function report_detail ($report_id, $type_report, $status) {
+
+        $status_validation = DB::table('benefits_reports')->where('report_id','=',$report_id)->first();;
+
         if( "TELASIST" === $type_report ){
-            DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
-                'status' => '2'
-            ]);
+            if( '3' !== $status_validation->status ){
+                DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
+                    'status' => '2'
+                ]);
+            }
+
             $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
             return view('Admin.Reports.report_detail', compact('beneficiaries','type_report', 'status'));
         }
 
-        DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
-            'status' => '2'
-        ]);
+        if( '3' !== $status_validation->status ){
+            DB::table('benefits_reports')->where('report_id','=',$report_id)->update([
+                'status' => '2'
+            ]);
+        }
+
+
         $beneficiaries  = DB::table('chubb_beneficiaries')->where('report_id','=',$report_id)->get();
         return view('Admin.Reports.report_detail', compact('beneficiaries','type_report', 'status'));
     }
@@ -213,21 +225,37 @@ class ReportsController extends Controller
 
     public function update_register (Request $request){
         $request  = $request->input();
-        $repor_id = $request['report_id'];
+        $report_id = $request['report_id'];
+        $type_report = $request['type_report'];
+        $status = '2';
 
-        $register_updated = DB::table('telasist_beneficiaries')->where('id','=',$request['id'])->update([
+        if( 'TELASIST' === $request['type_report'] ){
+            $register_updated = DB::table('telasist_beneficiaries')->where('id','=',$request['id'])->update([
+                'client_number'    => $request['client_number'],
+                'name'             => $request['name'],
+                'last_name'        => $request['last_name'],
+                'second_last_name' => $request['second_last_name'],
+                'birthday'         => $request['birthday'],
+                'email'            => $request['email'],
+                'gender'           => $request['gender'],
+                'benefit'          => $request['benefit'],
+                'phone'            => $request['phone']
+            ]);
+
+            return redirect()->route('admin.reports.detail.report', [$report_id, $type_report, $status]);
+        }
+
+        $register_updated = DB::table('chubb_beneficiaries')->where('id','=',$request['id'])->update([
             'client_number'    => $request['client_number'],
             'name'             => $request['name'],
             'last_name'        => $request['last_name'],
             'second_last_name' => $request['second_last_name'],
             'birthday'         => $request['birthday'],
-            'email'            => $request['email'],
             'gender'           => $request['gender'],
-            'benefit'          => $request['benefit'],
-            'phone'            => $request['phone']
+            'rfc'              => $request['rfc']
         ]);
 
-        return redirect()->route('admin.reports.detail.report', $repor_id);
+        return redirect()->route('admin.reports.detail.report', [$report_id, $type_report, $status]);
     }
 
     public function approve_report ($report_id){
@@ -242,6 +270,47 @@ class ReportsController extends Controller
     }
 
     public function download_report( $report_id, $type_report ){
+
+        if ( 'TELASIST' === $type_report ){
+            $beneficiaries  = DB::table('telasist_beneficiaries')->where('report_id','=',$report_id)->get();
+            $data = '';
+
+            foreach ( $beneficiaries as $user ) {
+                $data  .= $user->client_number.'|'.$user->name.'|'.$user->last_name.'|'.$user->second_last_name.'|'.$user->email.'|'.$user->birthday.'|'.$user->phone.'|'.$user->gender.'|'.$user->benefit.'|'.$user->start_date.'|'.$user->end_date;
+                $data .= "\n";
+            }
+
+            $current_date = Carbon::now()->format('Y-m-d');
+
+            $fileName = 'altas_syd_'.$current_date.'.txt';
+            $fileName = str_replace('','-',$fileName);
+            $headers = [
+                'Content-type' => 'text/plain',
+                'Cache-Control' => 'no-store, no-cache',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $fileName),
+
+            ];
+            return \Response::make($data, 200, $headers);
+
+        }elseif ( 'CHUBB' === $type_report ){
+            $beneficiaries  = DB::table('chubb_beneficiaries')->where('report_id','=',$report_id)->get();
+            $final_data = [];
+
+            foreach ( $beneficiaries as $user ) {
+                $data = [
+                    'client_number'    => $user->client_number,
+                    'name'             => $user->name,
+                    'last_name'        => $user->last_name,
+                    'second_last_name' => $user->second_last_name,
+                    'rfc'              => $user->rfc,
+                    'birthday'         => $user->birthday,
+                    'gender'           => $user->gender
+                ];
+
+                array_push($final_data, $data);
+            }
+            return Excel::download( new SessionExport( $final_data ), 'reporteChubb.xlsx' );
+        }
 
     }
 

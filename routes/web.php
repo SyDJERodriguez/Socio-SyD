@@ -171,6 +171,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
             Route::get('/delete_register/{register_id}/{report_id}', 'Admin\ReportsController@delete_register')->name('delete.register');
             Route::put('/update_register', 'Admin\ReportsController@update_register')->name('update.register');
             Route::get('/approveReport/{report_id}', 'Admin\ReportsController@approve_report')->name('approve.report');
+            Route::get('/downloadReport/{report_id}/{type_report}', 'Admin\ReportsController@download_report')->name('download.report');
         });
     });
 
