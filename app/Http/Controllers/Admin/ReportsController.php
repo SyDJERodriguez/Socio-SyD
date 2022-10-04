@@ -51,7 +51,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->month;
+                    $current_month = $now->subMonth()->format('m');
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
@@ -77,7 +77,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->month;
+                    $current_month = $now->subMonth()->format('m');
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
@@ -134,6 +134,8 @@ class ReportsController extends Controller
 
             //Loop for all clients registered in Socio SyD
             foreach ($all_clients as $client) {
+
+                $client->client_number = substr($client->client_number,2,8);
 
                 //Set benefits level
                 $client->level = 'Ninguno';
@@ -230,11 +232,11 @@ class ReportsController extends Controller
         return view('Admin.Reports.report_detail', compact('beneficiaries','type_report', 'status'));
     }
 
-    public function delete_register ($register_id, $report_id){
+    public function delete_register ($register_id, $report_id, $status, $type_report){
 
         $register_deleted = DB::table('telasist_beneficiaries')->where('id','=',$register_id)->delete();
 
-        return redirect()->route('admin.reports.detail.report', $report_id);
+        return redirect()->route('admin.reports.detail.report', [$report_id, $type_report, $status]);
     }
 
     public function update_register (Request $request){

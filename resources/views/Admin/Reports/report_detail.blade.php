@@ -117,7 +117,7 @@
                                                    data-client_number_r="{{$beneficiary->client_number}}"
                                                    data-report_id_r="{{$beneficiary->report_id}}"
                                                    id="edit_beneficiary" class="btn btn-warning btn-sm">Editar</a>
-                                                <a href="{{url('admin/reports/delete_register/'.$beneficiary->id.'/'.$beneficiary->report_id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+                                                <a href="{{url('admin/reports/delete_register/'.$beneficiary->id.'/'.$beneficiary->report_id.'/'.$status.'/'.$type_report)}}" class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
                                         @endif
                                     </tr>
