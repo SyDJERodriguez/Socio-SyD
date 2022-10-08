@@ -51,7 +51,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->subMonth()->format('m');
+                    $current_month = $now->month;
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
@@ -77,7 +77,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->subMonth()->format('m');
+                    $current_month = $now->month;
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
@@ -155,6 +155,15 @@ class ReportsController extends Controller
                         ->first();
                     //Concatenate the number of employee to the client number
                     $client->client_number = $client->client_number.'-'.$associateData->number;
+                }
+
+                //Check if the client is a branch
+                if($client->type_user === 'Cadena'){
+                    $associateData = DB::table('customers_sessions')
+                        ->where('email', '=', $client->email)
+                        ->first();
+                    //Concatenate the branch number of cadena client to the client number
+                    $client->client_number = $client->client_number.'-'.substr($associateData->branch_number,2,8);
                 }
 
                 $flag_birthday = Carbon::parse( $client->fecha_nacimiento )->age;
