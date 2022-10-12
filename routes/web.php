@@ -14,18 +14,18 @@ Route::get('/customer/{customer}', [\App\Http\Controllers\CustomerController::cl
 |
 */
 
-Route::get('/', function () {
-    return view('pages.maintenance');
-})->name('home');
-
 /*Route::get('/', function () {
+    return view('pages.maintenance');
+})->name('home');*/
+
+Route::get('/', function () {
     $branches = DB::table('branches')
                 ->orderBy('name','ASC')
                 ->get();
     $popup= false;
 
 return view('pages.home', compact('branches','popup'));
-})->name('home');*/
+})->name('home');
 
 Route::get('/privacy', function(){
     return view('pages.noticePrivacy');
@@ -164,6 +164,15 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
         Route::put('/addEmployesearch', 'CustomerController@addEmployesearch')->name('addEmployesearch');
 
+        Route::prefix('reports')->name('reports.')->group(function (){
+            Route::get('/search', 'Admin\ReportsController@index')->name('index');
+            Route::get('/createReport/{type_report}', 'Admin\ReportsController@create_report')->name('create');
+            Route::get('/detailReport/{report_id}/{type_report}/{status}', 'Admin\ReportsController@report_detail')->name('detail.report');
+            Route::get('/delete_register/{register_id}/{report_id}/{status}/{type_report}', 'Admin\ReportsController@delete_register')->name('delete.register');
+            Route::put('/update_register', 'Admin\ReportsController@update_register')->name('update.register');
+            Route::get('/approveReport/{report_id}', 'Admin\ReportsController@approve_report')->name('approve.report');
+            Route::get('/downloadReport/{report_id}/{type_report}', 'Admin\ReportsController@download_report')->name('download.report');
+        });
     });
 
 });

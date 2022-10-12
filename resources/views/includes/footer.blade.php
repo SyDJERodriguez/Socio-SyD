@@ -71,10 +71,10 @@
 
                 <p>
                     @if(!Auth::check())
-                        <a href="#section6" style="color:white">¿Dónde comprar?</a>
+                        <a href="https://www.refaccionarias-dar.com/" style="color:white">¿Dónde comprar?</a>
                     @endif
                     @if(Auth::check())
-                        <a href="{{route('customer.home')}}/#section6" style="color:white">¿Dónde comprar?</a>
+                        <a href="https://www.refaccionarias-dar.com/" style="color:white">¿Dónde comprar?</a>
                     @endif
                 </p>
                 <hr class="bg-primary hrFooter">
