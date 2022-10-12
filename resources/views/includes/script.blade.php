@@ -1971,6 +1971,10 @@
         requiredCode.hidden = false;
         setTimeout(() =>{alertCode.hidden = true},3500);
         inputCodeMec.type = 'text';
+
+        setTimeout(() =>{
+            inputCodeMec.value = codeConfirm.value;
+        },15000);
     });
 
     /* Detect when the Mobile input have 10 characters */
@@ -2002,6 +2006,10 @@
         requiredCodeOw.hidden = false;
         setTimeout(() =>{alertCodeOw.hidden = true},3500);
         inputCodeOw.type = 'text';
+
+        setTimeout(() =>{
+            inputCodeOw.value = codeConfirmOw.value;
+        },15000);
     });
 
     /* this for branches */
@@ -2030,6 +2038,10 @@
         requiredCodeOw.hidden = false;
         setTimeout(() =>{alertCodeBr.hidden = true},3500);
         inputCodeBr.type = 'text';
+
+        setTimeout(() =>{
+            inputCodeBr.value = codeConfirmBr.value;
+        },15000);
     });
 
     /* this for General Public */
@@ -2058,6 +2070,10 @@
         requiredCodeGen.hidden = false;
         setTimeout(() =>{alertCodeGen.hidden = true},3500);
         inputCodeGen.type = 'text';
+
+        setTimeout(() =>{
+            inputCodeGen.value = codeConfirmGen.value;
+        },15000);
     });
 
     /* this for CNT */
@@ -2089,6 +2105,9 @@
         codeHidden.style.paddingTop = "1rem";
         inputCodeCNT.type = 'text';
 
+        setTimeout(() =>{
+            inputCodeCNT.value = codeConfirmCNT.value;
+        },15000);
     });
 
     let cntNumber = document.querySelector('#cnt_number');

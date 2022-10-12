@@ -347,14 +347,14 @@
         </div>
     </section>-->
 
-    <section id="section6">
+    <!--<section id="section6">
         <div class="container-fluid py-5">
             <div class="row my-3 mx-0">
                 <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
                 <div class="col-lg-6 col-xs-6 p-3"> <h1 class="primary-color text-center"><strong>¿DÓNDE COMPRAR?</strong></h1></div>
                 <div class="col-lg-3 col-xs-3 p-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
             </div>
-            <!--<a href="https://www.refaccionarias-dar.com/" target="_blank">-->
+            <a href="https://www.refaccionarias-dar.com/" target="_blank">
                 <div class="our-branches__content-address" style="display: flex;align-items: flex-end;">
 
                     <div class="our-branches__content-address-map sucursal col-4 col-12">
@@ -466,7 +466,7 @@
 
                 </div>
 
-                <!--<div class="jumbotron">
+                <div class="jumbotron">
 
                 <div class="row text-center">
                     <div class="col-lg-4 p-4"><div class="bg-white " style="height: 1px;"></div></div>
@@ -480,8 +480,8 @@
                 <h5 class=" text-white text-center py-4"><strong>OBTÉN LOS PRODUCTOS QUE NECESITAS <br>EN UN SÓLO CLIC</strong></h5>
                 <a class="btn btn-primary text-center" href="https://www.refaccionarias-dar.com/" role="button">COMPRA AHORA</a>
                 </div>
-            </a>-->
+            </a>
         </div>
-    </section>
+    </section>-->
     @include('includes.modals')
 @stop
