@@ -386,10 +386,10 @@ padding-bottom: 14px;">
             </li>-->
             <li class="nav-item">
                 @if(!Auth::check())
-                    <a class="navItemHeader" href="#section6">¿DÓNDE COMPRAR?</a>
+                    <a class="navItemHeader" href="https://www.refaccionarias-dar.com/">¿DÓNDE COMPRAR?</a>
                 @endif
                 @if(Auth::check())
-                    <a class="navItemHeader" style="width:165px" href="{{route('customer.home')}}/#section6">¿DÓNDE COMPRAR?</a>
+                    <a class="navItemHeader" style="width:165px" href="https://www.refaccionarias-dar.com/">¿DÓNDE COMPRAR?</a>
                 @endif
             </li>
 

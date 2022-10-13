@@ -377,7 +377,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 3.0,
@@ -388,7 +388,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
         /*$domain = explode('@', $request['email']);
@@ -652,7 +652,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 3.0,
@@ -663,7 +663,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable.             Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
        // $domain = explode('@', $request['email']);
@@ -848,7 +848,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 3.0,
@@ -859,7 +859,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable.             Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
         /*$domain = explode('@', $request['email']);
@@ -1232,7 +1232,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+        /*$apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -1243,7 +1243,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
 
         //Validate DNS email
@@ -1489,7 +1489,7 @@ class CustomerController extends Controller
         }
 
         //validated email
-        $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
+       /* $apiKeySYD = "04b09b09ab3c6c723da119fddae6e4f5";
         $client = new Client([
             'base_uri' => 'https://api.towerdata.com/v5/ev?timeout=10&email=' . $request['email'] . '&api_key=' . $apiKeySYD,
             'timeout'  => 2.0,
@@ -1500,7 +1500,7 @@ class CustomerController extends Controller
 
         if( $response->email_validation->status != 'valid' && $response->email_validation->status != 'unverifiable'){
             return response()->json(['success'=>'false','other'=> 'false','error'=>'El email no existe o no es verificable. Corroborar datos' ]);
-        }
+        }*/
 
         //Validate DNS email
        /* $domain = explode('@', $request['email']);
