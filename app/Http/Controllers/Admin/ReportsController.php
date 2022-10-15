@@ -51,7 +51,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->month;
+                    $current_month = $now->subMonth()->format('m');
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
@@ -77,7 +77,7 @@ class ReportsController extends Controller
                 ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
                 ->join('transactions', function($join){
                     $now = Carbon::now();
-                    $current_month = $now->month;
+                    $current_month = $now->subMonth()->format('m');
                     $current_year = $now->year;
                     $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
                         ->whereMonth( 'transaction_date', '=', $current_month )
