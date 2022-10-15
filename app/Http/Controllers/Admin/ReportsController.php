@@ -30,10 +30,10 @@ class ReportsController extends Controller
         $last_id = $last_register ? $last_register->id+1 : 1;
         $report_id = $type_report.'_'.Carbon::now()->format('dmY').'_'.$last_id;
 
-        $start_date = new Carbon('first day of next month');
+        $start_date = new Carbon('first day of this month');
         $start_date = $start_date->format('d/m/Y');
 
-        $end_date = new Carbon('last day of next month');
+        $end_date = new Carbon('last day of this month');
         $end_date = $end_date->format('d/m/Y');
 
         $new_report = DB::table('benefits_reports')->insert([
