@@ -12,6 +12,13 @@ class TransactionRepository
     //Function for insert transaction in "Transactions" table of Database
     public static function save_transaction(array $transaction){
         try {
+
+            $number_zeros_branch = 0;
+
+            if (strlen($transaction['branch']) < 10) {
+                $number_zeros_branch = 10 - strlen($transaction['branch']);
+            }
+
             $data = array(
                 'client_number'    => '00'.$transaction['client_number'],
                 'tmat'             => $transaction['tmat'],
@@ -20,7 +27,7 @@ class TransactionRepository
                 'sale_office'      => $transaction['sale_office'],
                 'transaction_date' => $transaction['transaction_date'],
                 'invoce'           => $transaction['invoce'],
-                'branch_number'    => '00'.$transaction['branch'],
+                'branch_number'    => str_repeat("0", $number_zeros_branch).$transaction['branch'],
                 'payment_method'   => $transaction['pay_method']
             );
 

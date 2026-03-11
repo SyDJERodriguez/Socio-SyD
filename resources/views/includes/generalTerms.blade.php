@@ -13,7 +13,7 @@
                 </div>
                 <p class="text-justify">
                     La lectura y aceptación de estos Términos y Condiciones es indispensable para que todo aquel
-                    interesado en disfrutar de los beneficios ofrecidos por “Plan de Lealtad SyD”, tenga acceso a los
+                    interesado en disfrutar de los beneficios ofrecidos por “Plan de Lealtad SYD”, tenga acceso a los
                     mismos.
 
                     En caso de no estar de acuerdo, en todo o en parte, con estos Términos y Condiciones, no podrás
@@ -24,7 +24,7 @@
                 <hr>
                 <h5>¿QUIÉNES SOMOS?</h5>
                 <p class="text-justify">
-                    Plan de Lealtad SYD®, S.A. de C.V. (“Plan SyD®”) es una sociedad mercantil mexicana constituida
+                    Plan de Lealtad SYD®, S.A. de C.V. (“Plan SYD®”) es una sociedad mercantil mexicana constituida
                     mediante escritura pública
                     92,338 de fecha 11 de febrero de 2021 otorgada ante el licenciado Roberto Núñez y Bandera, Titular
                     de la Notaría Pública
@@ -38,12 +38,12 @@
                     <li>
                         <p>Email:
                             <a href="mailto:atencionsyd@syd.com.mx">
-                                atencionsyd@syd.com.mx</a></p>
+                                sociosyd@syd.com.mx</a></p>
                     </li>
                     <li>
                         <p>Télefono:
                             <a href="tel:8007931010">
-                                800 SyD (793) 1010</a>
+                                800 SYD (793) 1010</a>
                         </p>
                     </li>
                     <li>
@@ -53,34 +53,34 @@
                                     class="fab fa-facebook-square fa-2x"></i></a>
                             <a href="https://www.instagram.com/dar.refaccionarias/" target="_blank"><i
                                     class="fab fa-instagram pl-3 fa-2x"></i></a>
-                            <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ" target="_blank"> <i
-                                    class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
+                            {{-- <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ" target="_blank"> <i
+                                    class=" ml-3 fab fa-youtube-square fa-2x"></i> </a> --}}
                         </h6>
                     </li>
                 </ul>
                 <p class="text-justify">
-                    Plan SyD® ha desarrollado un programa de beneficios para las personas que compran los productos y
-                    refacciones de la marca SyD® en cualquiera de los canales de venta directa en refaccionarias
+                    Plan SYD® ha desarrollado un programa de beneficios para las personas que compran los productos y
+                    refacciones de la marca SYD® en cualquiera de los canales de venta directa en refaccionarias
                     autorizadas, que se señalan más adelante, de acuerdo al nivel de consumo mensual que sea registrado
                     en la Plataforma.
 
                     Para efectos de estos términos y condiciones dicho programa de lealtad será referido como el
-                    “Programa de Lealtad Socio SyD®”). El sitio web para el registro de los Clientes que desean
+                    “Programa de Lealtad Socio SYD®”). El sitio web para el registro de los Clientes que desean
                     afiliarse
-                    al Programa de Lealtad Socio SyD® es <a href="https://www.sociosyd.com">https://www.sociosyd.com</a>
+                    al Programa de Lealtad Socio SYD® es <a href="https://www.sociosyd.com">https://www.sociosyd.com</a>
                     (la “Plataforma”).
                 </p>
                 <hr>
                 <h5>ACEPTACIÓN DE LOS TÉRMINOS Y CONDICIONES</h5>
                 <p class="text-justify">
-                    Al registrarse y/o inscribirse al Programa de Lealtad Socio SyD® en nuestra Plataforma, manifiesta
+                    Al registrarse y/o inscribirse al Programa de Lealtad Socio SYD® en nuestra Plataforma, manifiesta
                     su
                     conformidad y consentimiento en la aplicación de estos Términos y Condiciones, así como del Aviso
                     de Privacidad (disponible en el link que se proporciona más adelante). Si no está de acuerdo, en
                     forma
                     absoluta, con estos Términos y Condiciones, deberá abstenerse de utilizar la Plataforma y de llevar
                     a
-                    cabo el registro de inscripción al Programa de Lealtad Socio SyD®; en caso de continuar con el
+                    cabo el registro de inscripción al Programa de Lealtad Socio SYD®; en caso de continuar con el
                     proceso
                     de registro, se entenderá que usted está conforme y que otorgó su consentimiento para la aplicación
                     de
@@ -109,7 +109,7 @@
                     algunos datos tales como correo electrónico y/o número telefónico (los “Medios de Contacto”),
                     nombre, apellido, edad, fecha de nacimiento y género.<br><br>
 
-                    Los Medios de Contacto serán utilizados por Plan SyD® para notificarle el registro exitoso,
+                    Los Medios de Contacto serán utilizados por Plan SYD® para notificarle el registro exitoso,
                     los beneficios a los cuales tendrá acceso, la forma de acceder a los beneficios y cualquier
                     cambio relacionado con estos Términos y Condiciones.
                 </p>
@@ -118,25 +118,25 @@
                 <h5 class="text-uppercase">Propiedad y uso de la información de la Plataforma</h5>
                 <p class="text-justify">
                     La información, conceptos y opiniones publicadas en la Plataforma son propiedad exclusiva de Plan
-                    SyD®.<br><br>
+                    SYD®.<br><br>
 
-                    Plan SyD® no se hace responsable de las consecuencias que puedan derivar del uso y/o interpretación
+                    Plan SYD® no se hace responsable de las consecuencias que puedan derivar del uso y/o interpretación
                     de los
                     contenidos de la Plataforma, en el entendido que es bajo el criterio, responsabilidad y riesgo de la
                     persona inscrita el uso, aplicación y seguimiento a la información, procedimientos, manuales de
                     instalación, diagramas, tips, entre otros, que se den en los espacios referidos.<br><br>
 
-                    Plan SyD® se reserva el derecho de bloquear el acceso o remover en forma parcial o total, toda
+                    Plan SYD® se reserva el derecho de bloquear el acceso o remover en forma parcial o total, toda
                     información, comunicación o material que, a su exclusivo juicio, pueda resultar abusivo, difamatorio
                     u obsceno, fraudulento, artificioso o engañoso, violatorio de derechos de autor, marcas o cualquier
                     derecho de propiedad intelectual de un tercero, ofensivo o de cualquier forma contravenga lo
                     establecido en estos Términos y Condiciones. Si la persona inscrita desea obtener más información
-                    sobre un tema en específico mencionado por Plan SyD®, deberá consultarlo directamente con
+                    sobre un tema en específico mencionado por Plan SYD®, deberá consultarlo directamente con
                     éste.<br><br>
 
                     No está permitida ninguna acción o uso de dispositivos, robots, software u algún otro medio como
                     [web]crawler, que interfiera o rastree indebidamente las actividades y/u operación de la Plataforma,
-                    cuentas o bases de datos de Plan SyD®. Cualquier intromisión, tentativa o actividad violatoria o
+                    cuentas o bases de datos de Plan SYD®. Cualquier intromisión, tentativa o actividad violatoria o
                     contraria a las leyes de derecho de propiedad intelectual y/o a las prohibiciones estipuladas en
                     estos
                     Términos y Condiciones, harán a su causante, responsable de las acciones legales pertinentes, además
@@ -149,32 +149,33 @@
                 <hr>
                 <h5 class="text-uppercase">Recopilación y protección de datos personales</h5>
                 <p class="text-justify">
-                    Para darse de alta como persona inscrita al Programa de Lealtad Socio SyD®, recabaremos algunos
+                    Para darse de alta como persona inscrita al Programa de Lealtad Socio SYD®, recabaremos algunos
                     datos personales, como: nombre completo, datos de sus compras, número telefónico y/o correo
                     electrónico. Además, será necesario que ingrese el número de Cliente que le fue asignado con
                     su compra.<br><br>
 
-                    Para saber más sobre el uso y la protección que damos a los datos que recabamos, Plan SyD®,
+                    Para saber más sobre el uso y la protección que damos a los datos que recabamos, Plan SYD®,
                     como Responsable del tratamiento de los datos personales que recaba, pone a su disposición
                     su Aviso de Privacidad (el “<a href="#" data-toggle="modal" data-target="#modalAviso">Aviso</a>”).
                 </p>
 
                 <hr>
-                <h5 class="text-uppercase">SOBRE EL PROGRAMA DE LEALTAD SOCIO SyD®</h5>
+                <h5 class="text-uppercase">SOBRE EL PROGRAMA DE LEALTAD SOCIO SYD®</h5>
                 <p class="text-justify">
-                    El Programa de Lealtad Socio SyD® está dirigido a todas las personas que realicen alguna compra en
-                    cualquiera de los puntos de venta autorizados por Plan SyD® (los “Clientes”).<br><br>
+                    El Programa de Lealtad Socio SYD® está dirigido a todas las personas que realicen alguna compra en
+                    cualquiera de los puntos de venta autorizados por Plan SYD® (los “Clientes”).<br><br>
 
-                    Los puntos de venta autorizados por Plan SyD® para participar en el Programa de Lealtad Socio SyD®,
+                    Los puntos de venta autorizados por Plan SYD® para participar en el Programa de Lealtad Socio SYD®,
                     los podrá encontrar en el siguiente link: <a
                         href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>,
                     sección sucursales;
                     cualquiera de las DAR® Refaccionarias ubicadas en la República Mexicana; en el teléfono para venta
-                    <a href="tel:8007931010">800 SyD (793) 1010</a> en horario de 09:00 a 21:00 horas de lunes a viernes y
-                    sábado de 9:00 a 17:00 horas; o, en canales oficiales, como venta directa o o bien a través de las
-                    plataformas de comercio electrónico.<br><br>
-
-                    Todos los Clientes que deseen formar parte del Programa de Lealtad Socio SyD® podrán hacerlo
+                    <a href="tel:8007931010">800 SYD (793) 1010</a> en horario de 09:00 a 19:00 horas de lunes a viernes;
+			 o, en canales oficiales, como venta directa o o bien a través de las
+                    	 plataformas de comercio electrónico.
+			<br>
+			<br>
+                    Todos los Clientes que deseen formar parte del Programa de Lealtad Socio SYD® podrán hacerlo
                     visitando el sitio web (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>) y
                     registrando
                     la información que se solicita en
@@ -184,23 +185,23 @@
                         href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                     y/o <a href="https://www.syd.com.mx">https://www.syd.com.mx</a>.<br><br>
 
-                    Plan SyD® no hace distinción alguna de Clientes que puedan registrarse en el Programa de Lealtad
-                    Socio SyD® con base en la edad, sexo, etnia, posición económica, trabajo, religión, preferencia
-                    sexual o ningún otro atributo que pueda ser discriminatorio para los Clientes. Plan SyD® es una
+                    Plan SYD® no hace distinción alguna de Clientes que puedan registrarse en el Programa de Lealtad
+                    Socio SYD® con base en la edad, sexo, etnia, posición económica, trabajo, religión, preferencia
+                    sexual o ningún otro atributo que pueda ser discriminatorio para los Clientes. Plan SYD® es una
                     empresa comprometida con la sociedad y los principios de no discriminación de personas.<br><br>
 
-                    Podrán registrarse dentro del Programa de Lealtad Socio SyD®, todos aquellos Clientes que compren
-                    productos de la marca SyD® en alguna de las DAR® refaccionarias, canales de venta directa o a través
+                    Podrán registrarse dentro del Programa de Lealtad Socio SYD®, todos aquellos Clientes que compren
+                    productos de la marca SYD® en alguna de las DAR® refaccionarias, canales de venta directa o a través
                     de
                     la tienda en línea de
-                    SyD®. Los Clientes pueden registrarse al programa a través una cuenta individual o de una cuenta de
+                    SYD®. Los Clientes pueden registrarse al programa a través una cuenta individual o de una cuenta de
                     negocios. En el caso de las cuentas de negocios, el titular de la cuenta podrá dar de alta a sus
                     colaboradores dentro de su perfil.<br><br>
 
                     Todas las personas que sean dadas de alta como parte de una cuenta de negocios, podrán solicitar su
                     desvinculación de la cuenta en el momento en que lo deseen, lo cual les permitirá utilizar su perfil
                     como una cuenta individual, de la misma manera, toda persona podrá decidir dar de baja su cuenta y
-                    al hacerlo quedará eliminada su participación en el Programa de Lealtad Socio SyD® y la oportunidad
+                    al hacerlo quedará eliminada su participación en el Programa de Lealtad Socio SYD® y la oportunidad
                     de recibir los beneficios del mismo. Para lo anterior, la persona o el Cliente inscrito deberá
                     seleccionar la opción “dar de baja” y hacer click en el botón en su acceso personal, posteriormente
                     recibirá un correo electrónico para confirmar la opción y una vez confirmado el correo podrá empezar
@@ -215,7 +216,7 @@
                 <hr>
                 <h5 class="text-uppercase">TIPO DE PERSONAS INSCRITAS</h5>
                 <p class="text-justify">
-                    Para poder registrarse dentro del Programa de Lealtad Socio SyD®, el Cliente deberá definir su
+                    Para poder registrarse dentro del Programa de Lealtad Socio SYD®, el Cliente deberá definir su
                     perfil
                     dentro de una cuenta corporativa o dentro de una cuenta individual.<br>
 
@@ -228,7 +229,7 @@
                                 como beneficiarios
                                 del seguro de 1 y hasta 8 colaboradores por numero de Cuenta, siempre y cuando se den de
                                 alta como
-                                dependientes dentro del Programa de Lealtad Socio SyD® y completen los datos del
+                                dependientes dentro del Programa de Lealtad Socio SYD® y completen los datos del
                                 formulario. Los datos que se solicitan dentro del formulario son:
                                 <ul>
                                     <li>Número de cliente</li>
@@ -271,23 +272,23 @@
                     Los formularios de las cuentas individuales y de negocios están disponibles en: <a
                         href="https://www.sociosyd.com">https://www.sociosyd.com</a> o
                     al teléfono <a href="tel:8007931010">
-                        800-SyD-1010</a> en horario de 08:00 a 22:00 horas de
-                    lunes a viernes y sábado 8:00 a 16:00 horas.
+                        800-SYD-1010</a> en horario de 09:00 hasta las 19:00 horas de
+                    lunes a viernes.
                 </p>
 
                 <hr>
                 <h5 class="text-uppercase">NIVELES DE PERSONAS INSCRITAS</h5>
                 <p class="text-justify">
-                    Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SyD® con
+                    Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SYD® con
                     <b>cuentas
-                        individuales</b>, estarán divididos en 5 niveles de obtención de beneficios.
+                        individuales</b>, estarán divididos en 3 niveles de obtención de beneficios.
 
                     <ul>
                         <li>
                             <p class="text-justify">
                                 <b>Nivel Bronce</b>: Se alcanzará al comprar productos en cualquiera de los canales
                                 oficiales para venta al menudeo
-                                de productos SyD® y DAR® Refaccionarias por un monto mensual comprendido entre $200.00 y
+                                de productos SYD® y DAR® Refaccionarias por un monto mensual comprendido entre $200.00 y
                                 $500.00 pesos.
                             </p>
                         </li>
@@ -295,7 +296,7 @@
                             <p class="text-justify">
                                 <b>Nivel Plata</b>: Se alcanzará al comprar productos en cualquier de los canales
                                 oficiales para venta al menudeo
-                                de Productos SyD® y DAR® Refaccionarias por un monto mensual comprendido entre $500.01 y
+                                de Productos SYD® y DAR® Refaccionarias por un monto mensual comprendido entre $500.01 y
                                 $1,300.00 pesos.
                             </p>
                         </li>
@@ -303,15 +304,15 @@
                             <p class="text-justify">
                                 <b>Nivel Oro</b>: Se alcanzará al comprar productos en cualquier de los canales
                                 oficiales para venta al menudeo
-                                de productos SyD® y DAR® Refaccionarias por un monto mensual superior a los $1,300.01
+                                de productos SYD® y DAR® Refaccionarias por un monto mensual superior a los $1,300.01
                                 pesos.
                             </p>
                         </li>
                     </ul>
                     <p class="text-justify">
-                        Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SyD® con
+                        Los beneficiarios y/o personas inscritas que formen parte del Programa de Lealtad Socio SYD® con
                         <b>cuentas
-                            con colaboradores</b>, estarán divididos en 4 niveles de obtención de beneficios.
+                            con colaboradores</b>, estarán divididos en 3 niveles de obtención de beneficios.
                     </p>
 
                     <ul>
@@ -319,7 +320,7 @@
                             <p class="text-justify">
                                 <b>Nivel Bronce</b>: Se alcanzará al comprar productos en cualquier de los canales
                                 oficiales para venta al menudeo
-                                de productos SyD® y DAR® Refaccionarias por un monto mensual comprendido entre $2,500.01
+                                de productos SYD® y DAR® Refaccionarias por un monto mensual comprendido entre $2,500.01
                                 y
                                 $4,500.00 pesos.
                             </p>
@@ -328,7 +329,7 @@
                             <p class="text-justify">
                                 <b>Nivel Plata</b>: Se alcanzará al comprar productos en cualquier de los canales
                                 oficiales para venta al menudeo
-                                de productos SyD® y DAR® Refaccionarias por un monto mensual comprendido entre $4,500.01
+                                de productos SYD® y DAR® Refaccionarias por un monto mensual comprendido entre $4,500.01
                                 y
                                 $7,000.00 pesos.
                             </p>
@@ -337,7 +338,7 @@
                             <p class="text-justify">
                                 <b>Nivel Oro</b>: Se alcanzará al comprar productos en cualquier de los canales
                                 oficiales para venta al menudeo
-                                de productos SyD® y DAR® Refaccionarias por un monto mensual superior a los
+                                de productos SYD® y DAR® Refaccionarias por un monto mensual superior a los
                                 $7,000.01 pesos.
                             </p>
                         </li>
@@ -348,7 +349,7 @@
                     únicamente las
                     nuevas compras que se hagan durante el mes en curso. Esto significa que, al inicio de cada mes,
                     todos los
-                    Clientes del Programa de Lealtad Socio SyD®, empiezan sin ningún nivel hasta que alcancen el mínimo
+                    Clientes del Programa de Lealtad Socio SYD®, empiezan sin ningún nivel hasta que alcancen el mínimo
                     de compra
                     requerido para cada nivel.
                 </p>
@@ -356,17 +357,17 @@
                 <hr>
                 <h5 class="text-uppercase">ACUMULACIÓN</h5>
                 <p class="text-justify">
-                    Cada compra de productos SyD® dentro de las DAR® refaccionarias, del Centro de Atención Telefónica
+                    Cada compra de productos SYD® dentro de las DAR® refaccionarias, del Centro de Atención Telefónica
                     (CAT) en
                     el número <a href="tel:8007931010">
-                        800-SyD-1010</a>, mediante línea autorizada de Whatsapp cuyo link se encuentre en la
-                    página, o en la tienda en línea de SyD® y DAR® Refaccionarias, venta directa sumará para alcanzar
+                        800-SYD-1010</a>, mediante línea autorizada de Whatsapp cuyo link se encuentre en la
+                    página, o en la tienda en línea de SYD® y DAR® Refaccionarias, venta directa sumará para alcanzar
                     los diferentes
-                    beneficios dentro del Programa de Lealtad Socio SyD®. El monto de compra de cada Cliente se
+                    beneficios dentro del Programa de Lealtad Socio SYD®. El monto de compra de cada Cliente se
                     determinará
                     con base en la totalidad de compras que dicho Cliente haya realizado durante el mes. El monto de
                     compra
-                    de productos SyD® de un Cliente en alguno de los canales mencionados, se verá reflejado
+                    de productos SYD® de un Cliente en alguno de los canales mencionados, se verá reflejado
                     automáticamente
                     en la cuenta del Cliente pero contará para la suma de beneficios pasados 4 días a partir de la
                     compra.<br><br>
@@ -378,7 +379,7 @@
                     programa durante ese mes.<br><br>
 
                     Si un Cliente cancela alguna compra durante el mes, el monto obtenido por dicha compra también será
-                    descontado de su monto mensual dentro del Programa de Lealtad Socio SyD®.<br><br>
+                    descontado de su monto mensual dentro del Programa de Lealtad Socio SYD®.<br><br>
 
                 </p>
 
@@ -386,7 +387,7 @@
                 <h5 class="text-uppercase">VIGENCIA</h5>
                 <p class="text-justify">
                     El monto de puntos o compras acumuladas durante cada mes dentro del Programa de Lealtad
-                    Socio SyD® serán validas y aplicables para el mes posterior a la acumulación y/o registro de las
+                    Socio SYD® serán validas y aplicables para el mes posterior a la acumulación y/o registro de las
                     compras. Los montos, puntos o compras acumuladas no pueden sumarse o acumularse para meses
                     posteriores, por lo que solo serán válidos durante el mes aplicable. Una vez vencidos estos montos
                     no podrán reactivarse dentro del programa en ninguna circunstancia.<br><br>
@@ -401,17 +402,17 @@
                 </p>
 
                 <hr>
-                <h5 class="text-uppercase">BENEFICIOS DEL PROGRAMA DE LEALTAD SOCIO SyD®</h5>
+                <h5 class="text-uppercase">BENEFICIOS DEL PROGRAMA DE LEALTAD SOCIO SYD®</h5>
                 <p class="text-justify">
-                    Las personas inscritas al Programa de Lealtad Socio SyD® podrán acceder a diferentes beneficios al
+                    Las personas inscritas al Programa de Lealtad Socio SYD® podrán acceder a diferentes beneficios al
                     alcanzar
                     cada uno de los niveles definidos por los montos de compra mensual en productos
                     participantes adquiridos a través de nuestras tiendas de DAR® Refaccionarias, canales de venta
-                    directa SyD®,
+                    directa SYD®,
                     nuestros canales digitales,
                     (<a href="https://www.syd.com.mx">https://www.syd.com.mx</a> –
                     <a href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>)
-                    o llamando al número a <a href="tel:8007931010">800-SyD-1010</a>.<br><br>
+                    o llamando al número a <a href="tel:8007931010">800-SYD-1010</a>.<br><br>
 
                     Las cuentas individuales tendrán acceso a cada uno de estos beneficios al alcanzar el monto de
                     compra
@@ -481,7 +482,8 @@
                         <li>Orientación médica emocional sin límite de eventos.</li>
                         <li>Orientacion nutricional telefónica sin límite de eventos. </li>
                         <li>Envío de ambulancia terreste por emergencias</li>
-                        <li>Video consulta telefónica por COVID – 19 una por la vigencia de la asistencia (1 mes)</li>
+                        {{--  <li>Video consulta telefónica por COVID – 19 una por la vigencia de la asistencia (1 mes)</li> --}}
+			<li>Video Consulta Médica 1 evento al año</li>
                         <li>Asistencia Funeraria por accidente.*</li>
                     </ul>
                 </p>
@@ -493,14 +495,14 @@
                         <li>Orientación médica emocional sin límite de eventos.</li>
                         <li>Orientacion nutricional telefónica sin límite de eventos. </li>
                         <li>Envío de ambulancia terrestre por emergencia</li>
-                        <li>Video consulta telefónica por COVID – 19 una consulta por la vigencia de la asistencia (1
-                            mes)</li>
+                        {{-- <li>Video consulta telefónica por COVID – 19 una consulta por la vigencia de la asistencia (1 mes)</li> --}}
+			<li>Video consulta Médica 1 evento al año</li>
                         <li>Asistencia Funeraria por accidente</li>
                         <li>Envío de grúa por avería.*</li>
                     </ul>
                 </p>
                 <p class="text-justify">
-                    Los beneficios del Programa de Lealtad Socio SyD®, tanto los seguros
+                    Los beneficios del Programa de Lealtad Socio SYD®, tanto los seguros
                     como las asistencias mencionadas en el presente documento,
                     serán otorgados por terceras personas, físicas y/o morales, que sean
                     contratadas para tal efecto.
@@ -514,11 +516,11 @@
                     accidentes. Dicho seguro será otorgado a través de Chubb Aseguradora quien será el único responsable
                     de autorizar la procedencia de una reclamación e indemnización.
                     El seguro será aplicable para los beneficiarios designados dentro del Programa de Lealtad Socio
-                    SyD®.<br><br>
+                    SYD®.<br><br>
 
                     El Cliente podrá dar de alta dentro del sitio web del programa
                     (<a href="https://www.sociosyd.com">https://www.sociosyd.com</a>), a las personas
-                    que permita el sistema del Programa de Lealtad Socio SyD® para este seguro de accidentes personales
+                    que permita el sistema del Programa de Lealtad Socio SYD® para este seguro de accidentes personales
                     a
                     quienes les asignará un porcentaje especificado dentro de la cobertura de este seguro a fin de que
                     reciban
@@ -528,7 +530,7 @@
                     El
                     documento se encontrará en formato descargable dentro de la sección “mis documentos” de la cuenta de
                     la
-                    persona inscrita en el Programa de Lealtad Socio SyD®.<br><br>
+                    persona inscrita en el Programa de Lealtad Socio SYD®.<br><br>
 
                     Dicho seguro de accidentes personales tiene el siguiente cuadro de coberturas: <br>
 
@@ -664,9 +666,9 @@
                         contacto en caso de ser necesario utilizar el seguro, pueden ser consultados dentro del sitio
                         web
                         del
-                        Programa de Lealtad Socio SyD®, en la sección correspondiente al seguro de accidentes.<br><br>
+                        Programa de Lealtad Socio SYD®, en la sección correspondiente al seguro de accidentes.<br><br>
 
-                        Plan SyD® se deslinda de la resolución de cobertura debido a que esta se sujeta a las
+                        Plan SYD® se deslinda de la resolución de cobertura debido a que esta se sujeta a las
                         disposiciones
                         emitidas por parte de la aseguradora responsable del cumplimiento de esta (Chubb Aseguradora).
                     </p>
@@ -702,12 +704,12 @@
                         </li>
                         <li>
                             <p class="text-justify">
-                                1 video consulta médica por Covid-19 un evento al mes.
+                                1 video consulta médica un evento al año.
                             </p>
                         </li>
                         <li>
                             <p class="text-justify">
-                                1 ambulancia terrestre por emergencia un evento al mes.
+                                1 ambulancia terrestre por emergencia un evento al año.
                             </p>
                         </li>
                         <li>
@@ -738,22 +740,22 @@
                         </li>
                         <li>
                             <p class="text-justify">
-                                1 video consulta médica por Covid-19 un evento al mes.
+                                1 video consulta médica un evento al año.
                             </p>
                         </li>
                         <li>
                             <p class="text-justify">
-                                1 ambulancia terrestre por emergencia un evento al mes.
+                                1 ambulancia terrestre por emergencia un evento al año.
                             </p>
                         </li>
                         <li>
                             <p class="text-justify">
-                                Asistencia funeraria por accidente, cubriendo hasta $10,000 pesos, un evento al mes.
+                                Asistencia funeraria por accidente, cubriendo hasta $10,000 pesos, un evento al año.
                             </p>
                         </li>
                         <li>
                             <p class="text-justify">
-                                Asistencia vial con envío de grúa por avería, 1 evento de hasta $800 pesos por mes.
+                                Asistencia vial con envío de grúa por avería, 1 evento de hasta $800 pesos por año.
                             </p>
                         </li>
                     </ul>
@@ -766,7 +768,7 @@
                     de
                     algún evento de cobertura, pueden ser consultados dentro del sitio web del Programa de Lealtad
                     Socio
-                    SyD®, en la sección correspondiente al beneficio de asistencias personales.
+                    SYD®, en la sección correspondiente al beneficio de asistencias personales.
                 </p>
 
                 <p class="text-justify">
@@ -863,7 +865,7 @@
 
                         <li style="font-weight:bold">
                             <p class="text-justify">
-                                <b>VIDEO CONSULTA MÉDICA POR COVID-19</b><br>
+                                <b>VIDEO CONSULTA MÉDICA</b><br>
                                 Orientación nutrimental telefónica ilimitada proporcionada por médicos generales
                                 sugiriendo un plan de alimentación según sus necesidades, que incluye:
                                 <ul>
@@ -973,8 +975,6 @@
                                 Limitado a (1) un evento. El servicio se proporcionará a los Clientes con edad hasta de
                                 70 años. Aplica exclusivamente para el Cliente titular. En caso de existir excedente
                                 será cubierto por el familiar que solicite el servicio.
-                                <br><br>El servicio está sujeto a las disposiciones en materia de salud que emitan las
-                                Autoridades a nivel local, estatal o federal debido a la actual pandemia por COVID-19.
                             </p>
                         </li>
 
@@ -1047,7 +1047,7 @@
                             <p class="text-justify"><b>Condiciones y Exclusiones Asistencia Médica</b> <br>
                                 En todos aquellos núcleos de población, que por su situación geográfica o económica no cuenten con servicios de ambulancias, el prestador del servicio  hará su mejor esfuerzo, para enviar del poblado más cercano que cuente con dichos servicios.
                                 <ul style="list-style-type:none">
-                                    <li>El servicio de ambulancia únicamente se limita al traslado del Cliente  al hospital más cercano y no así al ingreso hospitalario, por lo que no será responsabilidad del proveedor de ambulancia, que debido a la alta ocupación hospitalaria por la actual pandemia COVID-19, no sea posible su traslado o se presenten demoras, así como también por las disposiciones sanitaras vigentes. El prestador del servicio , hará siempre su mejor esfuerzo para brindar el servicio, sin embargo, pudiera verse afectado por lo anteriormente referido.</li>
+                                    <li>El servicio de ambulancia únicamente se limita al traslado del Cliente  al hospital más cercano y no así al ingreso hospitalario, por lo que no será responsabilidad del proveedor de ambulancia. El prestador del servicio , hará siempre su mejor esfuerzo para brindar el servicio, sin embargo, pudiera verse afectado por lo anteriormente referido.</li>
                                     <li>Únicamente no habrá cobertura donde no exista infraestructura para llegar al Cliente.</li>
                                     <li>Posterior al primer evento al que tiene derecho el Cliente, en el caso de ambulancias terrestre será programados y cotizados en el momento de la solicitud, para que previa autorización del Cliente  en cuanto a costo se envíe el servicio. (esto aplica para asistencias subsecuentes).</li>
                                     <li>Todos los gastos que se generen a partir de una referencia a la red de servicios médicos, serán cubiertos por el Cliente. </li>
@@ -1091,15 +1091,15 @@
                 <hr>
                 <h5 class="text-uppercase">CANCELACIÓN</h5>
                 <p class="text-justify">
-                    Como se ha mencionado, todas las compras hechas por un Cliente del Programa de Lealtad Socio SyD®
+                    Como se ha mencionado, todas las compras hechas por un Cliente del Programa de Lealtad Socio SYD®
                     expirarán
-                    al finalizar cada mes. En caso de que algún Cliente del Programa de Lealtad Socio SyD® no haga
+                    al finalizar cada mes. En caso de que algún Cliente del Programa de Lealtad Socio SYD® no haga
                     ninguna compra
-                    en los canales oficiales de venta a menudeo de SyD® dejará de ser acreedor a los beneficios.<br><br>
+                    en los canales oficiales de venta a menudeo de SYD® dejará de ser acreedor a los beneficios.<br><br>
 
                     Todo Cliente podrá darse de baja del programa al hacer click en el botón “eliminar mi cuenta” dentro
                     de
-                    la sección mi cuenta de la página web del Programa de Lealtad Socio SyD® <a
+                    la sección mi cuenta de la página web del Programa de Lealtad Socio SYD® <a
                         href="https://www.sociosyd.com">https://www.sociosyd.com</a>. La baja del
                     programa se hará efectiva en un plazo no mayor de 5 días hábiles posteriores a la solicitud.
                 </p>
@@ -1107,43 +1107,43 @@
                 <hr>
                 <h5 class="text-uppercase">GENERALIDADES</h5>
                 <p class="text-justify">
-                    Plan SyD® invita a todos los Clientes del programa a mantener permanentemente actualizados sus datos
+                    Plan SYD® invita a todos los Clientes del programa a mantener permanentemente actualizados sus datos
                     y los
                     datos de sus beneficiarios en el caso de las cuentas de negocios a través de los canales
                     establecidos
                     para tales fines, siguiendo las directrices que tiene definidas para el manejo y protección de la
                     información y datos personales, de acuerdo con la normatividad vigente. Por ello, los Clientes del
-                    Programa de Lealtad Socio SyD® podrán en cualquier momento, y de manera voluntaria, efectuar una
+                    Programa de Lealtad Socio SYD® podrán en cualquier momento, y de manera voluntaria, efectuar una
                     actualización, modificación o corrección de sus datos o solicitud de eliminación de estos dentro del
-                    sitio web del Programa de Lealtad Socio SyD®. En caso de que los datos de las personas inscritas no
+                    sitio web del Programa de Lealtad Socio SYD®. En caso de que los datos de las personas inscritas no
                     se
                     encuentren actualizados podrá derivar en la negación de los beneficios del Programa de Lealtad Socio
-                    SyD®.<br><br>
+                    SYD®.<br><br>
 
                     Además de la obtención de los beneficios definidos en estos Términos y Condiciones por cada nivel
-                    alcanzado, Plan SyD® podrá ofrecer a las personas inscritas del Programa de Lealtad Socio SyD®
+                    alcanzado, Plan SYD® podrá ofrecer a las personas inscritas del Programa de Lealtad Socio SYD®
                     beneficios
                     consistentes en experiencias o campañas especiales de acumulación que se comunicarán
                     oportunamente.<br><br>
 
-                    La participación en el programa por parte de los Clientes de SyD® es de carácter personal, por lo
+                    La participación en el programa por parte de los Clientes de SYD® es de carácter personal, por lo
                     que la
                     acumulación y el saldo del monto en la cuenta de cualquier persona inscrita y/o beneficiario del
                     Programa
-                    de Lealtad Socio SyD®, es un derecho personal e intransferible, y por tal motivo, no es heredable,
+                    de Lealtad Socio SYD®, es un derecho personal e intransferible, y por tal motivo, no es heredable,
                     ni
                     podrá mezclarse con el monto obtenido de otro participante del Programa de Lealtad Socio
-                    SyD®.<br><br>
+                    SYD®.<br><br>
 
                     El monto acumulado en la cuenta de la persona inscrita al programa y los beneficios del Programa de
                     Lealtad
-                    Socio SyD® tampoco serán transferibles (i) por liquidación del participante, (ii) por desaparición
+                    Socio SYD® tampoco serán transferibles (i) por liquidación del participante, (ii) por desaparición
                     del
                     participante, o (iii) por alguna otra causa.<br><br>
 
-                    Será responsabilidad de la persona inscrita al Programa de Lealtad Socio SyD® mantener durante todo
+                    Será responsabilidad de la persona inscrita al Programa de Lealtad Socio SYD® mantener durante todo
                     el momento
-                    de la relación y registro en el Programa de Lealtad Socio SyD® actualizados sus datos a fin de
+                    de la relación y registro en el Programa de Lealtad Socio SYD® actualizados sus datos a fin de
                     obtener de
                     manera correcta los beneficios.
 
@@ -1152,7 +1152,7 @@
                 <hr>
                 <h5 class="text-uppercase">MODIFICACIONES</h5>
                 <p class="text-justify">
-                    Plan SyD® se reserva el derecho de cambiar las reglas del Programa de Lealtad Socio SyD® y los
+                    Plan SYD® se reserva el derecho de cambiar las reglas del Programa de Lealtad Socio SYD® y los
                     Términos y
                     Condiciones descritos en el presente documento.
                 </p>

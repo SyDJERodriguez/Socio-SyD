@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => 'mailgun',
+    'driver' => env('MAIL_MAILER', 'smtp'),
     //'driver' => 'log',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,8 +57,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@quaxar.info'),
-        'name' => env('MAIL_FROM_NAME', 'Club Dar'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sociosyd@syd.com.mx'),
+        'name' => env('MAIL_FROM_NAME', 'Socio SYD'),
     ],
 
     /*

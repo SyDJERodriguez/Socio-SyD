@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 612 326.25">
+  <!-- Generator: Adobe Illustrator 30.0.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 123)  -->
+  <defs>
+    <style>
+      .st0, .st1, .st2 {
+        fill: #585857;
+        font-family: Lato-Medium, Lato;
+        font-size: 13.47px;
+        font-weight: 500;
+      }
+
+      .st0, .st3 {
+        letter-spacing: -.02em;
+      }
+
+      .st1, .st4 {
+        letter-spacing: -.02em;
+      }
+
+      .st5 {
+        font-family: Lato-Bold, Lato;
+        font-size: 25.92px;
+        font-weight: 700;
+      }
+
+      .st5, .st6, .st7, .st8, .st9 {
+        fill: #fff;
+      }
+
+      .st10 {
+        fill: url(#linear-gradient);
+      }
+
+      .st6 {
+        opacity: .2;
+      }
+
+      .st7 {
+        font-family: BebasNeue, 'Bebas Neue';
+        font-size: 51.84px;
+      }
+
+      .st11 {
+        fill: url(#Degradado_sin_nombre_1201);
+      }
+
+      .st12 {
+        fill: url(#Degradado_sin_nombre_1202);
+      }
+
+      .st13 {
+        fill: url(#New_Gradient_Swatch_19);
+      }
+
+      .st14 {
+        fill: #010101;
+        opacity: .1;
+      }
+
+      .st8 {
+        letter-spacing: -.02em;
+      }
+
+      .st8, .st9 {
+        font-family: Lato-Regular, Lato;
+        font-size: 11.11px;
+      }
+
+      .st9 {
+        letter-spacing: -.02em;
+      }
+
+      .st15 {
+        fill: url(#Degradado_sin_nombre_120);
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_120" data-name="Degradado sin nombre 120" x1="119.02" y1="108.66" x2="495.1" y2="108.66" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#184093"/>
+      <stop offset="1" stop-color="#19222d"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_1201" data-name="Degradado sin nombre 120" x1="458.37" y1="112.3" x2="458.37" y2="254.25" xlink:href="#Degradado_sin_nombre_120"/>
+    <linearGradient id="Degradado_sin_nombre_1202" data-name="Degradado sin nombre 120" x1="3570.21" y1="112.3" x2="3570.21" y2="254.25" gradientTransform="translate(3725.38) rotate(-180) scale(1 -1)" xlink:href="#Degradado_sin_nombre_120"/>
+    <linearGradient id="linear-gradient" x1="307.84" y1="112.3" x2="307.84" y2="254.25" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#42c0f0"/>
+      <stop offset="1" stop-color="#1870b5"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_19" data-name="New Gradient Swatch 19" x1="306" y1="156.97" x2="306" y2="245.16" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9f6f6"/>
+      <stop offset="1" stop-color="#e6e8ea"/>
+    </linearGradient>
+  </defs>
+  <path class="st15" d="M495.1,90.13c0-10.02-8.15-18.14-18.21-18.14H137.23c-10.06,0-18.21,8.12-18.21,18.14v55.2h376.08v-55.2Z"/>
+  <path class="st11" d="M536.73,243.06v-119.56c0-6.18-6.04-11.2-13.48-11.2h-143.24v141.95h143.24c7.45,0,13.48-5.01,13.48-11.2Z"/>
+  <path class="st12" d="M75.25,243.06v-119.56c0-6.18,5.99-11.2,13.38-11.2h146.47v141.95H88.63c-7.39,0-13.38-5.01-13.38-11.2Z"/>
+  <text class="st5" transform="translate(99.51 132.42) scale(.58)"><tspan x="0" y="0">NIVEL BRONCE</tspan></text>
+  <text class="st7" transform="translate(218.56 103.29) scale(.58)"><tspan x="0" y="0">CUENTA INDIVIDUAL</tspan></text>
+  <polygon class="st10" points="380.59 254.25 380.59 112.3 235.1 112.3 235.1 254.25 235.1 254.25 380.59 254.25"/>
+  <rect class="st13" x="75.25" y="156.97" width="461.5" height="88.19"/>
+  <rect class="st14" x="75.25" y="199.54" width="461.5" height="45.93"/>
+  <g>
+    <rect class="st6" x="235.1" y="112.3" width="1.19" height="141.95"/>
+    <rect class="st14" x="233.91" y="112.3" width="1.19" height="141.95"/>
+  </g>
+  <g>
+    <rect class="st6" x="380.59" y="112.3" width="1.19" height="141.95"/>
+    <rect class="st14" x="379.4" y="112.3" width="1.19" height="141.95"/>
+  </g>
+  <text class="st0" transform="translate(87.39 177.46)"><tspan x="0" y="0">Seguro de Accidentes </tspan><tspan x="32.4" y="14.39">Personales</tspan></text>
+  <text class="st0" transform="translate(245.1 177.46)"><tspan x="0" y="0">Seguro de Accidentes </tspan><tspan x="32.4" y="14.39">Personales</tspan></text>
+  <text class="st0" transform="translate(260.99 225.56)"><tspan x="0" y="0">Asistencias Plata</tspan></text>
+  <text class="st1" transform="translate(410.4 225.56)"><tspan x="0" y="0">Asistencias Oro</tspan></text>
+  <text class="st2" transform="translate(395.55 177.46)"><tspan class="st3"><tspan x="0" y="0">Seguro de Accidentes </tspan></tspan><tspan class="st4"><tspan x="32.4" y="14.39">Personales</tspan></tspan></text>
+  <text class="st5" transform="translate(261.03 132.42) scale(.58)"><tspan x="0" y="0">NIVEL PLATA</tspan></text>
+  <text class="st5" transform="translate(420.41 132.42) scale(.58)"><tspan x="0" y="0">NIVEL ORO</tspan></text>
+  <g>
+    <rect class="st6" x="75.25" y="156.97" width="1.19" height="88.19"/>
+    <rect class="st14" x="74.06" y="156.97" width="1.19" height="88.19"/>
+  </g>
+  <g>
+    <rect class="st6" x="536.75" y="156.97" width="1.19" height="88.19"/>
+    <rect class="st14" x="535.56" y="156.97" width="1.19" height="88.19"/>
+  </g>
+  <text class="st8" transform="translate(116.22 147.18)"><tspan x="0" y="0">De $200 a $500</tspan></text>
+  <text class="st8" transform="translate(266.39 147.18)"><tspan x="0" y="0">De $501 a $1,300</tspan></text>
+  <text class="st9" transform="translate(426.13 147.18)"><tspan x="0" y="0">Más de $1,301</tspan></text>
+  <text class="st0" transform="translate(92.64 225.56)"><tspan x="0" y="0">No Aplica Asistencias</tspan></text>
+</svg>

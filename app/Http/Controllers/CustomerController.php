@@ -3982,4 +3982,110 @@ class CustomerController extends Controller
         return view('pages.invitationForm', compact('employee','total','noti','branches'));
     }
 
+    /*Funcion que corrige el error de la funcion debajo */
+
+    public function updateEmployeEmail(Request $request) {
+
+	$validator = Validator::make($request->all(), [
+		'client_number' => 'required',
+		'client_current_email' => 'required|email',
+		'new_email' => 'required|email'
+	]);
+
+	if ($validator->fails()) {
+		return response()->json([
+			'success' => 'false',
+			'errors' => $validator->errors()
+		]);
+	}
+
+	$client_number = $request->input('client_number');
+	$client_current_email = $request->input('client_current_email');
+	$client_new_email = $request->input('new_email');
+	
+	$update_email = DB::table('customer_platforms')
+		->where('client_number', $client_number)
+		->where('email', $client_current_email)
+		->update(['email' => $client_new_email]);
+
+	if ($update_email > 0) {
+		$update_email_session = DB::table('customers_sessions')
+			->where('client_number', $client_number)
+			->where('email', $client_current_email)
+			->update(['email' => $client_new_email]);
+
+		if ($update_email_session > 0) {
+			return redirect()->route('admin.customers.index');
+		} else {
+			return response()->json(['success' => 'false']);
+		}
+
+	} else {
+		return response()->json(['success' => 'false']);
+	}
+    }
+
+
+    /**
+     * Epya
+     * Función para actualizar especificamente el correo de usuarios maestros de cuenta con colaborador
+     * desde el admin de laravel únicamente
+     
+    public function updateEmployeEmail(Request $request) {
+        $session = $request;
+        $request = $request->input();
+        $client_number = $request['client_number'];
+        $client_current_email = $request['client_current_email'];
+        $client_new_email = $request['new_email'];
+
+        $update_email = DB::table('customer_platforms')
+            ->where('client_number','=', $client_number)
+            ->where('email','=', $client_current_email)
+            ->update(['email' => $client_new_email]);
+
+        if($update_email === 1){
+            $update_email_session = DB::table('customers_sessions')
+                ->where('client_number','=', $client_number)
+                ->where('email','=', $client_current_email)
+                ->update(['email' => $client_new_email]);
+
+            if($update_email_session === 1){
+                return redirect()->route('admin.customers.index');
+            }
+            else{
+                return response()->json(['success'=>'false']);
+            }
+
+        }else{
+            return response()->json(['success'=>'false']);
+        }
+    }
+	*/
+
+    /**
+     * EPYA
+     * Función para actualizar el tipo de cuenta de un cliente
+     * desde el admin de laravel unicamente
+     */
+    public function updateEmployeAccountType(Request $request){
+
+        $session = $request;
+        $request = $request->input();
+        $client_number = $request['client_number'];
+        $new_account = $request['account_type'];
+        $client_email = $request['client_email'];
+
+        $update_account = DB::table('customers_sessions')
+            ->where('client_number','=', $client_number)
+            ->where('email','=', $client_email)
+            ->update(['client_type' => $new_account]);
+
+        if($update_account === 1){
+            return redirect()->route('admin.customers.index');
+        }else{
+            return response()->json(['success'=>'false']);
+        }
+    }
+
+
 }

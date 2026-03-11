@@ -3,7 +3,7 @@
     <img src="{{asset('img/clickToCall.png')}}" alt="clickToCall" width="30%">
 </a>
 
-<a href="https://api.whatsapp.com/send?phone=5215591859309&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
+<a href="https://api.whatsapp.com/send?phone=5215593377627&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SocioSyD®" target="_blank"
     class="whatsapp">
     <img src="{{asset('img/whatsIcon.png')}}" style="width: 30% !important;" alt="">
 </a>
@@ -19,7 +19,8 @@
             <div id="backHeader">
                 <img src="{{asset('img/headerBack.png')}}" alt=""
                 style="position: absolute;z-index:1; height: 110px; left: 0px;top: 0px;">
-                <img src="{{asset('img/logo.png')}}" width="300px" alt="logo"
+                {{-- <img src="{{asset('img/logo.png')}}" width="300px" alt="logo" --}}
+		<img src="{{asset('img/Logo_SocioSYD_BLANCO.png')}}" width="300px" alt="logo"
                 class="logoHeader">
             </div>
 
@@ -61,6 +62,7 @@
                                     ¡REGÍSTRATE!
                                     </a>
                                 </div>
+				{{--
                                 <div class="col-sm-4">
                                     <a href="#" class="btn adios playHomeVideo"
                                     onclick="playHomeVideo('tutorialSYD',1)"
@@ -68,6 +70,7 @@
                                     VER VIDEO
                                     </a>
                                 </div>
+				--}}
                             </div>
 
                     </div>

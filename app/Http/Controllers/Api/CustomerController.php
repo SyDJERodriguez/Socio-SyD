@@ -199,7 +199,7 @@ class CustomerController extends Controller
                     ->first();
 
                 //Concatenate the number of employee to the client number
-                $client->client_number = $client->client_number.'-'.$associateData->number;
+                //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
             }
 
             //Search quality and Xalapa survey for the client
@@ -375,10 +375,37 @@ class CustomerController extends Controller
                 'errors' => $validator->errors()
             ), 400);
         }
+
+        $number_zeros_client_number = 0;
+        $number_zeros_branch = 0;
+
+        if (strlen($request['client_number']) < 10) {
+            $number_zeros_client_number = 10 - strlen($request['client_number']);
+        }
+
+        if (strlen($request['branch']) < 10) {
+            $number_zeros_branch = 10 - strlen($request['branch']);
+        }
+
+        $existsClientNumber = DB::table('client_numbers')
+            ->where([
+                ['client_number', str_repeat("0", $number_zeros_client_number) . $request['client_number']],
+                ['branch', str_repeat("0", $number_zeros_branch) . $request['branch']]
+            ])
+            ->exists();
+
+        if ($existsClientNumber) {
+            return response()->json(array(
+                'code' => 0,
+                'msg' => 'Numero de cliente duplicado!',
+                'errors' => 'El numero de cliente proporcionado ya se encuentra registrado'
+            ), 400);
+        }
+
         try{
             $client = array(
-                'client_number' => '00'.$request['client_number'],
-                'branch'      => '00'.$request['branch'],
+                'client_number' => str_repeat("0", $number_zeros_client_number) . $request['client_number'],
+                'branch'      => str_repeat("0", $number_zeros_branch) . $request['branch'],
                 'branch_name' => $request['branch_name'],
                 'creacion_sap' =>$request['created_at'] ,
                 'plazo' => $request['pay_cond'],
@@ -967,7 +994,7 @@ class CustomerController extends Controller
                         ->first();
 
                     //Concatenate the number of employee to the client number
-                    $client->client_number = $client->client_number.'-'.$associateData->number;
+                    //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
                 }
 
                 $customer = $client;
@@ -1195,7 +1222,7 @@ class CustomerController extends Controller
                     ->where('email', '=', $client->email)
                     ->first();
             //Concatenate the number of employee to the client number
-            $client->client_number = $client->client_number.'-'.$associateData->number;
+            //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
             }
 
             $characters_rfc = strlen($client->rfc);
@@ -1218,8 +1245,9 @@ class CustomerController extends Controller
         return Excel::download( new WithoutBenefitsReport( $all_clients ), 'benefits_report.xlsx' );
     }
 
-    public function without_benefits_report_last_month(){
+    public function without_benefits_report_last_month() {
 
+        
         $registered_clients = DB::table('customers_sessions')
             ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
             ->join('transactions', function($join){
@@ -1232,7 +1260,7 @@ class CustomerController extends Controller
             })
             ->select(
                 'customers_sessions.id AS id',
-                DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+                DB::raw('SUM(IF(locate("-", amount) > 0, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * -1, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * 1)) AS amount'),
                 DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
                                             IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
                                                 IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
@@ -1258,7 +1286,7 @@ class CustomerController extends Controller
             })
             ->select(
                 'customers_sessions.id AS id',
-                DB::raw('SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) ) AS amount'),
+                DB::raw('SUM(IF(locate("-", amount) > 0, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * -1, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * 1)) AS amount'),
                 DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
                                             IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
                                                 IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
@@ -1335,7 +1363,7 @@ class CustomerController extends Controller
                     ->where('email', '=', $client->email)
                     ->first();
                 //Concatenate the number of employee to the client number
-                $client->client_number = $client->client_number.'-'.$associateData->number;
+                //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
             }
 
             $characters_rfc = strlen($client->rfc);
@@ -1356,6 +1384,283 @@ class CustomerController extends Controller
 
         //Response
         return Excel::download( new WithoutBenefitsReport( $all_clients ), 'benefits_report_last_month.xlsx' );
+    }
+
+    public function with_benefits_report_for_selected_month($month, $year) {
+        if (!preg_match('/^\d{2}$/', $month)) {
+            return "El mes no es de dos caracteres y/o no es númerico";
+        }
+        if (!preg_match('/^\d{4}$/', $year)) {
+            return "El año no es de 4 caracteres y/o no es númerico";
+        }
+
+        // $date = Carbon::now();
+        // $previous_month = (clone $date)->subMonth()->format('m');
+        // $previous_year = (clone $date)->subMonth()->year;
+        /*
+            $registered_clients = DB::table('customers_sessions')
+                ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+                ->join('transactions', function ($join) use ($month, $year) {
+                    $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
+                    ->whereMonth('transactions.transaction_date', '=', $month)
+                    ->whereYear('transactions.transaction_date', '=', $year);
+                })
+                ->select(
+                    'customers_sessions.id AS id',
+                    DB::raw('
+                        SUM(
+                            IF(locate("-", transactions.amount) > 0,
+                                CAST(SUBSTRING_INDEX(transactions.amount, "-", 1) AS DECIMAL(11, 2)) * -1,
+                                CAST(SUBSTRING_INDEX(transactions.amount, "-", 1) AS DECIMAL(11, 2)) * 1
+                            )
+                        ) AS amount
+                    '),
+                    DB::raw("
+                        CASE
+                            WHEN customers_sessions.client_type IN (1, 3, 4) AND amount BETWEEN 2500 AND 4500 THEN 'Bronce'
+                            WHEN customers_sessions.client_type IN (1, 3, 4) AND amount BETWEEN 4501 AND 7000 THEN 'Plata'
+                            WHEN customers_sessions.client_type IN (1, 3, 4) AND amount > 7000 THEN 'Oro'
+                            WHEN customers_sessions.client_type IN (2, 5) AND amount BETWEEN 200 AND 500 THEN 'Bronce'
+                            WHEN customers_sessions.client_type IN (2, 5) AND amount BETWEEN 501 AND 1300 THEN 'Plata'
+                            WHEN customers_sessions.client_type IN (2, 5) AND amount > 1300 THEN 'Oro'
+                            ELSE 'Ninguno'
+                        END AS level
+                    ")
+                )
+                ->whereIn('customers_sessions.client_type', [1, 2, 3, 4, 5])
+                ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
+                ->orderBy('customers_sessions.created_at', 'ASC')
+                ->get();
+
+            $all_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.id',
+                'customers_sessions.client_number',
+                'customers_sessions.branch_number',
+                DB::raw("
+                    CASE customers_sessions.client_type
+                        WHEN 1 THEN 'Cuenta con colaboradores'
+                        WHEN 2 THEN 'Cuenta individual'
+                        WHEN 3 THEN 'Dependiente de negocio'
+                        WHEN 4 THEN 'Cadena'
+                        WHEN 5 THEN 'Público en general'
+                        ELSE NULL
+                    END AS type_user
+                "),
+                'customer_platforms.name AS nombre',
+                'customer_platforms.last_name AS apellido_paterno',
+                'customer_platforms.second_last_name AS apellido_materno',
+                'customer_platforms.gender AS gender',
+                'customer_platforms.birthday AS fecha_nacimiento',
+                'customer_platforms.rfc AS rfc',
+                'customer_platforms.company AS razon_social',
+                'customer_platforms.RFC_Company AS rfc_compania',
+                'customers_sessions.email AS email',
+                DB::raw('DATE_FORMAT(customers_sessions.created_at, "%d/%m/%Y %H:%i") AS fecha_registro'),
+                DB::raw('IF(customers_sessions.active = 0, "0", "1") AS active'),
+                'customers_sessions.mobile AS telefono',
+                DB::raw('DATE_FORMAT(customers_sessions.created_at, "%Y-%m-%d") AS registro'),
+                DB::raw('(SELECT branches.name FROM branches WHERE branches.id = customer_platforms.branch_id) AS sucursal')
+            )
+            ->orderBy('customers_sessions.created_at', 'ASC')
+            ->get();
+
+            $registers = $registered_clients->toArray();
+            $ids = array_column($registers, 'id');
+
+            foreach ($all_clients as $client) {
+                //Set amount and benefits level
+                $client->amount = 0;
+                $client->level  = 'Ninguno';
+
+                //Search if the client has benefits in the current month
+                $in_clients = array_search($client->id, $ids);
+
+                //If the client has benefits, set the amount and the level of the current month
+                if($in_clients !== false){
+                    $client->amount = $registers[$in_clients]->amount;
+                    $client->level  = $registers[$in_clients]->level;
+                }
+
+                //Check if the client is an employee of a company account
+                if ($client->type_user === 'Dependiente de Negocio') {
+                    $associateData = DB::table('associates')
+                        ->where('email', '=', $client->email)
+                        ->first();
+                    //Concatenate the number of employee to the client number
+                    //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
+                }
+
+                $characters_rfc = strlen($client->rfc);
+                $birthday = explode("-",$client->fecha_nacimiento);
+                $birthyear = substr($birthday[0],2,2);
+                $client->fecha_nacimiento = $birthday[2]."/".$birthday[1]."/".$birthday[0];
+                $birthday = $birthday[2]."/".$birthday[1]."/".$birthyear;
+
+                if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === '' || $characters_rfc<10){
+                    $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
+                }
+
+                $client->amount = '$ '.number_format($client->amount, 2);
+
+                //Remove the key id of the json
+                unset($client->id);
+            }
+
+            // $all_clients = $all_clients->map(function ($client) use ($ids, $benefits_map, $associates) {
+            //     $client->amount = 0;
+            //     $client->level = 'Ninguno';
+
+            //     if (in_array($client->id, $ids)) {
+            //         $client->amount = $benefits_map[$client->id]->amount;
+            //         $client->level = $benefits_map[$client->id]->level;
+            //     }
+
+            //     if (!$client->rfc || strlen($client->rfc) < 10) {
+            //         $birthday = explode("-", $client->fecha_nacimiento);
+            //         $birthyear = substr($birthday[0], 2, 2);
+            //         $formatted_birthday = "{$birthday[2]}/{$birthday[1]}/$birthyear";
+            //         $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $formatted_birthday);
+            //     }
+
+            //     $client->amount = '$ ' . number_format($client->amount, 2);
+
+            //     unset($client->id);
+
+            //     return $client;
+            // });
+            */
+        
+            $registered_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->join('transactions', function($join) use ($month, $year) {
+                $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
+                    ->whereMonth( 'transaction_date', '=', $month )
+                    ->whereYear( 'transaction_date', '=', $year );
+            })
+            ->select(
+                'customers_sessions.id AS id',
+                DB::raw('SUM(IF(locate("-", amount) > 0, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * -1, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * 1)) AS amount'),
+                DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Oro", "Ninguno")))))) AS level')
+
+            )
+            ->where('customers_sessions.client_type','!=','3')
+            ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
+            ->orderBy('customers_sessions.created_at', 'ASC')
+            ->get();
+
+        $associates = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->join('transactions', function($join) use ($month, $year) {
+                $join->on('customers_sessions.branch_number', '=', 'transactions.branch_number')
+                    ->whereMonth( 'transaction_date', '=', $month )
+                    ->whereYear( 'transaction_date', '=', $year );
+            })
+            ->select(
+                'customers_sessions.id AS id',
+                DB::raw('SUM(IF(locate("-", amount) > 0, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * -1, CAST(SUBSTRING_INDEX(amount, "-", 1) AS DECIMAL(11, 2)) * 1)) AS amount'),
+                DB::raw('IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=2500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=4500), "Bronce",
+                                            IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>4500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=7000), "Plata",
+                                                IF((customers_sessions.client_type=1 OR customers_sessions.client_type=3 OR customers_sessions.client_type=4) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>7000), "Oro",
+                                                    IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>=200 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=500), "Bronce",
+                                                        IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>500 AND SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )<=1300), "Plata",
+                                                            IF((customers_sessions.client_type=2 OR customers_sessions.client_type=5) AND (SUM(IF(locate("-",amount)>0, CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*-1,CAST(SUBSTRING_INDEX(amount,"-",1) AS DECIMAL(11,2))*1) )>1300), "Oro", "Ninguno")))))) AS level')
+
+            )
+            ->where('customers_sessions.client_type','=','3')
+            ->orderBy('transactions.transaction_date', 'ASC')
+            ->groupBy(DB::raw("DATE_FORMAT(transactions.transaction_date, '%m-%Y')"), 'customers_sessions.email')
+            ->get();
+
+
+        //Get all the clients registered in Socio Syd
+        $all_clients = DB::table('customers_sessions')
+            ->join('customer_platforms', 'customer_platforms.email', '=', 'customers_sessions.email')
+            ->select(
+                'customers_sessions.id AS id',
+                'customers_sessions.client_number AS client_number',
+                'customers_sessions.branch_number AS branch_number',
+                DB::raw('IF(customers_sessions.client_type = 1, "Cuenta con Colaboradores",
+                                                    IF(customers_sessions.client_type = 2,"Cuenta individual",
+                                                        IF(customers_sessions.client_type = 3, "Dependiente de Negocio",
+                                                            IF(customers_sessions.client_type = 4, "Cadena",
+                                                                IF(customers_sessions.client_type = 5, "Público en General", null))))) AS type_user'),
+                'customer_platforms.name AS nombre',
+                'customer_platforms.last_name AS apellido_paterno',
+                'customer_platforms.second_last_name AS apellido_materno',
+                'customer_platforms.gender AS gender',
+                'customer_platforms.birthday AS fecha_nacimiento',
+                'customer_platforms.rfc AS rfc',
+                'customer_platforms.company AS razon_social',
+                'customer_platforms.RFC_Company AS rfc_compania',
+                'customers_sessions.email AS email',
+                DB::raw('(DATE_FORMAT(customers_sessions.created_at, "%d/%m/%Y %H:%i")) AS fecha_registro'),
+                DB::raw('IF(customers_sessions.active = 0, "0", "1") AS active'),
+                'customers_sessions.mobile AS telefono',
+                DB::raw('DATE_FORMAT(customers_sessions.created_at, "%Y-%m-%d") AS registro'),
+                DB::raw('(SELECT branches.name FROM branches WHERE branches.id = customer_platforms.branch_id) AS sucursal')
+            )
+            ->orderBy('customers_sessions.created_at', 'ASC')
+            ->get();
+
+        $merged = $registered_clients->merge($associates);
+        $mergedd = $merged->merge($registered_clients);
+        $registers = $mergedd->toArray();
+
+        //return $registers;
+
+
+        //Get all the client´s id with benefits in the current month
+        $ids = array_column($registers, 'id');
+
+        //Loop for all clients registered in Socio SyD
+        foreach ($all_clients as $client){
+
+            //Set amount and benefits level
+            $client->amount = 0;
+            $client->level  = 'Ninguno';
+
+            //Search if the client has benefits in the current month
+            $in_clients = array_search($client->id, $ids);
+
+            //If the client has benefits, set the amount and the level of the current month
+            if($in_clients !== false){
+                $client->amount = $registers[$in_clients]->amount;
+                $client->level  = $registers[$in_clients]->level;
+            }
+
+            //Check if the client is an employee of a company account
+            if($client->type_user === 'Dependiente de Negocio'){
+                $associateData = DB::table('associates')
+                    ->where('email', '=', $client->email)
+                    ->first();
+                //Concatenate the number of employee to the client number
+                //AGV $client->client_number = $client->client_number.'-'.$associateData->number;
+            }
+
+            $characters_rfc = strlen($client->rfc);
+            $birthday = explode("-",$client->fecha_nacimiento);
+            $birthyear = substr($birthday[0],2,2);
+            $client->fecha_nacimiento = $birthday[2]."/".$birthday[1]."/".$birthday[0];
+            $birthday = $birthday[2]."/".$birthday[1]."/".$birthyear;
+
+            if(!$client->rfc || empty($client->rfc) || $client->rfc === null || $client->rfc === 'null' || $client->rfc === '' || $characters_rfc<10){
+                $client->rfc = self::generate_rfc($client->nombre, $client->apellido_paterno, $client->apellido_materno, $birthday);
+            }
+
+            $client->amount = '$ '.number_format($client->amount, 2);
+
+            //Remove the key id of the json
+            unset($client->id);
+        }
+        
+            return Excel::download( new WithoutBenefitsReport( $all_clients ), "benefits_report_for_month_{$month}_{$year}.xlsx");
     }
 
     public function beneficiaries_report(){

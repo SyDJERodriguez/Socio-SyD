@@ -414,11 +414,13 @@
 
 <!-- Modal Asistencias -->
 <div class="modal fade" id="modalAsistencias" tabindex="-1" role="dialog" aria-labelledby="modalAsistencias" aria-hidden="true">
-    <div class="modal-dialog modal-xl  " role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content  mb-0 pb-0">
             <div class="modal-header d-flex flex-row-reverse">
                 <span class="times" data-dismiss="modal" aria-label="Close">X</span>
             </div>
+
+	{{--
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase">
                     SERVICIOS DE ASISTENCIA
@@ -429,9 +431,9 @@
                 <br>
 
             </div>
-
+	--}}
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
-
+{{--
                 <div class="col-lg-4 text-center py-3">
                     <h6 style="color: #143153;"><img class="py-2" src="{{asset('img/icon1.png')}}" ><br> <strong class="py-2"> ORIENTACIÓN MÉDICA  <br> TELEFÓNICA </strong></h6>
                 </div>
@@ -458,15 +460,58 @@
                     <h6 style="color: #143153;"><img class="py-2"src="{{asset('img/icon7.png')}}"> <br><strong class="py-2"> 
                         ENVÍO DE GRÚA <br> POR ACCIDENTE <br> (NIVEL ORO)</strong></h6>
                 </div>
+--}}
+		<div class="col-lg-12" style="padding: 20px; border-radius: 12px; background: linear-gradient(white, white) padding-box, linear-gradient(90deg, #8b6a2b, #dab774, #8b6a2b) border-box; border: 7px solid transparent; text-align: center; margin:20px auto;">
+			<div class="row">
+				<div class="col-lg-3 m-0 p-0">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025_01.png')}}" height="150" alt="grua">
+				</div>
+				<div class="col-lg-9 pl-0">
+					<h4>SERVICIO DE GRÚA POR AVERÍA</h4>
+					<h6>Un evento al año de hasta $800 pesos, por falla mecánica o avería</h6>
+					<strong style="font-size: 12px;">No aplica en accidentes de tránsito. Solo para Socios de Nivel Oro*</strong>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<div class="row">
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-03.png')}}" height="150" alt="Orientación Médica Telefónica">
+					<h6>Sin límite de eventos</h6>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-04.png')}}" height="150" alt="Orientación Emocional Telefónica">
+					<h6>Sin límite de eventos</h6>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-09.png')}}" height="150" alt="Orientación Emocional Telefónica">
+					<h6>Sin límite de eventos</h6>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-11.png')}}" height="150" alt="Orientación Emocional Telefónica">
+					<h6>Un evento al año</h6>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-10.png')}}" height="150" alt="Orientación Emocional Telefónica">
+					<h6>Un evento al año</h6>
+				</div>
+				<div class="col-lg-4 text-center">
+					<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-12.png')}}" height="150" alt="Orientación Emocional Telefónica">
+					<br>
+					<strong style="font-size: 12px;">Consulta tabla de asistencia*</strong>
+				</div>
+			</div>
+		</div>
 
+		{{--
                 <div class="col-lg-12 text-center playHomeVideo" onclick="playHomeVideo('usoDeGrua',1)">
                     <button class="btn btn-lg" style="background-color: #143153">
                         VER VIDEO
                     </button>
                 </div>
+		--}}
 
             </div>
-
             <div style="width: 100%;padding: 10px;">
                 <p style="color: #143153;">*Consulta términos y condiciones</p>
                 <button class="btn btn-lg btn-block" data-dismiss="modal">
@@ -505,11 +550,12 @@
 
 <!-- Modal SEGUROS -->
 <div class="modal fade" id="modalSeguros" tabindex="-1" role="dialog" aria-labelledby="modalSeguros" aria-hidden="true">
-    <div class="modal-dialog modal-xl  " role="document">
+    <div class="modal-dialog modal-lg  " role="document">
         <div class="modal-content  mb-0 pb-0">
             <div class="modal-header d-flex flex-row-reverse">
                 <span class="times" data-dismiss="modal" aria-label="Close">X</span>
             </div>
+	{{--
             <div class="modal-body mb-0 pb-0">
                 <h5 class="text-uppercase">
                     SEGURO DE ACCIDENTES PERSONALES
@@ -520,34 +566,42 @@
                 <br>
 
             </div>
+	--}}
 
             <div class="row" class="" style="padding: 30px;border-radius: 8px;">
-
+{{--
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/perdida_organica.png')}}"
                         ><br> <strong class="py-3"> PÉRDIDA ORGÁNICA POR ACCIDENTE  <br>
                             <div class="pt-2"> Te apoyamos si pierdes una <br> o más extremidades. </div>
                         </strong></h6>
+
                         <a class="btn btn-outline-light btn-sm playBenefits"
                          style="background-color: #143153"
                          id="showVideoButton1"
                          href="#modalSeguros"
                          onclick="playVideoBenefit('perdidaOrganica')"
                         >Ver video</a>
+
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"> <img class="py-2"
                         style="width:150px; height:150px;" src="{{asset('img/invalidez_total.png')}}">
                         <br><strong class="py-3"> INVALIDEZ TOTAL <br> Y PERMANENTE <br>
-                            <div class="pt-2"> Recibe apoyo si a causa <br> de algun accidente ya no
-                                <br> puedes realizar tu trabajo. </div> </strong></h6>
-                        <a class="btn btn-outline-light btn-sm playBenefits"
+                            <div class="pt-2"> Recibe apoyo si a causa <br> 
+				de algun accidente ya no
+                                <br> 
+				puedes realizar tu trabajo. 
+			</div> </strong></h6>
+
+			<a class="btn btn-outline-light btn-sm playBenefits"
                             style="background-color: #143153"
                             id="showVideoButton2"
                             href="#modalSeguros"
                             onclick="playVideoBenefit('invalidezTotal')"
                             >Ver video</a>
+
                 </div>
                 <div class="col-lg-4 py-3 text-center" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -555,12 +609,14 @@
                          <br><strong class="py-3"> MUERTE ACCIDENTAL   <br>
                             <div class="pt-2"> Si llegas a faltar, protege a <br>los que más quieres. </div>
                         </strong></h6>
-                        <a class="btn btn-outline-light btn-sm playBenefits"
+
+			<a class="btn btn-outline-light btn-sm playBenefits"
                              style="background-color: #143153"
                              id="showVideoButton1"
                              href="#modalSeguros"
                              onclick="playVideoBenefit('muerteAccidental')"
                             >Ver video</a>
+
                 </div>
                 <div class="col-lg-4 text-center py-3" style="cursor: pointer;">
                     <h6 style="color: #143153;"><img class="py-2"
@@ -568,12 +624,14 @@
                         <br> <strong class="py-3">REEMBOLSO DE  <br> GASTOS MÉDICOS  <br>
                             <div class="pt-2"> Cubrimos tus gastos que <br> deriven de algún accidente. </div>
                     </strong></h6>
-                    <a class="btn btn-outline-light btn-sm playBenefits"
+
+			<a class="btn btn-outline-light btn-sm playBenefits"
                          style="background-color: #143153"
                          id="showVideoButton1"
                          href="#modalSeguros"
                          onclick="playVideoBenefit('gastosMedicos')"
                         >Ver video</a>
+
                 </div>
                 <div class="col-lg-4 py-3 text-center">
                 </div>
@@ -583,7 +641,32 @@
                         <strong class="py-3"> INDEMNIZACIÓN DIARIA  <br>  <div class="pt-2"> Si necesitas hospitalización,
                             <br> nosotros te ayudamos.  </div> </strong></h6>
                 </div>
-
+--}}
+		<div class="col-lg-4 text-center">
+			<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-05.png')}}" alt="Pérdida orgánica" height="150">
+			<h6>Te apoyamos si pierdes
+			<br>una o más extremidades</h6>
+		</div>
+		<div class="col-lg-4 text-center">
+			<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-08.png')}}" alt="Indemnización Diaria" height="150">
+			<h6>Apoyo en caso de necesitar
+			<br> hospitalización</h6>
+		</div>
+		<div class="col-lg-4 text-center">
+			<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-06.png')}}" alt="Invalidez Total y Permanente" height="150">
+			<h6>Apoyo si por algún accidente
+			<br>ya no puedes realizar tu trabajo</h6>
+		</div>
+		<div class="offset-lg-2 col-lg-4 text-center">
+			<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-07.png')}}" alt="Invalidez Total y Permanente" height="150">
+			<h6>Cubrimos los gastos que
+			<br>deriven de algún accidente</h6>
+		</div>
+		<div class="col-lg-4 text-center">
+			<img src="{{asset('img/beneficios/Iconos_SocioSYD_2025-02.png')}}" alt="Invalidez Total y Permanente" height="150">
+			<h6>Si llegas a faltar, protege
+			<br>a los que más quieres</h6>
+		</div>
             </div>
 
             <div style="width: 100%;padding: 10px;">

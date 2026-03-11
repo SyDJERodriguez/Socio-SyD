@@ -58,7 +58,7 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                     Solicítalo en la sucursal de tu preferencia o
-                                    llama al número <b>800 SyD® (793)
+                                    llama al número <b>800 SYD® (793)
                                         1010</b> en un horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
@@ -103,11 +103,11 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Cualquier persona o empresa que compre productos de la marca SyD® en nuestras tiendas de DAR® Refaccionarias, a través
+                                        Cualquier persona o empresa que compre productos de la marca SYD® en nuestras tiendas de DAR® Refaccionarias, a través
                                         de nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>), venta directa o llamando al
-                                        número: <b>800 SyD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
+                                        número: <b>800 SYD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
                             </ol>
@@ -132,7 +132,7 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                         Tener un medio de contacto confirmado (teléfono celular obligatorio y/o correo
-                                        electrónico), comprar productos SyD®
+                                        electrónico), comprar productos SYD®
                                         a través de los canales autorizados del programa y tener un número de cliente
                                         DAR®.
                                     </p>
@@ -275,7 +275,7 @@
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
                                     <p>
-                                        Regístrate en nuestro sitio web <a href="https://www.sociosyd.com.mx/" target="_blank">www.sociosyd.com.mx</a>, compra productos SyD® en cualquiera de nuestros
+                                        Regístrate en nuestro sitio web <a href="https://www.sociosyd.com.mx/" target="_blank">www.sociosyd.com.mx</a>, compra productos SYD® en cualquiera de nuestros
                                         canales oficiales de venta, acumula
                                         automáticamente y haz uso de tus beneficios en el momento en que lo necesites.
                                     </p>
@@ -290,7 +290,7 @@
                                     <p>
                                     Si tienes algún problema o duda a la hora de tu registro,
                                     puedes contactarnos a través de nuestro chat de whatsApp disponible en el sitio web o llamando al  número
-                                    <b>800 SyD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
+                                    <b>800 SYD® (793) 1010</b> en horario de atención de 09:00 a 19:00 horas, de lunes a viernes y sábado 09:00 a 14:00 horas.
                                     </p>
                                 </li>
                                 <li class="text-justify" style="width:99%">
@@ -308,18 +308,18 @@
                                 <li class="text-justify" style="width:99%">
                                     <p>
                                         Participan productos adquiridos a través de nuestras tiendas de
-                                        DAR® Refaccionarias, canales de venta directa SyD®,                                         nuestros canales digitales (
+                                        DAR® Refaccionarias, canales de venta directa SYD®,                                         nuestros canales digitales (
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
-                                        o llamando al número: <b>800 SyD® (793) 1010</b>.
+                                        o llamando al número: <b>800 SYD® (793) 1010</b>.
                                     </p>
                                 </li>
                             </ol>
                         </section>
 
                         <section>
-                            <h5 class="text-white barTitle">15. ¿Dónde puedo comprar mis productos SyD®?
+                            <h5 class="text-white barTitle">15. ¿Dónde puedo comprar mis productos SYD®?
                             </h5>
                             <ol type="a">
                                 <li class="text-justify" style="width:99%">
@@ -328,7 +328,7 @@
                                         <a href="www.syd.com.mx">https://www.syd.com.mx/</a> – <a
                                             href="https://www.refaccionarias-dar.com">https://www.refaccionarias-dar.com</a>
                                         )
-                                        o llamando al número: <b>800 SyD® (793) 1010</b>.
+                                        o llamando al número: <b>800 SYD® (793) 1010</b>.
                                     </p>
                                 </li>
                             </ol>

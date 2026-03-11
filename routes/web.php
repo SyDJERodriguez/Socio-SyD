@@ -164,6 +164,10 @@ Route::prefix('admin')->name('admin.')->group(function (){
         Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
         Route::put('/addEmployesearch', 'CustomerController@addEmployesearch')->name('addEmployesearch');
 
+	//Las siguientes dos rutas las agregó Josue Rodriguez para solucionar el problema del error 500
+	Route::put('/updateEmployeEmail', 'CustomerController@updateEmployeEmail')->name('updateEmployeEmail');
+	Route::put('/updateEmployeAccountType', 'CustomerController@updateEmployeAccountType')->name('updateEmployeAccountType');
+
         Route::prefix('reports')->name('reports.')->group(function (){
             Route::get('/search', 'Admin\ReportsController@index')->name('index');
             Route::get('/createReport/{type_report}', 'Admin\ReportsController@create_report')->name('create');
@@ -194,5 +198,6 @@ Route::get('/send_sms_verification/{mobile}', 'CustomerController@sms_verificati
 Route::get('daily_report', [\App\Http\Controllers\Api\CustomerController::class,'daily_report'])->name('daily_report');
 Route::get('benefits_report', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report'])->name('benefits_report');
 Route::get('benefits_report_last_month', [\App\Http\Controllers\Api\CustomerController::class,'without_benefits_report_last_month'])->name('benefits_report_last_month');
+Route::get('benefits_report_for_month/{month}/{year}', [\App\Http\Controllers\Api\CustomerController::class, 'with_benefits_report_for_selected_month'])->name('benefits_report_for_month');
 Route::get('beneficiaries_report', [\App\Http\Controllers\Api\CustomerController::class,'beneficiaries_report'])->name('beneficiaries_report');
 Route::get('sales_monthly', [\App\Http\Controllers\Api\CustomerController::class,'sales_monthly'])->name('sales_monthly');

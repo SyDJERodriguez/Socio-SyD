@@ -45,6 +45,12 @@
                                     @break
                                 @case(2)
                                     <b> Individual </b>
+			  	    <a href="#"
+                                      style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
+                                      class="primary-color"
+                                      data-toggle="modal"
+                                      data-target="#modal-change-account"> [cambiar]
+                                    </a>
                                     @break
                                 @case(3)
                                     <b> Dependiente </b>
@@ -96,7 +102,15 @@
                     </div>
                     @if(Auth::user()->type_user == '1' || Auth::user()->type_user == '2')
                         <div class="col-md-4">
-                            <p>Email: <b>{{$customerData->email}}</b></p>
+                            <p>Email:
+				<b>{{$customerData->email}}</b>
+				<a  href="#"
+                                    style="margin-bottom: 0; font-size:13px;text-align:center;padding-top:5px"
+                                    class="primary-color"
+                                    data-toggle="modal"
+                                    data-target="#modal-change-email"> [cambiar]
+                                </a>
+			    </p>
                         </div>
                         <div class="col-md-4">
                             <p>Número telefónico: <b>{{$customerData->mobile_number}}</b></p>
@@ -218,7 +232,7 @@
                 </div>
             @endif
 
-            @if($account->client_type === '1')
+            {{--@if($account->client_type === '1')--}}
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                         <h4>Dependientes</h4>
@@ -242,7 +256,114 @@
                         </table>
                     </div>
                 </div>
-            @endif
+            {{--@endif--}}
         @endif
     </div>
+
 @endsection
+
+
+    <!-- Modal change email cuenta admin AGV - EPYA -->
+    <div class="modal fade" id="modal-change-email" tabindex="-1" role="dialog" aria-labelledby="modal-change-email" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+		<div class="modal-header d-flex flex-row-reverse">
+		    <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+		</div>
+	    <div class="modal-body">
+		<h5 class="text-uppercase">CAMBIAR E-MAIL</h5>
+		<div>{{$customerData->email}}</div>
+		<img src="{{asset('img/line.png')}}" alt="line">
+                <h6 style="margin-top: -17px">Ingresa el nuevo correo electrónico</h6>
+		<br>
+		<form action="{{route('admin.updateEmployeEmail')}}" method="POST" id="sendUpdateEmail">
+		    @method("PUT")
+                    @csrf
+                    <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}">
+                    <input type="hidden" name="client_current_email" value="{{$customerData->email}}">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input autocomplete="new-password" class="form-control-sm form-control" type="text" name="new_email"
+                                       placeholder="NUEVO CORREO ELECTRÓNICO" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="submit" class="btn btn-info" id="">Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+		</form>
+	    </div>
+	    </div>
+	</div>
+    </div
+
+
+    <!-- Modal change account type AGV - EPYA -->
+    <div class="modal fade" id="modal-change-account" tabindex="-1" role="dialog" aria-labelledby="modal-change-account" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="width:65% !important; margin: auto;">
+            <div class="modal-header d-flex flex-row-reverse">
+                <span class="times" data-dismiss="modal" aria-label="Close">X</span>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-uppercase">CAMBIAR Tipo de CUENTA</h5>
+                <p><strong>Cuenta actual:</strong>
+                    @switch($account->client_type)
+                        @case(1)
+                            <b> Cuenta con colaboradores </b>
+                            @break
+                        @case(2)
+                            <b> Individual </b>
+                            @break
+                        @case(3)
+                            <b> Dependiente </b>
+                            @break
+                        @case(4)
+                            <b> Sucursal </b>
+                            @break
+                        @default
+                            <b> Público en general </b>
+                    @endswitch
+                </p>
+                <br>
+
+                <img src="{{asset('img/line.png')}}" alt="line">
+                <h6 style="margin-top: -17px">Ingresa el nuevo tipo de cuenta</h6>
+                <form action="{{route('admin.updateEmployeAccountType')}}" method="POST" id="updateEmployeAccountType">
+                    @method("PUT")
+                    @csrf
+                    <input type="hidden" name="client_number" value="{{ isset($client_number) ? $client_number : null }}">
+                    <input type="hidden" name="client_email" value="{{$customerData->email}}">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <select name="account_type" id="account_type" style="width: 250px;height: 40px;background-color: aliceblue;">
+                                    <!-- <option value="">Individual</option> -->
+                                    <option value="0">Selecciona una opción</option>
+                                    <option value="1">Cuenta con Colaboradores</option>
+                                    <!-- <option value="">Dependiente</option> -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="submit" class="btn btn-info" id="">Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>

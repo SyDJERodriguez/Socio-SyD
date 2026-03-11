@@ -18,4 +18,10 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Flex
+    <IfModule mod_headers.c>
+        Header always set Content-Security-Policy "frame-ancestors 'self' https://*.twilio.com"
+    </IfModule>
+
 </IfModule>

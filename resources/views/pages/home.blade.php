@@ -3,31 +3,53 @@
     <section id="section1">
         <div class="container-fluid">
             <div class="row m-0">
-                <div class="col-lg-6 blue-dark text-center px-auto py-5"
+                <div class="col-lg-5 blue-dark text-center px-auto py-5"
                 style="display: flex; justify-content: center; align-items: center;">
-                    <p class="nav-link" style="font-size: 30px;line-height:90%">
-                        <STRONG>SOCIO SyD®</STRONG>
+                    <p class="nav-link" style="font-size: 24px;line-height:90%">
+                        <STRONG>CON SOCIO SYD® TUS COMPRAS VALEN <br>
+				Y TU LEALTAD ES PREMIADA
+			</STRONG>
                         <br>
-                        <span style="font-size: 23px"> ES EL PROGRAMA<br>
-                        EN EL QUE TODOS LOS MECÁNICOS<BR>
-                        RECIBEN BENEFICIOS,<br>
-                        POR HACER LAS COMPRAS DE SIEMPRE
+			<br>
+                        <span style="font-size: 19px"> Ponemos a tu disposición nuestro plan de lealtad<br>
+                        	que otorga beneficios para apoyarte<br>
+                        	ante algún incidente.<br>
                         </span>
                         <br>
-                        <a href="#" class="btn btn-lg playHomeVideo"
-                        id="btnVideo"
-                        onclick="playHomeVideo('socioSYD_video',0)"
-                        style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
-                        >VER VIDEO</a><br>
-                        <a href="https://www.syd.com.mx/folletosociosyd/Folleto.pdf" class="btn btn-lg" id="btnVideo"
-                           style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank">
-                            DESCARGAR FOLLETO INFORMATIVO</a>
+			{{--
+                        	<a href="#" class="btn btn-lg playHomeVideo"
+                        	id="btnVideo"
+                        	onclick="playHomeVideo('socioSYD_video',0)"
+                        	style="background-color: #00a5e6;color:white;font-size: 13px; width: 247px;margin-top:20px"
+                        	>VER VIDEO</a><br>
+			--}}
+			{{-- 
+				<a href="https://www.syd.com.mx/folletosociosyd/Folleto.pdf" class="btn btn-lg" id="btnVideo" 
+				style="background-color: #00a5e6;color:white;font-size: 13px; margin-top:20px" target="_blank"> 
+			--}}
+			<a href="{{ asset('files/Brochure_SocioSYD_2025.pdf') }}" class="btn btn-lg" id="btnVideo" 
+				style="background-color: #00a5e6; color:white; font-size: 13px; margin-top: 20px" target="_blank" >
+                            DESCARGAR FOLLETO INFORMATIVO
+			</a>
                     </p>
                 </div>
-                <div class="col-lg-6 p-0">
+                <div class="col-lg-7 p-0">
                     <div id="carouselExampleIndicators" class="carousel slide carusel-desktop" data-ride="carousel">
 
                         <div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="{{asset('img/carrusel/Carrusel_01.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="{{asset('img/carrusel/Carrusel_02.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="{{asset('img/carrusel/Carrusel_03.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="{{asset('img/carrusel/Carrusel_04.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
+			</div>
+			<!--
                             <div class="carousel-item active ">
                                 <img src="{{asset('img/slider_0.jpg')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
@@ -46,6 +68,7 @@
                             <div class="carousel-item">
                                 <img src="{{asset('img/C5.png')}}" class="d-block w-100 carousel imgCarou" alt="...">
                             </div>
+			-->
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -98,7 +121,7 @@
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
                 <div class="col-lg-6 py-3 title">
                     <h2 class="primary-color text-center">
-                        <strong>CÓMO FUNCIONA SOCIO SyD®</strong>
+                        <strong>CÓMO FUNCIONA SOCIO SYD®</strong>
                     </h2>
                 </div>
                 <div class="col-lg-3 py-5"><div class="bg-primary bar" style="height: 2px;"></div></div>
@@ -151,13 +174,13 @@
         <div class="container-fluid pb-5">
             <div class="row m-0">
                 <div class="col-lg-4 py-2" >
-                    <img src="{{asset('img/B1.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/banners/Imagen1.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
                 <div class="col-lg-4 py-2">
-                    <img src="{{asset('img/B2.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/banners/Imagen2.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
                 <div class="col-lg-4 py-2">
-                    <img src="{{asset('img/B3.png')}}" class="img-fluid" alt="Responsive image">
+                    <img src="{{asset('img/banners/Imagen3.png')}}" class="img-fluid" alt="Responsive image">
                 </div>
             </div>
         </div>
@@ -189,13 +212,13 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas <br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por Covid-19
+                                    • Video consulta médica
                                 </strong>
                             </p>
                         </div>
 
                         <div>
-                            <img class="my-3 imgTipo" src="{{asset('img/tabla1.svg')}}" alt="tablaNegocios"
+                            <img class="my-3 imgTipo" src="{{asset('img/Tabla-Colaboradores.png')}}" alt="tablaNegocios"
                             style="width: 41%; height: 10%; margin-bottom: 0 !important; margin-top: 11px !important;">
                         </div>
 
@@ -204,14 +227,14 @@
                                 REGISTRARME
                             </button>
                         </div>
-
-                        <div> {{-- video negocio --}}
+			{{--
+                        <div>  video negocio 
                             <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                                     onclick="playHomeVideo('cuentaNegocios',1)">
                                 VER VIDEO
                             </button>
                         </div>
-
+			--}}
                     </div>
                 </div>
 
@@ -228,14 +251,14 @@
                                     • Seguro contra accidentes<br>
                                     • Asistencia médica las 24 horas<br>
                                     • Consulta médica telefónica <br>
-                                    • Video consulta por Covid-19
+                                    • Video consulta médica
                                 </strong>
                                 <br>
                             </p>
                         </div>
 
                         <div>
-                            <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/tabla2.svg')}}" alt="tablaIndivuales"
+                            <img class="my-3 imgTipo" id="tableClientType1" src="{{asset('img/Tabla-Individual.png')}}" alt="tablaIndivuales"
                             style="width: 47%; height: 10%; margin-bottom: 3px !important;">
                         </div>
 
@@ -245,13 +268,14 @@
                                 REGISTRARME
                             </button>
                         </div>
-
-                        <div> {{-- video individual --}}
+			{{--
+                        <div> video individual 
                             <button class="btn btn blue-dark text-white btnBorder playHomeVideo"
                             onclick="playHomeVideo('cuentaIndividual',1)">
                                 VER VIDEO
                             </button>
                         </div>
+			--}}
                     </div>
                 </div>
             </div>

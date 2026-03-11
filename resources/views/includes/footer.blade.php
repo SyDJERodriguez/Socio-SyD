@@ -18,13 +18,13 @@
                     <i class="fas fa-phone-alt"></i>
                       <a href="tel:8007931010" class="primary-color"
                     style="color:white; padding-left: 5px;">
-                    800 SyD (793) 1010</a>
+                    800 SYD (793) 1010</a>
                 </p>
                 <hr class="bg-primary hrFooter">
                 <p><i class="fas fa-envelope">
                   </i><a href="mailto:sociosyd@syd.com" class="primary-color"
                   style="color:white; padding-left: 5px;">
-                  sociosyd@syd.com </a></p>
+                  sociosyd@syd.com.mx </a></p>
                 <hr class="bg-primary hrFooter">
                 @if (Auth::check())
                   <p><i class="fas fa-exclamation-triangle"></i>
@@ -66,7 +66,7 @@
                 <h6 style="display: flex;margin-bottom: 20px;" class="iconSocial">
                     <a href="https://www.facebook.com/DAR.Refaccionarias/"  target="_blank" class="text-white"><i class="fab fa-facebook-square fa-2x"></i></a>
                     <a href="https://www.instagram.com/dar.refaccionarias/" target="_blank" class="text-white"><i class="fab fa-instagram pl-3 fa-2x"></i></a>
-                    <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a>
+                    {{-- <a href="https://www.youtube.com/channel/UCztsDKlObp-vPvv4wJR8wWQ"  target="_blank" class="text-white"> <i class=" ml-3 fab fa-youtube-square fa-2x"></i> </a> --}}
                 </h6>
 
                 <p>
@@ -84,7 +84,8 @@
                 <hr class="bg-primary hrFooter">
             </div>
             <div class="col-lg-3 text-white text-right pr-0 contenedorFooter" style="display: flex; flex-direction: column; align-items: center;">
-                <img src="{{asset('img/logo_2.png')}}" alt="footerLogo" id="footerLogo">
+                {{-- <img src="{{asset('img/logo.png')}}" alt="footerLogo" id="footerLogo"> --}}
+		<img src="{{asset('img/Logo_SocioSYD_BLANCO.png')}}" alt="footerLogo" id="footerLogo">
                 <div>
                     <span class="textFooter">&#169; Todos los derechos reservados en Suspensión y Dirección</span>
                 </div>
@@ -112,7 +113,7 @@
                           <h4 style="color: #143153;"><strong> CONTÁCTANOS</strong></h4><br>
                           <p>
                               <span>TELÉFONO:</span><br>
-                                <a href="tel:8007931010">800 SyD (793) 1010</a>
+                                <a href="tel:8007931010">800 SYD (793) 1010</a>
                               <hr>
                           </p>
                           <p>
@@ -124,7 +125,8 @@
                       </div>
                       <div class="col-lg-9 p-0 my-4" style="border: 1px solid rgba(128, 128, 128, 0.719);">
                           <div class="text-center" style="background-color: #143153;padding: 20px;">
-                            <img src="{{asset('img/logo.png')}}" alt="logo" class="img-logo"></div>
+                            {{-- <img src="{{asset('img/logo.png')}}" alt="logo" class="img-logo"></div> --}}
+				<img src="{{asset('img/Logo_SocioSYD_BLANCO.png')}}" alt="logo" class="img-logo"></div>
                           <br/>
                           <h6 class="py-2 ml-5" style="color: #143153;font-weight: 700;">INGRESA TUS DATOS</h6>
                           <form method="POST" action="{{action('CustomerController@contact_us')}}" id="form-contact-us">

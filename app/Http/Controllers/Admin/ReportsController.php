@@ -175,7 +175,7 @@ class ReportsController extends Controller
                 //Remove the key id of the json
                 unset($client->id);
 
-                if( 'Ninguno' !== $client->level && 'Bronce' !== $client->level && $flag_birthday >= 18 && 'TELASIST' === $type_report ) {
+                if( 'Ninguno' !== $client->level /*&& 'Bronce' !== $client->level*/ && $flag_birthday >= 18 && 'TELASIST' === $type_report ) {
                     DB::table('telasist_beneficiaries')->insert([
                         'client_number'    => $client->client_number,
                         'name'             => $client->nombre,

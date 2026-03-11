@@ -8,40 +8,54 @@ use Jenssegers\Agent\Agent;
 use App\Helpers\Utils;
 use Validator;
 use App\Repositories\TransactionRepository;
+use DB;
 
 class TransactionsController extends Controller
 {
     public function insert_transaction(Request $request){
+        //dd($request->getContent(), $request->input());
         \Log::channel('api')->info('============ START PROCESS INSERT TRANSACTION ============');
         $agent = new Agent();
         \Log::channel('api')->info('Solicitud a insert in log: ip->'.Utils::getUserIpAddr().' device->'.$agent->platform().' - '.$agent->browser());
         $return = array('status'=>0, 'msg'=>'Error desconocido');
-        $request = $request->input();
         \Log::channel('api')->info('Procesando datos: '.json_encode($request));
+        $request = $request->input();
         $registers_received = 0;
         $registers_saved = 0;
         $registers_unsaved = 0;
 
         try{
-            foreach ($request['data'] as $transaction){
+            foreach ($request['data'] as $transaction) {
                 ++$registers_received;
                 // $client_number = explode("-",$transaction['client_number']);
                 //$transaction->branch = $client_number[1];
                 $validator = $this->validator($transaction);
-                if($validator->fails()){
+                if ($validator->fails()) {
                     ++$registers_unsaved;
                     Utils::set_transaction_log(400, $validator->errors(), $transaction);
-                }else{
-                    $query = TransactionRepository::save_transaction($transaction);
-                    if($query['code'] === 1) ++$registers_saved;
-                    if($query['code'] === 0) ++$registers_unsaved;
+                } else {
+                    $existsTransacction = DB::table('transactions')
+                        ->where([
+                            ['client_number', '00'.$transaction['client_number']],
+                            ['invoce', $transaction['invoce']]
+                        ])
+                        ->exists();
+                    
+                    if ($existsTransacction) {
+                        ++$registers_unsaved;
+                        Utils::set_transaction_log(400, 'Registro repetido!', $transaction);
+                    } else {
+                        $query = TransactionRepository::save_transaction($transaction);
+                        if($query['code'] === 1) ++$registers_saved;
+                        if($query['code'] === 0) ++$registers_unsaved;
+                    }
                 }
             }
 
 
             //if($query['code'] === 1){
             $return['status'] = 200;
-            $return['msg'] = 'Las transacciones han sido procesadas';
+            $return['msg'] = 'Las transacciones han sido procesadas: { Recibidos: '.$registers_received.', Guardados: '.$registers_saved.', No Guardados: '.$registers_unsaved.' }';
             \Log::channel('api')->info('Prcesamiento de datos finalizado');
             \Log::channel('api')->info('Registros recibidos: '.$registers_received);
             \Log::channel('api')->info('Registros guardados: '.$registers_saved);
@@ -57,6 +71,7 @@ class TransactionsController extends Controller
                 return response()->json($return, 400);
             }*/
         }catch (\Exception $e){
+            //dd($e->getMessage());
             \Log::channel('api')->info("Ocurrio un error al procesar la petición: ".$e->getMessage().' File: '.$e->getFile().' Line: '.$e->getLine());
             $return['status'] = 400;
             $return['msg']    = 'Ocurrió un erro al guardar el registro';
