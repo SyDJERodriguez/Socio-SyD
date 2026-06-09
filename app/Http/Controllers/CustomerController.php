@@ -193,7 +193,7 @@ class CustomerController extends Controller
             'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
-            'active'        => 0,
+            'active'        => 1,
             'password'      => $password
         ]);
 
@@ -1356,7 +1356,7 @@ class CustomerController extends Controller
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
                     'created_at'    => date('Y-m-d H:i:s'),
-                    'active'        => 0,
+                    'active'        => 1,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
                     'branch_number' => $client_number
@@ -1377,7 +1377,7 @@ class CustomerController extends Controller
                     'email'         => $request['email'],
                     'mobile'        => $request['mobile'],
                     'created_at'    => date('Y-m-d H:i:s'),
-                    'active'        => 0,
+                    'active'        => 1,
                     'password'      => $password,
                     'is_branch'     => isset($request['is_branch']) ? $request['is_branch'] : 0,
                     'branch_number' => $client_number
@@ -1608,7 +1608,7 @@ class CustomerController extends Controller
                 'client_type'   => $request['client_type'], //1 duenio; 2 independiente
                 'email'         => $request['email'],
                 'mobile'        => $request['mobile'],
-                'active'        => 0,
+                'active'        => 1,
                 'created_at'    => date('Y-m-d H:i:s'),
                 'password'      => $password,
                 'signature_id'  => isset($request['signature_id']) ? $request['signature_id'] : null,
@@ -1899,7 +1899,7 @@ class CustomerController extends Controller
             'client_type'   => $request['client_type'], //1 duenio; 2 independiente
             'email'         => $request['email'],
             'mobile'        => $request['mobile'],
-            'active'        => 0,
+            'active'        => 1,
             'password'      => $password,
             'signature_id'  => 0,
             'is_associate'  => 1,
@@ -1963,7 +1963,7 @@ class CustomerController extends Controller
             });
 
             $update_customer = CustomersSession::where('branch_number', '=', $dataSession->branch_number)->update([
-                'active'   => 0
+                'active'   => 1
             ]);
             return response()->json(['success'=>'true','status' =>200]);
         } catch (\Throwable $th) {

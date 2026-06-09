@@ -22,7 +22,7 @@
                 </p>
                 <hr class="bg-primary hrFooter">
                 <p><i class="fas fa-envelope">
-                  </i><a href="mailto:sociosyd@syd.com" class="primary-color"
+                  </i><a href="mailto:sociosyd@syd.com.mx" class="primary-color"
                   style="color:white; padding-left: 5px;">
                   sociosyd@syd.com.mx </a></p>
                 <hr class="bg-primary hrFooter">
