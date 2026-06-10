@@ -292,7 +292,7 @@
             let client_number_gen = $('input[id=client_number_gen]').val();
             console.log('here')
             console.log(client_number_gen.length)
-            if(client_number_gen.length===8){
+            if(client_number_gen.length===8) {
                 $.ajax({
                     type: "GET",
                     url: "{{route('customer.information')}}",
@@ -300,11 +300,28 @@
                     success: function (data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
+                            $.ajax({
+                                type: "GET",
+                                url: "{{route('customer.getCustomerSAP')}}",
+                                data: {
+                                    "cliente": '00' + client_number_gen
+                                },
+                                success: function(data) {
+                                    if (data['Error']==='false') {
+                                        alert("Se paso el cliente SAP a socio SYD correctamente");
+                                    } else {
+                                        alert("Hubo un error al intentar pasar el cliente de SAP a Socio SYD");
+                                    }
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
                             document.getElementById("form_alert_gen")
                                 .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                             document.getElementById("form_alert_gen").removeAttribute("hidden");
                             $(".alertClose").on("click", function (){document.getElementById("form_alert_gen").hidden= true});
-                            setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
+                            //setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);

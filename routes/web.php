@@ -101,6 +101,9 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::put('/addEmployee', 'CustomerController@addEmployee')->name('addEmployee');
     Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');
 
+    //Pasar datos de cliente SAP a Socio SYD
+    Route::get('/getcustomersap', 'CustomerController@GetSAPCustomerToSocioSyd')->name('getCustomerSAP');
+
 
 //Account URLs
     Route::group(['middleware' => ['auth:customer']], function() {
