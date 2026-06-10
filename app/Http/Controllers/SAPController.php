@@ -9,10 +9,10 @@ class SAPController extends Controller {
     public function GetSAPCustomerToSocioSyd(Request $request) {
         $client = new Client();
 
-        $response = $client->post('https://apim.workato.com/workatoqas/socio-syd-v1/envio-clientes-socio-syd', [
+        $response = $client->post('https://apim.workato.com/produccion/socio-syd-v1/nuevo_cliente_test', [
             'headers' => [
                 'Accept' => 'application/json',
-                'API-Token' => 'dfcec78dee5331c17c68dc4df95583bcb22adc1b884290233fb3b57f72488349'
+                'API-Token' => '3175cdb77109deb85e221ed60ac5eb721af14d4657d287d294c790433157de38'
             ],
             'json' => [
                 "cliente" => $request->cliente
