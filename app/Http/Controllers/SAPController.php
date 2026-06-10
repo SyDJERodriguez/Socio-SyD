@@ -12,7 +12,7 @@ class SAPController extends Controller {
         $response = $client->post('https://apim.workato.com/workatoqas/socio-syd-v1/envio-clientes-socio-syd', [
             'headers' => [
                 'Accept' => 'application/json',
-                'API-Token' => '56dc66ec3834a8e4e53fd697e1a1ba3e0a6b72aa2bcd8e2143a3cbd1a2ca8232'
+                'API-Token' => 'dfcec78dee5331c17c68dc4df95583bcb22adc1b884290233fb3b57f72488349'
             ],
             'json' => [
                 "cliente" => $request->cliente
