@@ -102,7 +102,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     Route::get('/dismiss/{client_number}','CustomerController@dismissNotification')->name('dismissNotification');
 
     //Pasar datos de cliente SAP a Socio SYD
-    Route::get('/getcustomersap', 'CustomerController@GetSAPCustomerToSocioSyd')->name('getCustomerSAP');
+    Route::get('/getcustomersap', 'SAPController@GetSAPCustomerToSocioSyd')->name('getCustomerSAP');
 
 
 //Account URLs
