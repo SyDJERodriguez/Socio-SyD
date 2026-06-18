@@ -10,131 +10,131 @@
         });
     }
     //sucursales ocultas se muestran en select
-    function mostrar(){
-    let canal = document.getElementById('channel');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('muestra').style.display = 'flex';
-        document.getElementById('branch_id').value = '';
-    }
-    else if (verdadero==2) {
-        document.getElementById('muestra').style.display = 'none';
-        document.getElementById('branch_id').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('muestra').style.display = 'none';
-        document.getElementById('branch_id').value = 47;
-    }
-    else{
-        document.getElementById('muestra').style.display = 'none';
-    }
+    function mostrar() {
+        let canal = document.getElementById('channel');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('muestra').style.display = 'flex';
+            document.getElementById('branch_id').value = '';
+        }
+        else if (verdadero==2) {
+            document.getElementById('muestra').style.display = 'none';
+            document.getElementById('branch_id').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('muestra').style.display = 'none';
+            document.getElementById('branch_id').value = 47;
+        }
+        else{
+            document.getElementById('muestra').style.display = 'none';
+        }
     }
 
     function mostrarMec() {
-    let canal = document.getElementById('channelMec');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('muestraMec').style.display = 'flex';
-        document.getElementById('branch_idMec').value = '';
-    }else if (verdadero==2) {
-        document.getElementById('muestraMec').style.display = 'none';
-        document.getElementById('branch_idMec').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('muestraMec').style.display = 'none';
-        document.getElementById('branch_idMec').value = 47;
-    }
-    else{
-        document.getElementById('muestraMec').style.display = 'none';
-    }
+        let canal = document.getElementById('channelMec');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('muestraMec').style.display = 'flex';
+            document.getElementById('branch_idMec').value = '';
+        }else if (verdadero==2) {
+            document.getElementById('muestraMec').style.display = 'none';
+            document.getElementById('branch_idMec').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('muestraMec').style.display = 'none';
+            document.getElementById('branch_idMec').value = 47;
+        }
+        else{
+            document.getElementById('muestraMec').style.display = 'none';
+        }
     }
 
     function mostrarGen() {
-    let canal = document.getElementById('channelGen');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('muestraGen').style.display = 'flex';
-        document.getElementById('branch_idGen').value = '';
-    }
-    else if (verdadero==2) {
-        document.getElementById('muestraGen').style.display = 'none';
-        document.getElementById('branch_idGen').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('muestraGen').style.display = 'none';
-        document.getElementById('branch_idGen').value = 47;
-    }
-    else{
-        document.getElementById('muestraGen').style.display = 'none';
-    }
+        let canal = document.getElementById('channelGen');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('muestraGen').style.display = 'flex';
+            document.getElementById('branch_idGen').value = '';
+        }
+        else if (verdadero==2) {
+            document.getElementById('muestraGen').style.display = 'none';
+            document.getElementById('branch_idGen').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('muestraGen').style.display = 'none';
+            document.getElementById('branch_idGen').value = 47;
+        }
+        else{
+            document.getElementById('muestraGen').style.display = 'none';
+        }
     }
 
     function mostrarBr() {
-    let canal = document.getElementById('channelBr');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('muestraBr').style.display = 'flex';
-        document.getElementById('branch_idBr').value = '';
-    }
-    else if (verdadero==2) {
-        document.getElementById('muestraBr').style.display = 'none';
-        document.getElementById('branch_idBr').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('muestraBr').style.display = 'none';
-        document.getElementById('branch_idBr').value = 47;
-    }
-    else{
-        document.getElementById('muestraBr').style.display = 'none';
-    }
+        let canal = document.getElementById('channelBr');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('muestraBr').style.display = 'flex';
+            document.getElementById('branch_idBr').value = '';
+        }
+        else if (verdadero==2) {
+            document.getElementById('muestraBr').style.display = 'none';
+            document.getElementById('branch_idBr').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('muestraBr').style.display = 'none';
+            document.getElementById('branch_idBr').value = 47;
+        }
+        else{
+            document.getElementById('muestraBr').style.display = 'none';
+        }
     }
 
     function mostrarCNT() {
-    let canal = document.getElementById('channelCNT');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('muestraCNT').style.display = 'flex';
-        document.getElementById('branch_idCNT').value = '';
-    }
-    else if (verdadero==2) {
-        document.getElementById('muestraCNT').style.display = 'none';
-        document.getElementById('branch_idCNT').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('muestraCNT').style.display = 'none';
-        document.getElementById('branch_idCNT').value = 47;
-    }
-    else{
-        document.getElementById('muestraCNT').style.display = 'none';
-    }
+        let canal = document.getElementById('channelCNT');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('muestraCNT').style.display = 'flex';
+            document.getElementById('branch_idCNT').value = '';
+        }
+        else if (verdadero==2) {
+            document.getElementById('muestraCNT').style.display = 'none';
+            document.getElementById('branch_idCNT').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('muestraCNT').style.display = 'none';
+            document.getElementById('branch_idCNT').value = 47;
+        }
+        else{
+            document.getElementById('muestraCNT').style.display = 'none';
+        }
     }
 
-    function showselect(){
-       let canal = document.getElementById('channelinv');
-    let verdadero = canal.value;
-    if (verdadero==1) {
-        document.getElementById('showbranch').style.display = 'flex';
-        document.getElementById('branch_idinv').value = '';
-    }
-    else if (verdadero==2) {
-        document.getElementById('showbranch').style.display = 'none';
-        document.getElementById('branch_idinv').value = 2;
-    }
-    else if (verdadero==3) {
-        document.getElementById('showbranch').style.display = 'none';
-        document.getElementById('branch_idinv').value = 47;
-    }
-    else{
-        document.getElementById('showbranch').style.display = 'none';
-    }
+    function showselect() {
+        let canal = document.getElementById('channelinv');
+        let verdadero = canal.value;
+        if (verdadero==1) {
+            document.getElementById('showbranch').style.display = 'flex';
+            document.getElementById('branch_idinv').value = '';
+        }
+        else if (verdadero==2) {
+            document.getElementById('showbranch').style.display = 'none';
+            document.getElementById('branch_idinv').value = 2;
+        }
+        else if (verdadero==3) {
+            document.getElementById('showbranch').style.display = 'none';
+            document.getElementById('branch_idinv').value = 47;
+        }
+        else{
+            document.getElementById('showbranch').style.display = 'none';
+        }
     }
     //Do not send without recaptcha
     window.onload = function() {
-    var $recaptcha = document.querySelector('#g-recaptcha-response');
+        var $recaptcha = document.querySelector('#g-recaptcha-response');
 
-    if($recaptcha) {
-        $recaptcha.setAttribute("required", "required");
-    }
+        if($recaptcha) {
+            $recaptcha.setAttribute("required", "required");
+        }
     };
 
     //popover for buttons modal
@@ -146,8 +146,22 @@
 
     $('#element').toast('show');
 
-    $(document).ready(function(){
-
+    function searchCustomerDataFromSAP(clientNumber) {
+        $.ajax({
+            type: "GET",
+            url: "{{route('')}}",
+            data: {
+                'client_number': clientNumber
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+    $(document).ready(function() {
         //get branch information with clientNumber
         $('#clientNumberBr').keyup(function () {
             let clientNumberBr = $('input[id=clientNumberBr').val();
@@ -196,7 +210,7 @@
         });
 
         //Get owner's client number
-        $("#client_number_pro").keyup(function(){
+        $("#client_number_pro").keyup(function() {
             let client_number_pro = $('input[id=client_number_pro]').val();
             if(client_number_pro.length===8){
                 $.ajax({
@@ -228,7 +242,7 @@
         });
 
         //Get the CNT's client number
-        $("#client_number_cnt").keyup(function(){
+        $("#client_number_cnt").keyup(function() {
             let client_number_mec = $('input[id=client_number_cnt]').val();
             if(client_number_mec.length===8){
                 $.ajax({
@@ -257,7 +271,7 @@
         });
 
         //Get the mechanic's client number
-        $("#client_number_mec").keyup(function(){
+        $("#client_number_mec").keyup(function() {
             let client_number_mec = $('input[id=client_number_mec]').val();
             if(client_number_mec.length===8){
                 $.ajax({
@@ -288,16 +302,18 @@
         });
 
         //Get the general public client number
-        $("#client_number_gen").keyup(function(){
+        $("#client_number_gen").keyup(function() {
             let client_number_gen = $('input[id=client_number_gen]').val();
             console.log('here')
             console.log(client_number_gen.length)
-            if(client_number_gen.length===8) {
+            if(client_number_gen.length === 8) {
+                let searchSpinner = document.getElementById("form_alert_search_spinner");
+                searchSpinner.removeAttribute("hidden");
                 $.ajax({
                     type: "GET",
                     url: "{{route('customer.information')}}",
                     data: {'client_number': client_number_gen},
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             $.ajax({
@@ -309,19 +325,26 @@
                                 success: function(data) {
                                     if (data['Error']==='false') {
                                         alert("Se paso el cliente SAP a socio SYD correctamente");
+                                        searchCustomerDataFromSAP('00' + client_number_gen);
+                                        searchSpinner.hidden = true;
                                     } else {
-                                        alert("Hubo un error al intentar pasar el cliente de SAP a Socio SYD");
+                                        searchSpinner.hidden = true;
+                                        document.getElementById("form_alert_gen")
+                                        .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
+                                        document.getElementById("form_alert_gen").removeAttribute("hidden");
+                                        $(".alertClose").on("click", function (){document.getElementById("form_alert_gen").hidden= true});
                                     }
                                 },
                                 error: function(error) {
                                     console.log(error);
+                                    searchSpinner.hidden = true;
                                 }
                             });
-                            document.getElementById("form_alert_gen")
-                                .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
-                            document.getElementById("form_alert_gen").removeAttribute("hidden");
-                            $(".alertClose").on("click", function (){document.getElementById("form_alert_gen").hidden= true});
                             //setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
+                        }
+                        else {
+                            searchCustomerDataFromSAP('00' + client_number_gen);
+                            searchSpinner.hidden = true;
                         }
                         /*$('input[id=nameMec]').val(data['name']);
                         $('input[id=lastNameMec]').val(data['last_name']);
@@ -330,15 +353,16 @@
                         $('input[id=emailMec]').val(data['email']);
                         $('input[id=birthday]').val(data['birthday']);*/
                     },
-                    error: function(error){
+                    error: function(error) {
                         console.log(error);
+                        searchSpinner.hidden = true;
                     }
                 });
             }
         });
 
         //Get the employee's client number
-        $("#client_number_employee").keyup(function(){
+        $("#client_number_employee").keyup(function() {
             let client_number_employee = $('input[id=client_number_employee]').val();
             if(client_number_employee.length===8){
                 $.ajax({
@@ -367,7 +391,7 @@
             }
         });
         //cadenas Form
-        $('#cadenasForm').bind('submit', function(){
+        $('#cadenasForm').bind('submit', function() {
 
             let codeVerification = document.querySelector('#codeBr');
             let codeConfirm      = document.querySelector('#codeBrConfirm');
@@ -478,7 +502,7 @@
         });
 
         //Owner's form
-        $("#ownerForm").bind("submit",function(){
+        $("#ownerForm").bind("submit",function() {
             let btn_owner = document.querySelector('#btnSend_owner');
             btn_owner.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeOw');
@@ -607,7 +631,7 @@
         });
 
         //Mechanic's form
-        $("#mechanicForm").bind("submit",function(){
+        $("#mechanicForm").bind("submit",function() {
             let btn_mechanic = document.querySelector('#btnSend_mechanic');
             btn_mechanic.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeMec');
@@ -713,7 +737,7 @@
         });
 
         //Employees's form
-        $("#employeeForm").bind("submit",function(){
+        $("#employeeForm").bind("submit",function() {
             // We capture send button
             let btnSend = $("#btnSend");
             $.ajax({
@@ -739,7 +763,7 @@
         });
 
         //CNT's form
-        $("#cntForm").bind("submit",function(){
+        $("#cntForm").bind("submit",function() {
             let codeVerification = document.querySelector('#codeCNT');
             let codeConfirm      = document.querySelector('#codeCNTConfirm');
             let error_code       = document.querySelector('#error_code_CNT');
@@ -820,7 +844,7 @@
         });
 
         //General Public form
-        $("#generalForm").bind("submit",function(){
+        $("#generalForm").bind("submit",function() {
             let btn_public = document.querySelector('#btnSend_public');
             btn_public.setAttribute('disabled','');
             let codeVerification = document.querySelector('#codeGen');
@@ -926,7 +950,7 @@
         });
 
         //Signature Submit
-        $('#signatureForm').bind("submit", function(){
+        $('#signatureForm').bind("submit", function() {
             //capture de sendBtn
             //let btnSendSign = $('#confirmarSign');
             //let check = $("#terms");
@@ -953,7 +977,7 @@
         });
 
         //AddEmployeeForm's form
-        $("#addEmployeeForm").bind("submit",function(){
+        $("#addEmployeeForm").bind("submit",function() {
             // We capture send button
             let btnSend2 = $("#btnSend2");
             $.ajax({
@@ -999,7 +1023,8 @@
             // Nos permite cancelar el envio del formulario
             return false;
         });
-        $("#addEmployeeFormbranch").bind("submit",function(){
+
+        $("#addEmployeeFormbranch").bind("submit",function() {
             // We capture send button
             let btnSend2 = $("#btnSend2");
             $.ajax({
@@ -1046,9 +1071,8 @@
             return false;
         });
 
-
         //UpdateDataForm's form
-        $("#updateDataForm").bind("submit",function(){
+        $("#updateDataForm").bind("submit",function() {
             // We capture send button
             let btnSend3 = $("#btnSend3");
             $.ajax({
@@ -1095,7 +1119,7 @@
         });
 
         //AddEmployeeForm's form
-        $("#editEmployeeForm").bind("submit",function(){
+        $("#editEmployeeForm").bind("submit",function() {
             // We capture send button
             let btnSend2 = $("#btnSendEditEmployee");
             $.ajax({
@@ -1143,7 +1167,7 @@
         });
 
         //Restore Password
-        $("#sendRestorePassword").bind("submit",function(){
+        $("#sendRestorePassword").bind("submit",function() {
             // We capture send button
             let btnSend = $("#sendRestorePassword");
             $.ajax({
@@ -1170,7 +1194,7 @@
             return false;
         });
 
-        $("#restoreForm").bind("submit",function(){
+        $("#restoreForm").bind("submit",function() {
             let btnSend = $("#sendNewPass");
             $.ajax({
                 type: $(this).attr("method"),
@@ -1196,7 +1220,7 @@
         });
 
         //Restore Account
-        $("#sendRestoreAccount").bind("submit",function(){
+        $("#sendRestoreAccount").bind("submit",function() {
             // We capture send button
             let btnSend = $("#sendRestorePassword");
             $.ajax({
@@ -1224,7 +1248,7 @@
         });
 
         //Active Account
-        $("#restoreAccount").bind("submit",function(){
+        $("#restoreAccount").bind("submit",function() {
             let btnSend = $("#sendNewPass");
             $.ajax({
                 type: $(this).attr("method"),
@@ -1616,7 +1640,7 @@
 
 <script type="text/javascript">
 
-    $(window).on("load", function(){
+    $(window).on("load", function() {
 
         html_map='<div id="map"></div>';
         $('.our-branches__content-address-map.sucursal').html(html_map);
@@ -1867,26 +1891,26 @@
 </script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         // autoplay video
-        $('.playHomeVideo').on('click', function (){
+        $('.playHomeVideo').on('click', function() {
             $('#modalVideo').modal('show');
             var video = document.getElementById("videoSocioSYD");
             video.play();
         });
         // Modal hidden event fired
-        $('#modalVideo').on('hidden.bs.modal', function () {
+        $('#modalVideo').on('hidden.bs.modal', function() {
             var video = document.getElementById("videoSocioSYD");
             video.pause();
             video.currentTime = 0;
         });
         // autoplay video
-        $('.playBenefits').on('click', function (){
+        $('.playBenefits').on('click', function() {
             var video = document.getElementById("videoBenefits");
             video.play();
         });
         // Modal hidden event fired (benefits)
-        $('#modalVideoBenefits').on('hidden.bs.modal', function () {
+        $('#modalVideoBenefits').on('hidden.bs.modal', function() {
             var video = document.getElementById("videoBenefits");
             video.pause();
             video.currentTime = 0;
@@ -1944,12 +1968,12 @@
     }
 </script>
 <script>
-     function focusrfc(event){
-            if( $('#'+event).val() == null ){
+     function focusrfc(event) {
+            if($('#'+event).val() == null) {
                 document.getElementById(event).focus();
             }
 
-            if( $('#'+event).val().length <= 10 ){
+            if($('#'+event).val().length <= 10) {
                 document.getElementById(event).focus();
             }
         };
@@ -1968,7 +1992,7 @@
     let hostName     = window.location.origin+"/send_sms_verification/";
     let codeConfirm  = document.querySelector('#codeMecConfirm');
 
-    mobileInput.addEventListener('input', function (){
+    mobileInput.addEventListener('input', function() {
         length = mobileInput.value.length;
         if ( length < 10 ) return null;
 
@@ -1986,10 +2010,10 @@
 
         alertCode.hidden    = false;
         requiredCode.hidden = false;
-        setTimeout(() =>{alertCode.hidden = true},3500);
+        setTimeout(() =>{alertCode.hidden = true}, 3500);
         inputCodeMec.type = 'text';
 
-        setTimeout(() =>{
+        setTimeout(() => {
             inputCodeMec.value = codeConfirm.value;
         },15000);
     });
@@ -2003,7 +2027,7 @@
     let requiredCodeOw = document.querySelector('#requiredSignalOw');
     let codeConfirmOw  = document.querySelector('#codeOwConfirm');
 
-    mobileI.addEventListener('input', function (){
+    mobileI.addEventListener('input', function () {
         length = mobileI.value.length;
         if ( length < 10 ) return null;
 
@@ -2021,10 +2045,10 @@
 
         alertCodeOw.hidden    = false;
         requiredCodeOw.hidden = false;
-        setTimeout(() =>{alertCodeOw.hidden = true},3500);
+        setTimeout(() =>{alertCodeOw.hidden = true}, 3500);
         inputCodeOw.type = 'text';
 
-        setTimeout(() =>{
+        setTimeout(() => {
             inputCodeOw.value = codeConfirmOw.value;
         },15000);
     });
@@ -2036,7 +2060,7 @@
     let requiredCodeBr = document.querySelector('#requiredSignalBr');
     let codeConfirmBr  = document.querySelector('#codeBrConfirm');
 
-    mobileBr.addEventListener('input', function (){
+    mobileBr.addEventListener('input', function() {
         length = mobileBr.value.length;
         if ( length < 10 ) return null;
 
@@ -2053,10 +2077,10 @@
 
         alertCodeBr.hidden    = false;
         requiredCodeOw.hidden = false;
-        setTimeout(() =>{alertCodeBr.hidden = true},3500);
+        setTimeout(() =>{alertCodeBr.hidden = true}, 3500);
         inputCodeBr.type = 'text';
 
-        setTimeout(() =>{
+        setTimeout(() => {
             inputCodeBr.value = codeConfirmBr.value;
         },15000);
     });
@@ -2068,7 +2092,7 @@
     let requiredCodeGen = document.querySelector('#requiredSignalGen');
     let codeConfirmGen  = document.querySelector('#codeGenConfirm');
 
-    mobileGen.addEventListener('input', function (){
+    mobileGen.addEventListener('input', function() {
         length = mobileGen.value.length;
         if ( length < 10 ) return null;
 
@@ -2085,12 +2109,14 @@
 
         alertCodeGen.hidden    = false;
         requiredCodeGen.hidden = false;
-        setTimeout(() =>{alertCodeGen.hidden = true},3500);
+        setTimeout(() => {
+            alertCodeGen.hidden = true
+        }, 3500);
         inputCodeGen.type = 'text';
 
-        setTimeout(() =>{
+        setTimeout(() => {
             inputCodeGen.value = codeConfirmGen.value;
-        },15000);
+        }, 15000);
     });
 
     /* this for CNT */
@@ -2101,7 +2127,7 @@
     let codeConfirmCNT  = document.querySelector('#codeCNTConfirm');
     let codeHidden = document.querySelector('#code_hidden')
 
-    mobileCNT.addEventListener('input', function (){
+    mobileCNT.addEventListener('input', function() {
         length = mobileCNT.value.length;
         if ( length < 10 ) return null;
 
@@ -2118,24 +2144,27 @@
 
         alertCodeCNT.hidden    = false;
         requiredCodeCNT.hidden = false;
-        setTimeout(() =>{alertCodeCNT.hidden = true},3500);
+        setTimeout(() => {
+            alertCodeCNT.hidden = true
+        }, 3500);
         codeHidden.style.paddingTop = "1rem";
         inputCodeCNT.type = 'text';
 
-        setTimeout(() =>{
+        setTimeout(() => {
             inputCodeCNT.value = codeConfirmCNT.value;
-        },15000);
+        }, 15000);
     });
 
     let cntNumber = document.querySelector('#cnt_number');
     let errorCNT  = document.querySelector('#alertErrorCodeCNT');
-    cntNumber.addEventListener('input', function (){
+    cntNumber.addEventListener('input', function() {
         if ( cntNumber.value.length < 7 ) return null;
 
         if(cntNumber.value !== 'INA2022') {
             errorCNT.hidden = false;
-            setTimeout( function () { errorCNT.hidden = true }, 3500)
+            setTimeout(function() {
+                errorCNT.hidden = true
+            }, 3500);
         }
-
     });
 </script>

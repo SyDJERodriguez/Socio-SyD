@@ -34,6 +34,13 @@
                 </div>
                 <div class="alert alert-danger" id="error_code" role="alert" style="border-radius: 6px;" hidden>
                 </div>
+                {{-- Alert spinner para busqueda de numero de cliente --}}
+                <div class="alert alert-info" id="form_alert_search_spinner" role="alert" style="border-radius: 6px;" hidden>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Buscando número de cliente...
+                </div>
+                {{-- Alert para busqueda de numero de cliente exitosa --}}
+                <div class="alert alert-success" id="" role="alert" style="border-radius: 6px;" hidden></div>
                 <form autocomplete="off" id="generalForm" method="POST" action="{{route('customer.update')}}">
                     @method('PUT')
                     @csrf
@@ -193,11 +200,11 @@
 </div>
 
 <script>
-    document.getElementById('rfcGen').addEventListener('focus',function() {
+    document.getElementById('rfcGen').addEventListener('focus', function() {
         var rfc = document.getElementById('rfcGen');
         var fecha = $('#birthdayGen').val().split('-');
-
         var CURP = [];
+
         CURP[0] = $("#lastNameGen").val().charAt(0).toUpperCase();
         for (let i = 1; i < $("#lastNameGen").val().length; i++) {
             if($("#lastNameGen").val().charAt(i).match(/[aeiou]/gi)){
@@ -212,6 +219,5 @@
         CURP[6] = fecha[2];//day
 
         $('#rfcGen').val(CURP.join("").toString());
-
     })
 </script>
