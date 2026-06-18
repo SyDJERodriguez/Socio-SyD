@@ -365,10 +365,10 @@
                                     if (data['Error']==='false') {
                                         searchCustomerDataFromSAP('00' + client_number_gen);
                                         searchSpinner.hidden = true;
-                                        inputClientNumber.disabled = true;
+                                        inputClientNumber.disabled = false;
                                     } else {
                                         searchSpinner.hidden = true;
-                                        inputClientNumber.disabled = true;
+                                        inputClientNumber.disabled = false;
                                         document.getElementById("form_alert_gen")
                                         .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                                         document.getElementById("form_alert_gen").removeAttribute("hidden");
@@ -378,7 +378,7 @@
                                 error: function(error) {
                                     console.log(error);
                                     searchSpinner.hidden = true;
-                                    inputClientNumber.disabled = true;
+                                    inputClientNumber.disabled = false;
                                 }
                             });
                             //setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
@@ -386,13 +386,13 @@
                         else {
                             searchCustomerDataFromSAP('00' + client_number_gen);
                             searchSpinner.hidden = true;
-                            inputClientNumber.disabled = true;
+                            inputClientNumber.disabled = false;
                         }
                     },
                     error: function(error) {
                         console.log(error);
                         searchSpinner.hidden = true;
-                        inputClientNumber.disabled = true;
+                        inputClientNumber.disabled = false;
                     }
                 });
             }
