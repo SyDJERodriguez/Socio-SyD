@@ -343,8 +343,11 @@
         //Get the general public client number
         $("#client_number_gen").keyup(function() {
             let client_number_gen = $('input[id=client_number_gen]').val();
+            let inputClientNumber = document.getElementById("client_number_gen");
+            let searchSpinner = document.getElementById("form_alert_search_spinner");
+
             if(client_number_gen.length === 8) {
-                let searchSpinner = document.getElementById("form_alert_search_spinner");
+                inputClientNumber.disabled = true;
                 searchSpinner.removeAttribute("hidden");
                 $.ajax({
                     type: "GET",
@@ -362,8 +365,10 @@
                                     if (data['Error']==='false') {
                                         searchCustomerDataFromSAP('00' + client_number_gen);
                                         searchSpinner.hidden = true;
+                                        inputClientNumber.disabled = true;
                                     } else {
                                         searchSpinner.hidden = true;
+                                        inputClientNumber.disabled = true;
                                         document.getElementById("form_alert_gen")
                                         .innerHTML='<button type="button" class="close alertClose" aria-hidden="true" >&times;</button>Por favor ingrese un número de cliente válido. En caso de que no tenga o no recuerde su número de cliente, favor de contactar a su agente de ventas DAR';
                                         document.getElementById("form_alert_gen").removeAttribute("hidden");
@@ -373,6 +378,7 @@
                                 error: function(error) {
                                     console.log(error);
                                     searchSpinner.hidden = true;
+                                    inputClientNumber.disabled = true;
                                 }
                             });
                             //setTimeout(function (){document.getElementById("form_alert_gen").hidden= true}, 5000);
@@ -380,11 +386,13 @@
                         else {
                             searchCustomerDataFromSAP('00' + client_number_gen);
                             searchSpinner.hidden = true;
+                            inputClientNumber.disabled = true;
                         }
                     },
                     error: function(error) {
                         console.log(error);
                         searchSpinner.hidden = true;
+                        inputClientNumber.disabled = true;
                     }
                 });
             }
