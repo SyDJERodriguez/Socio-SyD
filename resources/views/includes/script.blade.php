@@ -149,7 +149,7 @@
     function searchCustomerDataFromSAP(clientNumber) {
         $.ajax({
             type: "GET",
-            url: "{{route('searchCustomerDataFromSAP')}}",
+            url: "{{route('customer.searchCustomerDataFromSAP')}}",
             data: {
                 'client_number': clientNumber
             },
