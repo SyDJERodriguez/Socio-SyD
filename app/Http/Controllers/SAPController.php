@@ -38,7 +38,7 @@ class SAPController extends Controller {
         ]);
 
         $body = $response->getBody()->getContents();
-        dd($body);
+        
         return response()->json(json_decode($body, true));
     }
 }
