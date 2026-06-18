@@ -190,6 +190,7 @@
                         $('input[id=lastNameGen]').val(apellidoP);
                         $('input[id=secondLastNameGen]').val(apellidoM);
                         $('input[id=emailGen]').val(cliente.SMTP_ADDR1);
+                        $('input[id=mobileGen]').val(cliente.TELF1);
                     }
                 }
                 console.log(data);
@@ -359,7 +360,6 @@
                                 },
                                 success: function(data) {
                                     if (data['Error']==='false') {
-                                        alert("Se paso el cliente SAP a socio SYD correctamente");
                                         searchCustomerDataFromSAP('00' + client_number_gen);
                                         searchSpinner.hidden = true;
                                     } else {
@@ -381,12 +381,6 @@
                             searchCustomerDataFromSAP('00' + client_number_gen);
                             searchSpinner.hidden = true;
                         }
-                        /*$('input[id=nameMec]').val(data['name']);
-                        $('input[id=lastNameMec]').val(data['last_name']);
-                        $('input[id=secondLastNameMec]').val(data['second_last_name']);
-                        $('input[id=mobileMec]').val(data['mobile_number']);
-                        $('input[id=emailMec]').val(data['email']);
-                        $('input[id=birthday]').val(data['birthday']);*/
                     },
                     error: function(error) {
                         console.log(error);
