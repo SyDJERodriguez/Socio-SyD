@@ -154,6 +154,44 @@
                 'client_number': clientNumber
             },
             success: function(data) {
+                if (data.ET_CUSTOMERS.length > 0) {
+                    let cliente = data.ET_CUSTOMERS[0];
+
+                    if (cliente.NAME1 && cliente.NAME1.trim() !== '') {
+                        let nameParts = cliente.NAME1.trim().split(/\s+/);
+                        const conectores = ['DE', 'DEL', 'LA', 'LAS', 'LOS', 'Y'];
+                        let nombre = '';
+                        let apellidoP = '';
+                        let apellidoM = '';
+
+                        if (nameParts.length === 1) {
+                            nombre = nameParts[0];
+                        }
+                        else if (nameParts.length === 2) {
+                            nombre = nameParts[0];
+                            apellidoP = nameParts[1];
+                        }
+                        else {
+                            // Detectar apellido materno (desde el final)
+                            apellidoM = nameParts.pop();
+                            // Si el anterior es conector, incluirlo
+                            while (nameParts.length > 0 && conectores.includes(nameParts[nameParts.length - 1].toUpperCase())) {
+                                apellidoM = nameParts.pop() + ' ' + apellidoM;
+                            }
+                            // 🔥 Detectar apellido paterno
+                            apellidoP = nameParts.pop();
+                            while (nameParts.length > 0 && conectores.includes(nameParts[nameParts.length - 1].toUpperCase())) {
+                                apellidoP = nameParts.pop() + ' ' + apellidoP;
+                            }
+                            // 🔥 Lo demás es nombre
+                            nombre = nameParts.join(' ');
+                        }
+                        $('input[id=nameGen]').val(nombre);
+                        $('input[id=lastNameGen]').val(apellidoP);
+                        $('input[id=secondLastNameGen]').val(apellidoM);
+                        $('input[id=emailGen]').val(cliente.SMTP_ADDR1);
+                    }
+                }
                 console.log(data);
             },
             error: function(error) {
@@ -304,8 +342,6 @@
         //Get the general public client number
         $("#client_number_gen").keyup(function() {
             let client_number_gen = $('input[id=client_number_gen]').val();
-            console.log('here')
-            console.log(client_number_gen.length)
             if(client_number_gen.length === 8) {
                 let searchSpinner = document.getElementById("form_alert_search_spinner");
                 searchSpinner.removeAttribute("hidden");
@@ -314,7 +350,6 @@
                     url: "{{route('customer.information')}}",
                     data: {'client_number': client_number_gen},
                     success: function(data) {
-                        console.log(data);
                         if (data['success']==='false' && data['verify_client_number']==='false') {
                             $.ajax({
                                 type: "GET",
