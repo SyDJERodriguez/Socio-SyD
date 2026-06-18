@@ -104,7 +104,7 @@ Route::prefix('customer')->name('customer.')->group(function(){
     //Pasar datos de cliente SAP a Socio SYD
     Route::get('/getcustomersap', 'SAPController@GetSAPCustomerToSocioSyd')->name('getCustomerSAP');
     //Obtener datos del cliente desde SAP
-    Route:get('/searchCustomerDataSAP', 'SAPController@SearchCustomerDataFromSAP')->name('searchCustomerDataFromSAP');
+    Route::get('/searchCustomerDataSAP', 'SAPController@SearchCustomerDataFromSAP')->name('searchCustomerDataFromSAP');
 
 
 //Account URLs
